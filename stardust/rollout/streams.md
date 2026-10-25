@@ -14,7 +14,7 @@ gate-all on the published origin over all 34 sitemap pages (`stardust/rollout/ga
 
 The one failure at each width is the portfolio's content presence MISSING 2: the postal repo cards, whose source wraps heading and summary in one link (recorded residual). 2025-09-01 is 0px at both widths after the code-nowrap fix.
 
-Portfolio's failure is register R24, now a documented override (gate-all: 33 PASS + 1 delivered with override at each width).
+Portfolio's failure (register R24) is resolved in ff55698: gate-all on the portfolio is PASS at both widths (MISSING 0), content-diff 0 / 0, so the sweep is 34 of 34 on the full verdict at 1440 and 360.
 
 Dark check (decision 18; `stardust/.work/dark-sweep.mjs`, stored Dark on source and EDS, all 34 pages): 1440 32 of 34 within 10% and 8px, 360 33 of 34; outside only 2026-08-15 (R11) and 2025-07-06 at 1440 (+10px, R13). 2025-07-12 and 2025-09-01 were outside (13.89% / -32px) until the page theme `board-mat` (their dark-theme board mat) landed; now 0% to 0.46%.
 
