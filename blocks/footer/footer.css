@@ -148,3 +148,16 @@ footer .footer.footer-full {
     gap: var(--space-6);
   }
 }
+
+.footer.footer-full .footer-col .placeholder {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  font-family: var(--font-mono);
+  font-size: max(0.85em, 12px);
+  color: var(--color-text-faint);
+  border: var(--border-width) dashed var(--color-line-strong);
+  border-radius: var(--radius-sm);
+  padding: 0 6px;
+  white-space: normal;
+}

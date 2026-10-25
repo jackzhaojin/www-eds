@@ -17,7 +17,17 @@ function decorateColumns(block, fragment) {
     col.className = 'footer-col';
     const list = h.nextElementSibling;
     col.append(h);
-    if (list && list.matches('ul')) col.append(list);
+    if (list && list.matches('ul')) {
+      // A bracketed item without a link is a placeholder (v3 span.placeholder).
+      list.querySelectorAll('li').forEach((li) => {
+        if (li.querySelector('a') || !li.textContent.trim()) return;
+        const span = document.createElement('span');
+        span.className = 'placeholder';
+        span.append(...li.childNodes);
+        li.append(span);
+      });
+      col.append(list);
+    }
     grid.append(col);
   });
   const meta = document.createElement('div');

@@ -16,6 +16,35 @@ function menuIcon() {
   return svg;
 }
 
+/* The design system v3 page draws v3's own toggle: menu and close glyphs from a sprite. */
+function spriteIcon(id) {
+  if (!document.getElementById(id)) {
+    let sprite = document.getElementById('header-sprite');
+    if (!sprite) {
+      sprite = document.createElementNS(SVG_NS, 'svg');
+      sprite.id = 'header-sprite';
+      sprite.setAttribute('aria-hidden', 'true');
+      sprite.setAttribute('style', 'position:absolute;width:0;height:0;overflow:hidden');
+      document.body.prepend(sprite);
+    }
+    const symbol = document.createElementNS(SVG_NS, 'symbol');
+    symbol.id = id;
+    symbol.setAttribute('viewBox', '0 0 24 24');
+    const path = document.createElementNS(SVG_NS, 'path');
+    path.setAttribute('d', id === 'icon-close' ? 'M6 6l12 12M18 6L6 18' : 'M4 7h16M4 12h16M4 17h16');
+    symbol.append(path);
+    sprite.append(symbol);
+  }
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('class', `icon icon-${id.slice(5)}`);
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+  const use = document.createElementNS(SVG_NS, 'use');
+  use.setAttribute('href', `#${id}`);
+  svg.append(use);
+  return svg;
+}
+
 function markCurrent(list) {
   const norm = (p) => p.replace(/\/(index)?$/, '') || '/';
   const here = norm(window.location.pathname);
@@ -64,6 +93,18 @@ export default async function decorate(block) {
   const tools = document.createElement('div');
   tools.className = 'site-nav-tools';
   tools.append(buildThemeControl());
+  const docs = document.body.classList.contains('design-docs');
+  // On the design system page the last nav item is v3's primary button: in the tools row at
+  // desktop, beside the toggle below 1024px (one element, moved between the two).
+  let cta;
+  if (docs && list && list.children.length > 1) {
+    const item = list.lastElementChild;
+    cta = item.querySelector('a');
+    if (cta) {
+      cta.classList.add('site-header-cta');
+      item.remove();
+    }
+  }
   nav.append(links, tools);
 
   const toggle = document.createElement('button');
@@ -77,7 +118,8 @@ export default async function decorate(block) {
   const close = document.createElement('span');
   close.className = 'nav-toggle-close';
   close.textContent = 'Close';
-  toggle.append(menuIcon(), open, close);
+  if (docs) toggle.append(spriteIcon('icon-menu'), spriteIcon('icon-close'), open, close);
+  else toggle.append(menuIcon(), open, close);
 
   const closeMenu = (returnFocus) => {
     nav.classList.remove('is-open');
@@ -102,6 +144,14 @@ export default async function decorate(block) {
   inner.className = 'site-header';
   inner.append(brand, toggle, nav);
   block.replaceChildren(inner);
+  if (cta) {
+    const placeCta = () => {
+      if (DESKTOP.matches) tools.prepend(cta);
+      else toggle.before(cta);
+    };
+    placeCta();
+    DESKTOP.addEventListener('change', placeCta);
+  }
 
   if (!document.querySelector('.skip-link')) {
     const skip = document.createElement('a');

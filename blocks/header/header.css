@@ -246,16 +246,53 @@
 }
 
 /* The design system v3 page (template design-docs) shows v3's own nav: its last item, Book a
-   talk, is the small primary button. Scoped to that page; the default header is unchanged. */
-body.design-docs .header .site-nav ul li:last-child a {
+   talk, is the small primary button (components.css .btn--primary.btn--sm), in the tools row at
+   desktop and beside the toggle below 1024px; the toggle swaps v3's menu and close glyphs and
+   the theme buttons are 34px at desktop. Scoped to that page; the default header is unchanged. */
+body.design-docs .header .site-header-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: var(--weight-regular);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
   padding: var(--button-pad-sm);
   border-radius: var(--button-radius);
+  border: var(--border-width) solid var(--color-inverse-bg);
   background: var(--color-inverse-bg);
   color: var(--color-inverse-text);
-  font-size: 12px;
-  min-height: 0;
+  text-decoration: none;
 }
 
-body.design-docs .header .site-nav ul li:last-child a::after {
-  content: none;
+body.design-docs .header .nav-toggle .icon {
+  stroke-width: 1.6;
+}
+
+body.design-docs .header .nav-toggle .icon-close,
+body.design-docs .header .nav-toggle[aria-expanded="true"] .icon-menu {
+  display: none;
+}
+
+body.design-docs .header .nav-toggle[aria-expanded="true"] .icon-close {
+  display: inline-block;
+}
+
+@media (width >= 1024px) {
+  body.design-docs .header .theme-control-button {
+    min-height: 34px;
+  }
+}
+
+@media (width <= 1023px) {
+  body.design-docs .header .site-header-cta {
+    min-height: var(--target-min);
+    margin-left: auto;
+  }
+
+  body.design-docs .header .site-header-cta + .nav-toggle {
+    margin-left: 0;
+  }
 }
