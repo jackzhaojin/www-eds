@@ -7,7 +7,7 @@
  * spans the remaining columns.
  *
  * @ew-exempt sr-caption: the caption is read by screen readers only (.sr-only)
- * @variants nowrap | cheat | rank | stack | caption | sr-caption | row-heads | fill-in
+ * @variants nowrap | cheat | rank | stack | caption | sr-caption | row-heads | fill-in | span-first
  *   nowrap - the last column stays on one line (a short value such as "16 min")
  *   cheat - a cheat sheet: smaller type, the first column in strong ink (one article)
  *   rank - a ranked list: the first column a faint mono rank, bold words in strong ink (one
@@ -18,12 +18,16 @@
  *   row-heads - the first cell of each row heads that row (th scope="row")
  *   fill-in - a template to fill in: fixed layout, the first two columns 26% and 22%, empty
  *   rows keep their height (one article)
+ *   span-first - a row one cell short continues the first-column cell above it (a merged
+ *   cell spanning rows), instead of spanning its last cell
  */
 export default function decorate(block) {
   const rows = [...block.querySelectorAll(':scope > div')];
   const srCaption = block.classList.contains('sr-caption');
   const captionRow = (srCaption || block.classList.contains('caption')) && rows.length > 1 ? rows.pop() : null;
   const rowHeads = block.classList.contains('row-heads');
+  const spanFirst = block.classList.contains('span-first');
+  let spanning = null;
   const cols = Math.max(...rows.map((row) => row.children.length));
   const table = document.createElement('table');
   table.className = 'data-table-table';
@@ -32,11 +36,15 @@ export default function decorate(block) {
   rows.forEach((row, i) => {
     const tr = document.createElement('tr');
     const cells = [...row.children];
+    const continues = spanFirst && i > 0 && spanning && cells.length === cols - 1;
+    if (continues) spanning.rowSpan += 1;
     cells.forEach((cell, j) => {
-      const heads = i === 0 || (rowHeads && j === 0);
+      const heads = i === 0 || (rowHeads && j === 0 && !continues);
       const td = document.createElement(heads ? 'th' : 'td');
       if (heads) td.scope = i === 0 ? 'col' : 'row';
-      if (j === cells.length - 1 && cells.length < cols) td.colSpan = cols - cells.length + 1;
+      const short = !continues && j === cells.length - 1 && cells.length < cols;
+      if (short) td.colSpan = cols - cells.length + 1;
+      if (spanFirst && i > 0 && j === 0 && !continues) spanning = td;
       td.append(...cell.childNodes);
       tr.append(td);
     });

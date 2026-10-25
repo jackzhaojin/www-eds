@@ -261,6 +261,12 @@
   }
 }
 
+/* Page theme code-nowrap: inline code in prose and lists never breaks (header names such as
+   Cache-Control keep their hyphen; one article). */
+.article.code-nowrap :is(.article-body .default-content-wrapper :is(p, li), .article-head .summary) code {
+  white-space: nowrap;
+}
+
 /* Section style roomy-h3: h3 headings get a step more room above and keep to 40ch (one article). */
 .article .article-body .section.roomy-h3 .default-content-wrapper h3 {
   margin-top: var(--space-7);

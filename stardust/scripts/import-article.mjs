@@ -104,7 +104,9 @@ function dataTable(el) {
   }
   const rowHeads = $t.find('tbody th[scope="row"]').length > 0;
   const fillIn = $t.hasClass('relay-matrix');
-  const words = ['data-table', tableNowrap && 'nowrap', look, look && tableStacks(look) && 'stack', captionWord, rowHeads && 'row-heads', fillIn && 'fill-in'];
+  // A first-column cell that spans rows: the covered rows come out one cell short.
+  const spanFirst = $t.find('tbody tr > :first-child[rowspan]').length > 0;
+  const words = ['data-table', tableNowrap && 'nowrap', look, look && tableStacks(look) && 'stack', captionWord, rowHeads && 'row-heads', fillIn && 'fill-in', spanFirst && 'span-first'];
   return block(words.filter(Boolean).join(' '), rows);
 }
 
@@ -370,6 +372,9 @@ const keep = $('.article-head h1 .nowrap').map((_, e) => $(e).text()).get();
 if (keep.length) metaRows.push(['title-keep-together', esc(keep.join(', '))]);
 const keepHeads = [...new Set($('.article-body > h2 .nowrap').map((_, e) => $(e).text()).get())];
 if (keepHeads.length) metaRows.push(['heading-keep-together', esc(keepHeads.join(', '))]);
+// Page look words (body classes through the theme metadata).
+const themeWords = [/\.article-body > p code[^{]*\{[^}]*white-space:\s*nowrap/.test(srcCss) && 'code-nowrap'].filter(Boolean);
+if (themeWords.length) metaRows.push(['theme', themeWords.join(', ')]);
 if (ogImage) metaRows.push(['image', `${img($(`<img src="${ogImage}" alt="${esc(meta('og:image:alt'))}">`)[0])}`]);
 if (meta('og:image:alt')) metaRows.push(['image:alt', esc(meta('og:image:alt'))]);
 if (meta('article:published_time')) metaRows.push(['published-time', meta('article:published_time')]);
