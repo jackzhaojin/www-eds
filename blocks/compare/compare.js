@@ -6,8 +6,26 @@
  * tabs switch them (arrow keys move between tabs). Tabs host their authored label paragraph,
  * so a tab is a focusable element with role="tab", not a <button> (EW7).
  *
- * @variants (none)
+ * @variants narrow
+ *   narrow - portrait screenshots, the compare kept at most 560px wide, each opens full size
  */
+
+/** Links a pane's picture to the delivered image at full size (derived, not authored). */
+function openFull(pane) {
+  const img = pane.querySelector('img');
+  if (!img || img.closest('a')) return;
+  const full = new URL(img.getAttribute('src'), window.location);
+  full.searchParams.delete('width');
+  const a = document.createElement('a');
+  a.className = 'compare-open';
+  a.href = full.href;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.setAttribute('aria-label', `Open full size: ${img.alt}`);
+  const picture = img.closest('picture') || img;
+  picture.before(a);
+  a.append(picture);
+}
 
 export default function decorate(block) {
   const tabs = document.createElement('div');
@@ -35,6 +53,7 @@ export default function decorate(block) {
       else caption.append(el);
     });
     if (caption.children.length) pane.append(caption);
+    if (block.classList.contains('narrow')) openFull(pane);
     stage.append(pane);
   });
 

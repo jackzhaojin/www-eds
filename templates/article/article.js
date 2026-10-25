@@ -162,6 +162,13 @@ function decorateHeadingLinks(body) {
   });
 }
 
+/** An h3 that asks a question gets the Q&A voice (the source's h3.qa). */
+function decorateQuestions(body) {
+  body.querySelectorAll('.default-content-wrapper h3').forEach((h) => {
+    if (/\?\s*$/.test(h.textContent)) wrap(h, 'question');
+  });
+}
+
 export default function decorate(main) {
   const sections = [...main.querySelectorAll(':scope > .section')];
   if (!sections.length) return;
@@ -182,5 +189,6 @@ export default function decorate(main) {
   head.after(layout);
 
   decorateWatch(body);
+  decorateQuestions(body);
   decorateHeadingLinks(body);
 }

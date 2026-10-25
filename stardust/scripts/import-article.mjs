@@ -6,9 +6,14 @@
 // rewrite the ones that resolve on the new site. Images point at DA media under
 // media/writing/<slug>/ (upload them with da-media-upload.mjs --scope writing/<slug>).
 //
+// Engines: every stardust/scripts/import-engines/<name>.mjs exports match($, el) and
+// convert($, el, h) -> HTML for one explainer one-off (h = the helpers below). The first
+// engine that matches an element converts it; anything nothing converts is UNSUPPORTED.
+//
 // Usage: node stardust/scripts/import-article.mjs <source-index.html> <slug> <out.html>
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import * as cheerio from 'cheerio';
 
 const [src, slug, out] = process.argv.slice(2);
@@ -65,8 +70,19 @@ function codeText($pre) {
   return $pre.text();
 }
 
+function dataTable(el) {
+  const $t = $(el).is('table') ? $(el) : $(el).find('table').first();
+  const rows = $t.find('tr').map((_, tr) => [$(tr).children('th, td').map((__, c) => `<p>${inline(c)}</p>`).get()]).get();
+  return block('data-table', rows);
+}
+
 function figure(el) {
   const $el = $(el);
+  if ($el.hasClass('shot') || $el.hasClass('page')) {
+    const kind = $el.hasClass('page') ? 'page' : `shot${$el.hasClass('shot--narrow') ? ' narrow' : ''}`;
+    const cap = $el.find('figcaption');
+    return block(`figure ${kind}`, [[`<p>${img($el.find('img'))}</p>${cap.length ? `<p>${inline(cap)}</p>` : ''}`]]);
+  }
   if ($el.hasClass('video')) {
     const frame = $el.find('iframe');
     const id = /embed\/([\w-]{11})/.exec(frame.attr('src'))[1];
@@ -100,7 +116,7 @@ function compare(el) {
     const cap = $p.find('figcaption');
     return [[`<p>${inline(tabs.eq(i))}</p>`, `<p>${img($p.find('img'))}</p>${cap.length ? `<p>${inline(cap)}</p>` : ''}`]];
   }).get();
-  return block('compare', rows);
+  return block($el.hasClass('cmp--narrow') ? 'compare narrow' : 'compare', rows);
 }
 
 // Code marks from the source's highlight spans, in document order.
@@ -173,6 +189,25 @@ function related(el) {
   return `<h2>${inline($r.children('h2'))}</h2>${block('row-list', rows)}${author}${sectionMeta([['style', 'related']])}`;
 }
 
+// ---- engines
+const here = path.dirname(fileURLToPath(import.meta.url));
+const engineDir = path.join(here, 'import-engines');
+const engines = [];
+if (fs.existsSync(engineDir)) {
+  for (const f of fs.readdirSync(engineDir).filter((x) => x.endsWith('.mjs')).sort()) {
+    // eslint-disable-next-line no-await-in-loop
+    const mod = await import(pathToFileURL(path.join(engineDir, f)).href);
+    engines.push({ name: f.replace(/\.mjs$/, ''), ...mod });
+  }
+}
+const helpers = {
+  esc, absHref, img, inline, text, block, sectionMeta, codeText, MEDIA, SITE, slug,
+};
+function viaEngine(el) {
+  const hit = engines.find((e) => e.match && e.match($, el));
+  return hit ? hit.convert($, el, helpers) : null;
+}
+
 // ---- head
 const head = $('.article-head');
 const crumbs = head.find('.breadcrumb li').map((_, li) => `<li>${inline(li)}</li>`).get().join('');
@@ -198,6 +233,25 @@ const flush = () => {
   current = [];
   currentMeta = [];
 };
+function convert(el) {
+  const $el = $(el);
+  const tag = el.name;
+  const engined = viaEngine(el);
+  if (engined !== null) return engined;
+  if (tag === 'p') return `<p>${inline(el)}</p>`;
+  if (tag === 'h3' || tag === 'h4') return `<${tag}>${inline(el)}</${tag}>`;
+  if (tag === 'ul' || tag === 'ol') return `<${tag}>${$el.children('li').map((__, li) => `<li>${inline(li)}</li>`).get().join('')}</${tag}>`;
+  if (tag === 'pre') return `<pre><code>${esc($el.text())}</code></pre>`;
+  if (tag === 'blockquote') return `<blockquote>${$el.children('p').map((__, p) => `<p>${inline(p)}</p>`).get().join('') || `<p>${inline(el)}</p>`}</blockquote>`;
+  if (tag === 'table' || (tag === 'div' && $el.is('.table-wrap, .table-scroll') && $el.find('table').length && !$el.is('.mx-wrap'))) return dataTable(el);
+  if (tag === 'figure') return figure(el);
+  if (tag === 'div' && $el.is('[data-compare]')) return compare(el);
+  if (tag === 'div' && $el.find('[data-lab]').length) return lab(el);
+  if (tag === 'div' && $el.hasClass('wide') && $el.children().length === 1) return convert($el.children()[0]);
+  unsupported.push(`${tag}.${($el.attr('class') || '').replace(/ /g, '.')}`);
+  return '';
+}
+
 $('.article-body').children().each((_, el) => {
   const $el = $(el);
   const tag = el.name;
@@ -214,16 +268,10 @@ $('.article-body').children().each((_, el) => {
   } else if (tag === 'p' && $el.hasClass('watch')) {
     const links = $el.find('a').map((__, a) => `<a href="${esc(absHref($(a).attr('href')))}">${esc($(a).text())}</a>`).get().join(' ');
     current.push(`<p>${esc($el.find('.watch__label').text())} ${links}</p>`);
-  } else if (tag === 'p') current.push(`<p>${inline(el)}</p>`);
-  else if (tag === 'ul' || tag === 'ol') current.push(`<${tag}>${$el.children('li').map((__, li) => `<li>${inline(li)}</li>`).get().join('')}</${tag}>`);
-  else if (tag === 'pre') current.push(`<pre><code>${esc($el.text())}</code></pre>`);
-  else if (tag === 'figure') current.push(figure(el));
-  else if (tag === 'div' && $el.is('[data-compare]')) current.push(compare(el));
-  else if (tag === 'div' && $el.find('[data-lab]').length) current.push(lab(el));
-  else if (tag === 'section' && $el.hasClass('article-related')) {
+  } else if (tag === 'section' && $el.hasClass('article-related')) {
     flush();
     current.push(related(el));
-  } else unsupported.push(`${tag}.${($el.attr('class') || '').replace(/ /g, '.')}`);
+  } else current.push(convert(el));
 });
 flush();
 

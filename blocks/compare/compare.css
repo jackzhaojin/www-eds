@@ -4,6 +4,16 @@
   margin-block: var(--space-6);
 }
 
+.compare.narrow {
+  max-width: 560px;
+}
+
+.compare .compare-open {
+  display: block;
+  border-radius: 12px;
+  cursor: zoom-in;
+}
+
 .compare .compare-tabs {
   display: flex;
   gap: 6px;
