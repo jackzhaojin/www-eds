@@ -93,6 +93,10 @@ At 18:14 Jack asked for one more page: the article about this build, written in 
 
 No Adobe skill covers the Admin API beyond preview and publish, so Jack's own `hlx-admin-api-executor` (jackzhaojin/ai-builder-kit) became a project plugin, skills only. Its guard hook was fixed in the local ai-builder-kit clone (it missed `-XPOST`, `--request=DELETE`, `-d` and `--data-binary`, and api.aem.live) and documented for use without the plugin; the skill gained the note that a DA site's IMS token works as a bearer. Then the site config, done the skill's way (GET before, SET, GET after, every response kept in `hlx-config/2026-10-25-seo-config/`): the production host, robots.txt, the query index, the sitemap, the redirects and metadata sheets, and per-page JSON-LD and titles synced from www. A head-tag comparison on all 35 pages found one real defect on the way: three article titles carried an inline SVG's title text. After the change, all 35 match www except `og:image` sizes that EDS resizes anyway, and the sitemap lists the same 35 URLs on www.
 
+## Then: eds and gh
+
+Jack's plan for the hosts (19:25): GitHub Pages at gh.jackzhaojin.com and EDS at eds.jackzhaojin.com, both out of search, www keeping its SEO after the cutover. The Worker in `edge/` gained a gh mode (the whole GitHub Pages site, read through www until GitHub Pages moves, with its redirects kept on gh) and a noindex header on every host but www, tested in-process first. Then, in Jack's Chrome with Claude in Chrome, Claude filled the two DNS record forms (AAAA `100::`, proxied) and Jack clicked Save on each; the Workers went out with the wrangler sign-in already on the laptop. The host check passes on both live hosts, and www is byte-for-byte unchanged.
+
 ## Numbers
 
 153 commits on `main` between 09:05 and 19:00; 41 blocks; 5 templates; 41 explainer engines and 43 importer engines; 40 content documents; 9 subagents; register R1 to R24; 96 owner-accepted content-diff entries (rail thumbnails at phone width, where the probe can only compare file names).

@@ -24,10 +24,18 @@ Everything below is a stop point from the plan (Jack's call, his credentials or 
 
 ## 3. Cloudflare and the cutover
 
-1. The staging DNS record for `next.jackzhaojin.com` (proxied placeholder).
-2. `wrangler login` (Jack), then from `edge/`: `npx wrangler deploy --env staging`.
-3. `node scripts/check-host.mjs --base https://next.jackzhaojin.com` (it already passes with the Worker in-process; the legacy redirects show as waiting until the redirects config exists).
-4. Then the cutover order in routing-cloudflare.md: push invalidation, the www route in the dashboard (its own approval), verification, `docs/site-operations.md`, the README in `jackzhaojin.github.io`.
+Jack's host plan (19:25): GitHub Pages moves to gh.jackzhaojin.com without SEO, EDS gets eds.jackzhaojin.com without SEO before the cutover, and www keeps its SEO after it.
+
+**Done 2026-10-25 evening:**
+- DNS records `eds` and `gh`, AAAA `100::`, proxied (Claude filled the forms in Jack's Chrome, Jack saved them).
+- Workers deployed from `edge/` with the existing wrangler sign-in: `www-eds-edge-staging` on `eds.jackzhaojin.com/*` (EDS and the project sites) and `www-eds-edge-gh` on `gh.jackzhaojin.com/*` (the whole GitHub Pages site, read through www for now). Every host but www answers `X-Robots-Tag: noindex, nofollow`; canonicals point at www; robots.txt allows crawling, so crawlers see the noindex.
+- `check-host.mjs` passes on both live hosts; www is unchanged (its home page is byte-identical to the source repo).
+
+**The cutover, in this order:**
+1. Push invalidation: Jack creates a Cache Purge token; the EDS CDN config (`hlx-config/cdn-prod.json`) gains `type: cloudflare`, the zone ID and the token (Jack enters the token).
+2. GitHub Pages moves to gh: the `CNAME` file in jackzhaojin.github.io says `gh.jackzhaojin.com` (Jack commits it) and Pages settings follow; the gh DNS record becomes a CNAME to `jackzhaojin.github.io`, DNS-only until GitHub shows its certificate, then proxied; the gh env's `GITHUB_ORIGIN` becomes `passthrough` (the zone origin, GitHub). From here www shows GitHub's 404 until step 3, so do 2 and 3 together.
+3. The www Worker: `PROJECT_ORIGIN` becomes `https://gh.jackzhaojin.com` (never before step 2: gh would read www, and www would read gh, a loop), deploy, then the www route in the dashboard (its own approval).
+4. `node edge/scripts/check-host.mjs --base https://www.jackzhaojin.com`, the sitemap in Search Console, `docs/site-operations.md`, the README in jackzhaojin.github.io. Later comparisons with the old site use gh.
 
 ## 4. Known residuals
 
