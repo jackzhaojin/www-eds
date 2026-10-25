@@ -40,7 +40,6 @@ if (window.trustedTypes && window.trustedTypes.createPolicy) {
 }
 
 const THEME_KEY = 'jj-theme';
-const TEMPLATES = ['article'];
 const THEMES = ['light', 'dark', 'system'];
 
 /**
@@ -242,16 +241,22 @@ export function decorateMain(main) {
 }
 
 /**
- * Applies the page template (metadata "template"), when it has code: its CSS and its
- * decorate(main), before the first section shows, so the layout never shifts.
+ * Applies the page template (metadata "template"): templates/<name>/<name>.js and .css, the
+ * module's default export decorates main before the first section shows, so the layout never
+ * shifts. A template without code leaves the page as it is.
  * @param {Element} main The main element
  */
 async function decorateTemplate(main) {
   const template = toClassName(getMetadata('template'));
-  if (!TEMPLATES.includes(template)) return;
+  if (!template || !/^[a-z][a-z0-9-]*$/.test(template)) return;
   const base = `${window.hlx.codeBasePath}/templates/${template}/${template}`;
-  const [mod] = await Promise.all([import(`${base}.js`), loadCSS(`${base}.css`)]);
-  if (mod.default) await mod.default(main);
+  try {
+    const [mod] = await Promise.all([import(`${base}.js`), loadCSS(`${base}.css`)]);
+    if (mod.default) await mod.default(main);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`template ${template} failed to load`, error);
+  }
 }
 
 /**
