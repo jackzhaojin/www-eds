@@ -158,16 +158,21 @@ export default async function engine(block, { slot, rows, plainLinks }) {
     return n;
   };
 
-  function render() {
+  function render(initial) {
     lines.forEach((l) => l.li.toggleAttribute('data-off', !l.box.checked));
     const picked = lines.filter((l) => l.box.checked && l.entry).map((l) => l.entry);
     const spans = picked.flatMap(autologSpans);
-    spansEl.replaceChildren(...(spans.length ? spans : [{ span: 'no spans', none: true }]).map((s) => {
-      const li = el('li', s.none ? 'is-none' : '');
-      li.append(el('code', '', s.span));
-      if (s.note) li.append(` ${s.note}`);
-      return li;
-    }));
+    if (initial && spansEl.children.length === spans.length) {
+      // the authored list is the all-lines result: keep it, mark the lines with no span
+      [...spansEl.children].forEach((li, i) => li.classList.toggle('is-none', !!spans[i].none));
+    } else {
+      spansEl.replaceChildren(...(spans.length ? spans : [{ span: 'no spans', none: true }]).map((s) => {
+        const li = el('li', s.none ? 'is-none' : '');
+        li.append(el('code', '', s.span));
+        if (s.note) li.append(` ${s.note}`);
+        return li;
+      }));
+    }
 
     const inv = extractInvocations(picked, BUILTIN);
     if (!inv.length) {
@@ -189,7 +194,7 @@ export default async function engine(block, { slot, rows, plainLinks }) {
       : 'No skill calls in this session, so the hook writes no tags.';
     noteEl.replaceChildren(el('strong', '', lead), ...notes.flatMap((n) => [' ', ...n]));
   }
-  lines.forEach((l) => l.box.addEventListener('change', render));
+  lines.forEach((l) => l.box.addEventListener('change', () => render(false)));
   block.classList.add('is-live');
-  render();
+  render(true);
 }
