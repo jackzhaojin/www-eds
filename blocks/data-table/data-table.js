@@ -7,7 +7,7 @@
  * spans the remaining columns.
  *
  * @ew-exempt sr-caption: the caption is read by screen readers only (.sr-only)
- * @variants nowrap | cheat | rank | stack | caption | sr-caption | row-heads
+ * @variants nowrap | cheat | rank | stack | caption | sr-caption | row-heads | fill-in
  *   nowrap - the last column stays on one line (a short value such as "16 min")
  *   cheat - a cheat sheet: smaller type, the first column in strong ink (one article)
  *   rank - a ranked list: the first column a faint mono rank, bold words in strong ink (one
@@ -16,6 +16,8 @@
  *   caption - the last row is the table's caption, shown under it in small muted type
  *   sr-caption - the last row is the table's caption, read by screen readers only
  *   row-heads - the first cell of each row heads that row (th scope="row")
+ *   fill-in - a template to fill in: fixed layout, the first two columns 26% and 22%, empty
+ *   rows keep their height (one article)
  */
 export default function decorate(block) {
   const rows = [...block.querySelectorAll(':scope > div')];

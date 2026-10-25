@@ -140,3 +140,29 @@
     padding: 2px 0;
   }
 }
+
+/* fill-in: the source's caching matrix template (.relay-matrix, one article's explainer.css). */
+.data-table.fill-in table {
+  table-layout: fixed;
+}
+
+.data-table.fill-in th:nth-child(1) {
+  width: 26%;
+}
+
+.data-table.fill-in th:nth-child(2) {
+  width: 22%;
+}
+
+.data-table.fill-in td:empty::after {
+  content: "\00a0";
+}
+
+.data-table.fill-in tbody td {
+  height: 2.6em;
+}
+
+.data-table.fill-in td code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}

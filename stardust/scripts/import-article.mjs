@@ -83,7 +83,8 @@ const tableStacks = (cls) => new RegExp(`max-width:\\s*560px\\)\\s*\\{\\s*\\.${c
 function codeText($pre) {
   const lines = $pre.find('.ln');
   if (!lines.length) return $pre.text();
-  const text = lines.map((_, l) => $(l).text()).get();
+  // Some sources end each line span with its own newline; the join adds the only one.
+  const text = lines.map((_, l) => $(l).text().replace(/\n$/, '')).get();
   // The delivery pipeline trims a code block's trailing empty line; a no-break space keeps it.
   if (text.length && text[text.length - 1] === '') text[text.length - 1] = '\u00a0';
   return text.join('\n');
@@ -91,7 +92,8 @@ function codeText($pre) {
 
 function dataTable(el) {
   const $t = $(el).is('table') ? $(el) : $(el).find('table').first();
-  const rows = $t.find('tr').map((_, tr) => [$(tr).children('th, td').map((__, c) => `<p>${inline(c)}</p>`).get()]).get();
+  const cellHtml = (c) => (inline(c).trim() ? `<p>${inline(c)}</p>` : '');
+  const rows = $t.find('tr').map((_, tr) => [$(tr).children('th, td').map((__, c) => cellHtml(c)).get()]).get();
   const look = ['cheat', 'rank'].find((cls) => $t.hasClass(cls));
   // The caption is the block's last row; a merged last cell is a short row (the block spans it).
   const caption = $t.children('caption').first();
@@ -101,7 +103,8 @@ function dataTable(el) {
     rows.push([`<p>${inline(caption)}</p>`]);
   }
   const rowHeads = $t.find('tbody th[scope="row"]').length > 0;
-  const words = ['data-table', tableNowrap && 'nowrap', look, look && tableStacks(look) && 'stack', captionWord, rowHeads && 'row-heads'];
+  const fillIn = $t.hasClass('relay-matrix');
+  const words = ['data-table', tableNowrap && 'nowrap', look, look && tableStacks(look) && 'stack', captionWord, rowHeads && 'row-heads', fillIn && 'fill-in'];
   return block(words.filter(Boolean).join(' '), rows);
 }
 
