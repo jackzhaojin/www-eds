@@ -111,9 +111,10 @@
   min-width: 0;
 }
 
-/* The first element starts flush with the column, as the source's first child does. */
-.article .article-body > .section:first-child {
-  margin-top: calc(-1 * var(--space-4));
+/* The first default-content element starts flush with the column, as the source's first child
+   does; a first block (a video figure) keeps its own top margin, as on the source. */
+.article .article-body > .section:first-child > .default-content-wrapper:first-child > :first-child {
+  margin-top: 0;
 }
 
 .article .article-body .default-content-wrapper > *,

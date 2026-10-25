@@ -41,6 +41,17 @@
   display: flex;
 }
 
+.code.wrap .code-bar p:not(:has(a)) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.code.wrap .code-bar p:has(a) {
+  flex: none;
+  white-space: nowrap;
+}
+
 .code .code-bar a:any-link {
   color: var(--palette-lavender-300);
   text-decoration: underline;

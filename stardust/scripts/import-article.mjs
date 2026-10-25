@@ -64,16 +64,27 @@ const text = (node) => $(node).text();
 const block = (name, rows) => `<div class="${name}">${rows.map((cells) => `<div>${cells.map((c) => `<div>${c}</div>`).join('')}</div>`).join('')}</div>`;
 const sectionMeta = (pairs) => block('section-metadata', pairs.map(([k, v]) => [`<p>${k}</p>`, `<p>${v}</p>`]));
 
+// The source's per-article CSS that changes a shared component (read once per article).
+const srcCss = (() => {
+  const f = path.join(path.dirname(src), 'explainer.css');
+  return fs.existsSync(f) ? fs.readFileSync(f, 'utf8') : '';
+})();
+const codeWraps = /\.code \.bar > a\s*\{[^}]*white-space:\s*nowrap/.test(srcCss);
+const tableNowrap = /td:last-child[^{]*\{[^}]*white-space:\s*nowrap/.test(srcCss);
+
 function codeText($pre) {
   const lines = $pre.find('.ln');
-  if (lines.length) return lines.map((_, l) => $(l).text()).get().join('\n');
-  return $pre.text();
+  if (!lines.length) return $pre.text();
+  const text = lines.map((_, l) => $(l).text()).get();
+  // The delivery pipeline trims a code block's trailing empty line; a no-break space keeps it.
+  if (text.length && text[text.length - 1] === '') text[text.length - 1] = '\u00a0';
+  return text.join('\n');
 }
 
 function dataTable(el) {
   const $t = $(el).is('table') ? $(el) : $(el).find('table').first();
   const rows = $t.find('tr').map((_, tr) => [$(tr).children('th, td').map((__, c) => `<p>${inline(c)}</p>`).get()]).get();
-  return block('data-table', rows);
+  return block(tableNowrap ? 'data-table nowrap' : 'data-table', rows);
 }
 
 function figure(el) {
@@ -94,7 +105,7 @@ function figure(el) {
     const bar = $el.find('.bar');
     const label = bar.find('span').first();
     const link = bar.find('a').first();
-    return block('code', [
+    return block(codeWraps ? 'code wrap' : 'code', [
       [`<p>${inline(label)}</p><p><a href="${esc(absHref(link.attr('href')))}">${inline(link)}</a></p>`],
       [`<pre><code>${esc(codeText($el.find('pre')))}</code></pre>`],
     ]);

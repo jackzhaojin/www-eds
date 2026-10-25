@@ -3,7 +3,8 @@
  * row per table row; the first row is the header. Cell content is moved into the cells, so
  * every authored paragraph stays editable.
  *
- * @variants (none)
+ * @variants nowrap
+ *   nowrap - the last column stays on one line (a short value such as "16 min")
  */
 export default function decorate(block) {
   const rows = [...block.querySelectorAll(':scope > div')];
