@@ -280,6 +280,10 @@ body.design-docs .header .nav-toggle[aria-expanded="true"] .icon-close {
   display: inline-block;
 }
 
+body.design-docs .header .site-header-cta-bar {
+  display: none;
+}
+
 @media (width >= 1024px) {
   body.design-docs .header .theme-control-button {
     min-height: 34px;
@@ -287,9 +291,14 @@ body.design-docs .header .nav-toggle[aria-expanded="true"] .icon-close {
 }
 
 @media (width <= 1023px) {
-  body.design-docs .header .site-header-cta {
+  body.design-docs .header .site-header-cta-bar {
+    display: inline-flex;
     min-height: var(--target-min);
     margin-left: auto;
+  }
+
+  body.design-docs .header .site-nav-tools .site-header-cta {
+    display: none;
   }
 
   body.design-docs .header .site-header-cta + .nav-toggle {

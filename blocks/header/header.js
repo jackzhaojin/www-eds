@@ -94,18 +94,26 @@ export default async function decorate(block) {
   tools.className = 'site-nav-tools';
   tools.append(buildThemeControl());
   const docs = document.body.classList.contains('design-docs');
-  // On the design system page the last nav item is v3's primary button: in the tools row at
-  // desktop, beside the toggle below 1024px (one element, moved between the two).
+  // On the design system page v3 has two Book a talk buttons, both authored: the second link
+  // paragraph sits beside the toggle below 1024px, the last nav item sits in the tools row.
   let cta;
-  if (docs && list && list.children.length > 1) {
-    const item = list.lastElementChild;
-    cta = item.querySelector('a');
-    if (cta) {
-      cta.classList.add('site-header-cta');
-      item.remove();
+  if (docs) {
+    const [, ctaLink] = [...fragment.querySelectorAll('p a[href]')];
+    if (ctaLink) {
+      cta = ctaLink;
+      cta.classList.remove('button', 'text-link');
+      cta.classList.add('site-header-cta', 'site-header-cta-bar');
+    }
+    if (list && list.children.length > 1) {
+      const item = list.lastElementChild;
+      const toolLink = item.querySelector('a');
+      if (toolLink) {
+        toolLink.classList.add('site-header-cta');
+        tools.prepend(toolLink);
+        item.remove();
+      }
     }
   }
-  nav.append(links, tools);
 
   const toggle = document.createElement('button');
   toggle.type = 'button';
@@ -144,14 +152,7 @@ export default async function decorate(block) {
   inner.className = 'site-header';
   inner.append(brand, toggle, nav);
   block.replaceChildren(inner);
-  if (cta) {
-    const placeCta = () => {
-      if (DESKTOP.matches) tools.prepend(cta);
-      else toggle.before(cta);
-    };
-    placeCta();
-    DESKTOP.addEventListener('change', placeCta);
-  }
+  if (cta) toggle.before(cta);
 
   if (!document.querySelector('.skip-link')) {
     const skip = document.createElement('a');
