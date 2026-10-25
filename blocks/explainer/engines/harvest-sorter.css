@@ -1,0 +1,162 @@
+/* Explainer (harvest-sorter): a file path in, a knowledge-repo path and frontmatter out
+   (writing/2026-04-12 explainer.css, .hv). */
+.explainer.harvest-sorter .hv-body {
+  padding: 20px 18px 22px;
+  display: grid;
+  gap: 16px;
+}
+
+.explainer.harvest-sorter .hv-body > * {
+  min-width: 0;
+}
+
+@container (min-width: 720px) {
+  .explainer.harvest-sorter .hv-body {
+    padding: 24px 28px 26px;
+  }
+}
+
+.explainer.harvest-sorter .hv-label p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+
+.explainer.harvest-sorter .hv-picks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.explainer.harvest-sorter .hv-chip {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 7px 13px;
+  font-size: 13.5px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.explainer.harvest-sorter .hv-chip:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.explainer.harvest-sorter .hv-chip[aria-checked="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.explainer.harvest-sorter .hv-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explainer.harvest-sorter .hv-src {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font: 500 13px/1.6 var(--font-mono);
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.explainer.harvest-sorter .hv-src .hv-seg {
+  color: var(--ink);
+}
+
+.explainer.harvest-sorter .hv-dest {
+  margin: 0;
+  padding: 14px 16px;
+  background: var(--night);
+  border-radius: 12px;
+  font: 500 13px/1.7 var(--font-mono);
+  color: var(--bone-3);
+  overflow-wrap: anywhere;
+}
+
+.explainer.harvest-sorter .hv-seg-file {
+  color: var(--mint);
+}
+
+.explainer.harvest-sorter .hv-sl {
+  color: var(--bone-3);
+  opacity: 0.6;
+  margin: 0 1px;
+}
+
+.explainer.harvest-sorter .hv-skip {
+  color: var(--rose);
+}
+
+.explainer.harvest-sorter .hv-why,
+.explainer.harvest-sorter .hv-static ul {
+  margin: 0;
+  padding-left: 1.2em;
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.explainer.harvest-sorter .hv-why li,
+.explainer.harvest-sorter .hv-static li {
+  margin: 0;
+}
+
+.explainer.harvest-sorter .hv-why code,
+.explainer.harvest-sorter .hv-static code {
+  font: 500 0.86em var(--font-mono);
+  background: var(--accent-tint);
+  color: var(--color-text);
+  padding: 1px 5px;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: 4px;
+}
+
+.explainer.harvest-sorter .hv-front {
+  margin: 0;
+  padding: 12px 16px;
+  background: var(--night);
+  border: 0;
+  border-radius: 12px;
+  font: 400 12.5px/1.6 var(--font-mono);
+  color: var(--bone);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.explainer.harvest-sorter .hv-front:empty,
+.explainer.harvest-sorter.is-live .hv-static,
+.explainer.harvest-sorter .hv-data {
+  display: none;
+}
+
+.explainer.harvest-sorter .hv-caption {
+  padding: 14px 18px 18px;
+  border-top: 1px solid var(--line);
+}
+
+@container (min-width: 720px) {
+  .explainer.harvest-sorter .hv-caption {
+    padding: 14px 28px 20px;
+  }
+}
+
+.explainer.harvest-sorter .hv-caption p {
+  margin: 0;
+}
+
+@media (width <= 640px) {
+  .explainer.harvest-sorter .hv-chip {
+    min-height: 44px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+  }
+}
