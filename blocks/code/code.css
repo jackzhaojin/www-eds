@@ -100,14 +100,6 @@
   text-indent: -3.2em;
 }
 
-.code.plain .ln {
-  display: block;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  padding-left: 3.2em;
-  text-indent: -3.2em;
-}
-
 .code .ln::before {
   content: attr(data-n);
   display: inline-block;
@@ -133,10 +125,6 @@
 
 .code .tk-n {
   color: var(--palette-gold-300);
-}
-
-.code.plain .ln::before {
-  text-indent: 0;
 }
 
 @media (width <= 640px) {

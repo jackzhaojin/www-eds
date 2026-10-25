@@ -10,10 +10,10 @@
  * @variants wrap | prose | plain | stack
  *   wrap - the bar's label wraps and the source link stays on one line (the source's later
  *   "quality pass" on five articles)
- *   prose - lines of prose (a prompt log): they wrap under their text, with a hanging indent,
- *   instead of scrolling
- *   plain - a prompt in a source file: plain text (no syntax colors, which would color the
- *   prose wrong), wrapped under its text with a hanging indent
+ *   prose - lines that wrap under their text, with a hanging indent, instead of scrolling (a
+ *   prompt log, the source's code--wrap)
+ *   plain - no syntax colors: a prompt in a source file, which the highlighter would color
+ *   wrong (the source's code--prose)
  *   stack - on phones the bar stacks the label over the link (the 2025 articles' phone pass)
  */
 
