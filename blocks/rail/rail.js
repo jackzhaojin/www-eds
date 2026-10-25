@@ -53,20 +53,35 @@ function entry(row) {
 function track(details, list, bar) {
   const body = document.querySelector('.article-body') || document.querySelector('main');
   const links = [...list.querySelectorAll('a[href^="#"]')];
-  const targets = links.map((a) => document.getElementById(decodeURIComponent(a.hash.slice(1))));
+  // Targets are looked up each time: a block may set its anchor ids after the rail decorates.
+  const target = (a) => document.getElementById(decodeURIComponent(a.hash.slice(1)));
   const layout = () => {
     details.open = !NARROW.matches;
+  };
+  let shown = -1;
+  // A tall rail that scrolls keeps the current entry in view (the source's adaptTo page).
+  const reveal = (a) => {
+    const rail = details.closest('.article-rail');
+    if (!rail || rail.scrollHeight <= rail.clientHeight) return;
+    const b = a.getBoundingClientRect();
+    const r = rail.getBoundingClientRect();
+    if (b.top < r.top + 48 || b.bottom > r.bottom - 48) rail.scrollTop += b.top - r.top - r.height / 3;
   };
   const current = () => {
     const line = window.innerHeight / 3;
     let active = 0;
-    targets.forEach((t, i) => {
+    links.forEach((a, i) => {
+      const t = target(a);
       if (t && t.getBoundingClientRect().top <= line) active = i;
     });
     links.forEach((a, i) => {
       if (i === active) a.setAttribute('aria-current', 'true');
       else a.removeAttribute('aria-current');
     });
+    if (active !== shown && links[active]) {
+      shown = active;
+      if (!NARROW.matches) reveal(links[active]);
+    }
     const r = body.getBoundingClientRect();
     const total = r.height - window.innerHeight;
     const done = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 1;
