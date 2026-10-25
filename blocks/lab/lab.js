@@ -266,6 +266,10 @@ function tokenEngine(lab, parts) {
       }
     });
   });
+  // The demo keys are made as soon as the lab is decorated, so the first check starts the
+  // moment the lab is in view.
+  const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 1));
+  idle(() => { ready = ready || setup(); });
   onceVisible(lab, () => play('valid'));
 }
 
