@@ -1,0 +1,74 @@
+/* Static pages: v3 .prose on the default content. As on the source (.container.prose), the
+   column is the measure wide, padding included, and centered. */
+.static main > .section > .default-content-wrapper {
+  max-width: var(--measure);
+}
+
+.static main > .section > .default-content-wrapper > * + * {
+  margin-top: var(--space-4);
+}
+
+.static main > .section > .default-content-wrapper > h2 {
+  margin-top: var(--space-7);
+}
+
+.static main > .section > .default-content-wrapper > h3 {
+  margin-top: var(--space-6);
+}
+
+.static main > .section > .default-content-wrapper > :is(h2, h3) + * {
+  margin-top: var(--space-3);
+}
+
+.static main > .section > .default-content-wrapper > :first-child {
+  margin-top: 0;
+}
+
+.static main > .section > .default-content-wrapper p,
+.static main > .section > .default-content-wrapper li {
+  max-width: none;
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-body);
+  line-height: 1.7;
+}
+
+.static main > .section > .default-content-wrapper li + li {
+  margin-top: var(--space-2);
+}
+
+.static main > .section > .default-content-wrapper strong {
+  color: var(--color-text);
+}
+
+/* Inline links in prose are v3 text links: mono, ink, an underline rule. */
+.static main > .section > .default-content-wrapper p a:any-link:not(.button, strong a, em a) {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  color: var(--color-text);
+  border-bottom: var(--border-width) solid var(--color-line-strong);
+  padding: 12px 0 13px;
+  margin: -12px 0 -13px;
+}
+
+.static main > .section > .default-content-wrapper p a:not(.button, strong a, em a):hover {
+  color: var(--color-accent);
+  border-color: currentcolor;
+}
+
+/* A row of buttons (the 404 page's sections) is a v3 cluster. */
+.static main > .section > .default-content-wrapper:has(.cta-slot) {
+  max-width: var(--container-max);
+}
+
+.static main .default-content-wrapper .cta-slot {
+  gap: var(--space-3);
+}
+
+/* In the source the buttons are the flex items; a flex paragraph gives each the same box. */
+.static main .default-content-wrapper .cta-slot p {
+  display: flex;
+}

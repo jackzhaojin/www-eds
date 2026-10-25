@@ -1,0 +1,19 @@
+/* Listing pages: default content keeps the v3 base rhythm (no paragraph margins, as in the
+   source's bands), not the home rhythm. */
+.listing main > .section > .default-content-wrapper p {
+  max-width: none;
+  margin: 0;
+}
+
+/* The closing note band: css/site.css .writing-next, a 680px column. */
+.listing main > .section.note > .default-content-wrapper {
+  padding-top: 8px;
+}
+
+.listing main > .section.note > .default-content-wrapper > * {
+  max-width: 680px;
+}
+
+.listing main > .section.note > .default-content-wrapper p {
+  margin: 16px 0 0;
+}
