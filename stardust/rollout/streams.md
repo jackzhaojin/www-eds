@@ -2,6 +2,20 @@
 
 Each stream gated its own pages on the published origin at 1440 and 360 (content-diff looks-same red / nothing-lost yellow, pixel %, height delta) and ran the editability probe. The main thread re-checks every page in the final sweep (gate-all over all pages).
 
+
+## Final sweep (main thread, 2026-10-25, after link localization)
+
+gate-all on the published origin over all 34 sitemap pages (`stardust/rollout/gate-state.json`; pixel <= 10%, height within 5%, clip 0, content presence), captures in `stardust/replica/gates/all-<w>/` (not committed):
+
+| Width | Full verdict | Pixel + height only | Worst pixel |
+|---|---|---|---|
+| 1440 | 33 PASS / 1 FAIL | 34 PASS | 08-15 4.15% (R11), 07-06 2.53% (-10px, R13), writing 0.42% |
+| 360 | 33 PASS / 1 FAIL | 34 PASS | 08-15 8.40% (R11), 07-06 4.80%, adaptTo 3.35% |
+
+The one failure at each width is the portfolio's content presence MISSING 2: the postal repo cards, whose source wraps heading and summary in one link (recorded residual). 2025-09-01 is 0px at both widths after the code-nowrap fix.
+
+Mobile Lighthouse performance (12.8.2, aem.live): 100 on home (runs 2 and 3; a cold first run 99), writing listing, the archetype article, portfolio, talks, certifications and privacy (two runs each, all 100; CLS at most 0.012). Reports in `stardust/rollout/lighthouse/` (not committed).
+
 ## Listings (stream-listings, done)
 
 | Page | 1440 | 360 | Editability |

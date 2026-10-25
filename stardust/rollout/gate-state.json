@@ -1,0 +1,243 @@
+{
+ "flow": "replica",
+ "pages": [
+  {
+   "slug": "index",
+   "url": "https://www.jackzhaojin.com/",
+   "type": "landing",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/"
+  },
+  {
+   "slug": "writing",
+   "url": "https://www.jackzhaojin.com/writing/",
+   "type": "listing",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/"
+  },
+  {
+   "slug": "writing-2026-10-10-adaptto-2026-25-talks",
+   "url": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-10-10-adaptto-2026-25-talks/"
+  },
+  {
+   "slug": "writing-2026-09-20-aem-edge-functions-google-sign-in",
+   "url": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+  },
+  {
+   "slug": "writing-2026-08-15-anima-mesh-company-of-zero",
+   "url": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-08-15-anima-mesh-company-of-zero/"
+  },
+  {
+   "slug": "writing-2026-08-09-adobe-stardust-explained",
+   "url": "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-08-09-adobe-stardust-explained/"
+  },
+  {
+   "slug": "writing-2026-07-21-four-frontier-models-one-prompt",
+   "url": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-07-21-four-frontier-models-one-prompt/"
+  },
+  {
+   "slug": "writing-2026-06-28-patterns-of-work",
+   "url": "https://www.jackzhaojin.com/writing/2026-06-28-patterns-of-work/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-06-28-patterns-of-work/"
+  },
+  {
+   "slug": "writing-2026-05-31-continuous-agent-second-brain",
+   "url": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-05-31-continuous-agent-second-brain/"
+  },
+  {
+   "slug": "writing-2026-05-24-theming-eds-with-google-stitch",
+   "url": "https://www.jackzhaojin.com/writing/2026-05-24-theming-eds-with-google-stitch/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-05-24-theming-eds-with-google-stitch/"
+  },
+  {
+   "slug": "writing-2026-05-17-adobe-eds-skills-hands-on",
+   "url": "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-05-17-adobe-eds-skills-hands-on/"
+  },
+  {
+   "slug": "writing-2026-04-12-two-ai-skills-team-enablement",
+   "url": "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-04-12-two-ai-skills-team-enablement/"
+  },
+  {
+   "slug": "writing-2026-04-05-continuous-executive-agent-v2-1",
+   "url": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-04-05-continuous-executive-agent-v2-1/"
+  },
+  {
+   "slug": "writing-2026-03-23-eds-hlx-admin-agentic-config",
+   "url": "https://www.jackzhaojin.com/writing/2026-03-23-eds-hlx-admin-agentic-config/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-03-23-eds-hlx-admin-agentic-config/"
+  },
+  {
+   "slug": "writing-2026-02-05-reusable-ai-development-modules",
+   "url": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-02-05-reusable-ai-development-modules/"
+  },
+  {
+   "slug": "writing-2026-01-29-playwright-stakeholder-demos",
+   "url": "https://www.jackzhaojin.com/writing/2026-01-29-playwright-stakeholder-demos/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-01-29-playwright-stakeholder-demos/"
+  },
+  {
+   "slug": "writing-2026-01-05-from-prompts-to-harness",
+   "url": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-01-05-from-prompts-to-harness/"
+  },
+  {
+   "slug": "writing-2025-10-12-da-live-mcp-across-ai-platforms",
+   "url": "https://www.jackzhaojin.com/writing/2025-10-12-da-live-mcp-across-ai-platforms/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-10-12-da-live-mcp-across-ai-platforms/"
+  },
+  {
+   "slug": "writing-2025-10-05-mcp-server-for-eds-da-live",
+   "url": "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-10-05-mcp-server-for-eds-da-live/"
+  },
+  {
+   "slug": "writing-2025-09-01-aem-caching-production-architectures",
+   "url": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-09-01-aem-caching-production-architectures/"
+  },
+  {
+   "slug": "writing-2025-07-13-three-eds-offerings",
+   "url": "https://www.jackzhaojin.com/writing/2025-07-13-three-eds-offerings/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-07-13-three-eds-offerings/"
+  },
+  {
+   "slug": "writing-2025-07-12-aem-headless-omnichannel-architecture",
+   "url": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-07-12-aem-headless-omnichannel-architecture/"
+  },
+  {
+   "slug": "writing-2025-07-11-scaling-ai-coding-delivery-methodology",
+   "url": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-07-11-scaling-ai-coding-delivery-methodology/"
+  },
+  {
+   "slug": "writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+   "url": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/"
+  },
+  {
+   "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+   "url": "https://www.jackzhaojin.com/writing/2025-07-06-ai-coded-nextjs-agent-release-1/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+  },
+  {
+   "slug": "writing-2025-06-12-azure-rbac-cicd-for-ai-agents",
+   "url": "https://www.jackzhaojin.com/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/"
+  },
+  {
+   "slug": "writing-2025-06-08-edge-cms-shift-adobe-eds",
+   "url": "https://www.jackzhaojin.com/writing/2025-06-08-edge-cms-shift-adobe-eds/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-06-08-edge-cms-shift-adobe-eds/"
+  },
+  {
+   "slug": "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+   "url": "https://www.jackzhaojin.com/writing/2025-06-04-seven-aem-capabilities-tradeoffs/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+  },
+  {
+   "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+   "url": "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-05-28-aem-headless-when-frontend-teams-lead/"
+  },
+  {
+   "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+   "url": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/",
+   "type": "article",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2025-04-13-vibe-coding-star-story-generator/"
+  },
+  {
+   "slug": "portfolio",
+   "url": "https://www.jackzhaojin.com/portfolio/",
+   "type": "unique",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/portfolio/"
+  },
+  {
+   "slug": "talks",
+   "url": "https://www.jackzhaojin.com/talks/",
+   "type": "listing",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/talks/"
+  },
+  {
+   "slug": "certifications",
+   "url": "https://www.jackzhaojin.com/certifications/",
+   "type": "listing",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/certifications/"
+  },
+  {
+   "slug": "privacy",
+   "url": "https://www.jackzhaojin.com/privacy/",
+   "type": "static",
+   "status": "deployed",
+   "liveUrl": "https://main--www-eds--jackzhaojin.aem.live/privacy/"
+  }
+ ]
+}

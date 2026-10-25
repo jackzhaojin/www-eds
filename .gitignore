@@ -25,3 +25,4 @@ helix-importer-ui
 .claude/worktrees/
 .impeccable/hook.cache.json
 .impeccable/config.local.json
+stardust/rollout/lighthouse/
