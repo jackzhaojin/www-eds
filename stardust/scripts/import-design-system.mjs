@@ -484,9 +484,22 @@ function convertBuiltStory(story, owner, n) {
   if (owner === 'c-panel-inverse') {
     const $panel = first;
     const $stack = $panel.children('.stack');
+    // the cluster holds buttons and, in the dark story, a topic chip: each its own paragraph,
+    // with an items look (cta, or chip-<topic>) so the template keeps them in one row
+    const looks = [];
     const text = $stack.children().map((_, c) => {
       if (/^h[1-6]$/.test(c.name)) return heading(c);
-      if ($(c).hasClass('cluster')) return $(c).children('a').map((__, a) => buttonPara(a)).get().join('');
+      if ($(c).hasClass('cluster')) {
+        return $(c).children('a, .chip').map((__, k) => {
+          if (k.name === 'a') {
+            looks.push('cta');
+            return buttonPara(k);
+          }
+          looks.push(`chip-${$(k).attr('data-topic') || 'plain'}`);
+          return p(esc($(k).text()));
+        }).get().join('');
+      }
+      looks.push($(c).hasClass('feature__period') ? 'period' : 'lead');
       return p(inline(c));
     }).get().join('');
     const $t = $panel.children('table.facts');
@@ -494,7 +507,7 @@ function convertBuiltStory(story, owner, n) {
     $t.find('tr').each((_, tr) => rows.push([p(inline($(tr).children('th'))), p(inline($(tr).children('td')))]));
     const s = open(storyMeta(story));
     s.html.push(label(story));
-    const sec = open([['style', 'inverse, feature, in-story'], ['items', 'period, lead'], ...(themeOf(story) ? [['theme', themeOf(story)]] : [])]);
+    const sec = open([['style', 'inverse, feature, in-story'], ['items', looks.join(', ')], ...(themeOf(story) ? [['theme', themeOf(story)]] : [])]);
     sec.html.push(text, block('facts caption', rows));
     return true;
   }

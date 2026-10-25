@@ -98,7 +98,9 @@ export default async function decorate(block) {
   // paragraph sits beside the toggle below 1024px, the last nav item sits in the tools row.
   let cta;
   if (docs) {
-    const [, ctaLink] = [...fragment.querySelectorAll('p a[href]')];
+    // the brand paragraph has already moved out of the fragment: the bar button is the first
+    // link paragraph left
+    const ctaLink = [...fragment.querySelectorAll('p a[href]')].find((a) => a !== brandLink);
     if (ctaLink) {
       cta = ctaLink;
       cta.classList.remove('button', 'text-link');

@@ -512,6 +512,10 @@ function decorateItems(section) {
       p.querySelectorAll('a').forEach((a) => a.classList.remove('text-link'));
     }
     const item = wrap(p, `ds-item ds-item-${look}`);
+    // a topic chip after buttons joins their row (v3's p.cluster holds both)
+    if (/^chip-(aem-ai|aem|agents|work)$/.test(look) && item.previousElementSibling?.classList.contains('cta-slot')) {
+      item.previousElementSibling.append(item);
+    }
     // a disabled v3 button is a link with no destination: an anchor without href hosts it
     if (/^btn-(primary|secondary|ghost)(-sm)?-disabled$/.test(look)) {
       const host = document.createElement('a');
