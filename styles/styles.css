@@ -812,6 +812,11 @@ main .section-head :is(h2, h3, p) {
   margin: 0;
 }
 
+/* The source's link is the flex item itself; a flex paragraph gives it the same box. */
+main .section-head p {
+  display: flex;
+}
+
 /* stylelint-disable no-descending-specificity -- edit-mode repaints must follow what they repaint */
 
 /* ------------------------------------------------------------ edit-mode foundation
