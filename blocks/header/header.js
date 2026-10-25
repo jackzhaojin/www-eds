@@ -114,6 +114,7 @@ export default async function decorate(block) {
       }
     }
   }
+  nav.append(links, tools);
 
   const toggle = document.createElement('button');
   toggle.type = 'button';
