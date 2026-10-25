@@ -213,3 +213,8 @@
     gap: 4px;
   }
 }
+
+/* bar items keep their own height, so quick edit measures the same box */
+.explainer.branch-push .lab__bar {
+  align-items: flex-start;
+}

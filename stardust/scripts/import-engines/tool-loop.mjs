@@ -85,7 +85,7 @@ export function convert($, el, h) {
   const runRow = (choice, run) => [
     choice,
     `<ol>${run.lines.map(([who, text]) => `<li><strong>${who}</strong> ${b(text)}</li>`).join('')}</ol>`,
-    `<ul>${run.stats.map((v, i) => `<li>${h.esc(labels[i])}: ${v}</li>`).join('')}</ul>`,
+    `<ul>${run.stats.map((v, i) => `<li>${h.esc(labels[i])}<br><strong>${v}</strong></li>`).join('')}</ul>`,
     `<p>${h.esc(run.verdict)}</p><p><code>${run.tone}</code></p>`,
   ];
   $f.find('.loopx__modes [data-mode]').each((_, btn) => {

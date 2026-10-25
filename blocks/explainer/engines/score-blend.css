@@ -169,9 +169,11 @@
   margin: 0 4px;
 }
 
-.explainer.score-blend .blend-v p + p {
-  display: block;
+.explainer.score-blend .blend-log {
   margin-top: 6px;
+}
+
+.explainer.score-blend .blend-log p {
   font: 400 12px/1.5 var(--font-mono);
   color: var(--bone-3);
 }
@@ -252,4 +254,9 @@
   .explainer.score-blend .blend__row input[type="range"] {
     min-height: 44px;
   }
+}
+
+/* bar items keep their own height, so quick edit measures the same box */
+.explainer.score-blend .lab__bar {
+  align-items: flex-start;
 }

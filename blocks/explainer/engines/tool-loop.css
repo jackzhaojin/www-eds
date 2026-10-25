@@ -128,22 +128,19 @@
   border-radius: 10px;
   padding: 8px 10px;
   background: var(--bg);
-}
-
-.explainer.tool-loop .loopx__stats .loopx-k {
-  display: block;
   font: 500 11px var(--font-mono);
   color: var(--muted);
   letter-spacing: 0.02em;
 }
 
-.explainer.tool-loop .loopx__stats .loopx-sep {
+.explainer.tool-loop .loopx__stats li br {
   display: none;
 }
 
-.explainer.tool-loop .loopx__stats .loopx-v {
+.explainer.tool-loop .loopx__stats li strong {
   display: block;
   margin: 2px 0 0;
+  letter-spacing: normal;
   font: 600 18px var(--font-mono);
   color: var(--ink);
 }
@@ -284,4 +281,9 @@
   .explainer.tool-loop .loopx__log li.is-new {
     animation: none;
   }
+}
+
+/* bar items keep their own height, so quick edit measures the same box */
+.explainer.tool-loop .lab__bar {
+  align-items: flex-start;
 }

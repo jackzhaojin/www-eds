@@ -105,8 +105,9 @@ export default async function engine(block, { slot, rows, plainLinks }) {
   const tPull = pullEls.map((e) => e.innerHTML);
   const tFail = failEls.map((e) => e.innerHTML);
   pullEls.forEach((e) => meta.append(e));
-  const sBlend = slot('blend-v', blendEls);
-  const sFail = slot('blend-v', failEls);
+  const lead = (els) => els.map((e, k) => (k > 0 ? slot('blend-log', [e]) : e));
+  const sBlend = slot('blend-v', lead(blendEls));
+  const sFail = slot('blend-v', lead(failEls));
   const verdict = slot('verdict', [sBlend, sFail]);
   verdict.setAttribute('aria-live', 'polite');
   if (gradesName) {

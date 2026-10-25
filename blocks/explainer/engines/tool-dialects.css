@@ -159,3 +159,8 @@
     min-height: 44px;
   }
 }
+
+/* bar items keep their own height, so quick edit measures the same box */
+.explainer.tool-dialects .lab__bar {
+  align-items: flex-start;
+}

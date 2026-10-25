@@ -223,3 +223,8 @@
     animation: none;
   }
 }
+
+/* bar items keep their own height, so quick edit measures the same box */
+.explainer.task-loop .lab__bar {
+  align-items: flex-start;
+}

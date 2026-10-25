@@ -100,14 +100,16 @@
   text-decoration-thickness: 1px;
 }
 
-.explainer.task-protocol .tl-out p + p {
-  display: block;
+.explainer.task-protocol .tl-log {
   margin-top: 6px;
+}
+
+.explainer.task-protocol .tl-log p {
   font: 400 12px/1.5 var(--font-mono);
   color: var(--bone-3);
 }
 
-.explainer.task-protocol .tl-out :is(ul, ol) {
+.explainer.task-protocol .tl-commits :is(ul, ol) {
   list-style: none;
   margin: 8px 0 0;
   padding: 0;
@@ -115,11 +117,11 @@
   color: var(--bone-2);
 }
 
-.explainer.task-protocol .tl-out li {
+.explainer.task-protocol .tl-commits li {
   margin: 0;
 }
 
-.explainer.task-protocol .tl-out li a:any-link {
+.explainer.task-protocol .tl-commits li a:any-link {
   color: var(--lav);
 }
 
@@ -151,4 +153,9 @@
     align-items: flex-start;
     gap: 4px;
   }
+}
+
+/* bar items keep their own height, so quick edit measures the same box */
+.explainer.task-protocol .lab__bar {
+  align-items: flex-start;
 }

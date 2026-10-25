@@ -59,7 +59,7 @@ export default async function engine(block, { slot, rows }) {
     const short = nameEls.find(isName);
     if (short) meta.append(short);
     const shown = nameEls.filter((el) => el !== short);
-    const name = slot('relay__name', shown);
+    const name = slot('relay__name', shown.map((el, k) => slot(k === 0 ? 'relay-title' : 'relay-sub', [el])));
     const title = shown[0] ? shown[0].textContent.trim() : '';
     li.append(name);
 

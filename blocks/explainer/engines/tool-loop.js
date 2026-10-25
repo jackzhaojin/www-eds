@@ -13,7 +13,7 @@
  * 4. one row per run, four cells: the choice (a bold title, then a short note; empty when the
  *    version has one run, so it has no choices; the first is picked first), the log (one item per
  *    line: the bold who, "step 1", "call 1" or "tool", then the line), the counts (one item per
- *    count, "label: value"), the verdict (and a paragraph of inline code, ok or warn, for its
+ *    count: the label, a line break, the bold value), the verdict (and a paragraph of inline code, ok or warn, for its
  *    tone; not shown);
  * 5. one cell: the caption.
  * A line and the tool lines right after it appear together.
@@ -47,24 +47,6 @@ function radios(group, options, onPick) {
     o.setAttribute('aria-checked', String(i === j));
     o.tabIndex = i === j ? 0 : -1;
   });
-}
-
-/** Splits "label: value" items into a label and a value span (the text is unchanged). */
-function splitCount(li) {
-  const text = li.textContent;
-  const at = text.lastIndexOf(':');
-  if (at < 0) return null;
-  const label = document.createElement('span');
-  label.className = 'loopx-k';
-  label.textContent = text.slice(0, at);
-  const sep = document.createElement('span');
-  sep.className = 'loopx-sep';
-  sep.textContent = text.slice(at, at + 1 + (text[at + 1] === ' ' ? 1 : 0));
-  const value = document.createElement('span');
-  value.className = 'loopx-v';
-  value.textContent = text.slice(at + sep.textContent.length);
-  li.replaceChildren(label, sep, value);
-  return value;
 }
 
 export default async function engine(block, {
@@ -140,10 +122,8 @@ export default async function engine(block, {
       const who = li.querySelector('strong');
       if (who && li.firstChild === who) who.classList.add('who', `who--${kindOf(who.textContent.trim())}`);
     });
-    const counts = countCell.querySelector('ol, ul');
     const statSlot = slot('loopx-alt', [...countCell.children]);
     stats.append(statSlot);
-    if (counts) [...counts.children].forEach((li) => splitCount(li));
     const toneEl = [...verdictCell.children].find((el) => el.tagName === 'P' && /^(ok|warn)$/.test(el.textContent.trim()) && el.querySelector('code'));
     const tone = toneEl ? toneEl.textContent.trim() : 'ok';
     if (toneEl) meta.append(toneEl);

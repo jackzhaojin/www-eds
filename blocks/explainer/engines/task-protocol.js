@@ -95,7 +95,11 @@ export default async function engine(block, { slot, rows, plainLinks }) {
     const list = stateCell.querySelector('ul, ol');
     states.push(list ? [...list.children].map((li) => li.textContent.trim().toLowerCase()) : []);
     meta.append(...stateCell.children);
-    const o = slot('tl-out', result ? [...result.children] : []);
+    // the first paragraph leads; later paragraphs are log lines, lists are the commits
+    const o = slot('tl-out', (result ? [...result.children] : []).map((el, k) => {
+      if (el.matches('ul, ol')) return slot('tl-commits', [el]);
+      return k > 0 && el.tagName === 'P' ? slot('tl-log', [el]) : el;
+    }));
     outs.push(o);
     out.append(o);
   });

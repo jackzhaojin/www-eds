@@ -58,7 +58,7 @@
   min-width: 0;
 }
 
-.explainer.header-relay .relay__name p:first-child {
+.explainer.header-relay .relay-title p {
   font-size: 15px;
   color: var(--ink);
 }
@@ -68,8 +68,11 @@
   color: var(--ink);
 }
 
-.explainer.header-relay .relay__name p + p {
+.explainer.header-relay .relay-sub {
   margin-top: 3px;
+}
+
+.explainer.header-relay .relay-sub p {
   font: 400 12px/1.45 var(--font-mono);
   color: var(--muted);
 }
