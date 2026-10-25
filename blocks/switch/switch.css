@@ -121,10 +121,10 @@
 }
 
 .switch.is-live .code-add {
-  animation: switch-stamp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: stamp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
-@keyframes switch-stamp {
+@keyframes stamp {
   from {
     background: rgb(232 169 184 / 55%);
     color: #fff;

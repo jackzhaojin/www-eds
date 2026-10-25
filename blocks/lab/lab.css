@@ -331,7 +331,7 @@
 .lab .lab-checks li[data-state="checking"]::after {
   border: 2px solid var(--color-accent-soft);
   border-top-color: var(--color-accent);
-  animation: lab-spin 0.7s linear infinite;
+  animation: spin 0.7s linear infinite;
 }
 
 .lab .lab-checks li[data-state="pass"]::after {
@@ -360,7 +360,7 @@
   color: var(--lab-fail);
 }
 
-@keyframes lab-spin {
+@keyframes spin {
   to {
     transform: rotate(360deg);
   }
