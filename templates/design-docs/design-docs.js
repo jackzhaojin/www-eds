@@ -155,6 +155,11 @@ const SPLIT = (li) => {
   li.append(value);
 };
 
+/** Link paragraphs leave their .cta-slot wrapper (a demo lays them out itself). */
+function unslot(wrapper) {
+  wrapper.querySelectorAll('.cta-slot').forEach((slot) => slot.replaceWith(...slot.children));
+}
+
 /** The paragraphs a story shows, after its label (link paragraphs included). */
 function storyParagraphs(section) {
   return [...section.querySelectorAll('.default-content-wrapper p')]
@@ -310,6 +315,128 @@ const DEMOS = {
     figure.append(frame);
     if (caption) figure.append(wrap(caption, 'ds-embed-caption'));
   },
+  /* v3's example header: wordmark, Menu toggle, nav (links, then the tools: Book a talk and
+     the theme control's labels). The story's labels name the nav and the control group. */
+  'site-header': (section) => {
+    const wrapper = section.querySelector('.default-content-wrapper');
+    if (!wrapper) return;
+    unslot(wrapper);
+    const [wordmark, toggle, ...rest] = [...wrapper.children].filter((el) => !el.classList.contains('ds-story-label'));
+    const list = rest.find((el) => el.tagName === 'UL');
+    const after = rest.filter((el) => el !== list);
+    const [cta, ...theme] = after;
+    const labels = (section.dataset.labels || '').split(' | ').map((e) => e.slice(e.indexOf(':') + 1).trim().replace(/,(?=\S)/g, ', '));
+    delete section.dataset.labels;
+    const header = document.createElement('div');
+    header.className = 'ds-site-header';
+    const inner = document.createElement('div');
+    inner.className = 'ds-site-header-inner';
+    header.append(inner);
+    wrapper.append(header);
+    if (wordmark) {
+      wordmark.classList.remove('text-link-wrapper');
+      wordmark.querySelectorAll('a').forEach((a) => a.classList.remove('text-link'));
+      inner.append(wrap(wordmark, 'ds-wordmark'));
+    }
+    if (toggle) {
+      // the toggle's two words show one at a time (Menu, Close): each gets its own span
+      const runs = [...toggle.childNodes]
+        .filter((n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim());
+      runs.forEach((n) => {
+        const frag = document.createDocumentFragment();
+        n.textContent.trim().split(/\s+/).forEach((w, i) => {
+          const span = document.createElement('span');
+          span.className = i === 0 ? 'ds-toggle-open' : 'ds-toggle-close';
+          span.textContent = w;
+          frag.append(span, ' ');
+        });
+        n.replaceWith(frag);
+      });
+      inner.append(wrap(toggle, 'ds-nav-toggle'));
+    }
+    const nav = document.createElement('nav');
+    nav.className = 'ds-site-nav';
+    if (labels[0]) nav.setAttribute('aria-label', labels[0]);
+    inner.append(nav);
+    if (list) {
+      list.querySelectorAll('strong a').forEach((a) => a.setAttribute('aria-current', 'page'));
+      nav.append(wrap(list, 'ds-nav-links'));
+    }
+    const tools = document.createElement('div');
+    tools.className = 'ds-nav-tools';
+    nav.append(tools);
+    if (cta) tools.append(wrap(cta, 'ds-nav-cta'));
+    if (theme.length) {
+      const group = document.createElement('div');
+      group.className = 'ds-theme-labels';
+      group.setAttribute('role', 'group');
+      if (labels[1]) group.setAttribute('aria-label', labels[1]);
+      theme.forEach((p) => group.append(p));
+      tools.append(group);
+    }
+  },
+  /* v3's full footer: heading and list per column, then the meta line. */
+  'site-footer': (section) => {
+    const wrapper = section.querySelector('.default-content-wrapper');
+    if (!wrapper) return;
+    const items = [...wrapper.children].filter((el) => !el.classList.contains('ds-story-label'));
+    const footer = document.createElement('div');
+    footer.className = 'ds-site-footer';
+    const grid = document.createElement('div');
+    grid.className = 'ds-footer-grid';
+    const meta = document.createElement('div');
+    meta.className = 'ds-footer-meta';
+    footer.append(grid, meta);
+    wrapper.append(footer);
+    let col = null;
+    items.forEach((el) => {
+      if (/^H[2-4]$/.test(el.tagName)) {
+        col = document.createElement('div');
+        col.className = 'ds-footer-col';
+        grid.append(col);
+        col.append(el);
+      } else if (el.tagName === 'UL' && col) col.append(el);
+      else meta.append(el);
+    });
+  },
+  /* v3's post, hub and project cards: section metadata kinds (one per card, in order) and
+     cols. A card starts at its heading (a project card at the period line before it). */
+  cards(section) {
+    const wrapper = section.querySelector('.default-content-wrapper');
+    if (!wrapper) return;
+    unslot(wrapper);
+    const kinds = (section.dataset.kinds || '').split(',').map((k) => k.trim());
+    const els = [...wrapper.children].filter((el) => !el.classList.contains('ds-story-label'));
+    const heads = els.map((el, i) => (/^H[2-4]$/.test(el.tagName) ? i : -1)).filter((i) => i >= 0);
+    const grid = document.createElement('div');
+    grid.className = 'ds-cards';
+    grid.dataset.cols = section.dataset.cols || '2';
+    wrapper.append(grid);
+    heads.forEach((h, k) => {
+      const [kind, topic, flag] = (kinds[k] || 'post').split(':');
+      const start = kind === 'project' && h > 0 && !heads.includes(h - 1) ? h - 1 : h;
+      const nextHead = heads[k + 1];
+      const end = nextHead === undefined ? els.length
+        : nextHead - ((kinds[k + 1] || '').startsWith('project') ? 1 : 0);
+      const card = document.createElement('div');
+      card.className = `ds-card ${kind}`;
+      if (topic && topic !== 'flagship') card.dataset.topic = topic;
+      if (flag === 'flagship' || topic === 'flagship') card.dataset.flagship = 'true';
+      grid.append(card);
+      const roles = {
+        post: ['title', 'meta', 'excerpt', 'footer'],
+        hub: ['title', 'label', 'counts'],
+        project: ['period', 'title', 'excerpt', 'facts', 'link'],
+      }[kind] || [];
+      els.slice(start, end).forEach((el, i) => card.append(wrap(el, `ds-card-${roles[i] || 'body'}`)));
+      card.querySelectorAll('strong').forEach((s) => {
+        const word = text(s);
+        if (TOPICS[word]) s.dataset.topic = TOPICS[word];
+        else if (FORMATS.includes(word.toLowerCase())) s.dataset.format = word.toLowerCase();
+        else if (STATUS.test(word)) s.dataset.status = word.toLowerCase();
+      });
+    });
+  },
   /* The live theme control (scripts/theme-control.js): it changes the whole page. */
   'theme-control': (section) => {
     const wrapper = section.querySelector('.default-content-wrapper');
@@ -335,6 +462,14 @@ function decorateItems(section) {
       p.querySelectorAll('a').forEach((a) => a.classList.remove('text-link'));
     }
     const item = wrap(p, `ds-item ds-item-${look}`);
+    // a disabled v3 button is a link with no destination: an anchor without href hosts it
+    if (/^btn-(primary|secondary|ghost)(-sm)?-disabled$/.test(look)) {
+      const host = document.createElement('a');
+      host.className = 'ds-disabled-link';
+      host.setAttribute('aria-disabled', 'true');
+      item.append(host);
+      host.append(p);
+    }
     // a row label after the first starts a new line of the row (the v3 filter bar's rows)
     if (look === 'row-label' && i > 0) {
       const br = document.createElement('div');

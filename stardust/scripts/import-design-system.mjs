@@ -317,6 +317,17 @@ const statItems = ($els) => `<ul>${$els.map((_, st) => {
   return `<li><strong>${accent ? `<em>${esc(value)}</em>` : esc(value)}</strong> ${squash(inline($st))}</li>`;
 }).get().join('')}</ul>`;
 
+/**
+ * Inline content where v3's chips and times are their own elements: a chip becomes bold, a
+ * time italic, so they stay separate runs (the template gives them the chip and time looks).
+ */
+function cardInline(node) {
+  const $c = $(node).clone();
+  $c.find('.chip').each((_, chip) => { $(chip).replaceWith(`<strong>${esc($(chip).text())}</strong>`); });
+  $c.find('time').each((_, t) => { $(t).replaceWith(`<em>${esc($(t).text())}</em>`); });
+  return inline($c);
+}
+
 /** v3 showcase text as a showcase (story) text cell, in source order; proof links follow. */
 function showcaseParts($article) {
   const text = [];
@@ -324,6 +335,7 @@ function showcaseParts($article) {
   $article.children('.showcase__text').children().each((_, c) => {
     const $c = $(c);
     if (/^h[1-6]$/.test(c.name)) text.push(heading(c));
+    else if ($c.hasClass('showcase__meta')) text.push(p(cardInline(c)));
     else if ($c.hasClass('proof-links')) after.push(block('proof-links', [[p(inline(c))]]));
     else if ($c.hasClass('stat-chips')) after.push(block('stat-chips', [[statItems($c.children('.stat'))]]));
     else text.push(p(inline(c)));
@@ -348,6 +360,7 @@ function chapterHead($head) {
   $body.children().each((_, c) => {
     if (/^h[1-6]$/.test(c.name)) parts.push(heading(c));
     else if ($(c).hasClass('proof-links')) after = block('proof-links', [[p(inline(c))]]);
+    else if ($(c).hasClass('chapter-head__meta')) parts.push(p(cardInline(c)));
     else parts.push(p(inline(c)));
   });
   return `${block('chapter-head', [[parts.join('')]])}${after}`;
@@ -386,13 +399,27 @@ function convertBuiltStory(story, owner, n) {
       open(storyMeta(story)).html.push(label(story), block('cards tool', rows));
       return true;
     }
-    const rows = cards.map((card) => [$(card).children().map((_, c) => (/^h[1-6]$/.test(c.name) ? heading(c) : p(inline(c)))).get().join('')]);
-    open(storyMeta(story)).html.push(label(story), block('cards project', rows));
+    // v3's post, hub and project cards appear on no site page: the template presents them
+    // from default content (kinds: one per card; cols: the v3 grid)
+    const kinds = cards.map((card) => {
+      const $c = $(card);
+      if ($c.hasClass('card--hub')) return ['hub', $c.attr('data-topic'), $c.is('[data-flagship]') ? 'flagship' : ''].filter(Boolean).join(':');
+      return $c.hasClass('card--project') ? 'project' : 'post';
+    });
+    const cols = `${first.hasClass('grid--3') ? 3 : 2}${first.hasClass('grid--rules') ? '-rules' : ''}`;
+    const part = (c) => {
+      if (/^h[1-6]$/.test(c.name)) return heading(c);
+      return c.name === 'a' ? linkPara(c) : p(cardInline(c));
+    };
+    const html = cards.map((card) => $(card).children().map((_, c) => part(c)).get().join('')).join('');
+    open(storyMeta(story, [['demo', 'cards'], ['kinds', kinds.join(', ')], ['cols', cols]])).html.push(label(story), html);
     return true;
   }
   if (owner === 'c-counts') {
+    // the v3 counts strip (no site page uses it): label, then the value, per counter
     const items = first.children('div').map((_, d) => `<li>${esc($(d).children('dt').text())} <strong>${esc($(d).children('dd').text())}</strong></li>`).get().join('');
-    open(storyMeta(story)).html.push(label(story), block('stats', [[`<ul>${items}</ul>`]]));
+    const demoWord = first.hasClass('counts--inline') ? 'counts-inline' : 'counts';
+    open(storyMeta(story, [['demo', demoWord]])).html.push(label(story), `<ul>${items}</ul>`);
     return true;
   }
   if (owner === 'c-showcase') {
@@ -518,17 +545,51 @@ function convertStory(story, owner) {
     return;
   }
   if (owner === 'c-site-header') {
-    const s = open(storyMeta(story));
-    s.html.push(label(story), block('header', [['']]));
+    // v3's example header, verbatim (the site's live header is a different nav): the wordmark,
+    // the Menu toggle, the links (the current one bold), Book a talk, the theme control's three
+    // labels (the pressed one bold); the template lays them out as v3's header
+    const $in = first.find('.site-header__inner');
+    const $toggle = $in.children('.nav-toggle');
+    const icons = $toggle.find('use').map((_, u) => `:${$(u).attr('href').replace(/^#icon-/, '')}:`).get().join(' ');
+    const words = $toggle.find('span').map((_, sp) => esc($(sp).text())).get().join(' ');
+    const links = $in.find('.site-nav ul li').map((_, li) => {
+      const a = $(li).children('a');
+      const link = `<a href="${attr(absHref(a.attr('href')))}">${esc(a.text())}</a>`;
+      return `<li>${a.attr('aria-current') === 'page' ? `<strong>${link}</strong>` : link}</li>`;
+    }).get().join('');
+    const theme = $in.find('.theme-control__btn').map((_, b) => p($(b).attr('aria-pressed') === 'true' ? `<strong>${esc($(b).text())}</strong>` : esc($(b).text()))).get();
+    const style = $toggle.attr('aria-expanded') === 'true' ? 'story, expanded' : 'story';
+    const s = open([['style', style], ...storyMeta(story).filter(([k]) => k !== 'style'), ['demo', 'site-header']]);
+    s.html.push(label(story), linkPara($in.children('.wordmark').get(0)), p(`${icons} ${words}`), `<ul>${links}</ul>`,
+      buttonPara($in.find('.site-nav__tools .btn').get(0)), ...theme);
     return;
   }
   if (owner === 'c-footer') {
-    const s = open(storyMeta(story));
-    s.html.push(label(story), block('footer', [['']]));
+    // v3's full footer, verbatim (the site's live footer is the compact one)
+    const $f = first;
+    const parts = [];
+    $f.find('.site-footer__col').each((_, col) => {
+      const $h = $(col).children('h2, h3').first();
+      parts.push(heading($h.get(0)), list($(col).children('ul').get(0)));
+    });
+    $f.find('.site-footer__meta p').each((_, m) => parts.push(p(inline(m))));
+    open(storyMeta(story, [['demo', 'site-footer']])).html.push(label(story), ...parts);
     return;
   }
   if (owner === 'c-button') {
-    const s = open(storyMeta(story));
+    // each button keeps its v3 kind, size and state as an items look; a disabled link (no
+    // href) stays text and the template hosts it in an anchor with aria-disabled
+    const looks = kids.map((_, k) => {
+      const $k = $(k);
+      let kind = 'ghost';
+      if ($k.hasClass('btn--primary')) kind = 'primary';
+      else if ($k.hasClass('btn--secondary')) kind = 'secondary';
+      const el = k.name === 'button' ? '-element' : '';
+      const sm = $k.hasClass('btn--sm') ? '-sm' : '';
+      const dis = ($k.attr('aria-disabled') === 'true' || $k.attr('disabled') !== undefined) ? '-disabled' : '';
+      return `btn-${kind}${el}${sm}${dis}`;
+    }).get();
+    const s = open(storyMeta(story, [['items', looks.join(', ')]]));
     s.html.push(label(story), ...kids.map((_, k) => buttonPara(k)).get());
     return;
   }
