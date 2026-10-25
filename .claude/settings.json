@@ -1,16 +1,29 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "extraKnownMarketplaces": {
-    "adobe-skills": {
-      "source": { "source": "github", "repo": "adobe/skills" }
-    },
-    "impeccable": {
-      "source": { "source": "github", "repo": "pbakaus/impeccable" }
-    }
-  },
   "enabledPlugins": {
     "stardust@adobe-skills": true,
     "impeccable@impeccable": true,
-    "aem-edge-delivery-services@adobe-skills": true
+    "aem-edge-delivery-services@adobe-skills": true,
+    "hlx-admin-api-executor@ai-builder-kit": true
+  },
+  "extraKnownMarketplaces": {
+    "adobe-skills": {
+      "source": {
+        "source": "github",
+        "repo": "adobe/skills"
+      }
+    },
+    "impeccable": {
+      "source": {
+        "source": "github",
+        "repo": "pbakaus/impeccable"
+      }
+    },
+    "ai-builder-kit": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/jackzhaojin/ai-builder-kit.git"
+      }
+    }
   }
 }

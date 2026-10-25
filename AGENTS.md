@@ -24,4 +24,4 @@ Edge Delivery Services. Read a block first. Omissions are in the repo or known.
 ## This project
 - www.jackzhaojin.com moving here from GitHub Pages. Plan, decisions and status start at `jackzhaojin.github.io/ai-docs/2026-10-24-eds-migration/start-here.md` (local: `/Users/jackjin/dev/jackzhaojin/jackzhaojin.github.io/...`; GitHub: https://github.com/jackzhaojin/jackzhaojin.github.io/blob/main/ai-docs/2026-10-24-eds-migration/start-here.md).
 - Node 22 (`.nvmrc`). Shell state does not persist, so prefix Node commands: `source ~/.nvm/nvm.sh && nvm use >/dev/null && <cmd>`.
-- Plugins (stardust, impeccable, aem-edge-delivery-services) come from `.claude/settings.json`. Never copy skill files into this repo.
+- Plugins (stardust, impeccable, aem-edge-delivery-services, and Jack's hlx-admin-api-executor from jackzhaojin/ai-builder-kit for Admin API work, skills only, no hook) come from `.claude/settings.json`. Never copy skill files into this repo.
