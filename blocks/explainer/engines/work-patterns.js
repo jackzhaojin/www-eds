@@ -125,6 +125,8 @@ export default async function engine(block, { slot, rows, plainLinks }) {
     label.setAttribute('aria-hidden', 'true');
     spine.append(label);
   });
+  // The pillars are buttons (role on the authored li, EW7), so the list itself is presentational.
+  pillarList.setAttribute('role', 'none');
   spine.append(slot('pow__pillar-list', [pillarList]));
   const foundation = [...map.children].find((el) => el.tagName === 'P' && el.querySelector('a'));
   mapEl.append(layersEl, spine);
