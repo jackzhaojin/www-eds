@@ -1,0 +1,1662 @@
+{
+ "_provenance": {
+  "writtenBy": "stardust:dynamics detect",
+  "writtenAt": "2026-10-25T14:13:31.695Z",
+  "settleMs": 5000,
+  "width": 1440,
+  "urls": [
+   "https://www.jackzhaojin.com/",
+   "https://www.jackzhaojin.com/writing/",
+   "https://www.jackzhaojin.com/portfolio/",
+   "https://www.jackzhaojin.com/talks/",
+   "https://www.jackzhaojin.com/certifications/",
+   "https://www.jackzhaojin.com/privacy/",
+   "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+   "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/",
+   "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/",
+   "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+  ],
+  "reachSource": "stardust/current/pages"
+ },
+ "pages": {
+  "/": {
+   "url": "https://www.jackzhaojin.com/",
+   "status": 200,
+   "host": "www.jackzhaojin.com",
+   "title": "Jack Jin | AEM Champion, AI Agents & Adobe Experience Manager",
+   "forms": [],
+   "controlGroups": [],
+   "triggers": [],
+   "dialogs": [],
+   "dialogCount": 0,
+   "media": [],
+   "iframes": [],
+   "mounts": [],
+   "auth": [],
+   "commerce": {
+    "cart": false,
+    "prices": 0
+   },
+   "locale": {
+    "lang": "en",
+    "hreflang": [],
+    "switcher": [
+     "https://www.linkedin.com/in/jackjin"
+    ]
+   },
+   "cms": {
+    "dataLayer": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "push"
+    ]
+   },
+   "framework": null,
+   "globals": [
+    "google_tag_manager",
+    "gtag"
+   ],
+   "clientRendered": [],
+   "listingCandidates": [
+    {
+     "cls": "container",
+     "cards": 3,
+     "sameSite": 3,
+     "hasDate": false
+    }
+   ],
+   "inlineScripts": 2,
+   "inlineFetch": false,
+   "mainText": 2134,
+   "domAddedAfterLoad": 0,
+   "hosts": {
+    "www.jackzhaojin.com": 10,
+    "static.cloudflareinsights.com": 1,
+    "fonts.googleapis.com": 1,
+    "www.googletagmanager.com": 1,
+    "fonts.gstatic.com": 4,
+    "www.google-analytics.com": 1
+   },
+   "thirdPartyHosts": [
+    "static.cloudflareinsights.com",
+    "fonts.googleapis.com",
+    "www.googletagmanager.com",
+    "fonts.gstatic.com",
+    "www.google-analytics.com"
+   ],
+   "scripts": [
+    "https://www.jackzhaojin.com/js/site.js?v=3",
+    "https://www.jackzhaojin.com/js/page-art.js?v=4-ink",
+    "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+    "https://www.googletagmanager.com/gtag/js?id=G-ZVENE6BXTJ"
+   ],
+   "firstPartyApi": [
+    {
+     "method": "POST",
+     "host": "www.jackzhaojin.com",
+     "path": "/cdn-cgi/rum",
+     "query": [],
+     "status": 204,
+     "contentType": "text/plain",
+     "example": "https://www.jackzhaojin.com/cdn-cgi/rum"
+    }
+   ],
+   "thirdPartyXhr": [
+    "POST www.google-analytics.com/g/collect"
+   ],
+   "postBodies": [
+    {
+     "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-ZVENE6BXTJ&gtm=45je6al1v9264040996za208zd9264040996xf1&_p=1792937612066&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=641720576.1792937612&frm=0&ngs=1&pscdl=noa",
+     "body": ""
+    },
+    {
+     "url": "https://www.jackzhaojin.com/cdn-cgi/rum?",
+     "body": "{\"startTime\":1792937611848,\"pageloadId\":\"517a345c-82fb-4359-8810-a6865047f5e2\",\"eventType\":1,\"nt\":\"navigate\",\"location\":\"https://www.jackzhaojin.com/\",\"versions\":{\"fl\":\"2024.11.0\",\"js\":\"2026.10.1\",\"timings\":2},\"bi\":{\"be\":\"Blink\",\"bev\":\"156\",\"bv\":\"156\",\"ov\":\"26.5\"},\"memory\":{\"totalJSHeapSize\":10000000,\"usedJSHeapSize\":10000000,\"jsHeapSizeLimit\":3760000000},\"firstPaint\":420,\"firstContentfulPaint\":42"
+    }
+   ],
+   "textAtLoad": 2134,
+   "mainEmptyAtLoad": false
+  },
+  "/writing/": {
+   "url": "https://www.jackzhaojin.com/writing/",
+   "status": 200,
+   "host": "www.jackzhaojin.com",
+   "title": "Technical Writing | Jack Jin",
+   "forms": [
+    {
+     "name": "filter-bar",
+     "action": null,
+     "method": "get",
+     "role": "search",
+     "inChrome": false,
+     "fields": 1,
+     "signature": [
+      "search:q"
+     ],
+     "hidden": [],
+     "tokens": [],
+     "search": true,
+     "inlineHandler": false
+    }
+   ],
+   "controlGroups": [],
+   "triggers": [],
+   "dialogs": [],
+   "dialogCount": 0,
+   "media": [],
+   "iframes": [],
+   "mounts": [],
+   "auth": [
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ],
+   "commerce": {
+    "cart": false,
+    "prices": 0
+   },
+   "locale": {
+    "lang": "en",
+    "hreflang": [],
+    "switcher": [
+     "https://www.linkedin.com/in/jackjin"
+    ]
+   },
+   "cms": {
+    "dataLayer": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "push"
+    ]
+   },
+   "framework": null,
+   "globals": [
+    "google_tag_manager",
+    "gtag"
+   ],
+   "clientRendered": [],
+   "listingCandidates": [
+    {
+     "cls": "writing-list",
+     "cards": 28,
+     "sameSite": 28,
+     "hasDate": true
+    }
+   ],
+   "inlineScripts": 2,
+   "inlineFetch": false,
+   "mainText": 11829,
+   "domAddedAfterLoad": 0,
+   "hosts": {
+    "www.jackzhaojin.com": 37,
+    "static.cloudflareinsights.com": 1,
+    "fonts.googleapis.com": 1,
+    "www.googletagmanager.com": 1,
+    "fonts.gstatic.com": 4,
+    "www.google-analytics.com": 1
+   },
+   "thirdPartyHosts": [
+    "static.cloudflareinsights.com",
+    "fonts.googleapis.com",
+    "www.googletagmanager.com",
+    "fonts.gstatic.com",
+    "www.google-analytics.com"
+   ],
+   "scripts": [
+    "https://www.jackzhaojin.com/js/page-art.js?v=4-ink",
+    "https://www.jackzhaojin.com/js/site.js?v=3",
+    "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+    "https://www.jackzhaojin.com/js/writing-filter.js?v=6",
+    "https://www.googletagmanager.com/gtag/js?id=G-ZVENE6BXTJ"
+   ],
+   "firstPartyApi": [
+    {
+     "method": "POST",
+     "host": "www.jackzhaojin.com",
+     "path": "/cdn-cgi/rum",
+     "query": [],
+     "status": 204,
+     "contentType": "text/plain",
+     "example": "https://www.jackzhaojin.com/cdn-cgi/rum"
+    }
+   ],
+   "thirdPartyXhr": [
+    "POST www.google-analytics.com/g/collect"
+   ],
+   "postBodies": [
+    {
+     "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-ZVENE6BXTJ&gtm=45je6al1v9264040996za208zd9264040996xf1&_p=1792937623940&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=1738670372.1792937624&frm=0&ngs=1&pscdl=no",
+     "body": ""
+    },
+    {
+     "url": "https://www.jackzhaojin.com/cdn-cgi/rum?",
+     "body": "{\"startTime\":1792937623718,\"pageloadId\":\"40b51102-3fb1-4d62-b791-04005610db9e\",\"eventType\":1,\"nt\":\"navigate\",\"location\":\"https://www.jackzhaojin.com/writing/\",\"versions\":{\"fl\":\"2024.11.0\",\"js\":\"2026.10.1\",\"timings\":2},\"bi\":{\"be\":\"Blink\",\"bev\":\"156\",\"bv\":\"156\",\"ov\":\"26.5\"},\"memory\":{\"totalJSHeapSize\":11200000,\"usedJSHeapSize\":10000000,\"jsHeapSizeLimit\":3760000000},\"firstPaint\":492,\"firstContentfulP"
+    }
+   ],
+   "textAtLoad": 11829,
+   "mainEmptyAtLoad": false
+  },
+  "/portfolio/": {
+   "url": "https://www.jackzhaojin.com/portfolio/",
+   "status": 200,
+   "host": "www.jackzhaojin.com",
+   "title": "Portfolio | Jack Jin - AI Systems & Engineering",
+   "forms": [],
+   "controlGroups": [],
+   "triggers": [
+    {
+     "text": "open file ↗",
+     "href": null,
+     "marker": "lightbox-file",
+     "inChrome": false,
+     "titleOnTrigger": null,
+     "target": null
+    },
+    {
+     "text": "zoom 1:1",
+     "href": null,
+     "marker": "lightbox-zoom",
+     "inChrome": false,
+     "titleOnTrigger": null,
+     "target": null
+    }
+   ],
+   "dialogs": [
+    {
+     "role": "dialog",
+     "heading": "",
+     "textLen": 20,
+     "hasForm": false,
+     "hasIframe": false,
+     "hasVideo": false
+    }
+   ],
+   "dialogCount": 1,
+   "media": [],
+   "iframes": [],
+   "mounts": [],
+   "auth": [],
+   "commerce": {
+    "cart": false,
+    "prices": 1
+   },
+   "locale": {
+    "lang": "en",
+    "hreflang": [],
+    "switcher": [
+     "https://www.linkedin.com/in/jackjin/",
+     "https://www.linkedin.com/in/jackjin"
+    ]
+   },
+   "cms": {
+    "dataLayer": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "push"
+    ]
+   },
+   "framework": null,
+   "globals": [
+    "google_tag_manager",
+    "gtag"
+   ],
+   "clientRendered": [],
+   "listingCandidates": [
+    {
+     "cls": "deck-panes",
+     "cards": 6,
+     "sameSite": 6,
+     "hasDate": false
+    },
+    {
+     "cls": "bruce-grid reveal",
+     "cards": 3,
+     "sameSite": 3,
+     "hasDate": true
+    }
+   ],
+   "inlineScripts": 2,
+   "inlineFetch": false,
+   "mainText": 29026,
+   "domAddedAfterLoad": 292,
+   "hosts": {
+    "www.jackzhaojin.com": 13,
+    "static.cloudflareinsights.com": 1,
+    "fonts.googleapis.com": 1,
+    "www.googletagmanager.com": 1,
+    "fonts.gstatic.com": 4,
+    "www.google-analytics.com": 1
+   },
+   "thirdPartyHosts": [
+    "static.cloudflareinsights.com",
+    "fonts.googleapis.com",
+    "www.googletagmanager.com",
+    "fonts.gstatic.com",
+    "www.google-analytics.com"
+   ],
+   "scripts": [
+    "https://www.jackzhaojin.com/js/site.js?v=3",
+    "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+    "https://www.jackzhaojin.com/portfolio/script.js?v=10",
+    "https://www.googletagmanager.com/gtag/js?id=G-ZVENE6BXTJ"
+   ],
+   "firstPartyApi": [
+    {
+     "method": "POST",
+     "host": "www.jackzhaojin.com",
+     "path": "/cdn-cgi/rum",
+     "query": [],
+     "status": 204,
+     "contentType": "text/plain",
+     "example": "https://www.jackzhaojin.com/cdn-cgi/rum"
+    }
+   ],
+   "thirdPartyXhr": [
+    "POST www.google-analytics.com/g/collect"
+   ],
+   "postBodies": [
+    {
+     "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-ZVENE6BXTJ&gtm=45je6al1v9264040996za208zd9264040996xf1&_p=1792937636389&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=1208307108.1792937637&frm=0&ngs=1&pscdl=no",
+     "body": ""
+    },
+    {
+     "url": "https://www.jackzhaojin.com/cdn-cgi/rum?",
+     "body": "{\"startTime\":1792937636212,\"pageloadId\":\"f8f46b51-7dc2-4674-9cee-898798893160\",\"eventType\":1,\"nt\":\"navigate\",\"location\":\"https://www.jackzhaojin.com/portfolio/\",\"versions\":{\"fl\":\"2024.11.0\",\"js\":\"2026.10.1\",\"timings\":2},\"bi\":{\"be\":\"Blink\",\"bev\":\"156\",\"bv\":\"156\",\"ov\":\"26.5\"},\"memory\":{\"totalJSHeapSize\":10000000,\"usedJSHeapSize\":10000000,\"jsHeapSizeLimit\":3760000000},\"firstPaint\":336,\"firstContentfu"
+    }
+   ],
+   "textAtLoad": 29026,
+   "mainEmptyAtLoad": false
+  },
+  "/talks/": {
+   "url": "https://www.jackzhaojin.com/talks/",
+   "status": 200,
+   "host": "www.jackzhaojin.com",
+   "title": "Talks & Presentations | Jack Jin",
+   "forms": [],
+   "controlGroups": [],
+   "triggers": [],
+   "dialogs": [],
+   "dialogCount": 0,
+   "media": [],
+   "iframes": [],
+   "mounts": [],
+   "auth": [],
+   "commerce": {
+    "cart": false,
+    "prices": 0
+   },
+   "locale": {
+    "lang": "en",
+    "hreflang": [],
+    "switcher": [
+     "https://www.linkedin.com/in/jackjin"
+    ]
+   },
+   "cms": {
+    "dataLayer": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "push"
+    ]
+   },
+   "framework": null,
+   "globals": [
+    "google_tag_manager",
+    "gtag"
+   ],
+   "clientRendered": [],
+   "listingCandidates": [],
+   "inlineScripts": 2,
+   "inlineFetch": false,
+   "mainText": 3165,
+   "domAddedAfterLoad": 0,
+   "hosts": {
+    "www.jackzhaojin.com": 8,
+    "static.cloudflareinsights.com": 1,
+    "fonts.googleapis.com": 1,
+    "fonts.gstatic.com": 3,
+    "www.googletagmanager.com": 1,
+    "www.google-analytics.com": 1
+   },
+   "thirdPartyHosts": [
+    "static.cloudflareinsights.com",
+    "fonts.googleapis.com",
+    "fonts.gstatic.com",
+    "www.googletagmanager.com",
+    "www.google-analytics.com"
+   ],
+   "scripts": [
+    "https://www.jackzhaojin.com/js/page-art.js?v=4-ink",
+    "https://www.jackzhaojin.com/js/site.js?v=3",
+    "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+    "https://www.googletagmanager.com/gtag/js?id=G-ZVENE6BXTJ"
+   ],
+   "firstPartyApi": [
+    {
+     "method": "POST",
+     "host": "www.jackzhaojin.com",
+     "path": "/cdn-cgi/rum",
+     "query": [],
+     "status": 204,
+     "contentType": "text/plain",
+     "example": "https://www.jackzhaojin.com/cdn-cgi/rum"
+    }
+   ],
+   "thirdPartyXhr": [
+    "POST www.google-analytics.com/g/collect"
+   ],
+   "postBodies": [
+    {
+     "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-ZVENE6BXTJ&gtm=45je6am0h2v9264040996za208zd9264040996xf1&_p=1792937649036&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=393175654.1792937649&frm=0&ngs=1&pscdl=n",
+     "body": ""
+    },
+    {
+     "url": "https://www.jackzhaojin.com/cdn-cgi/rum?",
+     "body": "{\"startTime\":1792937648842,\"pageloadId\":\"e61c7b8f-192f-4431-9d9d-e23a411bbbd3\",\"eventType\":1,\"nt\":\"navigate\",\"location\":\"https://www.jackzhaojin.com/talks/\",\"versions\":{\"fl\":\"2024.11.0\",\"js\":\"2026.10.1\",\"timings\":2},\"bi\":{\"be\":\"Blink\",\"bev\":\"156\",\"bv\":\"156\",\"ov\":\"26.5\"},\"memory\":{\"totalJSHeapSize\":10000000,\"usedJSHeapSize\":10000000,\"jsHeapSizeLimit\":3760000000},\"firstPaint\":344,\"firstContentfulPai"
+    }
+   ],
+   "textAtLoad": 3165,
+   "mainEmptyAtLoad": false
+  },
+  "/certifications/": {
+   "url": "https://www.jackzhaojin.com/certifications/",
+   "status": 200,
+   "host": "www.jackzhaojin.com",
+   "title": "Certifications | Jack Jin",
+   "forms": [],
+   "controlGroups": [],
+   "triggers": [],
+   "dialogs": [],
+   "dialogCount": 0,
+   "media": [],
+   "iframes": [],
+   "mounts": [],
+   "auth": [],
+   "commerce": {
+    "cart": false,
+    "prices": 0
+   },
+   "locale": {
+    "lang": "en",
+    "hreflang": [],
+    "switcher": [
+     "https://www.linkedin.com/in/jackjin"
+    ]
+   },
+   "cms": {
+    "dataLayer": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "push"
+    ]
+   },
+   "framework": null,
+   "globals": [
+    "google_tag_manager",
+    "gtag"
+   ],
+   "clientRendered": [],
+   "listingCandidates": [],
+   "inlineScripts": 2,
+   "inlineFetch": false,
+   "mainText": 4191,
+   "domAddedAfterLoad": 0,
+   "hosts": {
+    "www.jackzhaojin.com": 12,
+    "fonts.googleapis.com": 1,
+    "static.cloudflareinsights.com": 1,
+    "www.googletagmanager.com": 1,
+    "fonts.gstatic.com": 3,
+    "images.credly.com": 9,
+    "www.google-analytics.com": 1,
+    "learn.microsoft.com": 6
+   },
+   "thirdPartyHosts": [
+    "fonts.googleapis.com",
+    "static.cloudflareinsights.com",
+    "www.googletagmanager.com",
+    "fonts.gstatic.com",
+    "images.credly.com",
+    "www.google-analytics.com",
+    "learn.microsoft.com"
+   ],
+   "scripts": [
+    "https://www.jackzhaojin.com/js/page-art.js?v=4-ink",
+    "https://www.jackzhaojin.com/js/site.js?v=3",
+    "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+    "https://www.googletagmanager.com/gtag/js?id=G-ZVENE6BXTJ"
+   ],
+   "firstPartyApi": [
+    {
+     "method": "POST",
+     "host": "www.jackzhaojin.com",
+     "path": "/cdn-cgi/rum",
+     "query": [],
+     "status": 204,
+     "contentType": "text/plain",
+     "example": "https://www.jackzhaojin.com/cdn-cgi/rum"
+    }
+   ],
+   "thirdPartyXhr": [
+    "POST www.google-analytics.com/g/collect"
+   ],
+   "postBodies": [
+    {
+     "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-ZVENE6BXTJ&gtm=45je6al1v9264040996za208zd9264040996xf1&_p=1792937660808&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=1800626968.1792937661&frm=0&ngs=1&pscdl=no",
+     "body": ""
+    },
+    {
+     "url": "https://www.jackzhaojin.com/cdn-cgi/rum?",
+     "body": "{\"startTime\":1792937660570,\"pageloadId\":\"1058d45e-1ba7-43eb-b3a9-cfbb046f5fc3\",\"eventType\":1,\"nt\":\"navigate\",\"location\":\"https://www.jackzhaojin.com/certifications/\",\"versions\":{\"fl\":\"2024.11.0\",\"js\":\"2026.10.1\",\"timings\":2},\"bi\":{\"be\":\"Blink\",\"bev\":\"156\",\"bv\":\"156\",\"ov\":\"26.5\"},\"memory\":{\"totalJSHeapSize\":10000000,\"usedJSHeapSize\":10000000,\"jsHeapSizeLimit\":3760000000},\"firstPaint\":396,\"firstCont"
+    }
+   ],
+   "textAtLoad": 4191,
+   "mainEmptyAtLoad": false
+  },
+  "/privacy/": {
+   "url": "https://www.jackzhaojin.com/privacy/",
+   "status": 200,
+   "host": "www.jackzhaojin.com",
+   "title": "Privacy Policy | Jack Jin",
+   "forms": [],
+   "controlGroups": [],
+   "triggers": [],
+   "dialogs": [],
+   "dialogCount": 0,
+   "media": [],
+   "iframes": [],
+   "mounts": [],
+   "auth": [
+    "https://myaccount.google.com/permissions"
+   ],
+   "commerce": {
+    "cart": false,
+    "prices": 0
+   },
+   "locale": {
+    "lang": "en",
+    "hreflang": [],
+    "switcher": [
+     "https://www.linkedin.com/in/jackjin",
+     "https://www.linkedin.com/in/jackjin"
+    ]
+   },
+   "cms": {
+    "dataLayer": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "push"
+    ]
+   },
+   "framework": null,
+   "globals": [
+    "google_tag_manager",
+    "gtag"
+   ],
+   "clientRendered": [],
+   "listingCandidates": [],
+   "inlineScripts": 2,
+   "inlineFetch": false,
+   "mainText": 1736,
+   "domAddedAfterLoad": 0,
+   "hosts": {
+    "www.jackzhaojin.com": 8,
+    "static.cloudflareinsights.com": 1,
+    "fonts.googleapis.com": 1,
+    "www.googletagmanager.com": 1,
+    "fonts.gstatic.com": 3,
+    "www.google-analytics.com": 1
+   },
+   "thirdPartyHosts": [
+    "static.cloudflareinsights.com",
+    "fonts.googleapis.com",
+    "www.googletagmanager.com",
+    "fonts.gstatic.com",
+    "www.google-analytics.com"
+   ],
+   "scripts": [
+    "https://www.jackzhaojin.com/js/page-art.js?v=4-ink",
+    "https://www.jackzhaojin.com/js/site.js?v=3",
+    "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+    "https://www.googletagmanager.com/gtag/js?id=G-ZVENE6BXTJ"
+   ],
+   "firstPartyApi": [
+    {
+     "method": "POST",
+     "host": "www.jackzhaojin.com",
+     "path": "/cdn-cgi/rum",
+     "query": [],
+     "status": 204,
+     "contentType": "text/plain",
+     "example": "https://www.jackzhaojin.com/cdn-cgi/rum"
+    }
+   ],
+   "thirdPartyXhr": [
+    "POST www.google-analytics.com/g/collect"
+   ],
+   "postBodies": [
+    {
+     "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-ZVENE6BXTJ&gtm=45je6al1v9264040996za208zd9264040996xf1&_p=1792937672620&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=327690991.1792937673&frm=0&ngs=1&pscdl=noa",
+     "body": ""
+    },
+    {
+     "url": "https://www.jackzhaojin.com/cdn-cgi/rum?",
+     "body": "{\"startTime\":1792937672442,\"pageloadId\":\"09ca97cb-9cbf-4baa-96f2-edcf6d7449c3\",\"eventType\":1,\"nt\":\"navigate\",\"location\":\"https://www.jackzhaojin.com/privacy/\",\"versions\":{\"fl\":\"2024.11.0\",\"js\":\"2026.10.1\",\"timings\":2},\"bi\":{\"be\":\"Blink\",\"bev\":\"156\",\"bv\":\"156\",\"ov\":\"26.5\"},\"memory\":{\"totalJSHeapSize\":10000000,\"usedJSHeapSize\":10000000,\"jsHeapSizeLimit\":3760000000},\"firstPaint\":348,\"firstContentfulP"
+    }
+   ],
+   "textAtLoad": 1736,
+   "mainEmptyAtLoad": false
+  },
+  "/writing/2026-08-09-adobe-stardust-explained/": {
+   "url": "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+   "status": 200,
+   "host": "www.jackzhaojin.com",
+   "title": "Adobe Stardust Explained: A Design Skill for EDS | Jack Jin",
+   "forms": [],
+   "controlGroups": [],
+   "triggers": [],
+   "dialogs": [],
+   "dialogCount": 0,
+   "media": [
+    {
+     "tag": "iframe",
+     "src": "https://www.youtube-nocookie.com/embed/THAk36FGZps?rel=0",
+     "account": null,
+     "player": null,
+     "videoId": null,
+     "inDialog": false
+    }
+   ],
+   "iframes": [
+    {
+     "src": "https://www.youtube-nocookie.com/embed/THAk36FGZps?rel=0",
+     "title": "I Ran Adobe Stardust on Real EDS Blocks to Figure Out What It Is (YouTube video)",
+     "w": 760,
+     "h": 427
+    }
+   ],
+   "mounts": [],
+   "auth": [],
+   "commerce": {
+    "cart": false,
+    "prices": 0
+   },
+   "locale": {
+    "lang": "en",
+    "hreflang": [],
+    "switcher": [
+     "https://www.linkedin.com/in/jackjin"
+    ]
+   },
+   "cms": {
+    "dataLayer": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "push"
+    ]
+   },
+   "framework": null,
+   "globals": [
+    "google_tag_manager",
+    "gtag"
+   ],
+   "clientRendered": [],
+   "listingCandidates": [
+    {
+     "cls": "row-list",
+     "cards": 3,
+     "sameSite": 3,
+     "hasDate": true
+    }
+   ],
+   "inlineScripts": 2,
+   "inlineFetch": false,
+   "mainText": 12775,
+   "domAddedAfterLoad": 0,
+   "hosts": {
+    "www.jackzhaojin.com": 17,
+    "fonts.googleapis.com": 1,
+    "static.cloudflareinsights.com": 1,
+    "www.googletagmanager.com": 1,
+    "fonts.gstatic.com": 4,
+    "www.google-analytics.com": 1,
+    "www.youtube-nocookie.com": 8,
+    "www.google.com": 1,
+    "www.gstatic.com": 1,
+    "i.ytimg.com": 1,
+    "yt3.ggpht.com": 1,
+    "jnn-pa.googleapis.com": 1
+   },
+   "thirdPartyHosts": [
+    "fonts.googleapis.com",
+    "static.cloudflareinsights.com",
+    "www.googletagmanager.com",
+    "fonts.gstatic.com",
+    "www.google-analytics.com",
+    "www.youtube-nocookie.com",
+    "www.google.com",
+    "www.gstatic.com",
+    "i.ytimg.com",
+    "yt3.ggpht.com",
+    "jnn-pa.googleapis.com"
+   ],
+   "scripts": [
+    "https://www.jackzhaojin.com/js/site.js?v=3",
+    "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+    "https://www.jackzhaojin.com/js/article.js?v=2",
+    "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/explainer.js?v=2",
+    "https://www.jackzhaojin.com/js/explainers.js?v=3",
+    "https://www.googletagmanager.com/gtag/js?id=G-ZVENE6BXTJ",
+    "https://www.youtube-nocookie.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.0hpw0gG48bI.es5.O/am=AAAAQA/d=1/excm=base,root/br=1/rs=AGKMywGvGKw2rZYCgNFZJc0Yt-gVyeN-FA/m=root,base",
+    "https://www.youtube-nocookie.com/s/player/cbcfbf2f/player_embed.vflset/en_US/base.js",
+    "https://www.youtube-nocookie.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.0hpw0gG48bI.es5.O/ck=ytembeds.base.SKK5Z7LAK_Y.L.W.O/am=AAAAQA/d=1/exm=base,root/excm=base,root/ed=1/br=1/rs=AGKMywE6Ef4o6TIRAu",
+    "https://www.google.com/js/th/YI2XvVwvdBJTNOg4tmE81lkRxYCcxVDASxYzC3ult3w.js"
+   ],
+   "firstPartyApi": [
+    {
+     "method": "POST",
+     "host": "www.jackzhaojin.com",
+     "path": "/cdn-cgi/rum",
+     "query": [],
+     "status": 204,
+     "contentType": "text/plain",
+     "example": "https://www.jackzhaojin.com/cdn-cgi/rum"
+    }
+   ],
+   "thirdPartyXhr": [
+    "POST www.google-analytics.com/g/collect",
+    "GET www.gstatic.com/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+    "POST jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+    "POST www.youtube-nocookie.com/youtubei/v1/log_event"
+   ],
+   "postBodies": [
+    {
+     "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-ZVENE6BXTJ&gtm=45je6al1v9264040996za208zd9264040996xf1&_p=1792937684063&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=1249661212.1792937684&frm=0&ngs=1&pscdl=no",
+     "body": ""
+    },
+    {
+     "url": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+     "body": "[\"O43z0dpjhgX20SCx4KAo\",\"$3UI5QiZRAAZH4vvpZ-Le7SJaF7eeBYunAEABEArZ1OnbUfikg4lJQsyRiX6dDmPtwfxxxZIWHEI06c68cZyW75jDQAa2IzFyzUWpPH-3X4hlQzPVgAnyNPG7ngAAAB_OAAAAA_QBB-IAVxqUpyatkgQDZmDOurOLcBr5XA7NpKFIahBP5kn2nK71I4fLA4UmBMy2e9kLY9F_xWpTWs6KSFjsD31ZI3AVRjM_XrdUmwonNJQSUHmgtU-4fVfcmne24AUF8ZkQxZF6CjMHqfMHN_QkT71Jtapf5-uXha2_3RY4X6osNL8kIJAJcZmQnVjcU8gHeY4EjCfIzBFlwC9RXcU3y5H2ilFHx3ZRqyTV16D9H9R_QcoJR6"
+    },
+    {
+     "url": "https://www.jackzhaojin.com/cdn-cgi/rum?",
+     "body": "{\"startTime\":1792937683864,\"pageloadId\":\"ce5a39bb-6e7c-491c-a862-a853b4b68639\",\"eventType\":1,\"nt\":\"navigate\",\"location\":\"https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/\",\"versions\":{\"fl\":\"2024.11.0\",\"js\":\"2026.10.1\",\"timings\":2},\"bi\":{\"be\":\"Blink\",\"bev\":\"156\",\"bv\":\"156\",\"ov\":\"26.5\"},\"memory\":{\"totalJSHeapSize\":31200000,\"usedJSHeapSize\":23100000,\"jsHeapSizeLimit\":3760000000"
+    },
+    {
+     "url": "https://www.youtube-nocookie.com/youtubei/v1/log_event?alt=json",
+     "body": "{\"context\":{\"client\":{\"hl\":\"en\",\"gl\":\"US\",\"clientName\":56,\"clientVersion\":\"2.20261023.01.00\",\"configInfo\":{\"appInstallData\":\"CNSd-NYGEMn2gBMQyvuAExD36NIcEJj-0hwQ1fHSHBDBj9AcEOz70hwQ3YrTHBC9tq4FEJzl0hwQ3K3SHBCO5NEcELjkzhwQ2vfOHBCHrM4cEOWKuCIQn8-AExDM364FELa1gBMQ3rzOHBDw3tEcEIHNzhwQmY2xBRD2q7AFEL6E0RwQ0trSHBChgNMcEPza0hwQ5-vRHBCu3tEcEKSp0RwQy_vSHBCu1s8cEOny0hwQ_I_THBDxtNAcEJDv0hwQvoqwBRCe0LAFEJiv0hw"
+    }
+   ],
+   "textAtLoad": 12775,
+   "mainEmptyAtLoad": false
+  },
+  "/writing/2025-09-01-aem-caching-production-architectures/": {
+   "url": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/",
+   "status": 200,
+   "host": "www.jackzhaojin.com",
+   "title": "AEM Caching in Production: How Cache-Control Moves Through Every Layer | Jack Jin",
+   "forms": [],
+   "controlGroups": [
+    {
+     "container": "article.writing-article",
+     "controls": 2,
+     "names": [],
+     "submit": null
+    }
+   ],
+   "triggers": [],
+   "dialogs": [],
+   "dialogCount": 0,
+   "media": [
+    {
+     "tag": "iframe",
+     "src": "https://www.youtube-nocookie.com/embed/E7jNBsUvXm0?rel=0",
+     "account": null,
+     "player": null,
+     "videoId": null,
+     "inDialog": false
+    }
+   ],
+   "iframes": [
+    {
+     "src": "https://www.youtube-nocookie.com/embed/E7jNBsUvXm0?rel=0",
+     "title": "AEM Caching in Production: How Cache-Control Moves Through Every Layer (YouTube video)",
+     "w": 760,
+     "h": 427
+    }
+   ],
+   "mounts": [],
+   "auth": [
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ],
+   "commerce": {
+    "cart": false,
+    "prices": 0
+   },
+   "locale": {
+    "lang": "en",
+    "hreflang": [],
+    "switcher": [
+     "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching",
+     "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/cdn",
+     "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/headless/graphql-api/persisted-queries",
+     "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching",
+     "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching"
+    ]
+   },
+   "cms": {
+    "dataLayer": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "push"
+    ]
+   },
+   "framework": null,
+   "globals": [
+    "google_tag_manager",
+    "gtag"
+   ],
+   "clientRendered": [],
+   "listingCandidates": [
+    {
+     "cls": "row-list",
+     "cards": 3,
+     "sameSite": 3,
+     "hasDate": false
+    }
+   ],
+   "inlineScripts": 2,
+   "inlineFetch": false,
+   "mainText": 15347,
+   "domAddedAfterLoad": 0,
+   "hosts": {
+    "www.jackzhaojin.com": 20,
+    "static.cloudflareinsights.com": 1,
+    "fonts.googleapis.com": 1,
+    "www.googletagmanager.com": 1,
+    "fonts.gstatic.com": 4,
+    "www.youtube-nocookie.com": 8,
+    "www.google-analytics.com": 1,
+    "www.google.com": 1,
+    "yt3.ggpht.com": 1,
+    "www.gstatic.com": 1,
+    "i.ytimg.com": 1,
+    "jnn-pa.googleapis.com": 1
+   },
+   "thirdPartyHosts": [
+    "static.cloudflareinsights.com",
+    "fonts.googleapis.com",
+    "www.googletagmanager.com",
+    "fonts.gstatic.com",
+    "www.youtube-nocookie.com",
+    "www.google-analytics.com",
+    "www.google.com",
+    "yt3.ggpht.com",
+    "www.gstatic.com",
+    "i.ytimg.com",
+    "jnn-pa.googleapis.com"
+   ],
+   "scripts": [
+    "https://www.jackzhaojin.com/js/site.js?v=3",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/explainer.js?v=2",
+    "https://www.jackzhaojin.com/js/explainers.js?v=3",
+    "https://www.jackzhaojin.com/js/article.js?v=2",
+    "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+    "https://www.googletagmanager.com/gtag/js?id=G-ZVENE6BXTJ",
+    "https://www.youtube-nocookie.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.0hpw0gG48bI.es5.O/am=AAAAQABj/d=1/excm=base,root/br=1/rs=AGKMywFNcVEhN699rLSHYwnVGPFomGY6fg/m=root,base",
+    "https://www.youtube-nocookie.com/s/player/cbcfbf2f/player_embed.vflset/en_US/base.js",
+    "https://www.youtube-nocookie.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.0hpw0gG48bI.es5.O/ck=ytembeds.base.SKK5Z7LAK_Y.L.W.O/am=AAAAQABj/d=1/exm=base,root/excm=base,root/ed=1/br=1/rs=AGKMywEbdzGV2Nff",
+    "https://www.google.com/js/th/YI2XvVwvdBJTNOg4tmE81lkRxYCcxVDASxYzC3ult3w.js"
+   ],
+   "firstPartyApi": [
+    {
+     "method": "POST",
+     "host": "www.jackzhaojin.com",
+     "path": "/cdn-cgi/rum",
+     "query": [],
+     "status": 204,
+     "contentType": "text/plain",
+     "example": "https://www.jackzhaojin.com/cdn-cgi/rum"
+    }
+   ],
+   "thirdPartyXhr": [
+    "POST www.google-analytics.com/g/collect",
+    "GET www.gstatic.com/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+    "POST jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+    "POST www.youtube-nocookie.com/youtubei/v1/log_event"
+   ],
+   "postBodies": [
+    {
+     "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-ZVENE6BXTJ&gtm=45je6al1v9264040996za208zd9264040996xf1&_p=1792937696605&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=1264538370.1792937697&frm=0&ngs=1&pscdl=no",
+     "body": ""
+    },
+    {
+     "url": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+     "body": "[\"O43z0dpjhgX20SCx4KAo\",\"$MK85r8tRAAZH4vvpZ-Leoc4UB7-fDsCnAEABEArZ1Ldybskb4Bp40meUTvX_Zw6GRIWrw4K1SnbpyqZm_Dzpcs0jjQas90_KcT3ketKAYBvy8NtZMdgwvVA3ngAAACTOAAAAAvQBB-IAVXZyyWTKt4L812DLRNItS-DkuyNM-js3h61qAUzP-sBWzVEFb4iTKrb2DBkqOkXoT7SD2LU2MhBLCuS2oZCyyGWAmFVbdjXMbWqwbtde94ol0-7j5UsFBfiQgvixivb6aCSzrmSXS4yaTJu1V9-wl-VqP6Ktoha6N2gdqauxYZbmgA05V5Lj-yYwa7RoQRTbexoDGAan8RYnY0ynEbs3odBivCOn216vwAIz8coyyd"
+    },
+    {
+     "url": "https://www.jackzhaojin.com/cdn-cgi/rum?",
+     "body": "{\"startTime\":1792937696401,\"pageloadId\":\"70e8ec66-39fe-49ed-af61-8fac8efc2036\",\"eventType\":1,\"nt\":\"navigate\",\"location\":\"https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/\",\"versions\":{\"fl\":\"2024.11.0\",\"js\":\"2026.10.1\",\"timings\":2},\"bi\":{\"be\":\"Blink\",\"bev\":\"156\",\"bv\":\"156\",\"ov\":\"26.5\"},\"memory\":{\"totalJSHeapSize\":31200000,\"usedJSHeapSize\":23100000,\"jsHeapSizeLimit"
+    },
+    {
+     "url": "https://www.youtube-nocookie.com/youtubei/v1/log_event?alt=json",
+     "body": "{\"context\":{\"client\":{\"hl\":\"en\",\"gl\":\"US\",\"clientName\":56,\"clientVersion\":\"2.20261023.01.00\",\"configInfo\":{\"appInstallData\":\"COCd-NYGEMn2gBMQyvuAExD36NIcEJj-0hwQ1PHSHBDBj9AcEO370hwQ3orTHBC9tq4FEJzl0hwQ3K3SHBC45M4cENr3zhwQh6zOHBDlirgiEJ_PgBMQzN-uBRCP8NIcEN68zhwQ8N7RHBCBzc4cEJmNsQUQ9quwBRC-hNEcENLa0hwQoYDTHBD82tIcEOfr0RwQrt7RHBCkqdEcEMr70hwQrtbPHBDp8tIcEPyP0xwQ8bTQHBCQ79IcEL2KsAUQ8JywBRCe0LAFELyk0Bw"
+    }
+   ],
+   "textAtLoad": 15347,
+   "mainEmptyAtLoad": false
+  },
+  "/writing/2026-10-10-adaptto-2026-25-talks/": {
+   "url": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/",
+   "status": 200,
+   "host": "www.jackzhaojin.com",
+   "title": "adaptTo() 2026 Recap: 25 AEM Talks in 15 Minutes | Jack Jin",
+   "forms": [],
+   "controlGroups": [],
+   "triggers": [],
+   "dialogs": [],
+   "dialogCount": 0,
+   "media": [
+    {
+     "tag": "iframe",
+     "src": "https://www.youtube-nocookie.com/embed/d1S1yVgFep8?rel=0",
+     "account": null,
+     "player": null,
+     "videoId": null,
+     "inDialog": false
+    }
+   ],
+   "iframes": [
+    {
+     "src": "https://www.youtube-nocookie.com/embed/d1S1yVgFep8?rel=0",
+     "title": "adaptTo() 2026 Recap: 25 AEM Conference Talks in 15 Minutes (YouTube video)",
+     "w": 760,
+     "h": 427
+    }
+   ],
+   "mounts": [],
+   "auth": [
+    "https://adapt.to/2026/schedule/rolling-out-mcp-on-aem-lessons-from-early-production",
+    "https://adapt.to/2026/presentations/adaptto-2026-rolling-out-mcp-on-aem-lessons-from-early-production.pdf",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ],
+   "commerce": {
+    "cart": false,
+    "prices": 0
+   },
+   "locale": {
+    "lang": "en",
+    "hreflang": [],
+    "switcher": [
+     "https://www.linkedin.com/in/jackjin"
+    ]
+   },
+   "cms": {
+    "dataLayer": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "push"
+    ]
+   },
+   "framework": null,
+   "globals": [
+    "google_tag_manager",
+    "gtag"
+   ],
+   "clientRendered": [],
+   "listingCandidates": [
+    {
+     "cls": "row-list",
+     "cards": 3,
+     "sameSite": 3,
+     "hasDate": true
+    }
+   ],
+   "inlineScripts": 3,
+   "inlineFetch": false,
+   "mainText": 22561,
+   "domAddedAfterLoad": 0,
+   "hosts": {
+    "www.jackzhaojin.com": 55,
+    "fonts.googleapis.com": 1,
+    "static.cloudflareinsights.com": 1,
+    "www.googletagmanager.com": 1,
+    "fonts.gstatic.com": 5,
+    "www.youtube-nocookie.com": 8,
+    "www.google-analytics.com": 1,
+    "www.google.com": 1,
+    "www.gstatic.com": 1,
+    "yt3.ggpht.com": 1,
+    "jnn-pa.googleapis.com": 1,
+    "i.ytimg.com": 1
+   },
+   "thirdPartyHosts": [
+    "fonts.googleapis.com",
+    "static.cloudflareinsights.com",
+    "www.googletagmanager.com",
+    "fonts.gstatic.com",
+    "www.youtube-nocookie.com",
+    "www.google-analytics.com",
+    "www.google.com",
+    "www.gstatic.com",
+    "yt3.ggpht.com",
+    "jnn-pa.googleapis.com",
+    "i.ytimg.com"
+   ],
+   "scripts": [
+    "https://www.jackzhaojin.com/js/explainers.js?v=3",
+    "https://www.jackzhaojin.com/js/site.js?v=3",
+    "https://www.jackzhaojin.com/js/article.js?v=2",
+    "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+    "https://www.googletagmanager.com/gtag/js?id=G-ZVENE6BXTJ",
+    "https://www.youtube-nocookie.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.0hpw0gG48bI.es5.O/am=AAAAQABj/d=1/excm=base,root/br=1/rs=AGKMywFNcVEhN699rLSHYwnVGPFomGY6fg/m=root,base",
+    "https://www.youtube-nocookie.com/s/player/cbcfbf2f/player_embed.vflset/en_US/base.js",
+    "https://www.youtube-nocookie.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.0hpw0gG48bI.es5.O/ck=ytembeds.base.SKK5Z7LAK_Y.L.W.O/am=AAAAQABj/d=1/exm=base,root/excm=base,root/ed=1/br=1/rs=AGKMywEbdzGV2Nff",
+    "https://www.google.com/js/th/YI2XvVwvdBJTNOg4tmE81lkRxYCcxVDASxYzC3ult3w.js"
+   ],
+   "firstPartyApi": [
+    {
+     "method": "POST",
+     "host": "www.jackzhaojin.com",
+     "path": "/cdn-cgi/rum",
+     "query": [],
+     "status": 204,
+     "contentType": "text/plain",
+     "example": "https://www.jackzhaojin.com/cdn-cgi/rum"
+    }
+   ],
+   "thirdPartyXhr": [
+    "POST www.google-analytics.com/g/collect",
+    "GET www.gstatic.com/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+    "POST jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+    "POST www.youtube-nocookie.com/youtubei/v1/log_event"
+   ],
+   "postBodies": [
+    {
+     "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-ZVENE6BXTJ&gtm=45je6al1h1v9264040996za208zd9264040996xf1&_p=1792937709147&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=786812976.1792937709&frm=0&ngs=1&pscdl=n",
+     "body": ""
+    },
+    {
+     "url": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+     "body": "[\"O43z0dpjhgX20SCx4KAo\",\"$hRo5Gn5RAAZH4vvpZ-LeD2V7s8VBCq2nAEABEArZ1MV7ypVyLv8gRKCDrOtITqskrU3XV74nMyzpI_kbjgM8pJLn76FxNh4BNSgLEZmHinKLEiJj1Njd-DGbngAAACDOAAAAAvQBB-IAVTVQmrYMdV1dZifDKbujz4dPsSJuWaHOy4MRqf6qglp2btfJ-9c0CpXpHAKRlRiHTYGAV3-ZoRGPWFhmmElGwX2iyYTwS8abfVR7brziYXaimb_UyKwFBgCO1Csdu8_2gOLS8sxEimAp_R7HSlvzxzdOoPChUAngQU0IknQngNWKkThnRD_EgRkceOTPW-07UE2JrwQ2RC2iPgA5bwl_W78hvQRHzPFL2K35J1oxAa"
+    },
+    {
+     "url": "https://www.jackzhaojin.com/cdn-cgi/rum?",
+     "body": "{\"startTime\":1792937708968,\"pageloadId\":\"902ece65-1238-4b02-9081-d6f8e1e548e0\",\"eventType\":1,\"nt\":\"navigate\",\"location\":\"https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/\",\"versions\":{\"fl\":\"2024.11.0\",\"js\":\"2026.10.1\",\"timings\":2},\"bi\":{\"be\":\"Blink\",\"bev\":\"156\",\"bv\":\"156\",\"ov\":\"26.5\"},\"memory\":{\"totalJSHeapSize\":31200000,\"usedJSHeapSize\":23100000,\"jsHeapSizeLimit\":3760000000},\""
+    },
+    {
+     "url": "https://www.youtube-nocookie.com/youtubei/v1/log_event?alt=json",
+     "body": "{\"context\":{\"client\":{\"hl\":\"en\",\"gl\":\"US\",\"clientName\":56,\"clientVersion\":\"2.20261023.01.00\",\"configInfo\":{\"appInstallData\":\"CO2d-NYGEMn2gBMQyvuAExD36NIcEJj-0hwQ1PHSHBDBj9AcEO370hwQ3YrTHBC9tq4FEJvZ0RwQnOXSHBDcrdIcELjkzhwQ2vfOHBCHrM4cEOWKuCIQn8-AExDM364FELa1gBMQ3rzOHBDw3tEcEIHNzhwQmY2xBRD2q7AFEL6E0RwQ09rSHBChgNMcEPza0hwQ5-vRHBCu3tEcEKSp0RwQy_vSHBCu1s8cEOny0hwQ_I_THBDxtNAcEJDv0hwQvYqwBRCe0LAFELyk0Bw"
+    }
+   ],
+   "textAtLoad": 22561,
+   "mainEmptyAtLoad": false
+  },
+  "/writing/2026-09-20-aem-edge-functions-google-sign-in/": {
+   "url": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+   "status": 200,
+   "host": "www.jackzhaojin.com",
+   "title": "AEM Edge Functions on a Laptop: Google Sign-in at the Edge | Jack Jin",
+   "forms": [],
+   "controlGroups": [],
+   "triggers": [],
+   "dialogs": [],
+   "dialogCount": 0,
+   "media": [
+    {
+     "tag": "iframe",
+     "src": "https://www.youtube-nocookie.com/embed/J5DpmRjqNQQ?rel=0",
+     "account": null,
+     "player": null,
+     "videoId": null,
+     "inDialog": false
+    }
+   ],
+   "iframes": [
+    {
+     "src": "https://www.youtube-nocookie.com/embed/J5DpmRjqNQQ?rel=0",
+     "title": "AEM Edge Functions: Google Sign-in and Personalization on Edge Delivery Services (YouTube video)",
+     "w": 760,
+     "h": 427
+    }
+   ],
+   "mounts": [],
+   "auth": [
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#main",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-1",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-2",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-3",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-4",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-5",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-6",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#takeaways"
+   ],
+   "commerce": {
+    "cart": false,
+    "prices": 0
+   },
+   "locale": {
+    "lang": "en",
+    "hreflang": [],
+    "switcher": [
+     "https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/edge-functions/edge-functions-setup/setup-eds",
+     "https://www.linkedin.com/in/jackjin"
+    ]
+   },
+   "cms": {
+    "dataLayer": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "push"
+    ]
+   },
+   "framework": null,
+   "globals": [
+    "google_tag_manager",
+    "gtag"
+   ],
+   "clientRendered": [],
+   "listingCandidates": [
+    {
+     "cls": "row-list",
+     "cards": 3,
+     "sameSite": 3,
+     "hasDate": true
+    }
+   ],
+   "inlineScripts": 2,
+   "inlineFetch": false,
+   "mainText": 14316,
+   "domAddedAfterLoad": 8,
+   "hosts": {
+    "www.jackzhaojin.com": 26,
+    "static.cloudflareinsights.com": 1,
+    "fonts.googleapis.com": 1,
+    "www.googletagmanager.com": 1,
+    "fonts.gstatic.com": 4,
+    "www.youtube-nocookie.com": 8,
+    "www.google-analytics.com": 1,
+    "www.google.com": 1,
+    "yt3.ggpht.com": 1,
+    "www.gstatic.com": 1,
+    "jnn-pa.googleapis.com": 1,
+    "i.ytimg.com": 1
+   },
+   "thirdPartyHosts": [
+    "static.cloudflareinsights.com",
+    "fonts.googleapis.com",
+    "www.googletagmanager.com",
+    "fonts.gstatic.com",
+    "www.youtube-nocookie.com",
+    "www.google-analytics.com",
+    "www.google.com",
+    "yt3.ggpht.com",
+    "www.gstatic.com",
+    "jnn-pa.googleapis.com",
+    "i.ytimg.com"
+   ],
+   "scripts": [
+    "https://www.jackzhaojin.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+    "https://www.jackzhaojin.com/js/site.js?v=3",
+    "https://www.jackzhaojin.com/js/explainers.js?v=3",
+    "https://www.jackzhaojin.com/js/article.js?v=2",
+    "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+    "https://www.googletagmanager.com/gtag/js?id=G-ZVENE6BXTJ",
+    "https://www.youtube-nocookie.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.0hpw0gG48bI.es5.O/am=AAAAQA/d=1/excm=base,root/br=1/rs=AGKMywGvGKw2rZYCgNFZJc0Yt-gVyeN-FA/m=root,base",
+    "https://www.youtube-nocookie.com/s/player/cbcfbf2f/player_embed.vflset/en_US/base.js",
+    "https://www.youtube-nocookie.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.0hpw0gG48bI.es5.O/ck=ytembeds.base.SKK5Z7LAK_Y.L.W.O/am=AAAAQA/d=1/exm=base,root/excm=base,root/ed=1/br=1/rs=AGKMywE6Ef4o6TIRAu",
+    "https://www.google.com/js/th/YI2XvVwvdBJTNOg4tmE81lkRxYCcxVDASxYzC3ult3w.js"
+   ],
+   "firstPartyApi": [
+    {
+     "method": "POST",
+     "host": "www.jackzhaojin.com",
+     "path": "/cdn-cgi/rum",
+     "query": [],
+     "status": 204,
+     "contentType": "text/plain",
+     "example": "https://www.jackzhaojin.com/cdn-cgi/rum"
+    }
+   ],
+   "thirdPartyXhr": [
+    "POST www.google-analytics.com/g/collect",
+    "GET www.gstatic.com/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+    "POST jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+    "POST www.youtube-nocookie.com/youtubei/v1/log_event"
+   ],
+   "postBodies": [
+    {
+     "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-ZVENE6BXTJ&gtm=45je6am0h2v9264040996za208zd9264040996xf1&_p=1792937721628&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=1827507297.1792937722&frm=0&ngs=1&pscdl=",
+     "body": ""
+    },
+    {
+     "url": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+     "body": "[\"O43z0dpjhgX20SCx4KAo\",\"$KbY5ttJRAAZH4vvpZ-LeZCm5l0B0GRanAEABEArZ1BPevHFyiccxO1OtQbBChJynBWsWJ2dBrYuAjvCAnvM4E_O_yPVzBz3tJyWFZVlKpk8JoNLsbtt-5QCIngAAACHOAAAAAvQBB-IAVlK21g5W5O_EEgDrR_xoJYz6702p9lMO8HOgDuHcSXKIk-yU_-6V8LCIKNaqKM-eF4IetVXCeqmUQuxzt_72nEBD1iJrszP5ju2EIrDkDtTGCrs2LnLqBQX6db5bqY7zGVTB79V7sQr4zDfZT_uQ2y9hiZ1KdoxwIjHb54YkWfjzmCoAB8i-Mr1PcwIP_ps21OaxACWYEsTQAQSvfXLm9542wVyvBU0k-tSvrKZ7Gu"
+    },
+    {
+     "url": "https://www.jackzhaojin.com/cdn-cgi/rum?",
+     "body": "{\"startTime\":1792937721476,\"pageloadId\":\"9c8820ff-12eb-450f-97f4-b64fc4d2be65\",\"eventType\":1,\"nt\":\"navigate\",\"location\":\"https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/\",\"versions\":{\"fl\":\"2024.11.0\",\"js\":\"2026.10.1\",\"timings\":2},\"bi\":{\"be\":\"Blink\",\"bev\":\"156\",\"bv\":\"156\",\"ov\":\"26.5\"},\"memory\":{\"totalJSHeapSize\":31200000,\"usedJSHeapSize\":23100000,\"jsHeapSizeLimit\":3"
+    },
+    {
+     "url": "https://www.youtube-nocookie.com/youtubei/v1/log_event?alt=json",
+     "body": "{\"context\":{\"client\":{\"hl\":\"en\",\"gl\":\"US\",\"clientName\":56,\"clientVersion\":\"2.20261023.01.00\",\"configInfo\":{\"appInstallData\":\"CPmd-NYGEMn2gBMQyvuAExD36NIcEJj-0hwQwY_QHBDs-9IcEN6K0xwQtqTRHBC9tq4FEJvl0hwQ263SHBC45M4cENr3zhwQh6zOHBDlirgiEJ_PgBMQzN-uBRCO8NIcEN68zhwQrvDSHBDw3tEcEIHNzhwQmY2xBRD2q7AFEL6E0RwQ09rSHBChgNMcEPza0hwQ5-vRHBCu3tEcEKSp0RwQyvvSHBCu1s8cEOny0hwQ_I_THBDxtNAcEJDv0hwQvoqwBRDxnLAFEJ7QsAU"
+    }
+   ],
+   "textAtLoad": 14417,
+   "mainEmptyAtLoad": false
+  }
+ },
+ "findings": [
+  {
+   "id": "a-cms-app-settings-object-datalayer",
+   "class": "A",
+   "feature": "CMS / app settings object dataLayer",
+   "hint": "settings",
+   "evidence": [],
+   "pages": [
+    "/",
+    "/writing/",
+    "/portfolio/",
+    "/talks/",
+    "/certifications/",
+    "/privacy/",
+    "/writing/2026-08-09-adobe-stardust-explained/",
+    "/writing/2025-09-01-aem-caching-production-architectures/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ]
+  },
+  {
+   "id": "a-unknown-third-party-host-www-gstatic-com",
+   "class": "A",
+   "feature": "unknown third-party host www.gstatic.com",
+   "hint": "inspect",
+   "evidence": [
+    "www.gstatic.com"
+   ],
+   "pages": [
+    "/writing/2026-08-09-adobe-stardust-explained/",
+    "/writing/2025-09-01-aem-caching-production-architectures/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ]
+  },
+  {
+   "id": "a-unknown-third-party-host-jnn-pa-googleapis-com",
+   "class": "A",
+   "feature": "unknown third-party host jnn-pa.googleapis.com",
+   "hint": "inspect",
+   "evidence": [
+    "jnn-pa.googleapis.com"
+   ],
+   "pages": [
+    "/writing/2026-08-09-adobe-stardust-explained/",
+    "/writing/2025-09-01-aem-caching-production-architectures/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ]
+  },
+  {
+   "id": "f-form-less-control-group-in-article-writing-article-2-contr",
+   "class": "F",
+   "feature": "form-less control group in article.writing-article (2 controls)",
+   "hint": "client-compute?",
+   "evidence": [],
+   "pages": [
+    "/writing/2025-09-01-aem-caching-production-architectures/"
+   ]
+  },
+  {
+   "id": "i18n-locale-variants-in",
+   "class": "I18N",
+   "feature": "locale variants in",
+   "hint": "locale",
+   "evidence": [
+    "https://www.linkedin.com/in/jackjin"
+   ],
+   "pages": [
+    "/",
+    "/writing/",
+    "/talks/",
+    "/certifications/",
+    "/writing/2026-08-09-adobe-stardust-explained/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/"
+   ]
+  },
+  {
+   "id": "i18n-locale-variants-in-in",
+   "class": "I18N",
+   "feature": "locale variants in,in",
+   "hint": "locale",
+   "evidence": [
+    "https://www.linkedin.com/in/jackjin/",
+    "https://www.linkedin.com/in/jackjin"
+   ],
+   "pages": [
+    "/portfolio/",
+    "/privacy/"
+   ]
+  },
+  {
+   "id": "i18n-locale-variants-en-en-en-en-en",
+   "class": "I18N",
+   "feature": "locale variants en,en,en,en,en",
+   "hint": "locale",
+   "evidence": [
+    "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching",
+    "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/cdn",
+    "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/headless/graphql-api/persisted-queries"
+   ],
+   "pages": [
+    "/writing/2025-09-01-aem-caching-production-architectures/"
+   ]
+  },
+  {
+   "id": "i18n-locale-variants-en-in",
+   "class": "I18N",
+   "feature": "locale variants en,in",
+   "hint": "locale",
+   "evidence": [
+    "https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/edge-functions/edge-functions-setup/setup-eds",
+    "https://www.linkedin.com/in/jackjin"
+   ],
+   "pages": [
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ]
+  },
+  {
+   "id": "l-listing-candidate-row-list-3-cards",
+   "class": "L",
+   "feature": "listing candidate row-list (3 cards)",
+   "hint": "listings",
+   "evidence": [],
+   "pages": [
+    "/writing/2026-08-09-adobe-stardust-explained/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ]
+  },
+  {
+   "id": "l-listing-candidate-writing-list-28-cards",
+   "class": "L",
+   "feature": "listing candidate writing-list (28 cards)",
+   "hint": "listings",
+   "evidence": [],
+   "pages": [
+    "/writing/"
+   ]
+  },
+  {
+   "id": "l-listing-candidate-deck-panes-6-cards",
+   "class": "L",
+   "feature": "listing candidate deck-panes (6 cards)",
+   "hint": "listings",
+   "evidence": [],
+   "pages": [
+    "/portfolio/"
+   ]
+  },
+  {
+   "id": "l-listing-candidate-bruce-grid-reveal-3-cards",
+   "class": "L",
+   "feature": "listing candidate bruce-grid reveal (3 cards)",
+   "hint": "listings",
+   "evidence": [],
+   "pages": [
+    "/portfolio/"
+   ]
+  },
+  {
+   "id": "m-modal-trigger-lightbox-file-target-outside-dom-at-capture",
+   "class": "M",
+   "feature": "modal trigger lightbox-file → target outside DOM at capture",
+   "hint": "modal",
+   "evidence": [
+    "open file ↗"
+   ],
+   "pages": [
+    "/portfolio/"
+   ],
+   "reach": {
+    "pages": 1,
+    "of": 34
+   }
+  },
+  {
+   "id": "m-modal-trigger-lightbox-zoom-target-outside-dom-at-capture",
+   "class": "M",
+   "feature": "modal trigger lightbox-zoom → target outside DOM at capture",
+   "hint": "modal",
+   "evidence": [
+    "zoom 1:1"
+   ],
+   "pages": [
+    "/portfolio/"
+   ],
+   "reach": {
+    "pages": 1,
+    "of": 34
+   }
+  },
+  {
+   "id": "s-site-search-form-js-submitted",
+   "class": "S",
+   "feature": "site search form → (JS-submitted)",
+   "hint": "search",
+   "evidence": [
+    "search:q"
+   ],
+   "pages": [
+    "/writing/"
+   ],
+   "reach": {
+    "pages": 1,
+    "of": 34
+   }
+  },
+  {
+   "id": "t-unknown-third-party-host-static-cloudflareinsights-com",
+   "class": "T",
+   "feature": "unknown third-party host static.cloudflareinsights.com",
+   "hint": "inspect",
+   "evidence": [
+    "static.cloudflareinsights.com"
+   ],
+   "pages": [
+    "/",
+    "/writing/",
+    "/portfolio/",
+    "/talks/",
+    "/certifications/",
+    "/privacy/",
+    "/writing/2026-08-09-adobe-stardust-explained/",
+    "/writing/2025-09-01-aem-caching-production-architectures/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ]
+  },
+  {
+   "id": "t-tag-manager-google-tag-manager",
+   "class": "T",
+   "feature": "tag manager: Google Tag Manager",
+   "role": "tag manager: Google Tag Manager",
+   "hint": "tags",
+   "evidence": [
+    "www.googletagmanager.com"
+   ],
+   "pages": [
+    "/",
+    "/writing/",
+    "/portfolio/",
+    "/talks/",
+    "/certifications/",
+    "/privacy/",
+    "/writing/2026-08-09-adobe-stardust-explained/",
+    "/writing/2025-09-01-aem-caching-production-architectures/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ]
+  },
+  {
+   "id": "t-analytics-google-analytics-ads",
+   "class": "T",
+   "feature": "analytics: Google Analytics / Ads",
+   "role": "analytics: Google Analytics / Ads",
+   "hint": "tags",
+   "evidence": [
+    "www.google-analytics.com"
+   ],
+   "pages": [
+    "/",
+    "/writing/",
+    "/portfolio/",
+    "/talks/",
+    "/certifications/",
+    "/privacy/",
+    "/writing/2026-08-09-adobe-stardust-explained/",
+    "/writing/2025-09-01-aem-caching-production-architectures/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ]
+  },
+  {
+   "id": "t-unknown-third-party-host-www-google-com",
+   "class": "T",
+   "feature": "unknown third-party host www.google.com",
+   "hint": "inspect",
+   "evidence": [
+    "www.google.com"
+   ],
+   "pages": [
+    "/writing/2026-08-09-adobe-stardust-explained/",
+    "/writing/2025-09-01-aem-caching-production-architectures/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ]
+  },
+  {
+   "id": "t-unknown-third-party-host-yt3-ggpht-com",
+   "class": "T",
+   "feature": "unknown third-party host yt3.ggpht.com",
+   "hint": "inspect",
+   "evidence": [
+    "yt3.ggpht.com"
+   ],
+   "pages": [
+    "/writing/2026-08-09-adobe-stardust-explained/",
+    "/writing/2025-09-01-aem-caching-production-architectures/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ]
+  },
+  {
+   "id": "t-unknown-third-party-host-images-credly-com",
+   "class": "T",
+   "feature": "unknown third-party host images.credly.com",
+   "hint": "inspect",
+   "evidence": [
+    "images.credly.com"
+   ],
+   "pages": [
+    "/certifications/"
+   ]
+  },
+  {
+   "id": "t-unknown-third-party-host-learn-microsoft-com",
+   "class": "T",
+   "feature": "unknown third-party host learn.microsoft.com",
+   "hint": "inspect",
+   "evidence": [
+    "learn.microsoft.com"
+   ],
+   "pages": [
+    "/certifications/"
+   ]
+  },
+  {
+   "id": "v-video-youtube",
+   "class": "V",
+   "feature": "video: YouTube",
+   "role": "video: YouTube",
+   "hint": "media",
+   "evidence": [
+    "www.youtube-nocookie.com",
+    "i.ytimg.com",
+    "https://www.youtube-nocookie.com/embed/THAk36FGZps?rel=0",
+    "https://www.youtube-nocookie.com/embed/E7jNBsUvXm0?rel=0",
+    "https://www.youtube-nocookie.com/embed/d1S1yVgFep8?rel=0",
+    "https://www.youtube-nocookie.com/embed/J5DpmRjqNQQ?rel=0"
+   ],
+   "pages": [
+    "/writing/2026-08-09-adobe-stardust-explained/",
+    "/writing/2025-09-01-aem-caching-production-architectures/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ]
+  },
+  {
+   "id": "x-sign-in-account-links",
+   "class": "X",
+   "feature": "sign-in / account links",
+   "hint": "decided-out",
+   "evidence": [
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+    "https://myaccount.google.com/permissions",
+    "https://adapt.to/2026/schedule/rolling-out-mcp-on-aem-lessons-from-early-production",
+    "https://adapt.to/2026/presentations/adaptto-2026-rolling-out-mcp-on-aem-lessons-from-early-production.pdf",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#main",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-1",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-2",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-3"
+   ],
+   "pages": [
+    "/writing/",
+    "/privacy/",
+    "/writing/2025-09-01-aem-caching-production-architectures/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+   ]
+  }
+ ],
+ "reach": {
+  "pagesWithEvidence": 34,
+  "of": 34,
+  "endpoints": {
+   "POST www.jackzhaojin.com/cdn-cgi/rum": 34,
+   "POST www.google-analytics.com/g/collect": 9,
+   "POST jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT": 19,
+   "POST www.youtube-nocookie.com/youtubei/v1/log_event": 19,
+   "GET www.youtube-nocookie.com/embed/establish_zw": 2,
+   "GET www.gstatic.com/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg": 5
+  },
+  "searchFormPages": 1,
+  "formPages": 0,
+  "triggerPages": {
+   "lightbox-file": 1,
+   "lightbox-zoom": 1
+  }
+ }
+}

@@ -1,0 +1,44 @@
+[
+ {
+  "key": "cdn",
+  "now": "Cloudflare proxies www to GitHub Pages (server: cloudflare, via varnish / x-github-request-id)",
+  "eds": "Cloudflare keeps fronting www and routes the migrated paths to the EDS origin; the 7 GitHub Pages project sites keep their paths",
+  "decision": "README: Cloudflare stays (routing doc)"
+ },
+ {
+  "key": "security-headers",
+  "now": "none on HTML (only cache-control max-age=600); no CSP, HSTS or permissions policy",
+  "eds": "set at Cloudflare or via EDS headers config",
+  "decision": "open question Q-OPS-2"
+ },
+ {
+  "key": "url-format",
+  "now": "folder URLs with trailing slash (/writing/<slug>/), no .html",
+  "eds": "EDS paths without the trailing slash unless each page is an index document",
+  "decision": "open question Q-SCOPE-4"
+ },
+ {
+  "key": "robots-sitemap",
+  "now": "/robots.txt with Sitemap: /sitemap.xml (34 URLs, hand-maintained)",
+  "eds": "EDS sitemap from the default index; robots from config",
+  "decision": ""
+ },
+ {
+  "key": "error-pages",
+  "now": "/404.html on GitHub Pages",
+  "eds": "EDS 404.html in code",
+  "decision": ""
+ },
+ {
+  "key": "structured-data",
+  "now": "JSON-LD on 34/34 pages (WebSite, Person, BreadcrumbList; TechArticle on 27 articles, VideoObject on 20)",
+  "eds": "keep: generate from metadata or carry per page",
+  "decision": "Q-SEO-1 answered by the source: it already ships structured data"
+ },
+ {
+  "key": "llms-txt",
+  "now": "/llms.txt in the source repo",
+  "eds": "carry as a static file",
+  "decision": ""
+ }
+]

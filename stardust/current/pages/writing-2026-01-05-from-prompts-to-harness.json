@@ -1,0 +1,889 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:56.717Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2026-01-05-from-prompts-to-harness",
+  "url": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:56.717Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/",
+  "title": "From Prompts to Harness: Deterministic Code and Agents | Jack Jin",
+  "description": "How to mix deterministic code and agents: an evaluator that blends a scan with an agent's score 70/30, and a harness loop of planning, build and validate agents.",
+  "og": {
+    "title": "From Prompts to Harness: Deterministic Code and Agents | Jack Jin",
+    "description": "How to mix deterministic code and agents: an evaluator that blends a scan with an agent's score 70/30, and a harness loop of planning, build and validate agents.",
+    "image": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "From Prompts to Harness: How Deterministic Code and Agents Work Together"
+    },
+    {
+      "tag": "h2",
+      "text": "What changed since January#"
+    },
+    {
+      "tag": "h2",
+      "text": "1. An evaluator that blends a deterministic scan with an agent's score#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. Three levels of agent capability, from MCP tools to writing its own code#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. Long build sessions, with the work handed to sub-agents#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. A harness that builds software, and the requirements I gave it#"
+    },
+    {
+      "tag": "h2",
+      "text": "5. Running on main while improving the next run on develop#"
+    },
+    {
+      "tag": "h2",
+      "text": "6. A deterministic loop where defects become subtasks#"
+    },
+    {
+      "tag": "h2",
+      "text": "7. What the harness still doesn't do#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "From Prompts to Harness",
+    "By Jack Jin · January 5, 2026 · Updated October 4, 2026 · 11 min read · Includes my 9:42 video",
+    "Two agent systems, and one idea under both: let deterministic code set the order and hold the numbers, and let agents make the judgment calls. The first is a Next.js evaluator. A scan runs first, a Claude Agent SDK agent checks the live page, and code blends the two scores 70/30, so the scan still stands if the agent fails. The second is a harness: a deterministic loop that runs planning agents in a fixed order, then research, build and validate agents on each task, where a defect becomes a new subtask. Its second run finished in about a quarter of the time and tokens of the first.",
+    "First published as a LinkedIn video on January 5, 2026, recorded the evening before. Rewritten for this site in October 2026. Code for the first project: azure-da-mcp/content-authoring-eval at release v1.0.1 (0aacf6d). The harness from the second project isn't public.",
+    "These two projects were the start of a run. Two weeks later I turned the harness idea into a plan for a continuous running agent that finds its own work. Later that month I had my harness and agent build a Playwright demo and present it back to me, and in February I wrote about making these AI development modules reusable instead of rebuilding them each time. The continuous agent grew into version 2.1 by April.",
+    "The rest of this page is how each project works and what it taught me.",
+    "I've been playing with deterministic and agentic capabilities around DA Live for a while. An agent here means a program where the model decides its own next step. Deterministic means the good old workflows, written as code with libraries, that do the same thing every time. The first project mixes the two on purpose.",
+    "A user puts in a set of links: PDFs, HTML pages, the original content and the migrated page. Four agents assess the page: structure, accessibility, content fidelity and visual correctness. I built it in Next.js, because it gives you a nice UI with shadcn, it's popular with the AI coding community, and it does everything I need. Instead of a database I used session storage and local storage. Instead of a fancy separate backend I used Next.js's own API routes. And to add a little fun, server-sent events stream results back, so the UI talks to the backend a lot while a batch runs.",
+    "Most of my time went into the backend. Each of the four agents runs its deterministic step first: Cheerio parses the HTML for structure, axe-core scans accessibility, unpdf pulls text out of the PDF, and Playwright with pixelmatch captures and compares screenshots. Those return numbers, booleans and lists, with no interpretation. Then the agent gets those results in its prompt, goes and looks at the live page with its own tools, and writes the findings, the recommendations and a score.",
+    "Then deterministic code puts it back together. The final score for each agent is 70% the agent's judgment and 30% the scan:",
+    "And if the agent step fails, the scan's result stands on its own. Below are the repo's own two functions with the numbers from one of its tests: the scan scores a page 65, the agent scores it 45. Drag either score to see that the agent's number moves the result more than twice as much as the scan's. Then tick the failure box to see what the report falls back to.",
+    "What each side contributes",
+    "agent × 0.7scan × 0.3",
+    "Final score 51, needs improvement",
+    "excellent90 and up",
+    "good75 to 89",
+    "acceptable60 to 74",
+    "needs improvement40 to 59",
+    "criticalbelow 40",
+    "This is the mix I was after. Deterministic code kicks off the agents, the agents work from deterministic results, and deterministic code takes the agents' output and assembles the final report. There are lots of reasons to keep parts of a system deterministic. When the agent misbehaves, the report still has numbers in it. On January 1, I tagged release 1.0.1 and the containers went out to my free Oracle Cloud VM.",
+    "Watch this part0:16 Two projects, and the evaluator1:12 Deterministic steps in the backend",
+    "The agents can do three kinds of things. In the board above they're the three boxes along the bottom.",
+    "First, MCP. The Model Context Protocol is how an agent gets tools, and with the Claude Agent SDK each agent can use a set of MCP servers. The important one is Playwright, which gives the agent eyes: it can open the page in a real browser, see the work, and check its own logic against what's actually there.",
+    "Second, scripts written ahead of time. Beyond MCP tools, I wanted scripts that already exist, for the AI to decide to use when it's appropriate. Say an agent can choose between scripts one, two and three based on the criteria it's assessing. It can look at a page and decide this one needs script two and script three, and that choice is the important part.",
+    "Third, writing and running its own code. This one is arguably the most dangerous, but also the most interesting. There was a talk from someone at Anthropic recently about how giving agents the ability to write code and execute it on the fly makes them much more capable. You're not asking someone to do work without letting them write code themselves. This is where I did the most experimenting. Here's how every agent is started:",
+    "The mcpServers line hands over Playwright and a filesystem server. bypassPermissions means the agent doesn't stop to ask before it runs a Bash command. That's only something I'd do on a machine I trust enough, and the release runs in a Docker container on that Oracle VM. The prompts tell each agent what's worth running. The structure agent, for example, is told to run lighthouse --only-categories=seo <url> --output=json --quiet through Bash, and to open the page with Playwright and inspect the live DOM before it gives its assessment.",
+    "Watch this part2:01 MCP and Playwright2:24 Scripts written ahead of time2:53 Writing and running its own code",
+    "How I built this one isn't too different from most of my AI coding projects, with one big change: Claude does the long working sessions. My longest session on this project ran an hour and 45 minutes.",
+    "The technique is a mini agent harness. Claude does the orchestration, but its context window barely fills up, because all the building work is handed off to sub-agents. A sub-agent is a separate agent session with its own context window. Each one takes a piece end to end, and in total they can run for many hours. That's a big improvement over what I did before, when I was doing the planning, the refinement and the task-level work myself.",
+    "Five months before this, I ran three agents at the same time, by hand, on three monitors, and I was the orchestrator. It was a lot of work. With sub-agents, a build ran for two hours on its own and I didn't need to be at the desk.",
+    "Watch this part3:37 How I built it4:34 Three agents by hand, five months before",
+    "The second project shifts from building a piece of software to building a harness that builds software. A harness, in this sense, is the code around the agents: the loop, the order they run in, what they hand each other and how the work gets checked. One file goes in, a full solution comes out, and it runs for hours, possibly days if you have the tokens.",
+    "There's a lot of talk right now about agent harnesses, the Ralph loop and a bunch of other ideas. I drew on those, on my own earlier projects (two versions of spec-driven development and the sub-agent orchestration above), on the BMAD and Spec Kit projects, and on years of consulting work in content management systems.",
+    "I came up with a set of requirements:",
+    "A 24-hour agentic run, from feature to bug.",
+    "Works on a new or an existing code base.",
+    "Human-readable memory and handoffs, and each run has its own context.",
+    "Eventually, support for multiple models and AI vendors.",
+    "Move away from chatting. This is built for a generation of workers who googled.",
+    "Repeatable and evaluable: run time, quality, defect loops, did it work, and how close it came to the original requirements.",
+    "A learning project. The best way to understand a harness, and to figure out where the human in the loop should be, is to jump right in.",
+    "Then I had Claude build it. This one was a lot more hands-on for me. I wasn't writing the code, but I was watching every line of code and reading every single prompt and refining it. The first build cycle took some time, me and the AI refining it together, because I had a good idea of how it should be done. I was guiding the AI on how to build a harness.",
+    "Watch this part5:03 A harness that builds software5:48 The requirements5:59 Having Claude build it",
+    "Once it was built and running, this was the first time I had a real reason to use branches in my solo projects. The agent on main runs for hours. The first run took six hours to finish. While it runs, a develop branch off main holds the next run's improvements. Any immediate bug fix that needs a restart of the build goes into main. Every enhancement for the next run goes into develop.",
+    "In a second VS Code window, my agent and I read the handoff documents of the run in progress. That's why one of my requirements is that every AI handoff is human readable. Me and the AI were looking at the memory, the logs and how the AI proceeded with each step, and optimizing it for the next run while the first one was still going.",
+    "The outcomes: the first complete build didn't fail, but it took six hours and three rounds of me stepping in. The second run, with the same requirements, finished in about a quarter of the time and tokens, met all the requirements on code quality and patterns, and needed no human intervention. I saved a lot of money.",
+    "Watch this part6:22 Running on main, improving on develop7:20 Six hours, then a quarter of the time",
+    "What I built is a long-running session. I want to move away from chat. I don't even start the run myself anymore. I have the AI launch it, log it and monitor it.",
+    "The loop itself is deterministic. It decides which agent runs next and walks through them. I made it deterministic because I don't want the AI to give up easily. Each run starts with four separate planning agents, and they run in exactly this order: why, what, how, when. I've done this planning by hand quite a few times, and the order matters. Without the how, the when doesn't know how big to break down each task.",
+    "Then the task-level agents run, one task at a time for now. There's room for optimization there. The research agent looks at the current code and the goal and produces a really good functional spec for the task. The build agent builds it. It has MCP and Playwright, so it can test what it's building, and that's really important. It also has to keep a solid regression test suite and do a bunch of ad hoc testing while it builds.",
+    "The validation agent is one of the most important parts. In my manual builds, I was the one validating what the AI built, and I logged defects whenever it didn't give me what I expected. So I dedicated an agent to that job. When it finds a defect on task 2, it creates task 2.1, or 2.1 and 2.2. When task 2 is done, the deterministic loop checks whether 2.1 or 2.2 exists before it moves on to task 3. So even a deterministic loop can pick up the validator's handoff. To the loop, a subtask is just the next task.",
+    "Below is a simplified model of that ordering rule, not the harness code. It starts with the case from the video, task 2 coming back with a defect. Change what the validator finds on any task and the run order on the right updates: each subtask lands right after its parent, before the next planned task.",
+    "Planning agents, once per run",
+    "why",
+    "what",
+    "how",
+    "when",
+    "What the validator finds on each task",
+    "Task 1passespasses1 defect2 defects",
+    "Task 21 defectpasses1 defect2 defects",
+    "Task 3passespasses1 defect2 defects",
+    "Task 4passespasses1 defect2 defects",
+    "The order the loop runs them",
+    "Run order 1, 2, 2.1, 3, 4: each defect became a subtask (2.1), and the loop ran each one right after its parent task.",
+    "2.1",
+    "On the board, the validator also has a dashed box: call for a human in the loop, or replan. That's the future state. If the build drifts far enough from the original vision, say ten steps back the plan no longer fits, the validator should be able to trigger a replan so the roadmap realigns before the next iteration. I hadn't built that yet.",
+    "Watch this part7:47 Why the loop is deterministic8:04 Planning: why, what, how, when8:31 Research and build agents8:53 The validator turns defects into subtasks",
+    "Next for me is to keep building the harness and integrate it with other work, because understanding comes from doing and building.",
+    "What I didn't get to: the task agents still run one at a time, the replan step is only a dashed box, and the harness code isn't something I've published. If you've built a harness with a replan step, I'd like to know how you decide when the drift is big enough to stop and replan.",
+    "PortfolioThe Content FactoryThe azure-da-mcp repo this evaluator lives in, and what it grew into.",
+    "WritingMaking AI-Driven Development Modules ReusableA month later: one harness under every pattern instead of a rebuild each time.",
+    "WritingA 24/7 Coding Agent: the Continuous Executive Agent at v2.1Where the harness idea went: an agent that picks its own work.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Since thenWhat changed",
+    "Part 1Scan plus agent score",
+    "Part 2Three levels of capability",
+    "Part 3Sub-agents for long sessions",
+    "Part 4A harness and its requirements",
+    "Part 5Run on main, improve on develop",
+    "Part 6Defects become subtasks",
+    "NextNot built yet"
+  ],
+  "codeBlocks": [
+    "/**\n * Calculate final score by combining deterministic and agentic scores\n * 70% agentic (Claude's user-impact assessment) + 30% deterministic (automated scan)\n */\nfunction calculateFinalScore(\n  deterministicScore: number,\n  agenticScore: number\n): number {\n  // Weighted combination: 70% agentic + 30% deterministic\n  const finalScore = Math.round(agenticScore * 0.7 + deterministicScore * 0.3);\n  return Math.max(0, Math.min(100, finalScore));\n}",
+    "Math.round(45 * 0.7 + 65 * 0.3)\n= Math.round(51)\n= 51",
+    "// Stream messages from Claude with tool access\n    for await (const message of query({\n      prompt: userPrompt,\n      options: {\n        model: 'claude-sonnet-4-5-20250929',\n        maxTurns: 20,\n        systemPrompt: systemPromptText,\n        mcpServers,\n        permissionMode: 'bypassPermissions' as const,\n        allowDangerouslySkipPermissions: true,\n        cwd: process.cwd(),\n      }\n    })) {",
+    "loop: run planning agents in order: why, what, how, when\nloop: next available task is 1\n  validate: passed\nloop: next available task is 2\n  validate: 1 defect logged, created 2.1\nloop: 2.1 exists, so it runs before 3\nloop: next available task is 2.1\n  validate: passed\nloop: next available task is 3\n  validate: passed\nloop: next available task is 4\n  validate: passed\nloop: no tasks left, run complete"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "azure-da-mcp/content-authoring-eval",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/tree/0aacf6d/content-authoring-eval"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/2CT4u0ToEzA"
+    },
+    {
+      "label": "my harness and agent build a Playwright demo and present it back to me",
+      "href": "/writing/2026-01-29-playwright-stakeholder-demos/"
+    },
+    {
+      "label": "making these AI development modules reusable",
+      "href": "/writing/2026-02-05-reusable-ai-development-modules/"
+    },
+    {
+      "label": "version 2.1",
+      "href": "/writing/2026-04-05-continuous-executive-agent-v2-1/"
+    },
+    {
+      "label": "0aacf6d on GitHub",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/blob/0aacf6d/content-authoring-eval/src/lib/agents/accessibility/agentic.ts#L228-L239"
+    },
+    {
+      "label": "source",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/blob/0aacf6d/content-authoring-eval/src/lib/agents/accessibility/agentic.ts#L228-L250"
+    },
+    {
+      "label": "0:16 Two projects, and the evaluator",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=16"
+    },
+    {
+      "label": "1:12 Deterministic steps in the backend",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=72"
+    },
+    {
+      "label": "0aacf6d on GitHub",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/blob/0aacf6d/content-authoring-eval/src/lib/agents/accessibility/agentic.ts#L297-L309"
+    },
+    {
+      "label": "2:01 MCP and Playwright",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=121"
+    },
+    {
+      "label": "2:24 Scripts written ahead of time",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=144"
+    },
+    {
+      "label": "2:53 Writing and running its own code",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=173"
+    },
+    {
+      "label": "3:37 How I built it",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=217"
+    },
+    {
+      "label": "4:34 Three agents by hand, five months before",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=274"
+    },
+    {
+      "label": "5:03 A harness that builds software",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=303"
+    },
+    {
+      "label": "5:48 The requirements",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=348"
+    },
+    {
+      "label": "5:59 Having Claude build it",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=359"
+    },
+    {
+      "label": "6:22 Running on main, improving on develop",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=382"
+    },
+    {
+      "label": "7:20 Six hours, then a quarter of the time",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=440"
+    },
+    {
+      "label": "passes",
+      "href": null
+    },
+    {
+      "label": "1 defect",
+      "href": null
+    },
+    {
+      "label": "2 defects",
+      "href": null
+    },
+    {
+      "label": "passes",
+      "href": null
+    },
+    {
+      "label": "1 defect",
+      "href": null
+    },
+    {
+      "label": "2 defects",
+      "href": null
+    },
+    {
+      "label": "passes",
+      "href": null
+    },
+    {
+      "label": "1 defect",
+      "href": null
+    },
+    {
+      "label": "2 defects",
+      "href": null
+    },
+    {
+      "label": "passes",
+      "href": null
+    },
+    {
+      "label": "1 defect",
+      "href": null
+    },
+    {
+      "label": "2 defects",
+      "href": null
+    },
+    {
+      "label": "7:47 Why the loop is deterministic",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=467"
+    },
+    {
+      "label": "8:04 Planning: why, what, how, when",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=484"
+    },
+    {
+      "label": "8:31 Research and build agents",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=511"
+    },
+    {
+      "label": "8:53 The validator turns defects into subtasks",
+      "href": "https://youtu.be/2CT4u0ToEzA?t=533"
+    },
+    {
+      "label": "The Content Factory",
+      "href": "/portfolio/#ch-factory"
+    },
+    {
+      "label": "Making AI-Driven Development Modules Reusable",
+      "href": "/writing/2026-02-05-reusable-ai-development-modules/"
+    },
+    {
+      "label": "A 24/7 Coding Agent: the Continuous Executive Agent at v2.1",
+      "href": "/writing/2026-04-05-continuous-executive-agent-v2-1/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Since thenWhat changed",
+      "href": "#since"
+    },
+    {
+      "label": "Part 1Scan plus agent score",
+      "href": "#project-1"
+    },
+    {
+      "label": "Part 2Three levels of capability",
+      "href": "#capabilities"
+    },
+    {
+      "label": "Part 3Sub-agents for long sessions",
+      "href": "#subagents"
+    },
+    {
+      "label": "Part 4A harness and its requirements",
+      "href": "#harness"
+    },
+    {
+      "label": "Part 5Run on main, improve on develop",
+      "href": "#iterate"
+    },
+    {
+      "label": "Part 6Defects become subtasks",
+      "href": "#loop"
+    },
+    {
+      "label": "NextNot built yet",
+      "href": "#next"
+    },
+    {
+      "label": "Watch the video, 9:42",
+      "href": "#video"
+    },
+    {
+      "label": "Project 1 code on GitHub",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/tree/0aacf6d/content-authoring-eval"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://github.com/jackzhaojin/azure-da-mcp/tree/0aacf6d/content-authoring-eval",
+    "https://youtu.be/2CT4u0ToEzA",
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/#since",
+    "https://www.jackzhaojin.com/writing/2026-01-29-playwright-stakeholder-demos/",
+    "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/",
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/#project-1",
+    "https://github.com/jackzhaojin/azure-da-mcp/blob/0aacf6d/content-authoring-eval/src/lib/agents/accessibility/agentic.ts#L228-L239",
+    "https://github.com/jackzhaojin/azure-da-mcp/blob/0aacf6d/content-authoring-eval/src/lib/agents/accessibility/agentic.ts#L228-L250",
+    "https://youtu.be/2CT4u0ToEzA?t=16",
+    "https://youtu.be/2CT4u0ToEzA?t=72",
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/#capabilities",
+    "https://github.com/jackzhaojin/azure-da-mcp/blob/0aacf6d/content-authoring-eval/src/lib/agents/accessibility/agentic.ts#L297-L309",
+    "https://youtu.be/2CT4u0ToEzA?t=121",
+    "https://youtu.be/2CT4u0ToEzA?t=144",
+    "https://youtu.be/2CT4u0ToEzA?t=173",
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/#subagents",
+    "https://youtu.be/2CT4u0ToEzA?t=217",
+    "https://youtu.be/2CT4u0ToEzA?t=274",
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/#harness",
+    "https://youtu.be/2CT4u0ToEzA?t=303",
+    "https://youtu.be/2CT4u0ToEzA?t=348",
+    "https://youtu.be/2CT4u0ToEzA?t=359",
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/#iterate",
+    "https://youtu.be/2CT4u0ToEzA?t=382",
+    "https://youtu.be/2CT4u0ToEzA?t=440",
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/#loop",
+    "https://youtu.be/2CT4u0ToEzA?t=467",
+    "https://youtu.be/2CT4u0ToEzA?t=484",
+    "https://youtu.be/2CT4u0ToEzA?t=511",
+    "https://youtu.be/2CT4u0ToEzA?t=533",
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/#next",
+    "https://www.jackzhaojin.com/portfolio/#ch-factory",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/#video",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/board-evaluator.png",
+        "alt": "Architecture diagram. The user inputs a set of PDF links and HTML links into a Next.js UI in the browser, which saves to localStorage and sessionStorage. A batch or single request goes to a batch processor doing parallel processing, which streams progress back over SSE. The processor runs deterministic logic (times four) and agentic logic (times four); the agentic side feeds results back to the deterministic side and to the processor. Below the agentic logic: MCP capability, pre-enabled scripts enabled by the agent, and bash with the ability to write and execute its own scripts. A legend colors user boxes black, deterministic blue, agentic red and mixed purple.",
+        "w": 1600,
+        "h": 1416
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/board-how-built.png",
+        "alt": "Diagram titled how it was built. From Me, three branches: ChatGPT voice brainstorming and idealization; Claude refinement on why, what, how and when; and Claude Code long running build orchestration. The orchestration box leads to sub-agents for building, about two hours per batch, and to all my inputs and results or actions logged. At the bottom, two dashed boxes compare five months ago, three monitors and manual build orchestration, with now, better AI life balance.",
+        "w": 1600,
+        "h": 1338
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/board-harness-inputs.png?v=2",
+        "alt": "Diagram. Five inputs feed into Harness idealization and concepting: spec driven development v1 with task master, spec driven development v2 with ad hoc and test suite, the BMAD project and Spec Kit project, sub-agent orchestration and context management, and years of consulting in CMS. A requirements box lists seven requirements.",
+        "w": 1600,
+        "h": 630
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/board-harness-iterate.png?v=2",
+        "alt": "Diagram continuing from harness idealization: building and dev cycle; then git worktree, a second VS Code assessing ongoing handoffs and runs to optimize, with a note on iterative refinement via a closed loop similar to gradient descent; then repeat and optimize, looking at both the process and the output, with a dotted line back to building. An outcomes box: the first complete build didn't fail but took three human-in-the-loop iterations and six hours; the run with the same requirements later completed all requirements in code quality and pattern in a quarter of the time and tokens with no human intervention.",
+        "w": 1600,
+        "h": 1110
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/board-harness-loop.png",
+        "alt": "Harness architecture diagram. A long spec written by a human with AI, no prompting, goes to AI log monitoring and collaboration, which launches and monitors a deterministic processor that, once in task mode, picks up the next available task. The processor runs planning agents (why, what, how, when in sequence) and task-level agents, both returning human-readable handoffs. Task-level agents split into research (analyze current code and goal, generate a task spec), build (Playwright MCP giving AI eyes and self validation, build plus test, ad hoc and e2e regression), and validate (product owner UAT, will create a subtask, so executing on v2 creates v2.1). A dashed box off validate reads call for human in the loop or replan.",
+        "w": 1600,
+        "h": 1443
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/thumb-project-1.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/thumb-capabilities.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/thumb-subagents.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/thumb-harness.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/thumb-iterate.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/thumb-loop.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 11,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/2CT4u0ToEzA?rel=0",
+        "title": "From Prompts to Harness: Two Agent Systems I Built Over the Holiday Break (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 10,
+    "mainTextLen": 17065,
+    "realImageCount": 11,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 122,
+        "hits": 1,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "GET",
+        "host": "www.youtube-nocookie.com",
+        "path": "/embed/establish_zw",
+        "query": [],
+        "resourceType": "fetch",
+        "contentType": "text/html",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/embed/establish_zw",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 3
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      },
+      {
+        "host": "www.google.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 2,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 3,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2026-01-05-from-prompts-to-harness.png",
+  "renderedHtml": "pages/writing-2026-01-05-from-prompts-to-harness.html",
+  "slots": {
+    "type": "article",
+    "headline": "From Prompts to Harness: How Deterministic Code and Agents Work Together",
+    "deck": "Two agent systems, and one idea under both: let deterministic code set the order and hold the numbers, and let agents make the judgment calls. The first is a Next.js evaluator. A scan runs first, a Claude Agent SDK agent checks the live page, and code blends the two scores 70/30, so the scan still stands if the agent fails. The second is a harness: a deterministic loop that runs planning agents in a fixed order, then research, build and validate agents on each task, where a defect becomes a new subtask. Its second run finished in about a quarter of the time and tokens of the first.",
+    "byline": "By Jack Jin · January 5, 2026 · Updated October 4, 2026 · 11 min read · Includes my 9:42 video",
+    "meta": {
+      "times": [
+        "January 5, 2026",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "video",
+      "src": "https://www.youtube-nocookie.com/embed/2CT4u0ToEzA?rel=0"
+    },
+    "body": {
+      "h2": [
+        "What changed since January",
+        "1. An evaluator that blends a deterministic scan with an agent's score",
+        "2. Three levels of agent capability, from MCP tools to writing its own code",
+        "3. Long build sessions, with the work handed to sub-agents",
+        "4. A harness that builds software, and the requirements I gave it",
+        "5. Running on main while improving the next run on develop",
+        "6. A deterministic loop where defects become subtasks",
+        "7. What the harness still doesn't do",
+        "Related"
+      ],
+      "figures": 10,
+      "codeBlocks": 2,
+      "tables": 0,
+      "embeds": 1
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "The Content Factory",
+        "href": "/portfolio/#ch-factory"
+      },
+      {
+        "title": "Making AI-Driven Development Modules Reusable",
+        "href": "/writing/2026-02-05-reusable-ai-development-modules/"
+      },
+      {
+        "title": "A 24/7 Coding Agent: the Continuous Executive Agent at v2.1",
+        "href": "/writing/2026-04-05-continuous-executive-agent-v2-1/"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 10,
+    "authorBox": true
+  }
+}

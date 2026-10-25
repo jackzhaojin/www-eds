@@ -1,0 +1,734 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:41:02.859Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+  "url": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:41:02.859Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/",
+  "title": "AI-Coded Next.js Agent, Part 2: CI/CD and Infrastructure | Jack Jin",
+  "description": "How my AI-coded Next.js agent ships: two GitHub Actions pipelines, five ways into Azure, CloudFront and EC2, the code layers, and prompts as versioned JSON.",
+  "og": {
+    "title": "AI-Coded Next.js Agent, Part 2: CI/CD and Infrastructure | Jack Jin",
+    "description": "How my AI-coded Next.js agent ships: two GitHub Actions pipelines, five ways into Azure, CloudFront and EC2, the code layers, and prompts as versioned JSON.",
+    "image": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "A 100% AI-Coded Next.js Agent, Part 2: CI/CD, Cloud Identities and the Architecture"
+    },
+    {
+      "tag": "h2",
+      "text": "Since July 2025, the public copy is down#"
+    },
+    {
+      "tag": "h2",
+      "text": "1. Two CI/CD pipelines, picked by the branch name#"
+    },
+    {
+      "tag": "h3",
+      "text": "Build Docker → Push to GHCR → Restart Azure Web Appmain_shadow-pivot-ai-agentv2.yml · on push to main"
+    },
+    {
+      "tag": "h3",
+      "text": "Build and Push Release to GHCRrelease.yml · on push to release/*"
+    },
+    {
+      "tag": "h2",
+      "text": "2. Five actors get into Azure, and the code doesn't care which#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. A public copy on EC2, behind CloudFront#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. How a request moves through routes, services, prompts and the DAO#"
+    },
+    {
+      "tag": "h2",
+      "text": "5. Prompts kept as versioned JSON files#"
+    },
+    {
+      "tag": "h2",
+      "text": "What this setup covers, and what it doesn't#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "AI-Coded Next.js Agent, Part 2",
+    "By Jack Jin · July 7, 2025 · Updated October 4, 2026 · 8 min read",
+    "How an app written entirely by AI gets from a commit to the cloud: two GitHub Actions pipelines picked by branch name, five actors that each get into Azure their own way, a public copy on CloudFront and EC2, a layered Next.js architecture, and prompts kept as versioned JSON files. It's the plumbing of the AI-coded agent from Part 1, and all of it is in the public repo.",
+    "Three-part series",
+    "Part 1The four practices behind release 1.0",
+    "Part 2CI/CD, cloud identities and the architecture",
+    "Part 3Scaling the method to a delivery team",
+    "First published as a LinkedIn video on July 7, 2025. Rewritten for this site in October 2026. Code: shadow-pivot-ai-agentv2 at 75de1c3, the commit where I added these diagrams.",
+    "The public copy is down. On October 3, 2026, ai-ui-agent-2025.experiencereinvented.com returned a 504 error from CloudFront. The repo, both workflows and the v1.0.0 release are still there, so everything below can be read in the code.",
+    "I invested in CI/CD early, because AI work has to land somewhere real. You need to deploy to the cloud and have people look at it. Have your mom try it. That's hard when everything only works on your laptop, and it's hard for the AI to validate its own code too.",
+    "The repo has two GitHub Actions workflows, and the branch you push decides which one runs. A push to main builds a Docker image, pushes it to GitHub Container Registry as :latest, logs in to Azure and restarts the Azure Web App, which pulls the new image. A push to a release/ branch builds versioned images and a GitHub release, and restarts nothing.",
+    "Pick a branch below to see which workflow runs and where the code ends up. I never choose a pipeline by hand: the branch name does it, and a release branch with a bad version name fails before anything is built.",
+    "Push to this branch",
+    "Where it lands",
+    "Lands in the registry and on GitHub Releases. Nothing restarts. The EC2 copy picks it up when I run ./deploy-with-azure.sh, which pulls :release-latest.",
+    "Does not run: the filter is exactly \"main\".",
+    "Runs on this push.",
+    "Extract the version from the branch name: 1.0.0",
+    "Validate version format",
+    "Build and push ghcr.io/jackzhaojin/shadow-pivot-ai-agentv2:1.0.0 and :release-latest",
+    "Create GitHub release v1.0.0. No Azure services are restarted.",
+    "The release workflow takes the version straight from the branch name and refuses anything that isn't #.# or #.#.#. That's the check the branch figure runs:",
+    "Release 1.0 went out exactly this way: the release/1.0.0 branch, merged as pull request #41, produced the v1.0.0 release on June 17, 2025. One small detail I like in the main workflow: the Docker layer caching came from a GitHub Copilot recommendation, and the comment in the file says so.",
+    "For AI to be useful it needs access to real environments, the same as any developer. On this project five different actors reach Azure, and each one gets in its own way:",
+    "The app code doesn't care which one it is. Every Azure call goes through DefaultAzureCredential, here asking for a token for the AI Foundry endpoint:",
+    "DefaultAzureCredential tries a fixed list of credentials and uses the first one that works. In the version pinned in the app's lockfile, @azure/identity 4.10.0, the order is environment variables, workload identity, managed identity, Azure CLI, Azure PowerShell and Azure Developer CLI. So Codex and EC2 are picked up at the first step from their AZURE_CLIENT_ID, AZURE_TENANT_ID and AZURE_CLIENT_SECRET, the Web App at managed identity, and my laptop, with no service principal variables set, at the Azure CLI login.",
+    "That chain is also where I got stuck. The early tests and scripts called az commands, and Codex has no Azure CLI, so they failed there. Commit 1df352a moved everything to Node and DefaultAzureCredential, and I added a rule for the agents to AGENTS.md:",
+    "Setting up each of these, with the role assignments and screenshots, is its own article: Azure role-based access and CI/CD for AI agents. The one row that article doesn't have is EC2, which came a week later.",
+    "I wanted the agent to be public-facing, something anyone can try, without handing out Azure accounts and passwords. That's why I built my own app instead of using one of the many agent platforms. CloudFront on AWS gives me the public front door, and I can reverse proxy to whatever I want behind it.",
+    "Behind CloudFront is an EC2 instance that only runs release images. The setup is somewhat manual but integrated. The Azure service principal's values sit in AWS Systems Manager Parameter Store, with the client secret stored as an encrypted SecureString. A script loads them and restarts the container:",
+    "The session notes record the choice. Environment variables alone were simple but not secure. OpenID Connect federation between AWS and Azure would be the most secure, with no long-lived secret, but more complex to set up. Parameter Store was the balance, and federation stayed on the list as a future step.",
+    "The two copies follow the two pipelines. The Azure Web App always runs :latest from main. The EC2 copy runs :release-latest and only changes when I run the script.",
+    "Here's how a request moves through the app:",
+    "The first page load goes through CloudFront to Next.js, rendered on the server. After that the agent flow runs in the browser, and each step is an async call back through CloudFront to a Next.js API route. On the server, every call goes through the same four layers. Storage is drawn dashed: the release 1.0 PRD keeps execution data in memory, with Blob Storage planned for release 1.2.",
+    "A controller stays small. This is the whole route for the first step:",
+    "The service behind it loads the prompt template, fills it in and calls the model through the DAO:",
+    "One rule in AGENTS.md keeps the layers apart: server components and API routes may call Azure SDKs, client components may not. The browser never holds an Azure credential.",
+    "The prompts this app sends to its own model are files, not strings buried in code. The model steps each have a folder under prompts/ with numbered versions. A template holds the system prompt, the response format the answer must match, examples, the temperature, and a user prompt with {{variables}}:",
+    "I think of this as code 3.0, after Andrej Karpathy's talk Software Is Changing (Again), where he calls it Software 3.0. We used to write machine code and then programming languages. Now a lot of what we write is instructions for AI, and those need to be tracked, understood and versioned like any other code. A template can change without touching the business logic, a new version goes next to the old one, and the service validates every answer against the template's format.",
+    "It mattered in practice. When the Figma specs in Part 1 shrank to about 1 KB, the cause was a template that asked for too little, and the fix was a new v2.json next to the old one.",
+    "It does the job I built it for. Every push to main is live on Azure a few minutes later. Releases are versioned images with a GitHub release behind them. Every actor, human or AI, has its own identity, and the agents can test against the real Azure services.",
+    "What it doesn't cover:",
+    "No infrastructure as code. That was one of my rules, and every Azure resource was set up by hand from infrastructure.md.",
+    "The EC2 deploy is a script I run myself.",
+    "Two long-lived secrets remain: the service principal secrets for Codex and for EC2.",
+    "The Web App pulls from GitHub Container Registry with a personal access token.",
+    "Both copies are offline now.",
+    "Part 3 moves from plumbing to people: how this way of working could scale to a delivery team.",
+    "ArticleAzure role-based access and CI/CD for AI agentsEach identity on the map above, set up step by step.",
+    "PortfolioShadow Pivot: my first AI-coded appThe project chapter. This page is its infrastructure act.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Since 2025The public copy is down",
+    "1Two pipelines, by branch",
+    "2Five actors, one code path",
+    "3Public copy on EC2",
+    "4How a request moves",
+    "5Prompts as versioned JSON",
+    "Wrap-upWhat it covers and doesn't"
+  ],
+  "codeBlocks": [
+    "- name: Extract release version from branch name\n        id: extract_version\n        run: |\n          # Extract version from branch name (e.g., release/3.4 -> 3.4, release/3.4.1 -> 3.4.1)\n          VERSION=$(echo ${GITHUB_REF#refs/heads/release/})\n          echo \"version=$VERSION\" >> $GITHUB_OUTPUT\n          echo \"Release version: $VERSION\"\n      - name: Validate version format\n        run: |\n          VERSION=\"${{ steps.extract_version.outputs.version }}\"\n          if [[ ! $VERSION =~ ^[0-9]+\\.[0-9]+(\\.[0-9]+)?$ ]]; then\n            echo \"❌ Invalid version format: $VERSION\"\n            echo \"Expected format: #.# or #.#.# (e.g., 3.4 or 3.4.1)\"\n            exit 1\n          fi\n          echo \"✅ Valid version format: $VERSION\"",
+    "export function getAIClient() {\n  const endpoint = process.env.AZURE_OPENAI_ENDPOINT || 'https://story-generation-v1.openai.azure.com/';\n  const credential = new DefaultAzureCredential();\n  return new AzureOpenAI({\n    endpoint: endpoint,\n    apiVersion: '2024-02-01',\n    azureADTokenProvider: async () => {\n      const token = await credential.getToken('https://cognitiveservices.azure.com/.default');\n      return token?.token || '';\n    }\n  });\n}",
+    "- when developing test driven development which is always needed, never use az cli commands since it doesn't work on codex, always use node and then DefaultAzureCredential, which works for everyone\n- All Azure authentication and testing should use DefaultAzureCredential with Service Principal credentials (AZURE_CLIENT_ID, AZURE_CLIENT_SECRET, AZURE_TENANT_ID)",
+    "#!/bin/bash\n# Load Azure credentials from Parameter Store\nsource ~/get-azure-secrets.sh\n# Update container\nsudo docker stop shadow-pivot-ai 2>/dev/null || true\nsudo docker rm shadow-pivot-ai 2>/dev/null || true\ndocker pull ghcr.io/jackzhaojin/shadow-pivot-ai-agentv2:release-latest\nsudo docker run -d \\\n  --name shadow-pivot-ai \\\n  -p 80:3000 \\\n  --restart unless-stopped \\\n  -e AZURE_CLIENT_ID=\"$AZURE_CLIENT_ID\" \\\n  -e AZURE_CLIENT_SECRET=\"$AZURE_CLIENT_SECRET\" \\\n  -e AZURE_TENANT_ID=\"$AZURE_TENANT_ID\" \\\n  -e AZURE_SUBSCRIPTION_ID=\"$AZURE_SUBSCRIPTION_ID\" \\\n  ghcr.io/jackzhaojin/shadow-pivot-ai-agentv2:release-latest\necho \"🚀 Deployment complete with Azure authentication!\"\ndocker ps | grep shadow-pivot-ai\n```",
+    "import { NextResponse } from 'next/server';\nimport { generateDesignConcepts } from '@/lib/services/designConcept';\nexport async function POST(req: Request) {\n  try {\n    const { brief } = await req.json();\n    const userGuid = req.headers.get('x-user-guid') || 'anonymous';\n    const concepts = await generateDesignConcepts(brief);\n    return NextResponse.json({ userGuid, concepts });\n  } catch (error) {\n    const message = error instanceof Error ? error.message : 'Unknown error';\n    return NextResponse.json({ error: message }, { status: 500 });\n  }\n}",
+    "export async function generateDesignConcepts(brief: string): Promise<string[]> {\n  // Load the design concept template\n  const templatePath = path.join('prompts', 'design-concepts', 'v1.json');\n  const template = loadPromptTemplate(templatePath);\n  \n  // Apply variables to template\n  const { systemPrompt, userPrompt, temperature } = applyTemplate(template, { brief });\n  \n  // Call the LLM with our structured prompt\n  const response = await generateChatCompletion([\n    { role: 'system', content: systemPrompt },\n    { role: 'user', content: userPrompt }\n  ], { temperature: temperature });",
+    "{\n  \"version\": \"1.0\",\n  \"name\": \"design-concepts-generation\",\n  \"systemPrompt\": \"You are a UI design assistant. Your task is to generate creative, diverse UI design concepts based on a brief. IMPORTANT: You MUST respond with a valid JSON array containing 3-5 distinct design concepts. Each concept should be a concise description of a unique approach.\",\n  \"responseFormat\": {\n    \"type\": \"array\",\n    \"items\": {\n      \"type\": \"string\",\n      \"description\": \"A concise UI design concept description\"\n    },\n    \"minItems\": 3,\n    \"maxItems\": 5\n  },\n  \"examples\": [\n    {\n      \"input\": \"Create a landing page for a fitness app\",\n      \"output\": [\n        \"Dynamic split-screen layout with workout videos on one side and personalized stats on the other\",\n        \"Minimalist design with large typography and subtle animations highlighting key fitness metrics\",\n        \"Gamified interface with progress bars, achievement badges, and community challenge leaderboards\",\n        \"Nature-inspired color scheme with rounded UI elements and progress arcs showing weekly activity\"\n      ]\n    }\n  ],\n  \"temperature\": 0.8,\n  \"userPromptTemplate\": \"Design brief: {{brief}}\\n\\nGenerate 3-5 distinct UI design concepts based on this brief. Each concept should offer a unique approach. Return ONLY a JSON array of strings with no additional text or explanation.\"\n}"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Part 1",
+      "href": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+    },
+    {
+      "label": "Part 1The four practices behind release 1.0",
+      "href": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+    },
+    {
+      "label": "Part 2CI/CD, cloud identities and the architecture",
+      "href": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/"
+    },
+    {
+      "label": "Part 3Scaling the method to a delivery team",
+      "href": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology/"
+    },
+    {
+      "label": "shadow-pivot-ai-agentv2",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/tree/75de1c3"
+    },
+    {
+      "label": "v1.0.0 release",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/releases/tag/v1.0.0"
+    },
+    {
+      "label": "workflows at 75de1c3",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/tree/75de1c3/.github/workflows"
+    },
+    {
+      "label": "main",
+      "href": null
+    },
+    {
+      "label": "release/1.0.0",
+      "href": null
+    },
+    {
+      "label": "release/v1.1",
+      "href": null
+    },
+    {
+      "label": "a Codex branch",
+      "href": null
+    },
+    {
+      "label": "75de1c3 on GitHub",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/.github/workflows/release.yml#L24-L40"
+    },
+    {
+      "label": "75de1c3 on GitHub",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/lib/daos/aiClient.ts#L5-L17"
+    },
+    {
+      "label": "@azure/identity 4.10.0",
+      "href": "https://unpkg.com/@azure/identity@4.10.0/dist/commonjs/credentials/defaultAzureCredential.js"
+    },
+    {
+      "label": "1df352a",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/1df352a"
+    },
+    {
+      "label": "75de1c3 on GitHub",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/AGENTS.md#L66-L67"
+    },
+    {
+      "label": "Azure role-based access and CI/CD for AI agents",
+      "href": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/"
+    },
+    {
+      "label": "75de1c3 on GitHub",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/docs/ai-log/2025-06-19-ec2-azure-credentials-setup/README.md#L88-L110"
+    },
+    {
+      "label": "75de1c3 on GitHub",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/app/api/agent/generate-design-concepts/route.ts#L1-L14"
+    },
+    {
+      "label": "75de1c3 on GitHub",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/lib/services/designConcept.ts#L9-L21"
+    },
+    {
+      "label": "75de1c3 on GitHub",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/prompts/design-concepts/v1.json#L1-L27"
+    },
+    {
+      "label": "Software Is Changing (Again)",
+      "href": "https://www.youtube.com/watch?v=LCEmiRjPEtQ"
+    },
+    {
+      "label": "Part 1",
+      "href": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/#part-5"
+    },
+    {
+      "label": "Part 3",
+      "href": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology/"
+    },
+    {
+      "label": "Azure role-based access and CI/CD for AI agents",
+      "href": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/"
+    },
+    {
+      "label": "Shadow Pivot: my first AI-coded app",
+      "href": "/portfolio/#ch-shadow"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Since 2025The public copy is down",
+      "href": "#changed"
+    },
+    {
+      "label": "1Two pipelines, by branch",
+      "href": "#part-1"
+    },
+    {
+      "label": "2Five actors, one code path",
+      "href": "#part-2"
+    },
+    {
+      "label": "3Public copy on EC2",
+      "href": "#part-3"
+    },
+    {
+      "label": "4How a request moves",
+      "href": "#part-4"
+    },
+    {
+      "label": "5Prompts as versioned JSON",
+      "href": "#part-5"
+    },
+    {
+      "label": "Wrap-upWhat it covers and doesn't",
+      "href": "#results"
+    },
+    {
+      "label": "Part 1: Release 1.0",
+      "href": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+    },
+    {
+      "label": "Part 3: Scaling the method",
+      "href": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology/"
+    },
+    {
+      "label": "Code on GitHub",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/tree/75de1c3"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://www.jackzhaojin.com/writing/2025-07-06-ai-coded-nextjs-agent-release-1/",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/tree/75de1c3",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/#changed",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/releases/tag/v1.0.0",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/#part-1",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/tree/75de1c3/.github/workflows",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/.github/workflows/release.yml#L24-L40",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/shot-workflow-runs.png",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/#part-2",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/board-auth.png",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/lib/daos/aiClient.ts#L5-L17",
+    "https://unpkg.com/@azure/identity@4.10.0/dist/commonjs/credentials/defaultAzureCredential.js",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/1df352a",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/AGENTS.md#L66-L67",
+    "https://www.jackzhaojin.com/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/#part-3",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/docs/ai-log/2025-06-19-ec2-azure-credentials-setup/README.md#L88-L110",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/#part-4",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/board-arch.png",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/app/api/agent/generate-design-concepts/route.ts#L1-L14",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/lib/services/designConcept.ts#L9-L21",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/#part-5",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/prompts/design-concepts/v1.json#L1-L27",
+    "https://www.youtube.com/watch?v=LCEmiRjPEtQ",
+    "https://www.jackzhaojin.com/writing/2025-07-06-ai-coded-nextjs-agent-release-1/#part-5",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/#results",
+    "https://www.jackzhaojin.com/portfolio/#ch-shadow",
+    "https://github.com/jackzhaojin",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/shot-workflow-runs.png",
+        "alt": "The GitHub Actions run history for Build Docker, Push to GHCR, Restart Azure Web App: 123 workflow runs, the newest for commits such as Update star diagram image for release 1.0 and the Cypress testing plan, each taking between about two and five and a half minutes, with two older failed runs.",
+        "w": 1302,
+        "h": 1076
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/board-auth.png",
+        "alt": "Diagram titled Enabling Agentic AI Agents with Proper Azure Role-Based Access Control. Rows from actor to auth to Azure identity to resource: local user and local GitHub Copilot use az login (passwordless) as a user identity to reach storage and AI Foundry; OpenAI Codex uses tenant, ID and secret as a service principal with a timed secret; GitHub Action uses OIDC (passwordless) as a federated service principal to reach the Azure Web App; the Azure Web App uses a system managed identity (passwordless); EC2 behind CloudFront, release only, uses tenant, ID and secret as a service principal with a timed secret.",
+        "w": 1360,
+        "h": 830
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/board-arch.png",
+        "alt": "Logical architecture diagram. The browser's initial load goes through CloudFront to Next.js server-side rendering. Client flow processing runs in the browser, and its async calls go through CloudFront to a Next.js server box holding the API controller, the AI service, prompting in JSON and the DAO, in that order. The DAO calls Azure AI Foundry, which runs GPT-4o mini. A dashed line goes from the controller to Azure storage.",
+        "w": 1600,
+        "h": 607
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/thumb-cicd.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/thumb-auth.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/thumb-aws.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/thumb-arch.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 7,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": []
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 11,
+    "mainTextLen": 15310,
+    "realImageCount": 7,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 1,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 0,
+      "thirdPartyScriptHosts": 2,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure.png",
+  "renderedHtml": "pages/writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure.html",
+  "slots": {
+    "type": "article",
+    "headline": "A 100% AI-Coded Next.js Agent, Part 2: CI/CD, Cloud Identities and the Architecture",
+    "deck": "How an app written entirely by AI gets from a commit to the cloud: two GitHub Actions pipelines picked by branch name, five actors that each get into Azure their own way, a public copy on CloudFront and EC2, a layered Next.js architecture, and prompts kept as versioned JSON files. It's the plumbing of the AI-coded agent from Part 1, and all of it is in the public repo.",
+    "byline": "By Jack Jin · July 7, 2025 · Updated October 4, 2026 · 8 min read",
+    "meta": {
+      "times": [
+        "July 7, 2025",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "image",
+      "src": "images/shot-workflow-runs.png",
+      "alt": "The GitHub Actions run history for Build Docker, Push to GHCR, Restart Azure Web App: 123 workflow runs, the newest for commits such as Update star diagram image for release 1.0 and the Cypress testing plan, each taking between about two and five and a half minutes, with two older failed runs."
+    },
+    "body": {
+      "h2": [
+        "Since July 2025, the public copy is down",
+        "1. Two CI/CD pipelines, picked by the branch name",
+        "2. Five actors get into Azure, and the code doesn't care which",
+        "3. A public copy on EC2, behind CloudFront",
+        "4. How a request moves through routes, services, prompts and the DAO",
+        "5. Prompts kept as versioned JSON files",
+        "What this setup covers, and what it doesn't",
+        "Related"
+      ],
+      "figures": 11,
+      "codeBlocks": 7,
+      "tables": 2,
+      "embeds": 0
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "Azure role-based access and CI/CD for AI agents",
+        "href": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/"
+      },
+      {
+        "title": "Shadow Pivot: my first AI-coded app",
+        "href": "/portfolio/#ch-shadow"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 10,
+    "authorBox": true
+  }
+}

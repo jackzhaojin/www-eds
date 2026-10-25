@@ -1,0 +1,719 @@
+{
+ "provenance": "Built from the live site only (34 sitemap pages, S1-S9 on 2026-10-25) and the source repo's design-system v3 docs; it uses no output from any migration work. Judged by the Track B (site-scope) context, which ran extract and spec only and never opened blocks/, styles/, scripts/, head.html, stardust/first-page/ or stardust/replica/. S5 (real-user data) skipped: no RUM domain key.",
+ "template_labels": {
+  "(root)": "Home",
+  "writing": "Writing (index + articles)",
+  "portfolio": "Portfolio",
+  "talks": "Talks",
+  "certifications": "Certifications",
+  "privacy": "Privacy"
+ },
+ "signals": {
+  "facts": "class=\"article-facts\"",
+  "watch": "class=\"watch\"",
+  "byline": "class=\"byline\"",
+  "series": "class=\"series\"",
+  "explainer-live": "is-live",
+  "explainer-css": "explainer\\.css",
+  "ambient-art": "graphic-hero--",
+  "theme-control": "theme-control",
+  "gtag": "G-ZVENE6BXTJ",
+  "cf-beacon": "static\\.cloudflareinsights\\.com",
+  "cf-email": "/cdn-cgi/l/email-protection",
+  "proof-links": "class=\"proof-links\"",
+  "reveal": "class=\"[^\"]*\\breveal\\b",
+  "lightbox": "lb-zoomable|fig--zoom",
+  "jsonld-article": "\"@type\": *\"(TechArticle|BlogPosting|Article)\"",
+  "jsonld-video": "\"@type\": *\"VideoObject\"",
+  "credly": "images\\.credly\\.com",
+  "lazy-img": "loading=\"lazy\""
+ },
+ "features": [
+  {
+   "id": "theme-control",
+   "class": "M",
+   "name": "Light / Dark / System theme control",
+   "evidence": "header .theme-control on 34/34; head inline script reads localStorage jj-theme before first paint; js/site.js toggles data-theme and listens to prefers-color-scheme and storage events",
+   "disposition": "rebuild-native",
+   "reproducibility": "self",
+   "status": "pending",
+   "pattern": "chrome interaction + pre-paint head script",
+   "eds": "head.html inline pre-paint script (no flash) + header block tools section; styles carry both themes from the v3 tokens",
+   "decisions": [
+    "Keep the jj-theme key so returning visitors keep their choice"
+   ],
+   "reach": "live sitemap signal:theme-control"
+  },
+  {
+   "id": "nav-menu",
+   "class": "M",
+   "name": "Header Menu drawer below 1024px",
+   "evidence": "chrome-explore 390: one drawer control (Menu/Close), 4 links + 3 theme buttons in the panel; none at 1440",
+   "disposition": "rebuild-native",
+   "reproducibility": "self",
+   "status": "pending",
+   "pattern": "chrome interaction",
+   "eds": "header block",
+   "decisions": [],
+   "reach": "live sitemap"
+  },
+  {
+   "id": "ambient-art",
+   "class": "M",
+   "name": "Ambient canvas hero art",
+   "evidence": "js/page-art.js draws canvas.ambient-art in .graphic-hero on home, writing, talks, certifications; rAF about 30 fps, paused off-screen and when hidden, still frame under reduced motion",
+   "disposition": "rebuild-native",
+   "reproducibility": "self",
+   "status": "pending",
+   "pattern": "decorative client render",
+   "eds": "hero block JS (variants home, hub), loaded after LCP so it never delays it",
+   "decisions": [
+    "Port page-art.js as-is (signature) or replace it with a static frame; replica keeps it"
+   ],
+   "reach": "live sitemap signal:ambient-art"
+  },
+  {
+   "id": "writing-index",
+   "class": "L",
+   "name": "Writing index list",
+   "evidence": "/writing/ lists 28 article rows (cover, date, title, summary, topic chips, facts) authored by hand; data-date, data-topics, data-search attributes per row",
+   "disposition": "index-backed",
+   "reproducibility": "self",
+   "status": "pending",
+   "pattern": "query-index listing",
+   "eds": "writing-list dynamic block over /writing/query-index.json (index writing)",
+   "decisions": [
+    "Topics (aem, ai-engineering) and cover image become page metadata"
+   ],
+   "reach": "live sitemap block:writing-list"
+  },
+  {
+   "id": "writing-filter",
+   "class": "S",
+   "name": "Writing filter and search",
+   "evidence": "js/writing-filter.js: topic and year pills with counts, text search over data-search; state in the URL hash (#q=, #topic=, #year=); form GET /writing/?q= as the no-JS fallback",
+   "disposition": "client-only",
+   "reproducibility": "self",
+   "status": "pending",
+   "pattern": "client filter over an index",
+   "eds": "widget writing-filter filtering the writing-list rows; keep the hash keys so shared links work",
+   "decisions": [],
+   "reach": "live sitemap block:writing-filter"
+  },
+  {
+   "id": "article-explainers",
+   "class": "M",
+   "name": "Interactive article explainers and labs",
+   "evidence": "explainer roots on 21 articles and .lab frames on 13 (27 of 28 articles in all); 26 articles load a local explainer.css and most a script; controls without a form tag (dynamics F finding: form-less control group)",
+   "disposition": "client-only",
+   "reproducibility": "self",
+   "status": "pending",
+   "pattern": "inline client compute, no network",
+   "eds": "explainer and lab blocks; per-article code (see open question explainer-build)",
+   "decisions": [
+    "Block variant per explainer, or a code-only widget per explainer"
+   ],
+   "reach": "live sitemap block:explainer,lab,compare"
+  },
+  {
+   "id": "article-rail",
+   "class": "M",
+   "name": "Article rail progress and current part",
+   "evidence": ".article-rail details with rail__progress on 28 articles",
+   "disposition": "rebuild-native",
+   "reproducibility": "self",
+   "status": "pending",
+   "pattern": "scroll-linked UI",
+   "eds": "rail block JS",
+   "decisions": [],
+   "reach": "live sitemap block:rail"
+  },
+  {
+   "id": "youtube",
+   "class": "V",
+   "name": "YouTube embeds",
+   "evidence": "youtube-nocookie iframes on 19 pages (20 embeds); one click-to-load facade on the portfolio",
+   "disposition": "embed-passthrough",
+   "reproducibility": "self",
+   "status": "pending",
+   "pattern": "player URL is the content",
+   "eds": "video block (nocookie host, lazy facade so the iframe never blocks LCP)",
+   "decisions": [
+    "Use a facade everywhere for Lighthouse 100, or keep direct iframes"
+   ],
+   "reach": "live sitemap block:video"
+  },
+  {
+   "id": "lightbox",
+   "class": "M",
+   "name": "Figure zoom and open-file lightbox",
+   "evidence": "dynamics: lightbox-zoom and lightbox-file triggers (portfolio lb-zoomable x7, one article fig--zoom)",
+   "disposition": "rebuild-native",
+   "reproducibility": "self",
+   "status": "pending",
+   "pattern": "modal loader",
+   "eds": "frame / figure block JS",
+   "decisions": [],
+   "reach": "live sitemap signal:lightbox"
+  },
+  {
+   "id": "portfolio-interactions",
+   "class": "M",
+   "name": "Portfolio interactions",
+   "evidence": "portfolio/script.js (26 KB): carousel, diagram deck tabs, Gantt now-marker, counters, glossary chips, reveal-on-scroll, video facade",
+   "disposition": "rebuild-native",
+   "reproducibility": "self",
+   "status": "pending",
+   "pattern": "block JS",
+   "eds": "carousel, tabs, timeline, stats, explainer blocks",
+   "decisions": [
+    "Reveal-on-scroll must not hide content without JS (canon rule)"
+   ],
+   "reach": "live sitemap template=portfolio"
+  },
+  {
+   "id": "gtag",
+   "class": "T",
+   "name": "Google tag (GA4 G-ZVENE6BXTJ)",
+   "evidence": "gtag.js?id=G-ZVENE6BXTJ async + inline dataLayer/gtag config on 34/34; 540 KB library; no consent mode defaults",
+   "disposition": "embed-passthrough",
+   "reproducibility": "needs-business-decision",
+   "status": "scaffolded-awaiting-owner",
+   "pattern": "tag manager in delayed phase",
+   "eds": "scripts/delayed.js loads gtag after 3 s (keeps Lighthouse 100); same property id",
+   "decisions": [
+    "Same GA4 property for EDS hosts",
+    "Keep loading without a consent banner, as today"
+   ],
+   "reach": "live sitemap signal:gtag"
+  },
+  {
+   "id": "cloudflare-analytics",
+   "class": "T",
+   "name": "Cloudflare Web Analytics beacon and RUM",
+   "evidence": "static.cloudflareinsights.com/beacon.min.js and POST /cdn-cgi/rum on 34/34, injected at the Cloudflare zone",
+   "disposition": "embed-passthrough",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "pattern": "edge-injected tag",
+   "eds": "nothing in code: keeps working when Cloudflare proxies the EDS origin with automatic injection on; EDS adds its own RUM",
+   "decisions": [
+    "Keep Cloudflare Web Analytics beside EDS RUM, or drop it"
+   ],
+   "reach": "live sitemap signal:cf-beacon"
+  },
+  {
+   "id": "cloudflare-email-obfuscation",
+   "class": "T",
+   "name": "Cloudflare email obfuscation rewriting article text",
+   "evidence": "server HTML of 3 articles links /cdn-cgi/l/email-protection (S4: 404 when fetched); Cloudflare Scrape Shield rewrites email-like strings, including ones inside code samples",
+   "disposition": "embed-passthrough",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "pattern": "edge rewrite",
+   "eds": "Cloudflare keeps rewriting unless the zone setting changes; recommendation: turn email obfuscation off for www so authored text and code render verbatim",
+   "decisions": [
+    "Disable Scrape Shield email obfuscation on www (owner decision; not decided-out until the owner states it)"
+   ],
+   "reach": "live sitemap signal:cf-email"
+  },
+  {
+   "id": "hotlinked-badges",
+   "class": "V",
+   "name": "Hotlinked certification badge images",
+   "evidence": "22 badge images from images.credly.com and learn.microsoft.com on /certifications/",
+   "disposition": "embed-passthrough",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "pattern": "third-party image",
+   "eds": "keep hotlinks, or copy the badges into the EDS media bus for speed and stability",
+   "decisions": [
+    "Copy badges into DA media"
+   ],
+   "reach": "live sitemap signal:credly"
+  }
+ ],
+ "metadata_contract": [
+  {
+   "name": "title",
+   "source": "head:title",
+   "aem": "page title",
+   "used_by": [
+    "head",
+    "og:title",
+    "writing-list"
+   ]
+  },
+  {
+   "name": "description",
+   "source": "meta:description",
+   "aem": "description",
+   "used_by": [
+    "head",
+    "og:description",
+    "writing-list"
+   ]
+  },
+  {
+   "name": "image",
+   "source": "meta:og:image",
+   "aem": "og:image",
+   "used_by": [
+    "og",
+    "twitter",
+    "writing-list cover"
+   ]
+  },
+  {
+   "name": "twitter:card",
+   "source": "meta:twitter:card",
+   "aem": "summary_large_image",
+   "used_by": [
+    "twitter"
+   ]
+  },
+  {
+   "name": "canonical",
+   "source": "link:canonical",
+   "aem": "canonical",
+   "used_by": [
+    "head"
+   ]
+  },
+  {
+   "name": "publication-date",
+   "source": "byline:time[0]",
+   "aem": "article date",
+   "used_by": [
+    "hero article byline",
+    "writing-list",
+    "JSON-LD datePublished",
+    "query index sort"
+   ]
+  },
+  {
+   "name": "updated-date",
+   "source": "byline:time[1]",
+   "aem": "updated date",
+   "used_by": [
+    "hero article byline",
+    "JSON-LD dateModified"
+   ]
+  },
+  {
+   "name": "read-time",
+   "source": "byline text",
+   "aem": "read time",
+   "used_by": [
+    "hero article byline",
+    "writing-list facts"
+   ]
+  },
+  {
+   "name": "video-length",
+   "source": "byline text",
+   "aem": "video length",
+   "used_by": [
+    "hero article byline",
+    "rail"
+   ]
+  },
+  {
+   "name": "topics",
+   "source": "writing-list li[data-topics]",
+   "aem": "tags",
+   "used_by": [
+    "writing-list",
+    "writing-filter"
+   ]
+  },
+  {
+   "name": "template",
+   "source": "path segment",
+   "aem": "template",
+   "used_by": [
+    "article auto-blocking (hero article, rail, related, author box)"
+   ]
+  },
+  {
+   "name": "json-ld",
+   "source": "script[type=application/ld+json]",
+   "aem": "structured data",
+   "used_by": [
+    "SEO: TechArticle/BlogPosting, BreadcrumbList, VideoObject, Person, WebSite on every page"
+   ]
+  }
+ ],
+ "query_indexes": [
+  {
+   "name": "default",
+   "include": [
+    "/**"
+   ],
+   "exclude": [
+    "/nav",
+    "/footer",
+    "/**/nav*",
+    "/**/footer*",
+    "/fragments/**",
+    "/drafts/**"
+   ],
+   "properties": [
+    "title",
+    "description",
+    "image",
+    "lastModified",
+    "robots"
+   ],
+   "consumers": [
+    "sitemap"
+   ],
+   "source": "og/meta"
+  },
+  {
+   "name": "writing",
+   "include": [
+    "/writing/**"
+   ],
+   "exclude": [
+    "/writing/index"
+   ],
+   "filter": "template=writing article",
+   "properties": [
+    "title",
+    "description",
+    "image",
+    "publication-date",
+    "updated-date",
+    "topics",
+    "read-time",
+    "video-length",
+    "lastModified"
+   ],
+   "consumers": [
+    "writing-list",
+    "writing-filter",
+    "home Technical Writing latest",
+    "sitemap"
+   ],
+   "source": "page metadata"
+  }
+ ],
+ "site_config": [
+  {
+   "key": "cdn",
+   "now": "Cloudflare proxies www to GitHub Pages (server: cloudflare, via varnish / x-github-request-id)",
+   "eds": "Cloudflare keeps fronting www and routes the migrated paths to the EDS origin; the 7 GitHub Pages project sites keep their paths",
+   "decision": "README: Cloudflare stays (routing doc)"
+  },
+  {
+   "key": "security-headers",
+   "now": "none on HTML (only cache-control max-age=600); no CSP, HSTS or permissions policy",
+   "eds": "set at Cloudflare or via EDS headers config",
+   "decision": "open question Q-OPS-2"
+  },
+  {
+   "key": "url-format",
+   "now": "folder URLs with trailing slash (/writing/<slug>/), no .html",
+   "eds": "EDS paths without the trailing slash unless each page is an index document",
+   "decision": "open question Q-SCOPE-4"
+  },
+  {
+   "key": "robots-sitemap",
+   "now": "/robots.txt with Sitemap: /sitemap.xml (34 URLs, hand-maintained)",
+   "eds": "EDS sitemap from the default index; robots from config",
+   "decision": ""
+  },
+  {
+   "key": "error-pages",
+   "now": "/404.html on GitHub Pages",
+   "eds": "EDS 404.html in code",
+   "decision": ""
+  },
+  {
+   "key": "structured-data",
+   "now": "JSON-LD on 34/34 pages (WebSite, Person, BreadcrumbList; TechArticle on 27 articles, VideoObject on 20)",
+   "eds": "keep: generate from metadata or carry per page",
+   "decision": "Q-SEO-1 answered by the source: it already ships structured data"
+  },
+  {
+   "key": "llms-txt",
+   "now": "/llms.txt in the source repo",
+   "eds": "carry as a static file",
+   "decision": ""
+  }
+ ],
+ "consent_summary": "No consent platform: no OneTrust, no CMP banner, no Google Consent Mode defaults (consent-mode.json: 0 of 34 pages). gtag and the Cloudflare beacon load unconditionally.",
+ "loading_order": [
+  {
+   "stage": "head",
+   "what": "pre-paint theme script (jj-theme), fonts preconnect"
+  },
+  {
+   "stage": "eager",
+   "what": "header, hero (LCP), first section"
+  },
+  {
+   "stage": "lazy",
+   "what": "ambient canvas art, explainers, rail, video facades"
+  },
+  {
+   "stage": "delayed",
+   "what": "gtag G-ZVENE6BXTJ (540 KB) after 3 s"
+  },
+  {
+   "stage": "edge",
+   "what": "Cloudflare Web Analytics beacon, injected by the zone"
+  }
+ ],
+ "i18n_notes": [
+  "Single language (en), no hreflang, no locale trees. The dynamics I18N rows are external link paths (linkedin.com/in, experienceleague /en/), not locales."
+ ],
+ "open_questions": [
+  {
+   "id": "Q-SCOPE-3",
+   "area": "Scope",
+   "owner": "stakeholder",
+   "blocking": false,
+   "question": "Are the GitHub Pages project sites linked from in-scope pages part of this migration?",
+   "context": "Articles link 4 same-host project sites (/ai-sandbox/, /bruce-hackathon-2026-09-12/, /bruce-lava-dash/, /bruce-play-ten/); 3 more (/adapt-to-2026-demo/, /denison-2026-04-24/, /harness-v2-test/) share the host unlinked. The brief keeps all 7 on GitHub Pages under Cloudflare.",
+   "options": [
+    "No: they stay on GitHub Pages, routed by Cloudflare",
+    "Yes: migrate them too"
+   ],
+   "default": "No: they stay on GitHub Pages; Cloudflare routes their prefixes away from EDS.",
+   "default_option": 0,
+   "impact": "urls live !sitemap",
+   "link": "/urls"
+  },
+  {
+   "id": "Q-SCOPE-4",
+   "area": "URLs",
+   "owner": "stakeholder",
+   "blocking": true,
+   "question": "Is the EDS URL format accepted, with redirects for every changed path?",
+   "context": "Every page is a folder URL with a trailing slash today. EDS serves /writing/<slug> unless each page is authored as an index document; external links and search results point at the slash form.",
+   "options": [
+    "Author every page as <path>/index so the slash URLs stay",
+    "Drop the trailing slash and redirect each old URL",
+    "Mix: keep slash for hubs, drop for articles"
+   ],
+   "default": "Author every page as <path>/index so the slash URLs stay and no redirect is needed.",
+   "default_option": 0,
+   "impact": "count redirects kind=migration",
+   "link": "/redirects"
+  },
+  {
+   "id": "Q-MT-1",
+   "area": "Martech",
+   "owner": "stakeholder",
+   "blocking": false,
+   "question": "Do the EDS hosts use the same GA4 property (G-ZVENE6BXTJ)?",
+   "context": "One gtag property on 34/34 pages, loaded async today. EDS loads it in the delayed phase to keep Lighthouse 100.",
+   "options": [
+    "Same property, delayed load",
+    "New property for EDS"
+   ],
+   "default": "Same property, delayed load; .aem.page and .aem.live hosts filtered in GA.",
+   "default_option": 0,
+   "impact": "urls live sitemap signal:gtag",
+   "link": "/features"
+  },
+  {
+   "id": "Q-MT-4",
+   "area": "Martech",
+   "owner": "stakeholder",
+   "blocking": false,
+   "question": "Should the migration add a consent banner or Google Consent Mode?",
+   "context": "No CMP and no consent defaults today; gtag and the Cloudflare beacon load unconditionally.",
+   "options": [
+    "Keep as today (no banner)",
+    "Add Consent Mode defaults (denied until choice)",
+    "Add a CMP"
+   ],
+   "default": "Keep as today; the replica changes nothing the visitor sees.",
+   "default_option": 0,
+   "impact": "urls live sitemap signal:gtag",
+   "link": "/features"
+  },
+  {
+   "id": "Q-ASSET-1",
+   "area": "Assets",
+   "owner": "stakeholder",
+   "blocking": true,
+   "question": "Where do the images live after cutover?",
+   "context": "Every image is a file in the GitHub Pages repo (article images/, portfolio/assets/, /assets/) and the project sites keep serving from GitHub Pages. Badges are hotlinked from Credly and Microsoft.",
+   "options": [
+    "Upload all images to DA (EDS media bus)",
+    "Keep them on GitHub Pages and link absolute URLs",
+    "DA for page images, hotlinks kept for badges"
+   ],
+   "default": "Upload page images to DA so EDS optimizes them; keep badge hotlinks until a later pass.",
+   "default_option": 2,
+   "impact": "urls live sitemap",
+   "link": "/blocks"
+  },
+  {
+   "id": "Q-DATA-2",
+   "area": "Search",
+   "owner": "stakeholder",
+   "blocking": false,
+   "question": "Is the client-side writing filter over the query index enough, or is full-text search required?",
+   "context": "Today the filter matches words in each row's data-search text (title, summary, topics), not the article body.",
+   "options": [
+    "Client filter over the query index (title, description, topics)",
+    "Full-text search service"
+   ],
+   "default": "Client filter over the query index, matching today's behavior.",
+   "default_option": 0,
+   "impact": "urls live sitemap block:writing-filter",
+   "link": "/features"
+  },
+  {
+   "id": "Q-OPS-1",
+   "area": "Infrastructure",
+   "owner": "stakeholder",
+   "blocking": true,
+   "question": "Which CDN fronts the EDS site in production?",
+   "context": "Cloudflare fronts www today and must keep routing the 7 GitHub Pages project sites under the same host.",
+   "options": [
+    "Cloudflare in front of EDS (BYO CDN) with path routing",
+    "Adobe-managed CDN"
+   ],
+   "default": "Cloudflare in front of EDS with path routing (README decision).",
+   "default_option": 0,
+   "impact": "value:7",
+   "link": "/site-config"
+  },
+  {
+   "id": "Q-OPS-2",
+   "area": "Infrastructure",
+   "owner": "implementer",
+   "blocking": false,
+   "question": "Who sets the security headers (CSP, HSTS, permissions policy) on the new stack?",
+   "context": "The source HTML ships none. EDS supports a header config; Cloudflare can add them at the edge.",
+   "options": [
+    "EDS headers config",
+    "Cloudflare transform rules",
+    "Leave as today"
+   ],
+   "default": "EDS headers config, so the policy lives with the code.",
+   "default_option": 0,
+   "impact": "value:34",
+   "link": "/site-config"
+  },
+  {
+   "id": "Q-IMPL-1",
+   "area": "Implementation",
+   "owner": "implementer",
+   "blocking": false,
+   "question": "Are the portfolio story media blocks (frame, diagram deck, carousel, ladder, stat chips, flow) authored as adjacent blocks or fragments?",
+   "context": "EDS blocks do not nest; 8 portfolio stories hold another block in their media column.",
+   "options": [
+    "Adjacent blocks in the same section, showcase reads the next block as its media",
+    "Fragments referenced from the showcase media cell"
+   ],
+   "default": "Adjacent blocks in the same section.",
+   "default_option": 0,
+   "impact": "urls sitemap nested",
+   "link": "/blocks"
+  },
+  {
+   "id": "Q-IMPL-2",
+   "area": "Implementation",
+   "owner": "stakeholder",
+   "blocking": true,
+   "question": "Is the target pixel parity, or consolidation onto a shared design system?",
+   "context": "The plan runs the replica flow on design system v3: near pixel-perfect, changes only through the inconsistency register.",
+   "options": [
+    "Pixel parity (replica)",
+    "Consolidate onto the design system"
+   ],
+   "default": "Pixel parity (replica), with register entries for the off-ladder breakpoints, radii and the portfolio 1200px cap.",
+   "default_option": 0,
+   "impact": "value:34",
+   "link": "/blocks"
+  },
+  {
+   "id": "explainer-build",
+   "area": "Implementation",
+   "owner": "implementer",
+   "blocking": true,
+   "question": "How are the bespoke article explainers built on EDS?",
+   "context": "27 of 28 articles carry interactive explainers or labs (32 explainer roots on 21 articles, 30 labs on 13), most with their own CSS and script. Their copy is authored prose and tables; their behavior is per article.",
+   "options": [
+    "One explainer block, one variant (CSS + JS file) per explainer, rows authored in DA",
+    "A code-only widget per explainer with its copy in the widget HTML",
+    "Ship the settled DOM as an embed fragment per article"
+   ],
+   "default": "One explainer block with a variant per explainer, rows authored in DA, so authors keep the copy.",
+   "default_option": 0,
+   "impact": "urls live sitemap block:explainer,lab",
+   "link": "/blocks"
+  },
+  {
+   "id": "code-highlighting",
+   "area": "Implementation",
+   "owner": "implementer",
+   "blocking": false,
+   "question": "Are code blocks carried with their pre-highlighted token spans, or authored as plain code and highlighted on the client?",
+   "context": "45 code blocks on 18 articles use tk-k, tk-s, tk-n, tk-c spans and line numbers. DA keeps code text but not span classes.",
+   "options": [
+    "Plain code in DA, client highlighter in the code block (pixel check against the spans)",
+    "Carry the spans as HTML in the code block cell"
+   ],
+   "default": "Plain code in DA plus a small client highlighter tuned to the four token classes.",
+   "default_option": 0,
+   "impact": "urls live sitemap block:code",
+   "link": "/blocks"
+  },
+  {
+   "id": "paragraph-blocks",
+   "area": "Implementation",
+   "owner": "implementer",
+   "blocking": false,
+   "question": "Are the paragraph-level patterns (facts, watch chapters, byline) blocks or auto-blocked from metadata?",
+   "context": "p.article-facts on 28 articles, p.watch on 17, the byline on 28; DA authors cannot class a paragraph.",
+   "options": [
+    "facts and chapters blocks, byline from metadata",
+    "All three from metadata and auto-blocking"
+   ],
+   "default": "facts and chapters as small blocks, the byline built from page metadata in the article hero.",
+   "default_option": 0,
+   "impact": "urls live sitemap signal:facts",
+   "link": "/blocks"
+  },
+  {
+   "id": "author-box-fragment",
+   "area": "Content",
+   "owner": "stakeholder",
+   "blocking": false,
+   "question": "Is the author box one shared fragment?",
+   "context": "Identical author box copy on 28 articles.",
+   "options": [
+    "One fragment referenced by every article (or auto-blocked)",
+    "Copy per article"
+   ],
+   "default": "One fragment, auto-inserted on article pages.",
+   "default_option": 0,
+   "impact": "urls live sitemap block:author-box",
+   "link": "/blocks"
+  },
+  {
+   "id": "email-obfuscation",
+   "area": "Infrastructure",
+   "owner": "stakeholder",
+   "blocking": false,
+   "question": "Should Cloudflare email obfuscation stay on for www?",
+   "context": "It rewrites email-like strings on 3 articles (code samples included) into /cdn-cgi/l/email-protection links that 404 without its script.",
+   "options": [
+    "Turn it off for the EDS routes",
+    "Keep it"
+   ],
+   "default": "Turn it off so authored text and code render verbatim.",
+   "default_option": 0,
+   "impact": "urls live sitemap signal:cf-email",
+   "link": "/features"
+  }
+ ]
+}

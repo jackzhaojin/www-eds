@@ -1,0 +1,58 @@
+[
+ {
+  "name": "default",
+  "include_paths": [
+   "/**"
+  ],
+  "exclude_paths": [
+   "/nav",
+   "/footer",
+   "/**/nav*",
+   "/**/footer*",
+   "/fragments/**",
+   "/drafts/**"
+  ],
+  "filter": null,
+  "properties": [
+   "title",
+   "description",
+   "image",
+   "lastModified",
+   "robots"
+  ],
+  "consumers": [
+   "sitemap"
+  ],
+  "source": "og/meta",
+  "yaml": "  default:\n    include:\n      - '/**'\n    exclude:\n      - '/nav'\n      - '/footer'\n      - '/**/nav*'\n      - '/**/footer*'\n      - '/fragments/**'\n      - '/drafts/**'\n    target: /query-index.json\n    properties:\n      title:\n        select: head > meta[property=\"og:title\"]\n        value: attribute(el, 'content')\n      description:\n        select: head > meta[name=\"description\"]\n        value: attribute(el, 'content')\n      image:\n        select: head > meta[property=\"og:image\"]\n        value: match(attribute(el, 'content'), 'https:\\/\\/[^/]+(\\/.*)')\n      lastModified:\n        select: none\n        value: parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')\n      robots:\n        select: head > meta[name=\"robots\"]\n        value: attribute(el, 'content')"
+ },
+ {
+  "name": "writing",
+  "include_paths": [
+   "/writing/**"
+  ],
+  "exclude_paths": [
+   "/writing/index"
+  ],
+  "filter": "template=writing article",
+  "properties": [
+   "title",
+   "description",
+   "image",
+   "publication-date",
+   "updated-date",
+   "topics",
+   "read-time",
+   "video-length",
+   "lastModified"
+  ],
+  "consumers": [
+   "writing-list",
+   "writing-filter",
+   "home Technical Writing latest",
+   "sitemap"
+  ],
+  "source": "page metadata",
+  "yaml": "  writing:\n    include:\n      - '/writing/**'\n    exclude:\n      - '/writing/index'\n    target: /writing.json\n    properties:\n      title:\n        select: head > meta[property=\"og:title\"]\n        value: attribute(el, 'content')\n      description:\n        select: head > meta[name=\"description\"]\n        value: attribute(el, 'content')\n      image:\n        select: head > meta[property=\"og:image\"]\n        value: match(attribute(el, 'content'), 'https:\\/\\/[^/]+(\\/.*)')\n      publication-date:\n        select: head > meta[name=\"publication-date\"]\n        value: attribute(el, 'content')\n      updated-date:\n        select: head > meta[name=\"updated-date\"]\n        value: attribute(el, 'content')\n      topics:\n        select: head > meta[name=\"topics\"]\n        value: attribute(el, 'content')\n      read-time:\n        select: head > meta[name=\"read-time\"]\n        value: attribute(el, 'content')\n      video-length:\n        select: head > meta[name=\"video-length\"]\n        value: attribute(el, 'content')\n      lastModified:\n        select: none\n        value: parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')"
+ }
+]

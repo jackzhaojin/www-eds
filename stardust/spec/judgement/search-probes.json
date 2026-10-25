@@ -1,0 +1,7 @@
+[
+  { "term": "stardust", "expect_count": 1, "expect_titles": ["Adobe Stardust Explained: A Design Skill Built on impeccable, Tested on Real EDS Blocks"], "expect_includes": true, "feature": "writing-filter", "path": "/writing/", "param": "#q=" },
+  { "term": "playwright", "expect_count": 4, "expect_titles": ["Playwright Stakeholder Demos: Captions Timed to Each Click and a Voice the Video Waits For"], "expect_includes": true, "feature": "writing-filter", "path": "/writing/", "param": "#q=" },
+  { "term": "mcp", "expect_count": 5, "expect_titles": [], "expect_includes": true, "feature": "writing-filter", "path": "/writing/", "param": "#q=" },
+  { "term": "edge functions", "expect_count": 5, "expect_titles": [], "expect_includes": true, "feature": "writing-filter", "path": "/writing/", "param": "#q=" },
+  { "term": "caching", "expect_count": 2, "expect_titles": [], "expect_includes": true, "feature": "writing-filter", "path": "/writing/", "param": "#q=" }
+]

@@ -1,0 +1,430 @@
+<!DOCTYPE html><html lang="en" data-theme-default="light" data-theme="light" class="js" data-theme-choice="light" data-theme-effective="light"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-ZVENE6BXTJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZVENE6BXTJ');</script>
+<title>AEM Headless and Omnichannel: Three Architecture Diagrams | Jack Jin</title>
+<meta name="description" content="Three fictional AEM headless patterns for email, mobile apps and sites: events, static site generators and one shared publish tier, plus twelve considerations.">
+<link rel="canonical" href="https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/">
+<meta property="og:type" content="article"><meta property="article:published_time" content="2025-07-12"><meta property="article:modified_time" content="2026-10-04"><meta property="article:author" content="https://www.jackzhaojin.com/"><meta property="og:site_name" content="Jack Jin"><meta property="og:locale" content="en_US">
+<meta property="og:title" content="AEM Headless and Omnichannel: Three Architecture Diagrams | Jack Jin"><meta property="og:description" content="Three fictional AEM headless patterns for email, mobile apps and sites: events, static site generators and one shared publish tier, plus twelve considerations."><meta property="og:url" content="https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/">
+<meta property="og:image" content="https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/cover.jpg"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="720"><meta property="og:image:alt" content="Jack's hand-drawn board: AEM Headless + Omni channel! One AEM box with arrows to Channel 1, Channel 2 and Channel 3.">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AEM Headless and Omnichannel: Three Architecture Diagrams | Jack Jin"><meta name="twitter:description" content="Three fictional AEM headless patterns for email, mobile apps and sites: events, static site generators and one shared publish tier, plus twelve considerations."><meta name="twitter:image" content="https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/cover.jpg">
+<script>(function(){var d=document.documentElement;d.classList.add('js');var c='light';try{var s=localStorage.getItem('jj-theme');if(['light','dark','system'].indexOf(s)!==-1)c=s;}catch(e){}if(c==='system')d.removeAttribute('data-theme');else d.setAttribute('data-theme',c);d.setAttribute('data-theme-choice',c);})();</script>
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;display=swap">
+<link rel="stylesheet" href="/design-systems/v3/tokens.css?v=3"><link rel="stylesheet" href="/design-systems/v3/base.css?v=3"><link rel="stylesheet" href="/design-systems/v3/components.css?v=5">
+<link rel="stylesheet" href="/css/site.css?v=20-talks">
+<link rel="stylesheet" href="/css/explainers.css?v=6"><link rel="stylesheet" href="/css/article.css?v=9"><link rel="stylesheet" href="explainer.css?v=2">
+<script src="/js/site.js?v=3" defer=""></script>
+<script src="/js/explainers.js?v=3" defer=""></script>
+<script src="/js/article.js?v=2" defer=""></script>
+<script src="explainer.js?v=2" defer=""></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://www.jackzhaojin.com/#person", "name": "Jack Jin", "url": "https://www.jackzhaojin.com/", "jobTitle": "Associate Director", "worksFor": {"@type": "Organization", "name": "Accenture", "department": {"@type": "Organization", "name": "Adobe Business Group"}}, "sameAs": ["https://www.linkedin.com/in/jackjin", "https://github.com/jackzhaojin"], "award": ["Adobe Experience Manager Champion, class of 2026-2027", "AEM Rockstar winner, Adobe Summit 2024"]}, {"@type": "WebSite", "@id": "https://www.jackzhaojin.com/#website", "url": "https://www.jackzhaojin.com/", "name": "Jack Jin", "publisher": {"@id": "https://www.jackzhaojin.com/#person"}}, {"@type": "TechArticle", "@id": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#article", "headline": "AEM Headless and Omnichannel: Three Architecture Diagrams and Twelve Considerations", "description": "Three fictional AEM headless patterns for email, mobile apps and sites: events, static site generators and one shared publish tier, plus twelve considerations.", "author": {"@id": "https://www.jackzhaojin.com/#person"}, "publisher": {"@id": "https://www.jackzhaojin.com/#person"}, "image": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/cover.jpg", "mainEntityOfPage": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/", "isPartOf": {"@id": "https://www.jackzhaojin.com/#website"}, "about": ["AEM headless", "Omnichannel content delivery", "Content Fragments", "Experience Fragments", "GraphQL", "Adobe Target", "Static site generation"], "datePublished": "2025-07-12", "dateModified": "2026-10-04", "inLanguage": "en", "wordCount": 1675, "video": {"@id": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#video"}}, {"@type": "VideoObject", "@id": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#video", "name": "AEM Architecture Video - AEM Headless and Omnichannel - 2025 edition", "description": "Three fictional AEM headless and omnichannel solution diagrams: content fragments with a scheduler and event topics, experience fragments for email, mobile and Adobe Target, and a hybrid of pages and fragments, plus twelve considerations.", "thumbnailUrl": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/cover.jpg", "uploadDate": "2025-07-07T00:11:33Z", "duration": "PT9M13S", "embedUrl": "https://www.youtube-nocookie.com/embed/-pquHqafwFA"}, {"@type": "BreadcrumbList", "@id": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.jackzhaojin.com/"}, {"@type": "ListItem", "position": 2, "name": "Technical Writing", "item": "https://www.jackzhaojin.com/writing/"}, {"@type": "ListItem", "position": 3, "name": "AEM Headless and Omnichannel", "item": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/"}]}]}</script>
+</head>
+<body class=""><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container site-header__inner">
+<a class="wordmark" href="/">Jack Jin</a>
+<button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><span class="nav-toggle__open">Menu</span><span class="nav-toggle__close">Close</span></button>
+<nav class="site-nav" id="site-nav" aria-label="Primary"><ul><li><a href="/writing/">Technical Writing</a></li><li><a href="/portfolio/">Portfolio</a></li><li><a href="/talks/">Talks</a></li><li><a href="/certifications/">Certifications</a></li></ul><div class="site-nav__tools"><div class="theme-control" role="group" aria-label="Color theme">
+<button type="button" class="theme-control__btn" data-set-theme="light" aria-pressed="true">Light</button><button type="button" class="theme-control__btn" data-set-theme="dark" aria-pressed="false">Dark</button><button type="button" class="theme-control__btn" data-set-theme="system" aria-pressed="false">System</button>
+</div></div></nav></div></header>
+<main id="main"><article class="writing-article"><header class="container article-head"><nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/writing/">Technical Writing</a></li><li aria-current="page">AEM Headless and Omnichannel</li></ol></nav><h1 class="page-title">AEM Headless and Omnichannel: Three Architecture Diagrams and Twelve Considerations</h1><p class="byline">By <a href="/">Jack Jin</a> · <time datetime="2025-07-12">July 12, 2025</time> · Updated <time datetime="2026-10-04">October 4, 2026</time> · 7 min read · Includes my 9:13 video</p><p class="summary">Getting content out of AEM headless into email, mobile apps and websites takes more than one API. Here are three fictional but realistic patterns for it: content fragments with a scheduler and event topics, experience fragments feeding compile-time builds and Target, and one publish tier serving every channel. Then the twelve considerations behind them: six traced across all three diagrams, from push vs pull to data types, and six that never got a box, from modular content to legal cutover.</p></header><div class="container article-layout"><div class="article-body">
+<p>I walk through it in the same order as the video. Every part links to its moment in the video if you'd rather watch.</p>
+<figure class="fig video" id="video"><iframe src="https://www.youtube-nocookie.com/embed/-pquHqafwFA?rel=0" title="AEM Architecture Video - AEM Headless and Omnichannel - 2025 edition (YouTube video)" width="1280" height="720" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe><figcaption>From my Experience Reinvented channel, uploaded in early July 2025. Each part below links to its moment in the video, or <a href="https://youtu.be/-pquHqafwFA">watch it on YouTube</a>.</figcaption></figure>
+<p class="article-facts">Also published as a LinkedIn video on July 12, 2025. Rewritten for this site in October 2026.</p>
+<h2 id="changed">What changed since July 2025<a class="heading-link" href="#changed" aria-label="Link to this section: What changed since July 2025">#</a></h2>
+<ul>
+<li>Solution 1 queries content fragments with GraphQL. Adobe's <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/headless/graphql-api/persisted-queries">persisted queries documentation</a> recommends persisted queries over standard GraphQL queries, which run as POST requests whose responses can't easily be cached, and it lets you set the cache headers per query.</li>
+<li>Two months after this video I followed those cache headers through every layer, from AEM publish to the browser, in <a href="/writing/2025-09-01-aem-caching-production-architectures/">AEM caching in production</a>.</li>
+<li>Location of personalization got a new option in my own work: <a href="/writing/2026-09-20-aem-edge-functions-google-sign-in/">AEM Edge Functions</a> personalize the HTML on Adobe's CDN, before any JavaScript runs in the browser.</li>
+</ul>
+
+<h2 id="goal">1. One AEM feeding email, mobile apps and websites<a class="heading-link" href="#goal" aria-label="Link to this section: 1. One AEM feeding email, mobile apps and websites">#</a></h2>
+<p>So what is AEM and omnichannel? Very simply put, it's AEM and more than one channel of content. That could be websites, mobile apps or email. When I wrote about <a href="/writing/2025-05-28-aem-headless-when-frontend-teams-lead/">AEM headless for frontend-led teams</a> in May 2025, I went light on omnichannel on purpose and said I'd come back to it. This picks it up.</p>
+<p>The main goal is an AEM system that's future-ready. It should allow for flexibility, content reuse, automated validation and version control, and it needs to support multiple teams and delivery modes.</p>
+<figure class="fig board"><img src="images/board-overview.png" alt="Hand-drawn board titled AEM Headless + Omni channel! One box labeled AEM with arrows to Channel 1, Channel 2 and Channel 3." width="1000" height="828" loading="lazy"><figcaption>The top of my board: one AEM, many channels. The three solutions below it are three ways to draw those arrows.</figcaption></figure>
+<p>A disclaimer, as on the board: the three solutions use a lot of fictional content, mixed together, to protect my previous clients' implementations. They reflect real tradeoffs I've run into in large-scale AEM work. On the board, each arrow starts at the box that makes the move: it publishes, sends or asks.</p>
+<p class="watch"><span class="watch__label">Watch this part</span><a href="https://youtu.be/-pquHqafwFA?t=0"><span class="watch__t">0:00</span> What AEM omnichannel means</a></p>
+
+<h2 id="solution-1">2. Solution 1 pushes content fragments out through event topics<a class="heading-link" href="#solution-1" aria-label="Link to this section: 2. Solution 1 pushes content fragments out through event topics">#</a></h2>
+<p>Solution 1 starts with an upstream planning tool. That could be quite a few things: an Azure service, or a marketing planning tool. Whatever it is, sometimes it needs to create content fragments and experience fragments in AEM. In this example it's content fragments. Authors enter content, and the content fragment gets published.</p>
+<p>A scheduler then queries GraphQL, finds the latest updated content fragments, and sends them to a subscription event. The scheduler makes sure every publication is identified and every update goes to the right subscription. Two topics listen to that event, and two separate channels listen to the topics. Each channel processes the publication and handles it in its own way.</p>
+<p>Notice that Channel B fetches images from AEM publish. Some systems want to host images on their own, so images and content stay together.</p>
+<p>This solution is very popular in event-driven architecture, where you have an event hub and topics. Some martech stacks really enjoy it; it's part of their core solution.</p>
+<figure class="fig board wide"><img src="images/board-solution-1a.png" alt="Solution 1, left half: Upstream Planning Tools to AEM Author CFs to AEM Publish CFs. A Scheduler that fetches GraphQL and identifies the latest content points to AEM Publish CFs and to a Subscription event." width="1400" height="388" loading="lazy"><img class="board__next" src="images/board-solution-1b.png" alt="Solution 1, right half: the Subscription fans out to Topic 1 and Topic 2. Channel A Processor reads Topic 1 and delivers to Channel A; Channel B Processor reads Topic 2, delivers to Channel B and fetches images from AEM Publish CFs." width="1000" height="468" loading="lazy"><figcaption>Solution 1 from my board, split in two so it reads at this width. The long "Fetch images" arrow runs from Channel B's processor back to AEM publish. <a href="#lens">Redrawn below</a> with every arrow in one piece.</figcaption></figure>
+<p class="watch"><span class="watch__label">Watch this part</span><a href="https://youtu.be/-pquHqafwFA?t=25"><span class="watch__t">0:25</span> Solution 1</a><a href="https://youtu.be/-pquHqafwFA?t=109"><span class="watch__t">1:49</span> Why event-driven stacks like it</a></p>
+
+<h2 id="solution-2">3. Solution 2 shares experience fragments with email, mobile builds and Target<a class="heading-link" href="#solution-2" aria-label="Link to this section: 3. Solution 2 shares experience fragments with email, mobile builds and Target">#</a></h2>
+<p>Solution 2 uses experience fragments instead of content fragments. Experience fragments can be used as headless content too, though you think about them a little differently. As I said in the video, Adobe Target has supported experience fragments since its early days with AEM 6.5, while content fragments still weren't supported there in AEM 6.5 when I recorded it.</p>
+<p>So authors create experience fragments and publish them to Target and to AEM publish. Here's where it gets really interesting. Authors can use Target for the experience fragment, and the mobile apps and email marketing both have access to the same content and variations, so they can pick and choose which one goes in. That's an omnichannel vision with personalization.</p>
+<p>The other callout on this diagram is SSG. Here it means the content is generated ahead of time, at compile time. Some mobile applications prefer to have their content cached within the app, so when it's published, the content becomes part of the application. You still keep the authoring and omnichannel capability.</p>
+<figure class="fig board"><img src="images/board-solution-2.png" alt="Solution 2 from the board: AEM Author XFs to AEM Publish XFs and to Target XFs. Email Marketing SSG reads main plus variations from AEM Publish XFs, Mobile Markdown SSG and AEM also read from AEM Publish XFs, and AEM reaches Target XFs through a4t.js CSR." width="1000" height="917" loading="lazy"><figcaption>Solution 2 from my board. Email and mobile read the same fragments and variations; the site gets the Target version in the browser.</figcaption></figure>
+<p class="watch"><span class="watch__label">Watch this part</span><a href="https://youtu.be/-pquHqafwFA?t=124"><span class="watch__t">2:04</span> Solution 2</a><a href="https://youtu.be/-pquHqafwFA?t=187"><span class="watch__t">3:07</span> What SSG means here</a></p>
+
+<h2 id="solution-3">4. Solution 3 serves pages and fragments to every channel from one publish tier<a class="heading-link" href="#solution-3" aria-label="Link to this section: 4. Solution 3 serves pages and fragments to every channel from one publish tier">#</a></h2>
+<p>Solution 3 has AEM pages, experience fragments and content fragments. Note the line at the bottom of my board: pages use experience fragments and content fragments, and experience fragments also use content fragments. That enables quite advanced capabilities within AEM. Site 1 and Site 2 both use pages, and those pages in turn use experience fragments and content fragments.</p>
+<p>As in Solution 2, Markdown lets mobile apps consume published experience fragments, and as I noted in the video, content fragments also support Markdown within the Adobe ecosystem. Mobile App 1 consumes only content fragments, using GraphQL. Mobile App 2 consumes content fragments and experience fragments in Markdown.</p>
+<p>I consider this one of the more flexible hybrid methods in AEM. Pages share content from experience fragments and content fragments, and that same content is shared with other applications. It shows the complexity of AEM headless, and its potential.</p>
+<figure class="fig board"><img src="images/board-solution-3.png" alt="Solution 3 from the board: AEM Author CFs, XFs and Pages each publish to AEM Publish CFs, XFs and Pages. Mobile App 1 reads Publish CFs, Mobile App 2 reads Publish CFs and reads Publish XFs as Markdown, and Site 1 and Site 2 read Publish Pages. Note: Pages has XFs and CFs. XFs has CFs." width="1000" height="1163" loading="lazy"><figcaption>Solution 3 from my board. Every consumer asks the same publish tier for the level of content it needs.</figcaption></figure>
+<p class="watch"><span class="watch__label">Watch this part</span><a href="https://youtu.be/-pquHqafwFA?t=215"><span class="watch__t">3:35</span> Solution 3</a></p>
+
+<h2 id="lens">5. Six considerations that play out differently in each solution<a class="heading-link" href="#lens" aria-label="Link to this section: 5. Six considerations that play out differently in each solution">#</a></h2>
+<p>Six things I'd call attention to across the three diagrams:</p>
+<ol>
+<li>Publishing pattern. Sometimes you publish to a queue. Sometimes you publish and wait for the content to be pulled. And sometimes you publish and also trigger something on the other side to let it know the content is ready to be retrieved.</li>
+<li>Push vs pull. Sometimes content gets pulled from AEM, and sometimes AEM pushes the content to the right place.</li>
+<li>API vs event driven. In headless and martech, sometimes it's API driven and sometimes it's event driven.</li>
+<li>CSR vs SSR vs SSG. Some headless content is surfaced with client-side rendering, some with server-side rendering, and some generated ahead of time. Adobe Target is a good example of client-side rendering: the browser calls Target and renders the content.</li>
+<li>Data type. On these boards: HTML, Markdown and JSON.</li>
+<li>Upstream automation. In headless it's not uncommon to have upstream automation, so content fragments and experience fragments are created automatically.</li>
+</ol>
+<p>The three solutions answer the same six questions differently, and that's easier to see than to read. Pick a consideration below: on each of the three diagrams, the boxes and arrows it touches light up, and the line under each diagram says how that solution handles it. It opens on push vs pull, where all three differ.</p>
+<figure class="fig xwide lens" data-lens="">
+  <div class="lens__bar"><span>One consideration, three solutions</span><span>Each arrow starts where the call starts</span></div>
+  <div class="chips lens__chips" role="radiogroup" aria-label="Pick a consideration">
+    <button type="button" role="radio" aria-checked="false" data-c="publish">Publishing pattern</button>
+    <button type="button" role="radio" aria-checked="true" data-c="pushpull">Push vs pull</button>
+    <button type="button" role="radio" aria-checked="false" data-c="event">API vs event driven</button>
+    <button type="button" role="radio" aria-checked="false" data-c="render">CSR vs SSR vs SSG</button>
+    <button type="button" role="radio" aria-checked="false" data-c="data">Data type</button>
+    <button type="button" role="radio" aria-checked="false" data-c="upstream">Upstream automation</button>
+  </div>
+  <div class="lens__grid">
+    <section class="lens__sol has-focus" data-sol="s1" aria-label="Solution 1"><p class="lens__name">Solution 1 · content fragments and events</p><svg class="lens__svg lens__svg--wide" viewBox="0 0 900 362" role="img" aria-labelledby="s1-wide-t">
+<title id="s1-wide-t">Solution 1: upstream planning tools feed AEM author content fragments, which are published. A scheduler fetches the latest content from publish with GraphQL and raises a subscription event to two topics. Channel A and Channel B processors read their topics, deliver to their channels, and Channel B fetches images from publish.</title>
+<defs><marker id="s1-wide-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head"></path></marker><marker id="s1-wide-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head lens__head--on"></path></marker></defs>
+<path class="lens__edge" data-e="up-acf" d="M160 50 L190 50" style="--m:url(#s1-wide-a);--m-on:url(#s1-wide-b)"></path>
+<path class="lens__edge" data-e="acf-pcf" d="M340 50 L370 50" style="--m:url(#s1-wide-a);--m-on:url(#s1-wide-b)"></path>
+<path class="lens__edge on" data-e="sch-pcf" d="M550 50 L520 50" style="--m:url(#s1-wide-a);--m-on:url(#s1-wide-b)"></path>
+<path class="lens__edge on" data-e="sch-sub" d="M700 50 L730 50" style="--m:url(#s1-wide-a);--m-on:url(#s1-wide-b)"></path>
+<path class="lens__edge on" data-e="sub-t1" d="M805 80 L805 150" style="--m:url(#s1-wide-a);--m-on:url(#s1-wide-b)"></path>
+<path class="lens__edge on" data-e="sub-t2" d="M880 50 L893 50 L893 280 L880 280" style="--m:url(#s1-wide-a);--m-on:url(#s1-wide-b)"></path>
+<path class="lens__edge on" data-e="pa-t1" d="M700 180 L730 180" style="--m:url(#s1-wide-a);--m-on:url(#s1-wide-b)"></path>
+<path class="lens__edge on" data-e="pb-t2" d="M700 280 L730 280" style="--m:url(#s1-wide-a);--m-on:url(#s1-wide-b)"></path>
+<path class="lens__edge on" data-e="pa-ca" d="M550 180 L520 180" style="--m:url(#s1-wide-a);--m-on:url(#s1-wide-b)"></path>
+<path class="lens__edge on" data-e="pb-cb" d="M550 280 L520 280" style="--m:url(#s1-wide-a);--m-on:url(#s1-wide-b)"></path>
+<path class="lens__edge on" data-e="pb-pcf" d="M625 310 L625 336 L355 336 L355 112 L445 112 L445 80" style="--m:url(#s1-wide-a);--m-on:url(#s1-wide-b)"></path>
+<text class="lens__elabel on" data-e="pb-pcf" x="490" y="352" text-anchor="middle">Fetch images</text>
+<g class="lens__node" data-n="up"><rect x="10" y="20" width="150" height="60" rx="10"></rect>
+<text x="85.0" y="46.7" text-anchor="middle" style="font-size:12.5px">Upstream</text>
+<text x="85.0" y="62.3" text-anchor="middle" style="font-size:12.5px">planning tools</text>
+</g>
+<g class="lens__node" data-n="acf"><rect x="190" y="20" width="150" height="60" rx="10"></rect>
+<text x="265.0" y="46.7" text-anchor="middle" style="font-size:12.5px">AEM Author</text>
+<text x="265.0" y="62.3" text-anchor="middle" style="font-size:12.5px">CFs</text>
+</g>
+<g class="lens__node" data-n="pcf"><rect x="370" y="20" width="150" height="60" rx="10"></rect>
+<text x="445.0" y="46.7" text-anchor="middle" style="font-size:12.5px">AEM Publish</text>
+<text x="445.0" y="62.3" text-anchor="middle" style="font-size:12.5px">CFs</text>
+</g>
+<g class="lens__node on" data-n="sch"><rect x="550" y="20" width="150" height="60" rx="10"></rect>
+<text x="625.0" y="38.9" text-anchor="middle" style="font-size:12.5px">Scheduler (fetch</text>
+<text x="625.0" y="54.5" text-anchor="middle" style="font-size:12.5px">GraphQL, id latest</text>
+<text x="625.0" y="70.1" text-anchor="middle" style="font-size:12.5px">content)</text>
+</g>
+<g class="lens__node on" data-n="sub"><rect x="730" y="20" width="150" height="60" rx="10"></rect>
+<text x="805.0" y="46.7" text-anchor="middle" style="font-size:12.5px">Subscription</text>
+<text x="805.0" y="62.3" text-anchor="middle" style="font-size:12.5px">(event)</text>
+</g>
+<g class="lens__node on" data-n="t1"><rect x="730" y="150" width="150" height="60" rx="10"></rect>
+<text x="805.0" y="184.5" text-anchor="middle" style="font-size:12.5px">Topic 1</text>
+</g>
+<g class="lens__node on" data-n="t2"><rect x="730" y="250" width="150" height="60" rx="10"></rect>
+<text x="805.0" y="284.5" text-anchor="middle" style="font-size:12.5px">Topic 2</text>
+</g>
+<g class="lens__node on" data-n="pa"><rect x="550" y="150" width="150" height="60" rx="10"></rect>
+<text x="625.0" y="176.7" text-anchor="middle" style="font-size:12.5px">Channel A</text>
+<text x="625.0" y="192.3" text-anchor="middle" style="font-size:12.5px">Processor</text>
+</g>
+<g class="lens__node on" data-n="pb"><rect x="550" y="250" width="150" height="60" rx="10"></rect>
+<text x="625.0" y="276.7" text-anchor="middle" style="font-size:12.5px">Channel B</text>
+<text x="625.0" y="292.3" text-anchor="middle" style="font-size:12.5px">Processor</text>
+</g>
+<g class="lens__node" data-n="ca"><rect x="370" y="150" width="150" height="60" rx="10"></rect>
+<text x="445.0" y="184.5" text-anchor="middle" style="font-size:12.5px">Channel A</text>
+</g>
+<g class="lens__node" data-n="cb"><rect x="370" y="250" width="150" height="60" rx="10"></rect>
+<text x="445.0" y="284.5" text-anchor="middle" style="font-size:12.5px">Channel B</text>
+</g>
+</svg><svg class="lens__svg lens__svg--tall" viewBox="0 0 365 680" role="img" aria-labelledby="s1-tall-t">
+<title id="s1-tall-t">Solution 1: upstream planning tools feed AEM author content fragments, which are published. A scheduler fetches the latest content from publish with GraphQL and raises a subscription event to two topics. Channel A and Channel B processors read their topics, deliver to their channels, and Channel B fetches images from publish.</title>
+<defs><marker id="s1-tall-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head"></path></marker><marker id="s1-tall-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head lens__head--on"></path></marker></defs>
+<path class="lens__edge" data-e="up-acf" d="M85 70 L85 110" style="--m:url(#s1-tall-a);--m-on:url(#s1-tall-b)"></path>
+<path class="lens__edge" data-e="acf-pcf" d="M85 170 L85 210" style="--m:url(#s1-tall-a);--m-on:url(#s1-tall-b)"></path>
+<path class="lens__edge on" data-e="sch-pcf" d="M200 240 L160 240" style="--m:url(#s1-tall-a);--m-on:url(#s1-tall-b)"></path>
+<path class="lens__edge on" data-e="sch-sub" d="M275 270 L275 310" style="--m:url(#s1-tall-a);--m-on:url(#s1-tall-b)"></path>
+<path class="lens__edge on" data-e="sub-t1" d="M200 340 L85 340 L85 410" style="--m:url(#s1-tall-a);--m-on:url(#s1-tall-b)"></path>
+<path class="lens__edge on" data-e="sub-t2" d="M275 370 L275 410" style="--m:url(#s1-tall-a);--m-on:url(#s1-tall-b)"></path>
+<path class="lens__edge on" data-e="pa-t1" d="M85 510 L85 470" style="--m:url(#s1-tall-a);--m-on:url(#s1-tall-b)"></path>
+<path class="lens__edge on" data-e="pb-t2" d="M275 510 L275 470" style="--m:url(#s1-tall-a);--m-on:url(#s1-tall-b)"></path>
+<path class="lens__edge on" data-e="pa-ca" d="M85 570 L85 610" style="--m:url(#s1-tall-a);--m-on:url(#s1-tall-b)"></path>
+<path class="lens__edge on" data-e="pb-cb" d="M275 570 L275 610" style="--m:url(#s1-tall-a);--m-on:url(#s1-tall-b)"></path>
+<path class="lens__edge on" data-e="pb-pcf" d="M350 540 L358 540 L358 190 L130 190 L130 210" style="--m:url(#s1-tall-a);--m-on:url(#s1-tall-b)"></path>
+<text class="lens__elabel on" data-e="pb-pcf" x="255" y="184" text-anchor="middle">Fetch images</text>
+<g class="lens__node" data-n="up"><rect x="10" y="10" width="150" height="60" rx="10"></rect>
+<text x="85.0" y="36.7" text-anchor="middle" style="font-size:12.5px">Upstream</text>
+<text x="85.0" y="52.3" text-anchor="middle" style="font-size:12.5px">planning tools</text>
+</g>
+<g class="lens__node" data-n="acf"><rect x="10" y="110" width="150" height="60" rx="10"></rect>
+<text x="85.0" y="136.7" text-anchor="middle" style="font-size:12.5px">AEM Author</text>
+<text x="85.0" y="152.3" text-anchor="middle" style="font-size:12.5px">CFs</text>
+</g>
+<g class="lens__node" data-n="pcf"><rect x="10" y="210" width="150" height="60" rx="10"></rect>
+<text x="85.0" y="236.7" text-anchor="middle" style="font-size:12.5px">AEM Publish</text>
+<text x="85.0" y="252.3" text-anchor="middle" style="font-size:12.5px">CFs</text>
+</g>
+<g class="lens__node on" data-n="sch"><rect x="200" y="210" width="150" height="60" rx="10"></rect>
+<text x="275.0" y="228.9" text-anchor="middle" style="font-size:12.5px">Scheduler (fetch</text>
+<text x="275.0" y="244.5" text-anchor="middle" style="font-size:12.5px">GraphQL, id latest</text>
+<text x="275.0" y="260.1" text-anchor="middle" style="font-size:12.5px">content)</text>
+</g>
+<g class="lens__node on" data-n="sub"><rect x="200" y="310" width="150" height="60" rx="10"></rect>
+<text x="275.0" y="336.7" text-anchor="middle" style="font-size:12.5px">Subscription</text>
+<text x="275.0" y="352.3" text-anchor="middle" style="font-size:12.5px">(event)</text>
+</g>
+<g class="lens__node on" data-n="t1"><rect x="10" y="410" width="150" height="60" rx="10"></rect>
+<text x="85.0" y="444.5" text-anchor="middle" style="font-size:12.5px">Topic 1</text>
+</g>
+<g class="lens__node on" data-n="t2"><rect x="200" y="410" width="150" height="60" rx="10"></rect>
+<text x="275.0" y="444.5" text-anchor="middle" style="font-size:12.5px">Topic 2</text>
+</g>
+<g class="lens__node on" data-n="pa"><rect x="10" y="510" width="150" height="60" rx="10"></rect>
+<text x="85.0" y="536.7" text-anchor="middle" style="font-size:12.5px">Channel A</text>
+<text x="85.0" y="552.3" text-anchor="middle" style="font-size:12.5px">Processor</text>
+</g>
+<g class="lens__node on" data-n="pb"><rect x="200" y="510" width="150" height="60" rx="10"></rect>
+<text x="275.0" y="536.7" text-anchor="middle" style="font-size:12.5px">Channel B</text>
+<text x="275.0" y="552.3" text-anchor="middle" style="font-size:12.5px">Processor</text>
+</g>
+<g class="lens__node" data-n="ca"><rect x="10" y="610" width="150" height="60" rx="10"></rect>
+<text x="85.0" y="644.5" text-anchor="middle" style="font-size:12.5px">Channel A</text>
+</g>
+<g class="lens__node" data-n="cb"><rect x="200" y="610" width="150" height="60" rx="10"></rect>
+<text x="275.0" y="644.5" text-anchor="middle" style="font-size:12.5px">Channel B</text>
+</g>
+</svg><p class="lens__say" data-say="" aria-live="polite">Both. The scheduler pulls from publish, then the event pushes the change out through the topics. Each processor reads its topic and pushes to its channel; Channel B pulls images back from publish.</p></section>
+    <section class="lens__sol has-focus" data-sol="s2" aria-label="Solution 2"><p class="lens__name">Solution 2 · experience fragments, SSG and Target</p><svg class="lens__svg lens__svg--wide" viewBox="0 0 730 352" role="img" aria-labelledby="s2-wide-t">
+<title id="s2-wide-t">Solution 2: AEM author experience fragments are published and also sent to Target. An email marketing static site generator reads the main fragment plus variations from publish, a mobile Markdown static site generator and the AEM site read from publish, and the AEM site renders the Target fragment client side through a4t.js.</title>
+<defs><marker id="s2-wide-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head"></path></marker><marker id="s2-wide-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head lens__head--on"></path></marker></defs>
+<path class="lens__edge" data-e="axf-pxf" d="M170 220 L280 220" style="--m:url(#s2-wide-a);--m-on:url(#s2-wide-b)"></path>
+<path class="lens__edge on" data-e="axf-tgt" d="M90 250 L90 310 L280 310" style="--m:url(#s2-wide-a);--m-on:url(#s2-wide-b)"></path>
+<path class="lens__edge on" data-e="email-pxf" d="M560 40 L360 40 L360 190" style="--m:url(#s2-wide-a);--m-on:url(#s2-wide-b)"></path>
+<path class="lens__edge on" data-e="mob-pxf" d="M560 130 L515 130 L515 205 L440 205" style="--m:url(#s2-wide-a);--m-on:url(#s2-wide-b)"></path>
+<path class="lens__edge on" data-e="aem-pxf" d="M560 235 L440 235" style="--m:url(#s2-wide-a);--m-on:url(#s2-wide-b)"></path>
+<path class="lens__edge on" data-e="aem-tgt" d="M640 250 L640 310 L440 310" style="--m:url(#s2-wide-a);--m-on:url(#s2-wide-b)"></path>
+<text class="lens__elabel on" data-e="email-pxf" x="460" y="32" text-anchor="middle">main + variations</text>
+<text class="lens__elabel on" data-e="aem-tgt" x="540" y="302" text-anchor="middle">a4t.js CSR</text>
+<g class="lens__node" data-n="axf"><rect x="10" y="190" width="160" height="60" rx="10"></rect>
+<text x="90.0" y="216.7" text-anchor="middle" style="font-size:12.5px">AEM Author</text>
+<text x="90.0" y="232.3" text-anchor="middle" style="font-size:12.5px">XFs</text>
+</g>
+<g class="lens__node" data-n="pxf"><rect x="280" y="190" width="160" height="60" rx="10"></rect>
+<text x="360.0" y="216.7" text-anchor="middle" style="font-size:12.5px">AEM Publish</text>
+<text x="360.0" y="232.3" text-anchor="middle" style="font-size:12.5px">XFs</text>
+</g>
+<g class="lens__node on" data-n="tgt"><rect x="280" y="280" width="160" height="60" rx="10"></rect>
+<text x="360.0" y="314.5" text-anchor="middle" style="font-size:12.5px">Target XFs</text>
+</g>
+<g class="lens__node on" data-n="email"><rect x="560" y="10" width="160" height="60" rx="10"></rect>
+<text x="640.0" y="36.7" text-anchor="middle" style="font-size:12.5px">Email Marketing</text>
+<text x="640.0" y="52.3" text-anchor="middle" style="font-size:12.5px">SSG</text>
+</g>
+<g class="lens__node on" data-n="mob"><rect x="560" y="100" width="160" height="60" rx="10"></rect>
+<text x="640.0" y="126.7" text-anchor="middle" style="font-size:12.5px">Mobile Markdown</text>
+<text x="640.0" y="142.3" text-anchor="middle" style="font-size:12.5px">SSG</text>
+</g>
+<g class="lens__node on" data-n="aem"><rect x="560" y="190" width="160" height="60" rx="10"></rect>
+<text x="640.0" y="224.5" text-anchor="middle" style="font-size:12.5px">AEM</text>
+</g>
+</svg><svg class="lens__svg lens__svg--tall" viewBox="0 0 365 400" role="img" aria-labelledby="s2-tall-t">
+<title id="s2-tall-t">Solution 2: AEM author experience fragments are published and also sent to Target. An email marketing static site generator reads the main fragment plus variations from publish, a mobile Markdown static site generator and the AEM site read from publish, and the AEM site renders the Target fragment client side through a4t.js.</title>
+<defs><marker id="s2-tall-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head"></path></marker><marker id="s2-tall-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head lens__head--on"></path></marker></defs>
+<path class="lens__edge" data-e="axf-pxf" d="M85 70 L85 210" style="--m:url(#s2-tall-a);--m-on:url(#s2-tall-b)"></path>
+<path class="lens__edge on" data-e="axf-tgt" d="M10 40 L3 40 L3 360 L10 360" style="--m:url(#s2-tall-a);--m-on:url(#s2-tall-b)"></path>
+<path class="lens__edge on" data-e="email-pxf" d="M205 40 L183 40 L183 222 L160 222" style="--m:url(#s2-tall-a);--m-on:url(#s2-tall-b)"></path>
+<path class="lens__edge on" data-e="mob-pxf" d="M205 140 L183 140 L183 222 L160 222" style="--m:url(#s2-tall-a);--m-on:url(#s2-tall-b)"></path>
+<path class="lens__edge on" data-e="aem-pxf" d="M205 248 L160 248" style="--m:url(#s2-tall-a);--m-on:url(#s2-tall-b)"></path>
+<path class="lens__edge on" data-e="aem-tgt" d="M280 270 L280 360 L160 360" style="--m:url(#s2-tall-a);--m-on:url(#s2-tall-b)"></path>
+<text class="lens__elabel on" data-e="email-pxf" x="192" y="92" text-anchor="middle">main +</text>
+<text class="lens__elabel on" data-e="email-pxf" x="192" y="106" text-anchor="middle">variations</text>
+<text class="lens__elabel on" data-e="aem-tgt" x="220" y="352" text-anchor="middle">a4t.js CSR</text>
+<g class="lens__node" data-n="axf"><rect x="10" y="10" width="150" height="60" rx="10"></rect>
+<text x="85.0" y="36.7" text-anchor="middle" style="font-size:12.5px">AEM Author</text>
+<text x="85.0" y="52.3" text-anchor="middle" style="font-size:12.5px">XFs</text>
+</g>
+<g class="lens__node" data-n="pxf"><rect x="10" y="210" width="150" height="60" rx="10"></rect>
+<text x="85.0" y="236.7" text-anchor="middle" style="font-size:12.5px">AEM Publish</text>
+<text x="85.0" y="252.3" text-anchor="middle" style="font-size:12.5px">XFs</text>
+</g>
+<g class="lens__node on" data-n="tgt"><rect x="10" y="330" width="150" height="60" rx="10"></rect>
+<text x="85.0" y="364.5" text-anchor="middle" style="font-size:12.5px">Target XFs</text>
+</g>
+<g class="lens__node on" data-n="email"><rect x="205" y="10" width="150" height="60" rx="10"></rect>
+<text x="280.0" y="36.7" text-anchor="middle" style="font-size:12.5px">Email Marketing</text>
+<text x="280.0" y="52.3" text-anchor="middle" style="font-size:12.5px">SSG</text>
+</g>
+<g class="lens__node on" data-n="mob"><rect x="205" y="110" width="150" height="60" rx="10"></rect>
+<text x="280.0" y="136.7" text-anchor="middle" style="font-size:12.5px">Mobile Markdown</text>
+<text x="280.0" y="152.3" text-anchor="middle" style="font-size:12.5px">SSG</text>
+</g>
+<g class="lens__node on" data-n="aem"><rect x="205" y="210" width="150" height="60" rx="10"></rect>
+<text x="280.0" y="244.5" text-anchor="middle" style="font-size:12.5px">AEM</text>
+</g>
+</svg><p class="lens__say" data-say="" aria-live="polite">Mostly pull. The two builds and the AEM site ask publish for fragments. The push is author sending fragments to Target, which the site then pulls in the browser.</p></section>
+    <section class="lens__sol has-focus" data-sol="s3" aria-label="Solution 3"><p class="lens__name">Solution 3 · one publish tier, many consumers</p><svg class="lens__svg lens__svg--wide" viewBox="0 0 730 462" role="img" aria-labelledby="s3-wide-t">
+<title id="s3-wide-t">Solution 3: content fragments, experience fragments and pages are each authored and published. Mobile App 1 reads published content fragments, Mobile App 2 reads content fragments and experience fragments as Markdown, and Site 1 and Site 2 read published pages.</title>
+<defs><marker id="s3-wide-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head"></path></marker><marker id="s3-wide-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head lens__head--on"></path></marker></defs>
+<path class="lens__edge" data-e="acf-pcf" d="M170 130 L280 130" style="--m:url(#s3-wide-a);--m-on:url(#s3-wide-b)"></path>
+<path class="lens__edge" data-e="axf-pxf" d="M170 220 L280 220" style="--m:url(#s3-wide-a);--m-on:url(#s3-wide-b)"></path>
+<path class="lens__edge" data-e="apg-ppg" d="M170 400 L280 400" style="--m:url(#s3-wide-a);--m-on:url(#s3-wide-b)"></path>
+<path class="lens__edge on" data-e="m1-pcf" d="M560 40 L360 40 L360 100" style="--m:url(#s3-wide-a);--m-on:url(#s3-wide-b)"></path>
+<path class="lens__edge on" data-e="m2-pcf" d="M560 125 L440 125" style="--m:url(#s3-wide-a);--m-on:url(#s3-wide-b)"></path>
+<path class="lens__edge on" data-e="m2-pxf" d="M560 145 L500 145 L500 220 L440 220" style="--m:url(#s3-wide-a);--m-on:url(#s3-wide-b)"></path>
+<path class="lens__edge on" data-e="s1-ppg" d="M560 310 L500 310 L500 390 L440 390" style="--m:url(#s3-wide-a);--m-on:url(#s3-wide-b)"></path>
+<path class="lens__edge on" data-e="s2-ppg" d="M560 410 L440 410" style="--m:url(#s3-wide-a);--m-on:url(#s3-wide-b)"></path>
+<text class="lens__elabel on" data-e="m2-pxf" x="508" y="190" text-anchor="start">Markdown</text>
+<g class="lens__node" data-n="acf"><rect x="10" y="100" width="160" height="60" rx="10"></rect>
+<text x="90.0" y="126.7" text-anchor="middle" style="font-size:12.5px">AEM Author</text>
+<text x="90.0" y="142.3" text-anchor="middle" style="font-size:12.5px">CFs</text>
+</g>
+<g class="lens__node" data-n="pcf"><rect x="280" y="100" width="160" height="60" rx="10"></rect>
+<text x="360.0" y="126.7" text-anchor="middle" style="font-size:12.5px">AEM Publish</text>
+<text x="360.0" y="142.3" text-anchor="middle" style="font-size:12.5px">CFs</text>
+</g>
+<g class="lens__node" data-n="axf"><rect x="10" y="190" width="160" height="60" rx="10"></rect>
+<text x="90.0" y="216.7" text-anchor="middle" style="font-size:12.5px">AEM Author</text>
+<text x="90.0" y="232.3" text-anchor="middle" style="font-size:12.5px">XFs</text>
+</g>
+<g class="lens__node" data-n="pxf"><rect x="280" y="190" width="160" height="60" rx="10"></rect>
+<text x="360.0" y="216.7" text-anchor="middle" style="font-size:12.5px">AEM Publish</text>
+<text x="360.0" y="232.3" text-anchor="middle" style="font-size:12.5px">XFs</text>
+</g>
+<g class="lens__node" data-n="apg"><rect x="10" y="370" width="160" height="60" rx="10"></rect>
+<text x="90.0" y="396.7" text-anchor="middle" style="font-size:12.5px">AEM Author</text>
+<text x="90.0" y="412.3" text-anchor="middle" style="font-size:12.5px">Pages</text>
+</g>
+<g class="lens__node" data-n="ppg"><rect x="280" y="370" width="160" height="60" rx="10"></rect>
+<text x="360.0" y="396.7" text-anchor="middle" style="font-size:12.5px">AEM Publish</text>
+<text x="360.0" y="412.3" text-anchor="middle" style="font-size:12.5px">Pages</text>
+</g>
+<g class="lens__node on" data-n="m1"><rect x="560" y="10" width="160" height="60" rx="10"></rect>
+<text x="640.0" y="44.5" text-anchor="middle" style="font-size:12.5px">Mobile App 1</text>
+</g>
+<g class="lens__node on" data-n="m2"><rect x="560" y="100" width="160" height="60" rx="10"></rect>
+<text x="640.0" y="134.5" text-anchor="middle" style="font-size:12.5px">Mobile App 2</text>
+</g>
+<g class="lens__node on" data-n="s1"><rect x="560" y="280" width="160" height="60" rx="10"></rect>
+<text x="640.0" y="314.5" text-anchor="middle" style="font-size:12.5px">Site 1</text>
+</g>
+<g class="lens__node on" data-n="s2"><rect x="560" y="370" width="160" height="60" rx="10"></rect>
+<text x="640.0" y="404.5" text-anchor="middle" style="font-size:12.5px">Site 2</text>
+</g>
+<text class="lens__note" x="365" y="455" text-anchor="middle">Note on the board: pages have XFs and CFs. XFs have CFs.</text>
+</svg><svg class="lens__svg lens__svg--tall" viewBox="0 0 364 450" role="img" aria-labelledby="s3-tall-t">
+<title id="s3-tall-t">Solution 3: content fragments, experience fragments and pages are each authored and published. Mobile App 1 reads published content fragments, Mobile App 2 reads content fragments and experience fragments as Markdown, and Site 1 and Site 2 read published pages.</title>
+<defs><marker id="s3-tall-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head"></path></marker><marker id="s3-tall-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head lens__head--on"></path></marker></defs>
+<path class="lens__edge" data-e="acf-pcf" d="M112 124 L128 124" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge" data-e="axf-pxf" d="M112 210 L128 210" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge" data-e="apg-ppg" d="M112 382 L128 382" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge on" data-e="m1-pcf" d="M252 38 L182 38 L182 96" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge on" data-e="m2-pcf" d="M252 116 L236 116" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge on" data-e="m2-pxf" d="M252 136 L244 136 L244 210 L236 210" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge on" data-e="s1-ppg" d="M252 296 L244 296 L244 374 L236 374" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge on" data-e="s2-ppg" d="M252 392 L236 392" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<text class="lens__elabel on" data-e="m2-pxf" x="300" y="172" text-anchor="middle">Markdown</text>
+<g class="lens__node" data-n="acf"><rect x="4" y="96" width="108" height="56" rx="10"></rect>
+<text x="58.0" y="121.0" text-anchor="middle" style="font-size:11.5px">AEM Author</text>
+<text x="58.0" y="135.3" text-anchor="middle" style="font-size:11.5px">CFs</text>
+</g>
+<g class="lens__node" data-n="pcf"><rect x="128" y="96" width="108" height="56" rx="10"></rect>
+<text x="182.0" y="121.0" text-anchor="middle" style="font-size:11.5px">AEM Publish</text>
+<text x="182.0" y="135.3" text-anchor="middle" style="font-size:11.5px">CFs</text>
+</g>
+<g class="lens__node" data-n="axf"><rect x="4" y="182" width="108" height="56" rx="10"></rect>
+<text x="58.0" y="207.0" text-anchor="middle" style="font-size:11.5px">AEM Author</text>
+<text x="58.0" y="221.3" text-anchor="middle" style="font-size:11.5px">XFs</text>
+</g>
+<g class="lens__node" data-n="pxf"><rect x="128" y="182" width="108" height="56" rx="10"></rect>
+<text x="182.0" y="207.0" text-anchor="middle" style="font-size:11.5px">AEM Publish</text>
+<text x="182.0" y="221.3" text-anchor="middle" style="font-size:11.5px">XFs</text>
+</g>
+<g class="lens__node" data-n="apg"><rect x="4" y="354" width="108" height="56" rx="10"></rect>
+<text x="58.0" y="379.0" text-anchor="middle" style="font-size:11.5px">AEM Author</text>
+<text x="58.0" y="393.3" text-anchor="middle" style="font-size:11.5px">Pages</text>
+</g>
+<g class="lens__node" data-n="ppg"><rect x="128" y="354" width="108" height="56" rx="10"></rect>
+<text x="182.0" y="379.0" text-anchor="middle" style="font-size:11.5px">AEM Publish</text>
+<text x="182.0" y="393.3" text-anchor="middle" style="font-size:11.5px">Pages</text>
+</g>
+<g class="lens__node on" data-n="m1"><rect x="252" y="10" width="108" height="56" rx="10"></rect>
+<text x="306.0" y="35.0" text-anchor="middle" style="font-size:11.5px">Mobile</text>
+<text x="306.0" y="49.3" text-anchor="middle" style="font-size:11.5px">App 1</text>
+</g>
+<g class="lens__node on" data-n="m2"><rect x="252" y="96" width="108" height="56" rx="10"></rect>
+<text x="306.0" y="121.0" text-anchor="middle" style="font-size:11.5px">Mobile</text>
+<text x="306.0" y="135.3" text-anchor="middle" style="font-size:11.5px">App 2</text>
+</g>
+<g class="lens__node on" data-n="s1"><rect x="252" y="268" width="108" height="56" rx="10"></rect>
+<text x="306.0" y="300.1" text-anchor="middle" style="font-size:11.5px">Site 1</text>
+</g>
+<g class="lens__node on" data-n="s2"><rect x="252" y="354" width="108" height="56" rx="10"></rect>
+<text x="306.0" y="386.1" text-anchor="middle" style="font-size:11.5px">Site 2</text>
+</g>
+<text class="lens__note" x="182" y="444" text-anchor="middle">Pages have XFs and CFs. XFs have CFs.</text>
+</svg><p class="lens__say" data-say="" aria-live="polite">Pull. Every app and site asks publish for what it needs, when it needs it.</p></section>
+  </div>
+  <details class="lens__all"><summary>All six, side by side</summary>
+  <div class="table-wrap"><table class="data lens__table">
+  <thead><tr><th scope="col">Consideration</th><th scope="col">Solution 1</th><th scope="col">Solution 2</th><th scope="col">Solution 3</th></tr></thead>
+  <tbody>
+  <tr data-c="publish"><th scope="row">Publishing pattern</th>
+   <td data-sol="s1" data-n="acf pcf sch sub" data-e="acf-pcf sch-pcf sch-sub">Authors publish content fragments. A scheduler then finds the latest updates on publish and sends them to a subscription event.</td>
+   <td data-sol="s2" data-n="axf pxf tgt" data-e="axf-pxf axf-tgt">Authors publish experience fragments to Target and to AEM publish.</td>
+   <td data-sol="s3" data-n="acf pcf axf pxf apg ppg" data-e="acf-pcf axf-pxf apg-ppg">Three publish streams side by side: content fragments, experience fragments and pages.</td></tr>
+  <tr data-c="pushpull" class="on"><th scope="row">Push vs pull</th>
+   <td data-sol="s1" data-n="sch sub t1 t2 pa pb" data-e="sch-pcf sch-sub sub-t1 sub-t2 pa-t1 pb-t2 pa-ca pb-cb pb-pcf">Both. The scheduler pulls from publish, then the event pushes the change out through the topics. Each processor reads its topic and pushes to its channel; Channel B pulls images back from publish.</td>
+   <td data-sol="s2" data-n="email mob aem tgt" data-e="email-pxf mob-pxf aem-pxf axf-tgt aem-tgt">Mostly pull. The two builds and the AEM site ask publish for fragments. The push is author sending fragments to Target, which the site then pulls in the browser.</td>
+   <td data-sol="s3" data-n="m1 m2 s1 s2" data-e="m1-pcf m2-pcf m2-pxf s1-ppg s2-ppg">Pull. Every app and site asks publish for what it needs, when it needs it.</td></tr>
+  <tr data-c="event"><th scope="row">API vs event driven</th>
+   <td data-sol="s1" data-n="sch sub t1 t2" data-e="sch-pcf sch-sub sub-t1 sub-t2">Event driven after one API call. The scheduler queries GraphQL, then everything downstream reacts to the subscription, the event hub and topics pattern.</td>
+   <td data-sol="s2" data-n="email mob aem" data-e="email-pxf mob-pxf aem-pxf aem-tgt">API. Each consumer calls publish or Target directly.</td>
+   <td data-sol="s3" data-n="m1 m2 s1 s2" data-e="m1-pcf m2-pcf m2-pxf s1-ppg s2-ppg">API. There are no events on this board.</td></tr>
+  <tr data-c="render"><th scope="row">CSR vs SSR vs SSG</th>
+   <td data-sol="s1" data-n="pa pb" data-e="pa-ca pb-cb">Not labeled on the board. Each channel processor owns what its channel gets.</td>
+   <td data-sol="s2" data-n="email mob aem tgt" data-e="aem-tgt">Labeled: email and mobile are SSG, generated ahead of time at compile time. Target is client-side rendering: the browser calls Target and renders the content.</td>
+   <td data-sol="s3" data-n="m1 m2 s1 s2" data-e="">Not labeled on the board. Each app and site still has to pick one.</td></tr>
+  <tr data-c="data"><th scope="row">Data type</th>
+   <td data-sol="s1" data-n="sch pcf" data-e="sch-pcf">GraphQL over content fragments, so JSON.</td>
+   <td data-sol="s2" data-n="email mob" data-e="email-pxf mob-pxf">The mobile build works in Markdown. The email build takes the main fragment plus its variations.</td>
+   <td data-sol="s3" data-n="m1 m2 s1 s2" data-e="m2-pxf s1-ppg s2-ppg m1-pcf">Mixed on one publish tier: Mobile App 1 reads content fragments with GraphQL, Mobile App 2 reads fragments as Markdown, and the sites read pages as HTML.</td></tr>
+  <tr data-c="upstream"><th scope="row">Upstream automation</th>
+   <td data-sol="s1" data-n="up acf" data-e="up-acf">An upstream planning tool, maybe an Azure service or a marketing planning tool, creates content fragments in AEM author.</td>
+   <td data-sol="s2" data-n="" data-e="">None on this board. Content starts in AEM author.</td>
+   <td data-sol="s3" data-n="" data-e="">None on this board. Content starts in AEM author.</td></tr>
+  </tbody></table></div></details>
+  <figcaption>Redrawn from my board, with the same boxes, labels and arrow directions, so it reads on a phone. Where the board doesn't label something, the note under the diagram says so.</figcaption>
+</figure>
+<p class="watch"><span class="watch__label">Watch this part</span><a href="https://youtu.be/-pquHqafwFA?t=300"><span class="watch__t">5:00</span> The six considerations</a></p>
+
+<h2 id="more">6. Six more considerations that don't fit in a diagram<a class="heading-link" href="#more" aria-label="Link to this section: 6. Six more considerations that don't fit in a diagram">#</a></h2>
+<p>A few other considerations didn't get a diagram.</p>
+<p>Modular vs page. With modular content, you produce content at the module level and don't really touch the page; the page is set up to pull in modules. In a true modular content perspective, modules are self-identifying and make themselves available. They can be used on many pages and many channels, they may have a go-live and a go-off time, and they might be made for specific campaigns. The page is more of a channel-specific concept. Large, true headless implementations think of content as modular, while more traditional headless implementations still have pages, and modules get added to them. The biggest difference: in a true modular implementation, modules are the only thing marketers modify, and pages pull in the modules automatically.</p>
+<p>Location of personalization and classification. There are two places it's generally done. The first is the CMS, AEM, where authors create the content and tag it with the right type. The second, and more common, is Adobe Target or a similar system.</p>
+<p>Taxonomy. This is a very large topic in headless. It probably deserves its own video.</p>
+<p>Explicit content versioning and cutover. Some content is marketing content, and that's what AEM is used to. As soon as you get into the headless world, some content is legal statements and insurance forms. That isn't usually considered marketing content, but it's managed in AEM. It carries legal impact that marketing content doesn't, and sometimes it needs a very strict review process, not only for code but for content.</p>
+<p>Thorough content validation through CI/CD. Sometimes content is built within the CI/CD pipeline, so the content is reviewed and processed by CI/CD as well.</p>
+<p>Hybrid: sites plus headless. Sites and headless work really well together in a hybrid pattern, where you use AEM for headful content as well as headless content. Solution 3 is that pattern.</p>
+<p>A month before the video I'd written down my take on going headless: content fragments with the Universal Editor have a strong omnichannel story, but they can be overkill if you're not integrating across multiple touchpoints. That's in <a href="/writing/2025-06-04-seven-aem-capabilities-tradeoffs/">Making sense of seven AEM capabilities</a>.</p>
+<p class="watch"><span class="watch__label">Watch this part</span><a href="https://youtu.be/-pquHqafwFA?t=382"><span class="watch__t">6:22</span> Modular vs page</a><a href="https://youtu.be/-pquHqafwFA?t=457"><span class="watch__t">7:37</span> Personalization and taxonomy</a><a href="https://youtu.be/-pquHqafwFA?t=488"><span class="watch__t">8:08</span> Cutover, CI/CD and hybrid</a></p>
+
+<h2 id="next">Later work on caching and Adobe's CDN<a class="heading-link" href="#next" aria-label="Link to this section: Later work on caching and Adobe's CDN">#</a></h2>
+<p>These three diagrams are about getting content out of AEM. Later articles picked up from there: in September 2025, caching at every layer between publish and the browser, and a year later, running code on Adobe's CDN itself. Both are linked at the top of this page.</p>
+<section class="article-related" aria-labelledby="related"><h2 id="related">Related</h2><ol class="row-list"><li><span class="row-list__kind">Article</span><span class="row-list__title"><a href="/writing/2025-05-28-aem-headless-when-frontend-teams-lead/">Why AEM Headless Makes Sense When Frontend Teams Lead</a></span><span class="row-list__note">The May 2025 piece that left omnichannel for later.</span></li><li><span class="row-list__kind">Article</span><span class="row-list__title"><a href="/writing/2025-09-01-aem-caching-production-architectures/">AEM Caching in Production</a></span><span class="row-list__note">Following the cache headers from publish to the browser.</span></li><li><span class="row-list__kind">Article</span><span class="row-list__title"><a href="/writing/2025-06-04-seven-aem-capabilities-tradeoffs/">Making Sense of Seven AEM Capabilities</a></span><span class="row-list__note">Headless, Sites and Edge Delivery options side by side.</span></li></ol>
+<aside class="author-box"><span class="avatar" aria-hidden="true">JJ</span><div><p class="author-box__name">Jack Jin</p><p class="author-box__role">Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.</p><p class="author-box__links"><a href="/portfolio/">Portfolio</a> <a href="/talks/">Talks</a> <a href="https://github.com/jackzhaojin">GitHub</a></p></div></aside></section>
+</div><aside class="article-rail"><details class="rail" open=""><summary>On this page</summary><div class="rail__progress" aria-hidden="true"><span style="transform: scaleX(0);"></span></div><nav aria-label="Article sections"><ol class="rail__list"><li><a class="rail__plain" href="#changed" aria-current="true"><span class="rail__text"><span class="rail__num">First</span><span class="rail__title">What changed since 2025</span></span></a></li><li><a href="#goal"><img class="rail__thumb" src="images/thumb-goal.png" alt="" width="72" height="46" loading="lazy"><span class="rail__text"><span class="rail__num">Part 1</span><span class="rail__title">One AEM, many channels</span></span></a></li><li><a href="#solution-1"><img class="rail__thumb" src="images/thumb-solution-1.png" alt="" width="72" height="46" loading="lazy"><span class="rail__text"><span class="rail__num">Part 2</span><span class="rail__title">Solution 1, fragments and events</span></span></a></li><li><a href="#solution-2"><img class="rail__thumb" src="images/thumb-solution-2.png" alt="" width="72" height="46" loading="lazy"><span class="rail__text"><span class="rail__num">Part 3</span><span class="rail__title">Solution 2, fragments to Target</span></span></a></li><li><a href="#solution-3"><img class="rail__thumb" src="images/thumb-solution-3.png" alt="" width="72" height="46" loading="lazy"><span class="rail__text"><span class="rail__num">Part 4</span><span class="rail__title">Solution 3, one publish tier</span></span></a></li><li><a href="#lens"><img class="rail__thumb" src="images/thumb-considerations.png" alt="" width="72" height="46" loading="lazy"><span class="rail__text"><span class="rail__num">Part 5</span><span class="rail__title">Six considerations compared</span></span></a></li><li><a class="rail__plain" href="#more"><span class="rail__text"><span class="rail__num">Part 6</span><span class="rail__title">Six more without a diagram</span></span></a></li><li><a class="rail__plain" href="#next"><span class="rail__text"><span class="rail__num">Wrap-up</span><span class="rail__title">Later work on caching</span></span></a></li></ol></nav><div class="rail__links"><a href="#video">Watch the video, 9:13</a><a href="https://youtu.be/-pquHqafwFA">On YouTube</a></div></details></aside></div></article></main>
+<footer class="site-footer compact-footer"><div class="container footer-row"><p>© 2026 Jack Jin <span class="muted">Columbus, Ohio</span></p><nav aria-label="Profile links"><a href="https://www.accenture.com/">Accenture</a><a href="https://www.linkedin.com/in/jackjin" rel="me">LinkedIn</a><a href="https://github.com/jackzhaojin" rel="me">GitHub</a><a href="/certifications/">Certifications</a></nav></div></footer><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;93cea8603f22407485526ee7e0d60f0f&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+
+</body></html>

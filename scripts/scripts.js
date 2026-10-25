@@ -102,6 +102,22 @@ function buildWidgetAutoBlocks(main) {
 }
 
 /**
+ * A YouTube link alone in a default-content paragraph becomes a figure block (the video), so
+ * authors never build an embed table.
+ * @param {Element} main The container element
+ */
+function buildVideoAutoBlocks(main) {
+  main.querySelectorAll(':scope > div > p').forEach((p) => {
+    const links = p.querySelectorAll('a[href]');
+    if (links.length !== 1 || p.textContent.trim() !== links[0].textContent.trim()) return;
+    if (!/(youtube(-nocookie)?\.com\/(embed\/|watch\?v=)|youtu\.be\/)[\w-]{11}/.test(links[0].href)) return;
+    const spot = document.createComment('video');
+    p.before(spot);
+    spot.replaceWith(buildBlock('figure', [[{ elems: [p] }]]));
+  });
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
@@ -125,6 +141,7 @@ function buildAutoBlocks(main) {
       });
     }
     buildWidgetAutoBlocks(main);
+    buildVideoAutoBlocks(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

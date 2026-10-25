@@ -1,0 +1,63 @@
+version: 1
+indices:
+  default:
+    include:
+      - '/**'
+    exclude:
+      - '/nav'
+      - '/footer'
+      - '/**/nav*'
+      - '/**/footer*'
+      - '/fragments/**'
+      - '/drafts/**'
+    target: /query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, 'content')
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, 'content'), 'https:\/\/[^/]+(\/.*)')
+      lastModified:
+        select: none
+        value: parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, 'content')
+  writing:
+    include:
+      - '/writing/**'
+    exclude:
+      - '/writing/index'
+    target: /writing.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, 'content')
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, 'content'), 'https:\/\/[^/]+(\/.*)')
+      publication-date:
+        select: head > meta[name="publication-date"]
+        value: attribute(el, 'content')
+      updated-date:
+        select: head > meta[name="updated-date"]
+        value: attribute(el, 'content')
+      topics:
+        select: head > meta[name="topics"]
+        value: attribute(el, 'content')
+      read-time:
+        select: head > meta[name="read-time"]
+        value: attribute(el, 'content')
+      video-length:
+        select: head > meta[name="video-length"]
+        value: attribute(el, 'content')
+      lastModified:
+        select: none
+        value: parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')

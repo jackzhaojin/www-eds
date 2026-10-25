@@ -1,0 +1,620 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:41:14.615Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+  "url": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:41:14.615Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/",
+  "title": "STAR Story Generator on Azure: Prompt and JSON Parser | Jack Jin",
+  "description": "How my STAR story generator on Azure Functions prompts GPT-4o-mini for JSON, parses the reply with a fallback, and the one reply that slips past validation.",
+  "og": {
+    "title": "STAR Story Generator on Azure: Prompt and JSON Parser | Jack Jin",
+    "description": "How my STAR story generator on Azure Functions prompts GPT-4o-mini for JSON, parses the reply with a fallback, and the one reply that slips past validation.",
+    "image": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "A STAR Story Generator on Azure: Prompting GPT-4o-mini for JSON and Parsing What Comes Back"
+    },
+    {
+      "tag": "h2",
+      "text": "What changed since I wrote this#"
+    },
+    {
+      "tag": "h2",
+      "text": "1. What the app does and how it's wired#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. How the prompt asks for a STAR story#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. Why the parser has a fallback, and the reply that slips past it#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. How five AI coding tools ranked in April 2025#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "STAR story generator on Azure",
+    "By Jack Jin · April 13, 2025 · Updated October 4, 2026 · 7 min read",
+    "The STAR Story Generator turns feedback into STAR stories (Situation, Task, Action, Result) with GPT-4o-mini on Azure AI Foundry, served from one Azure Functions app. This walks through the prompt that pins down each part of a story, the parser that copes when the model doesn't send clean JSON, and one reply that gets past its validation. I vibe coded it in a day in April 2025 with five AI tools, and how they ranked is at the end.",
+    "First published as a LinkedIn article on April 13, 2025. Rewritten for this site in October 2026. Code: azure-star-generator at da712d5, the last commit of that Sunday.",
+    "I came back to the repo twice in 2026. In April I gave the page a loading state, an error banner instead of a browser alert, and a better copy button (98bf9ea). In May I added GitHub Actions: a build and test run on every push, and a deploy to the Function App that signs in to Azure with OIDC instead of a stored password (c1cf6b4). Both workflows passed on May 9, 2026. That passwordless pattern is the subject of my June 2025 article on Azure RBAC for AI agents.",
+    "The tool ranking below is a snapshot of April 2025, and I've left it as I wrote it. The tools have moved a lot since. For a newer comparison, see four frontier models given one prompt, from July 2026.",
+    "The app takes feedback you've received and writes STAR stories from it, the kind you'd prepare for an interview or a self-review. You upload a CSV of feedback, or flip a toggle to use the sample file, which is fictional feedback for a UX designer. Then you pick who the story is for: your top five to prepare, leadership, technical, sales, a colleague, a client, an employer, or a custom prompt. GPT-4o-mini writes the stories and the page lets you step through them.",
+    "All of it runs on one Azure Functions app with three HTTP functions. One serves the page, its CSS and its scripts. One parses the CSV. One generates the stories, and that one is split into a controller, a service, a prompt builder, an Azure OpenAI client and a response processor. That split came partway through the build, in a commit called \"Refactoring the open ai integration into an MVC pattern\".",
+    "Load the pageA GET returns the HTML; the same function serves the CSS and each script by query string.DisplayStoryUIHtml",
+    "Get the feedbackYour upload, or the sample CSV from a public Blob Storage container.browser",
+    "Parse the CSVA POST turns CSV text into rows with Date, Source, Feedback Type, Tags and the feedback itself.ProcessCsvData",
+    "Build the promptUp to 50 rows, the STAR rules, the audience guideline, a JSON example.GenerateStarStories",
+    "Call GPT-4o-miniA bearer token from DefaultAzureCredential, no API key in the request.openAIDao.js",
+    "Parse and validateJSON first, a text fallback second, then every story checked for all four parts.responseProcessor.js",
+    "One detail from the code: the Azure OpenAI client authenticates with DefaultAzureCredential and a bearer token. The README still lists an AZURE_OPENAI_KEY setting, and the code reads it, but nothing uses it. I picked GPT-4o-mini for cost. In April 2025 I noted it at $0.15 per million input tokens; check Azure's pricing page for today's number. My Azure takeaway at the time: Azure AI Foundry's integration with base and fine-tuned models made deploying this surprisingly straightforward.",
+    "The prompt does most of the work. Its base spells out each part of STAR, down to the sentence count:",
+    "Then the prompt gets three more pieces. The audience you picked adds one guideline, for example \"Focus on STAR stories that emphasize my ability to lead and inspire others\" for leadership. Each feedback row goes in as a numbered entry, capped at 50 so the prompt stays a reasonable size. And the end of the prompt asks for a JSON array, shows two complete example stories, and says the reply must be \"directly parseable by JSON.parse() without any modifications\".",
+    "The JSON example was a late fix. The commit where the app first worked end to end says it \"could use a JSON as an example of a story\", and the next commit, \"Backend Updates with Action and better Prompting\", added the example and the bulleted action list.",
+    "The prompt also tells the model to \"extrapolate reasonable details\" and to quantify results where it can. The stories sound better for it. They can also carry numbers your feedback never mentioned. Check them against what really happened.",
+    "Asking for JSON doesn't guarantee JSON. A model can wrap the array in a friendly sentence, put it in a code fence, or skip JSON and write labeled paragraphs. So the response processor tries three things in order: cut from the first [ to the last ], run JSON.parse, and if that throws, fall back to a text parser that looks for Situation, Task, Action and Result labels. Whatever comes out is validated, and a story missing any part is dropped.",
+    "Below, that same code runs in your browser. Pick an example reply on the left and the right side shows which of the four steps it went through and what the API would send back. It starts on \"JSON inside prose\", the everyday case the bracket cut exists for. The last example, a \"[Note]\" before the JSON, is the one that gets through validation as junk.",
+    "Pick a model reply",
+    "The reply from the model (editable)",
+    "The replies are examples written for this page, not real model output.",
+    "What the processor does",
+    "1. Cut to the bracketsCut characters 37 to 547, from the first [ to the last ].",
+    "2. JSON.parseParsed an array of 1 item(s).",
+    "3. Text fallbackNot needed.",
+    "4. Validate each storyKept 1.",
+    "HTTP 200 · success: true · 1 story",
+    "The model added a sentence and a code fence. Cutting to the brackets strips them, so JSON.parse still works.",
+    "Story 1",
+    "Situation A new client team had little experience with the design tools we used.",
+    "Task I was asked to get them productive before the first design review.",
+    "Action",
+    "Ran two hands-on training sessions.",
+    "Paired with each designer on a real screen.",
+    "Wrote a one-page guide to our file conventions.",
+    "Result The team presented their own screens at the first review. Questions to our team dropped in the following weeks. The guide was reused for the next onboarding.",
+    "Porting the parser to this page turned up that last case, and it's worth knowing. If the reply has a bracket before the JSON, like \"[Note]\", the cut grabs the wrong span, JSON.parse fails, and the text fallback finds the words \"situation\" and \"task\" inside the JSON keys. The API returns 200 with a story made of JSON fragments. Validation only checks that each part exists.",
+    "I vibe coded the app, meaning I described what I wanted and let AI tools write the code. I used five of them and ranked them on four things: functional vibe, refactoring, handling outside context, and getting it right with minimal feedback. This is the ranking as I wrote it on April 13, 2025. The tools have changed a lot since, so read it as a snapshot.",
+    "The tool I ranked first was the one that could see the whole codebase and work in my terminal, and it was also the one that needed the least handholding. The repo's README lists four of the tools and what each one did.",
+    "Have you tried vibe coding something like this yet? I'd like to hear how it went.",
+    "PortfolioAzure STAR GeneratorWhere this project sits in the timeline of what I built next.",
+    "ArticleAzure RBAC and CI/CD for AI coding agentsTwo months later: the passwordless patterns, written up properly.",
+    "ArticleAn AI-coded Next.js agent, release 1.0The next project, where I wrote none of the code.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Since 2025What changed",
+    "Part 1What it does, how it's wired",
+    "Part 2How the prompt asks for STAR",
+    "Part 3The parser fallback, and its gap",
+    "Part 4Five AI tools, ranked April 2025"
+  ],
+  "codeBlocks": [
+    "const basePrompt = `You are an expert in crafting professional STAR (Situation, Task, Action, Result) stories. \n    Create compelling and authentic narratives based on the following feedback data that I've received.\n    \n    Each story must follow this specific structure:\n    - Situation: Exactly ONE concise sentence that sets the context with specific details about the challenge or opportunity. Be specific and quantitative where possible.\n    - Task: ONE to TWO sentences clearly explaining my specific responsibilities or objectives in this situation. Focus on what I needed to accomplish.\n    - Action: A BULLETED LIST of specific steps I took, focusing on MY individual contribution even in team settings. Include 4-6 concrete actions. Feel free to extrapolate reasonable details based on the information provided.\n    - Result: EXACTLY THREE sentences quantifying the positive outcomes where possible and linking them directly to my actions. The first sentence should focus on immediate impacts, the second on metrics or quantifiable outcomes, and the third on longer-term or broader implications.\n    IMPORTANT: Each story must strictly adhere to this structure. Do not deviate from the format or omit any required elements. Ensure that the Situation, Task, Action, and Result are clearly distinct and follow the specified guidelines.\n    Guidelines needs to be extrapolated, for example, if it's a sales topic we need to talk about revenue. If it's about technical we need to focus on result for a technical.\n    ${contextInfo.instructions}\n    ${contextInfo.audience}`;",
+    "function parseAIResponse(responseText) {\n    try {\n        // Try to extract JSON if it's wrapped in other text\n        let jsonText = responseText;\n        \n        // Look for JSON array brackets if the response contains other text\n        const jsonStartIndex = responseText.indexOf('[');\n        const jsonEndIndex = responseText.lastIndexOf(']');\n        \n        if (jsonStartIndex >= 0 && jsonEndIndex > jsonStartIndex) {\n            jsonText = responseText.substring(jsonStartIndex, jsonEndIndex + 1);\n        }\n        \n        // Parse the JSON\n        const stories = JSON.parse(jsonText);\n        \n        // Validate that we have an array\n        if (!Array.isArray(stories)) {\n            throw new Error('Response is not a valid array');\n        }\n        \n        return stories;\n    } catch (error) {\n        // Fallback to the text parsing method if JSON parsing fails\n        return parseAIResponseText(responseText);\n    }\n}"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "azure-star-generator",
+      "href": "https://github.com/jackzhaojin/azure-star-generator/tree/da712d5"
+    },
+    {
+      "label": "98bf9ea",
+      "href": "https://github.com/jackzhaojin/azure-star-generator/commit/98bf9ea"
+    },
+    {
+      "label": "c1cf6b4",
+      "href": "https://github.com/jackzhaojin/azure-star-generator/commit/c1cf6b4"
+    },
+    {
+      "label": "my June 2025 article on Azure RBAC for AI agents",
+      "href": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/"
+    },
+    {
+      "label": "four frontier models given one prompt",
+      "href": "/writing/2026-07-21-four-frontier-models-one-prompt/"
+    },
+    {
+      "label": "da712d5 on GitHub",
+      "href": "https://github.com/jackzhaojin/azure-star-generator/blob/da712d5/code/Functions/azure-star-generator-node-v1/src/services/promptBuilder.js#L18-L31"
+    },
+    {
+      "label": "da712d5 on GitHub",
+      "href": "https://github.com/jackzhaojin/azure-star-generator/blob/da712d5/code/Functions/azure-star-generator-node-v1/src/services/responseProcessor.js#L32-L58"
+    },
+    {
+      "label": "source at da712d5",
+      "href": "https://github.com/jackzhaojin/azure-star-generator/blob/da712d5/code/Functions/azure-star-generator-node-v1/src/services/responseProcessor.js"
+    },
+    {
+      "label": "Clean JSON",
+      "href": null
+    },
+    {
+      "label": "JSON inside prose",
+      "href": null
+    },
+    {
+      "label": "One result left empty",
+      "href": null
+    },
+    {
+      "label": "Plain text with labels",
+      "href": null
+    },
+    {
+      "label": "No story at all",
+      "href": null
+    },
+    {
+      "label": "A [Note] before the JSON (the gap)",
+      "href": null
+    },
+    {
+      "label": "Azure STAR Generator",
+      "href": "/portfolio/#ch-star"
+    },
+    {
+      "label": "Azure RBAC and CI/CD for AI coding agents",
+      "href": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/"
+    },
+    {
+      "label": "An AI-coded Next.js agent, release 1.0",
+      "href": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Since 2025What changed",
+      "href": "#what-changed"
+    },
+    {
+      "label": "Part 1What it does, how it's wired",
+      "href": "#built"
+    },
+    {
+      "label": "Part 2How the prompt asks for STAR",
+      "href": "#prompt"
+    },
+    {
+      "label": "Part 3The parser fallback, and its gap",
+      "href": "#parser"
+    },
+    {
+      "label": "Part 4Five AI tools, ranked April 2025",
+      "href": "#tools"
+    },
+    {
+      "label": "Code on GitHub",
+      "href": "https://github.com/jackzhaojin/azure-star-generator/tree/da712d5"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://github.com/jackzhaojin/azure-star-generator/tree/da712d5",
+    "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/#what-changed",
+    "https://github.com/jackzhaojin/azure-star-generator/commit/98bf9ea",
+    "https://github.com/jackzhaojin/azure-star-generator/commit/c1cf6b4",
+    "https://www.jackzhaojin.com/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/",
+    "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/",
+    "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/#built",
+    "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/images/star-ui.jpg",
+    "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/#prompt",
+    "https://github.com/jackzhaojin/azure-star-generator/blob/da712d5/code/Functions/azure-star-generator-node-v1/src/services/promptBuilder.js#L18-L31",
+    "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/#parser",
+    "https://github.com/jackzhaojin/azure-star-generator/blob/da712d5/code/Functions/azure-star-generator-node-v1/src/services/responseProcessor.js#L32-L58",
+    "https://github.com/jackzhaojin/azure-star-generator/blob/da712d5/code/Functions/azure-star-generator-node-v1/src/services/responseProcessor.js",
+    "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/#tools",
+    "https://www.jackzhaojin.com/portfolio/#ch-star",
+    "https://www.jackzhaojin.com/writing/2025-07-06-ai-coded-nextjs-agent-release-1/",
+    "https://github.com/jackzhaojin",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/images/star-ui.jpg",
+        "alt": "The STAR Story Generator page. Left: Upload Your Feedback, with a CSV drop zone, a toggle to use the fictional UX designer sample, and a dropdown set to Generate top 5 STAR stories to prepare. Right: a short explainer of the STAR method. Below: Your Professional Stories, story 1 of 5, with Situation, Task and a bulleted Action list.",
+        "w": 1200,
+        "h": 1023
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/images/thumb-ui.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/images/thumb-lab.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 3,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": []
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 7,
+    "mainTextLen": 13899,
+    "realImageCount": 3,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 2,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 0,
+      "thirdPartyScriptHosts": 2,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2025-04-13-vibe-coding-star-story-generator.png",
+  "renderedHtml": "pages/writing-2025-04-13-vibe-coding-star-story-generator.html",
+  "slots": {
+    "type": "article",
+    "headline": "A STAR Story Generator on Azure: Prompting GPT-4o-mini for JSON and Parsing What Comes Back",
+    "deck": "The STAR Story Generator turns feedback into STAR stories (Situation, Task, Action, Result) with GPT-4o-mini on Azure AI Foundry, served from one Azure Functions app. This walks through the prompt that pins down each part of a story, the parser that copes when the model doesn't send clean JSON, and one reply that gets past its validation. I vibe coded it in a day in April 2025 with five AI tools, and how they ranked is at the end.",
+    "byline": "By Jack Jin · April 13, 2025 · Updated October 4, 2026 · 7 min read",
+    "meta": {
+      "times": [
+        "April 13, 2025",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "image",
+      "src": "images/star-ui.jpg",
+      "alt": "The STAR Story Generator page. Left: Upload Your Feedback, with a CSV drop zone, a toggle to use the fictional UX designer sample, and a dropdown set to Generate top 5 STAR stories to prepare. Right: a short explainer of the STAR method. Below: Your Professional Stories, story 1 of 5, with Situation, Task and a bulleted Action list."
+    },
+    "body": {
+      "h2": [
+        "What changed since I wrote this",
+        "1. What the app does and how it's wired",
+        "2. How the prompt asks for a STAR story",
+        "3. Why the parser has a fallback, and the reply that slips past it",
+        "4. How five AI coding tools ranked in April 2025",
+        "Related"
+      ],
+      "figures": 5,
+      "codeBlocks": 2,
+      "tables": 2,
+      "embeds": 0
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "Azure STAR Generator",
+        "href": "/portfolio/#ch-star"
+      },
+      {
+        "title": "Azure RBAC and CI/CD for AI coding agents",
+        "href": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/"
+      },
+      {
+        "title": "An AI-coded Next.js agent, release 1.0",
+        "href": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 6,
+    "authorBox": true
+  }
+}

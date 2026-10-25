@@ -1,0 +1,4 @@
+[
+  { "question": "Q-IMPL-2", "answer": "Pixel parity through the replica flow; design changes only through inconsistency-register entries.", "option": 0, "by": "Jack Jin (migration brief, jackzhaojin.github.io/ai-docs/2026-10-24-eds-migration/start-here.md)", "at": "2026-10-24" },
+  { "question": "Q-OPS-1", "answer": "Cloudflare keeps fronting www; the 7 GitHub Pages project sites keep working under it.", "option": 0, "by": "Jack Jin (migration brief, start-here.md)", "at": "2026-10-24" }
+]

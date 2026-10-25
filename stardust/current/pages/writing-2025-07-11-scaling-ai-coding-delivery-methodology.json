@@ -1,0 +1,739 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:41:02.859Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2025-07-11-scaling-ai-coding-delivery-methodology",
+  "url": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:41:02.859Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/",
+  "title": "Scaling AI Coding: A Delivery Method for Teams | Jack Jin",
+  "description": "How to make AI coding repeatable for a delivery team: a PRD, a technical blueprint and an MDC task file, the AGENTS.md rules that bind them, and what changes.",
+  "og": {
+    "title": "Scaling AI Coding: A Delivery Method for Teams | Jack Jin",
+    "description": "How to make AI coding repeatable for a delivery team: a PRD, a technical blueprint and an MDC task file, the AGENTS.md rules that bind them, and what changes.",
+    "image": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "A 100% AI-Coded Next.js Agent, Part 3: Scaling AI Coding into a Delivery Method"
+    },
+    {
+      "tag": "h2",
+      "text": "Where this method went after July 2025#"
+    },
+    {
+      "tag": "h2",
+      "text": "1. Three documents tell the AI what, how and when#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. I replanned twice, and the commit history shows it#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. What stays the same as traditional delivery#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. What changes with AI on the team#"
+    },
+    {
+      "tag": "h2",
+      "text": "5. A sketch of a mixed team, and the leadership it needs#"
+    },
+    {
+      "tag": "h2",
+      "text": "What I learned, and the limits#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "AI-Coded Next.js Agent, Part 3",
+    "By Jack Jin · July 11, 2025 · Updated October 4, 2026 · 7 min read",
+    "How do you turn one person's AI coding experiment into delivery a team can repeat? On my AI-coded Next.js project it came down to three documents, a short set of rules that ties them to the agents, and the habits from traditional delivery that still hold. Here's what each one looked like, with the real files.",
+    "Three-part series",
+    "Part 1The four practices behind release 1.0",
+    "Part 2CI/CD, cloud identities and the architecture",
+    "Part 3Scaling the method to a delivery team",
+    "First published as a LinkedIn video on July 11, 2025. Rewritten for this site in October 2026. The documents quoted here are in shadow-pivot-ai-agentv2 at 75de1c3.",
+    "This was my first written method for AI delivery, and I've kept working on it. Later pieces go further on enabling a team with AI skills and patterns of work with AI. This page stays with what I wrote down in July 2025.",
+    "The AI needs three things to deliver consistently, and each one answers a different question.",
+    "The PRD, the product requirements document, is the what. On my project prd.md is the roadmap across releases and prd-1.0.md holds the release 1.0 requirements: the five pipeline steps, what's in scope and what's explicitly out. I spent about 15 to 30 minutes on the first version, and that wasn't enough. On a real project you'd spend far more than an hour figuring out what you're building and in what sequence.",
+    "The technical blueprint is the how. I call it the technical design document, TDD for short (not test-driven development, which I also used). It's the piece I added to what the YouTube tutorials taught, because AI built the same feature different ways until it had one. core-capabilities.md covers the App Router architecture, the step-based agent workflow, Azure access, the service and DAO layers, testing, and the prompt templates, with Mermaid diagrams the AI can read as text. Next to it is a summary of the commits for step 3.5, the feature built exactly the way I wanted every step built.",
+    "The MDC file is the when. Think of it like Jira or Azure DevOps, except the AI can change it: complete tasks, validate itself and check the boxes. release-1.0.mdc has phases, numbered tasks with complexity and effort, a user story per task, and a checklist the agent ticks off as it goes.",
+    "What ties the three together is AGENTS.md, the file the coding agents read first. The first version of the rule, in the file as of June 13, was two sentences:",
+    "By release 1.0 it had become a reading order and a protocol:",
+    "Two more rules make the trail readable: the task ID goes first in every commit message and pull request, and the agent updates the MDC file when it finishes.",
+    "Pick a request below to see how an agent applies those four lines. Whatever you ask, it ends up as one small task, ticked off in the MDC, with the task ID at the start of the commit. That's what kept the commit history readable, and the commits listed are the real ones from the repo.",
+    "Ask an agent to",
+    "Line 38I will only assign you bite-sized tasks (e.g., 3.2.3)",
+    "Line 39Complete only the assigned task - do NOT move to next tasks (3.2.4, 3.3.1, etc.)",
+    "Line 40Update the appropriate .mdc file when task is completed",
+    "Line 41Do NOT work on Release 1.1+ features until Release 1.0 is complete",
+    "What happens",
+    "Assigned: 3.2.4, Step 3: Spec Selection UI and Logic. Narrowed to 3.2.4. 3.3.1 waits for its own assignment.",
+    "Read in order: prd-1.0.md, release-1.0.mdc, AGENTS.md. The task lives in release-1.0.mdc.When done: tick it off in release-1.0.mdc, start the commit and the pull request with 3.2.4",
+    "What the repo shows for 3.2.4:",
+    "66d145c Jun 13 · 3.2.4 spec selection ui",
+    "On this project the agents and I read the same three files, checked into the codebase next to the code.",
+    "Like any real project, mine had to stop and replan. I replanned twice, partly because I changed direction and partly because I hadn't planned enough at the start. The commit history shows it:",
+    "June 7The first PRD, the first task file and AGENTS.md go in on the same day (36846ff, 9a4c7e3, bb7fd6a).",
+    "June 13First replan: the one task file becomes release-1.0.mdc and release-1.1.mdc, in my words a \"more agile format so I can understand each story better\" (14068e4).",
+    "June 15The technical blueprint expands into core-capabilities.md (47be8ba).",
+    "June 17Second replan: release 1.0 is cut back to Figma spec generation only, and everything else moves to release 1.2, 1.3 and a backlog, each with its own PRD or MDC (02ce865). Release 1.0 is tagged that night.",
+    "The second replan is the one I'd keep. I didn't want to throw away product ideas that were many releases out, so I kept them, prioritized them, and gave each release its own task file. It also cut release 1.0 down to Figma specs only, and it shipped the same day.",
+    "Most of what works with AI is what already works on a delivery project:",
+    "Don't skip steps. Just because AI can guess what you want doesn't mean you want it to. You still sit down and plan, still review requirements, and still go through a design phase or write a technical blueprint.",
+    "Slice the work. Breaking something large and complex into 30 or 50 bite-sized pieces is the same as an architect and a product owner breaking an epic into 30 stories. I do that every day, and it matters just as much with AI.",
+    "Build in sprints. The AI should build a working piece, the piece gets validated, then the next one. Like agile: build a part, test it, build the next part.",
+    "Review the output. In my day job I review my team's work to make sure we're still building toward the original vision. That doesn't change with AI. AI isn't necessarily a better engineer than the engineers I have, but we do need to agree on what we're building and how.",
+    "Reviewing each step is time consuming, and I'd still call it necessary. It also has to happen early. The AI is very good at reading what's already built and building more of the same, so a pattern you dislike gets copied unless you catch it on the first step.",
+    "A few things have no direct match in traditional delivery:",
+    "The tracker is a file the worker edits. The AI reads the MDC, does the task, checks the boxes and marks it complete. I read the same file to know where things stand.",
+    "The AI writes down what it did, so the next run can learn from it. The repo has 15 session folders in docs/ai-log, plus the step 3.5 commit summary that became part of the blueprint.",
+    "One agent can check another. I sometimes asked one agent to validate another agent's work, much like a peer code review. And when I wasn't sure how to test something, I asked it for manual test steps.",
+    "The person in the middle becomes a technical product manager, which Part 1 covers.",
+    "At the end of the Part 1 video I showed a diagram I'd drawn for fun. I called it kind of dystopian, but I think it's a good thought process for how a delivery team with AI on it could be organized:",
+    "Reading it top down: performance is measured for AI and people alike. An AI lead orchestrator and a human product lead share the top. Under them, AI orchestrators and a human product owner hand work to worker agents and human individual contributors, and everyone works from the same tools. Collaboration goes every direction, AI to AI, AI to human, human to human and human to AI. The note at the bottom says each worker, human or agent, gets only the context the work needs, as much as it can reasonably absorb.",
+    "Getting there is a leadership job. I've enabled AI for my teams on past projects, and the results have varied. As technical leaders we need to do more than enable, meaning give access. We need to guide: champion it, show the team what it can do, and make sure everyone uses it the same way so nobody goes out of bounds. The capability also gets better month after month, so the guidance has to keep up.",
+    "If you want reliable, consistent, piece-by-piece AI delivery, the three documents are non-negotiable to me: the what, the how and the when, checked into the codebase, with one rule file that tells every agent how to read them and how small a task to take.",
+    "Some limits. All of this came from one person building one app, over about two and a half weeks outside my project hours. The team picture is a diagram, not something this project ran. And the method itself kept changing after July 2025, as the pieces linked at the top show.",
+    "This closes the series. Part 1 has the four practices and Part 2 the pipelines and architecture.",
+    "PortfolioShadow Pivot: my first AI-coded appThe project chapter. This page is its methodology act.",
+    "PortfolioPostal Portal: a shipping product on two stacksThe same spec layer, PRD, tech spec and numbered tasks, on a later build.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Since 2025Where it went next",
+    "1What, how and when",
+    "2Replanned twice",
+    "3What stays the same",
+    "4What changes with AI",
+    "5A mixed team, and leadership",
+    "Wrap-upWhat I learned, and the limits"
+  ],
+  "codeBlocks": [
+    "We're on 1.0 at the moment, do not do 1.1 yet.\nAlso I will only ask you take on a bite size, if you finish the 1.2.3 (example) you're on, do not move onto 1.2.4 or 1.3.1.",
+    "### Development Guidelines\n**Reference Documents in Order:**\n1. **[PRD-1.0.md](prd-1.0.md)** - Understand current MVP scope and requirements\n2. **[Release-1.0.mdc](release-1.0.mdc)** - Find specific tasks and track progress\n3. **[AGENTS.md](AGENTS.md)** - Follow development standards (this document)\n**Task Assignment Protocol:**\n- I will only assign you bite-sized tasks (e.g., 3.2.3)\n- Complete only the assigned task - do NOT move to next tasks (3.2.4, 3.3.1, etc.)\n- Update the appropriate .mdc file when task is completed\n- Do NOT work on Release 1.1+ features until Release 1.0 is complete"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Part 1The four practices behind release 1.0",
+      "href": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+    },
+    {
+      "label": "Part 2CI/CD, cloud identities and the architecture",
+      "href": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/"
+    },
+    {
+      "label": "Part 3Scaling the method to a delivery team",
+      "href": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology/"
+    },
+    {
+      "label": "shadow-pivot-ai-agentv2",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/tree/75de1c3"
+    },
+    {
+      "label": "enabling a team with AI skills",
+      "href": "/writing/2026-04-12-two-ai-skills-team-enablement/"
+    },
+    {
+      "label": "patterns of work with AI",
+      "href": "/writing/2026-06-28-patterns-of-work/"
+    },
+    {
+      "label": "core-capabilities.md",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/docs/technical/blueprint/core-capabilities.md"
+    },
+    {
+      "label": "98f058b on GitHub",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/98f058b/AGENTS.md#L5-L7"
+    },
+    {
+      "label": "75de1c3 on GitHub",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/AGENTS.md#L31-L41"
+    },
+    {
+      "label": "lines 37 to 41",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/AGENTS.md#L37-L41"
+    },
+    {
+      "label": "One task: 3.2.3",
+      "href": null
+    },
+    {
+      "label": "Two in a row: 3.2.4, then 3.3.1",
+      "href": null
+    },
+    {
+      "label": "Next release: 1.1.1.1, Cypress",
+      "href": null
+    },
+    {
+      "label": "66d145c",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/66d145c"
+    },
+    {
+      "label": "36846ff",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/36846ff"
+    },
+    {
+      "label": "9a4c7e3",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/9a4c7e3"
+    },
+    {
+      "label": "bb7fd6a",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/bb7fd6a"
+    },
+    {
+      "label": "14068e4",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/14068e4"
+    },
+    {
+      "label": "47be8ba",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/47be8ba"
+    },
+    {
+      "label": "02ce865",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/02ce865"
+    },
+    {
+      "label": "docs/ai-log",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/tree/75de1c3/docs/ai-log"
+    },
+    {
+      "label": "Part 1",
+      "href": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/#part-5"
+    },
+    {
+      "label": "Part 1 video",
+      "href": "https://youtu.be/5cdnilROxbs?t=559"
+    },
+    {
+      "label": "Part 1",
+      "href": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+    },
+    {
+      "label": "Part 2",
+      "href": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/"
+    },
+    {
+      "label": "Shadow Pivot: my first AI-coded app",
+      "href": "/portfolio/#ch-shadow"
+    },
+    {
+      "label": "Postal Portal: a shipping product on two stacks",
+      "href": "/portfolio/#ch-postal"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Since 2025Where it went next",
+      "href": "#changed"
+    },
+    {
+      "label": "1What, how and when",
+      "href": "#part-1"
+    },
+    {
+      "label": "2Replanned twice",
+      "href": "#part-2"
+    },
+    {
+      "label": "3What stays the same",
+      "href": "#part-3"
+    },
+    {
+      "label": "4What changes with AI",
+      "href": "#part-4"
+    },
+    {
+      "label": "5A mixed team, and leadership",
+      "href": "#part-5"
+    },
+    {
+      "label": "Wrap-upWhat I learned, and the limits",
+      "href": "#results"
+    },
+    {
+      "label": "Part 1: Release 1.0",
+      "href": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+    },
+    {
+      "label": "Part 2: CI/CD and infrastructure",
+      "href": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/"
+    },
+    {
+      "label": "Code on GitHub",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/tree/75de1c3"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://www.jackzhaojin.com/writing/2025-07-06-ai-coded-nextjs-agent-release-1/",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/tree/75de1c3",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/#changed",
+    "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/",
+    "https://www.jackzhaojin.com/writing/2026-06-28-patterns-of-work/",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/#part-1",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/shot-prd.png",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/docs/technical/blueprint/core-capabilities.md",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/shot-blueprint.png",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/shot-mdc.png",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/98f058b/AGENTS.md#L5-L7",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/AGENTS.md#L31-L41",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/AGENTS.md#L37-L41",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/66d145c",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/#part-2",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/36846ff",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/9a4c7e3",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/bb7fd6a",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/14068e4",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/47be8ba",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/commit/02ce865",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/#part-3",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/#part-4",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/tree/75de1c3/docs/ai-log",
+    "https://www.jackzhaojin.com/writing/2025-07-06-ai-coded-nextjs-agent-release-1/#part-5",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/shot-agent-check.png",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/#part-5",
+    "https://youtu.be/5cdnilROxbs?t=559",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/board-org.png",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/#results",
+    "https://www.jackzhaojin.com/portfolio/#ch-shadow",
+    "https://www.jackzhaojin.com/portfolio/#ch-postal",
+    "https://github.com/jackzhaojin",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/shot-prd.png",
+        "alt": "prd-1.0.md on GitHub: the documentation structure linking the technical documentation, the technical blueprint, AGENTS.md, AI development logs and release 1.0 task management, then the key features of the MVP agent pipeline: design concept generation (3 to 5 concepts), design evaluation, parallel Figma spec generation (3 specs), spec selection and download artifacts, with no code generation and no Azure Blob Storage.",
+        "w": 1600,
+        "h": 1189
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/shot-blueprint.png",
+        "alt": "The core capabilities blueprint on GitHub, 430 lines: sections on Azure integration via DefaultAzureCredential, service and DAO layering with the design concept, evaluation and Figma spec services, service implementation best practices from step 3.5, and testing and quality assurance with the test folders for DAO, endpoints, services and UI.",
+        "w": 1600,
+        "h": 1209
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/shot-mdc.png",
+        "alt": "release-1.0.mdc on GitHub, lines 181 to 234: Phase 3, Release 1.0 MVP, with tasks 3.1.1 to 3.2.4b marked completed, complexity and effort ratings, and the 3.2.4b story with checked tasks such as fix initial state, remove manual continue buttons and fix multiple design concept generation.",
+        "w": 1600,
+        "h": 921
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/shot-agent-check.png",
+        "alt": "An agent chat: I write that another agent says it finished 3.2.1 and ask it to validate the work. It searches project-management.mdc, aiClient.ts, the AI connection test and the routes, runs node tests/ai-connection.test.js, and reports 3.2.1 validated and complete. Then I ask for manual testing steps and it lists them, starting with opening the test-azure page.",
+        "w": 669,
+        "h": 1213
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/board-org.png",
+        "alt": "Org chart diagram. At the top, an AI KPI and performance monitor for both AI and humans. Below it, an AI agent lead orchestrator and a human product lead. Below them, AI orchestrator 1, AI orchestrator 2 and a human product owner. At the bottom, worker agents and two human ICs under the AI orchestrators, and worker agents under the product owner. All workers share one set of tools. Collaboration runs AI to AI, AI to human, human to human and human to AI. Note: human ICs and worker agents are only given the context they need for the work, depending on how much ICs can reasonably absorb.",
+        "w": 1600,
+        "h": 967
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/thumb-docs.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/thumb-different.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/thumb-team.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 8,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": []
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 9,
+    "mainTextLen": 11160,
+    "realImageCount": 8,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 1,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 0,
+      "thirdPartyScriptHosts": 2,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2025-07-11-scaling-ai-coding-delivery-methodology.png",
+  "renderedHtml": "pages/writing-2025-07-11-scaling-ai-coding-delivery-methodology.html",
+  "slots": {
+    "type": "article",
+    "headline": "A 100% AI-Coded Next.js Agent, Part 3: Scaling AI Coding into a Delivery Method",
+    "deck": "How do you turn one person's AI coding experiment into delivery a team can repeat? On my AI-coded Next.js project it came down to three documents, a short set of rules that ties them to the agents, and the habits from traditional delivery that still hold. Here's what each one looked like, with the real files.",
+    "byline": "By Jack Jin · July 11, 2025 · Updated October 4, 2026 · 7 min read",
+    "meta": {
+      "times": [
+        "July 11, 2025",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "image",
+      "src": "images/shot-prd.png",
+      "alt": "prd-1.0.md on GitHub: the documentation structure linking the technical documentation, the technical blueprint, AGENTS.md, AI development logs and release 1.0 task management, then the key features of the MVP agent pipeline: design concept generation (3 to 5 concepts), design evaluation, parallel Figma spec generation (3 specs), spec selection and download artifacts, with no code generation and no Azure Blob Storage."
+    },
+    "body": {
+      "h2": [
+        "Where this method went after July 2025",
+        "1. Three documents tell the AI what, how and when",
+        "2. I replanned twice, and the commit history shows it",
+        "3. What stays the same as traditional delivery",
+        "4. What changes with AI on the team",
+        "5. A sketch of a mixed team, and the leadership it needs",
+        "What I learned, and the limits",
+        "Related"
+      ],
+      "figures": 8,
+      "codeBlocks": 2,
+      "tables": 0,
+      "embeds": 0
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "Shadow Pivot: my first AI-coded app",
+        "href": "/portfolio/#ch-shadow"
+      },
+      {
+        "title": "Postal Portal: a shipping product on two stacks",
+        "href": "/portfolio/#ch-postal"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 10,
+    "authorBox": true
+  }
+}

@@ -1,0 +1,56 @@
+[
+ {
+  "title": "One design system, six templates, one dominant layout.",
+  "text": "{{urls live sitemap}} live pages. The writing template holds {{templates[max:url_count].url_count}} of them (28 articles and the index) in {{templates[max:url_count].variant_count}} layout variants; home, portfolio, talks, certifications and privacy are one page each.",
+  "chapter": "start",
+  "rank": 1
+ },
+ {
+  "title": "Build the article once and most of the site is done.",
+  "text": "{{urls live sitemap block:rail}} articles share the hero article, rail, related row list and author box; {{urls live sitemap block:figure}} carry framed figures, {{urls live sitemap block:video}} pages a YouTube embed and {{urls live sitemap block:code}} a dark code block.",
+  "chapter": "pages",
+  "rank": 1
+ },
+ {
+  "title": "Mostly new blocks, because parity is the target.",
+  "text": "{{count blocks verdict=new}} of {{count blocks}} catalog entries are new; the rest extend a boilerplate or Block Collection block with a variant class. Nothing renders as-is under pixel parity except section metadata.",
+  "chapter": "build",
+  "rank": 1
+ },
+ {
+  "title": "The long tail is the article explainers.",
+  "text": "{{urls live sitemap block:explainer,lab}} articles carry bespoke interactive explainers or labs ({{blocks[explainer].instance_count}} explainer and {{blocks[lab].instance_count}} lab instances); {{urls live sitemap signal:explainer-css}} pages load a per-article explainer.css. How they are built is the one blocking implementation question.",
+  "chapter": "build",
+  "rank": 2
+ },
+ {
+  "title": "Little of the site is data-driven.",
+  "text": "{{count features}} features. The writing index is the only listing ({{blocks[writing-list].url_count}} page); the GA4 tag and the Cloudflare beacon run on {{urls live sitemap signal:gtag}} pages. Everything else is chrome (theme control, menu) or client-only compute that ships with its block.",
+  "chapter": "dynamic",
+  "rank": 1
+ },
+ {
+  "title": "Two paragraph patterns are invisible to the block map.",
+  "text": "Facts paragraphs on {{urls live sitemap signal:facts}} articles and Watch this part chapters on {{urls live sitemap signal:watch}} are classed paragraphs, which DA authors cannot reproduce; the catalog lists facts and chapters as blocks even though the parser counts them as default content.",
+  "chapter": "risks",
+  "rank": 1
+ },
+ {
+  "title": "No redirects needed if every page keeps its folder URL.",
+  "text": "Every page is a folder URL with a trailing slash; {{count redirects kind=migration needs_entry=1}} delivered paths change beyond the trailing-slash rule. Authoring each page as an index document keeps every URL, so the redirect sheet stays empty.",
+  "chapter": "risks",
+  "rank": 2
+ },
+ {
+  "title": "Cloudflare rewrites content at the edge.",
+  "text": "Email obfuscation turned email-like strings on {{urls live sitemap signal:cf-email}} articles into /cdn-cgi links, and the zone injects the analytics beacon on {{urls live sitemap signal:cf-beacon}} pages; both follow the site to EDS unless the zone settings change.",
+  "chapter": "risks",
+  "rank": 3
+ },
+ {
+  "title": "Decisions before launch.",
+  "text": "{{count open-questions blocking=1}} of {{count open-questions}} open questions block launch (URL format, image hosting, CDN routing, parity target, explainer build); each ships a default, and two already carry the owner's recorded answer.",
+  "chapter": "decide",
+  "rank": 1
+ }
+]

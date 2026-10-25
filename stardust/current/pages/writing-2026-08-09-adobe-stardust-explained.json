@@ -1,0 +1,798 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:37.465Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2026-08-09-adobe-stardust-explained",
+  "url": "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:37.465Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+  "title": "Adobe Stardust Explained: A Design Skill for EDS | Jack Jin",
+  "description": "What Adobe Stardust is: a design skill in adobe/skills built on impeccable. Its four steps, the human gate before EDS code, and three real blocks compared.",
+  "og": {
+    "title": "Adobe Stardust Explained: A Design Skill for EDS | Jack Jin",
+    "description": "What Adobe Stardust is: a design skill in adobe/skills built on impeccable. Its four steps, the human gate before EDS code, and three real blocks compared.",
+    "image": "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Adobe Stardust Explained: A Design Skill Built on impeccable, Tested on Real EDS Blocks"
+    },
+    {
+      "tag": "h2",
+      "text": "1. Stardust is a skill, not a product#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. impeccable does the design, so read it first#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. Four steps, with a human gate before any EDS code#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. Three real blocks: Google Stitch against two Stardust runs#"
+    },
+    {
+      "tag": "h2",
+      "text": "5. The deploy skill builds the prototypes into EDS in one shot#"
+    },
+    {
+      "tag": "h2",
+      "text": "6. How Stardust differs from Google Stitch#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "Adobe Stardust explained",
+    "By Jack Jin · August 9, 2026 · Updated October 4, 2026 · 9 min read · Includes my 14:51 video",
+    "Adobe Stardust is a skill, not a product. It lives in Adobe's public adobe/skills repo, runs inside your coding agent, and builds on impeccable, which does the design. What Adobe adds is four steps, a human gate before anything touches your EDS code, and the EDS build itself. To see what that means in practice, I ran it on a real Edge Delivery block library and compared its redesigns with what Google Stitch had built for the same blocks.",
+    "The six parts below follow the video. Each one links to its moment in the video if you'd rather watch.",
+    "First published as a LinkedIn video on August 9, 2026. Rewritten for this site in October 2026. Skill: adobe/skills at cbaeec4, the last commit on main before I recorded, with the Stardust plugin at version 0.18.1. My run: adapt-to-2026-demo, branches feature/star-dust (V1) and feature/star-dust-v2 (V2).",
+    "Adobe's own Stardust pages show slides with a before and an after, a direction step and four steps. Reading them as a technical architect, only the four steps told me how it works.",
+    "My baseline is Google Stitch. In an earlier video I had Stitch generate a whole block library, every block and its variations, and built it in EDS.",
+    "Reading through Adobe's documentation, I quickly realized Stardust is skill-based. Its README calls it \"a Claude Code plugin that drives a guided redesign of an existing website\", and it lives in plugins/stardust in the same public repo as Adobe's other agent skills. If you've watched how quickly software as a service might be replaced by skills as a service, or end up complementing it, this fits right in. For anyone less familiar: skills are consistent instructions that help AI do things the same way every time. They're like code for AI agents.",
+    "Watch this part0:17 What is Stardust?1:35 Skill-based",
+    "One thing Stardust's documentation keeps mentioning is that it needs impeccable to run, and that got me interested in what Stardust actually is. The README is direct about it: impeccable is a hard dependency with no fallbacks, and Stardust checks for it on every run and stops if it's missing.",
+    "impeccable is a UX design skill library with a good mission. A lot of AI-generated design looks generic, and impeccable exists to fix that. On camera I said it had 48,000 GitHub stars; the GitHub API said 57,420 that day, so it was climbing fast. It's a set of skills you install, invoke and use from the command line.",
+    "Stardust builds on top of it. Its main skill reads impeccable's command registry, 23 commands at the time, as the source of truth, and hands the per-page design craft (typography, spacing, color, layout, motion) to impeccable. So if you're going to use Stardust, read all the impeccable material first. impeccable is what's actually doing the design.",
+    "Watch this part2:24 impeccable first",
+    "Stardust follows four steps. It extracts the current site, crawling it to capture the current design and its thinking, along with what the user wants. It sets a direction, which is where impeccable really comes in. It prototypes the redesign as static HTML, page by page. And then it migrates to Adobe EDS. In the skill files, the four core steps are platform-agnostic, and a second set of skills does the EDS delivery: deploy turns one page into blocks and content, and rollout does the whole site.",
+    "The cool thing to note is that it paused. When it gave me the prototypes, it stopped before building anything in EDS. When we think about agentic workflows and agent gates, this is super important. AI needs to pause and give humans and teams a chance to react to the work and refine it before it makes it into EDS.",
+    "The skill tracks this per page in stardust/state.json. A page moves one way through five states, and only one of them is set by a person: approved means \"the user explicitly approved the prototype\". There is a hands-off mode you can opt into, where the agent grants approval itself, but only after its quality gates pass, and it records that as approvedBy: \"hands-off\" so nobody mistakes it for a person.",
+    "Below is a simplified model of those rules, loaded with four pages from the real state file of my V2 run. Pick a page, then press the steps in order. It shows the one thing that matters here: Migrate refuses any page until a person has approved its prototype, unless you switch on hands-off mode.",
+    "1. Pick a page. Status as my V2 run left it in state.json.",
+    "/ai-content/blocks/approved",
+    "heroapproved",
+    "cardsapproved",
+    "statsextracted",
+    "Eight more pages (columns, quote, gallery, table, accordion, newsletter, author-bio and a typography template) were still extracted, like stats.",
+    "extractedset by the extract step",
+    "directedset by the direction step",
+    "prototypedset by the prototype step",
+    "approvedset by a person (or hands-off mode)",
+    "migratedset by the migrate step",
+    "2. Press the steps in order.",
+    "The stats page is still extracted, so Migrate refuses it. A page moves forward one state at a time, and a person has to approve its prototype before it can be migrated.",
+    "My own V2 run shows the gate working one level up too. The direction step proposed a world it called Alpine Signal: modern expedition and cartographic, a trail-blaze orange accent, topographic contour lines. The direction file stayed in a proposed state until I answered two questions it asked me, about the background colors and how much motion to use. Its header still records \"APPROVED 2026-08-09 (Jack: hybrid three-theme ground + subtle motion register)\".",
+    "Watch this part3:24 The four steps7:00 The human gate",
+    "I ran this on an Experience Workspace-enabled DA.live instance, the block library for my adaptTo() demo site, a hiking journal. We'll look at three blocks: cards, hero and stats. Version 0 is what Google Stitch generated earlier, on the main branch. To be fair to Stitch, not all of it is Stitch's doing: green text on a green photo is terrible, but Stitch couldn't predict which image an author would put there.",
+    "For V1, I asked the AI to explain to me what impeccable is and what Stardust is before anything else. That does two things. I understand it better as a human, and the AI reads it into its main context first, a bit like chain prompting. For the record, this ran on Claude Fable 5 with extra thinking, not max thinking but close, as state of the art as you can get at the time of recording. Then I gave it the most vague prompt I could: these are my blocks, this is my block library, figure out what they do, let's redesign it and see how it goes.",
+    "For V2, same trick, with some of V1 carried over, but I asked for something bolder and more modern. Again, I'm not a designer, so I had no idea what I was saying. The prompt in the run's journal was to \"do a bold new redesign, understanding the objective of a wilderness hiking thing and go for a drastic and better modern design for hiking\". All of it took two, three, four, five prompts using the Stardust skills.",
+    "Below, pick a block and switch between its three versions. All three branches render the same DA content, so what changes from one version to the next is only the code.",
+    "So, is one better? I'm not a taste guy. If I had taste I'd probably say they're all about the same. And it isn't a fair test of Stitch against impeccable plus Stardust: Stitch had one chance to one-shot each block, while Stardust got to improve on what was already there. It certainly has potential, though. It clearly understood what EDS is about and built me some nice hero blocks.",
+    "Watch this part4:07 The setup5:01 V1, the vague prompt6:13 V2, the bolder prompt8:57 Comparing the blocks",
+    "This brings it back to Adobe Experience Manager. Adobe has clearly invested here, and the crown jewel for me is one file: skills/deploy/SKILL.md, 963 lines at that commit. It reads like a compressed version of a lot of Adobe's EDS skills in one large skill file, and it can take static HTML from impeccable and turn it into EDS. Its description says it converts styled per-page HTML prototypes into EDS blocks and content pages and deploys them through DA, with each prototype section becoming one block and its CSS scoped under the block class. If I had to name the MVP of Stardust, it would be this file. All 22 commits to it before my recording came from Paolo Mottadelli.",
+    "My V2 run added one constraint that matters to anyone on EDS. DA content is shared across branches, so the redesign had to be a code-only reskin: no changes to block contracts or authored content, only blocks/, styles/ and script decoration. According to the run's journal, it swapped in new self-hosted fonts, re-pointed the tokens in styles.css under the boilerplate's existing theme names, and rewrote all 12 block and shell stylesheets, then checked 12 pages at three viewports for console errors, broken images and overflow. That covered all 12 blocks, including the nine pages that never got a prototype of their own.",
+    "It also raised a finding on its own. The authored DA copy on 10 of the 12 pages still described the old design by name, its fonts and its green scrims, and now contradicted what rendered. The code changed and the content didn't, which is exactly what content and code separation is supposed to allow. A person still has to do that content pass.",
+    "Watch this part12:47 The crown jewel",
+    "Can Google Stitch design? Yes. Can Stardust design? Also yes. For me, the biggest differences are these:",
+    "It uses impeccable, which makes it comparable to Google's design capability.",
+    "I pick the model. I ran it with Fable and extra thinking, instead of the Gemini Flash model baked into Stitch.",
+    "It understands Adobe, since it's an Adobe skill. It did the EDS implementation in one shot.",
+    "All of it took two to five prompts, with a lot of tokens and the newest model with extra thinking behind them.",
+    "Yes, I could have refined the design further; I didn't really review it. And there are prototypes and steps I didn't have time to show, but the step-by-step flow blends well with the human gates.",
+    "Understand how impeccable works before you use Stardust, because that's what's actually doing the design. Like a good consultant, Adobe worked out what matters to a client who wants to do this. It broke the job into four separate steps and, intentionally or not, put the human gates where Adobe thinks they belong, around design review and prototyping. Once all that feels good, Stardust builds it into Adobe EDS in one shot.",
+    "I'm looking forward to seeing how Stardust evolves.",
+    "Watch this part11:39 Can both design?13:32 Wrap-up",
+    "ArticleTheming a brand-new EDS site with Google Stitch and MCPMy Stitch workflow, the other side of this comparison.",
+    "ArticleAdobe's EDS skills on a real buildcreate-site and content-driven-development from the same repo.",
+    "TalkAI Agent-Driven Content Migration for Edge Delivery ServicesadaptTo() 2026, Berlin. The demo site's home.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Part 1A skill, not a product",
+    "Part 2impeccable does the design",
+    "Part 3Four steps and a human gate",
+    "Part 4Stitch vs two Stardust runs",
+    "Part 5Deploy builds EDS in one shot",
+    "Part 6How it differs from Stitch"
+  ],
+  "codeBlocks": [
+    "{\n  \"slug\": \"ai-content-blocks-stats\",\n  \"path\": \"/ai-content/blocks/stats\",\n  \"status\": \"extracted\",\n  \"prototypePath\": null,\n  \"migratedPath\": null\n}"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/THAk36FGZps"
+    },
+    {
+      "label": "adobe/skills at cbaeec4",
+      "href": "https://github.com/adobe/skills/tree/cbaeec4138c6006fcdb499c94f545c2a4fa8f568/plugins/stardust"
+    },
+    {
+      "label": "adapt-to-2026-demo",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-demo/tree/ead7c7f11e71f9350364d0f4cfeed75099333519/stardust"
+    },
+    {
+      "label": "plugins/stardust",
+      "href": "https://github.com/adobe/skills/blob/cbaeec4138c6006fcdb499c94f545c2a4fa8f568/plugins/stardust/README.md"
+    },
+    {
+      "label": "0:17 What is Stardust?",
+      "href": "https://youtu.be/THAk36FGZps?t=17"
+    },
+    {
+      "label": "1:35 Skill-based",
+      "href": "https://youtu.be/THAk36FGZps?t=95"
+    },
+    {
+      "label": "impeccable",
+      "href": "https://github.com/pbakaus/impeccable"
+    },
+    {
+      "label": "2:24 impeccable first",
+      "href": "https://youtu.be/THAk36FGZps?t=144"
+    },
+    {
+      "label": "source",
+      "href": "https://github.com/adobe/skills/blob/cbaeec4138c6006fcdb499c94f545c2a4fa8f568/plugins/stardust/skills/stardust/reference/state-machine.md"
+    },
+    {
+      "label": "state.json",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-demo/blob/ead7c7f11e71f9350364d0f4cfeed75099333519/stardust/state.json"
+    },
+    {
+      "label": "/ai-content/blocks/approved",
+      "href": null
+    },
+    {
+      "label": "heroapproved",
+      "href": null
+    },
+    {
+      "label": "cardsapproved",
+      "href": null
+    },
+    {
+      "label": "statsextracted",
+      "href": null
+    },
+    {
+      "label": "Set direction",
+      "href": null
+    },
+    {
+      "label": "Build prototype",
+      "href": null
+    },
+    {
+      "label": "Approve as a person",
+      "href": null
+    },
+    {
+      "label": "Migrate",
+      "href": null
+    },
+    {
+      "label": "Hands-off mode: the agent approves",
+      "href": null
+    },
+    {
+      "label": "Reset",
+      "href": null
+    },
+    {
+      "label": "\"APPROVED 2026-08-09 (Jack: hybrid three-theme ground + subtle motion register)\"",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-demo/blob/ead7c7f11e71f9350364d0f4cfeed75099333519/stardust/direction.md"
+    },
+    {
+      "label": "3:24 The four steps",
+      "href": "https://youtu.be/THAk36FGZps?t=204"
+    },
+    {
+      "label": "7:00 The human gate",
+      "href": "https://youtu.be/THAk36FGZps?t=420"
+    },
+    {
+      "label": "Hero",
+      "href": null
+    },
+    {
+      "label": "Stats",
+      "href": null
+    },
+    {
+      "label": "Cards",
+      "href": null
+    },
+    {
+      "label": "V0, Google Stitch",
+      "href": null
+    },
+    {
+      "label": "V1, vague prompt",
+      "href": null
+    },
+    {
+      "label": "V2, bolder prompt",
+      "href": null
+    },
+    {
+      "label": "4:07 The setup",
+      "href": "https://youtu.be/THAk36FGZps?t=247"
+    },
+    {
+      "label": "5:01 V1, the vague prompt",
+      "href": "https://youtu.be/THAk36FGZps?t=301"
+    },
+    {
+      "label": "6:13 V2, the bolder prompt",
+      "href": "https://youtu.be/THAk36FGZps?t=373"
+    },
+    {
+      "label": "8:57 Comparing the blocks",
+      "href": "https://youtu.be/THAk36FGZps?t=537"
+    },
+    {
+      "label": "skills/deploy/SKILL.md",
+      "href": "https://github.com/adobe/skills/blob/cbaeec4138c6006fcdb499c94f545c2a4fa8f568/plugins/stardust/skills/deploy/SKILL.md"
+    },
+    {
+      "label": "12:47 The crown jewel",
+      "href": "https://youtu.be/THAk36FGZps?t=767"
+    },
+    {
+      "label": "11:39 Can both design?",
+      "href": "https://youtu.be/THAk36FGZps?t=699"
+    },
+    {
+      "label": "13:32 Wrap-up",
+      "href": "https://youtu.be/THAk36FGZps?t=812"
+    },
+    {
+      "label": "Theming a brand-new EDS site with Google Stitch and MCP",
+      "href": "/writing/2026-05-24-theming-eds-with-google-stitch/"
+    },
+    {
+      "label": "Adobe's EDS skills on a real build",
+      "href": "/writing/2026-05-17-adobe-eds-skills-hands-on/"
+    },
+    {
+      "label": "AI Agent-Driven Content Migration for Edge Delivery Services",
+      "href": "/talks/#adaptto-2026"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Part 1A skill, not a product",
+      "href": "#part-1"
+    },
+    {
+      "label": "Part 2impeccable does the design",
+      "href": "#part-2"
+    },
+    {
+      "label": "Part 3Four steps and a human gate",
+      "href": "#part-3"
+    },
+    {
+      "label": "Part 4Stitch vs two Stardust runs",
+      "href": "#part-4"
+    },
+    {
+      "label": "Part 5Deploy builds EDS in one shot",
+      "href": "#part-5"
+    },
+    {
+      "label": "Part 6How it differs from Stitch",
+      "href": "#part-6"
+    },
+    {
+      "label": "Watch the video, 14:51",
+      "href": "#video"
+    },
+    {
+      "label": "Stardust in adobe/skills",
+      "href": "https://github.com/adobe/skills/tree/cbaeec4138c6006fcdb499c94f545c2a4fa8f568/plugins/stardust"
+    },
+    {
+      "label": "My V2 run on GitHub",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-demo/tree/ead7c7f11e71f9350364d0f4cfeed75099333519/stardust"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://youtu.be/THAk36FGZps",
+    "https://github.com/adobe/skills/tree/cbaeec4138c6006fcdb499c94f545c2a4fa8f568/plugins/stardust",
+    "https://github.com/jackzhaojin/adapt-to-2026-demo/tree/ead7c7f11e71f9350364d0f4cfeed75099333519/stardust",
+    "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/#part-1",
+    "https://github.com/adobe/skills/blob/cbaeec4138c6006fcdb499c94f545c2a4fa8f568/plugins/stardust/README.md",
+    "https://youtu.be/THAk36FGZps?t=17",
+    "https://youtu.be/THAk36FGZps?t=95",
+    "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/#part-2",
+    "https://github.com/pbakaus/impeccable",
+    "https://youtu.be/THAk36FGZps?t=144",
+    "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/#part-3",
+    "https://github.com/adobe/skills/blob/cbaeec4138c6006fcdb499c94f545c2a4fa8f568/plugins/stardust/skills/stardust/reference/state-machine.md",
+    "https://github.com/jackzhaojin/adapt-to-2026-demo/blob/ead7c7f11e71f9350364d0f4cfeed75099333519/stardust/state.json",
+    "https://github.com/jackzhaojin/adapt-to-2026-demo/blob/ead7c7f11e71f9350364d0f4cfeed75099333519/stardust/direction.md",
+    "https://youtu.be/THAk36FGZps?t=204",
+    "https://youtu.be/THAk36FGZps?t=420",
+    "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/#part-4",
+    "https://youtu.be/THAk36FGZps?t=247",
+    "https://youtu.be/THAk36FGZps?t=301",
+    "https://youtu.be/THAk36FGZps?t=373",
+    "https://youtu.be/THAk36FGZps?t=537",
+    "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/#part-5",
+    "https://github.com/adobe/skills/blob/cbaeec4138c6006fcdb499c94f545c2a4fa8f568/plugins/stardust/skills/deploy/SKILL.md",
+    "https://youtu.be/THAk36FGZps?t=767",
+    "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/#part-6",
+    "https://youtu.be/THAk36FGZps?t=699",
+    "https://youtu.be/THAk36FGZps?t=812",
+    "https://www.jackzhaojin.com/writing/2026-05-24-theming-eds-with-google-stitch/",
+    "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/",
+    "https://www.jackzhaojin.com/talks/#adaptto-2026",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/#video",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/images/hero-v0.jpg",
+        "alt": "Hero block, V0 from Google Stitch: a mountain sunset photo with a centered serif headline, Chasing Sunsets in the High Sierras, an italic subtitle and two green pill buttons",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/images/deploy-skill-blame.jpg",
+        "alt": "GitHub blame view of adobe/skills plugins/stardust/skills/deploy/SKILL.md: 963 lines, 140 KB, two contributors. The top of the file names the skill stardust:deploy, prototypes to EDS/AEM, and lists the prototype shapes it accepts and the vanilla aem-boilerplate it targets.",
+        "w": 1280,
+        "h": 489
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/images/thumb-compare.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/images/thumb-deploy.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 12,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/THAk36FGZps?rel=0",
+        "title": "I Ran Adobe Stardust on Real EDS Blocks to Figure Out What It Is (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 8,
+    "mainTextLen": 13359,
+    "realImageCount": 4,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 122,
+        "hits": 1,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 3
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      },
+      {
+        "host": "www.google.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 1,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 2,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2026-08-09-adobe-stardust-explained.png",
+  "renderedHtml": "pages/writing-2026-08-09-adobe-stardust-explained.html",
+  "slots": {
+    "type": "article",
+    "headline": "Adobe Stardust Explained: A Design Skill Built on impeccable, Tested on Real EDS Blocks",
+    "deck": "Adobe Stardust is a skill, not a product. It lives in Adobe's public adobe/skills repo, runs inside your coding agent, and builds on impeccable, which does the design. What Adobe adds is four steps, a human gate before anything touches your EDS code, and the EDS build itself. To see what that means in practice, I ran it on a real Edge Delivery block library and compared its redesigns with what Google Stitch had built for the same blocks.",
+    "byline": "By Jack Jin · August 9, 2026 · Updated October 4, 2026 · 9 min read · Includes my 14:51 video",
+    "meta": {
+      "times": [
+        "August 9, 2026",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "video",
+      "src": "https://www.youtube-nocookie.com/embed/THAk36FGZps?rel=0"
+    },
+    "body": {
+      "h2": [
+        "1. Stardust is a skill, not a product",
+        "2. impeccable does the design, so read it first",
+        "3. Four steps, with a human gate before any EDS code",
+        "4. Three real blocks: Google Stitch against two Stardust runs",
+        "5. The deploy skill builds the prototypes into EDS in one shot",
+        "6. How Stardust differs from Google Stitch",
+        "Related"
+      ],
+      "figures": 13,
+      "codeBlocks": 0,
+      "tables": 0,
+      "embeds": 1
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "Theming a brand-new EDS site with Google Stitch and MCP",
+        "href": "/writing/2026-05-24-theming-eds-with-google-stitch/"
+      },
+      {
+        "title": "Adobe's EDS skills on a real build",
+        "href": "/writing/2026-05-17-adobe-eds-skills-hands-on/"
+      },
+      {
+        "title": "AI Agent-Driven Content Migration for Edge Delivery Services",
+        "href": "/talks/#adaptto-2026"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 9,
+    "authorBox": true
+  }
+}

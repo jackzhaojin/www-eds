@@ -1,0 +1,1055 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:50.267Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2026-04-05-continuous-executive-agent-v2-1",
+  "url": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:50.267Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/",
+  "title": "24/7 Coding Agent v2.1: Executive Loop and Escalation | Jack Jin",
+  "description": "How a 24/7 coding agent works: an executive loop on PM2, workers on Claude, Codex or Kimi K2.5, and a failure path that retries, diagnoses, then asks a human.",
+  "og": {
+    "title": "24/7 Coding Agent v2.1: Executive Loop and Escalation | Jack Jin",
+    "description": "How a 24/7 coding agent works: an executive loop on PM2, workers on Claude, Codex or Kimi K2.5, and a failure path that retries, diagnoses, then asks a human.",
+    "image": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "A 24/7 Coding Agent at v2.1: An Executive Loop, Swappable Workers and When to Ask a Human"
+    },
+    {
+      "tag": "h2",
+      "text": "1. A harness still needs you to start it#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. An executive loop, separate workers and two repos#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. A failing goal retries, gets a diagnosis, then asks a human#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. v1.1 and v1.2 set up turn-by-turn logs and a workspace for prompt packets#"
+    },
+    {
+      "tag": "h2",
+      "text": "5. v1.3 split credentials into three tiers and made its own demo video#"
+    },
+    {
+      "tag": "h2",
+      "text": "6. v2.0 gave the agent her own accounts, skills and a dashboard#"
+    },
+    {
+      "tag": "h2",
+      "text": "7. v2.1 added Codex and Kimi K2.5 workers and took on a much bigger build#"
+    },
+    {
+      "tag": "h2",
+      "text": "8. After the talk, harnesses run inside the agent#"
+    },
+    {
+      "tag": "h2",
+      "text": "9. Questions from the room on long runs, testing and getting better#"
+    },
+    {
+      "tag": "h3",
+      "text": "What's the longest problem you've had it work on?"
+    },
+    {
+      "tag": "h3",
+      "text": "How long did you spend on the specification?"
+    },
+    {
+      "tag": "h3",
+      "text": "Do you test the individual pieces or the whole flow?"
+    },
+    {
+      "tag": "h3",
+      "text": "How do you keep the agent online overnight?"
+    },
+    {
+      "tag": "h3",
+      "text": "How does it get better?"
+    },
+    {
+      "tag": "h2",
+      "text": "10. Build harnesses first, and what came after v2.1#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "24/7 Coding Agent v2.1",
+    "By Jack Jin · April 5, 2026 · Updated October 4, 2026 · 15 min read · Includes my 19:46 video",
+    "A harness still needs you to start it. This is what it takes to keep one going around the clock, from the Continuous Executive Agent at v2.1: an executive loop under PM2 that picks goals off a queue and breaks them into steps, workers on Claude, Codex or Kimi K2.5 behind one interface, deterministic validation, an agentic diagnosis from the third failure and a hand-off to a human at ten. With the code at the release I demoed at AI Tinkerers Columbus on April 6, 2026, a recorded walkthrough and the live Q&A.",
+    "The walkthrough is the main video. It goes release by release, and so does this page. Every part links to its moment in the video if you'd rather watch.",
+    "Code: continuous-agent at v2.1.4 (0717635), tagged the evening before the talk. Deck: 15 slides, in the repo. I gave the talk at AI Tinkerers Columbus on April 6, 2026, and it was featured in AI Tinkerers' global Community Spotlights, picked from hundreds of demos. First published on LinkedIn on April 5, 2026. Rewritten for this site in October 2026.",
+    "Before we talk about 24/7 agents, we have to talk about harnesses. A harness is a layer on top of a coding agent that puts the prompts in for you. If you do spec-driven development, you end up typing the same prompts over and over in the same pattern, and at some point you think: if only the AI would put in the prompts for me. That's a harness. I wrote about how I build them in January.",
+    "At the talk I asked the room three questions. Who has done spec-driven development? A good number of hands. Who has built a harness they're happy with? Two or three. Who has put that harness in a 24/7 loop? One hand. Everyone starts on the left: ad hoc prompting, then specs, then skills, then harnesses to build great things. I wanted to see what comes next.",
+    "I had three reasons to go past a harness:",
+    "I still have to start it. The harness might do very meaningful work, and it's probably where the sweet spot is, but I still put in the prompt packet and kick it off.",
+    "Nothing runs back to back. If I have five harnesses to run, I start every one of them myself.",
+    "Logging and observability are on me. Tracking how a run is going and managing everything the harnesses produce is my own due diligence, with no central place for it.",
+    "So I built my own claw, an always-on agent in the spirit of OpenClaw, focused on 24/7 development. In the video I call it my AI dark factory: a claw that keeps coding and building around the clock.",
+    "Watch this part0:27 Harnesses first1:09 Three reasons to go further0:00 The three questions, live",
+    "The agent has three layers.",
+    "The first is the executive. It mixes deterministic and agentic parts. PM2, the Node process manager, keeps it alive. A TypeScript loop runs the same phases on every iteration: check the inbox, health check, process my inputs, select work, break it down, execute, validate, update state, diagnose and escalate. The decisions inside those phases, like which goal is next, how to split it and why a build failed, are agentic. They live in executive skills that used to be prompt files.",
+    "I didn't expect that much deterministic code. I ended up with a crazy amount of TypeScript, because I wanted things done my way rather than left to the agent. I think everyone building agents and harnesses ends up mixing the two.",
+    "The second layer is the workers. Very early on I decided the worker would be separate from the executive, with its own instructions and its own skills. Think of a management team and a working team. The workers are good at coding. Reports, retrospectives and escalations flow back up to the executive.",
+    "The third is two repos. The agent itself lives in continuous-agent. Everything the workers build goes into a second repo, ai-sandbox, filed by day and project type. The agent's constitution says workers never write to the agent's own codebase. Keeping every project means I can go back later, fire it up, see how the build went and run a retrospective on it.",
+    "Watch this part2:32 The three layers1:05 All that TypeScript, live1:50 A management team and a working team",
+    "The bottom row of that diagram matters most when nobody is watching. After a worker finishes, Phase 5 runs deterministic verifiers against the worker's output folder: does it build, and are the definition-of-done items there. A failure is counted, and the goal goes back into the loop. The retry prompt tells the worker which attempt it is on, what the last error was, and that it must try a different approach. The approaches themselves live in a strategy bank in strategy-selector.ts: scaffold first, minimal manual setup, copy a working example, decompose the problem and a few more.",
+    "From the third failure, Phase 7 runs an agentic diagnosis. A model reads the failure and returns a root cause, a suggested fix, and whether to retry or escalate. At ten attempts, the limit in the agent's constitution, Phase 8 blocks the goal, writes it to needs-you.md and sends a Discord message. Then the loop moves on to the next goal. This is the failure path in the code I demoed:",
+    "Four things can happen to a goal on that path. Pick one to see the attempts it takes and the log the executive writes along the way, using the code's own messages. The fourth is an edge case I found reading the code, and the one worth knowing if you build a loop like this: the limit only fires when the diagnosis has no fix to offer.",
+    "Failed attempts on this goal",
+    "failed, retried with a different approachfailed, diagnosis ranfailed, diagnosis suggested a fixpassed",
+    "Blocked after 10 failed attempts, the limit in the constitution. The goal goes to needs-you.md, Discord pings me, and the loop moves on to the next goal.",
+    "What the executive logs",
+    "Two details are worth knowing if you build something similar. A diagnosis that suggests a fix returns before the ten-attempt check, so a goal keeps retrying past ten as long as the diagnosis keeps finding fixes. And the attempt count is written to STEPS.json, so a PM2 restart doesn't reset it.",
+    "When the agent needs me, it writes to workspace/needs-you.md: a table with the action, why it can't do it, and a column for my response. I answer with [APPROVED], [DECISION], [INFO] or [SKIP], and the deck says it picks that up within about 30 seconds. The constitution sets the hard limits around all of this.",
+    "Watch this part16:12 The diagram from the talk",
+    "I do believe the 24/7 agent makes a lot more sense if we start from the beginning. The git tags give the timeline: v1.0 on January 24, v1.1 on January 25, v1.2 on January 28 and v1.3 on February 4.",
+    "The beginning has humble roots. After many tries over two days, the agent produced a fairly simple app that works: a transaction manager where you add and remove transactions, saved in local storage so a refresh doesn't lose them. A very straightforward proof of concept.",
+    "What it set up mattered more than the app. From the very first days I logged every worker's interaction with the Claude Agent SDK turn by turn, for every worker task, and kept track of what the executive was doing too. So there was observability at the executive level, the worker level and the turn level: exactly what went in and exactly what happened. Since v1.1, my AI and I have been able to use that history to improve how workers do things.",
+    "v1.2 brought the workspace. Work moves through workflow states (drafts, on deck, in progress by priority, completed), with templates so the AI or I can write input packets. I don't think of prompts when building something 24/7. You don't give it a simple prompt; you give it a prompt packet, a large set of material to build from over a long time. Every completed goal keeps its steps, its progress log and its handoff documents.",
+    "The other big feature of v1.2 was Notion. Agents build through the night while I'm sleeping, and Notion gives me something readable instead of digging through executive logs and ledgers. That early version was still buggy, and I didn't have good work classifications yet.",
+    "Watch this part3:56 From the beginning4:51 Turn-by-turn logging5:32 The workspace6:36 Notion",
+    "v1.3 was the hardening sprint, and the first version that worked in a somewhat secure manner. I realized my credentials were mismanaged. I never committed them to git, but they were intertwined across everything I was building. Now there are three tiers. The executive has its own credentials. The workers, the ones doing the building, have theirs, for example the keys a Codex or Anthropic worker needs. The apps have a third set. The deck adds that the tiers are physically separate files, and the spawner checks on every run that executive keys never reach a worker.",
+    "For apps that need a database, the rule is one Supabase database with a separate schema per app. If I build 60 apps with this agent, I'm not creating 60 Supabase accounts or upgrading my databases.",
+    "Something I thought was really cool came next. By then the agent had finished seven or eight projects, and I needed a way to have them demoed back to me. So the agent built a Playwright demo skill, and a worker used it to make a narrated video of the recipe app it had built. I didn't make that video. My prompt packet said I wanted a video at the end of the project, with the bugs fixed while the demo was being generated, and the AI did all of that with a skill it built for itself. Not every day do we have something that's arguably self-improving and then actually works without human intervention. I wrote about the Playwright demo pattern on its own as well.",
+    "Watch this part7:11 Three credential tiers8:58 The demo video skill",
+    "After v1.3 the repo went quiet from early February to late March, until I picked it back up for the AI Tinkerers talk. v2.0, tagged March 29, is a fairly large release, with three big parts.",
+    "First, identity. The agent now has her own Gmail account, her own Notion space and her own Discord account, so she can message me whenever it makes sense. Checking her inbox is Phase 0.5 of every loop, so I can send her goals by email, and she posts completions and blocks to her Discord.",
+    "Second, skills. In v1.2 and v1.3 I kept rewriting prompt markdown files, at one point around 40 of them, and it felt really awkward. By then I was using skills heavily in my day job and all my other AI projects. So v2.0 took the prompts out and moved them into skills, split into executive skills and worker skills. Letting the AI choose its skills is what makes it more agentic.",
+    "Third, something visual. Reading log files and ledgers in the codebase was always a pain. The v2.0 dashboard still reads the same markdown files locally, with some deterministic logic on top: is it running, is it doing anything, is it blocked, what's blocked, what needs me.",
+    "Not everything worked on stage. The executive validation loop was the part not working as well as it should, and the Discord notification I expected live during the talk didn't fire. I kept that moment in the recording.",
+    "Watch this part10:21 Agent identity11:07 Skills instead of prompt files12:05 The dashboard3:46 What wasn't working, live",
+    "Right before the talk I started to worry about how long I could keep running Agent SDK workers on my Claude subscription. So the two biggest features of v2.1 were OpenAI Codex and Kimi K2.5 as alternative workers. A vendor registry puts them behind one interface. A goal can name its vendor in its PROMPT.md frontmatter with worker_vendor, or the WORKER_VENDOR environment variable sets it for everything.",
+    "How do you make skills work across vendors? I chose not to write separate skills for each one. Instead, each vendor gets a pre-prompt that puts it in the mindset of that agent. I'm a huge Claude person. Kimi K2.5 is a lot cheaper, and its subscription goes a very long way in agentic coding.",
+    "To show it off, I fed the exact same prompt packet, a personal finance dashboard, to Claude, to Codex, to Kimi K2.5 through its Wire SDK and to Kimi K2.5 through its CLI. One prompt packet, built four ways. With a harness I'd have to run each of those myself. With the 24/7 agent I just put in the prompt packet and it runs them. I did the Kimi Wire integration for the richer agentic interaction, but the CLI is what I went with going forward.",
+    "Then I wanted to really challenge it. Instead of a dashboard that takes two or three steps, something that would take 20, 30, 50 steps to finish: a build I had done myself in my early days of spec-driven development, which took me around 40 hours. The goal was a B2B postal checkout flow, and the vendor was Kimi K2.5 through its CLI.",
+    "The first try did really badly. The retrospective says it plainly: the executive re-broke the goal from 6 coarse steps into 32, the worker built more than 40 components and wrote 217 test cases, and the result was an assembly of parts, not a working end-to-end application. The screens looked decent, but they weren't wired to a database, and I had to step in twice to fix bugs in my own code.",
+    "It was really good at testing each of the seven screens of the flow on its own, and it never tested end to end, because I never told it to. So instead of fixing the output that night, I tossed the whole thing and had it run again. That's the mentality I'm learning from all this: instead of perfecting the output, you perfect the input, or you perfect the harness. If you think you're only 80% there, throw the output away.",
+    "The second run, on April 11 and 12, was much better. It ran longer, it built a lot more, and it did a lot more end-to-end testing, with integration gates inserted every few steps. It finished 55 steps with no human intervention, and the database shows plenty of rows inserted by its tests. It still didn't work end to end as a demoable product. We're making progress, though, and Kimi K2.5 performed fairly well as a worker on both runs.",
+    "Watch this part12:45 Codex and Kimi K2.514:16 The bigger challenge2:42 One pre-prompt per vendor, live4:34 Perfect the input, live",
+    "Before, harnesses and the 24/7 agent were two separate things. After the talk I merged the frameworks into one harness CLI, released as v2.2 on April 12. Harnesses are now defined once, and I can run one inside the 24/7 agent as a goal's execution pattern or on its own. According to the changelog, that release brought three harnesses (a generic one, an Edge Delivery site builder and a study harness) and 105 passing tests.",
+    "Before this, my harnesses only worked on Claude. Now they also run on Kimi K2.5, because the multi-worker support carried over. Harnesses are probably what's actually useful in a productive sense. This is a tinkering project, so the 24/7 agent gets the attention.",
+    "Watch this part17:10 Harnesses inside the agent",
+    "AI Tinkerers recorded the live talk on April 6: five minutes of me talking really fast with 15 tabs open, then questions. The answers cover things the walkthrough skips.",
+    "I told the room the longest I'd run it was nine hours. You get there by giving it an overly complex task, with a database layer and a UI layer, something extremely time intensive, and trusting the executive to break it down. The executive loop is very deterministic, but interpreting a task and splitting it into 30, 40 or 60 tasks is agentic. A bigger task comes from a bigger spec package. At that point it's not even a prompt anymore; it's way bigger than the context window.",
+    "Less up front than some approaches people publish. I size the work by turns. I aim for about 60 turns per task, each task has a 200-turn cap, and each one gets an hour. For the run that week I had to restart, because the tasks weren't refined enough, took over 200 turns and failed. And unlike a harness, I want higher priority work to come in first and cut ahead of other tasks.",
+    "Both, at the executive level and the worker level. I really messed up in that iteration: I had end-to-end testing at the module level, but not the whole flow. The executive needs a process for it, and workers need to test the whole flow, not just the thing they're building. Just like real life, you need the management rigor and a team that knows what it's doing. It costs more tokens, and maybe that's what I have to do for now.",
+    "Being transparent, my harness is better than my 24-hour agent right now, and I'm not doing a good job of keeping the agent online. It's open source because Robb Winkle, who runs AI Tinkerers Columbus, asked me to open source it, and the code is out there for anyone who wants to try it.",
+    "I literally do a retrospective with my agent: what was done correctly and what could be done better. That feeds into the input, so the prompt packet gets more detail and runs get more consistent, and into the executive and worker skills. My first version had zero skills. Now I'm all in on skills. If a skill isn't right, we fix it, so next time the AI has a better idea of what it's doing.",
+    "Watch this part5:58 The longest run7:17 Sizing work by turns8:33 Testing the whole flow9:25 Keeping it online10:15 Retrospectives into skills",
+    "My advice at the end of the talk: if you want to go on this journey, build harnesses first. Then put one in an endless loop. You still talk to your harness; a 24/7 loop means the harness talks to you. Harnesses are probably the sweet spot for professional work. The 24/7 agent is for fun.",
+    "The roadmap I showed in April had three stops. 2.4 would be a hardening sprint from the retrospectives. 3.0 would add a cloud database, so I don't lose my ledgers, contracts and work if my laptop ever goes. 3.1 would double down on observability, with the 2.0 dashboard moved to the cloud and made way better.",
+    "In practice, v2.3 (April 18) gave every project its own worktree, and v2.4 (April 19) shipped the hardening from those retrospectives. v3.0 took a different turn: instead of a cloud database for logs, it became memory, a second brain the executive writes to and reads from before it acts. It shipped on May 31, and I wrote it up in Continuous Executive Agent V3.0: The Second Brain. That was also the last commit to the repo.",
+    "Let's connect if you're building anything agent powered, especially if you have an open-source repo to share. I learn more from conversations than from giving talks.",
+    "Watch this part18:19 The roadmap5:39 Build harnesses first, live",
+    "WritingContinuous Executive Agent V3.0: The Second BrainThe next release: memory the executive writes as it works and reads before it acts.",
+    "PortfolioContinuous Executive Agent: a 24/7 coding agentEvery release from v1.0 to v3.0, measured from its own ledgers.",
+    "TalkOpenClaw 24/7 Development AgentAI Tinkerers Columbus, April 6, 2026.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Part 1A harness still needs you",
+    "Part 2Executive, workers, two repos",
+    "Part 3Retry, diagnose, ask a human",
+    "Part 4v1.1 and v1.2: logs, a workspace",
+    "Part 5v1.3: credentials, a demo video",
+    "Part 6v2.0: accounts, skills, dashboard",
+    "Part 7v2.1: Codex, Kimi, a bigger build",
+    "Part 8Harnesses inside the agent",
+    "Part 9Questions from the room",
+    "Wrap-upHarnesses first, then v3.0"
+  ],
+  "codeBlocks": [
+    "// === PHASE 7: AGENTIC DIAGNOSIS (after 3 failures) ===\n  if (retry.attempts >= 3) {\n    logAgentic('PHASE 7: Agentic Diagnosis (Investigate Failure)');\n    …\n    if (diagnosis.escalateToHuman) {\n      logAgentic('  Decision: Escalate to human (needs-you.md)');\n      …\n      return 'work_failed';\n    }\n    if (diagnosis.shouldRetry && diagnosis.suggestedFix) {\n      logAgentic('  Decision: Apply suggested fix and retry');\n      …\n      return 'work_failed'; // Will retry next iteration\n    }\n    logAgentic('  Decision: Continue normal retry logic');\n  }\n  // === PHASE 8: MAX RETRIES REACHED ===\n  if (retry.attempts >= MAX_RETRIES) {\n    logDeterministic('PHASE 8: Max Retries Reached (Constitution Limit)');\n    …\n    await writeToNeedsYou(workItem, retry.attempts, retry.lastError, contractId);\n    …\n    return 'work_failed';\n  }\n  // Continue retrying\n  return 'work_failed';",
+    "PHASE 6: Update State (Failure)\n  Attempt 1/10 failed\nPHASE 6: Update State (Failure)\n  Attempt 2/10 failed\nPHASE 6: Update State (Failure)\n  Attempt 3/10 failed\nPHASE 7: Agentic Diagnosis (Investigate Failure)\n  Decision: Continue normal retry logic\n  # attempts 4 to 9 repeat the same pattern\nPHASE 6: Update State (Failure)\n  Attempt 10/10 failed\nPHASE 7: Agentic Diagnosis (Investigate Failure)\n  Decision: Continue normal retry logic\nPHASE 8: Max Retries Reached (Constitution Limit)\n  Marking as blocked after 10 attempts",
+    "# on its own\nnpm run harness -- --name <name> --prompt <path>\n\n# inside the 24/7 agent, in the goal's PROMPT.md frontmatter\nexecution_pattern: harness"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/hxJpum9fNaU"
+    },
+    {
+      "label": "questions from the room",
+      "href": "#questions"
+    },
+    {
+      "label": "continuous-agent",
+      "href": "https://github.com/jackzhaojin/continuous-agent/tree/0717635"
+    },
+    {
+      "label": "15 slides, in the repo",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/docs/technical-highlights/2.2/2026-04-06-ai-tinkerer-pre-session-slides.pdf"
+    },
+    {
+      "label": "AI Tinkerers Columbus on April 6, 2026",
+      "href": "/talks/#ai-tinkerers-2026"
+    },
+    {
+      "label": "Community Spotlights",
+      "href": "https://post-training.aitinkerers.org/p/ai-tinkerers-23-community-spotlights"
+    },
+    {
+      "label": "how I build them",
+      "href": "/writing/2026-01-05-from-prompts-to-harness/"
+    },
+    {
+      "label": "0:27 Harnesses first",
+      "href": "https://youtu.be/hxJpum9fNaU?t=27"
+    },
+    {
+      "label": "1:09 Three reasons to go further",
+      "href": "https://youtu.be/hxJpum9fNaU?t=69"
+    },
+    {
+      "label": "0:00 The three questions, live",
+      "href": "https://youtu.be/l3wIHurjERk?t=0"
+    },
+    {
+      "label": "2:32 The three layers",
+      "href": "https://youtu.be/hxJpum9fNaU?t=152"
+    },
+    {
+      "label": "1:05 All that TypeScript, live",
+      "href": "https://youtu.be/l3wIHurjERk?t=65"
+    },
+    {
+      "label": "1:50 A management team and a working team",
+      "href": "https://youtu.be/l3wIHurjERk?t=110"
+    },
+    {
+      "label": "strategy-selector.ts",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/0717635/src/agentic/intelligence/strategy-selector.ts#L31-L190"
+    },
+    {
+      "label": "0717635 on GitHub",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/0717635/src/core/executive-loop.ts#L645-L719"
+    },
+    {
+      "label": "source",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/0717635/src/core/executive-loop.ts#L583-L719"
+    },
+    {
+      "label": "Passes on the second try",
+      "href": null
+    },
+    {
+      "label": "Never passes, no fix found",
+      "href": null
+    },
+    {
+      "label": "Diagnosis asks for a human",
+      "href": null
+    },
+    {
+      "label": "Diagnosis keeps suggesting fixes",
+      "href": null
+    },
+    {
+      "label": "16:12 The diagram from the talk",
+      "href": "https://youtu.be/hxJpum9fNaU?t=972"
+    },
+    {
+      "label": "First app, v1.1",
+      "href": null
+    },
+    {
+      "label": "A goal bundle, v1.2",
+      "href": null
+    },
+    {
+      "label": "Notion milestones, v1.2",
+      "href": null
+    },
+    {
+      "label": "3:56 From the beginning",
+      "href": "https://youtu.be/hxJpum9fNaU?t=236"
+    },
+    {
+      "label": "4:51 Turn-by-turn logging",
+      "href": "https://youtu.be/hxJpum9fNaU?t=291"
+    },
+    {
+      "label": "5:32 The workspace",
+      "href": "https://youtu.be/hxJpum9fNaU?t=332"
+    },
+    {
+      "label": "6:36 Notion",
+      "href": "https://youtu.be/hxJpum9fNaU?t=396"
+    },
+    {
+      "label": "Playwright demo pattern",
+      "href": "/writing/2026-01-29-playwright-stakeholder-demos/"
+    },
+    {
+      "label": "video file",
+      "href": "https://github.com/jackzhaojin/ai-sandbox/blob/monorepo/legacy-v2.2/projects/nextjs/2026-01-29/1769685367609/recipe-discovery-platform/demo-output/demo-final.mp4"
+    },
+    {
+      "label": "7:11 Three credential tiers",
+      "href": "https://youtu.be/hxJpum9fNaU?t=431"
+    },
+    {
+      "label": "8:58 The demo video skill",
+      "href": "https://youtu.be/hxJpum9fNaU?t=538"
+    },
+    {
+      "label": "10:21 Agent identity",
+      "href": "https://youtu.be/hxJpum9fNaU?t=621"
+    },
+    {
+      "label": "11:07 Skills instead of prompt files",
+      "href": "https://youtu.be/hxJpum9fNaU?t=667"
+    },
+    {
+      "label": "12:05 The dashboard",
+      "href": "https://youtu.be/hxJpum9fNaU?t=725"
+    },
+    {
+      "label": "3:46 What wasn't working, live",
+      "href": "https://youtu.be/l3wIHurjERk?t=226"
+    },
+    {
+      "label": "deployed in the ai-sandbox",
+      "href": "https://www.jackzhaojin.com/ai-sandbox/"
+    },
+    {
+      "label": "retrospective",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/ai-docs/v2/2026-04-01-v2.1/retro-b2b-postal-checkout-v2.1.5.md"
+    },
+    {
+      "label": "second run",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/ai-docs/v2/2026-04-01-v2.1/retro-b2b-postal-checkout-v2.1.6.md"
+    },
+    {
+      "label": "12:45 Codex and Kimi K2.5",
+      "href": "https://youtu.be/hxJpum9fNaU?t=765"
+    },
+    {
+      "label": "14:16 The bigger challenge",
+      "href": "https://youtu.be/hxJpum9fNaU?t=856"
+    },
+    {
+      "label": "2:42 One pre-prompt per vendor, live",
+      "href": "https://youtu.be/l3wIHurjERk?t=162"
+    },
+    {
+      "label": "4:34 Perfect the input, live",
+      "href": "https://youtu.be/l3wIHurjERk?t=274"
+    },
+    {
+      "label": "changelog",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/CHANGELOG.md"
+    },
+    {
+      "label": "17:10 Harnesses inside the agent",
+      "href": "https://youtu.be/hxJpum9fNaU?t=1030"
+    },
+    {
+      "label": "Watch it on YouTube",
+      "href": "https://youtu.be/l3wIHurjERk"
+    },
+    {
+      "label": "5:58 The longest run",
+      "href": "https://youtu.be/l3wIHurjERk?t=358"
+    },
+    {
+      "label": "7:17 Sizing work by turns",
+      "href": "https://youtu.be/l3wIHurjERk?t=437"
+    },
+    {
+      "label": "8:33 Testing the whole flow",
+      "href": "https://youtu.be/l3wIHurjERk?t=513"
+    },
+    {
+      "label": "9:25 Keeping it online",
+      "href": "https://youtu.be/l3wIHurjERk?t=565"
+    },
+    {
+      "label": "10:15 Retrospectives into skills",
+      "href": "https://youtu.be/l3wIHurjERk?t=615"
+    },
+    {
+      "label": "Continuous Executive Agent V3.0: The Second Brain",
+      "href": "/writing/2026-05-31-continuous-agent-second-brain/"
+    },
+    {
+      "label": "18:19 The roadmap",
+      "href": "https://youtu.be/hxJpum9fNaU?t=1099"
+    },
+    {
+      "label": "5:39 Build harnesses first, live",
+      "href": "https://youtu.be/l3wIHurjERk?t=339"
+    },
+    {
+      "label": "Continuous Executive Agent V3.0: The Second Brain",
+      "href": "/writing/2026-05-31-continuous-agent-second-brain/"
+    },
+    {
+      "label": "Continuous Executive Agent: a 24/7 coding agent",
+      "href": "/portfolio/#ch-cea"
+    },
+    {
+      "label": "OpenClaw 24/7 Development Agent",
+      "href": "/talks/#ai-tinkerers-2026"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Part 1A harness still needs you",
+      "href": "#why"
+    },
+    {
+      "label": "Part 2Executive, workers, two repos",
+      "href": "#layers"
+    },
+    {
+      "label": "Part 3Retry, diagnose, ask a human",
+      "href": "#failure"
+    },
+    {
+      "label": "Part 4v1.1 and v1.2: logs, a workspace",
+      "href": "#v1"
+    },
+    {
+      "label": "Part 5v1.3: credentials, a demo video",
+      "href": "#v13"
+    },
+    {
+      "label": "Part 6v2.0: accounts, skills, dashboard",
+      "href": "#v20"
+    },
+    {
+      "label": "Part 7v2.1: Codex, Kimi, a bigger build",
+      "href": "#v21"
+    },
+    {
+      "label": "Part 8Harnesses inside the agent",
+      "href": "#v22"
+    },
+    {
+      "label": "Part 9Questions from the room",
+      "href": "#questions"
+    },
+    {
+      "label": "Wrap-upHarnesses first, then v3.0",
+      "href": "#next"
+    },
+    {
+      "label": "Watch the walkthrough, 19:46",
+      "href": "#video"
+    },
+    {
+      "label": "Watch the live talk, 10:58",
+      "href": "#video-live"
+    },
+    {
+      "label": "Code on GitHub",
+      "href": "https://github.com/jackzhaojin/continuous-agent/tree/0717635"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://youtu.be/hxJpum9fNaU",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#questions",
+    "https://github.com/jackzhaojin/continuous-agent/tree/0717635",
+    "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/docs/technical-highlights/2.2/2026-04-06-ai-tinkerer-pre-session-slides.pdf",
+    "https://www.jackzhaojin.com/talks/#ai-tinkerers-2026",
+    "https://post-training.aitinkerers.org/p/ai-tinkerers-23-community-spotlights",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#why",
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/",
+    "https://youtu.be/hxJpum9fNaU?t=27",
+    "https://youtu.be/hxJpum9fNaU?t=69",
+    "https://youtu.be/l3wIHurjERk?t=0",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#layers",
+    "https://youtu.be/hxJpum9fNaU?t=152",
+    "https://youtu.be/l3wIHurjERk?t=65",
+    "https://youtu.be/l3wIHurjERk?t=110",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#failure",
+    "https://github.com/jackzhaojin/continuous-agent/blob/0717635/src/agentic/intelligence/strategy-selector.ts#L31-L190",
+    "https://github.com/jackzhaojin/continuous-agent/blob/0717635/src/core/executive-loop.ts#L645-L719",
+    "https://github.com/jackzhaojin/continuous-agent/blob/0717635/src/core/executive-loop.ts#L583-L719",
+    "https://youtu.be/hxJpum9fNaU?t=972",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#v1",
+    "https://youtu.be/hxJpum9fNaU?t=236",
+    "https://youtu.be/hxJpum9fNaU?t=291",
+    "https://youtu.be/hxJpum9fNaU?t=332",
+    "https://youtu.be/hxJpum9fNaU?t=396",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#v13",
+    "https://www.jackzhaojin.com/writing/2026-01-29-playwright-stakeholder-demos/",
+    "https://github.com/jackzhaojin/ai-sandbox/blob/monorepo/legacy-v2.2/projects/nextjs/2026-01-29/1769685367609/recipe-discovery-platform/demo-output/demo-final.mp4",
+    "https://youtu.be/hxJpum9fNaU?t=431",
+    "https://youtu.be/hxJpum9fNaU?t=538",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#v20",
+    "https://youtu.be/hxJpum9fNaU?t=621",
+    "https://youtu.be/hxJpum9fNaU?t=667",
+    "https://youtu.be/hxJpum9fNaU?t=725",
+    "https://youtu.be/l3wIHurjERk?t=226",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#v21",
+    "https://www.jackzhaojin.com/ai-sandbox/",
+    "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/ai-docs/v2/2026-04-01-v2.1/retro-b2b-postal-checkout-v2.1.5.md",
+    "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/ai-docs/v2/2026-04-01-v2.1/retro-b2b-postal-checkout-v2.1.6.md",
+    "https://youtu.be/hxJpum9fNaU?t=765",
+    "https://youtu.be/hxJpum9fNaU?t=856",
+    "https://youtu.be/l3wIHurjERk?t=162",
+    "https://youtu.be/l3wIHurjERk?t=274",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#v22",
+    "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/CHANGELOG.md",
+    "https://youtu.be/hxJpum9fNaU?t=1030",
+    "https://youtu.be/l3wIHurjERk",
+    "https://youtu.be/l3wIHurjERk?t=358",
+    "https://youtu.be/l3wIHurjERk?t=437",
+    "https://youtu.be/l3wIHurjERk?t=513",
+    "https://youtu.be/l3wIHurjERk?t=565",
+    "https://youtu.be/l3wIHurjERk?t=615",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#next",
+    "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/",
+    "https://youtu.be/hxJpum9fNaU?t=1099",
+    "https://youtu.be/l3wIHurjERk?t=339",
+    "https://www.jackzhaojin.com/portfolio/#ch-cea",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#video",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/#video-live",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/architecture.jpg",
+        "alt": "Hand-drawn diagram, Continuous Coding Agent v2.1 System Architecture. Executive Brain: Phase 1 health check, Phase 2 human inputs from needs-you and the queue, Phase 3 work selection P0 to P4, Phase 3b goal breakdown into 2 to 5 steps, a prompt builder with a vendor adapter, skills and rules, goal bundles, and state and ledgers in Notion, Discord and work-ledger.jsonl. Worker Execution: Phase 4 worker spawner with a vendor registry sending work to the Claude Agent SDK, the OpenAI Codex SDK or Kimi K2.5, all writing to the ai-sandbox output monorepo with GitHub Pages deploy. Feedback Loop: Phase 5 validation, a strategy selector on failure, Phase 7 agentic diagnosis after three failures, Phase 8 block to needs-you.md after ten. Notes: runs 24/7 via PM2, and the two-repo architecture.",
+        "w": 1600,
+        "h": 1138
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/slide-safety.jpg",
+        "alt": "Deck slide, Safety and Intelligence: Key Systems. The Constitution: eight immutable hard limits in workspace/constitution.md that the agent cannot override, enforced at the deterministic layer: no spending beyond $20 per month per service, no permanent deletions, no external publishing without approval, no credential exposure, no access control expansion, no output in the agent codebase, all activity must be logged, ten retries minimum before blocking. Human Interaction through workspace/needs-you.md with APPROVED, DECISION, INFO and SKIP responses. A retry system with strategy rotation: simplify scope, research first, break into subtasks, different tools.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/slide-evolution.jpg",
+        "alt": "Deck slide, Evolution: From v1.0 to v2.1. Six release cards: 1.0 Foundation, January 24, 2026; 1.1 Intelligence, January 25; 1.2 Organization, January 28; 1.3 Security, February 4; 2.0 Identity, March 29; 2.1 Multi-Vendor, April 1, marked latest. Footer: 65 plus days, 5 releases, 40 plus features.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/v11-first-app.jpg",
+        "alt": "The Transaction Manager app on localhost: total income, total expenses and balance cards, an add transaction form, and a recent transactions list with one food entry",
+        "w": 1280,
+        "h": 540
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/v12-goal-bundle.jpg",
+        "alt": "The workspace in VS Code: completed goal folders on the left, and the PROMPT.md of a Full-Stack Retro Analytics Dashboard goal with frontmatter for title, slug, status complete, priority P2, complexity high, tags and an output path in ai-sandbox, next to its progress log and step handoff files",
+        "w": 1280,
+        "h": 482
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/v12-notion.jpg",
+        "alt": "The Agent Milestones database in Notion, timeline view for February 1, 2026, showing two SKILL-BUILD rows for a Playwright demo video skill, each with its contract ID",
+        "w": 1280,
+        "h": 478
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/v13-recipe-demo.jpg",
+        "alt": "A frame of the agent-made demo video: the recipe app's Recent Recipes section with Vegan Buddha Bowl, Mediterranean Grilled Chicken Salad and Classic Spaghetti Carbonara cards, and the video's caption, Let's explore all available recipes",
+        "w": 1280,
+        "h": 500
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/v20-discord.jpg",
+        "alt": "The agent's Discord channel: three Step Completed messages for the B2B Postal Checkout Flow goal at priority P2, steps 35, 36 and 37 of 55, posted at 2:06, 2:15 and 2:38 AM on April 12, 2026, including an end-to-end journey verification gate",
+        "w": 1000,
+        "h": 872
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/slide-vendors.jpg",
+        "alt": "Deck slide, Multi-Vendor Worker Support. Three vendor cards: Claude, the default, on the Claude Agent SDK with an OAuth token, score 88 of 130, third place; OpenAI Codex on Codex SDK threads with codex login, score 115 of 130, first place; Kimi K2.5, dual mode with Wire SDK and CLI, scores 92 for the CLI in second place and 87 for Wire in fourth. Below: the same prompt, build a finance dashboard, run across all four vendor modes, deployed at jackzhaojin.github.io/ai-sandbox, with per-goal vendor override in PROMPT.md frontmatter, a normalized AgentWorkerMessage format, end-to-end vendor tests and a GitHub Pages deployment pipeline.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/v21-retro.jpg",
+        "alt": "The retrospective file on GitHub: Retrospective, B2B Postal Checkout Flow, Longest Autonomous Run. Date April 6, 2026, vendor Kimi CLI in stream-json mode, about 11 hours wall clock, result GOAL_COMPLETED with 32 of 32 steps, 52 git commits and 217 test cases written, followed by the start of the timeline table",
+        "w": 1280,
+        "h": 444
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/thumb-layers.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/thumb-failure.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/thumb-v1.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/thumb-v13.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/thumb-v20.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/thumb-v21.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/thumb-questions.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 17,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/hxJpum9fNaU?rel=0",
+        "title": "I Built a 24/7 Coding Agent That Codes While I Sleep (YouTube video)"
+      },
+      {
+        "src": "https://www.youtube-nocookie.com/embed/l3wIHurjERk?rel=0",
+        "title": "My 24/7 Coding Agent in 5 Minutes: Live Talk and Q&A at AI Tinkerers Columbus (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 17,
+    "mainTextLen": 23769,
+    "realImageCount": 17,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 122,
+        "hits": 2,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 6
+      },
+      {
+        "host": "www.google.com",
+        "count": 2
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 1,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 2,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2026-04-05-continuous-executive-agent-v2-1.png",
+  "renderedHtml": "pages/writing-2026-04-05-continuous-executive-agent-v2-1.html",
+  "slots": {
+    "type": "article",
+    "headline": "A 24/7 Coding Agent at v2.1: An Executive Loop, Swappable Workers and When to Ask a Human",
+    "deck": "A harness still needs you to start it. This is what it takes to keep one going around the clock, from the Continuous Executive Agent at v2.1: an executive loop under PM2 that picks goals off a queue and breaks them into steps, workers on Claude, Codex or Kimi K2.5 behind one interface, deterministic validation, an agentic diagnosis from the third failure and a hand-off to a human at ten. With the code at the release I demoed at AI Tinkerers Columbus on April 6, 2026, a recorded walkthrough and the live Q&A.",
+    "byline": "By Jack Jin · April 5, 2026 · Updated October 4, 2026 · 15 min read · Includes my 19:46 video",
+    "meta": {
+      "times": [
+        "April 5, 2026",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "video",
+      "src": "https://www.youtube-nocookie.com/embed/hxJpum9fNaU?rel=0"
+    },
+    "body": {
+      "h2": [
+        "1. A harness still needs you to start it",
+        "2. An executive loop, separate workers and two repos",
+        "3. A failing goal retries, gets a diagnosis, then asks a human",
+        "4. v1.1 and v1.2 set up turn-by-turn logs and a workspace for prompt packets",
+        "5. v1.3 split credentials into three tiers and made its own demo video",
+        "6. v2.0 gave the agent her own accounts, skills and a dashboard",
+        "7. v2.1 added Codex and Kimi K2.5 workers and took on a much bigger build",
+        "8. After the talk, harnesses run inside the agent",
+        "9. Questions from the room on long runs, testing and getting better",
+        "10. Build harnesses first, and what came after v2.1",
+        "Related"
+      ],
+      "figures": 15,
+      "codeBlocks": 1,
+      "tables": 0,
+      "embeds": 2
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "Continuous Executive Agent V3.0: The Second Brain",
+        "href": "/writing/2026-05-31-continuous-agent-second-brain/"
+      },
+      {
+        "title": "Continuous Executive Agent: a 24/7 coding agent",
+        "href": "/portfolio/#ch-cea"
+      },
+      {
+        "title": "OpenClaw 24/7 Development Agent",
+        "href": "/talks/#ai-tinkerers-2026"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 13,
+    "authorBox": true
+  }
+}

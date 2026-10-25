@@ -1,17 +1,1720 @@
 {
+  "_provenance": {
+    "writtenBy": "stardust:extract",
+    "writtenAt": "2026-10-25T13:56:27.471Z",
+    "track": "site-scope",
+    "readArtifacts": [
+      "stardust/current/_brand-extraction.json",
+      "stardust/current/_computed-styles.json",
+      "stardust/.work/site-scope/class-census.tsv"
+    ],
+    "synthesizedInputs": [],
+    "stardustVersion": "0.36.0",
+    "note": "Descriptive current-state sidecar. spec catalog.json decides block names and reuse; these candidates are inputs to it."
+  },
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-25T13:56:27.472Z",
+  "title": "Design System: Jack Jin (live snapshot, v3)",
   "extensions": {
+    "colorMeta": {
+      "text-secondary": {
+        "role": "text-secondary",
+        "value": "#4a4744",
+        "token": [
+          "--palette-ink-700",
+          "--color-text-muted"
+        ],
+        "occurrences": 7006,
+        "usedAs": [
+          "text",
+          "background"
+        ]
+      },
+      "text-primary": {
+        "role": "text-primary",
+        "value": "#1a1917",
+        "token": [
+          "--palette-ink-900",
+          "--color-text",
+          "--color-inverse-bg"
+        ],
+        "occurrences": 5364,
+        "usedAs": [
+          "text",
+          "background",
+          "border"
+        ]
+      },
+      "border": {
+        "role": "border",
+        "value": "#14120f1a",
+        "token": null,
+        "occurrences": 4483,
+        "usedAs": [
+          "border",
+          "background"
+        ]
+      },
+      "primary": {
+        "role": "primary",
+        "value": "#5b4bc4",
+        "token": [
+          "--palette-lavender-600",
+          "--color-accent",
+          "--color-focus",
+          "--color-topic-aem-ai"
+        ],
+        "occurrences": 2624,
+        "usedAs": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      "accent-soft": {
+        "role": "accent-soft",
+        "value": "#5b4bc414",
+        "token": [
+          "--palette-lavender-600",
+          "--color-accent",
+          "--color-focus",
+          "--color-topic-aem-ai"
+        ],
+        "occurrences": 1216,
+        "usedAs": [
+          "background",
+          "border"
+        ]
+      },
+      "surface": {
+        "role": "surface",
+        "value": "#ffffff",
+        "token": [
+          "--palette-warm-0",
+          "--color-surface",
+          "--color-on-accent"
+        ],
+        "occurrences": 1046,
+        "usedAs": [
+          "background",
+          "border",
+          "text"
+        ]
+      },
+      "background": {
+        "role": "background",
+        "value": "#f6f4f0",
+        "token": [
+          "--palette-warm-50",
+          "--color-bg",
+          "--color-inverse-text",
+          "--color-diagram-ground"
+        ],
+        "occurrences": 1007,
+        "usedAs": [
+          "background",
+          "text"
+        ]
+      },
+      "text-faint": {
+        "role": "text-faint",
+        "value": "#6f6b66",
+        "token": [
+          "--palette-ink-500",
+          "--color-text-faint"
+        ],
+        "occurrences": 2526,
+        "usedAs": [
+          "text"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home and hub hero titles (page-title--display)."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Mono uppercase labels, bylines, chips, nav, table headers."
+      }
+    },
+    "shadows": [
+      {
+        "value": "color(srgb 0.356863 0.294118 0.768627 / 0.38) 0px 0px 0px 1px inset",
+        "count": 34,
+        "purpose": "local; not a depth system"
+      },
+      {
+        "value": "rgb(255, 255, 255) -24px 0px 0px 0px",
+        "count": 20,
+        "purpose": "local; not a depth system"
+      },
+      {
+        "value": "rgba(0, 0, 0, 0.35) 0px 20px 40px -30px",
+        "count": 12,
+        "purpose": "local; not a depth system"
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "--ease-standard: cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "token easing"
+      },
+      {
+        "name": "explainer-ease",
+        "value": "cubic-bezier(.4, 0, .2, 1)",
+        "purpose": "explainers.css local --ease (off-token)"
+      },
+      {
+        "name": "duration",
+        "value": "120ms fast, 250ms base"
+      }
+    ],
+    "componentStyle": {
+      "button": {
+        "radius": "6px",
+        "padding": "12px 20px",
+        "paddingSm": "8px 14px",
+        "primaryBg": "#1a1917",
+        "primaryText": "#f6f4f0",
+        "source": "index.html a.btn.btn--primary; census button-background #1a1917 (82)"
+      },
+      "card": {
+        "radius": "10px",
+        "padding": "22px",
+        "surface": "#ffffff",
+        "border": "rgba(20, 18, 15, 0.10)"
+      },
+      "chip": {
+        "radius": "4px",
+        "dot": "7px"
+      },
+      "panel": {
+        "padding": "26px"
+      },
+      "proofLinks": {
+        "labelWidth": "104px"
+      },
+      "link": {
+        "color": "#5b4bc4",
+        "hover": [
+          {
+            "kind": "link",
+            "from": {
+              "color": "rgb(74, 71, 68)"
+            },
+            "to": {
+              "color": "rgb(26, 25, 23)"
+            },
+            "count": 68
+          },
+          {
+            "kind": "link",
+            "from": {
+              "color": "rgb(26, 25, 23)"
+            },
+            "to": {
+              "color": "rgb(91, 75, 196)"
+            },
+            "count": 62
+          },
+          {
+            "kind": "button",
+            "from": {
+              "color": "rgb(74, 71, 68)",
+              "borderColor": "rgba(20, 18, 15, 0.1)"
+            },
+            "to": {
+              "color": "rgb(26, 25, 23)",
+              "borderColor": "rgba(20, 18, 15, 0.48)"
+            },
+            "count": 35
+          }
+        ]
+      }
+    },
+    "motifs": {
+      "borderRadius": {
+        "primary": "4px",
+        "byArea": "12px",
+        "pill": "999px",
+        "tokens": {
+          "sm": "4px",
+          "md": "6px",
+          "lg": "10px",
+          "pill": "999px"
+        },
+        "values": [
+          {
+            "value": "4px",
+            "count": 1350,
+            "area": 23076737,
+            "sources": [
+              {
+                "url": "https://www.jackzhaojin.com/",
+                "selector": "#site-nav > div > div > button:nth-of-type(1)"
+              },
+              {
+                "url": "https://www.jackzhaojin.com/",
+                "selector": "#site-nav > div > div > button:nth-of-type(2)"
+              },
+              {
+                "url": "https://www.jackzhaojin.com/",
+                "selector": "#site-nav > div > div > button:nth-of-type(3)"
+              }
+            ]
+          },
+          {
+            "value": "10px",
+            "count": 892,
+            "area": 65656529,
+            "sources": [
+              {
+                "url": "https://www.jackzhaojin.com/",
+                "selector": "#main > section:nth-of-type(2) > div > div:nth-of-type(2) > figure"
+              },
+              {
+                "url": "https://www.jackzhaojin.com/portfolio/",
+                "selector": "#gantt"
+              },
+              {
+                "url": "https://www.jackzhaojin.com/portfolio/",
+                "selector": "header > div > div"
+              }
+            ]
+          },
+          {
+            "value": "12px",
+            "count": 524,
+            "area": 69494516,
+            "sources": [
+              {
+                "url": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/",
+                "selector": "#main > article > div > div > figure:nth-of-type(1) > a"
+              },
+              {
+                "url": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/",
+                "selector": "#main > article > div > div > figure:nth-of-type(1) > a > img"
+              },
+              {
+                "url": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/",
+                "selector": "article > div > div > div:nth-of-type(1) > figure > div:nth-of-type(2) > div:nth-of-type(1) > textarea"
+              }
+            ]
+          },
+          {
+            "value": "6px",
+            "count": 456,
+            "area": 2297640,
+            "sources": [
+              {
+                "url": "https://www.jackzhaojin.com/",
+                "selector": "header > div > button"
+              },
+              {
+                "url": "https://www.jackzhaojin.com/",
+                "selector": "#main > section:nth-of-type(1) > div > div > p:nth-of-type(3) > a:nth-of-type(1)"
+              },
+              {
+                "url": "https://www.jackzhaojin.com/",
+                "selector": "#main > section:nth-of-type(1) > div > aside > a:nth-of-type(1)"
+              }
+            ]
+          },
+          {
+            "value": "999px",
+            "count": 370,
+            "area": 1955778,
+            "sources": [
+              {
+                "url": "https://www.jackzhaojin.com/portfolio/",
+                "selector": "#gloss-chips > button:nth-of-type(1)"
+              },
+              {
+                "url": "https://www.jackzhaojin.com/portfolio/",
+                "selector": "#gloss-chips > button:nth-of-type(2)"
+              },
+              {
+                "url": "https://www.jackzhaojin.com/portfolio/",
+                "selector": "#gloss-chips > button:nth-of-type(3)"
+              }
+            ]
+          },
+          {
+            "value": "14px",
+            "count": 147,
+            "area": 35161789,
+            "sources": [
+              {
+                "url": "https://www.jackzhaojin.com/portfolio/",
+                "selector": "#anima-deck"
+              },
+              {
+                "url": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/",
+                "selector": "#main > article > div > div > figure:nth-of-type(2)"
+              },
+              {
+                "url": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/",
+                "selector": "#main > article > div > div > figure:nth-of-type(3)"
+              }
+            ]
+          }
+        ]
+      },
+      "shadows": [
+        {
+          "value": "color(srgb 0.356863 0.294118 0.768627 / 0.38) 0px 0px 0px 1px inset",
+          "count": 34,
+          "sources": [
+            {
+              "url": "https://www.jackzhaojin.com/",
+              "selector": "#site-nav > div > div > button:nth-of-type(1)"
+            },
+            {
+              "url": "https://www.jackzhaojin.com/certifications/",
+              "selector": "#site-nav > div > div > button:nth-of-type(1)"
+            },
+            {
+              "url": "https://www.jackzhaojin.com/portfolio/",
+              "selector": "#site-nav > div > div > button:nth-of-type(1)"
+            }
+          ]
+        },
+        {
+          "value": "rgb(255, 255, 255) -24px 0px 0px 0px",
+          "count": 20,
+          "sources": [
+            {
+              "url": "https://www.jackzhaojin.com/portfolio/",
+              "selector": "#gantt > div:nth-of-type(2) > span"
+            },
+            {
+              "url": "https://www.jackzhaojin.com/portfolio/",
+              "selector": "#gantt > div:nth-of-type(3) > span"
+            },
+            {
+              "url": "https://www.jackzhaojin.com/portfolio/",
+              "selector": "#gantt > div:nth-of-type(4) > span"
+            }
+          ]
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.35) 0px 20px 40px -30px",
+          "count": 12,
+          "sources": [
+            {
+              "url": "https://www.jackzhaojin.com/writing/2025-07-06-ai-coded-nextjs-agent-release-1/",
+              "selector": "article > div > div > div:nth-of-type(1) > div:nth-of-type(2) > figure:nth-of-type(1) > a > img"
+            },
+            {
+              "url": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/",
+              "selector": "#main > article > div > div > div:nth-of-type(2) > div:nth-of-type(2) > figure:nth-of-type(1) > img"
+            },
+            {
+              "url": "https://www.jackzhaojin.com/writing/2026-05-24-theming-eds-with-google-stitch/",
+              "selector": "#main > article > div > div > div:nth-of-type(2) > div:nth-of-type(2) > figure:nth-of-type(1) > img"
+            }
+          ]
+        }
+      ],
+      "shadowTokens": {
+        "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+        "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)"
+      },
+      "gradients": [
+        {
+          "value": "linear-gradient(90deg, rgb(246, 244, 240) 40%, rgba(0, 0, 0, 0)), linear-gradient(270deg, rgb(246, 244, 240) 40%, rgba(0, 0, 0, 0)), linear-gradient(90deg, color(srgb 0.101961 0.0980392 0.0901961 / 0.",
+          "count": 18,
+          "sources": [
+            {
+              "url": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/",
+              "selector": "#main > article > div > div > div:nth-of-type(2)"
+            },
+            {
+              "url": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/",
+              "selector": "#main > article > div > div > div:nth-of-type(3)"
+            }
+          ]
+        },
+        {
+          "value": "repeating-linear-gradient(135deg, rgb(125, 95, 14) 0px, rgb(125, 95, 14) 4px, color(srgb 0.490196 0.372549 0.054902 / 0.35) 4px, color(srgb 0.490196 0.372549 0.054902 / 0.35) 8px)",
+          "count": 14,
+          "sources": [
+            {
+              "url": "https://www.jackzhaojin.com/writing/2026-01-29-playwright-stakeholder-demos/",
+              "selector": "div > figure:nth-of-type(8) > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(1) > div > span:nth-of-type(2)"
+            },
+            {
+              "url": "https://www.jackzhaojin.com/writing/2026-01-29-playwright-stakeholder-demos/",
+              "selector": "div > figure:nth-of-type(8) > div:nth-of-type(2) > div:nth-of-type(2) > div > div:nth-of-type(1) > div > span:nth-of-type(4)"
+            }
+          ]
+        },
+        {
+          "value": "linear-gradient(45deg, rgba(0, 0, 0, 0) 50%, rgb(74, 71, 68) 50%), linear-gradient(135deg, rgb(74, 71, 68) 50%, rgba(0, 0, 0, 0) 50%)",
+          "count": 8,
+          "sources": [
+            {
+              "url": "https://www.jackzhaojin.com/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/",
+              "selector": "div:nth-of-type(1) > figure > div:nth-of-type(2) > div:nth-of-type(1) > details > fieldset > label:nth-of-type(5) > select"
+            },
+            {
+              "url": "https://www.jackzhaojin.com/writing/2025-07-06-ai-coded-nextjs-agent-release-1/",
+              "selector": "#sf-1"
+            }
+          ]
+        },
+        {
+          "value": "repeating-linear-gradient(135deg, rgba(91, 75, 196, 0.08) 0px, rgba(91, 75, 196, 0.08) 6px, rgba(0, 0, 0, 0) 6px, rgba(0, 0, 0, 0) 12px)",
+          "count": 6,
+          "sources": [
+            {
+              "url": "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/",
+              "selector": "figure > div:nth-of-type(3) > div:nth-of-type(1) > div > table > tbody > tr:nth-of-type(1) > td:nth-of-type(1)"
+            },
+            {
+              "url": "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/",
+              "selector": "figure > div:nth-of-type(3) > div:nth-of-type(1) > div > table > tbody > tr:nth-of-type(2) > td:nth-of-type(1)"
+            }
+          ]
+        },
+        {
+          "value": "linear-gradient(110deg, rgba(91, 75, 196, 0.08), rgba(0, 0, 0, 0) 55%)",
+          "count": 2,
+          "sources": [
+            {
+              "url": "https://www.jackzhaojin.com/portfolio/",
+              "selector": "#deck-brain > figcaption"
+            }
+          ]
+        },
+        {
+          "value": "linear-gradient(120deg, rgb(11, 42, 91), rgb(63, 143, 214) 45%, rgb(215, 236, 255) 60%, rgb(42, 94, 168))",
+          "count": 2,
+          "sources": [
+            {
+              "url": "https://www.jackzhaojin.com/writing/2026-05-24-theming-eds-with-google-stitch/",
+              "selector": "div > div:nth-of-type(1) > figure > div:nth-of-type(3) > div:nth-of-type(1) > div > div > div:nth-of-type(1)"
+            }
+          ]
+        }
+      ],
+      "hairlines": {
+        "token": "--color-line",
+        "value": "rgba(20, 18, 15, 0.10)",
+        "strong": "rgba(20, 18, 15, 0.48)",
+        "note": "rgba(20,18,15,.10) borders are the third most frequent color (4249 border uses); 1px hairline rules carry structure instead of shadows."
+      },
+      "bandTints": {
+        "strong": "9%",
+        "soft": "5%",
+        "edge": "4%"
+      },
+      "patterns": [
+        "hairline-ruled rows",
+        "tinted bands (plain/alt/tint/inverse)",
+        "chip with dot",
+        "card with 10px radius",
+        "dark code block",
+        "diagram frame",
+        "ambient canvas hero"
+      ]
+    },
+    "voice": {
+      "heroHeadline": "Jack Jin",
+      "heroSubcopy": "Adobe Experience Manager. AI agents. Work you can explore.",
+      "heroImage": {
+        "url": "https://www.jackzhaojin.com/assets/aem-champion-2026-2027.webp",
+        "alt": "Adobe Experience Manager Champion, class of 2026-2027",
+        "w": 756,
+        "h": 426,
+        "selector": ".graphic-hero--home .champion-banner img",
+        "resolution": "largest in-hero raster (the hero has no photo; the champion badge sits in the aside)"
+      },
+      "heroMedium": {
+        "kind": "canvas",
+        "selector": "section.graphic-hero > canvas.ambient-art",
+        "script": "/js/page-art.js?v=4-ink",
+        "behaviour": "continuous theme-aware geometric field drawn in --color-accent, --color-project-cyan, --color-project-amber; rAF loop at about 30 fps, paused off-screen (IntersectionObserver) and on document.hidden, static frame under prefers-reduced-motion",
+        "pages": [
+          "index",
+          "writing",
+          "talks",
+          "certifications"
+        ],
+        "signature": true,
+        "note": "portfolio has its own hero (.hero .signal-field / .hero-glow) driven by /portfolio/script.js"
+      },
+      "primaryCTALabel": "Explore the portfolio",
+      "firstParagraph": "I'm an Adobe Experience Manager Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024, and an Adobe Certified Master. As an Associate Director in Accenture's Adobe Business Group in Columbus, Ohio, I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+      "ctaSamples": [
+        "Explore the portfolio",
+        "See my talks",
+        "View all certifications",
+        "Explore Anima Mesh",
+        "Visit Technical Writing",
+        "watch it on YouTube",
+        "Code on GitHub"
+      ],
+      "navItems": [
+        "Technical Writing",
+        "Portfolio",
+        "Talks",
+        "Certifications"
+      ],
+      "navTools": [
+        "Light",
+        "Dark",
+        "System"
+      ],
+      "footerHeadings": [],
+      "footerLinks": [
+        "Accenture",
+        "LinkedIn",
+        "GitHub",
+        "Certifications"
+      ],
+      "footerText": "(c) 2026 Jack Jin, Columbus, Ohio",
+      "linkList": [
+        "/writing/",
+        "/portfolio/",
+        "/talks/",
+        "/certifications/"
+      ],
+      "tone": "first-person practitioner, plain and specific; numbered section headings with self-link anchors (#) in articles; bylines with read time and video length; no marketing superlatives"
+    },
+    "systemComponents": [
+      {
+        "name": "site-header",
+        "kind": "header",
+        "occurrences": 34,
+        "of": 34,
+        "variants": 1,
+        "headingSequence": [
+          "Jack Jin",
+          "MenuClose",
+          "Technical Writing",
+          "Portfolio",
+          "Talks",
+          "Certifications",
+          "Light",
+          "Dark",
+          "System"
+        ],
+        "ctaLabels": [],
+        "domFingerprintHash": "sha256:d2b82a23b956e851",
+        "exampleSlug": "index",
+        "exampleSelector": "header.site-header",
+        "examplePages": [
+          "certifications",
+          "index",
+          "portfolio",
+          "privacy"
+        ]
+      },
+      {
+        "name": "site-footer",
+        "kind": "footer",
+        "occurrences": 34,
+        "of": 34,
+        "variants": 1,
+        "headingSequence": [
+          "Accenture",
+          "LinkedIn",
+          "GitHub",
+          "Certifications"
+        ],
+        "ctaLabels": [],
+        "domFingerprintHash": "sha256:2975919f98f6a4d9",
+        "exampleSlug": "index",
+        "exampleSelector": "footer.site-footer",
+        "examplePages": [
+          "certifications",
+          "index",
+          "portfolio",
+          "privacy"
+        ]
+      },
+      {
+        "name": "breadcrumb",
+        "kind": "breadcrumb",
+        "occurrences": 32,
+        "of": 34,
+        "variants": 2,
+        "headingSequence": [
+          "Home",
+          "Technical Writing"
+        ],
+        "ctaLabels": [],
+        "domFingerprintHash": "sha256:7e0945f7c8ea5293",
+        "exampleSlug": "writing-2025-04-13-vibe-coding-star-story-generator",
+        "exampleSelector": "nav.breadcrumb",
+        "examplePages": [
+          "writing-2025-04-13-vibe-coding-star-story-generator",
+          "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+          "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+          "writing-2025-06-08-edge-cms-shift-adobe-eds"
+        ]
+      },
+      {
+        "name": "article-rail-toc",
+        "kind": "sidebar",
+        "occurrences": 28,
+        "of": 34,
+        "variants": 28,
+        "headingSequence": [
+          "Since 2025What changed",
+          "Part 1What it does, how it's wired",
+          "Part 2How the prompt asks for STAR",
+          "Part 3The parser fallback, and its gap",
+          "Part 4Five AI tools, ranked April 2025",
+          "Code on GitHub"
+        ],
+        "ctaLabels": [],
+        "domFingerprintHash": "sha256:7543b4ad7d14a03f",
+        "exampleSlug": "writing-2025-04-13-vibe-coding-star-story-generator",
+        "exampleSelector": ".article-rail",
+        "examplePages": [
+          "writing-2025-04-13-vibe-coding-star-story-generator"
+        ]
+      },
+      {
+        "name": "article-facts",
+        "kind": "other",
+        "occurrences": 28,
+        "of": 34,
+        "variants": 12,
+        "headingSequence": [],
+        "ctaLabels": [],
+        "domFingerprintHash": "sha256:93af10a653fc8ff4",
+        "exampleSlug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+        "exampleSelector": ".article-facts",
+        "examplePages": [
+          "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+          "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+          "writing-2025-06-08-edge-cms-shift-adobe-eds",
+          "writing-2025-07-12-aem-headless-omnichannel-architecture"
+        ]
+      },
+      {
+        "name": "author-box",
+        "kind": "other",
+        "occurrences": 28,
+        "of": 34,
+        "variants": 1,
+        "headingSequence": [
+          "Portfolio",
+          "Talks",
+          "GitHub"
+        ],
+        "ctaLabels": [],
+        "domFingerprintHash": "sha256:f92f56d69f14f2f0",
+        "exampleSlug": "writing-2025-04-13-vibe-coding-star-story-generator",
+        "exampleSelector": ".author-box",
+        "examplePages": [
+          "writing-2025-04-13-vibe-coding-star-story-generator",
+          "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+          "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+          "writing-2025-06-08-edge-cms-shift-adobe-eds"
+        ]
+      },
+      {
+        "name": "article-related",
+        "kind": "cross-promo",
+        "occurrences": 28,
+        "of": 34,
+        "variants": 3,
+        "headingSequence": [
+          "Related",
+          "Azure STAR Generator",
+          "Azure RBAC and CI/CD for AI coding agents",
+          "An AI-coded Next.js agent, release 1.0",
+          "Portfolio",
+          "Talks",
+          "GitHub"
+        ],
+        "ctaLabels": [],
+        "domFingerprintHash": "sha256:4913a59d1044dfb1",
+        "exampleSlug": "writing-2025-04-13-vibe-coding-star-story-generator",
+        "exampleSelector": ".article-related",
+        "examplePages": [
+          "writing-2025-04-13-vibe-coding-star-story-generator",
+          "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+          "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+          "writing-2025-06-08-edge-cms-shift-adobe-eds"
+        ]
+      }
+    ],
+    "modules": [
+      {
+        "id": "candidate-d22ec3",
+        "name": "article-facts",
+        "confidence": "high",
+        "basis": "signals 5 + 1 (Key facts caption)",
+        "slots": [
+          {
+            "name": "caption",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "rows",
+            "type": "list<label,value>",
+            "required": false
+          }
+        ],
+        "instanceCount": 28,
+        "instances": [
+          {
+            "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+            "selector": ".article-facts"
+          },
+          {
+            "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+            "selector": ".article-facts"
+          },
+          {
+            "slug": "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+            "selector": ".article-facts"
+          },
+          {
+            "slug": "writing-2025-06-08-edge-cms-shift-adobe-eds",
+            "selector": ".article-facts"
+          },
+          {
+            "slug": "writing-2025-06-12-azure-rbac-cicd-for-ai-agents",
+            "selector": ".article-facts"
+          },
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".article-facts"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-1d81ba",
+        "name": "article-related",
+        "confidence": "high",
+        "basis": "signals 1 (h2 Related on 28/28) + 5",
+        "slots": [
+          {
+            "name": "heading",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "rows",
+            "type": "list<kind,title,link,note>",
+            "required": false
+          }
+        ],
+        "instanceCount": 28,
+        "instances": [
+          {
+            "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+            "selector": ".article-related"
+          },
+          {
+            "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+            "selector": ".article-related"
+          },
+          {
+            "slug": "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+            "selector": ".article-related"
+          },
+          {
+            "slug": "writing-2025-06-08-edge-cms-shift-adobe-eds",
+            "selector": ".article-related"
+          },
+          {
+            "slug": "writing-2025-06-12-azure-rbac-cicd-for-ai-agents",
+            "selector": ".article-related"
+          },
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".article-related"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-3f266d",
+        "name": "author-box",
+        "confidence": "high",
+        "basis": "signal 5 (28/28)",
+        "slots": [
+          {
+            "name": "avatar",
+            "type": "image",
+            "required": false
+          },
+          {
+            "name": "name",
+            "type": "link",
+            "required": false
+          },
+          {
+            "name": "bio",
+            "type": "text",
+            "required": false
+          }
+        ],
+        "instanceCount": 28,
+        "instances": [
+          {
+            "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+            "selector": ".author-box"
+          },
+          {
+            "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+            "selector": ".author-box"
+          },
+          {
+            "slug": "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+            "selector": ".author-box"
+          },
+          {
+            "slug": "writing-2025-06-08-edge-cms-shift-adobe-eds",
+            "selector": ".author-box"
+          },
+          {
+            "slug": "writing-2025-06-12-azure-rbac-cicd-for-ai-agents",
+            "selector": ".author-box"
+          },
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".author-box"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-6e5ce5",
+        "name": "breadcrumb",
+        "confidence": "high",
+        "basis": "signals 2 (Home CTA on 32) + 5",
+        "slots": [
+          {
+            "name": "trail",
+            "type": "list<link>",
+            "required": false
+          }
+        ],
+        "instanceCount": 32,
+        "instances": [
+          {
+            "slug": "certifications",
+            "selector": "nav.breadcrumb"
+          },
+          {
+            "slug": "privacy",
+            "selector": "nav.breadcrumb"
+          },
+          {
+            "slug": "talks",
+            "selector": "nav.breadcrumb"
+          },
+          {
+            "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+            "selector": "nav.breadcrumb"
+          },
+          {
+            "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+            "selector": "nav.breadcrumb"
+          },
+          {
+            "slug": "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+            "selector": "nav.breadcrumb"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-acb6e3",
+        "name": "byline",
+        "confidence": "high",
+        "basis": "signal 5 (28/28)",
+        "slots": [
+          {
+            "name": "author",
+            "type": "link",
+            "required": false
+          },
+          {
+            "name": "date",
+            "type": "time",
+            "required": false
+          },
+          {
+            "name": "updated",
+            "type": "time",
+            "required": false
+          },
+          {
+            "name": "readTime",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "videoLength",
+            "type": "text",
+            "required": false
+          }
+        ],
+        "instanceCount": 28,
+        "instances": [
+          {
+            "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+            "selector": ".byline"
+          },
+          {
+            "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+            "selector": ".byline"
+          },
+          {
+            "slug": "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+            "selector": ".byline"
+          },
+          {
+            "slug": "writing-2025-06-08-edge-cms-shift-adobe-eds",
+            "selector": ".byline"
+          },
+          {
+            "slug": "writing-2025-06-12-azure-rbac-cicd-for-ai-agents",
+            "selector": ".byline"
+          },
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".byline"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-32eb47",
+        "name": "article-rail-toc",
+        "confidence": "high",
+        "basis": "signal 5 (28/28); generated from H2 ids",
+        "slots": [
+          {
+            "name": "links",
+            "type": "list<anchor>",
+            "required": false
+          }
+        ],
+        "instanceCount": 28,
+        "instances": [
+          {
+            "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+            "selector": ".article-rail"
+          },
+          {
+            "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+            "selector": ".article-rail"
+          },
+          {
+            "slug": "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+            "selector": ".article-rail"
+          },
+          {
+            "slug": "writing-2025-06-08-edge-cms-shift-adobe-eds",
+            "selector": ".article-rail"
+          },
+          {
+            "slug": "writing-2025-06-12-azure-rbac-cicd-for-ai-agents",
+            "selector": ".article-rail"
+          },
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".article-rail"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-f85bdc",
+        "name": "figure",
+        "confidence": "high",
+        "basis": "signal 5 (28 pages, 230 elements)",
+        "slots": [
+          {
+            "name": "image",
+            "type": "image",
+            "required": false
+          },
+          {
+            "name": "caption",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "size",
+            "type": "enum(wide,xwide,tall,zoom,native)",
+            "required": false
+          }
+        ],
+        "instanceCount": 28,
+        "instances": [
+          {
+            "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+            "selector": ".fig"
+          },
+          {
+            "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+            "selector": ".fig"
+          },
+          {
+            "slug": "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+            "selector": ".fig"
+          },
+          {
+            "slug": "writing-2025-06-08-edge-cms-shift-adobe-eds",
+            "selector": ".fig"
+          },
+          {
+            "slug": "writing-2025-06-12-azure-rbac-cicd-for-ai-agents",
+            "selector": ".fig"
+          },
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".fig"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-8eefe4",
+        "name": "video-embed",
+        "confidence": "high",
+        "basis": "signals 2 (watch it on YouTube on 19) + 5",
+        "slots": [
+          {
+            "name": "youtubeId",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "title",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "caption",
+            "type": "link",
+            "required": false
+          }
+        ],
+        "instanceCount": 21,
+        "instances": [
+          {
+            "slug": "portfolio",
+            "selector": ".video"
+          },
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".video"
+          },
+          {
+            "slug": "writing-2025-07-12-aem-headless-omnichannel-architecture",
+            "selector": ".video"
+          },
+          {
+            "slug": "writing-2025-09-01-aem-caching-production-architectures",
+            "selector": ".video"
+          },
+          {
+            "slug": "writing-2025-10-05-mcp-server-for-eds-da-live",
+            "selector": ".video"
+          },
+          {
+            "slug": "writing-2025-10-12-da-live-mcp-across-ai-platforms",
+            "selector": ".video"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-34c76b",
+        "name": "code-block",
+        "confidence": "high",
+        "basis": "signals 2 (Code on GitHub on 15, source on 12) + 5 (18/45)",
+        "slots": [
+          {
+            "name": "language",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "lines",
+            "type": "code",
+            "required": false
+          },
+          {
+            "name": "caption",
+            "type": "text",
+            "required": false
+          }
+        ],
+        "instanceCount": 20,
+        "instances": [
+          {
+            "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+            "selector": ".code"
+          },
+          {
+            "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+            "selector": ".code"
+          },
+          {
+            "slug": "writing-2025-06-12-azure-rbac-cicd-for-ai-agents",
+            "selector": ".code"
+          },
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".code"
+          },
+          {
+            "slug": "writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+            "selector": ".code"
+          },
+          {
+            "slug": "writing-2025-07-11-scaling-ai-coding-delivery-methodology",
+            "selector": ".code"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-9ea5e9",
+        "name": "board",
+        "confidence": "medium",
+        "basis": "signal 5 (26/108): explainer container",
+        "slots": [
+          {
+            "name": "title",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "rows",
+            "type": "list",
+            "required": false
+          }
+        ],
+        "instanceCount": 26,
+        "instances": [
+          {
+            "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+            "selector": ".board"
+          },
+          {
+            "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+            "selector": ".board"
+          },
+          {
+            "slug": "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+            "selector": ".board"
+          },
+          {
+            "slug": "writing-2025-06-12-azure-rbac-cicd-for-ai-agents",
+            "selector": ".board"
+          },
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".board"
+          },
+          {
+            "slug": "writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+            "selector": ".board"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-1247eb",
+        "name": "chips",
+        "confidence": "medium",
+        "basis": "signal 5 (18/21)",
+        "slots": [
+          {
+            "name": "chips",
+            "type": "list<text,topic>",
+            "required": false
+          }
+        ],
+        "instanceCount": 19,
+        "instances": [
+          {
+            "slug": "portfolio",
+            "selector": ".chips"
+          },
+          {
+            "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+            "selector": ".chips"
+          },
+          {
+            "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+            "selector": ".chips"
+          },
+          {
+            "slug": "writing-2025-06-08-edge-cms-shift-adobe-eds",
+            "selector": ".chips"
+          },
+          {
+            "slug": "writing-2025-06-12-azure-rbac-cicd-for-ai-agents",
+            "selector": ".chips"
+          },
+          {
+            "slug": "writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+            "selector": ".chips"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-3953f9",
+        "name": "lab",
+        "confidence": "medium",
+        "basis": "signal 5 (14/18): interactive tab/token lab",
+        "slots": [
+          {
+            "name": "controls",
+            "type": "list<button>",
+            "required": false
+          },
+          {
+            "name": "panes",
+            "type": "list<rich>",
+            "required": false
+          }
+        ],
+        "instanceCount": 14,
+        "instances": [
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".lab"
+          },
+          {
+            "slug": "writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+            "selector": ".lab"
+          },
+          {
+            "slug": "writing-2025-07-11-scaling-ai-coding-delivery-methodology",
+            "selector": ".lab"
+          },
+          {
+            "slug": "writing-2025-10-05-mcp-server-for-eds-da-live",
+            "selector": ".lab"
+          },
+          {
+            "slug": "writing-2025-10-12-da-live-mcp-across-ai-platforms",
+            "selector": ".lab"
+          },
+          {
+            "slug": "writing-2026-01-05-from-prompts-to-harness",
+            "selector": ".lab"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-860360",
+        "name": "verdict",
+        "confidence": "medium",
+        "basis": "signal 5 (10/11)",
+        "slots": [
+          {
+            "name": "label",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "body",
+            "type": "rich",
+            "required": false
+          }
+        ],
+        "instanceCount": 10,
+        "instances": [
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".verdict"
+          },
+          {
+            "slug": "writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+            "selector": ".verdict"
+          },
+          {
+            "slug": "writing-2025-07-11-scaling-ai-coding-delivery-methodology",
+            "selector": ".verdict"
+          },
+          {
+            "slug": "writing-2026-01-05-from-prompts-to-harness",
+            "selector": ".verdict"
+          },
+          {
+            "slug": "writing-2026-03-23-eds-hlx-admin-agentic-config",
+            "selector": ".verdict"
+          },
+          {
+            "slug": "writing-2026-04-05-continuous-executive-agent-v2-1",
+            "selector": ".verdict"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-6f1578",
+        "name": "data-table",
+        "confidence": "medium",
+        "basis": "signal 5 (9/14)",
+        "slots": [
+          {
+            "name": "caption",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "table",
+            "type": "table",
+            "required": false
+          }
+        ],
+        "instanceCount": 9,
+        "instances": [
+          {
+            "slug": "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+            "selector": ".table-wrap"
+          },
+          {
+            "slug": "writing-2025-06-08-edge-cms-shift-adobe-eds",
+            "selector": ".table-wrap"
+          },
+          {
+            "slug": "writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+            "selector": ".table-wrap"
+          },
+          {
+            "slug": "writing-2025-07-12-aem-headless-omnichannel-architecture",
+            "selector": ".table-wrap"
+          },
+          {
+            "slug": "writing-2025-09-01-aem-caching-production-architectures",
+            "selector": ".table-wrap"
+          },
+          {
+            "slug": "writing-2025-10-05-mcp-server-for-eds-da-live",
+            "selector": ".table-wrap"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-b64ca2",
+        "name": "compare",
+        "confidence": "speculative",
+        "basis": "signal 5 only (5/5)",
+        "slots": [
+          {
+            "name": "left",
+            "type": "rich",
+            "required": false
+          },
+          {
+            "name": "right",
+            "type": "rich",
+            "required": false
+          }
+        ],
+        "instanceCount": 5,
+        "instances": [
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".cmp"
+          },
+          {
+            "slug": "writing-2026-04-05-continuous-executive-agent-v2-1",
+            "selector": ".cmp"
+          },
+          {
+            "slug": "writing-2026-05-24-theming-eds-with-google-stitch",
+            "selector": ".cmp"
+          },
+          {
+            "slug": "writing-2026-07-21-four-frontier-models-one-prompt",
+            "selector": ".cmp"
+          },
+          {
+            "slug": "writing-2026-09-20-aem-edge-functions-google-sign-in",
+            "selector": ".cmp"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-d0a143",
+        "name": "graphic-hero",
+        "confidence": "high",
+        "basis": "signal 5 (4 pages: home, writing, talks, certifications) + heroMedium canvas",
+        "slots": [
+          {
+            "name": "title",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "positioning",
+            "type": "rich",
+            "required": false
+          },
+          {
+            "name": "summary",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "actions",
+            "type": "list<link>",
+            "required": false
+          },
+          {
+            "name": "aside",
+            "type": "rich",
+            "required": false
+          }
+        ],
+        "instanceCount": 4,
+        "instances": [
+          {
+            "slug": "certifications",
+            "selector": ".graphic-hero"
+          },
+          {
+            "slug": "index",
+            "selector": ".graphic-hero"
+          },
+          {
+            "slug": "talks",
+            "selector": ".graphic-hero"
+          },
+          {
+            "slug": "writing",
+            "selector": ".graphic-hero"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-dfdfbe",
+        "name": "section-band",
+        "confidence": "medium",
+        "basis": "signal 5 (band 5 pages, band--plain 5, band--alt 3)",
+        "slots": [
+          {
+            "name": "variant",
+            "type": "enum(plain,alt,tint,inverse)",
+            "required": false
+          },
+          {
+            "name": "content",
+            "type": "rich",
+            "required": false
+          }
+        ],
+        "instanceCount": 6,
+        "instances": [
+          {
+            "slug": "certifications",
+            "selector": "section.band"
+          },
+          {
+            "slug": "index",
+            "selector": "section.band"
+          },
+          {
+            "slug": "portfolio",
+            "selector": "section.band"
+          },
+          {
+            "slug": "privacy",
+            "selector": "section.band"
+          },
+          {
+            "slug": "talks",
+            "selector": "section.band"
+          },
+          {
+            "slug": "writing",
+            "selector": "section.band"
+          }
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": "candidate-8faccb",
+        "name": "shot",
+        "confidence": "speculative",
+        "basis": "signal 5 only (3/9)",
+        "slots": [
+          {
+            "name": "image",
+            "type": "image",
+            "required": false
+          },
+          {
+            "name": "caption",
+            "type": "text",
+            "required": false
+          }
+        ],
+        "instanceCount": 3,
+        "instances": [
+          {
+            "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+            "selector": ".shot"
+          },
+          {
+            "slug": "writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+            "selector": ".shot"
+          },
+          {
+            "slug": "writing-2025-07-11-scaling-ai-coding-delivery-methodology",
+            "selector": ".shot"
+          }
+        ],
+        "status": "candidate"
+      }
+    ],
+    "metadata": {
+      "siteName": "Jack Jin",
+      "defaultOgImage": "https://www.jackzhaojin.com/assets/site-social.png",
+      "themeColor": null,
+      "favicon": "/favicon.ico",
+      "locale": "en",
+      "analytics": [
+        "gtag G-ZVENE6BXTJ",
+        "Cloudflare Web Analytics"
+      ]
+    },
+    "layoutBreakpoints": {
+      "system": [
+        480,
+        768,
+        1024,
+        1280
+      ],
+      "offLadder": [
+        600,
+        640,
+        700,
+        760,
+        860,
+        1080,
+        1100
+      ]
+    },
     "breakpoints": {
       "containerMaxWidth": "1280px",
       "probeWidth": 2560,
-      "shellMaxWidth": null,
+      "shellMaxWidth": "1280px",
       "caps": [
+        {
+          "kind": "shell",
+          "px": 1280,
+          "via": "max-width",
+          "selector": "#main > section.band.band--plain > div.container",
+          "pages": [
+            "https://www.jackzhaojin.com/writing/",
+            "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+            "https://www.jackzhaojin.com/talks/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 1360,
+          "via": "max-width",
+          "selector": "#main > div.tdiv",
+          "pages": [
+            "https://www.jackzhaojin.com/portfolio/"
+          ]
+        },
         {
           "kind": "module",
           "px": 1280,
           "via": "max-width",
           "selector": "#main > section.band.band--plain > div.container.home-intro",
           "pages": [
-            "https://www.jackzhaojin.com/"
+            "https://www.jackzhaojin.com/",
+            "https://www.jackzhaojin.com/writing/",
+            "https://www.jackzhaojin.com/certifications/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 1200,
+          "via": "max-width",
+          "selector": "#top > div.hero-grid",
+          "pages": [
+            "https://www.jackzhaojin.com/portfolio/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 1100,
+          "via": "max-width",
+          "selector": "#anima-deck",
+          "pages": [
+            "https://www.jackzhaojin.com/portfolio/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 1040,
+          "via": "max-width",
+          "selector": "#p-anima-arch > figure.frame.diagram-frame",
+          "pages": [
+            "https://www.jackzhaojin.com/portfolio/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 980,
+          "via": "max-width",
+          "selector": "#p-bruce > p.bruce-note.reveal",
+          "pages": [
+            "https://www.jackzhaojin.com/portfolio/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 886,
+          "via": "fixed",
+          "selector": "#deck-brain > figcaption.deck-pane-head > div",
+          "pages": [
+            "https://www.jackzhaojin.com/portfolio/",
+            "https://www.jackzhaojin.com/talks/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 806,
+          "via": "max-width",
+          "selector": "div.container.talk-list > article.talk-row > div > h2",
+          "pages": [
+            "https://www.jackzhaojin.com/talks/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 760,
+          "via": "fixed",
+          "selector": "#main > article.writing-article > div.container.article-layout > div.article-body",
+          "pages": [
+            "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+            "https://www.jackzhaojin.com/portfolio/"
           ]
         },
         {
@@ -20,7 +1723,10 @@
           "via": "fixed",
           "selector": "#main > section.band.band--plain > div.container.home-intro > div",
           "pages": [
-            "https://www.jackzhaojin.com/"
+            "https://www.jackzhaojin.com/",
+            "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+            "https://www.jackzhaojin.com/portfolio/",
+            "https://www.jackzhaojin.com/talks/"
           ]
         },
         {
@@ -29,7 +1735,28 @@
           "via": "max-width",
           "selector": "section.band.band--plain > div.container.home-intro > div > p.summary",
           "pages": [
-            "https://www.jackzhaojin.com/"
+            "https://www.jackzhaojin.com/",
+            "https://www.jackzhaojin.com/writing/",
+            "https://www.jackzhaojin.com/portfolio/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 668,
+          "via": "fixed",
+          "selector": "div.container.article-layout > div.article-body > p > a",
+          "pages": [
+            "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+            "https://www.jackzhaojin.com/privacy/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 634,
+          "via": "fixed",
+          "selector": "section.article-related > ol.row-list > li > span.row-list__title",
+          "pages": [
+            "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/"
           ]
         },
         {
@@ -38,7 +1765,22 @@
           "via": "fixed",
           "selector": "section.band.band--tint > div.container > div.work-feature > figure.frame.frame--diagram",
           "pages": [
-            "https://www.jackzhaojin.com/"
+            "https://www.jackzhaojin.com/",
+            "https://www.jackzhaojin.com/writing/",
+            "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+            "https://www.jackzhaojin.com/portfolio/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 560,
+          "via": "max-width",
+          "selector": "div.container > form.filter-bar.writing-filter > div.writing-filter__search > div.writing-filter__field",
+          "pages": [
+            "https://www.jackzhaojin.com/writing/",
+            "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+            "https://www.jackzhaojin.com/portfolio/",
+            "https://www.jackzhaojin.com/certifications/"
           ]
         },
         {
@@ -47,7 +1789,8 @@
           "via": "fixed",
           "selector": "#main > section.band.band--plain > div.container.home-two > div",
           "pages": [
-            "https://www.jackzhaojin.com/"
+            "https://www.jackzhaojin.com/",
+            "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/"
           ]
         },
         {
@@ -56,7 +1799,8 @@
           "via": "fixed",
           "selector": "section.band.band--tint > div.container > div.work-feature > div",
           "pages": [
-            "https://www.jackzhaojin.com/"
+            "https://www.jackzhaojin.com/",
+            "https://www.jackzhaojin.com/writing/"
           ]
         },
         {
@@ -65,7 +1809,19 @@
           "via": "fixed",
           "selector": "div.container.home-two > div > p > a",
           "pages": [
-            "https://www.jackzhaojin.com/"
+            "https://www.jackzhaojin.com/",
+            "https://www.jackzhaojin.com/writing/",
+            "https://www.jackzhaojin.com/certifications/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 440,
+          "via": "fixed",
+          "selector": "#adobe-stardust-explained > div.writing-row__body > h2 > a.writing-row__link",
+          "pages": [
+            "https://www.jackzhaojin.com/writing/",
+            "https://www.jackzhaojin.com/certifications/"
           ]
         },
         {
@@ -74,7 +1830,41 @@
           "via": "fixed",
           "selector": "div.container.home-intro > div > p.positioning > em",
           "pages": [
-            "https://www.jackzhaojin.com/"
+            "https://www.jackzhaojin.com/",
+            "https://www.jackzhaojin.com/writing/",
+            "https://www.jackzhaojin.com/portfolio/",
+            "https://www.jackzhaojin.com/certifications/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 388,
+          "via": "fixed",
+          "selector": "#adobe-experience-manager-sites-developer > div > h3 > a",
+          "pages": [
+            "https://www.jackzhaojin.com/certifications/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 366,
+          "via": "fixed",
+          "selector": "#deck-tab-brain",
+          "pages": [
+            "https://www.jackzhaojin.com/portfolio/",
+            "https://www.jackzhaojin.com/certifications/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 344,
+          "via": "fixed",
+          "selector": "#patterns-of-work > div.writing-row__body > h2 > a.writing-row__link",
+          "pages": [
+            "https://www.jackzhaojin.com/writing/",
+            "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+            "https://www.jackzhaojin.com/portfolio/",
+            "https://www.jackzhaojin.com/certifications/"
           ]
         },
         {
@@ -83,7 +1873,24 @@
           "via": "fixed",
           "selector": "div.container.home-intro > div > div.home-title-row > h1.page-title.page-title--display",
           "pages": [
-            "https://www.jackzhaojin.com/"
+            "https://www.jackzhaojin.com/",
+            "https://www.jackzhaojin.com/writing/",
+            "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+            "https://www.jackzhaojin.com/portfolio/",
+            "https://www.jackzhaojin.com/certifications/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 288,
+          "via": "fixed",
+          "selector": "ol.writing-list > li > article.writing-row > div.writing-row__media",
+          "pages": [
+            "https://www.jackzhaojin.com/writing/",
+            "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+            "https://www.jackzhaojin.com/portfolio/",
+            "https://www.jackzhaojin.com/certifications/",
+            "https://www.jackzhaojin.com/privacy/"
           ]
         },
         {
@@ -92,7 +1899,11 @@
           "via": "fixed",
           "selector": "aside.home-note.home-note--adobe > ul.identity-list > li > a",
           "pages": [
-            "https://www.jackzhaojin.com/"
+            "https://www.jackzhaojin.com/",
+            "https://www.jackzhaojin.com/writing/",
+            "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+            "https://www.jackzhaojin.com/portfolio/",
+            "https://www.jackzhaojin.com/certifications/"
           ]
         }
       ],
@@ -120,17 +1931,301 @@
           "section": 3,
           "selector": "#main > section.band.band--alt",
           "px": 1280
+        },
+        {
+          "url": "https://www.jackzhaojin.com/writing/",
+          "section": 0,
+          "selector": "#main > header.band.band--plain",
+          "px": null
+        },
+        {
+          "url": "https://www.jackzhaojin.com/writing/",
+          "section": 1,
+          "selector": "#main > section.band.band--plain",
+          "px": 592
+        },
+        {
+          "url": "https://www.jackzhaojin.com/writing/",
+          "section": 2,
+          "selector": "#main > section.band.band--alt",
+          "px": 1280
+        },
+        {
+          "url": "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+          "section": 0,
+          "selector": "#main > article.writing-article > header.container.article-head",
+          "px": null
+        },
+        {
+          "url": "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+          "section": 1,
+          "selector": "#main > article.writing-article > div.container.article-layout",
+          "px": 760
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 0,
+          "selector": "#top",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 1,
+          "selector": "#nav-links",
+          "px": null
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 2,
+          "selector": "#timeline-view",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 3,
+          "selector": "#main > div.tdiv",
+          "px": 1360
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 4,
+          "selector": "#ch-anima",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 5,
+          "selector": "#main > div.tdiv",
+          "px": 1360
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 6,
+          "selector": "#ch-bruce",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 7,
+          "selector": "#main > div.tdiv",
+          "px": 1360
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 8,
+          "selector": "#ch-factory",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 9,
+          "selector": "#main > div.tdiv",
+          "px": 1360
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 10,
+          "selector": "#ch-kit",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 11,
+          "selector": "#main > div.tdiv",
+          "px": 1360
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 12,
+          "selector": "#ch-conv",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 13,
+          "selector": "#main > div.tdiv",
+          "px": 1360
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 14,
+          "selector": "#ch-cea",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 15,
+          "selector": "#main > div.tdiv",
+          "px": 1360
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 16,
+          "selector": "#ch-ciam",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 17,
+          "selector": "#main > div.year-band",
+          "px": null
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 18,
+          "selector": "#ch-postal",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 19,
+          "selector": "#main > div.tdiv",
+          "px": 1360
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 20,
+          "selector": "#ch-shadow",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 21,
+          "selector": "#main > div.tdiv",
+          "px": 1360
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 22,
+          "selector": "#ch-star",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 23,
+          "selector": "#main > div.tdiv",
+          "px": 1360
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 24,
+          "selector": "#ch-rockstar",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 25,
+          "selector": "#career",
+          "px": 900
+        },
+        {
+          "url": "https://www.jackzhaojin.com/portfolio/",
+          "section": 26,
+          "selector": "#workbench",
+          "px": 1200
+        },
+        {
+          "url": "https://www.jackzhaojin.com/talks/",
+          "section": 0,
+          "selector": "#main > header.band.band--plain",
+          "px": null
+        },
+        {
+          "url": "https://www.jackzhaojin.com/talks/",
+          "section": 1,
+          "selector": "#main > section.band.band--plain",
+          "px": 894
+        },
+        {
+          "url": "https://www.jackzhaojin.com/certifications/",
+          "section": 0,
+          "selector": "#main > header.band.band--plain",
+          "px": null
+        },
+        {
+          "url": "https://www.jackzhaojin.com/certifications/",
+          "section": 1,
+          "selector": "#main > section.band.band--plain",
+          "px": 1280
+        },
+        {
+          "url": "https://www.jackzhaojin.com/certifications/",
+          "section": 2,
+          "selector": "#main > section.band.band--plain",
+          "px": 1280
+        },
+        {
+          "url": "https://www.jackzhaojin.com/certifications/",
+          "section": 3,
+          "selector": "#main > section.band.band--plain",
+          "px": 1280
+        },
+        {
+          "url": "https://www.jackzhaojin.com/certifications/",
+          "section": 4,
+          "selector": "#main > section.band.band--alt",
+          "px": 1280
+        },
+        {
+          "url": "https://www.jackzhaojin.com/privacy/",
+          "section": 0,
+          "selector": "#main > header.band.band--plain",
+          "px": null
+        },
+        {
+          "url": "https://www.jackzhaojin.com/privacy/",
+          "section": 1,
+          "selector": "#main > section.band.band--plain",
+          "px": 666
         }
       ],
-      "capRegister": [],
+      "capRegister": [
+        "contentMaxWidth differs between archetypes: 1280 (https://www.jackzhaojin.com/), 1280 (https://www.jackzhaojin.com/writing/), 1280 (https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/), 1200 (https://www.jackzhaojin.com/portfolio/), 1280 (https://www.jackzhaojin.com/talks/), 1280 (https://www.jackzhaojin.com/certifications/), 666 (https://www.jackzhaojin.com/privacy/) — decide per template in the inconsistency register",
+        "shellMaxWidth differs between archetypes: fluid (https://www.jackzhaojin.com/), 1280 (https://www.jackzhaojin.com/writing/), 1280 (https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/), fluid (https://www.jackzhaojin.com/portfolio/), 1280 (https://www.jackzhaojin.com/talks/), fluid (https://www.jackzhaojin.com/certifications/), fluid (https://www.jackzhaojin.com/privacy/)"
+      ],
       "capProvenance": {
         "writtenBy": "skills/replica/scripts/cap-probe.mjs",
-        "writtenAt": "2026-10-25T13:39:18.880Z",
+        "writtenAt": "2026-10-25T13:56:34.805Z",
         "baseWidth": 1440,
         "urls": [
-          "https://www.jackzhaojin.com/"
+          "https://www.jackzhaojin.com/",
+          "https://www.jackzhaojin.com/writing/",
+          "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+          "https://www.jackzhaojin.com/portfolio/",
+          "https://www.jackzhaojin.com/talks/",
+          "https://www.jackzhaojin.com/certifications/",
+          "https://www.jackzhaojin.com/privacy/"
         ]
       }
     }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "One per view; ink ground, paper text, mono 13px.",
+      "html": "<a class=\"btn btn--primary\" href=\"/portfolio/\">Explore the portfolio</a>",
+      "source": "stardust/current/pages/index.html .hero__actions"
+    },
+    {
+      "name": "Theme control",
+      "kind": "custom",
+      "refersTo": "theme-control-active",
+      "description": "Light/Dark/System group in the header; active state is an accent wash with an inset accent ring.",
+      "html": "<div class=\"theme-control\" role=\"group\" aria-label=\"Color theme\"><button class=\"theme-control__btn\">Light</button><button class=\"theme-control__btn\">Dark</button><button class=\"theme-control__btn\">System</button></div>",
+      "source": "header .site-nav__tools"
+    }
+  ],
+  "narrative": {
+    "northStar": "Editorial Field Notes",
+    "overview": "Warm paper, ink type, one lavender accent and hairline rules across one system for every page; evidence is rendered as evidence (facts tables, dated rows, proof links).",
+    "keyCharacteristics": [
+      "paper #f6f4f0 ground",
+      "Playfair / Inter / JetBrains Mono",
+      "hairlines, no shadows",
+      "full-bleed bands",
+      "ambient canvas hero on four pages"
+    ]
   }
 }

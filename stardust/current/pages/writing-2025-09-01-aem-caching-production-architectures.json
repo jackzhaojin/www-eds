@@ -1,0 +1,816 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:56.717Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2025-09-01-aem-caching-production-architectures",
+  "url": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:56.717Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/",
+  "title": "AEM Caching in Production: How Cache-Control Moves Through Every Layer | Jack Jin",
+  "description": "How Cache-Control and Surrogate-Control move from AEM publish through the dispatcher, Adobe's CDN and a client CDN, with three tips for getting caching right.",
+  "og": {
+    "title": "AEM Caching in Production: How Cache-Control Moves Through Every Layer | Jack Jin",
+    "description": "How Cache-Control and Surrogate-Control move from AEM publish through the dispatcher, Adobe's CDN and a client CDN, with three tips for getting caching right.",
+    "image": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "AEM Caching in Production: How Cache-Control Moves Through Every Layer"
+    },
+    {
+      "tag": "h2",
+      "text": "What I checked again in October 2026#"
+    },
+    {
+      "tag": "h2",
+      "text": "1. A typical AEM production setup, from the browser down to publish#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. The Java publish layer doesn't cache, but it sets the headers#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. The dispatcher caches by its own .any rules and can set new headers#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. Adobe's CDN reads Surrogate-Control and serves stale while it checks#"
+    },
+    {
+      "tag": "h2",
+      "text": "5. Every layer respects the one below and can override it for the one above#"
+    },
+    {
+      "tag": "h2",
+      "text": "6. In a decoupled architecture, the application owns its cache#"
+    },
+    {
+      "tag": "h2",
+      "text": "7. Three tips to document each layer, test each layer and start early#"
+    },
+    {
+      "tag": "h2",
+      "text": "Caching can be simple or complex, as long as you know the flow#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "AEM Caching in Production",
+    "By Jack Jin · September 1, 2025 · Updated October 4, 2026 · 9 min read · Includes my 9:56 video",
+    "Whether AEM caching is easy or hard depends on how many layers change the Cache-Control header on its way up: from the Java publish layer, through the dispatcher, Adobe's Fastly CDN and a client CDN, to the browser. This follows the header through each layer, shows how stale-while-revalidate keeps responses fast, and ends with three tips for documenting and testing caching one layer at a time.",
+    "First published as a LinkedIn video on September 1, 2025, with the diagram drawn live. Rewritten for this site in October 2026, with Adobe's documentation checked again.",
+    "Three things add to what I said on camera, so here they are before the walkthrough.",
+    "In the video I said the dispatcher ignores whatever cache headers the publish layer sends. That's how it behaves out of the box. Adobe's caching page for AEM as a Cloud Service adds that the dispatcher also respects those expiration headers when enableTTL is turned on in its configuration.",
+    "The same page recommends stale-while-revalidate and stale-if-error, the background refresh I talk about in part 4, and suggests a 30-minute stale-while-revalidate on all cache control headers as a starting point.",
+    "My own newer work added a layer. AEM Edge Functions run code on Adobe's CDN, after the CDN cache and before your backends, and they have a fetch cache of their own. In my demo, the function turns that cache off, and a personalized page is never stored by a shared cache:",
+    "A few months before this video, one of my clients had a conversation about caching. Someone said caching is really hard and complicated. Someone else said caching is really easy. I wanted to break that conversation down for them at the time, but it wasn't the right moment. This is that breakdown.",
+    "I drew it from the requester's side, the way a request travels. These days a browser typically goes to a CDN first. That first CDN hosts your certificate, and it's often the client's own. Security teams love their WAF rules and aren't always sure how Adobe's CDN works, so most of the time you end up with a CDN in front that isn't Adobe's native one.",
+    "Behind it sits Adobe's CDN, which is Fastly. Adobe documents how to put your own CDN in front of Adobe's. On camera I first said to CNAME one CDN to the other, then corrected myself: you don't CNAME, you set Adobe's CDN as the origin of your CDN. Follow Adobe's instructions, including the edge key header (X-AEM-Edge-Key), so it stays locked down.",
+    "Under Adobe's CDN is the dispatcher, which matters a lot to those of us who have been doing AEM forever. Under that is the Java publish layer. That's the typical setup. From here I go bottom up, because the bottom is where the headers start.",
+    "Watch this part0:00 The debate0:40 Drawing a typical AEM production setup",
+    "In the Java layer we have the publish server. We haven't cached things here for a long time, especially on AEM as a Cloud Service, where everything is containerized. It's just not recommended anymore, and more modern architectures solve the same problem. I remember caching here ten years ago for ecommerce, because there was no better place for it at the time.",
+    "This layer still does something very important. The publish layer can set the Cache-Control response header, and maybe Surrogate-Control too. That matters because the dispatcher might pass those headers on, or it might override them.",
+    "For headless AEM, content fragments and GraphQL let you set those cache headers yourself. Adobe's persisted queries documentation lists them: Cache-Control max-age for the browser, and Surrogate-Control max-age, stale-while-revalidate and stale-if-error for the CDN. Assuming the dispatcher passes them along, they reach every tier above.",
+    "Watch this part2:04 The Java publish layer sets the headers2:52 Cache headers for headless AEM",
+    "The dispatcher is next. It's very important for those of us who've been doing AEM forever. Unlike everything above it in the stack, it ignores whatever the publish layer says about caching. Its caching logic is configured in the dispatcher's .any files, which is fantastic.",
+    "It does get a say in the headers it sends up. It can set its own response headers for the tier above, or it can pass the publish layer's headers along without setting or unsetting anything. And as those of us who've used the dispatcher forever know, it caches the headers too, along with the content. The dispatcher was certainly great for its time.",
+    "Setting headers at this tier looks like this. It's the example from Adobe's caching page, an Apache mod_headers rule in the dispatcher configuration that gives the browser and the CDN different lifetimes:",
+    "The browser keeps the page for 200 seconds and Adobe's CDN for an hour. The header relay in part 5 uses these two values.",
+    "Watch this part3:04 The dispatcher and its .any rules",
+    "Next is Adobe's CDN. It respects a header called Surrogate-Control, a response header meant for the CDN. If you set Surrogate-Control at the dispatcher, Adobe's CDN absolutely respects it. It respects Cache-Control as well. So instead of a .any file, this layer is configured by the response headers from the two layers below it.",
+    "Adobe's CDN also does something I found really cool, and I've always loved this feature: it checks for staleness in the background. Once a cached response goes stale, and as long as you've allowed it, the CDN still returns the cached copy right away. Then it makes its own request to the dispatcher and fetches fresh data. Say that takes a second. The cache is refreshed without the browser, or anyone, ever seeing it. Response times stay fast.",
+    "The setting behind it is stale-while-revalidate, defined in RFC 5861. Drag the slider to change how old the cached copy is when a request arrives. The result says what the CDN does and whether the browser waits. With these values, a page can be served up to 30 minutes past its lifetime, and no reader ever waits for the refresh:",
+    "Fresh, up to 5 minutes old. The CDN answers from cache. The dispatcher isn't contacted.",
+    "Stale, up to 30 minutes past that. The CDN answers from cache right away, then asks the dispatcher for a fresh copy in the background. The next visitor gets the fresh one.",
+    "Older than that, or no stale-while-revalidate. The request waits while the CDN fetches from the dispatcher.",
+    "Browser waitsnone",
+    "CDN to dispatcher1 s",
+    "Stale but allowed: the CDN answers from cache right away, then spends a second fetching a fresh copy from the dispatcher in the background. The browser never waits for it.",
+    "Watch this part4:01 Adobe's CDN and Surrogate-Control6:14 Serving stale while the CDN refreshes",
+    "The client CDN is similar. It can override what it receives, and if it doesn't, it respects whatever the layer below sent. Adobe's caching page notes that Surrogate-Control applies to the Adobe-managed CDN, and a customer-managed CDN may need a different header depending on the provider. The browser is the last cache, and it respects the same Cache-Control header. If it receives Cache-Control: public with a max-age, the browser absolutely looks at that and works out what to do.",
+    "Long story short: every CDN respects the cache control of the layer below it, and has the ability to override it for the layer above. This is where it gets complicated. It can be really simple: the Java layer's header passes through all the way to the browser. Or the dispatcher changes it, then Adobe's CDN changes it again, then the client CDN changes it again, and the browser sees whatever came out last. Whether you should pass it straight through depends on your requirements, and that's a topic for another day.",
+    "Here is that rule on one page. Response headers travel up from the Java publish layer at the bottom to the browser at the top. Each layer in the middle has a switch: pass the header on, or change it. Set every switch to pass it on and you get the simple design; flip more of them and the result says which layer ended up deciding how long the browser keeps the page. Each layer also shows the two things I document for it: what it does, and what it returns to the layer above.",
+    "Browserlast cache DoesCaches the page for 200 seconds, from Cache-Control.ReturnsThe page to the reader.",
+    "DoesCaches the page for 200 seconds, from Cache-Control.",
+    "ReturnsThe page to the reader.",
+    "Client CDNAkamai, Azure Front Door, whatever is in front Pass it onChange it DoesCaches for 200 seconds, from Cache-Control.ReturnsCache-Control: max-age=200",
+    "DoesCaches for 200 seconds, from Cache-Control.",
+    "ReturnsCache-Control: max-age=200",
+    "Adobe's CDNFastly Pass it onChange it DoesCaches for 3600 seconds, from Surrogate-Control.ReturnsCache-Control: max-age=200",
+    "DoesCaches for 3600 seconds, from Surrogate-Control.",
+    "ReturnsCache-Control: max-age=200",
+    "Dispatcher.any files Pass it onSet its own DoesCaches the page and its headers by its .any rules, then sets its own headers.ReturnsCache-Control: max-age=200 Surrogate-Control: max-age=3600",
+    "DoesCaches the page and its headers by its .any rules, then sets its own headers.",
+    "ReturnsCache-Control: max-age=200 Surrogate-Control: max-age=3600",
+    "Java publish layerno caching here, sets the first header DoesRenders the page. Caches nothing.ReturnsCache-Control: max-age=300",
+    "DoesRenders the page. Caches nothing.",
+    "ReturnsCache-Control: max-age=300",
+    "The browser keeps the page for 200 seconds, a value set by the dispatcher. Adobe's CDN keeps it for 3600 seconds. One layer changed the headers on the way up (dispatcher). Each one is another block to document and a layer to test on its own.",
+    "Watch this part4:27 Respect the layer below, override for the layer above",
+    "In a more modern architecture, arguably you shouldn't be caching in the publish layer at all. On the board I drew a second branch under the client CDN. AEM is known as a monolith. This one is more decoupled. I just called it the application.",
+    "Instead of reverse proxying to Adobe's CDN, which we absolutely could, the client CDN can reverse proxy straight to the application. The application has its database and, since this is about caching, a separate Redis cache it checks before going to the database.",
+    "Watch this part5:25 Decoupled apps own their cache",
+    "To sum it up: caching can be hard because there are many layers that control it, and the browser is one of them. When something is caching, or sticky caching, it could be any of these layers. Here are the three tips I shared.",
+    "First, document each layer. Each layer can set the header, modify it, respect it and react to it. It's like a big science experiment. For past clients, I've kept a matrix where each row is a path pattern and each layer gets two columns. The first column is the behavior: what the layer actually does, what gets cached and what doesn't. The second is what it actually returns to the layer above. For the dispatcher: what is the .any file doing, and what does it return? For Fastly: what is it doing with Surrogate-Control, and what does it return? The same for Akamai, Azure Front Door or whatever CDN is in front. And document the browser's behavior too.",
+    "The header relay in part 5 fills in one of these blocks for whatever design you pick.",
+    "Second, test each layer on its own. Make sure you can validate it without depending on the others. You don't need a lot of test cases.",
+    "Third, start early. Don't wait until the last minute. As you build: validate the dispatcher, then Fastly, then stage and production, where sometimes the client's CDN only exists in those environments. I think a lot of the reason caching gets left out is that teams do it the day or the week before go-live. That's when things fall apart and don't get documented.",
+    "Watch this part7:05 Why caching gets hard7:38 Tip 1: document each layer8:56 Tip 2: test each layer9:20 Tip 3: start early",
+    "So is caching hard or easy? It can be simple: the publish layer sets a header and every layer passes it straight through. It can be complex: the header changes at every tier. Either way, understanding how the headers flow is critical for performance.",
+    "What I left for another day is how specific requirements should drive the design itself. And yes, Redis is misspelled on the board; I drew it live.",
+    "ArticleAEM Edge Functions on a LaptopCode on Adobe's CDN, with a fetch cache of its own that my demo turns off.",
+    "ArticleAEM Headless and Omnichannel: Three DiagramsWhere the content behind these headers comes from, in three channel patterns.",
+    "ArticleMaking Sense of Seven AEM CapabilitiesThe AEM options this caching stack sits under.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "FirstWhat I checked again in 2026",
+    "Part 1A typical AEM setup",
+    "Part 2Publish sets the headers",
+    "Part 3The dispatcher's own rules",
+    "Part 4Adobe's CDN and serving stale",
+    "Part 5Respect below, override above",
+    "Part 6Decoupled apps own their cache",
+    "Part 7Three tips for caching",
+    "Wrap-upKnow the flow"
+  ],
+  "codeBlocks": [
+    "// \"pass\" keeps the function's own fetch cache out of the picture. Edge Delivery\n  // already caches at the origin and the CDN caches in front of the function, and\n  // neither of those would purge this third copy when content changes.\n  const res = await fetch(upstream, { cacheOverride: new CacheOverride('pass') });\n  // A page with someone's name in it must never be stored by a shared cache.\n  if (session.user) headers.set('cache-control', 'private, no-store');",
+    "<LocationMatch \"^/content/.*\\.(html)$\">\n    Header set Cache-Control \"max-age=200\"\n    Header set Surrogate-Control \"max-age=3600\"\n    Header set Age 0\n</LocationMatch>"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/E7jNBsUvXm0"
+    },
+    {
+      "label": "caching page for AEM as a Cloud Service",
+      "href": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching"
+    },
+    {
+      "label": "AEM Edge Functions",
+      "href": "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+    },
+    {
+      "label": "1c3485f on GitHub",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/blob/1c3485f/src/proxy.js#L27-L63"
+    },
+    {
+      "label": "put your own CDN in front of Adobe's",
+      "href": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/cdn"
+    },
+    {
+      "label": "0:00 The debate",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=0"
+    },
+    {
+      "label": "0:40 Drawing a typical AEM production setup",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=40"
+    },
+    {
+      "label": "persisted queries documentation",
+      "href": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/headless/graphql-api/persisted-queries"
+    },
+    {
+      "label": "2:04 The Java publish layer sets the headers",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=124"
+    },
+    {
+      "label": "2:52 Cache headers for headless AEM",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=172"
+    },
+    {
+      "label": "Adobe docs",
+      "href": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching"
+    },
+    {
+      "label": "3:04 The dispatcher and its .any rules",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=184"
+    },
+    {
+      "label": "RFC 5861",
+      "href": "https://www.rfc-editor.org/rfc/rfc5861"
+    },
+    {
+      "label": "4:01 Adobe's CDN and Surrogate-Control",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=241"
+    },
+    {
+      "label": "6:14 Serving stale while the CDN refreshes",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=374"
+    },
+    {
+      "label": "Pass it on",
+      "href": null
+    },
+    {
+      "label": "Change it",
+      "href": null
+    },
+    {
+      "label": "Pass it on",
+      "href": null
+    },
+    {
+      "label": "Change it",
+      "href": null
+    },
+    {
+      "label": "Pass it on",
+      "href": null
+    },
+    {
+      "label": "Set its own",
+      "href": null
+    },
+    {
+      "label": "4:27 Respect the layer below, override for the layer above",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=267"
+    },
+    {
+      "label": "5:25 Decoupled apps own their cache",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=325"
+    },
+    {
+      "label": "7:05 Why caching gets hard",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=425"
+    },
+    {
+      "label": "7:38 Tip 1: document each layer",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=458"
+    },
+    {
+      "label": "8:56 Tip 2: test each layer",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=536"
+    },
+    {
+      "label": "9:20 Tip 3: start early",
+      "href": "https://youtu.be/E7jNBsUvXm0?t=560"
+    },
+    {
+      "label": "AEM Edge Functions on a Laptop",
+      "href": "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+    },
+    {
+      "label": "AEM Headless and Omnichannel: Three Diagrams",
+      "href": "/writing/2025-07-12-aem-headless-omnichannel-architecture/"
+    },
+    {
+      "label": "Making Sense of Seven AEM Capabilities",
+      "href": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "FirstWhat I checked again in 2026",
+      "href": "#changed"
+    },
+    {
+      "label": "Part 1A typical AEM setup",
+      "href": "#part-1"
+    },
+    {
+      "label": "Part 2Publish sets the headers",
+      "href": "#part-2"
+    },
+    {
+      "label": "Part 3The dispatcher's own rules",
+      "href": "#part-3"
+    },
+    {
+      "label": "Part 4Adobe's CDN and serving stale",
+      "href": "#part-4"
+    },
+    {
+      "label": "Part 5Respect below, override above",
+      "href": "#part-5"
+    },
+    {
+      "label": "Part 6Decoupled apps own their cache",
+      "href": "#part-6"
+    },
+    {
+      "label": "Part 7Three tips for caching",
+      "href": "#part-7"
+    },
+    {
+      "label": "Wrap-upKnow the flow",
+      "href": "#wrap"
+    },
+    {
+      "label": "Watch the video, 9:56",
+      "href": "#video"
+    },
+    {
+      "label": "Adobe's caching docs",
+      "href": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://youtu.be/E7jNBsUvXm0",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/#changed",
+    "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+    "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/blob/1c3485f/src/proxy.js#L27-L63",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/#part-1",
+    "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/cdn",
+    "https://youtu.be/E7jNBsUvXm0?t=0",
+    "https://youtu.be/E7jNBsUvXm0?t=40",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/#part-2",
+    "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/headless/graphql-api/persisted-queries",
+    "https://youtu.be/E7jNBsUvXm0?t=124",
+    "https://youtu.be/E7jNBsUvXm0?t=172",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/#part-3",
+    "https://youtu.be/E7jNBsUvXm0?t=184",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/#part-4",
+    "https://www.rfc-editor.org/rfc/rfc5861",
+    "https://youtu.be/E7jNBsUvXm0?t=241",
+    "https://youtu.be/E7jNBsUvXm0?t=374",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/#part-5",
+    "https://youtu.be/E7jNBsUvXm0?t=267",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/#part-6",
+    "https://youtu.be/E7jNBsUvXm0?t=325",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/#part-7",
+    "https://youtu.be/E7jNBsUvXm0?t=425",
+    "https://youtu.be/E7jNBsUvXm0?t=458",
+    "https://youtu.be/E7jNBsUvXm0?t=536",
+    "https://youtu.be/E7jNBsUvXm0?t=560",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/#wrap",
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/",
+    "https://www.jackzhaojin.com/writing/2025-06-04-seven-aem-capabilities-tradeoffs/",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/#video",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/images/board-caching.png",
+        "alt": "Hand-drawn board titled AEM and Web Caching, with the question Caching is hard? caching is easy? A browser at the top goes to a client CDN. The client CDN splits into two paths: on the left, Adobe's Fastly CDN, then the dispatcher, then the Java publish layer; on the right, an application that uses a database and Redis.",
+        "w": 1200,
+        "h": 1212
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/images/thumb-debate.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/images/thumb-publish.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/images/thumb-dispatcher.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/images/thumb-adobe-cdn.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/images/thumb-client-cdn.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/images/thumb-application.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 7,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/E7jNBsUvXm0?rel=0",
+        "title": "AEM Caching in Production: How Cache-Control Moves Through Every Layer (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 11,
+    "mainTextLen": 15252,
+    "realImageCount": 7,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 120,
+        "hits": 1,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 3
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      },
+      {
+        "host": "www.google.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 2,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 2,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2025-09-01-aem-caching-production-architectures.png",
+  "renderedHtml": "pages/writing-2025-09-01-aem-caching-production-architectures.html",
+  "slots": {
+    "type": "article",
+    "headline": "AEM Caching in Production: How Cache-Control Moves Through Every Layer",
+    "deck": "Whether AEM caching is easy or hard depends on how many layers change the Cache-Control header on its way up: from the Java publish layer, through the dispatcher, Adobe's Fastly CDN and a client CDN, to the browser. This follows the header through each layer, shows how stale-while-revalidate keeps responses fast, and ends with three tips for documenting and testing caching one layer at a time.",
+    "byline": "By Jack Jin · September 1, 2025 · Updated October 4, 2026 · 9 min read · Includes my 9:56 video",
+    "meta": {
+      "times": [
+        "September 1, 2025",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "video",
+      "src": "https://www.youtube-nocookie.com/embed/E7jNBsUvXm0?rel=0"
+    },
+    "body": {
+      "h2": [
+        "What I checked again in October 2026",
+        "1. A typical AEM production setup, from the browser down to publish",
+        "2. The Java publish layer doesn't cache, but it sets the headers",
+        "3. The dispatcher caches by its own .any rules and can set new headers",
+        "4. Adobe's CDN reads Surrogate-Control and serves stale while it checks",
+        "5. Every layer respects the one below and can override it for the one above",
+        "6. In a decoupled architecture, the application owns its cache",
+        "7. Three tips to document each layer, test each layer and start early",
+        "Caching can be simple or complex, as long as you know the flow",
+        "Related"
+      ],
+      "figures": 6,
+      "codeBlocks": 2,
+      "tables": 1,
+      "embeds": 1
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "AEM Edge Functions on a Laptop",
+        "href": "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+      },
+      {
+        "title": "AEM Headless and Omnichannel: Three Diagrams",
+        "href": "/writing/2025-07-12-aem-headless-omnichannel-architecture/"
+      },
+      {
+        "title": "Making Sense of Seven AEM Capabilities",
+        "href": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 11,
+    "authorBox": true
+  }
+}

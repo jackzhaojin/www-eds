@@ -1,0 +1,1120 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:48:13.051Z",
+    "waitMode": "slow",
+    "waitMs": 5000,
+    "httpStatus": 200
+  },
+  "slug": "writing",
+  "url": "https://www.jackzhaojin.com/writing/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:48:13.051Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/",
+  "title": "Technical Writing | Jack Jin",
+  "description": "Technical writing by Jack Jin on Adobe Experience Manager, Edge Delivery Services and AI engineering: working code, diagrams and the reasoning behind each decision.",
+  "og": {
+    "title": "Technical Writing | Jack Jin",
+    "description": "Technical writing by Jack Jin on Adobe Experience Manager, Edge Delivery Services and AI engineering: working code, diagrams and the reasoning behind each decision.",
+    "image": "https://www.jackzhaojin.com/assets/site-social.png",
+    "type": "website"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Technical Writing"
+    },
+    {
+      "tag": "h2",
+      "text": "adaptTo() 2026 Recap: 25 AEM Conference Talks in 15 Minutes"
+    },
+    {
+      "tag": "h2",
+      "text": "AEM Edge Functions on a Laptop: Google Sign-in, Members-Only Pages and API Data at the Edge"
+    },
+    {
+      "tag": "h2",
+      "text": "Company of Zero: How AnimaMesh Runs a Company's Back Office on Cloudflare Workers"
+    },
+    {
+      "tag": "h2",
+      "text": "Adobe Stardust Explained: A Design Skill Built on impeccable, Tested on Real EDS Blocks"
+    },
+    {
+      "tag": "h2",
+      "text": "Four Frontier Models, One 1,032-Line Prompt: What Each Built, and the Merge I Kept"
+    },
+    {
+      "tag": "h2",
+      "text": "Patterns of Work: Five Layers of Working with AI"
+    },
+    {
+      "tag": "h2",
+      "text": "Agent Memory for a 24/7 Coding Agent: Five Memory Types, Five Hooks and Retrieval in Plain English"
+    },
+    {
+      "tag": "h2",
+      "text": "Theming a Brand-New EDS Site with Google Stitch and MCP: One Prompt, Three Steps, Two Lessons"
+    },
+    {
+      "tag": "h2",
+      "text": "Adobe's EDS Skills on a Real Build: create-site and Content-Driven Development, Traced in MLflow"
+    },
+    {
+      "tag": "h2",
+      "text": "Two AI Skills for Team Enablement: Log the Prompts You Typed, File the AI Docs Behind Them"
+    },
+    {
+      "tag": "h2",
+      "text": "A 24/7 Coding Agent at v2.1: An Executive Loop, Swappable Workers and When to Ask a Human"
+    },
+    {
+      "tag": "h2",
+      "text": "Agentic Admin API Configuration for Edge Delivery Services: GET Before POST, With a Hard Stop"
+    },
+    {
+      "tag": "h2",
+      "text": "Making AI-Driven Development Modules Reusable: Four Patterns, One Stack"
+    },
+    {
+      "tag": "h2",
+      "text": "Playwright Stakeholder Demos: Captions Timed to Each Click and a Voice the Video Waits For"
+    },
+    {
+      "tag": "h2",
+      "text": "From Prompts to Harness: How Deterministic Code and Agents Work Together"
+    },
+    {
+      "tag": "h2",
+      "text": "One da.live MCP Server Across Claude, Gemini, Azure OpenAI and n8n"
+    },
+    {
+      "tag": "h2",
+      "text": "Building an MCP Server for EDS da.live: Scripted AI Flow vs Agent Tools"
+    },
+    {
+      "tag": "h2",
+      "text": "AEM Caching in Production: How Cache-Control Moves Through Every Layer"
+    },
+    {
+      "tag": "h2",
+      "text": "Three Ways to Author on AEM Edge Delivery Services: Documents, Universal Editor and da.live"
+    },
+    {
+      "tag": "h2",
+      "text": "AEM Headless and Omnichannel: Three Architecture Diagrams and Twelve Considerations"
+    },
+    {
+      "tag": "h2",
+      "text": "A 100% AI-Coded Next.js Agent, Part 3: Scaling AI Coding into a Delivery Method"
+    },
+    {
+      "tag": "h2",
+      "text": "A 100% AI-Coded Next.js Agent, Part 2: CI/CD, Cloud Identities and the Architecture"
+    },
+    {
+      "tag": "h2",
+      "text": "A 100% AI-Coded Next.js Agent, Part 1: The Four Practices Behind Release 1.0"
+    },
+    {
+      "tag": "h2",
+      "text": "Azure RBAC and CI/CD for AI Coding Agents: Five Actors, Four Auth Patterns, Almost No Passwords"
+    },
+    {
+      "tag": "h2",
+      "text": "The Edge CMS Shift: How Adobe EDS Stacks Up Against the Modern Web"
+    },
+    {
+      "tag": "h2",
+      "text": "Making Sense of 7 AEM Capabilities: Tradeoffs and Where Each One Fits"
+    },
+    {
+      "tag": "h2",
+      "text": "Why AEM Headless Makes Sense When Frontend Teams Lead"
+    },
+    {
+      "tag": "h2",
+      "text": "A STAR Story Generator on Azure: Prompting GPT-4o-mini for JSON and Parsing What Comes Back"
+    },
+    {
+      "tag": "h2",
+      "text": "Written up properly, under the original date."
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "Practical notes on AI engineering, Adobe Experience Manager, and working with AI.",
+    "All 28 pieces",
+    "October 10, 2026Adobe AEM & EDS16 min read14:43 videoadaptTo() 2026 Recap: 25 AEM Conference Talks in 15 MinutesAll 25 full talks from adaptTo() 2026, the AEM developer conference in Berlin, in conference order: what each one is, why to watch it, and my take.Watch on YouTube",
+    "Adobe AEM & EDS",
+    "16 min read14:43 video",
+    "All 25 full talks from adaptTo() 2026, the AEM developer conference in Berlin, in conference order: what each one is, why to watch it, and my take.",
+    "Watch on YouTube",
+    "October 2, 2026Adobe AEM & EDS8 min read12:31 videoAEM Edge Functions on a Laptop: Google Sign-in, Members-Only Pages and API Data at the EdgeGoogle sign-in, a members-only section and a greeting bar with the user's own data from an API, added to an Edge Delivery site without touching the site code. The six parts of my video, written up with the code at a pinned commit and a token lab that runs the real signature checks in your browser.Watch on YouTube",
+    "Adobe AEM & EDS",
+    "8 min read12:31 video",
+    "Google sign-in, a members-only section and a greeting bar with the user's own data from an API, added to an Edge Delivery site without touching the site code. The six parts of my video, written up with the code at a pinned commit and a token lab that runs the real signature checks in your browser.",
+    "Watch on YouTube",
+    "August 15, 2026AI Engineering14 min read11:09 videoCompany of Zero: How AnimaMesh Runs a Company's Back Office on Cloudflare WorkersAnimaMesh, an open source engine on Cloudflare Workers: one public engine, a private markdown brain per company, agents that take sick days, a brain that files its own GitHub issues past a leak guard, and AI that reaches out to the owner instead of waiting for a prompt.Given as a talk at AI Tinkerers Columbus, August 3, 20262nd place, AI Tinkerers global Top AI DemosWatch on YouTube",
+    "AI Engineering",
+    "14 min read11:09 video",
+    "AnimaMesh, an open source engine on Cloudflare Workers: one public engine, a private markdown brain per company, agents that take sick days, a brain that files its own GitHub issues past a leak guard, and AI that reaches out to the owner instead of waiting for a prompt.",
+    "Given as a talk at AI Tinkerers Columbus, August 3, 20262nd place, AI Tinkerers global Top AI Demos",
+    "Watch on YouTube",
+    "August 9, 2026Adobe AEM & EDSAI Engineering9 min read14:51 videoAdobe Stardust Explained: A Design Skill Built on impeccable, Tested on Real EDS BlocksWhat Adobe Stardust is: a skill in adobe/skills built on impeccable, not a product. Its four steps, the human gate before EDS code, the one-shot EDS build, and three real blocks redesigned against a Google Stitch baseline.Watch on YouTube",
+    "Adobe AEM & EDSAI Engineering",
+    "9 min read14:51 video",
+    "What Adobe Stardust is: a skill in adobe/skills built on impeccable, not a product. Its four steps, the human gate before EDS code, the one-shot EDS build, and three real blocks redesigned against a Google Stitch baseline.",
+    "Watch on YouTube",
+    "July 21, 2026AI Engineering9 min read14:15 videoFour Frontier Models, One 1,032-Line Prompt: What Each Built, and the Merge I KeptGPT 5.6, Kimi K3, Gemini 3.5 Flash and Claude Fable 5 each built my portfolio from the same 1,032-line prompt. What each got right and wrong in my notebook, my ranking, and what the merge really kept, line by line.Watch on YouTube",
+    "AI Engineering",
+    "9 min read14:15 video",
+    "GPT 5.6, Kimi K3, Gemini 3.5 Flash and Claude Fable 5 each built my portfolio from the same 1,032-line prompt. What each got right and wrong in my notebook, my ranking, and what the merge really kept, line by line.",
+    "Watch on YouTube",
+    "June 28, 2026AI Engineering27 min read14:40 videoPatterns of Work: Five Layers of Working with AIFive layers of working with AI, from one person running loops around the clock to humans and agents managing work together, plus the spine and foundation that decide whether any of it holds. Each layer covers what changes and where it gets hard, with an explorer to walk the model.Watch on YouTube",
+    "AI Engineering",
+    "27 min read14:40 video",
+    "Five layers of working with AI, from one person running loops around the clock to humans and agents managing work together, plus the spine and foundation that decide whether any of it holds. Each layer covers what changes and where it gets hard, with an explorer to walk the model.",
+    "Watch on YouTube",
+    "May 31, 2026AI Engineering8 min readAgent Memory for a 24/7 Coding Agent: Five Memory Types, Five Hooks and Retrieval in Plain EnglishHow a 24/7 coding agent gets a memory: mem0 behind the executive only, git as the source of truth, five memory types, five hooks in the loop, retrieval in plain English, and the bug that failed every write while logging ok.",
+    "AI Engineering",
+    "8 min read",
+    "How a 24/7 coding agent gets a memory: mem0 behind the executive only, git as the source of truth, five memory types, five hooks in the loop, retrieval in plain English, and the bug that failed every write while logging ok.",
+    "May 24, 2026Adobe AEM & EDSAI Engineering8 min read14:23 videoTheming a Brand-New EDS Site with Google Stitch and MCP: One Prompt, Three Steps, Two LessonsTheme a brand-new Edge Delivery site in three steps: define the theme, design it in Google Stitch, and wire it back through the Stitch MCP server, all in one long prompt. The real tokens that changed, the call-to-action miss, the fix, and why theming and blocks belong in separate passes.Watch on YouTube",
+    "Adobe AEM & EDSAI Engineering",
+    "8 min read14:23 video",
+    "Theme a brand-new Edge Delivery site in three steps: define the theme, design it in Google Stitch, and wire it back through the Stitch MCP server, all in one long prompt. The real tokens that changed, the call-to-action miss, the fix, and why theming and blocks belong in separate passes.",
+    "Watch on YouTube",
+    "May 17, 2026Adobe AEM & EDSAI Engineering10 min read14:10 videoAdobe's EDS Skills on a Real Build: create-site and Content-Driven Development, Traced in MLflowAdobe's create-site and content-driven-development skills, run end to end on a brand-new Edge Delivery site with MLflow tracing every session. What each skill does, what it built, a hook that shows which skill fired, and the theme skill that's still missing.Watch on YouTube",
+    "Adobe AEM & EDSAI Engineering",
+    "10 min read14:10 video",
+    "Adobe's create-site and content-driven-development skills, run end to end on a brand-new Edge Delivery site with MLflow tracing every session. What each skill does, what it built, a hook that shows which skill fired, and the theme skill that's still missing.",
+    "Watch on YouTube",
+    "April 12, 2026AI Engineering8 min read9:49 videoTwo AI Skills for Team Enablement: Log the Prompts You Typed, File the AI Docs Behind ThemKeep the prompts people actually typed, turn one-off builds into skills, and file the AI docs behind them under one taxonomy. Two open source skills, a Conversation Logger and an AI Knowledge Harvester, and a sorter to try the filing rules.Watch on YouTube",
+    "AI Engineering",
+    "8 min read9:49 video",
+    "Keep the prompts people actually typed, turn one-off builds into skills, and file the AI docs behind them under one taxonomy. Two open source skills, a Conversation Logger and an AI Knowledge Harvester, and a sorter to try the filing rules.",
+    "Watch on YouTube",
+    "April 5, 2026AI Engineering15 min read19:46 videoA 24/7 Coding Agent at v2.1: An Executive Loop, Swappable Workers and When to Ask a HumanWhat it takes to keep a harness going around the clock: an executive loop on PM2, swappable workers on Claude, Codex and Kimi K2.5, and a failure path that retries, diagnoses, then asks a human. Release by release, with the code, the walkthrough and the live Q&A.Given as a talk at AI Tinkerers Columbus, April 6, 2026Featured in AI Tinkerers' global Community SpotlightsWatch on YouTube",
+    "AI Engineering",
+    "15 min read19:46 video",
+    "What it takes to keep a harness going around the clock: an executive loop on PM2, swappable workers on Claude, Codex and Kimi K2.5, and a failure path that retries, diagnoses, then asks a human. Release by release, with the code, the walkthrough and the live Q&A.",
+    "Given as a talk at AI Tinkerers Columbus, April 6, 2026Featured in AI Tinkerers' global Community Spotlights",
+    "Watch on YouTube",
+    "March 23, 2026Adobe AEM & EDSAI Engineering10 min read9:06 videoAgentic Admin API Configuration for Edge Delivery Services: GET Before POST, With a Hard StopMove Edge Delivery Admin API config out of Postman and into an agent skill that plans, GETs before it POSTs, and hits a Claude Code hook that stops its writes for approval. The demo, the hook's code, and a lab that shows exactly what it catches and what it misses.Watch on YouTube",
+    "Adobe AEM & EDSAI Engineering",
+    "10 min read9:06 video",
+    "Move Edge Delivery Admin API config out of Postman and into an agent skill that plans, GETs before it POSTs, and hits a Claude Code hook that stops its writes for approval. The demo, the hook's code, and a lab that shows exactly what it catches and what it misses.",
+    "Watch on YouTube",
+    "February 5, 2026AI Engineering6 min read9:44 videoMaking AI-Driven Development Modules Reusable: Four Patterns, One StackAd hoc prompting, specs, harnesses and a 24/7 agent stack on each other, and each layer should be reused by the one above, not rebuilt. The board, a counter you can click for what rebuilding costs, and the refactor I did in April.Watch on YouTube",
+    "AI Engineering",
+    "6 min read9:44 video",
+    "Ad hoc prompting, specs, harnesses and a 24/7 agent stack on each other, and each layer should be reused by the one above, not rebuilt. The board, a counter you can click for what rebuilding costs, and the refactor I did in April.",
+    "Watch on YouTube",
+    "January 29, 2026AI Engineering8 min read1:33 videoPlaywright Stakeholder Demos: Captions Timed to Each Click and a Voice the Video Waits ForHave AI demo its own work back to you: Playwright scripts that click through the real app, a caption overlay injected right before each action, and a merge step that holds the video until each voice clip finishes. The code, and a lab for the freeze-frame rule.Watch on YouTube",
+    "AI Engineering",
+    "8 min read1:33 video",
+    "Have AI demo its own work back to you: Playwright scripts that click through the real app, a caption overlay injected right before each action, and a merge step that holds the video until each voice clip finishes. The code, and a lab for the freeze-frame rule.",
+    "Watch on YouTube",
+    "January 5, 2026AI Engineering11 min read9:42 videoFrom Prompts to Harness: How Deterministic Code and Agents Work TogetherLet deterministic code set the order and hold the numbers, and let agents make the judgment calls. A Next.js evaluator that blends a scan with an agent's score 70/30, and a harness loop where a defect becomes a subtask, with the real scoring code and a model of the loop to play with.Watch on YouTube",
+    "AI Engineering",
+    "11 min read9:42 video",
+    "Let deterministic code set the order and hold the numbers, and let agents make the judgment calls. A Next.js evaluator that blends a scan with an agent's score 70/30, and a harness loop where a defect becomes a subtask, with the real scoring code and a model of the loop to play with.",
+    "Watch on YouTube",
+    "October 12, 2025AI EngineeringAdobe AEM & EDS10 min read7:14 videoOne da.live MCP Server Across Claude, Gemini, Azure OpenAI and n8nPart two: the same da.live MCP server on Claude, Gemini 2.5 Pro and Azure OpenAI, deployed to Azure Functions with OIDC and driven from n8n. Why each model client needs its own tool format, why serverless wants Streamable HTTP, and the two integration patterns to choose between.Watch on YouTube",
+    "AI EngineeringAdobe AEM & EDS",
+    "10 min read7:14 video",
+    "Part two: the same da.live MCP server on Claude, Gemini 2.5 Pro and Azure OpenAI, deployed to Azure Functions with OIDC and driven from n8n. Why each model client needs its own tool format, why serverless wants Streamable HTTP, and the two integration patterns to choose between.",
+    "Watch on YouTube",
+    "October 5, 2025Adobe AEM & EDSAI Engineering10 min read9:57 videoBuilding an MCP Server for EDS da.live: Scripted AI Flow vs Agent ToolsTwo ways to let a model edit a da.live page: a scripted AI flow, and an MCP server with get and save tools the model calls itself. Same quality, twice the time and tokens, far more flexible. The code for both, and a side-by-side run of both versions.Watch on YouTube",
+    "Adobe AEM & EDSAI Engineering",
+    "10 min read9:57 video",
+    "Two ways to let a model edit a da.live page: a scripted AI flow, and an MCP server with get and save tools the model calls itself. Same quality, twice the time and tokens, far more flexible. The code for both, and a side-by-side run of both versions.",
+    "Watch on YouTube",
+    "September 1, 2025Adobe AEM & EDS9 min read9:56 videoAEM Caching in Production: How Cache-Control Moves Through Every LayerHow Cache-Control moves from AEM publish through the dispatcher, Adobe's Fastly CDN and a client CDN to the browser, with a header relay you can switch layer by layer, a stale-while-revalidate timeline, and three tips for documenting and testing each layer.Watch on YouTube",
+    "Adobe AEM & EDS",
+    "9 min read9:56 video",
+    "How Cache-Control moves from AEM publish through the dispatcher, Adobe's Fastly CDN and a client CDN to the browser, with a header relay you can switch layer by layer, a stale-while-revalidate timeline, and three tips for documenting and testing each layer.",
+    "Watch on YouTube",
+    "July 13, 2025Adobe AEM & EDS3 min readThree Ways to Author on AEM Edge Delivery Services: Documents, Universal Editor and da.liveDocuments, the Universal Editor and da.live on one diagram: the three Edge Delivery authoring options differ only in the editor and where content is stored. From preview and publish on, the path to the edge is shared.",
+    "Adobe AEM & EDS",
+    "3 min read",
+    "Documents, the Universal Editor and da.live on one diagram: the three Edge Delivery authoring options differ only in the editor and where content is stored. From preview and publish on, the path to the edge is shared.",
+    "July 12, 2025Adobe AEM & EDS7 min read9:13 videoAEM Headless and Omnichannel: Three Architecture Diagrams and Twelve ConsiderationsThree fictional but realistic ways to get AEM content into email, mobile apps and sites: event topics, compile-time builds with Target, and one shared publish tier. Six considerations compared across all three diagrams, six more that never got a box, and the boards redrawn so they read on a phone.Watch on YouTube",
+    "Adobe AEM & EDS",
+    "7 min read9:13 video",
+    "Three fictional but realistic ways to get AEM content into email, mobile apps and sites: event topics, compile-time builds with Target, and one shared publish tier. Six considerations compared across all three diagrams, six more that never got a box, and the boards redrawn so they read on a phone.",
+    "Watch on YouTube",
+    "July 11, 2025AI Engineering7 min readA 100% AI-Coded Next.js Agent, Part 3: Scaling AI Coding into a Delivery MethodHow to make AI coding repeatable for a delivery team: the PRD, the technical blueprint and the MDC task file, the AGENTS.md rules that bind them, what stays the same as traditional delivery and what changes.",
+    "AI Engineering",
+    "7 min read",
+    "How to make AI coding repeatable for a delivery team: the PRD, the technical blueprint and the MDC task file, the AGENTS.md rules that bind them, what stays the same as traditional delivery and what changes.",
+    "July 7, 2025AI Engineering8 min readA 100% AI-Coded Next.js Agent, Part 2: CI/CD, Cloud Identities and the ArchitectureHow an app written entirely by AI gets from a commit to the cloud: two GitHub Actions pipelines picked by branch name, five actors that each get into Azure their own way, a public copy on CloudFront and EC2, a layered Next.js architecture, and prompts kept as versioned JSON.",
+    "AI Engineering",
+    "8 min read",
+    "How an app written entirely by AI gets from a commit to the cloud: two GitHub Actions pipelines picked by branch name, five actors that each get into Azure their own way, a public copy on CloudFront and EC2, a layered Next.js architecture, and prompts kept as versioned JSON.",
+    "July 6, 2025AI Engineering9 min read9:30 videoA 100% AI-Coded Next.js Agent, Part 1: The Four Practices Behind Release 1.0What it took to ship a Next.js AI agent written entirely by AI: what release 1.0 does, the four practices behind it (planning files the AI works from, early CI/CD with real cloud access, a person in the product manager seat, comparing models), where each fell short, and a lab that runs the real fix for a partial failure.Watch on YouTube",
+    "AI Engineering",
+    "9 min read9:30 video",
+    "What it took to ship a Next.js AI agent written entirely by AI: what release 1.0 does, the four practices behind it (planning files the AI works from, early CI/CD with real cloud access, a person in the product manager seat, comparing models), where each fell short, and a lab that runs the real fix for a partial failure.",
+    "Watch on YouTube",
+    "June 12, 2025AI Engineering11 min readAzure RBAC and CI/CD for AI Coding Agents: Five Actors, Four Auth Patterns, Almost No PasswordsHow I gave Copilot, Codex, GitHub Actions and an Azure Web App access to Azure Storage and AI Foundry with az login, managed identity, OIDC and one timed secret. Includes a lab that shows which credential DefaultAzureCredential picks.",
+    "AI Engineering",
+    "11 min read",
+    "How I gave Copilot, Codex, GitHub Actions and an Azure Web App access to Azure Storage and AI Foundry with az login, managed identity, OIDC and one timed secret. Includes a lab that shows which credential DefaultAzureCredential picks.",
+    "June 8, 2025Adobe AEM & EDS6 min readThe Edge CMS Shift: How Adobe EDS Stacks Up Against the Modern WebEdge Delivery Services next to Cloudflare Pages, Netlify, Next.js, Hugo and Jekyll on five things enterprises need, plus how Adobe's CMS thinking got from CQ5 to EDS and the gaps EDS still had in June 2025.",
+    "Adobe AEM & EDS",
+    "6 min read",
+    "Edge Delivery Services next to Cloudflare Pages, Netlify, Next.js, Hugo and Jekyll on five things enterprises need, plus how Adobe's CMS thinking got from CQ5 to EDS and the gaps EDS still had in June 2025.",
+    "June 4, 2025Adobe AEM & EDS9 min readMaking Sense of 7 AEM Capabilities: Tradeoffs and Where Each One FitsSeven ways to build on AEM side by side, from Classic AEM 6.5 to docs-based Edge Delivery: a functional and technical matrix with a compare-any-two tool, when Universal Editor beats the Sites Editor, and where each option fits.",
+    "Adobe AEM & EDS",
+    "9 min read",
+    "Seven ways to build on AEM side by side, from Classic AEM 6.5 to docs-based Edge Delivery: a functional and technical matrix with a compare-any-two tool, when Universal Editor beats the Sites Editor, and where each option fits.",
+    "May 28, 2025Adobe AEM & EDS5 min readWhy AEM Headless Makes Sense When Frontend Teams LeadWhen a client's Next.js or Vue frontend came first, I think AEM headless with Universal Editor on top beats forcing classic Sites authoring. How I'd start, why persisted queries matter for caching, and when I wouldn't recommend it.",
+    "Adobe AEM & EDS",
+    "5 min read",
+    "When a client's Next.js or Vue frontend came first, I think AEM headless with Universal Editor on top beats forcing classic Sites authoring. How I'd start, why persisted queries matter for caching, and when I wouldn't recommend it.",
+    "April 13, 2025AI Engineering7 min readA STAR Story Generator on Azure: Prompting GPT-4o-mini for JSON and Parsing What Comes BackHow a STAR story generator on Azure Functions prompts GPT-4o-mini for JSON, the parser that copes when the reply isn't clean JSON (with a lab you can break), the one reply that slips past validation, and how the five AI tools I vibe coded it with ranked in April 2025.",
+    "AI Engineering",
+    "7 min read",
+    "How a STAR story generator on Azure Functions prompts GPT-4o-mini for JSON, the parser that copes when the reply isn't clean JSON (with a lab you can break), the one reply that slips past validation, and how the five AI tools I vibe coded it with ranked in April 2025.",
+    "Most of these started on LinkedIn between April 2025 and September 2026. I've rewritten each one here in full, with the diagrams and the code, and noted what changed since. Where there is a video, it is on YouTube and embedded in the article."
+  ],
+  "codeBlocks": [],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "All 28",
+      "href": null
+    },
+    {
+      "label": "Adobe AEM & EDS 14",
+      "href": null
+    },
+    {
+      "label": "AI Engineering 20",
+      "href": null
+    },
+    {
+      "label": "All 28",
+      "href": null
+    },
+    {
+      "label": "2026 15",
+      "href": null
+    },
+    {
+      "label": "2025 13",
+      "href": null
+    },
+    {
+      "label": "adaptTo() 2026 Recap: 25 AEM Conference Talks in 15 Minutes",
+      "href": "/writing/2026-10-10-adaptto-2026-25-talks/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/d1S1yVgFep8"
+    },
+    {
+      "label": "AEM Edge Functions on a Laptop: Google Sign-in, Members-Only Pages and API Data at the Edge",
+      "href": "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/J5DpmRjqNQQ"
+    },
+    {
+      "label": "Company of Zero: How AnimaMesh Runs a Company's Back Office on Cloudflare Workers",
+      "href": "/writing/2026-08-15-anima-mesh-company-of-zero/"
+    },
+    {
+      "label": "Given as a talk at AI Tinkerers Columbus, August 3, 2026",
+      "href": "/talks/#ai-tinkerers-2026-animamesh"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/zYytfy1PAkc"
+    },
+    {
+      "label": "Adobe Stardust Explained: A Design Skill Built on impeccable, Tested on Real EDS Blocks",
+      "href": "/writing/2026-08-09-adobe-stardust-explained/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/THAk36FGZps"
+    },
+    {
+      "label": "Four Frontier Models, One 1,032-Line Prompt: What Each Built, and the Merge I Kept",
+      "href": "/writing/2026-07-21-four-frontier-models-one-prompt/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/twYqEHXh91U"
+    },
+    {
+      "label": "Patterns of Work: Five Layers of Working with AI",
+      "href": "/writing/2026-06-28-patterns-of-work/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/YA7rvs6K1bw"
+    },
+    {
+      "label": "Agent Memory for a 24/7 Coding Agent: Five Memory Types, Five Hooks and Retrieval in Plain English",
+      "href": "/writing/2026-05-31-continuous-agent-second-brain/"
+    },
+    {
+      "label": "Theming a Brand-New EDS Site with Google Stitch and MCP: One Prompt, Three Steps, Two Lessons",
+      "href": "/writing/2026-05-24-theming-eds-with-google-stitch/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/2BZ8QHUxc-E"
+    },
+    {
+      "label": "Adobe's EDS Skills on a Real Build: create-site and Content-Driven Development, Traced in MLflow",
+      "href": "/writing/2026-05-17-adobe-eds-skills-hands-on/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/uTFBqT1ULhk"
+    },
+    {
+      "label": "Two AI Skills for Team Enablement: Log the Prompts You Typed, File the AI Docs Behind Them",
+      "href": "/writing/2026-04-12-two-ai-skills-team-enablement/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/5U_fOYZxMD4"
+    },
+    {
+      "label": "A 24/7 Coding Agent at v2.1: An Executive Loop, Swappable Workers and When to Ask a Human",
+      "href": "/writing/2026-04-05-continuous-executive-agent-v2-1/"
+    },
+    {
+      "label": "Given as a talk at AI Tinkerers Columbus, April 6, 2026",
+      "href": "/talks/#ai-tinkerers-2026"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/hxJpum9fNaU"
+    },
+    {
+      "label": "Agentic Admin API Configuration for Edge Delivery Services: GET Before POST, With a Hard Stop",
+      "href": "/writing/2026-03-23-eds-hlx-admin-agentic-config/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/ojlh7o_3U9w"
+    },
+    {
+      "label": "Making AI-Driven Development Modules Reusable: Four Patterns, One Stack",
+      "href": "/writing/2026-02-05-reusable-ai-development-modules/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/3l_MtNA3kDY"
+    },
+    {
+      "label": "Playwright Stakeholder Demos: Captions Timed to Each Click and a Voice the Video Waits For",
+      "href": "/writing/2026-01-29-playwright-stakeholder-demos/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/W1wD5tKoF3M"
+    },
+    {
+      "label": "From Prompts to Harness: How Deterministic Code and Agents Work Together",
+      "href": "/writing/2026-01-05-from-prompts-to-harness/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/2CT4u0ToEzA"
+    },
+    {
+      "label": "One da.live MCP Server Across Claude, Gemini, Azure OpenAI and n8n",
+      "href": "/writing/2025-10-12-da-live-mcp-across-ai-platforms/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/6O2x97lVitM"
+    },
+    {
+      "label": "Building an MCP Server for EDS da.live: Scripted AI Flow vs Agent Tools",
+      "href": "/writing/2025-10-05-mcp-server-for-eds-da-live/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/r_L1tHBKeZQ"
+    },
+    {
+      "label": "AEM Caching in Production: How Cache-Control Moves Through Every Layer",
+      "href": "/writing/2025-09-01-aem-caching-production-architectures/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/E7jNBsUvXm0"
+    },
+    {
+      "label": "Three Ways to Author on AEM Edge Delivery Services: Documents, Universal Editor and da.live",
+      "href": "/writing/2025-07-13-three-eds-offerings/"
+    },
+    {
+      "label": "AEM Headless and Omnichannel: Three Architecture Diagrams and Twelve Considerations",
+      "href": "/writing/2025-07-12-aem-headless-omnichannel-architecture/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/-pquHqafwFA"
+    },
+    {
+      "label": "A 100% AI-Coded Next.js Agent, Part 3: Scaling AI Coding into a Delivery Method",
+      "href": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology/"
+    },
+    {
+      "label": "A 100% AI-Coded Next.js Agent, Part 2: CI/CD, Cloud Identities and the Architecture",
+      "href": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/"
+    },
+    {
+      "label": "A 100% AI-Coded Next.js Agent, Part 1: The Four Practices Behind Release 1.0",
+      "href": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+    },
+    {
+      "label": "Watch on YouTube",
+      "href": "https://youtu.be/5cdnilROxbs"
+    },
+    {
+      "label": "Azure RBAC and CI/CD for AI Coding Agents: Five Actors, Four Auth Patterns, Almost No Passwords",
+      "href": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/"
+    },
+    {
+      "label": "The Edge CMS Shift: How Adobe EDS Stacks Up Against the Modern Web",
+      "href": "/writing/2025-06-08-edge-cms-shift-adobe-eds/"
+    },
+    {
+      "label": "Making Sense of 7 AEM Capabilities: Tradeoffs and Where Each One Fits",
+      "href": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+    },
+    {
+      "label": "Why AEM Headless Makes Sense When Frontend Teams Lead",
+      "href": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead/"
+    },
+    {
+      "label": "A STAR Story Generator on Azure: Prompting GPT-4o-mini for JSON and Parsing What Comes Back",
+      "href": "/writing/2025-04-13-vibe-coding-star-story-generator/"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/",
+    "https://youtu.be/d1S1yVgFep8",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+    "https://youtu.be/J5DpmRjqNQQ",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/",
+    "https://www.jackzhaojin.com/talks/#ai-tinkerers-2026-animamesh",
+    "https://youtu.be/zYytfy1PAkc",
+    "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+    "https://youtu.be/THAk36FGZps",
+    "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/",
+    "https://youtu.be/twYqEHXh91U",
+    "https://www.jackzhaojin.com/writing/2026-06-28-patterns-of-work/",
+    "https://youtu.be/YA7rvs6K1bw",
+    "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/",
+    "https://www.jackzhaojin.com/writing/2026-05-24-theming-eds-with-google-stitch/",
+    "https://youtu.be/2BZ8QHUxc-E",
+    "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/",
+    "https://youtu.be/uTFBqT1ULhk",
+    "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/",
+    "https://youtu.be/5U_fOYZxMD4",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/",
+    "https://www.jackzhaojin.com/talks/#ai-tinkerers-2026",
+    "https://youtu.be/hxJpum9fNaU",
+    "https://www.jackzhaojin.com/writing/2026-03-23-eds-hlx-admin-agentic-config/",
+    "https://youtu.be/ojlh7o_3U9w",
+    "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/",
+    "https://youtu.be/3l_MtNA3kDY",
+    "https://www.jackzhaojin.com/writing/2026-01-29-playwright-stakeholder-demos/",
+    "https://youtu.be/W1wD5tKoF3M",
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/",
+    "https://youtu.be/2CT4u0ToEzA",
+    "https://www.jackzhaojin.com/writing/2025-10-12-da-live-mcp-across-ai-platforms/",
+    "https://youtu.be/6O2x97lVitM",
+    "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/",
+    "https://youtu.be/r_L1tHBKeZQ",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/",
+    "https://youtu.be/E7jNBsUvXm0",
+    "https://www.jackzhaojin.com/writing/2025-07-13-three-eds-offerings/",
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/",
+    "https://youtu.be/-pquHqafwFA",
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/",
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/",
+    "https://www.jackzhaojin.com/writing/2025-07-06-ai-coded-nextjs-agent-release-1/",
+    "https://youtu.be/5cdnilROxbs",
+    "https://www.jackzhaojin.com/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/",
+    "https://www.jackzhaojin.com/writing/2025-06-08-edge-cms-shift-adobe-eds/",
+    "https://www.jackzhaojin.com/writing/2025-06-04-seven-aem-capabilities-tradeoffs/",
+    "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/",
+    "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin",
+    "https://github.com/jackzhaojin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/video-poster.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/video-poster.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-06-28-patterns-of-work/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-24-theming-eds-with-google-stitch/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-03-23-eds-hlx-admin-agentic-config/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-29-playwright-stakeholder-demos/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-10-12-da-live-mcp-across-ai-platforms/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-13-three-eds-offerings/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-06-ai-coded-nextjs-agent-release-1/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-06-08-edge-cms-shift-adobe-eds/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-06-04-seven-aem-capabilities-tradeoffs/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/images/cover.jpg",
+        "alt": "",
+        "w": 1280,
+        "h": 720
+      }
+    ],
+    "allImgCount": 28,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": []
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 30,
+    "mainTextLen": 11696,
+    "realImageCount": 28,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "www.google-analytics.com",
+        "path": "/g/collect",
+        "query": [
+          "_ee",
+          "_fv",
+          "_nsi",
+          "_p",
+          "_s",
+          "_ss",
+          "cid",
+          "dl",
+          "dma",
+          "dt",
+          "en",
+          "frm",
+          "gcd",
+          "gtm",
+          "ngs",
+          "npa",
+          "pscdl",
+          "rcb",
+          "sct",
+          "seg",
+          "sid",
+          "sr",
+          "tag_exp",
+          "tfd",
+          "tid",
+          "uaa",
+          "uab",
+          "uafvl",
+          "uam",
+          "uamb",
+          "uap",
+          "uapv",
+          "uaw",
+          "ul",
+          "v"
+        ],
+        "resourceType": "fetch",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.google-analytics.com/g/collect",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [
+      {
+        "action": "https://www.jackzhaojin.com/writing/",
+        "hasAction": false,
+        "method": "get",
+        "sameOrigin": true,
+        "fieldCount": 1,
+        "fieldNames": [
+          "q"
+        ],
+        "search": true
+      }
+    ],
+    "ariaLiveRegions": 1,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 1,
+      "thirdPartyScriptHosts": 2,
+      "inlineDataBlobs": 0,
+      "forms": 1,
+      "searchForms": 1,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing.png",
+  "renderedHtml": "pages/writing.html",
+  "slots": {
+    "type": "listing",
+    "index-headline": "Technical Writing",
+    "summary": "Practical notes on AI engineering, Adobe Experience Manager, and working with AI.",
+    "filter-controls": {
+      "form": null,
+      "fields": [
+        "q"
+      ],
+      "buttons": [
+        "All 28",
+        "Adobe AEM & EDS 14",
+        "AI Engineering 20",
+        "All 28",
+        "2026 15",
+        "2025 13"
+      ]
+    },
+    "card-grid": {
+      "kind": "writing-row",
+      "count": 28,
+      "sample": [
+        {
+          "title": "adaptTo() 2026 Recap: 25 AEM Conference Talks in 15 Minutes",
+          "href": "/writing/2026-10-10-adaptto-2026-25-talks/",
+          "date": "October 10, 2026"
+        },
+        {
+          "title": "AEM Edge Functions on a Laptop: Google Sign-in, Members-Only Pages and API Data at the Edge",
+          "href": "/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+          "date": "October 2, 2026"
+        },
+        {
+          "title": "Company of Zero: How AnimaMesh Runs a Company's Back Office on Cloudflare Workers",
+          "href": "/writing/2026-08-15-anima-mesh-company-of-zero/",
+          "date": "August 15, 2026"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "class": "band band--plain graphic-hero graphic-hero--writing",
+        "heading": "Technical Writing"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "class": "band band--plain writing-list-band",
+        "heading": "adaptTo() 2026 Recap: 25 AEM Conference Talks in 15 Minutes"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "class": "band band--alt",
+        "heading": "Written up properly, under the original date."
+      }
+    ]
+  }
+}

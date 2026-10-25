@@ -1,0 +1,33 @@
+{
+  "site": "Jack Jin (www.jackzhaojin.com)",
+  "origin": "https://www.jackzhaojin.com",
+  "scopePath": "/",
+  "dir": "stardust/spec",
+  "work": "stardust/.work/spec",
+  "sitemaps": [
+    "https://www.jackzhaojin.com/sitemap.xml"
+  ],
+  "maxPages": 40,
+  "workers": 4,
+  "template": {
+    "pathSegments": 1
+  },
+  "parser": {
+    "profile": "generic",
+    "main": "#main",
+    "chrome": {
+      "header": "header.site-header",
+      "footer": "footer.site-footer"
+    },
+    "nameAttrs": [],
+    "stripPrefix": "^(fig|xwide|wide)$|(?<=^row)-(?=list$)"
+  },
+  "rum": null,
+  "referenceBlocks": {
+    "name": "aem-boilerplate + AEM Block Collection",
+    "count": 0,
+    "source": "www-eds blocks/ (boilerplate cards, columns, hero, header, footer, fragment) and https://www.aem.live/developer/block-collection"
+  },
+  "scopeNote": "Owner scope: the 34 sitemap URLs. GitHub Pages project sites under /adapt-to-2026-demo/, /bruce-hackathon-2026-09-12/, /bruce-play-ten/, /bruce-lava-dash/, /denison-2026-04-24/, /ai-sandbox/, /harness-v2-test/ and /design-systems/2026-09-13/ are out of scope.",
+  "parserNote": "stripPrefix removes the three wrapper classes the site puts first on explainer figures (fig, xwide, wide), so a figure is named from its explainer class (board, code, video, shot, lab, cmp, vs, swr...) instead of collapsing 210 figures into one name; a bare div.wide wrapper then reads as a shape label. The last alternative turns row-list into rowlist: the parser reads a row- prefix as a utility class, which would merge the Related row list into plain ordered lists."
+}

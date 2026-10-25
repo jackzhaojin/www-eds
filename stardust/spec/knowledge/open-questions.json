@@ -1,0 +1,317 @@
+[
+ {
+  "id": "Q-SCOPE-3",
+  "area": "Scope",
+  "owner": "stakeholder",
+  "blocking": 0,
+  "question": "Are the GitHub Pages project sites linked from in-scope pages part of this migration?",
+  "context": "Articles link 4 same-host project sites (/ai-sandbox/, /bruce-hackathon-2026-09-12/, /bruce-lava-dash/, /bruce-play-ten/); 3 more (/adapt-to-2026-demo/, /denison-2026-04-24/, /harness-v2-test/) share the host unlinked. The brief keeps all 7 on GitHub Pages under Cloudflare.",
+  "options": [
+   "No: they stay on GitHub Pages, routed by Cloudflare",
+   "Yes: migrate them too"
+  ],
+  "default_assumption": "No: they stay on GitHub Pages; Cloudflare routes their prefixes away from EDS.",
+  "default_option": 0,
+  "impact_rule": "urls live !sitemap",
+  "impact": 4,
+  "link": "/urls",
+  "features": [],
+  "answer": null,
+  "effective": "No: they stay on GitHub Pages; Cloudflare routes their prefixes away from EDS."
+ },
+ {
+  "id": "Q-SCOPE-4",
+  "area": "URLs",
+  "owner": "stakeholder",
+  "blocking": 1,
+  "question": "Is the EDS URL format accepted, with redirects for every changed path?",
+  "context": "Every page is a folder URL with a trailing slash today. EDS serves /writing/<slug> unless each page is authored as an index document; external links and search results point at the slash form.",
+  "options": [
+   "Author every page as <path>/index so the slash URLs stay",
+   "Drop the trailing slash and redirect each old URL",
+   "Mix: keep slash for hubs, drop for articles"
+  ],
+  "default_assumption": "Author every page as <path>/index so the slash URLs stay and no redirect is needed.",
+  "default_option": 0,
+  "impact_rule": "count redirects kind=migration",
+  "impact": 0,
+  "link": "/redirects",
+  "features": [],
+  "answer": null,
+  "effective": "Author every page as <path>/index so the slash URLs stay and no redirect is needed."
+ },
+ {
+  "id": "Q-MT-1",
+  "area": "Martech",
+  "owner": "stakeholder",
+  "blocking": 0,
+  "question": "Do the EDS hosts use the same GA4 property (G-ZVENE6BXTJ)?",
+  "context": "One gtag property on 34/34 pages, loaded async today. EDS loads it in the delayed phase to keep Lighthouse 100.",
+  "options": [
+   "Same property, delayed load",
+   "New property for EDS"
+  ],
+  "default_assumption": "Same property, delayed load; .aem.page and .aem.live hosts filtered in GA.",
+  "default_option": 0,
+  "impact_rule": "urls live sitemap signal:gtag",
+  "impact": 34,
+  "link": "/features",
+  "features": [],
+  "answer": null,
+  "effective": "Same property, delayed load; .aem.page and .aem.live hosts filtered in GA."
+ },
+ {
+  "id": "Q-MT-4",
+  "area": "Martech",
+  "owner": "stakeholder",
+  "blocking": 0,
+  "question": "Should the migration add a consent banner or Google Consent Mode?",
+  "context": "No CMP and no consent defaults today; gtag and the Cloudflare beacon load unconditionally.",
+  "options": [
+   "Keep as today (no banner)",
+   "Add Consent Mode defaults (denied until choice)",
+   "Add a CMP"
+  ],
+  "default_assumption": "Keep as today; the replica changes nothing the visitor sees.",
+  "default_option": 0,
+  "impact_rule": "urls live sitemap signal:gtag",
+  "impact": 34,
+  "link": "/features",
+  "features": [],
+  "answer": null,
+  "effective": "Keep as today; the replica changes nothing the visitor sees."
+ },
+ {
+  "id": "Q-ASSET-1",
+  "area": "Assets",
+  "owner": "stakeholder",
+  "blocking": 1,
+  "question": "Where do the images live after cutover?",
+  "context": "Every image is a file in the GitHub Pages repo (article images/, portfolio/assets/, /assets/) and the project sites keep serving from GitHub Pages. Badges are hotlinked from Credly and Microsoft.",
+  "options": [
+   "Upload all images to DA (EDS media bus)",
+   "Keep them on GitHub Pages and link absolute URLs",
+   "DA for page images, hotlinks kept for badges"
+  ],
+  "default_assumption": "Upload page images to DA so EDS optimizes them; keep badge hotlinks until a later pass.",
+  "default_option": 2,
+  "impact_rule": "urls live sitemap",
+  "impact": 34,
+  "link": "/blocks",
+  "features": [],
+  "answer": null,
+  "effective": "Upload page images to DA so EDS optimizes them; keep badge hotlinks until a later pass."
+ },
+ {
+  "id": "Q-DATA-2",
+  "area": "Search",
+  "owner": "stakeholder",
+  "blocking": 0,
+  "question": "Is the client-side writing filter over the query index enough, or is full-text search required?",
+  "context": "Today the filter matches words in each row's data-search text (title, summary, topics), not the article body.",
+  "options": [
+   "Client filter over the query index (title, description, topics)",
+   "Full-text search service"
+  ],
+  "default_assumption": "Client filter over the query index, matching today's behavior.",
+  "default_option": 0,
+  "impact_rule": "urls live sitemap block:writing-filter",
+  "impact": 1,
+  "link": "/features",
+  "features": [],
+  "answer": null,
+  "effective": "Client filter over the query index, matching today's behavior."
+ },
+ {
+  "id": "Q-OPS-1",
+  "area": "Infrastructure",
+  "owner": "stakeholder",
+  "blocking": 1,
+  "question": "Which CDN fronts the EDS site in production?",
+  "context": "Cloudflare fronts www today and must keep routing the 7 GitHub Pages project sites under the same host.",
+  "options": [
+   "Cloudflare in front of EDS (BYO CDN) with path routing",
+   "Adobe-managed CDN"
+  ],
+  "default_assumption": "Cloudflare in front of EDS with path routing (README decision).",
+  "default_option": 0,
+  "impact_rule": "value:7",
+  "impact": 7,
+  "link": "/site-config",
+  "features": [],
+  "answer": {
+   "answer": "Cloudflare keeps fronting www; the 7 GitHub Pages project sites keep working under it.",
+   "option": 0,
+   "by": "Jack Jin (migration brief, start-here.md)",
+   "at": "2026-10-24"
+  },
+  "effective": "Cloudflare keeps fronting www; the 7 GitHub Pages project sites keep working under it."
+ },
+ {
+  "id": "Q-OPS-2",
+  "area": "Infrastructure",
+  "owner": "implementer",
+  "blocking": 0,
+  "question": "Who sets the security headers (CSP, HSTS, permissions policy) on the new stack?",
+  "context": "The source HTML ships none. EDS supports a header config; Cloudflare can add them at the edge.",
+  "options": [
+   "EDS headers config",
+   "Cloudflare transform rules",
+   "Leave as today"
+  ],
+  "default_assumption": "EDS headers config, so the policy lives with the code.",
+  "default_option": 0,
+  "impact_rule": "value:34",
+  "impact": 34,
+  "link": "/site-config",
+  "features": [],
+  "answer": null,
+  "effective": "EDS headers config, so the policy lives with the code."
+ },
+ {
+  "id": "Q-IMPL-1",
+  "area": "Implementation",
+  "owner": "implementer",
+  "blocking": 0,
+  "question": "Are the portfolio story media blocks (frame, diagram deck, carousel, ladder, stat chips, flow) authored as adjacent blocks or fragments?",
+  "context": "EDS blocks do not nest; 8 portfolio stories hold another block in their media column.",
+  "options": [
+   "Adjacent blocks in the same section, showcase reads the next block as its media",
+   "Fragments referenced from the showcase media cell"
+  ],
+  "default_assumption": "Adjacent blocks in the same section.",
+  "default_option": 0,
+  "impact_rule": "urls sitemap nested",
+  "impact": 1,
+  "link": "/blocks",
+  "features": [],
+  "answer": null,
+  "effective": "Adjacent blocks in the same section."
+ },
+ {
+  "id": "Q-IMPL-2",
+  "area": "Implementation",
+  "owner": "stakeholder",
+  "blocking": 1,
+  "question": "Is the target pixel parity, or consolidation onto a shared design system?",
+  "context": "The plan runs the replica flow on design system v3: near pixel-perfect, changes only through the inconsistency register.",
+  "options": [
+   "Pixel parity (replica)",
+   "Consolidate onto the design system"
+  ],
+  "default_assumption": "Pixel parity (replica), with register entries for the off-ladder breakpoints, radii and the portfolio 1200px cap.",
+  "default_option": 0,
+  "impact_rule": "value:34",
+  "impact": 34,
+  "link": "/blocks",
+  "features": [],
+  "answer": {
+   "answer": "Pixel parity through the replica flow; design changes only through inconsistency-register entries.",
+   "option": 0,
+   "by": "Jack Jin (migration brief, jackzhaojin.github.io/ai-docs/2026-10-24-eds-migration/start-here.md)",
+   "at": "2026-10-24"
+  },
+  "effective": "Pixel parity through the replica flow; design changes only through inconsistency-register entries."
+ },
+ {
+  "id": "explainer-build",
+  "area": "Implementation",
+  "owner": "implementer",
+  "blocking": 1,
+  "question": "How are the bespoke article explainers built on EDS?",
+  "context": "27 of 28 articles carry interactive explainers or labs (32 explainer roots on 21 articles, 30 labs on 13), most with their own CSS and script. Their copy is authored prose and tables; their behavior is per article.",
+  "options": [
+   "One explainer block, one variant (CSS + JS file) per explainer, rows authored in DA",
+   "A code-only widget per explainer with its copy in the widget HTML",
+   "Ship the settled DOM as an embed fragment per article"
+  ],
+  "default_assumption": "One explainer block with a variant per explainer, rows authored in DA, so authors keep the copy.",
+  "default_option": 0,
+  "impact_rule": "urls live sitemap block:explainer,lab",
+  "impact": 27,
+  "link": "/blocks",
+  "features": [],
+  "answer": null,
+  "effective": "One explainer block with a variant per explainer, rows authored in DA, so authors keep the copy."
+ },
+ {
+  "id": "code-highlighting",
+  "area": "Implementation",
+  "owner": "implementer",
+  "blocking": 0,
+  "question": "Are code blocks carried with their pre-highlighted token spans, or authored as plain code and highlighted on the client?",
+  "context": "45 code blocks on 18 articles use tk-k, tk-s, tk-n, tk-c spans and line numbers. DA keeps code text but not span classes.",
+  "options": [
+   "Plain code in DA, client highlighter in the code block (pixel check against the spans)",
+   "Carry the spans as HTML in the code block cell"
+  ],
+  "default_assumption": "Plain code in DA plus a small client highlighter tuned to the four token classes.",
+  "default_option": 0,
+  "impact_rule": "urls live sitemap block:code",
+  "impact": 18,
+  "link": "/blocks",
+  "features": [],
+  "answer": null,
+  "effective": "Plain code in DA plus a small client highlighter tuned to the four token classes."
+ },
+ {
+  "id": "paragraph-blocks",
+  "area": "Implementation",
+  "owner": "implementer",
+  "blocking": 0,
+  "question": "Are the paragraph-level patterns (facts, watch chapters, byline) blocks or auto-blocked from metadata?",
+  "context": "p.article-facts on 28 articles, p.watch on 17, the byline on 28; DA authors cannot class a paragraph.",
+  "options": [
+   "facts and chapters blocks, byline from metadata",
+   "All three from metadata and auto-blocking"
+  ],
+  "default_assumption": "facts and chapters as small blocks, the byline built from page metadata in the article hero.",
+  "default_option": 0,
+  "impact_rule": "urls live sitemap signal:facts",
+  "impact": 28,
+  "link": "/blocks",
+  "features": [],
+  "answer": null,
+  "effective": "facts and chapters as small blocks, the byline built from page metadata in the article hero."
+ },
+ {
+  "id": "author-box-fragment",
+  "area": "Content",
+  "owner": "stakeholder",
+  "blocking": 0,
+  "question": "Is the author box one shared fragment?",
+  "context": "Identical author box copy on 28 articles.",
+  "options": [
+   "One fragment referenced by every article (or auto-blocked)",
+   "Copy per article"
+  ],
+  "default_assumption": "One fragment, auto-inserted on article pages.",
+  "default_option": 0,
+  "impact_rule": "urls live sitemap block:author-box",
+  "impact": 28,
+  "link": "/blocks",
+  "features": [],
+  "answer": null,
+  "effective": "One fragment, auto-inserted on article pages."
+ },
+ {
+  "id": "email-obfuscation",
+  "area": "Infrastructure",
+  "owner": "stakeholder",
+  "blocking": 0,
+  "question": "Should Cloudflare email obfuscation stay on for www?",
+  "context": "It rewrites email-like strings on 3 articles (code samples included) into /cdn-cgi/l/email-protection links that 404 without its script.",
+  "options": [
+   "Turn it off for the EDS routes",
+   "Keep it"
+  ],
+  "default_assumption": "Turn it off so authored text and code render verbatim.",
+  "default_option": 0,
+  "impact_rule": "urls live sitemap signal:cf-email",
+  "impact": 3,
+  "link": "/features",
+  "features": [],
+  "answer": null,
+  "effective": "Turn it off so authored text and code render verbatim."
+ }
+]

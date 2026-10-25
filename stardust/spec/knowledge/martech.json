@@ -1,0 +1,80 @@
+{
+ "consent_summary": "No consent platform: no OneTrust, no CMP banner, no Google Consent Mode defaults (consent-mode.json: 0 of 34 pages). gtag and the Cloudflare beacon load unconditionally.",
+ "loading_order": [
+  {
+   "stage": "head",
+   "what": "pre-paint theme script (jj-theme), fonts preconnect"
+  },
+  {
+   "stage": "eager",
+   "what": "header, hero (LCP), first section"
+  },
+  {
+   "stage": "lazy",
+   "what": "ambient canvas art, explainers, rail, video facades"
+  },
+  {
+   "stage": "delayed",
+   "what": "gtag G-ZVENE6BXTJ (540 KB) after 3 s"
+  },
+  {
+   "stage": "edge",
+   "what": "Cloudflare Web Analytics beacon, injected by the zone"
+  }
+ ],
+ "vendors": [
+  {
+   "host": "www.googletagmanager.com",
+   "role": "tag manager: Google Tag Manager",
+   "class": "T",
+   "seen_pages": 34,
+   "via": "page",
+   "in_csp": 0,
+   "consent_group": null,
+   "launch_rules": 0
+  },
+  {
+   "host": "www.jackzhaojin.com",
+   "role": "unclassified — inspect",
+   "class": "T",
+   "seen_pages": 34,
+   "via": "page",
+   "in_csp": 0,
+   "consent_group": null,
+   "launch_rules": 0
+  },
+  {
+   "host": "static.cloudflareinsights.com",
+   "role": "unclassified — inspect",
+   "class": "T",
+   "seen_pages": 34,
+   "via": "page",
+   "in_csp": 0,
+   "consent_group": null,
+   "launch_rules": 0
+  },
+  {
+   "host": "www.youtube-nocookie.com",
+   "role": "video: YouTube",
+   "class": "V",
+   "seen_pages": 19,
+   "via": "page",
+   "in_csp": 0,
+   "consent_group": null,
+   "launch_rules": 0
+  }
+ ],
+ "launch_rules": [],
+ "datalayer": [],
+ "evidence": {
+  "launch": null,
+  "onetrust": [],
+  "consentMode": {
+   "pages": 0,
+   "of": 34,
+   "libraries": [
+    "tags/www.googletagmanager.com-js-G-ZVENE6BXTJ.js"
+   ]
+  }
+ }
+}

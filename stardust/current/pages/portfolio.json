@@ -1,0 +1,1383 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:48:13.053Z",
+    "waitMode": "slow",
+    "waitMs": 5000,
+    "httpStatus": 200
+  },
+  "slug": "portfolio",
+  "url": "https://www.jackzhaojin.com/portfolio/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:48:13.053Z",
+  "finalUrl": "https://www.jackzhaojin.com/portfolio/",
+  "title": "Portfolio | Jack Jin - AI Systems & Engineering",
+  "description": "Explore Jack Jin's AI agent systems, content platforms, cloud architecture and games. A single-page portfolio with diagrams, project histories and source repositories.",
+  "og": {
+    "title": "Portfolio | Jack Jin - AI Systems & Engineering",
+    "description": "Explore Jack Jin's AI agent systems, content platforms, cloud architecture and games. A single-page portfolio with diagrams, project histories and source repositories.",
+    "image": "https://www.jackzhaojin.com/assets/site-social.png",
+    "type": "website"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Jack Jin's Portfolio"
+    },
+    {
+      "tag": "h2",
+      "text": "Projects over time"
+    },
+    {
+      "tag": "h2",
+      "text": "Anima MeshThe company-of-0 experiment"
+    },
+    {
+      "tag": "h3",
+      "text": "Cloud first, one private brain per instance"
+    },
+    {
+      "tag": "h3",
+      "text": "Six views of the same system"
+    },
+    {
+      "tag": "h4",
+      "text": "One organization as plain files"
+    },
+    {
+      "tag": "h3",
+      "text": "Nine agents, one approval gate"
+    },
+    {
+      "tag": "h3",
+      "text": "Safety lives in code, never in prompts"
+    },
+    {
+      "tag": "h4",
+      "text": "Four coordination approaches"
+    },
+    {
+      "tag": "h4",
+      "text": "Operational evidence"
+    },
+    {
+      "tag": "h2",
+      "text": "Built with BruceThe father-and-son repos"
+    },
+    {
+      "tag": "h3",
+      "text": "Lava Dash"
+    },
+    {
+      "tag": "h3",
+      "text": "Play Ten"
+    },
+    {
+      "tag": "h3",
+      "text": "Play Eleven"
+    },
+    {
+      "tag": "h2",
+      "text": "The Content FactoryA decoupled agent mesh"
+    },
+    {
+      "tag": "h3",
+      "text": "Generate → migrate → evaluate, intelligently routed"
+    },
+    {
+      "tag": "h3",
+      "text": "The eval outlived both architectures"
+    },
+    {
+      "tag": "h3",
+      "text": "A daily unattended run"
+    },
+    {
+      "tag": "h3",
+      "text": "The v1 platform, in its planned final form"
+    },
+    {
+      "tag": "h3",
+      "text": "First, AEM content operations became tool calls"
+    },
+    {
+      "tag": "h2",
+      "text": "AI Builder KitSkills anyone can install"
+    },
+    {
+      "tag": "h3",
+      "text": "A test file becomes a demo video"
+    },
+    {
+      "tag": "h3",
+      "text": "Diagrams that check their own work"
+    },
+    {
+      "tag": "h3",
+      "text": "The toolbox, published"
+    },
+    {
+      "tag": "h2",
+      "text": "Conversion FactoryAgents that evolve site blocks"
+    },
+    {
+      "tag": "h3",
+      "text": "Four phases, one diagram"
+    },
+    {
+      "tag": "h2",
+      "text": "Continuous Executive AgentA 24/7 coding agent"
+    },
+    {
+      "tag": "h3",
+      "text": "Release history"
+    },
+    {
+      "tag": "h4",
+      "text": "Foundation"
+    },
+    {
+      "tag": "h4",
+      "text": "Intelligence"
+    },
+    {
+      "tag": "h4",
+      "text": "Organization"
+    },
+    {
+      "tag": "h4",
+      "text": "Security"
+    },
+    {
+      "tag": "h4",
+      "text": "Identity: the agent gets its own accounts"
+    },
+    {
+      "tag": "h4",
+      "text": "Multi-vendor: the bake-off"
+    },
+    {
+      "tag": "h4",
+      "text": "Harness framework"
+    },
+    {
+      "tag": "h4",
+      "text": "Build targets & hard lessons"
+    },
+    {
+      "tag": "h4",
+      "text": "Memory"
+    },
+    {
+      "tag": "h3",
+      "text": "The multi-vendor bake-off"
+    },
+    {
+      "tag": "h3",
+      "text": "Its own Gmail, Discord, and Notion"
+    },
+    {
+      "tag": "h3",
+      "text": "The agent gets a second brain"
+    },
+    {
+      "tag": "h4",
+      "text": "The roadmap said multi-agent"
+    },
+    {
+      "tag": "h4",
+      "text": "It shipped as a different repo"
+    },
+    {
+      "tag": "h2",
+      "text": "CIAM DemoCustomer identity, end to end"
+    },
+    {
+      "tag": "h2",
+      "text": "Postal PortalA shipping product on two stacks"
+    },
+    {
+      "tag": "h3",
+      "text": "da-live-postal-2025-07"
+    },
+    {
+      "tag": "h3",
+      "text": "nextjs-postal-2025-07"
+    },
+    {
+      "tag": "h2",
+      "text": "Shadow PivotMy first AI-coded app"
+    },
+    {
+      "tag": "h2",
+      "text": "Azure STAR GeneratorDay one"
+    },
+    {
+      "tag": "h2",
+      "text": "AEM Rockstar 2024The prologue"
+    },
+    {
+      "tag": "h2",
+      "text": "Career notes"
+    },
+    {
+      "tag": "h2",
+      "text": "Smaller repos"
+    }
+  ],
+  "body": [
+    "Associate Director, Accenture · Columbus, Ohio",
+    "A dated log of side projects: AI agent systems, enterprise content platforms, and games built with my son. Explore the diagrams, implementation notes, and source repositories.",
+    "anima-mesh ↗ GitHub ↗ LinkedIn ↗ jackzhaojin.com home",
+    "Apr 2025 - Sep 2026 · the main run · one 2024 prologue below",
+    "Bars run first commit → last build commit, so overlaps are visible. A few repos kept getting small restyles after their bar ends. Click one to jump to the writeup.",
+    "Timeline and release figures are historical snapshots of the builds described below.",
+    "How they were built · each writeup below carries one of these labels",
+    "spec-first A PRD and tech spec before any code, with tasks numbered from the spec. The oldest habit here; it started in 2025.",
+    "incremental specs No big up-front plan. A dated spec folder per release, then build, tag, and repeat.",
+    "ad hoc Conversation-driven, no spec. Some of the quickest builds on this page went this way, and it shows in their scope.",
+    "dark factory An unattended harness planned, built, and verified the work. I read the commits in the morning.",
+    "Jul - Aug 2026 · 2 repos",
+    "ad hoc no spec preceded the code. The structure came from releases: 38 tags through v0.16.2, a changelog per minor line, and platform failures written down as learnings.",
+    "AnimaMesh runs recurring back-office work from a private repo: compliance checks, bookkeeping prep, document memory, governance, research, and inbound triage. A human remains the approval gate for money, filings, publishing, credentials, and access.",
+    "Cloud execution is primary. A Worker reads the brain as one tarball, runs the agents that are due, verifies their artifacts, and lands one commit before a brief or reply is sent. The CLI uses the same engine for setup, recovery, and subprocess-only harnesses.",
+    "Engine source, public",
+    "Apache 2.0 · v0.16.2 · TypeScript on Cloudflare Workers · the company brain stays private",
+    "README ↗ Architecture notes ↗ Scrubbed sample brain ↗",
+    "v0.16.0 · Cloudflare Workers + Durable Objects + GitHub",
+    "Durable Objects hold alarms, locks, queues, and budgets. The private GitHub repo holds knowledge and evidence. Read sources stay external.",
+    "Repository SVGs · synced with the Aug 2 implementation",
+    "State, reach, runtime, feedback, staffing, and ownership. Each view follows a seam that exists in the code.",
+    "Knowledge, agent definitions, deploy configuration, approvals, reports, and an append-only ledger live in one private repo. No engine code lives there.",
+    "The beat · 08:00 America/New_York, every day",
+    "Running since Jul 6, 2026 · cloud primary since Jul 11",
+    "From the docs: \"the initiative inverts: you stop driving the operations and start reviewing them.\"",
+    "Nine agent concepts run on daily, weekly, monthly, and quarterly rhythms. Due spokes run sequentially; the hub runs last and reads their fresh reports. Discord and Gmail feed direction runs. A separately credentialed dashboard shows the evidence and can trigger a beat. Role-declared reads: paths are inlined into every prompt, with missing context named instead of silently dropped.",
+    "\"A reply that isn't backed by a commit is a hallucination with a send button.\"",
+    "anima-mesh, the engine ↗ brain · private by design",
+    "Its own vocabulary · click a word",
+    "38 tags through v0.16.2 · Apache-2.0",
+    "Everything between wake-up and gate is model judgment. Gates, ladder, ledger, and verifiers are deterministic code.",
+    "Five constitutionally gated action classes cover money movement, government filings, publishing, credentials, and access expansion. Three reversible write paths ship today: schedule updates, draft writes, and defect reports. Each request is parsed, checked against the same ladder and whitelist gate, and ledgered whether applied or denied.",
+    "Architecture notes ↗ Scrubbed sample brain ↗",
+    "What this project collects",
+    "Three coordinator systems came before it, each with a different coupling: the continuous agent below, a tightly coupled monolith; the conversion factory's hub and four spokes; and the content factory's loosely coupled A2A mesh. Anima Mesh is the extracted lesson: keep coordination in shared state and model judgment, while deterministic code owns gates, ledgers, verification, and scheduling.",
+    "The private brain records 38 commits authored by the mesh, 330 append-only ledger entries, and 81 reports since July 6. The cloud schedule and the repo history are the evidence surfaces; the portfolio only summarizes them.",
+    "\"The initiative inverts: you stop driving the company's operations and start reviewing them.\"",
+    "Feb - Sep 2026 · 3 repos · co-developer: age single digits",
+    "ad hoc he pitches the design, we talk, it ships. No spec survives a co-designer under ten.",
+    "Not every project is an agent mesh. Three of the repos are games designed with my son: he supplies the game design, I supply the AI, and an idea becomes something playable before bedtime.",
+    "A Geometry-Dash-inspired side-scroller in React and Canvas. One player, then a two-player co-op mode, because the designer insisted his friends needed to play too.",
+    "Play it ↗ Repo ↗",
+    "A golf-style card game in vanilla JS, HTML, and CSS. One evening, from pitched rules to playable game.",
+    "Play it ↗ Repo ↗",
+    "Our AI Tinkerers Columbus hackathon entry, sponsored by OpenAI. Bruce designed the 166-card deck, rules, and AI personalities; up to nine opponents reason through OpenRouter and explain their moves.",
+    "Play it ↗ Repo ↗ Demo ↗",
+    "The same tools that run the mesh also ship a card game before bedtime.",
+    "Oct 2025 - Jun 2026 · 2 repos · 317 commits · 16 core releases",
+    "incremental specs Spec Kit bundles (spec, plan, tasks) in the v1 era; a dated plan in ai-docs per release in the mesh era. Six days from PRD to deployed mesh, because the spec came first.",
+    "Talk material for adaptTo() 2026, built for real: a mesh of independently-addressable A2A agents that generate, migrate, and evaluate CMS content. Different vendors compose over an open protocol. Quality is measured, not vibed.",
+    "The arc runs in three eras. Oct 2025: an MCP server for AEM's da.live, on Azure Functions. A 94-commit December push tags v1.0 on New Year's Day: evals in a Docker container, Make.com scenarios calling the Functions to do the authoring, and by mid-January, Adobe Summit 2026 blog material coming out of the same repo. Then a quiet spring. In June, v2.0 rebuilds it as four agents: coordinator, content-gen, migration, eval. Six days from PRD to a deployed mesh on Cloudflare Workers and Containers.",
+    "Jun 11, 2026 · v2.0.0 · the closed loop",
+    "One pipeline, two model vendors, zero contract changes. Kimi authors. Claude judges. Neither knows the other exists.",
+    "One eval engine, two deployments",
+    "A deployable container: a Next.js eval app with four agents, each pairing deterministic checks (axe-core, Cheerio, Playwright) with model judgment. Still running as the frozen backup.",
+    "The scoring engine survived the rewrite. It was copied out of the v1 app, not rebuilt.",
+    "An addressable A2A agent in the mesh: any vendor's output gets scored the same way, on every run.",
+    "The through-line, v1.0 → v2.5 · the biggest single component",
+    "If agents author content, something has to say whether it's good. That something gets versioned, deployed, and tested like a product of its own.",
+    "Four dimensions: structure, accessibility, content fidelity, visual correctness. In v1 the eval shipped as its own Docker container. In v2 it became an agent in the mesh, so every migration lands with a score attached. The payoff came in v2.5, when the numbers said the site redesign was failing: the error turned out to be in the eval's own methodology, and scoring generated pages on their own merits moved a real article from 67 to 89. Numbers you can argue with beat vibes you can't.",
+    "The demo, before and after",
+    "\"Katie's Travel Journal,\" a hand-coded, circa-2002 travel blog. Plain HTML, zero framework.",
+    "An agent mesh migrates it: one vendor authors into da.live, another scores structure, accessibility, fidelity, visuals.",
+    "The Wilderness Journal: a modern Edge Delivery Services site, 14 blocks, every migration scored.",
+    "Jun 18, 2026 · v2.2 · the factory runs daily",
+    "A daily cron submits a run with no topic. The coordinator ideates one, generates, migrates, evaluates, and parks it in preview. A human curates later.",
+    "Two lessons came out of production. Streams die crossing the Worker-to-container hop, so the store, not the stream, is the contract: every agent persists full task state and consumers recover by polling. And containers get no native database bindings, so the Worker proxies queries.",
+    "azure-da-mcp ↗ adapt-to-2026-demo ↗",
+    "Dec 2025 - Jan 2026 · v1.0 as designed · recovered from git",
+    "Five subsystems around one EDS site. Color is the semantic axis this page's diagrams still use: deterministic in blue, agentic in red, mixed in purple.",
+    "create page · update content · publish, as tool calls",
+    "Oct 2025 · where this repo started",
+    "The origin build: an MCP server for AEM's da.live, then the same server proven from Claude, Gemini, Azure OpenAI, and n8n. No client-specific forks.",
+    "The repo's first life was interoperability with the CMS I work on professionally: expose AEM Edge Delivery's content operations, get, update, create, publish, over MCP once, and every agent that speaks the protocol inherits them. Everything else in this chapter stands on that server. The mesh grew out of asking what happens when the agents themselves get addresses too.",
+    "Mar - Jun 2026 · 54 commits · a public plugin marketplace",
+    "ad hoc skill by skill, as the need came up. Each ships docs and guardrails; the heaviest one ships its own evals.",
+    "A Claude Code plugin marketplace: nine published skills, written so that people other than the author can install and use them. Two of them get detail here, because they carry the most engineering.",
+    "Watch the demo on YouTube",
+    "Featured skill · Playwright spec → narrated MP4",
+    "The rule that makes it work: you cannot narrate what doesn't exist.",
+    "One command records the spec with exact per-action timestamps, generates ElevenLabs voiceover from the captions in the test file, and merges freeze-frames and music into the finished MP4. Before any narration is written, a mandatory stage zero verifies the app has real data and runs an exploration spec cataloging what Playwright can actually see. Scenes are built one at a time, each recorded and verified before the next.",
+    "The skill, in the repo ↗",
+    "Featured skill · text → draw.io XML → rendered PNG",
+    "The skill writes the XML, exports a PNG through the draw.io CLI, then reads the image back and fixes what looks wrong.",
+    "Every diagram goes through a render-view-fix loop, usually two to four passes, with versioned files kept as iteration history. An eight-question interview with recommended defaults settles the decisions that shape the result: frames, flow direction, color axis, how exceptions are marked. The style rules live in reference files the skill must read before generating, because the rules interact.",
+    "The skill also ships its own eval harness: two benchmark diagrams, graded by a script against roughly twenty assertions each, XML mechanics and brand rules alike. The baseline run without the skill passed 15 of 18 assertions; with the skill, all of them. The second iteration folded review findings back in as three new assertions per eval, and the runs are kept in the repo. A skill you can't score is a skill you can't improve.",
+    "The skill, in the repo ↗ Its evals, with the benchmark runs ↗",
+    "Mar - Jun 2026 · shipped skills, in the wild",
+    "drawio diagrams · branded decks · Playwright demo videos · conversation loggers · an auditable HLX admin executor. Install, don't rebuild.",
+    "The rest of the shelf: the HLX admin skill wraps an admin API so configuration becomes describe, review the diff, apply. Branded decks, conversation loggers, a structured git-commit skill, competing-PR triage, and an AI-knowledge harvester round it out. Each ships with its own docs and guardrails.",
+    "ai-builder-kit ↗",
+    "May 31 - Jun 5, 2026 · 19 commits · phase 1 complete",
+    "spec-first the PRD and the architecture diagram were committed before the agents existed.",
+    "An agent runtime for conversion-rate optimization on Edge Delivery Services. A coordinator forms a theory from analytics, four spoke agents produce a variant block on a git worktree, and the change ships as a pull request into a live A/B test. Winners get promoted into the codebase by a separate PR. A retrospective agent then edits the agents' own instructions, so the system learns across cycles.",
+    "May 31, 2026 · PRD + architecture diagram, drawn first",
+    "Analyst scores the block. Architect forms the theory. Builder writes the variant. Validator runs Lighthouse, accessibility, and regression.",
+    "conversion-factory-eds ↗",
+    "Jan 24 - May 31, 2026 · 374 commits · 16 releases · ran 24/7 for four months",
+    "incremental specs to build it: a dated spec and plan per release, ai-docs v1 through v3. dark factory when it ran: nobody watched the overnight builds.",
+    "A coding agent that runs around the clock under PM2. It selects work from a priority queue, spawns isolated workers, validates with deterministic verifiers, retries with a different strategy on each failure, and escalates to a human only when stuck.",
+    "This section goes release by release: a foundation era, an identity-and-multi-vendor era, and a memory era. Four months. The output repo ended up with thirty projects, most of them built overnight.",
+    "Lifetime, measured from its own ledgers",
+    "Counted from the append-only ledgers in the repo.",
+    "v1.0.0 → v3.0.0 · 16 tags",
+    "Dates from git tags. Summaries from the changelog.",
+    "Era 1 · Foundation · Jan 24 - Feb 4",
+    "The 8-phase executive loop. Two-repo architecture: the brain never receives worker output. A constitution of 8 immutable limits, including a $20/month spend cap. Contracts, deterministic verifiers, PM2, append-only ledgers.",
+    "Goals over 100 turns auto-split into steps. Strategy rotation: every retry must try something different. Agentic diagnosis after three failures. The needs-you.md protocol: I answer in a markdown table, it notices within thirty seconds.",
+    "Goal bundles: each goal a directory with its own prompt, machine-readable steps, contract log, and progress log. Workspace lifecycle drafts → ondeck → in-progress → completed, promoted by priority.",
+    "Three physically separated credential tiers with leak detection on every spawn. OAuth-first: the whole system runs on a Claude subscription, no API key.",
+    "Era 2 · Identity & Multi-Vendor · Mar 29 - Apr 19",
+    "Its own Gmail: it receives goals by email. Its own Discord: it reports completions and blocks. Skills and playbooks with a track record: every skill carries a success rate. A read-only dashboard. I became a guest in my agent's workspace.",
+    "A vendor abstraction layer: Claude, OpenAI Codex, and Kimi workers behind one interface. Then the experiment: the same finance-dashboard spec run across all four vendor modes, deployed live, and scored by the harness itself.",
+    "Three multi-agent plan-then-build pipelines became first-class citizens, runnable standalone or driven by the executive. 105 passing tests; the whole orchestrator exercised end-to-end in about a second with zero API calls.",
+    "Worktree isolation per project. Progressive skill disclosure with a verifier that fails a contract if a required skill was never consulted. And a favorite war story: a prompt saying \"No UI, no database\" got post-processed into a plan whose step zero provisioned database tables. The hallucinating prerequisite-inserter was found and fixed.",
+    "Era 3 · The Second Brain · May 16 - 31",
+    "A mem0-backed second brain. Five memory types, five lifecycle hooks, memory packs baked into each worker's context, ~134 memories backfilled. Git stays canonical: if the store and the repo disagree, the repo wins. The riskiest hook stayed off until the memories earned trust.",
+    "Same spec · four vendor modes · scored /130 by the harness",
+    "All four deployed live from the agent's own output repo.",
+    "Apr 6, 2026 · demoed live at AI Tinkerers Columbus",
+    "Same spec, four vendor modes, seven verifiers each. The harness did the scoring.",
+    "Demoed on the running system, no slides. One night that week the ledger shows Codex finishing its build and passing validation at 3:56 AM, with nobody awake. The demo video shown was produced by the agent end to end: 81 seconds, zero keystrokes.",
+    "\"Is it perfect? No. Is it close? Also no. But I'm proud of where it's at.\"",
+    "All four dashboards, deployed ↗ continuous-agent, open source ↗ ai-sandbox, its output repo ↗",
+    "Mar - Apr 2026 · the identity era, up close",
+    "An always-on agent needs its own accounts, not borrowed ones.",
+    "It receives goals by email and reports to its own Discord channel. I am a guest in the agent's workspace, and the working rhythm is reading the overnight commits in the morning. Human interaction is markdown files, not a chat box waiting for input.",
+    "May 31, 2026 · v3.0 · the closing release",
+    "Storage is the easy half. Retrieval decides whether a memory was ever real.",
+    "Five memory types, from immutable principles to reflective lessons. Workers never touch the store: they get a curated, two-thousand-token memory pack baked into their context. The best war story is the silent bug: an empty-string config value made every single write fail while the logs said \"ok.\" Found, fixed, and the logging redesigned so a total failure can never look like success again.",
+    "The memory design, in the repo ↗",
+    "Where it went next",
+    "The v3.0 deck closes with \"Multi-Agent (V4.0): parallel agents, partitioned scope.\" That version was never tagged here.",
+    "Five weeks after v3.0, Anima Mesh's first commit landed. The founding document names this system as its predecessor. The monolith's V4 is the mesh at the top of this page.",
+    "Feb - Apr 2026 · 48 commits · live demo + published video",
+    "spec-first specs and prompt logs kept in the repo's ai-docs.",
+    "No agents in this one. Customer identity and access management, built out fully: identity provider, session boundary, resource API, multi-tenant authorization.",
+    "Phase Two · OIDC identity provider",
+    "Auth.js v5 · session boundary",
+    "org-scoped claims · RBAC",
+    "Organization-scoped claims flow from Keycloak through a backend-for-frontend into a Spring Boot API that enforces role-based access per tenant. Deployed on an ARM64 VM, demoed on video. 48 commits, Feb to Apr 2026.",
+    "The deployed demo ↗plain HTTP demo VM · sample logins only The walkthrough video ↗ ciam-demo ↗",
+    "where the AI-coding run starts",
+    "Jul 2025 · 2 repos · two stacks · restyles into 2026",
+    "spec-first PRD, then tech spec, then tasks. The transactional flow's commit log counts up from task 1.2 to 9.3.",
+    "A postal shipping product built across two weeks of July 2025, spec-first on both halves. The marketing site went on Adobe Edge Delivery Services as 17+ reusable authoring blocks. The transactional flow, quote through pickup through confirmation, went on Next.js: 89 commits in a six-day sprint, each one numbered against the task list it was working through.",
+    "The git history under-counts this one. The marketing repo's whole build week landed as a single commit touching 2,700+ lines, the PRD and tech spec its README points to never got committed, and the page content lives in da.live rather than git. Small restyles kept trailing in afterward; the last one landed in May 2026, ten months after the sprint.",
+    "The marketing site on EDS and da.live: hero, cards, stats, and forms as reusable authoring blocks. The specs that drove it stayed local; the build week landed as one big commit.",
+    "The transactional flow in Next.js: a task-numbered sprint, 1.2 through 9.3, from init to a Playwright-tested pickup and confirmation flow, with release branches along the way.",
+    "May - Jul 2025 · my first fully AI-written production app",
+    "spec-first where the habit started: PRDs, rules files, blueprints, then code.",
+    "A public, production Next.js agent app where AI wrote all of the code. Then CI/CD stood up around it, and the methodology written down: PRDs, rules files, blueprints. Three videos documented it as it happened.",
+    "shadow-pivot-ai-agentv2 ↗ shadow-pivot-ai-agent, the infra-first v1 ↗",
+    "Apr 2025 · 24 commits · since retired",
+    "ad hoc one Sunday, the same app tried in several tools.",
+    "The first project: a Sunday spent trying AI coding tools by building the same app in each. Azure Functions plus Azure OpenAI, turning CSV feedback exports into STAR-format career stories.",
+    "I stopped working on it once the later projects took over. Fifteen months separate this repo's first commit from Anima Mesh's. Everything above happened in between.",
+    "azure-star-generator ↗",
+    "Aug 2023 - Mar 2024 · won at Adobe Summit · repo public Nov 2024",
+    "ad hoc hand-written Java and jQuery, versioned 1.0 → 1.2 through fall 2023. The AI was the feature, not the author.",
+    "The pitch that won AEM Rockstar at Adobe Summit 2024: personalization at scale, inside AEM's own authoring UI. An author opens an experience fragment, types \"rewrite this for ages 13 to 17,\" reviews a side-by-side table of every proposed change, and one click later has a new fragment variation open in the editor.",
+    "The design constraint that shaped it: add capability without adding surface. Generation is a Sling selector on the stock experience-fragment page type, the UI is one clientlib injected into the stock properties editor, and writes go through AEM's own copy and POST machinery. No new endpoints, no new editor, no writes without review.",
+    "The frontend is where most of the craft went. A ~270-line Granite/jQuery clientlib hooks foundation-contentloaded, derives the fragment path from the properties-editor URL, and builds the review table in the DOM: path, original value, generated value, one row per property the QueryBuilder walk found. A continue-chat toggle threads the chat id back, so the model refines its last answer instead of starting over. Approval clones the variation through /bin/wcmcommand, writes the accepted values with a Sling POST, and links straight into the new fragment's editor. A second clientlib does the same for whole pages.",
+    "None of this code was AI-written; in August 2023 the AI was the product, GPT-3.5 by default with GPT-4 behind a config. The shape it demoed is the one everything above formalizes later as propose and dispose: the model proposes values, a human reviews every row, and deterministic machinery does the writing. In 2023 that pattern was a jQuery table.",
+    "acn-aem-genai-rockstar-2024 ↗",
+    "For the record",
+    "Jun 2026 Associate Director, Accenture (Adobe Business Group)",
+    "Apr 2026 Guest lecture at Denison University's CS program",
+    "Apr 2026 AI Tinkerers Community Spotlights: the 24/7 coding agent demo picked #1 globally that week",
+    "Oct 2025 Ten years at Accenture",
+    "Aug 2025 Columbus AI Week speaker · submitted again for 2026",
+    "2024 AEM Rockstar winner, Adobe Summit",
+    "Adobe: AEM Sites Architect (Master) + 5 more · Microsoft: AZ-305, AI-102 + 5 more · Anthropic: Claude Certified Architect",
+    "Also on the shelf",
+    "Public repos behind the writeups above.",
+    "The personal site at jackzhaojin.com. No frameworks, no build step, on purpose.",
+    "Skill-invocation measurement: agent runs instrumented and traced with MLflow.",
+    "The Denison CS 271 guest talk: live demo app plus a per-prompt capabilities page.",
+    "Harness-built certification study environments, deployed to GitHub Pages.",
+    "An EDS block library built end to end by a harness pipeline, accessibility checks included.",
+    "The continuous agent's output repo: 236 commits across per-project branches, written by the harness and read in the morning.",
+    "An A2A protocol server on Azure OpenAI: JSON-RPC, SSE streaming, agent card. A one-day build that seeded the later meshes."
+  ],
+  "codeBlocks": [],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Anima Mesh",
+      "href": "#ch-anima"
+    },
+    {
+      "label": "Built with Bruce",
+      "href": "#ch-bruce"
+    },
+    {
+      "label": "Content Factory",
+      "href": "#ch-factory"
+    },
+    {
+      "label": "AI Builder Kit",
+      "href": "#ch-kit"
+    },
+    {
+      "label": "Conversion Factory",
+      "href": "#ch-conv"
+    },
+    {
+      "label": "Continuous Exec Agent",
+      "href": "#ch-cea"
+    },
+    {
+      "label": "CIAM Demo",
+      "href": "#ch-ciam"
+    },
+    {
+      "label": "Postal Portal",
+      "href": "#ch-postal"
+    },
+    {
+      "label": "Shadow Pivot",
+      "href": "#ch-shadow"
+    },
+    {
+      "label": "STAR Generator",
+      "href": "#ch-star"
+    },
+    {
+      "label": "Start with the latest ↓",
+      "href": "#ch-anima"
+    },
+    {
+      "label": "See every project on one timeline",
+      "href": "#timeline-view"
+    },
+    {
+      "label": "anima-mesh ↗",
+      "href": "https://github.com/jackzhaojin/anima-mesh"
+    },
+    {
+      "label": "GitHub ↗",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "LinkedIn ↗",
+      "href": "https://www.linkedin.com/in/jackjin/"
+    },
+    {
+      "label": "jackzhaojin.com home",
+      "href": "../"
+    },
+    {
+      "label": "Timeline",
+      "href": "#timeline-view"
+    },
+    {
+      "label": "2026 projects",
+      "href": "#ch-anima"
+    },
+    {
+      "label": "2025 projects",
+      "href": "#year-2025"
+    },
+    {
+      "label": "Career",
+      "href": "#career"
+    },
+    {
+      "label": "More builds",
+      "href": "#workbench"
+    },
+    {
+      "label": "github.com/jackzhaojin/anima-mesh ↗",
+      "href": "https://github.com/jackzhaojin/anima-mesh"
+    },
+    {
+      "label": "README ↗",
+      "href": "https://github.com/jackzhaojin/anima-mesh#readme"
+    },
+    {
+      "label": "Architecture notes ↗",
+      "href": "https://github.com/jackzhaojin/anima-mesh/blob/main/docs/architecture.md"
+    },
+    {
+      "label": "Scrubbed sample brain ↗",
+      "href": "https://github.com/jackzhaojin/anima-mesh/tree/main/docs/sample-brain"
+    },
+    {
+      "label": "01Brain",
+      "href": null
+    },
+    {
+      "label": "02Resource reach",
+      "href": null
+    },
+    {
+      "label": "03One beat",
+      "href": null
+    },
+    {
+      "label": "04Defect loop",
+      "href": null
+    },
+    {
+      "label": "05Roster",
+      "href": null
+    },
+    {
+      "label": "06Engine / instance",
+      "href": null
+    },
+    {
+      "label": "↻ replay the beat",
+      "href": null
+    },
+    {
+      "label": "anima-mesh, the engine ↗",
+      "href": "https://github.com/jackzhaojin/anima-mesh"
+    },
+    {
+      "label": "company-of-0",
+      "href": null
+    },
+    {
+      "label": "the beat",
+      "href": null
+    },
+    {
+      "label": "autonomy ladder",
+      "href": null
+    },
+    {
+      "label": "a direction",
+      "href": null
+    },
+    {
+      "label": "propose / dispose",
+      "href": null
+    },
+    {
+      "label": "nags",
+      "href": null
+    },
+    {
+      "label": "Architecture notes ↗",
+      "href": "https://github.com/jackzhaojin/anima-mesh/blob/main/docs/architecture.md"
+    },
+    {
+      "label": "Scrubbed sample brain ↗",
+      "href": "https://github.com/jackzhaojin/anima-mesh/tree/main/docs/sample-brain"
+    },
+    {
+      "label": "Play it ↗",
+      "href": "https://www.jackzhaojin.com/bruce-lava-dash/"
+    },
+    {
+      "label": "Repo ↗",
+      "href": "https://github.com/jackzhaojin/bruce-lava-dash"
+    },
+    {
+      "label": "Play it ↗",
+      "href": "https://www.jackzhaojin.com/bruce-play-ten/"
+    },
+    {
+      "label": "Repo ↗",
+      "href": "https://github.com/jackzhaojin/bruce-play-ten"
+    },
+    {
+      "label": "Play it ↗",
+      "href": "https://www.jackzhaojin.com/bruce-hackathon-2026-09-12/"
+    },
+    {
+      "label": "Repo ↗",
+      "href": "https://github.com/jackzhaojin/bruce-hackathon-2026-09-12"
+    },
+    {
+      "label": "Demo ↗",
+      "href": "https://www.youtube.com/shorts/9rJ8PU0GHDw"
+    },
+    {
+      "label": "azure-da-mcp ↗",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp"
+    },
+    {
+      "label": "adapt-to-2026-demo ↗",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-demo"
+    },
+    {
+      "label": "A demo video produced by the playwright-demo-video skill",
+      "href": null
+    },
+    {
+      "label": "Watch the demo on YouTube",
+      "href": "https://www.youtube.com/watch?v=W1wD5tKoF3M"
+    },
+    {
+      "label": "The skill, in the repo ↗",
+      "href": "https://github.com/jackzhaojin/ai-builder-kit/tree/main/skills/playwright-demo-video"
+    },
+    {
+      "label": "The skill, in the repo ↗",
+      "href": "https://github.com/jackzhaojin/ai-builder-kit/tree/main/skills/drawio"
+    },
+    {
+      "label": "Its evals, with the benchmark runs ↗",
+      "href": "https://github.com/jackzhaojin/ai-builder-kit/tree/main/skills/drawio/evals"
+    },
+    {
+      "label": "ai-builder-kit ↗",
+      "href": "https://github.com/jackzhaojin/ai-builder-kit"
+    },
+    {
+      "label": "conversion-factory-eds ↗",
+      "href": "https://github.com/jackzhaojin/conversion-factory-eds"
+    },
+    {
+      "label": "↻ replay",
+      "href": null
+    },
+    {
+      "label": "All four dashboards, deployed ↗",
+      "href": "https://www.jackzhaojin.com/ai-sandbox/"
+    },
+    {
+      "label": "continuous-agent, open source ↗",
+      "href": "https://github.com/jackzhaojin/continuous-agent"
+    },
+    {
+      "label": "ai-sandbox, its output repo ↗",
+      "href": "https://github.com/jackzhaojin/ai-sandbox"
+    },
+    {
+      "label": "The memory design, in the repo ↗",
+      "href": "https://github.com/jackzhaojin/continuous-agent"
+    },
+    {
+      "label": "The deployed demo ↗",
+      "href": "http://157.151.152.16:3001/"
+    },
+    {
+      "label": "The walkthrough video ↗",
+      "href": "https://www.youtube.com/watch?v=DIWQCDbMUM8"
+    },
+    {
+      "label": "ciam-demo ↗",
+      "href": "https://github.com/jackzhaojin/ciam-demo"
+    },
+    {
+      "label": "Jul 12 - 19, 2025 · 17+ blocks · restyles to May 2026 da-live-postal-2025-07 The marketing site on EDS and da.live: hero, cards, stats, and forms as reusable authoring blocks. The specs that drove it stayed local; the build week landed as one big commit.",
+      "href": "https://github.com/jackzhaojin/da-live-postal-2025-07"
+    },
+    {
+      "label": "Jul 19 - 25, 2025 · 89 commits in 6 days nextjs-postal-2025-07 The transactional flow in Next.js: a task-numbered sprint, 1.2 through 9.3, from init to a Playwright-tested pickup and confirmation flow, with release branches along the way.",
+      "href": "https://github.com/jackzhaojin/nextjs-postal-2025-07"
+    },
+    {
+      "label": "←",
+      "href": null
+    },
+    {
+      "label": "→",
+      "href": null
+    },
+    {
+      "label": "shadow-pivot-ai-agentv2 ↗",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2"
+    },
+    {
+      "label": "shadow-pivot-ai-agent, the infra-first v1 ↗",
+      "href": "https://github.com/jackzhaojin/shadow-pivot-ai-agent"
+    },
+    {
+      "label": "azure-star-generator ↗",
+      "href": "https://github.com/jackzhaojin/azure-star-generator"
+    },
+    {
+      "label": "acn-aem-genai-rockstar-2024 ↗",
+      "href": "https://github.com/jackzhaojin/acn-aem-genai-rockstar-2024"
+    },
+    {
+      "label": "jackzhaojin.github.io The personal site at jackzhaojin.com. No frameworks, no build step, on purpose. Apr 2025 - Jul 2026",
+      "href": "https://github.com/jackzhaojin/jackzhaojin.github.io"
+    },
+    {
+      "label": "eds-skill-assess Skill-invocation measurement: agent runs instrumented and traced with MLflow. May 2026",
+      "href": "https://github.com/jackzhaojin/eds-skill-assess-2026-05"
+    },
+    {
+      "label": "denison-2026-04-24 The Denison CS 271 guest talk: live demo app plus a per-prompt capabilities page. Apr 2026",
+      "href": "https://github.com/jackzhaojin/denison-2026-04-24"
+    },
+    {
+      "label": "harness-v2-test Harness-built certification study environments, deployed to GitHub Pages. Mar - Apr 2026",
+      "href": "https://github.com/jackzhaojin/harness-v2-test"
+    },
+    {
+      "label": "jack-da-live-harness-built An EDS block library built end to end by a harness pipeline, accessibility checks included. Jan 2026",
+      "href": "https://github.com/jackzhaojin/jack-da-live-harness-built"
+    },
+    {
+      "label": "ai-sandbox The continuous agent's output repo: 236 commits across per-project branches, written by the harness and read in the morning. Mar - Apr 2026",
+      "href": "https://github.com/jackzhaojin/ai-sandbox"
+    },
+    {
+      "label": "a2a-demo An A2A protocol server on Azure OpenAI: JSON-RPC, SSE streaming, agent card. A one-day build that seeded the later meshes. Jun 2025",
+      "href": "https://github.com/jackzhaojin/a2a-demo"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/portfolio/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://www.jackzhaojin.com/portfolio/#ch-anima",
+    "https://www.jackzhaojin.com/portfolio/#ch-bruce",
+    "https://www.jackzhaojin.com/portfolio/#ch-factory",
+    "https://www.jackzhaojin.com/portfolio/#ch-kit",
+    "https://www.jackzhaojin.com/portfolio/#ch-conv",
+    "https://www.jackzhaojin.com/portfolio/#ch-cea",
+    "https://www.jackzhaojin.com/portfolio/#ch-ciam",
+    "https://www.jackzhaojin.com/portfolio/#ch-postal",
+    "https://www.jackzhaojin.com/portfolio/#ch-shadow",
+    "https://www.jackzhaojin.com/portfolio/#ch-star",
+    "https://www.jackzhaojin.com/portfolio/#timeline-view",
+    "https://github.com/jackzhaojin/anima-mesh",
+    "https://github.com/jackzhaojin",
+    "https://www.linkedin.com/in/jackjin/",
+    "https://www.jackzhaojin.com/portfolio/#year-2025",
+    "https://www.jackzhaojin.com/portfolio/#career",
+    "https://www.jackzhaojin.com/portfolio/#workbench",
+    "https://github.com/jackzhaojin/anima-mesh#readme",
+    "https://github.com/jackzhaojin/anima-mesh/blob/main/docs/architecture.md",
+    "https://github.com/jackzhaojin/anima-mesh/tree/main/docs/sample-brain",
+    "https://www.jackzhaojin.com/portfolio/assets/anima/cloud-architecture.svg?v=3",
+    "https://www.jackzhaojin.com/portfolio/assets/anima/brain-anatomy.svg?v=3",
+    "https://www.jackzhaojin.com/portfolio/assets/anima/resource-reach.svg?v=3",
+    "https://www.jackzhaojin.com/portfolio/assets/anima/heartbeat-sequence.svg?v=3",
+    "https://www.jackzhaojin.com/portfolio/assets/anima/defect-loop.svg?v=3",
+    "https://www.jackzhaojin.com/portfolio/assets/anima/agent-roster.svg?v=3",
+    "https://www.jackzhaojin.com/portfolio/assets/anima/engine-and-instance.svg?v=3",
+    "https://www.jackzhaojin.com/bruce-lava-dash/",
+    "https://github.com/jackzhaojin/bruce-lava-dash",
+    "https://www.jackzhaojin.com/bruce-play-ten/",
+    "https://github.com/jackzhaojin/bruce-play-ten",
+    "https://www.jackzhaojin.com/bruce-hackathon-2026-09-12/",
+    "https://github.com/jackzhaojin/bruce-hackathon-2026-09-12",
+    "https://www.youtube.com/shorts/9rJ8PU0GHDw",
+    "https://www.jackzhaojin.com/portfolio/assets/factory/a2a-closed-loop-pipeline.png?v=2",
+    "https://github.com/jackzhaojin/azure-da-mcp",
+    "https://github.com/jackzhaojin/adapt-to-2026-demo",
+    "https://www.jackzhaojin.com/portfolio/assets/factory/v1-platform-plan.png",
+    "https://www.youtube.com/watch?v=W1wD5tKoF3M",
+    "https://github.com/jackzhaojin/ai-builder-kit/tree/main/skills/playwright-demo-video",
+    "https://www.jackzhaojin.com/portfolio/assets/kit/agent-sdk-harness.png?v=2",
+    "https://github.com/jackzhaojin/ai-builder-kit/tree/main/skills/drawio",
+    "https://github.com/jackzhaojin/ai-builder-kit/tree/main/skills/drawio/evals",
+    "https://github.com/jackzhaojin/ai-builder-kit",
+    "https://www.jackzhaojin.com/portfolio/assets/conversion/conversion-factory.png?v=2",
+    "https://github.com/jackzhaojin/conversion-factory-eds",
+    "https://www.jackzhaojin.com/ai-sandbox/",
+    "https://github.com/jackzhaojin/continuous-agent",
+    "https://github.com/jackzhaojin/ai-sandbox",
+    "https://www.jackzhaojin.com/portfolio/assets/cea/ingestion-and-retrieval.png?v=2",
+    "http://157.151.152.16:3001/",
+    "https://www.youtube.com/watch?v=DIWQCDbMUM8",
+    "https://github.com/jackzhaojin/ciam-demo",
+    "https://www.jackzhaojin.com/portfolio/assets/postal/spec-to-two-stacks.svg",
+    "https://github.com/jackzhaojin/da-live-postal-2025-07",
+    "https://github.com/jackzhaojin/nextjs-postal-2025-07",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agentv2",
+    "https://github.com/jackzhaojin/shadow-pivot-ai-agent",
+    "https://github.com/jackzhaojin/azure-star-generator",
+    "https://www.jackzhaojin.com/portfolio/assets/rockstar/exfrag-genai-flow.svg",
+    "https://github.com/jackzhaojin/acn-aem-genai-rockstar-2024",
+    "https://github.com/jackzhaojin/jackzhaojin.github.io",
+    "https://github.com/jackzhaojin/eds-skill-assess-2026-05",
+    "https://github.com/jackzhaojin/denison-2026-04-24",
+    "https://github.com/jackzhaojin/harness-v2-test",
+    "https://github.com/jackzhaojin/jack-da-live-harness-built",
+    "https://github.com/jackzhaojin/a2a-demo",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/portfolio/assets/anima/cloud-architecture.svg?v=3",
+        "alt": "AnimaMesh cloud architecture: Discord and a browser connect to separate Cloudflare Workers; Heartbeat and Direction Durable Objects run against a private GitHub brain, read-only context sources, and fetch-based model APIs.",
+        "w": 192,
+        "h": 150
+      },
+      {
+        "src": "https://www.jackzhaojin.com/portfolio/assets/factory/a2a-closed-loop-pipeline.png?v=2",
+        "alt": "The closed-loop pipeline: a coordinator asks content-gen to fabricate a synthetic legacy page, hands it to the migration agent to author into da.live, and hands that to the eval agent to score across four dimensions.",
+        "w": 2700,
+        "h": 1460
+      },
+      {
+        "src": "https://www.jackzhaojin.com/portfolio/assets/factory/v1-platform-plan.png",
+        "alt": "The v1 content platform plan: a UI/UX specification feeds a mock-content generator (Claude Agent SDK producing PDFs and HTML into Azure Storage), a Make.com / Workfront Fusion content builder calls MCP tools (Playwright, AEM da.live get/update/create/publish) into the da.live EDS site, an evals container on an Oracle VM pairs deterministic and agentic logic four ways each, and a site-building harness runs planning and task agents through research, build, and validate with a human-in-the-loop escape hatch.",
+        "w": 2600,
+        "h": 2012
+      },
+      {
+        "src": "https://i.ytimg.com/vi/W1wD5tKoF3M/hqdefault.jpg",
+        "alt": "",
+        "w": 480,
+        "h": 360
+      },
+      {
+        "src": "https://www.jackzhaojin.com/portfolio/assets/kit/agent-sdk-harness.png?v=2",
+        "alt": "Reference output of the drawio skill: an agentic harness diagram with a four-color semantic palette, deterministic processor, planning and task agents, and dashed human-readable handoff loops.",
+        "w": 944,
+        "h": 844
+      },
+      {
+        "src": "https://www.jackzhaojin.com/portfolio/assets/collateral/ai-team-enablement-2025-08-26-2224.png?v=2",
+        "alt": "Hand-drawn diagram mapping AI skills to team enablement objectives: one skill node, many hands",
+        "w": 2322,
+        "h": 943
+      },
+      {
+        "src": "https://www.jackzhaojin.com/portfolio/assets/cea/ai-tinkerers-spotlight.jpeg",
+        "alt": "AI Tinkerers Community Spotlight graphic: a black and gold halftone portrait of Jack, arms crossed, with the text Top Global Demo, number one top pick, my own version of OpenClaw focused on 24x7 development, Columbus, April 20, 2026.",
+        "w": 800,
+        "h": 1071
+      },
+      {
+        "src": "https://www.jackzhaojin.com/portfolio/assets/collateral/Discord.png?v=2",
+        "alt": "Discord workspace owned and operated by the autonomous agent, posting its own status updates",
+        "w": 1536,
+        "h": 1340
+      },
+      {
+        "src": "https://www.jackzhaojin.com/portfolio/assets/collateral/continuous-agent-architecture.png?v=2",
+        "alt": "Hand-drawn architecture diagram of Continuous Executive Agent v2.1: executive brain, multi-vendor worker execution, and self-correcting feedback loop",
+        "w": 3039,
+        "h": 2160
+      },
+      {
+        "src": "https://www.jackzhaojin.com/portfolio/assets/cea/ingestion-and-retrieval.png?v=2",
+        "alt": "Diagram of the memory system's write path (hooks feed a harvester that validates and writes to mem0) and read path (a reader runs natural-language searches and builds memory packs)",
+        "w": 4220,
+        "h": 1754
+      },
+      {
+        "src": "https://www.jackzhaojin.com/portfolio/assets/postal/spec-to-two-stacks.svg",
+        "alt": "Postal Portal build diagram: a written spec layer (PRD, tech spec, numbered task list) drives two stacks side by side. Left, the EDS marketing site with 17+ authoring blocks and content in da.live. Right, the Next.js transactional flow built as a six-day task-numbered sprint from quote to pickup to confirmation.",
+        "w": 274,
+        "h": 150
+      }
+    ],
+    "allImgCount": 23,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": []
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--bg": "#f6f4f0",
+    "--bg-low": "#efece6",
+    "--surface": "#ffffff",
+    "--surface-2": "#f1eee9",
+    "--surface-3": "#efece6",
+    "--ink": "#1a1917",
+    "--ink-soft": "#4a4744",
+    "--ink-faint": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-soft": "rgba(20, 18, 15, 0.10)",
+    "--c-anima": "#5b4bc4",
+    "--c-bruce": "#c2433d",
+    "--c-factory": "#1d6b7a",
+    "--c-kit": "#7d5f0e",
+    "--c-cea": "#8a5a00",
+    "--c-conv": "#3b7628",
+    "--c-ciam": "#2f6bb3",
+    "--c-postal": "#7a4f2c",
+    "--c-shadow": "#1f6e52",
+    "--c-star": "#a63658",
+    "--accent": "#5b4bc4",
+    "--max": "1200px",
+    "--pad": "clamp(20px, 5vw, 80px)",
+    "--radius": "10px",
+    "--color-adobe": "#fa0f00"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 51,
+    "mainTextLen": 30117,
+    "realImageCount": 11,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "www.google-analytics.com",
+        "path": "/g/collect",
+        "query": [
+          "_ee",
+          "_fv",
+          "_nsi",
+          "_p",
+          "_s",
+          "_ss",
+          "cid",
+          "dl",
+          "dma",
+          "dt",
+          "en",
+          "frm",
+          "gcd",
+          "gtm",
+          "ngs",
+          "npa",
+          "pscdl",
+          "rcb",
+          "sct",
+          "seg",
+          "sid",
+          "sr",
+          "tag_exp",
+          "tfd",
+          "tid",
+          "uaa",
+          "uab",
+          "uafvl",
+          "uam",
+          "uamb",
+          "uap",
+          "uapv",
+          "uaw",
+          "ul",
+          "v"
+        ],
+        "resourceType": "fetch",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.google-analytics.com/g/collect",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 1,
+    "triggers": [
+      {
+        "marker": "lightbox-file",
+        "href": null
+      },
+      {
+        "marker": "lightbox-zoom",
+        "href": null
+      }
+    ],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 1,
+      "thirdPartyScriptHosts": 2,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/portfolio.png",
+  "renderedHtml": "pages/portfolio.html",
+  "slots": {
+    "type": "unique",
+    "headline": "Jack Jin's Portfolio",
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "class": "hero",
+        "heading": "Jack Jin's Portfolio"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "class": "timeline-section",
+        "heading": "Projects over time"
+      },
+      {
+        "index": 2,
+        "tag": "div",
+        "class": "tdiv",
+        "heading": null
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "class": "chapter flagship",
+        "heading": "Anima MeshThe company-of-0 experiment"
+      },
+      {
+        "index": 4,
+        "tag": "div",
+        "class": "tdiv",
+        "heading": null
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "class": "chapter",
+        "heading": "Built with BruceThe father-and-son repos"
+      },
+      {
+        "index": 6,
+        "tag": "div",
+        "class": "tdiv",
+        "heading": null
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "class": "chapter",
+        "heading": "The Content FactoryA decoupled agent mesh"
+      },
+      {
+        "index": 8,
+        "tag": "div",
+        "class": "tdiv",
+        "heading": null
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "class": "chapter",
+        "heading": "AI Builder KitSkills anyone can install"
+      },
+      {
+        "index": 10,
+        "tag": "div",
+        "class": "tdiv",
+        "heading": null
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "class": "chapter",
+        "heading": "Conversion FactoryAgents that evolve site blocks"
+      },
+      {
+        "index": 12,
+        "tag": "div",
+        "class": "tdiv",
+        "heading": null
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "class": "chapter",
+        "heading": "Continuous Executive AgentA 24/7 coding agent"
+      },
+      {
+        "index": 14,
+        "tag": "div",
+        "class": "tdiv",
+        "heading": null
+      },
+      {
+        "index": 15,
+        "tag": "section",
+        "class": "chapter",
+        "heading": "CIAM DemoCustomer identity, end to end"
+      },
+      {
+        "index": 16,
+        "tag": "div",
+        "class": "year-band",
+        "heading": null
+      },
+      {
+        "index": 17,
+        "tag": "section",
+        "class": "chapter",
+        "heading": "Postal PortalA shipping product on two stacks"
+      },
+      {
+        "index": 18,
+        "tag": "div",
+        "class": "tdiv",
+        "heading": null
+      },
+      {
+        "index": 19,
+        "tag": "section",
+        "class": "chapter",
+        "heading": "Shadow PivotMy first AI-coded app"
+      },
+      {
+        "index": 20,
+        "tag": "div",
+        "class": "tdiv",
+        "heading": null
+      },
+      {
+        "index": 21,
+        "tag": "section",
+        "class": "chapter lofi",
+        "heading": "Azure STAR GeneratorDay one"
+      },
+      {
+        "index": 22,
+        "tag": "div",
+        "class": "tdiv",
+        "heading": null
+      },
+      {
+        "index": 23,
+        "tag": "section",
+        "class": "chapter lofi",
+        "heading": "AEM Rockstar 2024The prologue"
+      },
+      {
+        "index": 24,
+        "tag": "section",
+        "class": "career",
+        "heading": "Career notes"
+      },
+      {
+        "index": 25,
+        "tag": "section",
+        "class": "workbench-section",
+        "heading": "Smaller repos"
+      }
+    ]
+  }
+}

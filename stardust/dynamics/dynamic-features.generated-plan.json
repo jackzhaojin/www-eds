@@ -1,0 +1,760 @@
+{
+ "_provenance": {
+  "writtenBy": "stardust:dynamics plan",
+  "writtenAt": "2026-10-25T14:22:11.476Z",
+  "input": "stardust/current/_dynamics.json",
+  "target": null,
+  "migrated": null,
+  "knowledge": "stardust/spec/knowledge",
+  "chrome": null
+ },
+ "rows": [
+  {
+   "id": "a-cms-app-settings-object-datalayer",
+   "class": "A",
+   "feature": "CMS / app settings object dataLayer",
+   "pages": 10,
+   "probed": 10,
+   "reach": null,
+   "evidence": [],
+   "pattern": "read-settings",
+   "disposition": "static-snapshot",
+   "target": "content",
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "detect",
+   "decision": "— (keys name endpoints, ids, vendors)"
+  },
+  {
+   "id": "a-unknown-third-party-host-www-gstatic-com",
+   "class": "A",
+   "feature": "unknown third-party host www.gstatic.com",
+   "pages": 4,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "www.gstatic.com"
+   ],
+   "pattern": "inspect",
+   "disposition": "static-snapshot",
+   "target": null,
+   "reproducibility": "needs-human-capture",
+   "status": "pending",
+   "phase": "detect",
+   "decision": "inspect the XHR, add a vendor row"
+  },
+  {
+   "id": "a-unknown-third-party-host-jnn-pa-googleapis-com",
+   "class": "A",
+   "feature": "unknown third-party host jnn-pa.googleapis.com",
+   "pages": 4,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "jnn-pa.googleapis.com"
+   ],
+   "pattern": "inspect",
+   "disposition": "static-snapshot",
+   "target": null,
+   "reproducibility": "needs-human-capture",
+   "status": "pending",
+   "phase": "detect",
+   "decision": "inspect the XHR, add a vendor row"
+  },
+  {
+   "id": "f-form-less-control-group-in-article-writing-article-2-contr",
+   "class": "F",
+   "feature": "form-less control group in article.writing-article (2 controls)",
+   "pages": 1,
+   "probed": 10,
+   "reach": null,
+   "evidence": [],
+   "pattern": "client-compute",
+   "disposition": "client-only",
+   "target": "widget",
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "client tools",
+   "decision": "none"
+  },
+  {
+   "id": "i18n-locale-variants-in",
+   "class": "I18N",
+   "feature": "locale variants in",
+   "pages": 6,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "https://www.linkedin.com/in/jackjin"
+   ],
+   "pattern": "locale-tree",
+   "disposition": "rebuild-native",
+   "target": "runtime",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "locale wave",
+   "decision": "scope of the locale trees"
+  },
+  {
+   "id": "i18n-locale-variants-in-in",
+   "class": "I18N",
+   "feature": "locale variants in,in",
+   "pages": 2,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "https://www.linkedin.com/in/jackjin/",
+    "https://www.linkedin.com/in/jackjin"
+   ],
+   "pattern": "locale-tree",
+   "disposition": "rebuild-native",
+   "target": "runtime",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "locale wave",
+   "decision": "scope of the locale trees"
+  },
+  {
+   "id": "i18n-locale-variants-en-en-en-en-en",
+   "class": "I18N",
+   "feature": "locale variants en,en,en,en,en",
+   "pages": 1,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching",
+    "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/cdn",
+    "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/headless/graphql-api/persisted-queries"
+   ],
+   "pattern": "locale-tree",
+   "disposition": "rebuild-native",
+   "target": "runtime",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "locale wave",
+   "decision": "scope of the locale trees"
+  },
+  {
+   "id": "i18n-locale-variants-en-in",
+   "class": "I18N",
+   "feature": "locale variants en,in",
+   "pages": 1,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/edge-functions/edge-functions-setup/setup-eds",
+    "https://www.linkedin.com/in/jackjin"
+   ],
+   "pattern": "locale-tree",
+   "disposition": "rebuild-native",
+   "target": "runtime",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "locale wave",
+   "decision": "scope of the locale trees"
+  },
+  {
+   "id": "l-listing-candidate-row-list-3-cards",
+   "class": "L",
+   "feature": "listing candidate row-list (3 cards)",
+   "pages": 3,
+   "probed": 10,
+   "reach": null,
+   "evidence": [],
+   "pattern": "listing-index-backed",
+   "disposition": "index-backed",
+   "target": "block",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "listings",
+   "decision": "index-driven or editorially curated?"
+  },
+  {
+   "id": "l-listing-candidate-writing-list-28-cards",
+   "class": "L",
+   "feature": "listing candidate writing-list (28 cards)",
+   "pages": 1,
+   "probed": 10,
+   "reach": null,
+   "evidence": [],
+   "pattern": "listing-index-backed",
+   "disposition": "index-backed",
+   "target": "block",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "listings",
+   "decision": "index-driven or editorially curated?"
+  },
+  {
+   "id": "l-listing-candidate-deck-panes-6-cards",
+   "class": "L",
+   "feature": "listing candidate deck-panes (6 cards)",
+   "pages": 1,
+   "probed": 10,
+   "reach": null,
+   "evidence": [],
+   "pattern": "listing-index-backed",
+   "disposition": "index-backed",
+   "target": "block",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "listings",
+   "decision": "index-driven or editorially curated?"
+  },
+  {
+   "id": "l-listing-candidate-bruce-grid-reveal-3-cards",
+   "class": "L",
+   "feature": "listing candidate bruce-grid reveal (3 cards)",
+   "pages": 1,
+   "probed": 10,
+   "reach": null,
+   "evidence": [],
+   "pattern": "listing-index-backed",
+   "disposition": "index-backed",
+   "target": "block",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "listings",
+   "decision": "index-driven or editorially curated?"
+  },
+  {
+   "id": "m-modal-trigger-lightbox-file-target-outside-dom-at-capture",
+   "class": "M",
+   "feature": "modal trigger lightbox-file → target outside DOM at capture",
+   "pages": 1,
+   "probed": 10,
+   "reach": {
+    "pages": 1,
+    "of": 34
+   },
+   "evidence": [
+    "open file ↗"
+   ],
+   "pattern": "modal-loader",
+   "disposition": "rebuild-native",
+   "target": "runtime",
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "interactive",
+   "decision": "none"
+  },
+  {
+   "id": "m-modal-trigger-lightbox-zoom-target-outside-dom-at-capture",
+   "class": "M",
+   "feature": "modal trigger lightbox-zoom → target outside DOM at capture",
+   "pages": 1,
+   "probed": 10,
+   "reach": {
+    "pages": 1,
+    "of": 34
+   },
+   "evidence": [
+    "zoom 1:1"
+   ],
+   "pattern": "modal-loader",
+   "disposition": "rebuild-native",
+   "target": "runtime",
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "interactive",
+   "decision": "none"
+  },
+  {
+   "id": "s-site-search-form-js-submitted",
+   "class": "S",
+   "feature": "site search form → (JS-submitted)",
+   "pages": 1,
+   "probed": 10,
+   "reach": {
+    "pages": 1,
+    "of": 34
+   },
+   "evidence": [
+    "search:q"
+   ],
+   "pattern": "search-index-backed",
+   "disposition": "index-backed",
+   "target": "widget",
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "search",
+   "decision": "none (corpus = the migrated pages; second corpora stay out)"
+  },
+  {
+   "id": "t-unknown-third-party-host-static-cloudflareinsights-com",
+   "class": "T",
+   "feature": "unknown third-party host static.cloudflareinsights.com",
+   "pages": 10,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "static.cloudflareinsights.com"
+   ],
+   "pattern": "consent-gated-tags",
+   "disposition": "embed-passthrough",
+   "target": "embed",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "tags",
+   "decision": "which tags run on the new host; property ids"
+  },
+  {
+   "id": "t-tag-manager-google-tag-manager",
+   "class": "T",
+   "feature": "tag manager: Google Tag Manager",
+   "pages": 10,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "www.googletagmanager.com"
+   ],
+   "pattern": "consent-gated-tags",
+   "disposition": "embed-passthrough",
+   "target": "embed",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "tags",
+   "decision": "which tags run on the new host; property ids"
+  },
+  {
+   "id": "t-analytics-google-analytics-ads",
+   "class": "T",
+   "feature": "analytics: Google Analytics / Ads",
+   "pages": 10,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "www.google-analytics.com"
+   ],
+   "pattern": "consent-gated-tags",
+   "disposition": "embed-passthrough",
+   "target": "embed",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "tags",
+   "decision": "which tags run on the new host; property ids"
+  },
+  {
+   "id": "t-unknown-third-party-host-www-google-com",
+   "class": "T",
+   "feature": "unknown third-party host www.google.com",
+   "pages": 4,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "www.google.com"
+   ],
+   "pattern": "consent-gated-tags",
+   "disposition": "embed-passthrough",
+   "target": "embed",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "tags",
+   "decision": "which tags run on the new host; property ids"
+  },
+  {
+   "id": "t-unknown-third-party-host-yt3-ggpht-com",
+   "class": "T",
+   "feature": "unknown third-party host yt3.ggpht.com",
+   "pages": 4,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "yt3.ggpht.com"
+   ],
+   "pattern": "consent-gated-tags",
+   "disposition": "embed-passthrough",
+   "target": "embed",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "tags",
+   "decision": "which tags run on the new host; property ids"
+  },
+  {
+   "id": "t-unknown-third-party-host-images-credly-com",
+   "class": "T",
+   "feature": "unknown third-party host images.credly.com",
+   "pages": 1,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "images.credly.com"
+   ],
+   "pattern": "consent-gated-tags",
+   "disposition": "embed-passthrough",
+   "target": "embed",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "tags",
+   "decision": "which tags run on the new host; property ids"
+  },
+  {
+   "id": "t-unknown-third-party-host-learn-microsoft-com",
+   "class": "T",
+   "feature": "unknown third-party host learn.microsoft.com",
+   "pages": 1,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "learn.microsoft.com"
+   ],
+   "pattern": "consent-gated-tags",
+   "disposition": "embed-passthrough",
+   "target": "embed",
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "tags",
+   "decision": "which tags run on the new host; property ids"
+  },
+  {
+   "id": "v-video-youtube",
+   "class": "V",
+   "feature": "video: YouTube",
+   "pages": 4,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "www.youtube-nocookie.com",
+    "i.ytimg.com",
+    "https://www.youtube-nocookie.com/embed/THAk36FGZps?rel=0",
+    "https://www.youtube-nocookie.com/embed/E7jNBsUvXm0?rel=0"
+   ],
+   "pattern": "media-as-url",
+   "disposition": "embed-passthrough",
+   "target": "content",
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "media",
+   "decision": "none (player ids are public)"
+  },
+  {
+   "id": "x-sign-in-account-links",
+   "class": "X",
+   "feature": "sign-in / account links",
+   "pages": 5,
+   "probed": 10,
+   "reach": null,
+   "evidence": [
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+    "https://myaccount.google.com/permissions",
+    "https://adapt.to/2026/schedule/rolling-out-mcp-on-aem-lessons-from-early-production",
+    "https://adapt.to/2026/presentations/adaptto-2026-rolling-out-mcp-on-aem-lessons-from-early-production.pdf"
+   ],
+   "pattern": "decided-out",
+   "disposition": "decided-out",
+   "target": null,
+   "reproducibility": "needs-backend",
+   "status": "pending",
+   "phase": "register",
+   "decision": "auth / commerce on the new host?"
+  },
+  {
+   "id": "spec-theme-control",
+   "source": "spec",
+   "class": "M",
+   "feature": "Light / Dark / System theme control",
+   "pages": 34,
+   "probed": 34,
+   "reach": {
+    "pages": 34,
+    "of": 34
+   },
+   "evidence": [
+    "header .theme-control on 34/34; head inline script reads localStorage jj-theme before first paint; js/site.js toggles data-theme and listens to prefers-color-scheme and storage events"
+   ],
+   "pattern": "chrome interaction + pre-paint head script",
+   "disposition": "rebuild-native",
+   "target": null,
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "Keep the jj-theme key so returning visitors keep their choice"
+  },
+  {
+   "id": "spec-nav-menu",
+   "source": "spec",
+   "class": "M",
+   "feature": "Header Menu drawer below 1024px",
+   "pages": 34,
+   "probed": 34,
+   "reach": {
+    "pages": 34,
+    "of": 34
+   },
+   "evidence": [
+    "chrome-explore 390: one drawer control (Menu/Close), 4 links + 3 theme buttons in the panel; none at 1440"
+   ],
+   "pattern": "chrome interaction",
+   "disposition": "rebuild-native",
+   "target": null,
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "none"
+  },
+  {
+   "id": "spec-ambient-art",
+   "source": "spec",
+   "class": "M",
+   "feature": "Ambient canvas hero art",
+   "pages": 4,
+   "probed": 34,
+   "reach": {
+    "pages": 4,
+    "of": 34
+   },
+   "evidence": [
+    "js/page-art.js draws canvas.ambient-art in .graphic-hero on home, writing, talks, certifications; rAF about 30 fps, paused off-screen and when hidden, still frame under reduced motion"
+   ],
+   "pattern": "decorative client render",
+   "disposition": "rebuild-native",
+   "target": null,
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "Port page-art.js as-is (signature) or replace it with a static frame; replica keeps it"
+  },
+  {
+   "id": "spec-writing-index",
+   "source": "spec",
+   "class": "L",
+   "feature": "Writing index list",
+   "pages": 1,
+   "probed": 34,
+   "reach": {
+    "pages": 1,
+    "of": 34
+   },
+   "evidence": [
+    "/writing/ lists 28 article rows (cover, date, title, summary, topic chips, facts) authored by hand; data-date, data-topics, data-search attributes per row"
+   ],
+   "pattern": "query-index listing",
+   "disposition": "index-backed",
+   "target": null,
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "Topics (aem, ai-engineering) and cover image become page metadata"
+  },
+  {
+   "id": "spec-writing-filter",
+   "source": "spec",
+   "class": "S",
+   "feature": "Writing filter and search",
+   "pages": 1,
+   "probed": 34,
+   "reach": {
+    "pages": 1,
+    "of": 34
+   },
+   "evidence": [
+    "js/writing-filter.js: topic and year pills with counts, text search over data-search; state in the URL hash (#q=, #topic=, #year=); form GET /writing/?q= as the no-JS fallback"
+   ],
+   "pattern": "client filter over an index",
+   "disposition": "client-only",
+   "target": null,
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "none"
+  },
+  {
+   "id": "spec-article-explainers",
+   "source": "spec",
+   "class": "M",
+   "feature": "Interactive article explainers and labs",
+   "pages": 27,
+   "probed": 34,
+   "reach": {
+    "pages": 27,
+    "of": 34
+   },
+   "evidence": [
+    "explainer roots on 21 articles and .lab frames on 13 (27 of 28 articles in all); 26 articles load a local explainer.css and most a script; controls without a form tag (dynamics F finding: form-less control group)"
+   ],
+   "pattern": "inline client compute, no network",
+   "disposition": "client-only",
+   "target": null,
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "Block variant per explainer, or a code-only widget per explainer"
+  },
+  {
+   "id": "spec-article-rail",
+   "source": "spec",
+   "class": "M",
+   "feature": "Article rail progress and current part",
+   "pages": 28,
+   "probed": 34,
+   "reach": {
+    "pages": 28,
+    "of": 34
+   },
+   "evidence": [
+    ".article-rail details with rail__progress on 28 articles"
+   ],
+   "pattern": "scroll-linked UI",
+   "disposition": "rebuild-native",
+   "target": null,
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "none"
+  },
+  {
+   "id": "spec-youtube",
+   "source": "spec",
+   "class": "V",
+   "feature": "YouTube embeds",
+   "pages": 19,
+   "probed": 34,
+   "reach": {
+    "pages": 19,
+    "of": 34
+   },
+   "evidence": [
+    "youtube-nocookie iframes on 19 pages (20 embeds); one click-to-load facade on the portfolio"
+   ],
+   "pattern": "player URL is the content",
+   "disposition": "embed-passthrough",
+   "target": null,
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "Use a facade everywhere for Lighthouse 100, or keep direct iframes"
+  },
+  {
+   "id": "spec-lightbox",
+   "source": "spec",
+   "class": "M",
+   "feature": "Figure zoom and open-file lightbox",
+   "pages": 1,
+   "probed": 34,
+   "reach": {
+    "pages": 1,
+    "of": 34
+   },
+   "evidence": [
+    "dynamics: lightbox-zoom and lightbox-file triggers (portfolio lb-zoomable x7, one article fig--zoom)"
+   ],
+   "pattern": "modal loader",
+   "disposition": "rebuild-native",
+   "target": null,
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "none"
+  },
+  {
+   "id": "spec-portfolio-interactions",
+   "source": "spec",
+   "class": "M",
+   "feature": "Portfolio interactions",
+   "pages": 1,
+   "probed": 34,
+   "reach": {
+    "pages": 1,
+    "of": 34
+   },
+   "evidence": [
+    "portfolio/script.js (26 KB): carousel, diagram deck tabs, Gantt now-marker, counters, glossary chips, reveal-on-scroll, video facade"
+   ],
+   "pattern": "block JS",
+   "disposition": "rebuild-native",
+   "target": null,
+   "reproducibility": "self",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "Reveal-on-scroll must not hide content without JS (canon rule)"
+  },
+  {
+   "id": "spec-gtag",
+   "source": "spec",
+   "class": "T",
+   "feature": "Google tag (GA4 G-ZVENE6BXTJ)",
+   "pages": 34,
+   "probed": 34,
+   "reach": {
+    "pages": 34,
+    "of": 34
+   },
+   "evidence": [
+    "gtag.js?id=G-ZVENE6BXTJ async + inline dataLayer/gtag config on 34/34; 540 KB library; no consent mode defaults"
+   ],
+   "pattern": "tag manager in delayed phase",
+   "disposition": "embed-passthrough",
+   "target": null,
+   "reproducibility": "needs-business-decision",
+   "status": "scaffolded-awaiting-owner",
+   "phase": "spec",
+   "decision": "Same GA4 property for EDS hosts · Keep loading without a consent banner, as today"
+  },
+  {
+   "id": "spec-cloudflare-analytics",
+   "source": "spec",
+   "class": "T",
+   "feature": "Cloudflare Web Analytics beacon and RUM",
+   "pages": 34,
+   "probed": 34,
+   "reach": {
+    "pages": 34,
+    "of": 34
+   },
+   "evidence": [
+    "static.cloudflareinsights.com/beacon.min.js and POST /cdn-cgi/rum on 34/34, injected at the Cloudflare zone"
+   ],
+   "pattern": "edge-injected tag",
+   "disposition": "embed-passthrough",
+   "target": null,
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "Keep Cloudflare Web Analytics beside EDS RUM, or drop it"
+  },
+  {
+   "id": "spec-cloudflare-email-obfuscation",
+   "source": "spec",
+   "class": "T",
+   "feature": "Cloudflare email obfuscation rewriting article text",
+   "pages": 3,
+   "probed": 34,
+   "reach": {
+    "pages": 3,
+    "of": 34
+   },
+   "evidence": [
+    "server HTML of 3 articles links /cdn-cgi/l/email-protection (S4: 404 when fetched); Cloudflare Scrape Shield rewrites email-like strings, including ones inside code samples"
+   ],
+   "pattern": "edge rewrite",
+   "disposition": "embed-passthrough",
+   "target": null,
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "Disable Scrape Shield email obfuscation on www (owner decision; not decided-out until the owner states it)"
+  },
+  {
+   "id": "spec-hotlinked-badges",
+   "source": "spec",
+   "class": "V",
+   "feature": "Hotlinked certification badge images",
+   "pages": 1,
+   "probed": 34,
+   "reach": {
+    "pages": 1,
+    "of": 34
+   },
+   "evidence": [
+    "22 badge images from images.credly.com and learn.microsoft.com on /certifications/"
+   ],
+   "pattern": "third-party image",
+   "disposition": "embed-passthrough",
+   "target": null,
+   "reproducibility": "needs-business-decision",
+   "status": "pending",
+   "phase": "spec",
+   "decision": "Copy badges into DA media"
+  }
+ ]
+}

@@ -1,0 +1,709 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:43.750Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2026-05-31-continuous-agent-second-brain",
+  "url": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:43.750Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/",
+  "title": "Agent Memory for a 24/7 Coding Agent, with mem0 | Jack Jin",
+  "description": "Agent memory for a 24/7 coding agent with mem0: five memory types, five lifecycle hooks, plain-English retrieval and git as the source of truth.",
+  "og": {
+    "title": "Agent Memory for a 24/7 Coding Agent, with mem0 | Jack Jin",
+    "description": "Agent memory for a 24/7 coding agent with mem0: five memory types, five lifecycle hooks, plain-English retrieval and git as the source of truth.",
+    "image": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Agent Memory for a 24/7 Coding Agent: Five Memory Types, Five Hooks and Retrieval in Plain English"
+    },
+    {
+      "tag": "h2",
+      "text": "1. Without memory, my agent could execute but not learn#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. A second brain the executive owns, with git as the source of truth#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. Five memory types, each with a confidence range#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. Storing memory automatically with five hooks in the loop#"
+    },
+    {
+      "tag": "h2",
+      "text": "5. Retrieving memory by asking questions in plain English#"
+    },
+    {
+      "tag": "h2",
+      "text": "6. Rolling it out, and the empty-string bug that failed every write#"
+    },
+    {
+      "tag": "h2",
+      "text": "7. Why Hook A is still off, and what's next#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "Agent memory for a 24/7 coding agent",
+    "By Jack Jin · May 31, 2026 · Updated October 4, 2026 · 8 min read",
+    "An agent without memory runs every task like it's the first time. This is how version 3.0 of my 24/7 coding agent gives its executive a second brain: a mem0 Cloud store it writes to as it works and reads from before it acts, while git and markdown stay the source of truth. It covers five memory types, five hooks in the loop, retrieval in plain English, and an empty-string bug that failed every write while the log said ok.",
+    "Code: continuous-agent at e43ae97, the May 31 commit after the v3.0.0 tag. Deck: 15 slides, in the repo. The agent itself, up to v2.1, is in my AI Tinkerers write-up. First published on LinkedIn on May 31, 2026. Rewritten for this site in October 2026.",
+    "Memory is the hard part of agentic systems. An agent without memory runs every task like it's the first time. The model is smart, the tools work, and nothing compounds. The real problem was never reasoning. It's storage and retrieval.",
+    "Before V3.0, my agent had traces but no memory. Its history lived in scattered JSONL ledgers, markdown retrospectives and ad hoc logs. Those were useful traces, but nothing an agent could trust or query. The deck names four gaps: context spread across formats with no single way in, retrospectives that were valuable but not structured for reuse, no stable contract for what the system can do and what happened before, and blind worker spawns, where every worker started with zero context. The agent could execute, but it couldn't learn.",
+    "One idea shaped the whole design. A memory you store but never read back might as well not exist. If a tree falls in the forest and nobody hears it, did it make a sound? If an agent saves a lesson and never retrieves it, did it learn anything? Storage is the easy half. Retrieval decides whether the memory was ever real.",
+    "V3.0 turns that scattered history into a second brain. The executive writes to it as it works and reads from it before it acts. mem0 Cloud hosts the store. Git and markdown stay canonical: the store is a derived copy, shaped for retrieval, and when the two disagree, the repo wins. The store can always be rebuilt from the repo. The harvester writes high-signal memories only, never raw chat history.",
+    "I locked four pillars before writing the code, in the hosting decision on May 15:",
+    "Executive tier only. Workers never call mem0, never hold the API key and never get the MCP server. They get relevant context fed to them in a memory pack.",
+    "Git is the source of truth. mem0 stores knowledge derived from the repo, not authored content.",
+    "Skills first, not a TypeScript module. The contract lives in SKILL.md files, and deterministic helpers sit in each skill's references/ folder, run through Bash. The one TypeScript file under src/agentic/memory/ runs the hooks and holds no prompts.",
+    "One writer. Only the memory-harvester skill, run by the executive, writes to mem0. A direct client.add() from a worker or a script is an anti-pattern. Its partner, memory-reader, is read-only.",
+    "I started with a taxonomy, because not all memory is the same:",
+    "Every memory also carries all four of mem0's scope IDs: user_id, agent_id, app_id and run_id. mem0 only requires one. I wanted all four, so retrieval filters never drift. agent_id is always executive, app_id is the project the lesson is useful for (or _global for cross-project lessons), and every run_id starts with a date. A versioned metadata envelope carries the type, confidence, the trigger that wrote it and the source file it came from. classify.ts rejects a malformed payload before mem0 ever sees it.",
+    "Storage is automatic. Hooks inside the agent's loop write things down: after a run it classifies the outcome, and after a retrospective it distills the lesson. The agent never decides to remember. Remembering is just part of how it runs.",
+    "Each hook is its own SKILL.md, and one function runs all five. runMemoryHook() checks the master switch, V3_MEMORY_ENABLED, then the hook's own flag. A hook that's switched off returns without doing anything. Errors come back as values instead of exceptions, so memory can never stop the loop.",
+    "The rollout was staged, one hook per week, and every hook flag ships off in .env.executive.example. Stage 1 was Hook C, write only and the lowest risk. Hook E needs the most judgment, so it came last. At go-live, B, C, D and E were on and A was off.",
+    "Below, pick what happens in one pass of the loop, and the list on the right shows which hooks run, in order. It starts on the common case, a goal that passes. Two things to notice: every hook runs in the executive, so the worker never touches mem0, and Hook A is skipped because its flag is off. Untick a hook and the loop carries on without it. That per-hook switch is what let me turn them on one per week.",
+    "What happens this pass",
+    "Hook flags, as they were at go-live",
+    "A, before picking work (reads)V3_MEM_HOOK_PRE_WORK",
+    "B, before a worker starts (reads)V3_MEM_HOOK_PRE_SPAWN",
+    "C, after a run passes (writes)V3_MEM_HOOK_POST_RUN",
+    "D, before diagnosing a failure (reads)V3_MEM_HOOK_FAIL_DIAG",
+    "E, after a retrospective (writes)V3_MEM_HOOK_POST_RETRO",
+    "What runs, in order",
+    "Pick the next goalA goal is queued, so the loop may check memory first.",
+    "Hook A, before picking workskippedIts flag is off, so it returns without touching mem0.",
+    "Hook B, before a worker startsreads mem0Searches mem0 and builds a memory pack of 2K tokens or less.",
+    "The worker buildsThe pack is added to the worker's CLAUDE.md. The worker reads plain markdown and never calls mem0.",
+    "Checks passState, ledgers, Notion and Discord are updated.",
+    "Hook C, after a run passeswrites mem0The harvester picks 0 to 3 memories from this run (a record of what happened, maybe a lesson) and writes them.",
+    "This pass: one hook reads memory, one hook writes it. The worker never calls mem0.",
+    "One fix from go-live shows up in the \"nothing queued\" cases. Hook A used to fire on every 30-second idle loop, about 8 to 14 retrievals each time, consulting memory about nothing. Now it only runs when a bundle is actually queued.",
+    "Retrieval got the most thought. I almost shipped a fixed checklist of queries, then scrapped it. Instead, memory-reader treats retrieval as a judgment call: the executive decides which past knowledge serves the goal in front of it, and asks for it in full sentences instead of short keyword bags.",
+    "mem0 ranks results by embedding similarity, so a whole question carries intent that a list of keywords loses. It also doesn't walk a graph from one fact to a related one, so the reader plans on 3 to 8 queries and refines each one from what came back. That iteration is the multi-hop. It stops when the top results stop changing, when it has at least three relevant memories, or after about eight queries.",
+    "The result for a worker is small on purpose. The memory pack is capped at 2K tokens, cut by score if it runs over, with a confidence floor of 0.7. It's appended to the worker's generated CLAUDE.md as static markdown. In the end-to-end test, Hook B's pack told a worker to follow a prior run's module pattern and not to push, as the constitution requires.",
+    "Before any hook code, I built two proofs of concept, one on the mem0 SDK and one through its MCP server. Both validated mem0's asynchronous writes. Integration came next: the skills wired into the loop, the CLI, and a backfill of the existing corpus. The whole build took about eight weeks.",
+    "The brain didn't start empty. The backfill migrated about 134 memories through four harvest lanes (principles, retros, capabilities and episodic records from completed projects), and 22 test memories were purged. The executive talks to mem0 through one deterministic surface, ./bin/mem0, driven through Bash. It bakes in the gotchas: the filter format, snake and camel casing, auth, polling for async writes and schema validation. The mem0 MCP server is only for me to use by hand; the agent goes through the CLI. A PM2 cron entry snapshots the whole store to JSON at 04:00 every day, as a disaster recovery backup.",
+    "The staged rollout came straight from the implementation plan. On May 16 I wrote: \"We have zero data on whether the playbooks produce useful memories; staging gives an audit window between each addition.\"",
+    "One bug failed silently. The documented production line in .env.executive is V3_MEM0_COHORT= with nothing after it. dotenv loads that as an empty string, and an empty string isn't null or undefined, so the ?? chain in applyDefaults() kept it. Every write got stamped with cohort: \"\", and the validator rejected every single one. The hook still logged ok, because the agent's turn itself had succeeded. I root-caused and fixed it on go-live day, in b4f4554:",
+    "The same commit made the hook log a histogram of the tools it called and the last 400 characters of its answer, so a harvest whose writes all fail can't read as success anymore.",
+    "The lab below follows the cohort value from the .env file to the validator. It starts on the bug: the empty production line, with the code before the fix. Switch to \"After the fix\" and the same empty line is left out instead of rejected. The other two settings work with either version of the code. Only the empty line breaks.",
+    "The line in .env.executive",
+    "The code",
+    "defaults.ts",
+    "Follow the value",
+    ".env.executiveV3_MEM0_COHORT=",
+    "process.env.V3_MEM0_COHORT\"\"",
+    "cohortFromEnv\"\"",
+    "metadata.cohort\"\"",
+    "classify.tsmetadata.cohort: when set, must be a non-empty string",
+    "Every write is rejected before it reaches mem0.",
+    "The full loop (read, pack, execute, write) is validated end to end. Hook A is still off. It stays audit-only until its synthesis actually changes which goal gets picked. Until then it's pure retrieval cost against the retrieval budget on my mem0 plan, and read hooks are the expensive side.",
+    "The deck's roadmap from there: turn on Hook A once its synthesis earns that, build the V3.1 observability dashboard on top of memory I can trust, try multiple agents in parallel with partitioned scope in V4.0, and keep a self-hosted path, with a migration to open-source mem0 ready.",
+    "V3.0 is the agent I've been building in the open since January, and the code is all on GitHub. If you're building memory into your own agents, I'd like to know how you handle retrieval.",
+    "WritingA 24/7 Coding Agent: the Continuous Executive Agent at v2.1The executive loop, the workers and the failure ladder this memory plugs into.",
+    "PortfolioContinuous Executive Agent: a 24/7 coding agentEvery release from v1.0 to v3.0.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Part 1Execute but not learn",
+    "Part 2A second brain, git canonical",
+    "Part 3Five memory types",
+    "Part 4Storing with five hooks",
+    "Part 5Retrieving in plain English",
+    "Part 6Rollout and the empty-string bug",
+    "Wrap-upHook A off, what's next"
+  ],
+  "codeBlocks": [
+    "export async function runMemoryHook(\n  name: HookName,\n  ctx: HookContext,\n): Promise<HookResult> {\n  const flag = HOOK_FLAG[name];\n  if (!memoryEnabled()) {\n    return { ran: false, skipped: true, reason: \"V3_MEMORY_ENABLED off\", finalText: \"\" };\n  }\n  if (!isTrue(process.env[flag])) {\n    return { ran: false, skipped: true, reason: `${flag} off`, finalText: \"\" };\n  }",
+    "# before: a keyword bag\nnpm install build first try clean success\n\n# after: a question\nWhat's the best pattern for building a Node module that passed all verifiers on first try?",
+    "const cohortFromEnv = process.env.V3_MEM0_COHORT;\n  const cohortFromEnv = process.env.V3_MEM0_COHORT || undefined;\n  // unchanged, a few lines down:\n  const cohort = m.cohort ?? cohortFromEnv ?? undefined;\n  if (cohort !== undefined) metadata.cohort = cohort;",
+    "// defaults.ts before b4f4554\nconst cohortFromEnv = process.env.V3_MEM0_COHORT;\nconst cohort = m.cohort ?? cohortFromEnv ?? undefined;\nif (cohort !== undefined) metadata.cohort = cohort;"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "continuous-agent",
+      "href": "https://github.com/jackzhaojin/continuous-agent/tree/e43ae97"
+    },
+    {
+      "label": "15 slides, in the repo",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/docs/technical-highlights/3.0/Continuous%20Executive%20Agent%20V3.0%20-%20The%20Second%20Brain.pdf"
+    },
+    {
+      "label": "my AI Tinkerers write-up",
+      "href": "/writing/2026-04-05-continuous-executive-agent-v2-1/"
+    },
+    {
+      "label": "e43ae97 on GitHub",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/src/agentic/memory/run-hook.ts#L76-L87"
+    },
+    {
+      "label": "source",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/src/core/executive-loop.ts#L317-L347"
+    },
+    {
+      "label": "A goal passes",
+      "href": null
+    },
+    {
+      "label": "A goal fails a third time",
+      "href": null
+    },
+    {
+      "label": "Nothing queued, retro due",
+      "href": null
+    },
+    {
+      "label": "Nothing queued at all",
+      "href": null
+    },
+    {
+      "label": "b4f4554",
+      "href": "https://github.com/jackzhaojin/continuous-agent/commit/b4f4554"
+    },
+    {
+      "label": "b4f4554 on GitHub",
+      "href": "https://github.com/jackzhaojin/continuous-agent/commit/b4f4554"
+    },
+    {
+      "label": "source",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/.claude/skills/memory-harvester/references/classify.ts#L214-L221"
+    },
+    {
+      "label": "Empty, as in production",
+      "href": null
+    },
+    {
+      "label": "A test value",
+      "href": null
+    },
+    {
+      "label": "No line at all",
+      "href": null
+    },
+    {
+      "label": "Before the fix",
+      "href": null
+    },
+    {
+      "label": "After the fix",
+      "href": null
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin/continuous-agent"
+    },
+    {
+      "label": "A 24/7 Coding Agent: the Continuous Executive Agent at v2.1",
+      "href": "/writing/2026-04-05-continuous-executive-agent-v2-1/"
+    },
+    {
+      "label": "Continuous Executive Agent: a 24/7 coding agent",
+      "href": "/portfolio/#ch-cea"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Part 1Execute but not learn",
+      "href": "#why"
+    },
+    {
+      "label": "Part 2A second brain, git canonical",
+      "href": "#brain"
+    },
+    {
+      "label": "Part 3Five memory types",
+      "href": "#types"
+    },
+    {
+      "label": "Part 4Storing with five hooks",
+      "href": "#hooks"
+    },
+    {
+      "label": "Part 5Retrieving in plain English",
+      "href": "#retrieval"
+    },
+    {
+      "label": "Part 6Rollout and the empty-string bug",
+      "href": "#build"
+    },
+    {
+      "label": "Wrap-upHook A off, what's next",
+      "href": "#next"
+    },
+    {
+      "label": "Code on GitHub",
+      "href": "https://github.com/jackzhaojin/continuous-agent/tree/e43ae97"
+    },
+    {
+      "label": "The deck, 15 slides",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/docs/technical-highlights/3.0/Continuous%20Executive%20Agent%20V3.0%20-%20The%20Second%20Brain.pdf"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://github.com/jackzhaojin/continuous-agent/tree/e43ae97",
+    "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/docs/technical-highlights/3.0/Continuous%20Executive%20Agent%20V3.0%20-%20The%20Second%20Brain.pdf",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/",
+    "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/#why",
+    "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/#brain",
+    "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/#types",
+    "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/#hooks",
+    "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/src/agentic/memory/run-hook.ts#L76-L87",
+    "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/src/core/executive-loop.ts#L317-L347",
+    "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/#retrieval",
+    "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/#build",
+    "https://github.com/jackzhaojin/continuous-agent/commit/b4f4554",
+    "https://github.com/jackzhaojin/continuous-agent/blob/e43ae97/.claude/skills/memory-harvester/references/classify.ts#L214-L221",
+    "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/#next",
+    "https://github.com/jackzhaojin/continuous-agent",
+    "https://www.jackzhaojin.com/portfolio/#ch-cea",
+    "https://github.com/jackzhaojin",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/images/slide-no-recall.jpg",
+        "alt": "Deck slide, Scattered Knowledge, No Recall. The agent's operational history lived in scattered JSONL ledgers, markdown retros and ad hoc logs. Four cards: Fragmented Context, Unstructured Retros, No Memory Contract, Blind Worker Spawns. Result: limited planning quality, repeatability and autonomous decision-making; the agent could execute but not learn.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/images/ingestion-retrieval.jpg",
+        "alt": "Hand-drawn diagram, V3.0 Memory: Ingestion and Retrieval Lifecycle. Write path, where the executive is the sole writer: write hooks C, E and D feed the memory-harvester, which classifies each fact, then classify and validate against schema v1.0.0, then mem0.add() and poll until SUCCEEDED, into the mem0 second brain. Read path, read-only: read hooks A, B and D call the memory-reader, which runs a natural-language agentic search and returns a synthesis or a Memory Pack, which goes into the worker's CLAUDE.md as static markdown. A memory-snapshot makes a daily JSON backup. Notes: 0 to 3 writes per run, 3 to 8 per weekly retro; no graph traversal, the executive decides in natural language which memories serve this goal.",
+        "w": 1600,
+        "h": 666
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/images/taxonomy.jpg",
+        "alt": "Hand-drawn diagram, V3.0 Memory: Taxonomy and Metadata. Left, five memory types: principle, immutable rules from the constitution, PRDs and specs, confidence 1.0, never overwritten; semantic, cross-run facts, confidence 0.7 to 0.95; procedural, reusable how-to and step sequences that worked, 0.6 to 0.9; episodic, a timestamped record that this run happened, 1.0, about one per run; reflective, patterns observed across many runs and retros, 0.7 to 0.95. Right, the metadata envelope at schema v1.0.0: four scope IDs with agent_id always executive, classification, provenance, environment isolation, and optional aids: outcome, up to eight tags, expires_at.",
+        "w": 1600,
+        "h": 912
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/images/slide-retrieval.jpg",
+        "alt": "Deck slide, Agentic Retrieval and Memory Pack. The shift: the memory-reader was reframed from a fixed query checklist into an agentic judgment task, asking in full natural-language sentences. Before: npm install build first try clean success. After: What's the best pattern for building a Node module that passed all verifiers on first try? 3 to 8 refined queries per turn, a memory pack of 2K tokens or less. Memory pack flow: the executive decides what memory serves this goal, natural-language search through the memory-reader skill, the pack is baked into CLAUDE.md for the worker spawn, the worker executes with context and never queries mem0. E2E validated.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/images/slide-journey.jpg",
+        "alt": "Deck slide, The 8-Week Build Journey. Timeline: April 3 to 19, the vision, started as a v2.3 cloud DB goal and evolved into second-brain positioning; May 15, hosting decision, mem0 Cloud chosen, four pillars locked; May 16, POC and taxonomy, SDK and MCP POCs, five memory types; May 16, implementation plan, five hooks, staged rollout; May 23 to 24, integration, MCP setup, skills wired, CLI built, corpus backfilled; May 30 to 31, go-live and tag. Key milestones: two POCs in one day, taxonomy defined in one session, and the silent bug. Quote from the implementation plan, May 16: we have zero data on whether the playbooks produce useful memories; staging gives an audit window between each addition.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/images/thumb-why.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/images/thumb-brain.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/images/thumb-types.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/images/thumb-retrieval.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/images/thumb-build.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 10,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": []
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 9,
+    "mainTextLen": 14712,
+    "realImageCount": 10,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 4,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 0,
+      "thirdPartyScriptHosts": 2,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2026-05-31-continuous-agent-second-brain.png",
+  "renderedHtml": "pages/writing-2026-05-31-continuous-agent-second-brain.html",
+  "slots": {
+    "type": "article",
+    "headline": "Agent Memory for a 24/7 Coding Agent: Five Memory Types, Five Hooks and Retrieval in Plain English",
+    "deck": "An agent without memory runs every task like it's the first time. This is how version 3.0 of my 24/7 coding agent gives its executive a second brain: a mem0 Cloud store it writes to as it works and reads from before it acts, while git and markdown stay the source of truth. It covers five memory types, five hooks in the loop, retrieval in plain English, and an empty-string bug that failed every write while the log said ok.",
+    "byline": "By Jack Jin · May 31, 2026 · Updated October 4, 2026 · 8 min read",
+    "meta": {
+      "times": [
+        "May 31, 2026",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "image",
+      "src": "images/slide-no-recall.jpg",
+      "alt": "Deck slide, Scattered Knowledge, No Recall. The agent's operational history lived in scattered JSONL ledgers, markdown retros and ad hoc logs. Four cards: Fragmented Context, Unstructured Retros, No Memory Contract, Blind Worker Spawns. Result: limited planning quality, repeatability and autonomous decision-making; the agent could execute but not learn."
+    },
+    "body": {
+      "h2": [
+        "1. Without memory, my agent could execute but not learn",
+        "2. A second brain the executive owns, with git as the source of truth",
+        "3. Five memory types, each with a confidence range",
+        "4. Storing memory automatically with five hooks in the loop",
+        "5. Retrieving memory by asking questions in plain English",
+        "6. Rolling it out, and the empty-string bug that failed every write",
+        "7. Why Hook A is still off, and what's next",
+        "Related"
+      ],
+      "figures": 9,
+      "codeBlocks": 2,
+      "tables": 2,
+      "embeds": 0
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "A 24/7 Coding Agent: the Continuous Executive Agent at v2.1",
+        "href": "/writing/2026-04-05-continuous-executive-agent-v2-1/"
+      },
+      {
+        "title": "Continuous Executive Agent: a 24/7 coding agent",
+        "href": "/portfolio/#ch-cea"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 9,
+    "authorBox": true
+  }
+}

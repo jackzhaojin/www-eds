@@ -1,0 +1,478 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:extract",
+    "writtenAt": "2026-10-25T13:52:17.587Z",
+    "stardustVersion": "0.36.0",
+    "track": "site-scope",
+    "script": "stardust/scripts/crawl.mjs (byte-identical copy of skills/extract/scripts/crawl.mjs)",
+    "mode": "--prep --dynamics (prep implies --all)"
+  },
+  "discovery": {
+    "fetchTechnique": "headless",
+    "count": 34,
+    "concurrency": 4,
+    "source": "https://www.jackzhaojin.com/sitemap.xml",
+    "sitemapCount": 34,
+    "scope": "the 34 sitemap URLs, passed to crawl.mjs as --pages",
+    "excludedPrefixes": [
+      "/adapt-to-2026-demo/",
+      "/bruce-hackathon-2026-09-12/",
+      "/bruce-play-ten/",
+      "/bruce-lava-dash/",
+      "/denison-2026-04-24/",
+      "/ai-sandbox/",
+      "/harness-v2-test/",
+      "/design-systems/2026-09-13/"
+    ],
+    "excludedReason": "GitHub Pages project sites share the host but are not part of the migration (owner scope); /design-systems/2026-09-13/ is not migrated. None of them is listed in the sitemap.",
+    "filteredAsJunk": [],
+    "userChoice": "owner-scoped full inventory (Track B brief): 34 sitemap URLs, no cap",
+    "pages": [
+      "https://www.jackzhaojin.com/",
+      "https://www.jackzhaojin.com/writing/",
+      "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/",
+      "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+      "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/",
+      "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+      "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/",
+      "https://www.jackzhaojin.com/writing/2026-06-28-patterns-of-work/",
+      "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/",
+      "https://www.jackzhaojin.com/writing/2026-05-24-theming-eds-with-google-stitch/",
+      "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/",
+      "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/",
+      "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/",
+      "https://www.jackzhaojin.com/writing/2026-03-23-eds-hlx-admin-agentic-config/",
+      "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/",
+      "https://www.jackzhaojin.com/writing/2026-01-29-playwright-stakeholder-demos/",
+      "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/",
+      "https://www.jackzhaojin.com/writing/2025-10-12-da-live-mcp-across-ai-platforms/",
+      "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/",
+      "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/",
+      "https://www.jackzhaojin.com/writing/2025-07-13-three-eds-offerings/",
+      "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/",
+      "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/",
+      "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/",
+      "https://www.jackzhaojin.com/writing/2025-07-06-ai-coded-nextjs-agent-release-1/",
+      "https://www.jackzhaojin.com/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/",
+      "https://www.jackzhaojin.com/writing/2025-06-08-edge-cms-shift-adobe-eds/",
+      "https://www.jackzhaojin.com/writing/2025-06-04-seven-aem-capabilities-tradeoffs/",
+      "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/",
+      "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/",
+      "https://www.jackzhaojin.com/portfolio/",
+      "https://www.jackzhaojin.com/talks/",
+      "https://www.jackzhaojin.com/certifications/",
+      "https://www.jackzhaojin.com/privacy/"
+    ]
+  },
+  "consent": {
+    "method": "auto"
+  },
+  "favicon": {
+    "url": "https://www.jackzhaojin.com/favicon.ico",
+    "file": "assets/favicon.ico"
+  },
+  "crawl": {
+    "failures": [],
+    "captured": 34,
+    "waitMode": "medium",
+    "concurrency": 4,
+    "recaptures": [
+      {
+        "slugs": [
+          "writing",
+          "portfolio",
+          "writing-2026-06-28-patterns-of-work"
+        ],
+        "waitMode": "slow",
+        "reason": "vision check: blank media frames",
+        "at": "2026-10-25T13:48:13.053Z"
+      }
+    ]
+  },
+  "captureGaps": {
+    "roots": [],
+    "detail": "uncaptured first-level targets: none (no locale root captured)"
+  },
+  "dynamicSurface": {
+    "pages": 34,
+    "pagesWithSameSiteData": 34,
+    "pagesWithSearchForm": 1,
+    "pagesHydrated": 0,
+    "truncatedPages": 0,
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "sameSite": true,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "pages": 34,
+        "examples": [
+          "writing-2026-09-20-aem-edge-functions-google-sign-in",
+          "index",
+          "writing"
+        ]
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "sameSite": false,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "pages": 19,
+        "examples": [
+          "writing-2026-09-20-aem-edge-functions-google-sign-in",
+          "writing-2026-10-10-adaptto-2026-25-talks",
+          "writing-2026-08-15-anima-mesh-company-of-zero"
+        ]
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "sameSite": false,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "pages": 19,
+        "examples": [
+          "writing-2026-09-20-aem-edge-functions-google-sign-in",
+          "writing-2026-10-10-adaptto-2026-25-talks",
+          "writing-2026-08-15-anima-mesh-company-of-zero"
+        ]
+      },
+      {
+        "method": "POST",
+        "host": "www.google-analytics.com",
+        "path": "/g/collect",
+        "query": [
+          "_ee",
+          "_fv",
+          "_nsi",
+          "_p",
+          "_s",
+          "_ss",
+          "cid",
+          "dl",
+          "dma",
+          "dt",
+          "en",
+          "frm",
+          "gcd",
+          "gtm",
+          "ngs",
+          "npa",
+          "pscdl",
+          "rcb",
+          "sct",
+          "seg",
+          "sid",
+          "sr",
+          "tag_exp",
+          "tfd",
+          "tid",
+          "uaa",
+          "uab",
+          "uafvl",
+          "uam",
+          "uamb",
+          "uap",
+          "uapv",
+          "uaw",
+          "ul",
+          "v"
+        ],
+        "resourceType": "fetch",
+        "contentType": "text/plain",
+        "sameSite": false,
+        "example": "https://www.google-analytics.com/g/collect",
+        "pages": 7,
+        "examples": [
+          "writing-2026-09-20-aem-edge-functions-google-sign-in",
+          "index",
+          "writing"
+        ]
+      },
+      {
+        "method": "GET",
+        "host": "www.gstatic.com",
+        "path": "/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+        "query": [],
+        "resourceType": "fetch",
+        "contentType": "image/svg+xml",
+        "sameSite": false,
+        "example": "https://www.gstatic.com/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+        "pages": 4,
+        "examples": [
+          "writing-2026-09-20-aem-edge-functions-google-sign-in",
+          "writing-2026-10-10-adaptto-2026-25-talks",
+          "writing-2026-08-15-anima-mesh-company-of-zero"
+        ]
+      },
+      {
+        "method": "GET",
+        "host": "www.youtube-nocookie.com",
+        "path": "/embed/establish_zw",
+        "query": [],
+        "resourceType": "fetch",
+        "contentType": "text/html",
+        "sameSite": false,
+        "example": "https://www.youtube-nocookie.com/embed/establish_zw",
+        "pages": 2,
+        "examples": [
+          "writing-2026-10-10-adaptto-2026-25-talks",
+          "writing-2026-01-05-from-prompts-to-harness"
+        ]
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "static.cloudflareinsights.com",
+        "pages": 34,
+        "examples": [
+          "writing-2026-09-20-aem-edge-functions-google-sign-in",
+          "index",
+          "writing"
+        ]
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "pages": 34,
+        "examples": [
+          "writing-2026-09-20-aem-edge-functions-google-sign-in",
+          "index",
+          "writing"
+        ]
+      },
+      {
+        "host": "www.youtube-nocookie.com",
+        "pages": 19,
+        "examples": [
+          "writing-2026-09-20-aem-edge-functions-google-sign-in",
+          "writing-2026-10-10-adaptto-2026-25-talks",
+          "writing-2026-08-15-anima-mesh-company-of-zero"
+        ]
+      },
+      {
+        "host": "www.google.com",
+        "pages": 19,
+        "examples": [
+          "writing-2026-09-20-aem-edge-functions-google-sign-in",
+          "writing-2026-10-10-adaptto-2026-25-talks",
+          "writing-2026-08-15-anima-mesh-company-of-zero"
+        ]
+      }
+    ],
+    "frameworkHints": [],
+    "globalState": [
+      {
+        "name": "dataLayer",
+        "pages": 34,
+        "examples": [
+          "writing-2026-09-20-aem-edge-functions-google-sign-in",
+          "index",
+          "writing"
+        ]
+      }
+    ],
+    "formTargets": [
+      {
+        "action": "https://www.jackzhaojin.com/writing/",
+        "method": "get",
+        "sameOrigin": true,
+        "search": true,
+        "fieldNames": [
+          "q"
+        ],
+        "pages": 1,
+        "examples": [
+          "writing"
+        ]
+      }
+    ]
+  },
+  "dynamicSurfaceNote": "Roll-up from the full 34-page pass; the 3-page wait=slow recapture rewrote this block with a 3-page roll-up, so the full-pass block was restored.",
+  "visionCheck": [
+    {
+      "slug": "certifications",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "index",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "portfolio",
+      "verdict": "suspect",
+      "notes": "Shadow Pivot carousel Act 1/Act 2 and the AEM Rockstar flow panel render blank: native img loading=lazy below the crawler 4-step scroll never fetched (3-3-blueprint-image.png, exfrag-genai-flow.svg, all 200). Survived wait=slow; headed/fresh context cannot change native lazy loading. Rendered DOM holds every img tag (allImgCount 23 vs media.imgs 11): parse the .html, not media.imgs."
+    },
+    {
+      "slug": "privacy",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "talks",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2025-04-13-vibe-coding-star-story-generator",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2025-06-08-edge-cms-shift-adobe-eds",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2025-06-12-azure-rbac-cicd-for-ai-agents",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2025-07-11-scaling-ai-coding-delivery-methodology",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2025-07-12-aem-headless-omnichannel-architecture",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2025-07-13-three-eds-offerings",
+      "verdict": "ok",
+      "notes": "imgs 5 but little imagery visible: images sit in hidden tab panels"
+    },
+    {
+      "slug": "writing-2025-09-01-aem-caching-production-architectures",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2025-10-05-mcp-server-for-eds-da-live",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2025-10-12-da-live-mcp-across-ai-platforms",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-01-05-from-prompts-to-harness",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-01-29-playwright-stakeholder-demos",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-02-05-reusable-ai-development-modules",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-03-23-eds-hlx-admin-agentic-config",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-04-05-continuous-executive-agent-v2-1",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-04-12-two-ai-skills-team-enablement",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-05-17-adobe-eds-skills-hands-on",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-05-24-theming-eds-with-google-stitch",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-05-31-continuous-agent-second-brain",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-06-28-patterns-of-work",
+      "verdict": "suspect",
+      "notes": "Layer 1 and foundation figures blank: native lazy SVG imgs (layer-1-individual.svg, foundation.svg, 200, well-formed) never fetched at capture; survived wait=slow. media.imgs 18 vs allImgCount 20; parse the .html."
+    },
+    {
+      "slug": "writing-2026-07-21-four-frontier-models-one-prompt",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-08-09-adobe-stardust-explained",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-08-15-anima-mesh-company-of-zero",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-09-20-aem-edge-functions-google-sign-in",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing-2026-10-10-adaptto-2026-25-talks",
+      "verdict": "ok",
+      "notes": "hero h1, wordmark, light palette match the record; cssBackgrounds 0 believable"
+    },
+    {
+      "slug": "writing",
+      "verdict": "recaptured",
+      "notes": "last 5 card covers blank at medium (lazy-load unfinished); recaptured at wait=slow, all 28 covers render, imgs 28 = allImgCount 28"
+    }
+  ],
+  "siblingCandidates": [],
+  "siblingNote": "No same-brand sibling origin in captured evidence: footer links go to accenture.com (employer), linkedin.com and github.com/jackzhaojin; no hreflang, no subdomain family. The same-host GitHub Pages project sites are excluded by owner scope, not siblings."
+}

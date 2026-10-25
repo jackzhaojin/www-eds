@@ -1,0 +1,238 @@
+[
+ {
+  "name": "title",
+  "source": "page title",
+  "used_by": [
+   "head",
+   "og:title",
+   "writing-list"
+  ],
+  "coverage_pages": 0,
+  "distinct_values": null,
+  "top_values": null
+ },
+ {
+  "name": "description",
+  "source": "description",
+  "used_by": [
+   "head",
+   "og:description",
+   "writing-list"
+  ],
+  "coverage_pages": 34,
+  "distinct_values": 34,
+  "top_values": [
+   [
+    "Jack Jin: Adobe Experience Manager Champion 2026-2027, AEM Rockstar 2024 winner, Adobe Certified Master. Builds AI agents on AEM and Edge Delivery Services.",
+    1
+   ],
+   [
+    "Jack Jin's Adobe, Microsoft Azure and AI credentials, with earned dates and direct verification links.",
+    1
+   ],
+   [
+    "How Jack Jin's personal tools, including the brain-jzj assistant, handle Google account data: read-only, for one person, never sold or shared.",
+    1
+   ],
+   [
+    "Explore Jack Jin's AI agent systems, content platforms, cloud architecture and games. A single-page portfolio with diagrams, project histories and source repositories.",
+    1
+   ],
+   [
+    "Jack Jin's talks at adaptTo(), Adobe Summit, AI Tinkerers, Columbus AI Week and Denison University, with event sources and related projects.",
+    1
+   ],
+   [
+    "Technical writing by Jack Jin on Adobe Experience Manager, Edge Delivery Services and AI engineering: working code, diagrams and the reasoning behind each decision.",
+    1
+   ],
+   [
+    "How my STAR story generator on Azure Functions prompts GPT-4o-mini for JSON, parses the reply with a fallback, and the one reply that slips past validation.",
+    1
+   ],
+   [
+    "When a client's Next.js or Vue frontend comes first, AEM headless can be the right call. How I'd start, persisted queries, preview, and when I wouldn't.",
+    1
+   ],
+   [
+    "AEM 6.5, AEM as a Cloud Service, SPA SDKs, headless with UE, UE with Sites, UE with EDS and docs-based EDS, compared side by side, plus my opinions.",
+    1
+   ],
+   [
+    "Adobe Edge Delivery Services next to Cloudflare Pages, Netlify, Next.js, Hugo and Jekyll on five enterprise needs, and Adobe's CMS path from CQ5 to EDS.",
+    1
+   ],
+   [
+    "How I gave Copilot, Codex, GitHub Actions and an Azure Web App access to Storage and AI Foundry with az login, managed identity, OIDC and one timed secret.",
+    1
+   ],
+   [
+    "What it took to ship a Next.js AI agent written entirely by AI: planning files the AI works from, early CI/CD, a fix for partial failures, and model trade-offs.",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "image",
+  "source": "og:image",
+  "used_by": [
+   "og",
+   "twitter",
+   "writing-list cover"
+  ],
+  "coverage_pages": 34,
+  "distinct_values": 29,
+  "top_values": [
+   [
+    "https://www.jackzhaojin.com/assets/site-social.png",
+    6
+   ],
+   [
+    "https://www.jackzhaojin.com/writing/2025-04-13-vibe-coding-star-story-generator/images/cover.jpg",
+    1
+   ],
+   [
+    "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/images/cover.jpg",
+    1
+   ],
+   [
+    "https://www.jackzhaojin.com/writing/2025-06-04-seven-aem-capabilities-tradeoffs/images/cover.jpg",
+    1
+   ],
+   [
+    "https://www.jackzhaojin.com/writing/2025-06-08-edge-cms-shift-adobe-eds/images/cover.jpg",
+    1
+   ],
+   [
+    "https://www.jackzhaojin.com/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/images/cover.jpg",
+    1
+   ],
+   [
+    "https://www.jackzhaojin.com/writing/2025-07-06-ai-coded-nextjs-agent-release-1/images/cover.jpg",
+    1
+   ],
+   [
+    "https://www.jackzhaojin.com/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/images/cover.jpg",
+    1
+   ],
+   [
+    "https://www.jackzhaojin.com/writing/2025-07-11-scaling-ai-coding-delivery-methodology/images/cover.jpg",
+    1
+   ],
+   [
+    "https://www.jackzhaojin.com/writing/2025-07-13-three-eds-offerings/images/cover.jpg",
+    1
+   ],
+   [
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/images/cover.jpg",
+    1
+   ],
+   [
+    "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/images/cover.jpg",
+    1
+   ]
+  ]
+ },
+ {
+  "name": "twitter:card",
+  "source": "summary_large_image",
+  "used_by": [
+   "twitter"
+  ],
+  "coverage_pages": 34,
+  "distinct_values": 1,
+  "top_values": [
+   [
+    "summary_large_image",
+    34
+   ]
+  ]
+ },
+ {
+  "name": "canonical",
+  "source": "canonical",
+  "used_by": [
+   "head"
+  ],
+  "coverage_pages": 0,
+  "distinct_values": null,
+  "top_values": null
+ },
+ {
+  "name": "publication-date",
+  "source": "article date",
+  "used_by": [
+   "hero article byline",
+   "writing-list",
+   "JSON-LD datePublished",
+   "query index sort"
+  ],
+  "coverage_pages": 0,
+  "distinct_values": null,
+  "top_values": null
+ },
+ {
+  "name": "updated-date",
+  "source": "updated date",
+  "used_by": [
+   "hero article byline",
+   "JSON-LD dateModified"
+  ],
+  "coverage_pages": 0,
+  "distinct_values": null,
+  "top_values": null
+ },
+ {
+  "name": "read-time",
+  "source": "read time",
+  "used_by": [
+   "hero article byline",
+   "writing-list facts"
+  ],
+  "coverage_pages": 0,
+  "distinct_values": null,
+  "top_values": null
+ },
+ {
+  "name": "video-length",
+  "source": "video length",
+  "used_by": [
+   "hero article byline",
+   "rail"
+  ],
+  "coverage_pages": 0,
+  "distinct_values": null,
+  "top_values": null
+ },
+ {
+  "name": "topics",
+  "source": "tags",
+  "used_by": [
+   "writing-list",
+   "writing-filter"
+  ],
+  "coverage_pages": 0,
+  "distinct_values": null,
+  "top_values": null
+ },
+ {
+  "name": "template",
+  "source": "template",
+  "used_by": [
+   "article auto-blocking (hero article, rail, related, author box)"
+  ],
+  "coverage_pages": 0,
+  "distinct_values": null,
+  "top_values": null
+ },
+ {
+  "name": "json-ld",
+  "source": "structured data",
+  "used_by": [
+   "SEO: TechArticle/BlogPosting, BreadcrumbList, VideoObject, Person, WebSite on every page"
+  ],
+  "coverage_pages": 0,
+  "distinct_values": null,
+  "top_values": null
+ }
+]

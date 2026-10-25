@@ -1,0 +1,839 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:56.716Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2025-10-05-mcp-server-for-eds-da-live",
+  "url": "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:56.716Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/",
+  "title": "MCP Server for da.live: Scripted AI Flow vs Agent Tools | Jack Jin",
+  "description": "How to expose da.live get and save as MCP tools, and what moving from a scripted AI flow to a tool loop costs: same quality, twice the time and tokens.",
+  "og": {
+    "title": "MCP Server for da.live: Scripted AI Flow vs Agent Tools | Jack Jin",
+    "description": "How to expose da.live get and save as MCP tools, and what moving from a scripted AI flow to a tool loop costs: same quality, twice the time and tokens.",
+    "image": "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Building an MCP Server for EDS da.live: Scripted AI Flow vs Agent Tools"
+    },
+    {
+      "tag": "h2",
+      "text": "What changed after October 2025#"
+    },
+    {
+      "tag": "h2",
+      "text": "Content is where AI meets EDS, and da.live works in plain HTML#"
+    },
+    {
+      "tag": "h2",
+      "text": "The first version, a scripted flow with one model call#"
+    },
+    {
+      "tag": "h2",
+      "text": "Why I turned it into an MCP server#"
+    },
+    {
+      "tag": "h2",
+      "text": "Two MCP tools, and an agent that decides when to call them#"
+    },
+    {
+      "tag": "h2",
+      "text": "The demo in Claude Desktop, reading the page before editing it#"
+    },
+    {
+      "tag": "h2",
+      "text": "Same quality, twice the cost, far more flexible#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "MCP Server for EDS da.live",
+    "By Jack Jin · October 5, 2025 · Updated October 4, 2026 · 10 min read · Includes my 9:57 video",
+    "There are two ways to let a model edit a da.live page, the newest way to author Edge Delivery Services sites when I built this. In a scripted flow, an Azure Function fetches the page, asks Claude for an edit and saves it. With an MCP server, get and save become two tools, and the model decides when to call them. I built both: same content quality, about twice the time and tokens for the tools, and a lot more flexibility. The code for both is below, with a side-by-side run of both versions that shows where the extra cost comes from.",
+    "First published as a LinkedIn video on October 5, 2025. Rewritten for this site in October 2026. Code: azure-da-mcp at 81e4cac, the last commit before I recorded, and 1ffb600 for the scripted version.",
+    "A week later I pushed the same server much harder: Claude, Gemini and Azure OpenAI on one MCP server, a deploy to Azure Functions, and n8n on top. That's part two.",
+    "The repo kept going after that. In November 2025 it picked up tools to preview and publish, create pages and create folders. Over the next months it grew into the Content Factory, agents that generate, migrate and evaluate da.live content, which became my adaptTo() 2026 talk. This article stays with the October 2025 version: two tools, one weekend.",
+    "I think content and marketing enablement is ripe for AI. It has migration use cases, personalization use cases, and a lot more, if you can figure out how to get AI to work with content. AEM is a content management system, and Edge Delivery Services is no different.",
+    "As I covered in an earlier video, EDS comes in three flavors, and each one needs a completely different way of thinking about AI work:",
+    "This one is about da.live, which was Adobe's newest EDS flavor when I built this. Unlike Universal Editor, where you deal with how AEM thinks about content, here you're literally dealing with HTML. Both the get call and the save call carry HTML, and HTML is much cleaner to hand to a model than a tree of nodes.",
+    "Watch this part0:00 Content is where AI meets EDS0:31 Three EDS flavors, and da.live works in HTML",
+    "I started with two Azure Functions. GetContent just fetches a page. No AI, just a call: you pass the bearer token you get from admin.da.live, and the source API hands back the page as HTML. Saving is a POST to the same path, with the HTML sent as form data in a field called data.",
+    "For the token, the repo's .env.example has the steps: open da.live, open the browser's DevTools, go to the Network tab, and copy the Authorization header value from a request.",
+    "EditContent is what I call the good old classical flow. Get the content, run it through whatever AI scaffolding you have, save it back. The scaffolding here is a prompt plus one call to Claude.",
+    "Function",
+    "Adobe API",
+    "LLM",
+    "Keep one number in mind. This flow took about 15 seconds end to end, and that's with an expensive model that spends a bunch of reasoning tokens. A faster model would probably do it in 5 seconds, if you don't care about quality.",
+    "Watch this part1:21 The scripted flow2:45 The da.live source API3:33 15 seconds end to end",
+    "A scripted flow like this is a very old pattern. MCP, the Model Context Protocol, is a standard way to hand tools to a model. A server lists what it can do, and any client that speaks MCP (Claude Desktop, n8n, an agent you wrote) lets the model call those tools.",
+    "There were three reasons for the pivot:",
+    "It's more universally plug and play. Agent platforms like n8n work with tools, and if my content operations are tools, any of them can use them.",
+    "Content operations as tools have real uses: content migration, personalization, and more.",
+    "I think this is where the world is going, even with the bottlenecks and drawbacks I'm about to get to.",
+    "Watch this part4:00 Three reasons to make it an MCP server",
+    "The MCP server does two things: it gets content and it saves content. Everything else moves into a box I call the agent, because that's how n8n and a lot of folks name it. There are so many ways to draw this diagram, and I'm not a fan of drawing it this way, but this is where the board ended up:",
+    "The scaffolding moved too. It used to be the order of the calls in my code. Now it lives in how the agent prompts the model. The prompt in edit-content/v1.0.0.json says FIRST: Call get_dalive_content and LAST: Call save_dalive_content, and the code runs a loop: call the model, and if it asks for a tool, run the tool, add the result to the conversation and call the model again.",
+    "So what did it do? First, in terms of content quality, there was zero difference. Second, it took twice as long and used twice as many tokens: my 15 seconds became 30 or more. Before, I had a fairly scripted AI workflow, where the agentic level is maybe 2 out of 10. Now the agent decides when to get and save content. Slower, but much more scalable.",
+    "That loop is where the extra time and tokens come from. Below is a simplified model of both versions of the same edit, built from the two commits. Pick a version, and for the tool loop, a scenario. The log lists every call to the model in order, and the counters show the cost: how many times the model was called, and how many times the whole page went back to it.",
+    "The model picks every step. Pick what it does:",
+    "call 1Sends the prompt. The model asks for get_dalive_content.",
+    "toolFetches the page HTML from admin.da.live and adds it to the conversation.",
+    "call 2Sends the whole conversation so far, page HTML included. The model asks for save_dalive_content.",
+    "toolSaves the HTML the model wrote to admin.da.live.",
+    "call 3Sends the whole conversation so far, page HTML included. The model answers with text, so the loop ends.",
+    "3 model calls where the scripted flow makes one, and the page goes to the model 2 times instead of once. That is where the extra time and tokens come from.",
+    "Tracing the loop shows two more things. Every turn re-sends the whole conversation, so once the page is fetched, its HTML goes back to the model on every call after that. And nothing in the loop checks that a save happened, or that a get came first. The scripted flow guarantees both in code. The tool loop leaves them to the prompt.",
+    "Watch this part4:55 Two tools and an agent that decides6:16 Same quality, twice the time and tokens",
+    "For the demo I drove the tools by hand from Claude Desktop, doing what an agent would normally do. Claude Desktop talks to MCP servers over stdio, and my server speaks HTTP, so a small bridge script in the repo reads JSON-RPC from stdin, forwards it to the function with the bearer token, and writes the answers back. The config is a few lines:",
+    "The page is a normal da.live page from my postal demo site. I pasted its editor URL into the chat. The tool accepts that, the admin.da.live URL or an aem.page URL, and normalizes it to /source/org/site/path.",
+    "Then I used what I call two-shot prompting. First: \"Can you please get content from this page and let me know what you think.\" That fetches the content and gets it into context, the front of the model's memory. I can check that it read the page, because it tells me what it thinks. Then the real ask: \"Looking at the first cards, can we have Air Hyper Express? Cost will be twice as much as the next highest cost, and write in the rest of the copy.\"",
+    "It got the content again, which is fine. Then it saved. The new card showed up in the da.live editor without me even refreshing the screen.",
+    "This is also the part to keep in mind: AI is unpredictable. Every time I run this, it does different things. That unpredictability is both a feature and a challenge. The wording of the scaffolding, how the agent prompts the model and how the model chooses its tools, is what drives how effective and how accurate your agent is.",
+    "Watch this part7:13 Demo in Claude Desktop7:41 Get the page first8:17 Ask for the new card9:22 The card in da.live",
+    "Hopefully this is a good demo of MCP versus not. In the grand scheme of system design, it comes down to your requirements and what your product needs to do. Here's where I landed:",
+    "Content quality was the same either way.",
+    "The tool version costs about twice the time and twice the tokens, because the model makes more calls and the page rides along on each one.",
+    "It's much more flexible. The agent decides when to fetch and when to save, and any MCP client can drive the same two tools.",
+    "Accuracy now depends on how the agent prompts the model. The order of calls used to live in my code.",
+    "At this point the server was still a foundation. The bearer token is copied by hand from the browser, and the server only gets and saves; there's no create, preview or publish yet.",
+    "Next, I wanted to know whether the same server would work with models other than Claude, and from somewhere other than my laptop. That's part two.",
+    "Watch this part9:32 Wrap-up",
+    "ArticleOne da.live MCP Server Across Claude, Gemini, Azure OpenAI and n8nPart two: the same tools on three models, Azure Functions and n8n.",
+    "ArticleThree Ways to Author on AEM Edge Delivery ServicesWord and Google Docs, Universal Editor and da.live, side by side.",
+    "PortfolioThe Content FactoryWhere this MCP server went next: agents that generate, migrate and evaluate content.",
+    "TalkAI Agent-Driven Content Migration for Edge Delivery ServicesadaptTo() 2026, Berlin.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Since thenWhat changed after",
+    "Part 1da.live works in HTML",
+    "Part 2The scripted flow",
+    "Part 3Why an MCP server",
+    "Part 4Two tools and an agent",
+    "Part 5The Claude Desktop demo",
+    "Wrap-upSame quality, twice the cost"
+  ],
+  "codeBlocks": [
+    "export async function getContent(path, bearerToken) {\n  try {\n    const response = await axios.get(`${DALIVE_API_URL}${path}`, {\n      headers: {\n        'Authorization': `Bearer ${bearerToken}`\n      },\n      timeout: 5000,\n      responseType: 'text' // Get raw HTML text, not JSON\n    });\n  // … retry and error handling trimmed\n      // Create multipart form data with HTML as a file\n      const formData = new FormData();\n      formData.append('data', Buffer.from(html), {\n        filename: 'content.html',\n        contentType: 'text/html'\n      });\n      const response = await axios.post(\n        `${DALIVE_API_URL}${path}`,\n        formData,\n        {\n          headers: {\n            'Authorization': `Bearer ${bearerToken}`,\n            ...formData.getHeaders()\n          },\n          timeout: 5000\n        }\n      );",
+    "// PHASE 1: Fetch HTML content from da.live\n      const daliveFetchStart = Date.now();\n      let pageContent;\n      try {\n        pageContent = await getContent(path, bearerToken);\n  // … timing and error handling trimmed\n      // PHASE 2: Build LLM prompt with HTML content\n      const llmPrompt = buildPrompt(command, pageContent.html, path);\n      // PHASE 3: Call LLM API\n      const llmCallStart = Date.now();\n      let llmResponse;\n      try {\n        llmResponse = await generateEdit(llmPrompt);\n  // … timing and error handling trimmed\n      // PHASE 4: Update content in da.live with edited HTML\n      const daliveUpdateStart = Date.now();\n      try {\n        await updateContent(path, llmResponse.editedHtml, bearerToken);",
+    "while (iterationCount < MAX_TOOL_ITERATIONS) {\n        iterationCount++;\n  // … logging and bookkeeping trimmed\n        const response = await client.messages.create(requestParams);\n  // … logging and bookkeeping trimmed\n        // Check if response contains tool use\n        const toolUseBlock = response.content.find(block => block.type === 'tool_use');\n        if (toolUseBlock && mcpSession) {\n  // … logging and bookkeeping trimmed\n            toolResult = await callMcpTool(mcpSession, toolName, toolInput);\n  // … logging and bookkeeping trimmed\n          // Add tool result to conversation\n          messages.push({\n            role: 'assistant',\n            content: response.content\n          });\n          messages.push({\n            role: 'user',\n            content: [\n              {\n                type: 'tool_result',\n                tool_use_id: toolUseId,\n                content: JSON.stringify(toolResult)\n              }\n            ]\n          });\n          // Continue conversation loop\n          continue;\n  // … logging and bookkeeping trimmed\n        // No tool use - this is the final response\n        const textBlock = response.content.find(block => block.type === 'text');",
+    "{\n     \"mcpServers\": {\n       \"azure-da-mcp\": {\n         \"command\": \"node\",\n         \"args\": [\"/absolute/path/to/azure-da-mcp/functions/mcp-stdio-bridge.js\"],\n         \"env\": {\n           \"MCP_SERVER_URL\": \"http://localhost:7071/api/mcp\",\n           \"DALIVE_BEARER_TOKEN\": \"your-dalive-bearer-token-here\"\n         }\n       }\n     }\n   }"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/r_L1tHBKeZQ"
+    },
+    {
+      "label": "azure-da-mcp",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/tree/81e4cac"
+    },
+    {
+      "label": "part two",
+      "href": "/writing/2025-10-12-da-live-mcp-across-ai-platforms/"
+    },
+    {
+      "label": "preview and publish",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/commit/6b67c39"
+    },
+    {
+      "label": "create pages",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/commit/8b8c137"
+    },
+    {
+      "label": "create folders",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/commit/bb7bdfe"
+    },
+    {
+      "label": "the Content Factory",
+      "href": "/portfolio/#ch-factory"
+    },
+    {
+      "label": "adaptTo() 2026 talk",
+      "href": "/talks/#adaptto-2026"
+    },
+    {
+      "label": "an earlier video",
+      "href": "/writing/2025-07-13-three-eds-offerings/"
+    },
+    {
+      "label": "0:00 Content is where AI meets EDS",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=0"
+    },
+    {
+      "label": "0:31 Three EDS flavors, and da.live works in HTML",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=31"
+    },
+    {
+      "label": "source API",
+      "href": "https://docs.da.live/developers/api/source"
+    },
+    {
+      "label": "81e4cac on GitHub",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/blob/81e4cac/functions/src/modules/DaliveClient.js#L15-L77"
+    },
+    {
+      "label": "1ffb600 on GitHub",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/blob/1ffb600/functions/src/functions/EditContentFunction.js#L79-L139"
+    },
+    {
+      "label": "1:21 The scripted flow",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=81"
+    },
+    {
+      "label": "2:45 The da.live source API",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=165"
+    },
+    {
+      "label": "3:33 15 seconds end to end",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=213"
+    },
+    {
+      "label": "4:00 Three reasons to make it an MCP server",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=240"
+    },
+    {
+      "label": "edit-content/v1.0.0.json",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/blob/81e4cac/functions/src/prompts/edit-content/v1.0.0.json#L11"
+    },
+    {
+      "label": "81e4cac on GitHub",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/blob/81e4cac/functions/src/modules/LlmClient.js#L102-L223"
+    },
+    {
+      "label": "the loop in LlmClient.js",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/blob/81e4cac/functions/src/modules/LlmClient.js#L96-L262"
+    },
+    {
+      "label": "Scripted flow: the code decides",
+      "href": null
+    },
+    {
+      "label": "Tool loop: the model decides",
+      "href": null
+    },
+    {
+      "label": "Follows the promptget the page, save it, answer",
+      "href": null
+    },
+    {
+      "label": "Gets the page again before savingwhat Claude did in my demo",
+      "href": null
+    },
+    {
+      "label": "Saves without reading the pagenothing in the loop stops it",
+      "href": null
+    },
+    {
+      "label": "EditContentFunction.js at 1ffb600",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/blob/1ffb600/functions/src/functions/EditContentFunction.js#L79-L139"
+    },
+    {
+      "label": "LlmClient.js at 81e4cac",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/blob/81e4cac/functions/src/modules/LlmClient.js#L96-L262"
+    },
+    {
+      "label": "4:55 Two tools and an agent that decides",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=295"
+    },
+    {
+      "label": "6:16 Same quality, twice the time and tokens",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=376"
+    },
+    {
+      "label": "81e4cac on GitHub",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/blob/81e4cac/README.md#L447-L465"
+    },
+    {
+      "label": "7:13 Demo in Claude Desktop",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=433"
+    },
+    {
+      "label": "7:41 Get the page first",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=461"
+    },
+    {
+      "label": "8:17 Ask for the new card",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=497"
+    },
+    {
+      "label": "9:22 The card in da.live",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=562"
+    },
+    {
+      "label": "part two",
+      "href": "/writing/2025-10-12-da-live-mcp-across-ai-platforms/"
+    },
+    {
+      "label": "9:32 Wrap-up",
+      "href": "https://youtu.be/r_L1tHBKeZQ?t=572"
+    },
+    {
+      "label": "One da.live MCP Server Across Claude, Gemini, Azure OpenAI and n8n",
+      "href": "/writing/2025-10-12-da-live-mcp-across-ai-platforms/"
+    },
+    {
+      "label": "Three Ways to Author on AEM Edge Delivery Services",
+      "href": "/writing/2025-07-13-three-eds-offerings/"
+    },
+    {
+      "label": "The Content Factory",
+      "href": "/portfolio/#ch-factory"
+    },
+    {
+      "label": "AI Agent-Driven Content Migration for Edge Delivery Services",
+      "href": "/talks/#adaptto-2026"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Since thenWhat changed after",
+      "href": "#changed"
+    },
+    {
+      "label": "Part 1da.live works in HTML",
+      "href": "#part-1"
+    },
+    {
+      "label": "Part 2The scripted flow",
+      "href": "#part-2"
+    },
+    {
+      "label": "Part 3Why an MCP server",
+      "href": "#part-3"
+    },
+    {
+      "label": "Part 4Two tools and an agent",
+      "href": "#part-4"
+    },
+    {
+      "label": "Part 5The Claude Desktop demo",
+      "href": "#part-5"
+    },
+    {
+      "label": "Wrap-upSame quality, twice the cost",
+      "href": "#part-6"
+    },
+    {
+      "label": "Watch the video, 9:57",
+      "href": "#video"
+    },
+    {
+      "label": "Compare the two versions",
+      "href": "#decision-lab"
+    },
+    {
+      "label": "Code on GitHub",
+      "href": "https://github.com/jackzhaojin/azure-da-mcp/tree/81e4cac"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://youtu.be/r_L1tHBKeZQ",
+    "https://github.com/jackzhaojin/azure-da-mcp/tree/81e4cac",
+    "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/#changed",
+    "https://www.jackzhaojin.com/writing/2025-10-12-da-live-mcp-across-ai-platforms/",
+    "https://github.com/jackzhaojin/azure-da-mcp/commit/6b67c39",
+    "https://github.com/jackzhaojin/azure-da-mcp/commit/8b8c137",
+    "https://github.com/jackzhaojin/azure-da-mcp/commit/bb7bdfe",
+    "https://www.jackzhaojin.com/portfolio/#ch-factory",
+    "https://www.jackzhaojin.com/talks/#adaptto-2026",
+    "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/#part-1",
+    "https://www.jackzhaojin.com/writing/2025-07-13-three-eds-offerings/",
+    "https://youtu.be/r_L1tHBKeZQ?t=0",
+    "https://youtu.be/r_L1tHBKeZQ?t=31",
+    "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/#part-2",
+    "https://docs.da.live/developers/api/source",
+    "https://github.com/jackzhaojin/azure-da-mcp/blob/81e4cac/functions/src/modules/DaliveClient.js#L15-L77",
+    "https://github.com/jackzhaojin/azure-da-mcp/blob/1ffb600/functions/src/functions/EditContentFunction.js#L79-L139",
+    "https://youtu.be/r_L1tHBKeZQ?t=81",
+    "https://youtu.be/r_L1tHBKeZQ?t=165",
+    "https://youtu.be/r_L1tHBKeZQ?t=213",
+    "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/#part-3",
+    "https://youtu.be/r_L1tHBKeZQ?t=240",
+    "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/#part-4",
+    "https://github.com/jackzhaojin/azure-da-mcp/blob/81e4cac/functions/src/prompts/edit-content/v1.0.0.json#L11",
+    "https://github.com/jackzhaojin/azure-da-mcp/blob/81e4cac/functions/src/modules/LlmClient.js#L102-L223",
+    "https://github.com/jackzhaojin/azure-da-mcp/blob/81e4cac/functions/src/modules/LlmClient.js#L96-L262",
+    "https://youtu.be/r_L1tHBKeZQ?t=295",
+    "https://youtu.be/r_L1tHBKeZQ?t=376",
+    "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/#part-5",
+    "https://github.com/jackzhaojin/azure-da-mcp/blob/81e4cac/README.md#L447-L465",
+    "https://youtu.be/r_L1tHBKeZQ?t=433",
+    "https://youtu.be/r_L1tHBKeZQ?t=461",
+    "https://youtu.be/r_L1tHBKeZQ?t=497",
+    "https://youtu.be/r_L1tHBKeZQ?t=562",
+    "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/#part-6",
+    "https://youtu.be/r_L1tHBKeZQ?t=572",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/#video",
+    "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/#decision-lab",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/images/diagram-agent-tools.png",
+        "alt": "Diagram titled EDS da.live, AI Enablement Foundational Work. Get Content calls admin.da.live/source GET. Edit Content calls Agent with Scaffolding, which talks to Claude and has two MCP server tools below it: admin.da.live/source GET and admin.da.live/source Save. A legend marks Function, LLM, Adobe API and MCP Server.",
+        "w": 1200,
+        "h": 963
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/images/demo-air-hyper-express.jpg",
+        "alt": "Top: the da.live editor showing a new Air Hyper Express card, Premium Choice, priced at $57.90, next to Ground Shipping at $9.65. Bottom: Claude Desktop saying the highest current cost is $28.95 for Priority Express so the new card will be $57.90, with two tool calls listed, Get dalive content and Save dalive content.",
+        "w": 1145,
+        "h": 698
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/images/thumb-scripted.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/images/thumb-agent.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-10-05-mcp-server-for-eds-da-live/images/thumb-demo.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 5,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/r_L1tHBKeZQ?rel=0",
+        "title": "Building an MCP Server for EDS da.live: From a Scripted AI Flow to Agent Tools (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52",
+    "--dg-fn": "#2f6bb3",
+    "--dg-api": "#a63658",
+    "--dg-llm": "#5b4bc4",
+    "--dg-mcp": "#7d5f0e",
+    "--dg-ink": "#1a1917",
+    "--dg-line": "#4a4744"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 9,
+    "mainTextLen": 14840,
+    "realImageCount": 5,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 122,
+        "hits": 1,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 3
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      },
+      {
+        "host": "www.google.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 1,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 2,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2025-10-05-mcp-server-for-eds-da-live.png",
+  "renderedHtml": "pages/writing-2025-10-05-mcp-server-for-eds-da-live.html",
+  "slots": {
+    "type": "article",
+    "headline": "Building an MCP Server for EDS da.live: Scripted AI Flow vs Agent Tools",
+    "deck": "There are two ways to let a model edit a da.live page, the newest way to author Edge Delivery Services sites when I built this. In a scripted flow, an Azure Function fetches the page, asks Claude for an edit and saves it. With an MCP server, get and save become two tools, and the model decides when to call them. I built both: same content quality, about twice the time and tokens for the tools, and a lot more flexibility. The code for both is below, with a side-by-side run of both versions that shows where the extra cost comes from.",
+    "byline": "By Jack Jin · October 5, 2025 · Updated October 4, 2026 · 10 min read · Includes my 9:57 video",
+    "meta": {
+      "times": [
+        "October 5, 2025",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "video",
+      "src": "https://www.youtube-nocookie.com/embed/r_L1tHBKeZQ?rel=0"
+    },
+    "body": {
+      "h2": [
+        "What changed after October 2025",
+        "Content is where AI meets EDS, and da.live works in plain HTML",
+        "The first version, a scripted flow with one model call",
+        "Why I turned it into an MCP server",
+        "Two MCP tools, and an agent that decides when to call them",
+        "The demo in Claude Desktop, reading the page before editing it",
+        "Same quality, twice the cost, far more flexible",
+        "Related"
+      ],
+      "figures": 9,
+      "codeBlocks": 4,
+      "tables": 1,
+      "embeds": 1
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "One da.live MCP Server Across Claude, Gemini, Azure OpenAI and n8n",
+        "href": "/writing/2025-10-12-da-live-mcp-across-ai-platforms/"
+      },
+      {
+        "title": "Three Ways to Author on AEM Edge Delivery Services",
+        "href": "/writing/2025-07-13-three-eds-offerings/"
+      },
+      {
+        "title": "The Content Factory",
+        "href": "/portfolio/#ch-factory"
+      },
+      {
+        "title": "AI Agent-Driven Content Migration for Edge Delivery Services",
+        "href": "/talks/#adaptto-2026"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 10,
+    "authorBox": true
+  }
+}

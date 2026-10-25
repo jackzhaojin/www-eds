@@ -1,0 +1,745 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:50.262Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2026-02-05-reusable-ai-development-modules",
+  "url": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:50.262Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/",
+  "title": "Reusable AI Development Modules: Four Patterns, One Stack | Jack Jin",
+  "description": "Ad hoc prompting, spec-driven development, harnesses and a 24/7 agent stack on each other. Build each layer to work alone and be reused by the one above.",
+  "og": {
+    "title": "Reusable AI Development Modules: Four Patterns, One Stack | Jack Jin",
+    "description": "Ad hoc prompting, spec-driven development, harnesses and a 24/7 agent stack on each other. Build each layer to work alone and be reused by the one above.",
+    "image": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Making AI-Driven Development Modules Reusable: Four Patterns, One Stack"
+    },
+    {
+      "tag": "h2",
+      "text": "What changed since February#"
+    },
+    {
+      "tag": "h2",
+      "text": "1. Ad hoc prompting is where we all start#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. Spec-driven development puts specs at the project and the task level#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. A harness is an orchestration layer on top of the specs#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. A continuous agent runs all the time, and I rebuilt it from scratch#"
+    },
+    {
+      "tag": "h2",
+      "text": "5. Reuse the layer below, don't rebuild it#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "Reusable AI Development Modules",
+    "By Jack Jin · February 5, 2026 · Updated October 4, 2026 · 6 min read · Includes my 9:44 video",
+    "Four AI development patterns stack on each other: ad hoc prompting, spec-driven development on top of it, a harness that runs the specs in a loop, and a continuous agent that runs the harness around the clock. Each layer should work on its own and be reused by the layer above, not rebuilt. I learned that by rebuilding the bottom layer four times because AI made rebuilding feel easy. Here is the board that made the mistake obvious, what each layer adds, and the refactor that followed.",
+    "It is one diagram in four parts and a lesson. Each part links to its moment in the video if you would rather watch.",
+    "First published on LinkedIn on February 5, 2026. Rewritten for this site in October 2026. Examples: harness-v2-test for a harness run, continuous-agent for the 24/7 agent.",
+    "I did the refactor from part 5, at least for the harness. In April 2026 my continuous agent gained a harness execution pattern (commit 9a85f70, April 11). The same harness now runs two ways: standalone from one command, or as a goal the 24/7 agent picks up and drives. From the repo's HARNESS.md:",
+    "That is the \"usable by itself, or inside the next layer up\" rule from part 5, in code. Two months later I also pushed reuse one level lower, to skills, in Two AI Skills for Team Enablement.",
+    "Ad hoc prompting is where I started, and I think where we all start. A good form of it is just me talking to AI. You want to give it a very good first prompt. Sometimes that's me rambling into voice to text, and AI gives me a bunch of work back.",
+    "The more advanced version: ramble the same ramble into multiple models, have them compare each other's work, then have one merge it together, keeping the best part of each output. I later did exactly that with four frontier models on my portfolio site, in Four Frontier Models, One Prompt.",
+    "In the diagram, ad hoc prompting is red. There is a reason everything is color coded, and it shows up at the end.",
+    "Watch this part0:23 Ad hoc prompting",
+    "The next iteration is spec-driven development, which looks like specs. At the project level, specs cover the why, the what and the how, divided up into the when. That's where overall design principles live, so a million tasks all do things the same way.",
+    "In my version, each task also gets its own detailed packet, from functional requirements to technical design. When an agent executes a task, and there are many of them, it is very clear on what to do. You review the specs, you produce the specs, and the specs give AI consistency. This alone is enough acceleration to completely change the way we work.",
+    "It isn't only for code. I use the same idea to configure a VM: plan every step up front, then have AI run it through with me, checking each command before it runs.",
+    "Along the way I started prompt logging. I keep a log of mostly what I'm doing, and AI summarizes its response and action. That is how I keep track of my own work. I said on camera it would matter in a big way. Two months later it became one of my team skills, the Conversation Logger.",
+    "One thing I want to highlight: spec-driven development builds on top of ad hoc prompting. In the diagram, the green box sits on a red one.",
+    "Watch this part1:20 Spec-driven development2:31 Specs for a VM3:06 Prompt logging",
+    "Then I thought, let's build a harness. My definition: you still have the project-level architecture blueprint, the why, what, how and when. The task breakdown happens ahead of time, with task-level specs planned out and room for defects. Then the tasks execute in sequence without me. By hand, each task takes me 10 to 20 minutes of sitting with it. The harness strings 20 of them together.",
+    "There are a lot of learnings here. It doesn't work the first time, kind of works the second time, and by the fifth run it's pretty good. The trick is to think about the input and the output. The input isn't a single prompt if you are going to do that much work. It's what I call a prompt packet: a large, verbose set of documentation, like the packet you exit a design phase with in consulting. So there are two inputs, the packet and the harness, and one output.",
+    "When the output is wrong, I don't fix the output. I fix the input or the harness, or have AI figure out how to make the next run better. After enough rounds of running, fixing and analyzing, you have a pretty good harness.",
+    "What I'm realizing now is that a harness is an orchestration layer on top of spec-driven development. It's a big loop with more intelligence, and it validates the output, so I don't want to oversimplify. But underneath, it runs the same spec-driven development, and that runs on prompting. Blue on green on red. There are reusable parts in there.",
+    "Watch this part3:54 What a harness is5:03 Input and output6:01 An orchestration layer",
+    "My fourth project, the one I was building in February, is a continuous agent. The harness builds a bunch of stuff when I start it. The continuous agent does stuff all the time. It finds different things to work on, and it writes its progress to Notion, so it's no longer a markdown file I'm reading. It's a human-friendly interface: when I wake up in the morning, I can see exactly what AI worked on overnight. It can also improve itself, build new Claude skills and run skills that you built.",
+    "And I did this one wrong. I built the continuous agent by referencing my earlier work, not reusing it.",
+    "Watch this part6:58 The continuous agent7:43 \"I did this wrong\"",
+    "Here is the whole board. Every pattern sits on the one before it. The 24/7 agent is orange on blue on green on red.",
+    "My mistake is easy to see once it's drawn. I rebuilt the bottom piece four separate times. AI made rebuilding feel easy, so I'd reference my old code and rebuild fresh, when I should have understood the modular pieces and reused them.",
+    "Below are the four stacks from the board. Switch between what I did and what I should have done, and count the solid boxes: each one is a piece built from scratch inside that pattern. A dashed box is a piece reused from the pattern before it.",
+    "How the four patterns get built",
+    "Ad hoc prompting",
+    "Ad hoc promptingbuilt here",
+    "Spec-driven dev",
+    "Spec-driven devbuilt here",
+    "Ad hoc promptingbuilt here",
+    "Harness",
+    "Harnessbuilt here",
+    "Spec-driven devbuilt here",
+    "Ad hoc promptingbuilt here",
+    "24/7 continuous agent",
+    "24/7 continuous agentbuilt here",
+    "Harnessbuilt here",
+    "Spec-driven devbuilt here",
+    "Ad hoc promptingbuilt here",
+    "10 pieces built across the four patterns. Ad hoc prompting alone is built 4 times, once inside every pattern.",
+    "From me rambling, to specs, to harnesses, to continuous agents, they could all be reusing the same thing. Each piece should work alone or stacked. Spec-driven development should be usable by itself. I can run it on its own, run it with a harness, or run it with a 24-hour agent that runs the harness. Each layer should reuse the layer below instead of referencing it.",
+    "So that's my takeaway: I have a lot of AI-driven refactoring to do, and I'd rather you didn't fall into the same pit. Build for reuse from the start, even when rebuilding with AI feels fast. If you've built your own stack of patterns, I'd like to know which layer you made reusable first, and whether it held up when the next layer arrived.",
+    "Watch this part8:42 The lesson",
+    "PortfolioContinuous Executive AgentThe 24/7 agent from part 4, after it ran for four months.",
+    "WritingTwo AI Skills for Team EnablementReuse one level lower: prompt logs and skills.",
+    "WritingFrom Prompts to Harness: How Deterministic Code and Agents Work TogetherThe January harness from part 3, and how its loop works.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Since thenWhat changed since February",
+    "Part 1Ad hoc prompting",
+    "Part 2Specs at project and task level",
+    "Part 3A harness on top of the specs",
+    "Part 4A continuous agent, rebuilt",
+    "Part 5Reuse the layer below"
+  ],
+  "codeBlocks": [
+    "npm run harness -- --name generic \\\n  --prompt ./input/my-app/PROMPT.md \\\n  --target /tmp/my-app"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/3l_MtNA3kDY"
+    },
+    {
+      "label": "harness-v2-test",
+      "href": "https://github.com/jackzhaojin/harness-v2-test/tree/03c009e/ai-docs/TASKS"
+    },
+    {
+      "label": "continuous-agent",
+      "href": "https://github.com/jackzhaojin/continuous-agent"
+    },
+    {
+      "label": "9a85f70",
+      "href": "https://github.com/jackzhaojin/continuous-agent/commit/9a85f70"
+    },
+    {
+      "label": "HARNESS.md",
+      "href": "https://github.com/jackzhaojin/continuous-agent/blob/360333a/HARNESS.md"
+    },
+    {
+      "label": "Two AI Skills for Team Enablement",
+      "href": "/writing/2026-04-12-two-ai-skills-team-enablement/"
+    },
+    {
+      "label": "Four Frontier Models, One Prompt",
+      "href": "/writing/2026-07-21-four-frontier-models-one-prompt/"
+    },
+    {
+      "label": "0:23 Ad hoc prompting",
+      "href": "https://youtu.be/3l_MtNA3kDY?t=23"
+    },
+    {
+      "label": "Conversation Logger",
+      "href": "/writing/2026-04-12-two-ai-skills-team-enablement/"
+    },
+    {
+      "label": "1:20 Spec-driven development",
+      "href": "https://youtu.be/3l_MtNA3kDY?t=80"
+    },
+    {
+      "label": "2:31 Specs for a VM",
+      "href": "https://youtu.be/3l_MtNA3kDY?t=151"
+    },
+    {
+      "label": "3:06 Prompt logging",
+      "href": "https://youtu.be/3l_MtNA3kDY?t=186"
+    },
+    {
+      "label": "harness-v2-test",
+      "href": "https://github.com/jackzhaojin/harness-v2-test/tree/03c009e/ai-docs/TASKS"
+    },
+    {
+      "label": "3:54 What a harness is",
+      "href": "https://youtu.be/3l_MtNA3kDY?t=234"
+    },
+    {
+      "label": "5:03 Input and output",
+      "href": "https://youtu.be/3l_MtNA3kDY?t=303"
+    },
+    {
+      "label": "6:01 An orchestration layer",
+      "href": "https://youtu.be/3l_MtNA3kDY?t=361"
+    },
+    {
+      "label": "6:58 The continuous agent",
+      "href": "https://youtu.be/3l_MtNA3kDY?t=418"
+    },
+    {
+      "label": "7:43 \"I did this wrong\"",
+      "href": "https://youtu.be/3l_MtNA3kDY?t=463"
+    },
+    {
+      "label": "What I did: rebuild each time",
+      "href": null
+    },
+    {
+      "label": "What I should have done: reuse",
+      "href": null
+    },
+    {
+      "label": "8:42 The lesson",
+      "href": "https://youtu.be/3l_MtNA3kDY?t=522"
+    },
+    {
+      "label": "Continuous Executive Agent",
+      "href": "/portfolio/#ch-cea"
+    },
+    {
+      "label": "Two AI Skills for Team Enablement",
+      "href": "/writing/2026-04-12-two-ai-skills-team-enablement/"
+    },
+    {
+      "label": "From Prompts to Harness: How Deterministic Code and Agents Work Together",
+      "href": "/writing/2026-01-05-from-prompts-to-harness/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Since thenWhat changed since February",
+      "href": "#changed"
+    },
+    {
+      "label": "Part 1Ad hoc prompting",
+      "href": "#part-1"
+    },
+    {
+      "label": "Part 2Specs at project and task level",
+      "href": "#part-2"
+    },
+    {
+      "label": "Part 3A harness on top of the specs",
+      "href": "#part-3"
+    },
+    {
+      "label": "Part 4A continuous agent, rebuilt",
+      "href": "#part-4"
+    },
+    {
+      "label": "Part 5Reuse the layer below",
+      "href": "#part-5"
+    },
+    {
+      "label": "Watch the video, 9:44",
+      "href": "#video"
+    },
+    {
+      "label": "continuous-agent on GitHub",
+      "href": "https://github.com/jackzhaojin/continuous-agent"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://youtu.be/3l_MtNA3kDY",
+    "https://github.com/jackzhaojin/harness-v2-test/tree/03c009e/ai-docs/TASKS",
+    "https://github.com/jackzhaojin/continuous-agent",
+    "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/#changed",
+    "https://github.com/jackzhaojin/continuous-agent/commit/9a85f70",
+    "https://github.com/jackzhaojin/continuous-agent/blob/360333a/HARNESS.md",
+    "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/",
+    "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/#part-1",
+    "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/",
+    "https://youtu.be/3l_MtNA3kDY?t=23",
+    "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/#part-2",
+    "https://youtu.be/3l_MtNA3kDY?t=80",
+    "https://youtu.be/3l_MtNA3kDY?t=151",
+    "https://youtu.be/3l_MtNA3kDY?t=186",
+    "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/#part-3",
+    "https://youtu.be/3l_MtNA3kDY?t=234",
+    "https://youtu.be/3l_MtNA3kDY?t=303",
+    "https://youtu.be/3l_MtNA3kDY?t=361",
+    "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/#part-4",
+    "https://youtu.be/3l_MtNA3kDY?t=418",
+    "https://youtu.be/3l_MtNA3kDY?t=463",
+    "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/#part-5",
+    "https://youtu.be/3l_MtNA3kDY?t=522",
+    "https://www.jackzhaojin.com/portfolio/#ch-cea",
+    "https://www.jackzhaojin.com/writing/2026-01-05-from-prompts-to-harness/",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/#video",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/images/harness-tasks.jpg",
+        "alt": "GitHub folder listing of harness-v2-test ai-docs/TASKS on the feature/dashboard-mvp branch, with numbered task folders and commit messages such as feat(task-12): Add Kanban board layout with task cards on Tasks page and feat(task-21): Add highlights demo script with voice-over.",
+        "w": 1400,
+        "h": 576
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/images/notion-overnight.jpg",
+        "alt": "Notion timeline titled Continuous Agent, Agent Dashboard, Agent Milestones, from 9:15 PM on February 3, 2026 to 2:15 AM on February 4. Milestones for Migrate Recipe Discovery Platform from local Postgres run first, then milestones for Build PageForge CMS, an AEM-inspired visual page builder, after midnight.",
+        "w": 1400,
+        "h": 632
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/images/patterns-diagram.png",
+        "alt": "Diagram titled AI Driven Development Patterns, How I am thinking about reuse and iterate. A box labeled Me points to four patterns. Ad Hoc Prompting stands alone. Spec Driven Dev sits on Ad Hoc Prompting. Harness sits on Spec Driven Dev, which sits on Ad Hoc Prompting. 24 Cont Agent sits on Harness, then Spec Driven Dev, then Ad Hoc Prompting.",
+        "w": 1600,
+        "h": 1059
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/images/thumb-adhoc.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/images/thumb-spec.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/images/thumb-tasks.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/images/thumb-notion.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/images/thumb-reuse.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 8,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/3l_MtNA3kDY?rel=0",
+        "title": "I Rebuilt My AI Agent Stack 4 Times Before Learning This Lesson (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 8,
+    "mainTextLen": 9611,
+    "realImageCount": 8,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 122,
+        "hits": 1,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 3
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      },
+      {
+        "host": "www.google.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 1,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 2,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2026-02-05-reusable-ai-development-modules.png",
+  "renderedHtml": "pages/writing-2026-02-05-reusable-ai-development-modules.html",
+  "slots": {
+    "type": "article",
+    "headline": "Making AI-Driven Development Modules Reusable: Four Patterns, One Stack",
+    "deck": "Four AI development patterns stack on each other: ad hoc prompting, spec-driven development on top of it, a harness that runs the specs in a loop, and a continuous agent that runs the harness around the clock. Each layer should work on its own and be reused by the layer above, not rebuilt. I learned that by rebuilding the bottom layer four times because AI made rebuilding feel easy. Here is the board that made the mistake obvious, what each layer adds, and the refactor that followed.",
+    "byline": "By Jack Jin · February 5, 2026 · Updated October 4, 2026 · 6 min read · Includes my 9:44 video",
+    "meta": {
+      "times": [
+        "February 5, 2026",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "video",
+      "src": "https://www.youtube-nocookie.com/embed/3l_MtNA3kDY?rel=0"
+    },
+    "body": {
+      "h2": [
+        "What changed since February",
+        "1. Ad hoc prompting is where we all start",
+        "2. Spec-driven development puts specs at the project and the task level",
+        "3. A harness is an orchestration layer on top of the specs",
+        "4. A continuous agent runs all the time, and I rebuilt it from scratch",
+        "5. Reuse the layer below, don't rebuild it",
+        "Related"
+      ],
+      "figures": 5,
+      "codeBlocks": 0,
+      "tables": 0,
+      "embeds": 1
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "Continuous Executive Agent",
+        "href": "/portfolio/#ch-cea"
+      },
+      {
+        "title": "Two AI Skills for Team Enablement",
+        "href": "/writing/2026-04-12-two-ai-skills-team-enablement/"
+      },
+      {
+        "title": "From Prompts to Harness: How Deterministic Code and Agents Work Together",
+        "href": "/writing/2026-01-05-from-prompts-to-harness/"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 8,
+    "authorBox": true
+  }
+}

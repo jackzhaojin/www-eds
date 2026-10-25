@@ -1,0 +1,846 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:37.460Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2026-07-21-four-frontier-models-one-prompt",
+  "url": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:37.460Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/",
+  "title": "Four Frontier Models, One Prompt: My Portfolio Bake-Off | Jack Jin",
+  "description": "GPT 5.6, Kimi K3, Gemini 3.5 Flash and Claude Fable 5 built my portfolio from one 1,032-line prompt. What each got right and wrong, and the merge I kept.",
+  "og": {
+    "title": "Four Frontier Models, One Prompt: My Portfolio Bake-Off | Jack Jin",
+    "description": "GPT 5.6, Kimi K3, Gemini 3.5 Flash and Claude Fable 5 built my portfolio from one 1,032-line prompt. What each got right and wrong, and the merge I kept.",
+    "image": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Four Frontier Models, One 1,032-Line Prompt: What Each Built, and the Merge I Kept"
+    },
+    {
+      "tag": "h2",
+      "text": "1. One 1,032-line prompt built from four ingredients#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. GPT 5.6 had my favorite home screen, and a glaring hole#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. Kimi K3 dug deepest into the context, and made some up#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. Gemini 3.5 Flash was the most disappointing of the four#"
+    },
+    {
+      "tag": "h2",
+      "text": "5. Claude Fable 5 looked the most premium, with too much animation#"
+    },
+    {
+      "tag": "h2",
+      "text": "6. Merging the best of all four, and what the merge really kept#"
+    },
+    {
+      "tag": "h2",
+      "text": "7. What I took away, and which model to pay for#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "Four Frontier Models, One Prompt",
+    "By Jack Jin · July 21, 2026 · Updated October 4, 2026 · 9 min read · Includes my 14:15 video",
+    "Picking which AI model to pay for is hard, so I ran my own test. GPT 5.6, Kimi K3, Gemini 3.5 Flash and Claude Fable 5 each built my portfolio site from the same 1,032-line prompt, on top of about 5,000 lines of context about my work. I graded the four sites in a paper notebook, ranked them, then had AI merge the best of all four into one site.",
+    "Most of the video is me going through each model's site, one at a time, with the pros and cons from my notebook. This page follows the same order, and each part links to its moment in the video.",
+    "First published on LinkedIn on July 21, 2026. Rewritten for this site in October 2026. Line counts on this page come from the five builds as they were on the night of the video.",
+    "I made it challenging on purpose. The prompt is 1,032 lines, and it is a merge of four things.",
+    "A mountain of context. A library of 48 files, 4,817 lines of markdown, mined from every project, post and talk of the last 18 months. The library has its own catalogs and indexes, and the models read what they need. So this also tests whether a model can traverse a lot of context to do a thing.",
+    "A common design from Google Stitch, about 990 lines of HTML, so all four sites start from the same visual language. In theory the result should look a lot better than my old blogs and videos page, which works but isn't what I'd call premium.",
+    "Premium storytelling. I'm exploring different ways to present the material, and I called out Adobe here: I think their SLICC site looks very cool, the way it tells you a story as you scroll. My prompt asks for four themes, every project told inside one of them, as a single-page scroll story.",
+    "Ground rules. Three files, HTML, CSS and JavaScript, and build on the prior work instead of redoing it.",
+    "I judged each one on four things: how it interpreted the situation, how it handled that much context, whether it made things up, and how well it did premium storytelling on top of the design. Because they all got the same design and the same library, the four sites came back looking like siblings. The differences are in the details: animations, interactions, and what holds up and what breaks. The tabs below are the four home screens and the merged one, at the same size. Look for how alike they are; that is the shared design and library doing its job.",
+    "Watch this part0:12 5,000 lines of context0:43 A design from Stitch1:23 Premium storytelling",
+    "First up, GPT 5.6 Sol, which I ran in Codex. When I first land on this screen, it looks quite nice. It's one of my favorite home screens. I don't love the navigation, but I like the home screen a lot.",
+    "As I scroll, the site looks pretty and it functions, but the navigation bar doesn't light up as I scroll. There is a scroll bar at the very top, but it's hard to see. The aesthetics are clean, and it did a good job mirroring Stitch. The carousel with overlapping cards is nice, there's animation as I scroll, and the slider is accurate.",
+    "What I didn't like: clickable elements that don't do anything. And then one screen came up with content missing. For a premium model, I did not expect that screen to ever come up. Overall it's visually pleasing with visual flaws, and highly usable as a base. I would use it.",
+    "Watch this part2:22 GPT 5.63:27 Clickable but does nothing",
+    "Second, Kimi K3 in thinking mode, from Moonshot. It's one of the open-weight Chinese models competing with the top models right now. I've always liked Kimi's models because they're cheaper, and because I really like the slide decks it builds: pass in a few markdown files from a codebase and you get usable, editable slides full of accurate information that I'd be happy to take to a conference.",
+    "On the site, the first screen looks a little different. I still like GPT's more, but I like that there isn't a ton of information before you get to the material, and the navigation bar lights up as I scroll, which GPT's didn't. One part is very dark and hard to see; that may have come from the Stitch design, but I don't know how accessible it is. The carousel didn't have GPT's overlapping effect, but it works.",
+    "There are two animations I really liked. Agent work is tough to demonstrate, and one of them shows two things talking to each other. The other counts numbers up as you scroll down. Kimi also got the only double exclamation points in my notebook, for its subslides and its prompt animation. And it picked out the five parts of my talk. Kimi understood the 5,000 lines of context a little better than GPT did.",
+    "The part I didn't like: one piece completely missed the mark. It made up a bunch of stuff. In my notebook that's the minus next to the harness diagram. Overall, though, the navigation works better than GPT's, there's no glaring defect like GPT's missing content, and at the bottom it plotted my projects into categories on a timeline, which I don't think I asked for. I'm happy to see AI taking the premium storytelling to another level.",
+    "Watch this part4:08 Kimi K35:14 The site6:31 Five parts of my talk7:01 Made up",
+    "Third, Gemini 3.5 Flash, set to high. I won't spend long here. It was the most disappointing model of the four we tested. It looks basic, it isn't premium storytelling, and the scrolling animation is extremely lacking. My notebook has no notes for it at all. Sorry, Google, we're moving on.",
+    "Watch this part7:50 Gemini 3.5 Flash",
+    "Last, Claude Fable 5. It opens with a timeline chart, similar to Kimi's, except Claude made it navigable: click a project and it takes you to that part of the page. That's storytelling over a timeline, very well executed. I don't like that the items wrap onto two lines.",
+    "Some of it is too flashy. A few elements are too bright, and when I'm trying to read, things flashing next to the text are distracting. It tried a little too hard with the animation. I want interactive, but the site should be readable. Still, overall it looks very premium, and Fable took in the design system from Stitch very well. The carousel is my favorite of the four because it saves space, where Kimi's version ran too long. It also found the outbound links, so every project points to the real post, and it had a typing animation and the best slider.",
+    "Comparing all four, I'd rank Fable number one, Kimi number two and Codex, GPT 5.6, number three, especially because GPT literally had missing content in its HTML. I know it's a one-shot, but we're comparing state-of-the-art models now.",
+    "Watch this part8:14 Claude Fable 510:03 My ranking",
+    "Then I took all four and told AI to merge them. This is the important part, because there are clearly elements I like and don't like in each one. I took my paper notes, photographed them and uploaded them to Fable 5: pluses are good, minuses are bad. In case it couldn't read my scribbles, it asked me eight multiple-choice questions. Then it built a combined page from the elements I liked.",
+    "So the final has GPT's home screen, Kimi's animation and scrolling, and Claude's navigation. I felt it took more of Kimi's HTML, which was a more faithful take on the original Stitch design. I also told AI to dim the animations once they stop, so they aren't overly aggressive, and it did a really good job of that. The numbers count up like in Kimi's and Claude's, and I took the carousel view.",
+    "Afterward I wanted to see what the merge actually kept, so I traced every line of the final files back to the four builds. Pick a model below. On the left is what I said I kept from it; on the right, how many lines of the final site appear only in that model's build. For Claude the two agree. For Kimi and GPT they don't, and the gap is the point of the next paragraph.",
+    "Model",
+    "What I said I kept from Claude Fable 5",
+    "The foundation the others were grafted onto",
+    "The navigation and the navigable timeline",
+    "The carousel view and the slider",
+    "The numbers that count up, shared with Kimi",
+    "The final site's 1,714 lines, by where they came from",
+    "only in Claude Fable 51121",
+    "only in Kimi K314",
+    "only in GPT 5.625",
+    "only in Gemini 3.5 Flash4",
+    "in two or more builds198",
+    "new in the merge352",
+    "They agree. Claude was the base, and 1,121 of the 1,714 lines (65%) appear only in its build.",
+    "The trace says something I didn't say on camera. Line for line, the final is Claude's skeleton: more than half of every file appears only in Claude's build. What I picked from GPT and Kimi, the home screen layout and the scrolling, mostly came in as new code written to match them, which is why the merge added hundreds of lines no model wrote. A line count can't see a design choice, so both views are true. The skeleton is Claude's, and the feel is a mix of all three.",
+    "The one benefit I wrote down for myself: I'm not starting from scratch. I'm not a UX designer or a content designer, but seeing four versions of the same thing, I do have some taste. I can take what I like from all four and combine it into one, and for my taste the combined result is by far the best of the five.",
+    "Watch this part10:29 Merging all four11:00 Eight questions11:36 The combined site",
+    "Being able to run this test with all four frontier models, take what I liked from each and put it together into one final output is something you could do for many different tasks, not just storytelling in HTML. You don't have to pick one model up front. Make them compete, keep the best of each, and merge.",
+    "On the subscription question I opened with: I'm fortunate to have a paid subscription to each of these, at enough capacity to run tests like this without draining any one of them. All of them are good. ChatGPT's plans get you further for the money than Fable's. Fable is clearly the state-of-the-art model that everyone is competing against. And Kimi K3 is good, especially if you like its slide and deck building; I pay for Kimi so I can build decks and run some of my work in its cloud.",
+    "If you've run your own bake-off on a real project, I'd like to know whether you crowned a winner or merged like I did.",
+    "Watch this part13:05 What I took away13:18 Choosing a model",
+    "PortfolioPortfolioThe project portfolio this experiment was building toward.",
+    "ArticleMaking AI-Driven Development Modules ReusableWhere I first described running one ramble through several models and merging the best.",
+    "ArticleTheming a Brand-New EDS Site with Google Stitch and MCPTwo months earlier, a Stitch design wired into an Edge Delivery site.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Part 1One prompt, four ingredients",
+    "Part 2GPT 5.6, best home screen",
+    "Part 3Kimi K3, deepest on context",
+    "Part 4Gemini 3.5 Flash, most basic",
+    "Part 5Claude Fable 5, most premium",
+    "Part 6The merge, and what it kept",
+    "Wrap-upWhat I took away, which to pay for"
+  ],
+  "codeBlocks": [],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/twYqEHXh91U"
+    },
+    {
+      "label": "GPT 5.6",
+      "href": null
+    },
+    {
+      "label": "Kimi K3",
+      "href": null
+    },
+    {
+      "label": "Gemini 3.5 Flash",
+      "href": null
+    },
+    {
+      "label": "Claude Fable 5",
+      "href": null
+    },
+    {
+      "label": "The merge",
+      "href": null
+    },
+    {
+      "label": "0:12 5,000 lines of context",
+      "href": "https://youtu.be/twYqEHXh91U?t=12"
+    },
+    {
+      "label": "0:43 A design from Stitch",
+      "href": "https://youtu.be/twYqEHXh91U?t=43"
+    },
+    {
+      "label": "1:23 Premium storytelling",
+      "href": "https://youtu.be/twYqEHXh91U?t=83"
+    },
+    {
+      "label": "2:22 GPT 5.6",
+      "href": "https://youtu.be/twYqEHXh91U?t=142"
+    },
+    {
+      "label": "3:27 Clickable but does nothing",
+      "href": "https://youtu.be/twYqEHXh91U?t=207"
+    },
+    {
+      "label": "4:08 Kimi K3",
+      "href": "https://youtu.be/twYqEHXh91U?t=248"
+    },
+    {
+      "label": "5:14 The site",
+      "href": "https://youtu.be/twYqEHXh91U?t=314"
+    },
+    {
+      "label": "6:31 Five parts of my talk",
+      "href": "https://youtu.be/twYqEHXh91U?t=391"
+    },
+    {
+      "label": "7:01 Made up",
+      "href": "https://youtu.be/twYqEHXh91U?t=421"
+    },
+    {
+      "label": "7:50 Gemini 3.5 Flash",
+      "href": "https://youtu.be/twYqEHXh91U?t=470"
+    },
+    {
+      "label": "8:14 Claude Fable 5",
+      "href": "https://youtu.be/twYqEHXh91U?t=494"
+    },
+    {
+      "label": "10:03 My ranking",
+      "href": "https://youtu.be/twYqEHXh91U?t=603"
+    },
+    {
+      "label": "Claude Fable 5",
+      "href": null
+    },
+    {
+      "label": "Kimi K3",
+      "href": null
+    },
+    {
+      "label": "GPT 5.6",
+      "href": null
+    },
+    {
+      "label": "Gemini 3.5 Flash",
+      "href": null
+    },
+    {
+      "label": "10:29 Merging all four",
+      "href": "https://youtu.be/twYqEHXh91U?t=629"
+    },
+    {
+      "label": "11:00 Eight questions",
+      "href": "https://youtu.be/twYqEHXh91U?t=660"
+    },
+    {
+      "label": "11:36 The combined site",
+      "href": "https://youtu.be/twYqEHXh91U?t=696"
+    },
+    {
+      "label": "13:05 What I took away",
+      "href": "https://youtu.be/twYqEHXh91U?t=785"
+    },
+    {
+      "label": "13:18 Choosing a model",
+      "href": "https://youtu.be/twYqEHXh91U?t=798"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Making AI-Driven Development Modules Reusable",
+      "href": "/writing/2026-02-05-reusable-ai-development-modules/"
+    },
+    {
+      "label": "Theming a Brand-New EDS Site with Google Stitch and MCP",
+      "href": "/writing/2026-05-24-theming-eds-with-google-stitch/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Part 1One prompt, four ingredients",
+      "href": "#part-1"
+    },
+    {
+      "label": "Part 2GPT 5.6, best home screen",
+      "href": "#part-2"
+    },
+    {
+      "label": "Part 3Kimi K3, deepest on context",
+      "href": "#part-3"
+    },
+    {
+      "label": "Part 4Gemini 3.5 Flash, most basic",
+      "href": "#part-4"
+    },
+    {
+      "label": "Part 5Claude Fable 5, most premium",
+      "href": "#part-5"
+    },
+    {
+      "label": "Part 6The merge, and what it kept",
+      "href": "#part-6"
+    },
+    {
+      "label": "Wrap-upWhat I took away, which to pay for",
+      "href": "#part-7"
+    },
+    {
+      "label": "Watch the video, 14:15",
+      "href": "#video"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://youtu.be/twYqEHXh91U",
+    "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/#part-1",
+    "https://youtu.be/twYqEHXh91U?t=12",
+    "https://youtu.be/twYqEHXh91U?t=43",
+    "https://youtu.be/twYqEHXh91U?t=83",
+    "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/#part-2",
+    "https://youtu.be/twYqEHXh91U?t=142",
+    "https://youtu.be/twYqEHXh91U?t=207",
+    "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/#part-3",
+    "https://youtu.be/twYqEHXh91U?t=248",
+    "https://youtu.be/twYqEHXh91U?t=314",
+    "https://youtu.be/twYqEHXh91U?t=391",
+    "https://youtu.be/twYqEHXh91U?t=421",
+    "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/#part-4",
+    "https://youtu.be/twYqEHXh91U?t=470",
+    "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/#part-5",
+    "https://youtu.be/twYqEHXh91U?t=494",
+    "https://youtu.be/twYqEHXh91U?t=603",
+    "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/#part-6",
+    "https://youtu.be/twYqEHXh91U?t=629",
+    "https://youtu.be/twYqEHXh91U?t=660",
+    "https://youtu.be/twYqEHXh91U?t=696",
+    "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/#part-7",
+    "https://youtu.be/twYqEHXh91U?t=785",
+    "https://youtu.be/twYqEHXh91U?t=798",
+    "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/",
+    "https://www.jackzhaojin.com/writing/2026-05-24-theming-eds-with-google-stitch/",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/#video",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/prompt-walkthrough.jpg",
+        "alt": "Page titled The Experiment: 4 frontier models, the exact same prompt. A prompt.txt panel lists four ingredients: a mountain of context (48 files, about 5,000 lines, 18 months of projects, posts and talks), a design from Stitch (about 990 lines of HTML), premium storytelling (4 themes, single-page scroll story, carousels and video) and ground rules (3 files, HTML, CSS and JS, build on prior work). To the right, cards for GPT 5.6, Gemini 3.5 Flash, Kimi K3 and Fable 5, each labeled same prompt.",
+        "w": 1400,
+        "h": 640
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/site-gpt.jpg",
+        "alt": "GPT 5.6 home screen: The patterns behind working with AI, with a list of the four patterns on the right",
+        "w": 1280,
+        "h": 800
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/site-kimi.jpg",
+        "alt": "Kimi K3 home screen: Four patterns for working with AI, centered, with four pattern chips below",
+        "w": 1280,
+        "h": 800
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/site-gemini.jpg",
+        "alt": "Gemini 3.5 Flash home screen: The Patterns Behind Working With AI, with two buttons and four pattern cards",
+        "w": 1280,
+        "h": 800
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/site-claude.jpg",
+        "alt": "Claude Fable 5 home screen: Four patterns for working with AI, with a short paragraph about eighteen months of real builds and four pattern chips",
+        "w": 1280,
+        "h": 800
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/site-final.jpg",
+        "alt": "The merged home screen: GPT's layout with the pattern list on the right, and Kimi's wording, Four patterns for working with AI",
+        "w": 1280,
+        "h": 800
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/notebook-2025.jpg",
+        "alt": "Handwritten notebook page titled Model Comparison. At the top, circled: content needs to be reworked, common. GPT 5.6 Sol: plus home screen look and feel and animation, plus clean blocks, plus interaction, plus scrolling animation; minus second screen content, minus interaction doesn't work, minus unfinished work, minus not working on the 4th tile, minus menu and top bar. Kimi: plus cleaner intro content, plus scrolling animation, plus content found, plus subslides with two exclamation points, minus accessibility, dark on dark.",
+        "w": 750,
+        "h": 1000
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/notebook-2026.jpg",
+        "alt": "Handwritten notebook page. Kimi continued: plus prompt animation with two exclamation points, minus harness diagram, plus visual of timeline and projects. Claude: minus intro view, plus navigable timeline, plus outbound links, plus typing animation, plus slides in a carousel on diagrams, minus animation a bit distracting, I want interactive but site should be readable, plus best slider, plus good animation, some does not distract.",
+        "w": 750,
+        "h": 1000
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/merge-questions.png?v=2",
+        "alt": "The merge session. AI summarizes: benefit is not starting from scratch, you can react to sample work and want the best of all of it combined. Then eight questions with my answers, including: Claude base makes sense, intro screen could be a lot better like GPT's; ratio slider; calm default for looping animations; project timeline in its own section after the hero; GPT layout plus Kimi voice for the home screen; Claude and Kimi pastels; Claude's nav; and for Gemini, nothing.",
+        "w": 1056,
+        "h": 830
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/notebook-2027.jpg",
+        "alt": "Handwritten notebook page: 1, Benefit. Not starting from scratch, I'm not UX and content designer but I see sample work and have thoughts. Best of all the work.",
+        "w": 750,
+        "h": 1000
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/thumb-setup.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/thumb-gpt.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/thumb-kimi.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/thumb-gemini.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/thumb-claude.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/thumb-final.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-07-21-four-frontier-models-one-prompt/images/thumb-takeaway.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 17,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/twYqEHXh91U?rel=0",
+        "title": "I Made 4 Frontier Models Build My Portfolio Site With the Same 1,032-Line Prompt (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 9,
+    "mainTextLen": 12949,
+    "realImageCount": 17,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "GET",
+        "host": "www.gstatic.com",
+        "path": "/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+        "query": [],
+        "resourceType": "fetch",
+        "contentType": "image/svg+xml",
+        "status": 200,
+        "bytes": 272,
+        "hits": 1,
+        "example": "https://www.gstatic.com/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 122,
+        "hits": 1,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 3
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      },
+      {
+        "host": "www.google.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 1,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 3,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2026-07-21-four-frontier-models-one-prompt.png",
+  "renderedHtml": "pages/writing-2026-07-21-four-frontier-models-one-prompt.html",
+  "slots": {
+    "type": "article",
+    "headline": "Four Frontier Models, One 1,032-Line Prompt: What Each Built, and the Merge I Kept",
+    "deck": "Picking which AI model to pay for is hard, so I ran my own test. GPT 5.6, Kimi K3, Gemini 3.5 Flash and Claude Fable 5 each built my portfolio site from the same 1,032-line prompt, on top of about 5,000 lines of context about my work. I graded the four sites in a paper notebook, ranked them, then had AI merge the best of all four into one site.",
+    "byline": "By Jack Jin · July 21, 2026 · Updated October 4, 2026 · 9 min read · Includes my 14:15 video",
+    "meta": {
+      "times": [
+        "July 21, 2026",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "video",
+      "src": "https://www.youtube-nocookie.com/embed/twYqEHXh91U?rel=0"
+    },
+    "body": {
+      "h2": [
+        "1. One 1,032-line prompt built from four ingredients",
+        "2. GPT 5.6 had my favorite home screen, and a glaring hole",
+        "3. Kimi K3 dug deepest into the context, and made some up",
+        "4. Gemini 3.5 Flash was the most disappointing of the four",
+        "5. Claude Fable 5 looked the most premium, with too much animation",
+        "6. Merging the best of all four, and what the merge really kept",
+        "7. What I took away, and which model to pay for",
+        "Related"
+      ],
+      "figures": 13,
+      "codeBlocks": 0,
+      "tables": 1,
+      "embeds": 1
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Making AI-Driven Development Modules Reusable",
+        "href": "/writing/2026-02-05-reusable-ai-development-modules/"
+      },
+      {
+        "title": "Theming a Brand-New EDS Site with Google Stitch and MCP",
+        "href": "/writing/2026-05-24-theming-eds-with-google-stitch/"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 8,
+    "authorBox": true
+  }
+}

@@ -1,0 +1,785 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:41:02.859Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2025-07-12-aem-headless-omnichannel-architecture",
+  "url": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:41:02.859Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/",
+  "title": "AEM Headless and Omnichannel: Three Architecture Diagrams | Jack Jin",
+  "description": "Three fictional AEM headless patterns for email, mobile apps and sites: events, static site generators and one shared publish tier, plus twelve considerations.",
+  "og": {
+    "title": "AEM Headless and Omnichannel: Three Architecture Diagrams | Jack Jin",
+    "description": "Three fictional AEM headless patterns for email, mobile apps and sites: events, static site generators and one shared publish tier, plus twelve considerations.",
+    "image": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "AEM Headless and Omnichannel: Three Architecture Diagrams and Twelve Considerations"
+    },
+    {
+      "tag": "h2",
+      "text": "What changed since July 2025#"
+    },
+    {
+      "tag": "h2",
+      "text": "1. One AEM feeding email, mobile apps and websites#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. Solution 1 pushes content fragments out through event topics#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. Solution 2 shares experience fragments with email, mobile builds and Target#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. Solution 3 serves pages and fragments to every channel from one publish tier#"
+    },
+    {
+      "tag": "h2",
+      "text": "5. Six considerations that play out differently in each solution#"
+    },
+    {
+      "tag": "h2",
+      "text": "6. Six more considerations that don't fit in a diagram#"
+    },
+    {
+      "tag": "h2",
+      "text": "Later work on caching and Adobe's CDN#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "AEM Headless and Omnichannel",
+    "By Jack Jin · July 12, 2025 · Updated October 4, 2026 · 7 min read · Includes my 9:13 video",
+    "Getting content out of AEM headless into email, mobile apps and websites takes more than one API. Here are three fictional but realistic patterns for it: content fragments with a scheduler and event topics, experience fragments feeding compile-time builds and Target, and one publish tier serving every channel. Then the twelve considerations behind them: six traced across all three diagrams, from push vs pull to data types, and six that never got a box, from modular content to legal cutover.",
+    "I walk through it in the same order as the video. Every part links to its moment in the video if you'd rather watch.",
+    "Also published as a LinkedIn video on July 12, 2025. Rewritten for this site in October 2026.",
+    "Solution 1 queries content fragments with GraphQL. Adobe's persisted queries documentation recommends persisted queries over standard GraphQL queries, which run as POST requests whose responses can't easily be cached, and it lets you set the cache headers per query.",
+    "Two months after this video I followed those cache headers through every layer, from AEM publish to the browser, in AEM caching in production.",
+    "Location of personalization got a new option in my own work: AEM Edge Functions personalize the HTML on Adobe's CDN, before any JavaScript runs in the browser.",
+    "So what is AEM and omnichannel? Very simply put, it's AEM and more than one channel of content. That could be websites, mobile apps or email. When I wrote about AEM headless for frontend-led teams in May 2025, I went light on omnichannel on purpose and said I'd come back to it. This picks it up.",
+    "The main goal is an AEM system that's future-ready. It should allow for flexibility, content reuse, automated validation and version control, and it needs to support multiple teams and delivery modes.",
+    "A disclaimer, as on the board: the three solutions use a lot of fictional content, mixed together, to protect my previous clients' implementations. They reflect real tradeoffs I've run into in large-scale AEM work. On the board, each arrow starts at the box that makes the move: it publishes, sends or asks.",
+    "Watch this part0:00 What AEM omnichannel means",
+    "Solution 1 starts with an upstream planning tool. That could be quite a few things: an Azure service, or a marketing planning tool. Whatever it is, sometimes it needs to create content fragments and experience fragments in AEM. In this example it's content fragments. Authors enter content, and the content fragment gets published.",
+    "A scheduler then queries GraphQL, finds the latest updated content fragments, and sends them to a subscription event. The scheduler makes sure every publication is identified and every update goes to the right subscription. Two topics listen to that event, and two separate channels listen to the topics. Each channel processes the publication and handles it in its own way.",
+    "Notice that Channel B fetches images from AEM publish. Some systems want to host images on their own, so images and content stay together.",
+    "This solution is very popular in event-driven architecture, where you have an event hub and topics. Some martech stacks really enjoy it; it's part of their core solution.",
+    "Watch this part0:25 Solution 11:49 Why event-driven stacks like it",
+    "Solution 2 uses experience fragments instead of content fragments. Experience fragments can be used as headless content too, though you think about them a little differently. As I said in the video, Adobe Target has supported experience fragments since its early days with AEM 6.5, while content fragments still weren't supported there in AEM 6.5 when I recorded it.",
+    "So authors create experience fragments and publish them to Target and to AEM publish. Here's where it gets really interesting. Authors can use Target for the experience fragment, and the mobile apps and email marketing both have access to the same content and variations, so they can pick and choose which one goes in. That's an omnichannel vision with personalization.",
+    "The other callout on this diagram is SSG. Here it means the content is generated ahead of time, at compile time. Some mobile applications prefer to have their content cached within the app, so when it's published, the content becomes part of the application. You still keep the authoring and omnichannel capability.",
+    "Watch this part2:04 Solution 23:07 What SSG means here",
+    "Solution 3 has AEM pages, experience fragments and content fragments. Note the line at the bottom of my board: pages use experience fragments and content fragments, and experience fragments also use content fragments. That enables quite advanced capabilities within AEM. Site 1 and Site 2 both use pages, and those pages in turn use experience fragments and content fragments.",
+    "As in Solution 2, Markdown lets mobile apps consume published experience fragments, and as I noted in the video, content fragments also support Markdown within the Adobe ecosystem. Mobile App 1 consumes only content fragments, using GraphQL. Mobile App 2 consumes content fragments and experience fragments in Markdown.",
+    "I consider this one of the more flexible hybrid methods in AEM. Pages share content from experience fragments and content fragments, and that same content is shared with other applications. It shows the complexity of AEM headless, and its potential.",
+    "Watch this part3:35 Solution 3",
+    "Six things I'd call attention to across the three diagrams:",
+    "Publishing pattern. Sometimes you publish to a queue. Sometimes you publish and wait for the content to be pulled. And sometimes you publish and also trigger something on the other side to let it know the content is ready to be retrieved.",
+    "Push vs pull. Sometimes content gets pulled from AEM, and sometimes AEM pushes the content to the right place.",
+    "API vs event driven. In headless and martech, sometimes it's API driven and sometimes it's event driven.",
+    "CSR vs SSR vs SSG. Some headless content is surfaced with client-side rendering, some with server-side rendering, and some generated ahead of time. Adobe Target is a good example of client-side rendering: the browser calls Target and renders the content.",
+    "Data type. On these boards: HTML, Markdown and JSON.",
+    "Upstream automation. In headless it's not uncommon to have upstream automation, so content fragments and experience fragments are created automatically.",
+    "The three solutions answer the same six questions differently, and that's easier to see than to read. Pick a consideration below: on each of the three diagrams, the boxes and arrows it touches light up, and the line under each diagram says how that solution handles it. It opens on push vs pull, where all three differ.",
+    "Solution 1 · content fragments and events",
+    "Both. The scheduler pulls from publish, then the event pushes the change out through the topics. Each processor reads its topic and pushes to its channel; Channel B pulls images back from publish.",
+    "Solution 2 · experience fragments, SSG and Target",
+    "Mostly pull. The two builds and the AEM site ask publish for fragments. The push is author sending fragments to Target, which the site then pulls in the browser.",
+    "Solution 3 · one publish tier, many consumers",
+    "Pull. Every app and site asks publish for what it needs, when it needs it.",
+    "Watch this part5:00 The six considerations",
+    "A few other considerations didn't get a diagram.",
+    "Modular vs page. With modular content, you produce content at the module level and don't really touch the page; the page is set up to pull in modules. In a true modular content perspective, modules are self-identifying and make themselves available. They can be used on many pages and many channels, they may have a go-live and a go-off time, and they might be made for specific campaigns. The page is more of a channel-specific concept. Large, true headless implementations think of content as modular, while more traditional headless implementations still have pages, and modules get added to them. The biggest difference: in a true modular implementation, modules are the only thing marketers modify, and pages pull in the modules automatically.",
+    "Location of personalization and classification. There are two places it's generally done. The first is the CMS, AEM, where authors create the content and tag it with the right type. The second, and more common, is Adobe Target or a similar system.",
+    "Taxonomy. This is a very large topic in headless. It probably deserves its own video.",
+    "Explicit content versioning and cutover. Some content is marketing content, and that's what AEM is used to. As soon as you get into the headless world, some content is legal statements and insurance forms. That isn't usually considered marketing content, but it's managed in AEM. It carries legal impact that marketing content doesn't, and sometimes it needs a very strict review process, not only for code but for content.",
+    "Thorough content validation through CI/CD. Sometimes content is built within the CI/CD pipeline, so the content is reviewed and processed by CI/CD as well.",
+    "Hybrid: sites plus headless. Sites and headless work really well together in a hybrid pattern, where you use AEM for headful content as well as headless content. Solution 3 is that pattern.",
+    "A month before the video I'd written down my take on going headless: content fragments with the Universal Editor have a strong omnichannel story, but they can be overkill if you're not integrating across multiple touchpoints. That's in Making sense of seven AEM capabilities.",
+    "Watch this part6:22 Modular vs page7:37 Personalization and taxonomy8:08 Cutover, CI/CD and hybrid",
+    "These three diagrams are about getting content out of AEM. Later articles picked up from there: in September 2025, caching at every layer between publish and the browser, and a year later, running code on Adobe's CDN itself. Both are linked at the top of this page.",
+    "ArticleWhy AEM Headless Makes Sense When Frontend Teams LeadThe May 2025 piece that left omnichannel for later.",
+    "ArticleAEM Caching in ProductionFollowing the cache headers from publish to the browser.",
+    "ArticleMaking Sense of Seven AEM CapabilitiesHeadless, Sites and Edge Delivery options side by side.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "FirstWhat changed since 2025",
+    "Part 1One AEM, many channels",
+    "Part 2Solution 1, fragments and events",
+    "Part 3Solution 2, fragments to Target",
+    "Part 4Solution 3, one publish tier",
+    "Part 5Six considerations compared",
+    "Part 6Six more without a diagram",
+    "Wrap-upLater work on caching"
+  ],
+  "codeBlocks": [],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/-pquHqafwFA"
+    },
+    {
+      "label": "persisted queries documentation",
+      "href": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/headless/graphql-api/persisted-queries"
+    },
+    {
+      "label": "AEM caching in production",
+      "href": "/writing/2025-09-01-aem-caching-production-architectures/"
+    },
+    {
+      "label": "AEM Edge Functions",
+      "href": "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+    },
+    {
+      "label": "AEM headless for frontend-led teams",
+      "href": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead/"
+    },
+    {
+      "label": "0:00 What AEM omnichannel means",
+      "href": "https://youtu.be/-pquHqafwFA?t=0"
+    },
+    {
+      "label": "Redrawn below",
+      "href": "#lens"
+    },
+    {
+      "label": "0:25 Solution 1",
+      "href": "https://youtu.be/-pquHqafwFA?t=25"
+    },
+    {
+      "label": "1:49 Why event-driven stacks like it",
+      "href": "https://youtu.be/-pquHqafwFA?t=109"
+    },
+    {
+      "label": "2:04 Solution 2",
+      "href": "https://youtu.be/-pquHqafwFA?t=124"
+    },
+    {
+      "label": "3:07 What SSG means here",
+      "href": "https://youtu.be/-pquHqafwFA?t=187"
+    },
+    {
+      "label": "3:35 Solution 3",
+      "href": "https://youtu.be/-pquHqafwFA?t=215"
+    },
+    {
+      "label": "Publishing pattern",
+      "href": null
+    },
+    {
+      "label": "Push vs pull",
+      "href": null
+    },
+    {
+      "label": "API vs event driven",
+      "href": null
+    },
+    {
+      "label": "CSR vs SSR vs SSG",
+      "href": null
+    },
+    {
+      "label": "Data type",
+      "href": null
+    },
+    {
+      "label": "Upstream automation",
+      "href": null
+    },
+    {
+      "label": "5:00 The six considerations",
+      "href": "https://youtu.be/-pquHqafwFA?t=300"
+    },
+    {
+      "label": "Making sense of seven AEM capabilities",
+      "href": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+    },
+    {
+      "label": "6:22 Modular vs page",
+      "href": "https://youtu.be/-pquHqafwFA?t=382"
+    },
+    {
+      "label": "7:37 Personalization and taxonomy",
+      "href": "https://youtu.be/-pquHqafwFA?t=457"
+    },
+    {
+      "label": "8:08 Cutover, CI/CD and hybrid",
+      "href": "https://youtu.be/-pquHqafwFA?t=488"
+    },
+    {
+      "label": "Why AEM Headless Makes Sense When Frontend Teams Lead",
+      "href": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead/"
+    },
+    {
+      "label": "AEM Caching in Production",
+      "href": "/writing/2025-09-01-aem-caching-production-architectures/"
+    },
+    {
+      "label": "Making Sense of Seven AEM Capabilities",
+      "href": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "FirstWhat changed since 2025",
+      "href": "#changed"
+    },
+    {
+      "label": "Part 1One AEM, many channels",
+      "href": "#goal"
+    },
+    {
+      "label": "Part 2Solution 1, fragments and events",
+      "href": "#solution-1"
+    },
+    {
+      "label": "Part 3Solution 2, fragments to Target",
+      "href": "#solution-2"
+    },
+    {
+      "label": "Part 4Solution 3, one publish tier",
+      "href": "#solution-3"
+    },
+    {
+      "label": "Part 5Six considerations compared",
+      "href": "#lens"
+    },
+    {
+      "label": "Part 6Six more without a diagram",
+      "href": "#more"
+    },
+    {
+      "label": "Wrap-upLater work on caching",
+      "href": "#next"
+    },
+    {
+      "label": "Watch the video, 9:13",
+      "href": "#video"
+    },
+    {
+      "label": "On YouTube",
+      "href": "https://youtu.be/-pquHqafwFA"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://youtu.be/-pquHqafwFA",
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#changed",
+    "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/headless/graphql-api/persisted-queries",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#goal",
+    "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/",
+    "https://youtu.be/-pquHqafwFA?t=0",
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#solution-1",
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#lens",
+    "https://youtu.be/-pquHqafwFA?t=25",
+    "https://youtu.be/-pquHqafwFA?t=109",
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#solution-2",
+    "https://youtu.be/-pquHqafwFA?t=124",
+    "https://youtu.be/-pquHqafwFA?t=187",
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#solution-3",
+    "https://youtu.be/-pquHqafwFA?t=215",
+    "https://youtu.be/-pquHqafwFA?t=300",
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#more",
+    "https://www.jackzhaojin.com/writing/2025-06-04-seven-aem-capabilities-tradeoffs/",
+    "https://youtu.be/-pquHqafwFA?t=382",
+    "https://youtu.be/-pquHqafwFA?t=457",
+    "https://youtu.be/-pquHqafwFA?t=488",
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#next",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/#video",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/board-overview.png",
+        "alt": "Hand-drawn board titled AEM Headless + Omni channel! One box labeled AEM with arrows to Channel 1, Channel 2 and Channel 3.",
+        "w": 1000,
+        "h": 828
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/board-solution-1a.png",
+        "alt": "Solution 1, left half: Upstream Planning Tools to AEM Author CFs to AEM Publish CFs. A Scheduler that fetches GraphQL and identifies the latest content points to AEM Publish CFs and to a Subscription event.",
+        "w": 1400,
+        "h": 388
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/board-solution-1b.png",
+        "alt": "Solution 1, right half: the Subscription fans out to Topic 1 and Topic 2. Channel A Processor reads Topic 1 and delivers to Channel A; Channel B Processor reads Topic 2, delivers to Channel B and fetches images from AEM Publish CFs.",
+        "w": 1000,
+        "h": 468
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/board-solution-2.png",
+        "alt": "Solution 2 from the board: AEM Author XFs to AEM Publish XFs and to Target XFs. Email Marketing SSG reads main plus variations from AEM Publish XFs, Mobile Markdown SSG and AEM also read from AEM Publish XFs, and AEM reaches Target XFs through a4t.js CSR.",
+        "w": 1000,
+        "h": 917
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/board-solution-3.png",
+        "alt": "Solution 3 from the board: AEM Author CFs, XFs and Pages each publish to AEM Publish CFs, XFs and Pages. Mobile App 1 reads Publish CFs, Mobile App 2 reads Publish CFs and reads Publish XFs as Markdown, and Site 1 and Site 2 read Publish Pages. Note: Pages has XFs and CFs. XFs has CFs.",
+        "w": 1000,
+        "h": 1163
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/thumb-goal.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/thumb-solution-1.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/thumb-solution-2.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/thumb-solution-3.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/images/thumb-considerations.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 10,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/-pquHqafwFA?rel=0",
+        "title": "AEM Architecture Video - AEM Headless and Omnichannel - 2025 edition (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 10,
+    "mainTextLen": 17195,
+    "realImageCount": 10,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 122,
+        "hits": 1,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 3
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      },
+      {
+        "host": "www.google.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 3,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 2,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2025-07-12-aem-headless-omnichannel-architecture.png",
+  "renderedHtml": "pages/writing-2025-07-12-aem-headless-omnichannel-architecture.html",
+  "slots": {
+    "type": "article",
+    "headline": "AEM Headless and Omnichannel: Three Architecture Diagrams and Twelve Considerations",
+    "deck": "Getting content out of AEM headless into email, mobile apps and websites takes more than one API. Here are three fictional but realistic patterns for it: content fragments with a scheduler and event topics, experience fragments feeding compile-time builds and Target, and one publish tier serving every channel. Then the twelve considerations behind them: six traced across all three diagrams, from push vs pull to data types, and six that never got a box, from modular content to legal cutover.",
+    "byline": "By Jack Jin · July 12, 2025 · Updated October 4, 2026 · 7 min read · Includes my 9:13 video",
+    "meta": {
+      "times": [
+        "July 12, 2025",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "video",
+      "src": "https://www.youtube-nocookie.com/embed/-pquHqafwFA?rel=0"
+    },
+    "body": {
+      "h2": [
+        "What changed since July 2025",
+        "1. One AEM feeding email, mobile apps and websites",
+        "2. Solution 1 pushes content fragments out through event topics",
+        "3. Solution 2 shares experience fragments with email, mobile builds and Target",
+        "4. Solution 3 serves pages and fragments to every channel from one publish tier",
+        "5. Six considerations that play out differently in each solution",
+        "6. Six more considerations that don't fit in a diagram",
+        "Later work on caching and Adobe's CDN",
+        "Related"
+      ],
+      "figures": 6,
+      "codeBlocks": 0,
+      "tables": 1,
+      "embeds": 1
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "Why AEM Headless Makes Sense When Frontend Teams Lead",
+        "href": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead/"
+      },
+      {
+        "title": "AEM Caching in Production",
+        "href": "/writing/2025-09-01-aem-caching-production-architectures/"
+      },
+      {
+        "title": "Making Sense of Seven AEM Capabilities",
+        "href": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 10,
+    "authorBox": true
+  }
+}

@@ -1,0 +1,768 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:43.749Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2026-04-12-two-ai-skills-team-enablement",
+  "url": "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:43.749Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/",
+  "title": "Two AI Skills for Team Enablement: Logger and Harvester | Jack Jin",
+  "description": "Make a team's AI work repeatable: log the prompts people typed, turn one-off builds into skills, and file AI docs under one taxonomy. Two open source skills.",
+  "og": {
+    "title": "Two AI Skills for Team Enablement: Logger and Harvester | Jack Jin",
+    "description": "Make a team's AI work repeatable: log the prompts people typed, turn one-off builds into skills, and file AI docs under one taxonomy. Two open source skills.",
+    "image": "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Two AI Skills for Team Enablement: Log the Prompts You Typed, File the AI Docs Behind Them"
+    },
+    {
+      "tag": "h2",
+      "text": "Since April, the logger writes one file per session#"
+    },
+    {
+      "tag": "h2",
+      "text": "1. Coaching a team on AI: show, watch, three likes and one thought#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. The Conversation Logger keeps what you typed, word for word#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. Turning a one-off build into a skill with the skill creator#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. Complex builds need a prompt packet, not one prompt#"
+    },
+    {
+      "tag": "h2",
+      "text": "5. The AI Knowledge Harvester files AI docs under one taxonomy#"
+    },
+    {
+      "tag": "h2",
+      "text": "6. Installing both skills, and what I learned#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "Two AI Skills for Team Enablement",
+    "By Jack Jin · April 12, 2026 · Updated October 4, 2026 · 8 min read · Includes my 9:49 video",
+    "To make a team's AI work repeatable, keep the prompts people actually typed and file the documents behind them where others can find them. Two open source skills do that: a Conversation Logger that records the human side verbatim and the AI's side in one line, and an AI Knowledge Harvester that files specs, logs and prompt packets under one taxonomy. Along the way: how to coach a team on AI, and how to turn a one-off build into a reusable skill.",
+    "The video walks through three goals and then the two skills, in that order, and so does this page. Each part links to its moment in the video.",
+    "First published on LinkedIn on April 12, 2026. Rewritten for this site in October 2026. Code: ai-builder-kit at 93cfafd, the version from the day of the video. Example output: the ai-docs folder of ciam-demo.",
+    "Both skills are still in ai-builder-kit, and the logger kept changing as I used it. In April I added a sibling, chat-conversation-logger, for conversations in the Claude.ai chat app. In May the logger moved from one long prompt-log.md per project to one file per session, named by date, a counter and a topic, so a folder listing reads in time order. The harvester's taxonomy is unchanged.",
+    "The first goal I have for everyone is to think about how we make our teams better at using AI. I've tried a lot of methods, on my project team and in other parts of Accenture. The best one I've seen, from other people and from doing it myself, goes like this. First I show people what I do on a common project task. Then I watch them do a similar task, and I tell them three things I like and one thing they could think about.",
+    "Every once in a while someone asks me something right on point and fairly difficult, and I think: I did this two weeks ago. If only I had a way to show them what I did. But that was on my AI laptop, which isn't my Accenture laptop, and I can't just whip up the situation and the prompt that solved it. That happens more often than I like to admit.",
+    "Watch this part0:21 Making the team better at AI",
+    "So I started standardizing how I log my AI conversations. Think about any kind of engineering in STAR terms: the situation you're in, the task you're given, the action you take, and the result. With AI, the action is the prompting. The Conversation Logger focuses on the action I take with AI, not so much on what AI does. It still captures the AI's side, it just isn't the main record.",
+    "Here's a real one, from a Sunday morning session on my CIAM demo, a customer identity and access management proof of concept. The logger kept what I typed verbatim, including answers to the questions AI asked me, and summarized each response and action in a line:",
+    "Not every prompt works the first try, and the log shows that too: each follow-up, as I typed it. I use voice to text a lot, so the prompts aren't polished, and that's fine. What you put into the system matters, and so does what the system has (MCP servers, tools, skills, specs). The most important part is how you use AI. When a teammate asks \"Jack, have you done this?\", I can pull up the log and show exactly what I put into Claude Code or GitHub Copilot to move forward.",
+    "The skill tells the model to record the human side in full and the AI's side in one line each, \"like a lab notebook\". It also works out which tool it is running in, so it can read real prompt timestamps from that tool's history file instead of guessing:",
+    "Claude Code keeps its history in ~/.claude/history.jsonl and Codex in ~/.codex/history.jsonl. Copilot keeps chat history inside VS Code's own databases, so there the log falls back to the current time and says the timestamps are approximate.",
+    "Watch this part1:20 Why log the human side1:51 A real log",
+    "The second goal is building reusable skills. My example is the same CIAM demo. AI did most of the work of setting up the identity system, on Keycloak hosted by Phase Two. I had never set up a system like this before. AI did the research, told me the manual steps, and wrote the shell scripts that configure it, which got my proof of concept done. As far as I can tell, it did the work correctly. And I wanted that to be repeatable.",
+    "So I asked Anthropic's out-of-the-box skill creator for Claude to build a skill from it. I pasted in the prompt blocks I used to generate the specs, and the goal: other people pass in their CIAM requirements and get similar output. Then I pointed it at the code, so it would know what the result was. It read my markdown files, read what makes a good skill, and built one from the situation, my prompts as the action, and the shell scripts as the result. After about five minutes I had a CIAM architect skill that can repeat something I had done once. Early results are promising, and I'm still iterating on it.",
+    "The result it learned from is public: twelve numbered scripts in ciam/scripts, from 00-helpers.sh and 01-configure-realm.sh to 11-configure-frontend-mappers.sh, plus a setup-all.sh.",
+    "Watch this part3:26 Building reusable skills4:21 The skill creator5:51 The finished skill",
+    "The third goal is cataloging my AI work in a way that's findable, so I can turn it into a harness later. The way I think about AI, my four patterns all build around skills at the lowest level. If I capture capabilities as skills, I can make AI do a lot more with harnesses and a 24-hour agent. (That's the stack from Making AI-Driven Development Modules Reusable.)",
+    "Some builds take a lot of planning. You feed AI a very large prompt, a prompt packet, and it plans and builds in phases. For the CIAM demo I used Claude's agent teams, similar to Kimi's agent swarm. The kickoff prompt doesn't do that work justice. It points to a kickoff guide, and the kickoff guide sets a reading order for six documents. So logging prompts isn't enough. If you want to build something complex, you need the packet, and you need to get all of it checked in somewhere you can find it.",
+    "Watch this part6:17 Making AI work findable6:54 Prompt packets",
+    "That's my second skill. The Conversation Logger looks at your current session and your Claude Code or Copilot history. The AI Knowledge Harvester collects everything else: specs, prompt logs, working docs and prompt packets, filed in one consistent taxonomy. If you're into digital asset management, you know taxonomy is big. I wanted all the AI knowledge behind my capabilities in one repository with a documented taxonomy.",
+    "The rules are simple enough to try by hand. The first tier is always the GitHub repo name. The second tier is the sub-project, or the repo name again for a simple repo. Then one folder per document type, and a file name that starts with the date, so every folder sorts in time order. Sources stay where they are, and it never pushes.",
+    "Below, pick one of six example files to see the folder and file name the harvester would give it, and the reason for each part of the path. The last two show what it leaves alone. This is the point of the taxonomy: anyone on the team can guess where a prompt log or a spec lives without asking.",
+    "Example files, from the skill's own docs and ciam-demo",
+    "The file, in its source repo",
+    "jack-dev-server-configs : local/generic-harness-v1/ai-docs/init/prompt-log.md",
+    "Where it lands in the knowledge repo",
+    "ai-knowledge/projects/jack-dev-server-configs/generic-harness-v1/prompt-logs/2026-04-12-01-prompt-log.md",
+    "Tier 1 is the GitHub repo name: jack-dev-server-configs.",
+    "Tier 2 is generic-harness-v1: the path starts with local/generic-harness-v1/, so this is a monorepo sub-project.",
+    "Type is prompt-log: it reads like a session log, prompts followed by → Response and → Action lines.",
+    "The name is the date, a sequence number and a slug, so the folder sorts in time order.",
+    "It is a copy. The source file stays where it is.",
+    "Every harvested file also gets frontmatter: title, project, sub-project, type, date, why it is private, status, source repo and source tool. You can see the result in the public ciam-demo repo, where the harvest left three folders: specs, prompt-logs and working-docs, each file dated and numbered.",
+    "Watch this part8:04 The AI Knowledge Harvester",
+    "Both skills are open source in ai-builder-kit. Install them with one command:",
+    "Pick the skills with the space bar (I picked the AI Knowledge Harvester and the Conversation Logger), hit enter, and you're done. On camera I said \"npx skill add\"; the command in the repo's README is npx skills add.",
+    "I'm still early on all of this. Logging the human side has been more useful than logging the AI's output, a one-off build can become a skill if you hand the skill creator your prompts and your results, and findable takes a taxonomy, not just saved files. What I don't have yet is the best coaching loop for a team; three things I like and one thing to think about is where I am today. If you are thinking about team AI enablement, I'd like to hear what is working for you.",
+    "Watch this part8:54 Installing the skills",
+    "PortfolioAI Builder KitEvery skill in the kit, including these two.",
+    "PortfolioCIAM Demo: customer identity, end to endThe build these logs and the CIAM skill came from.",
+    "WritingMaking AI-Driven Development Modules ReusableThe four patterns that sit on top of skills.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Since thenOne log file per session",
+    "Part 1Coaching a team on AI",
+    "Part 2Logging what you typed",
+    "Part 3A one-off build into a skill",
+    "Part 4Prompt packets",
+    "Part 5Filing under one taxonomy",
+    "Wrap-upInstall, and what I learned"
+  ],
+  "codeBlocks": [
+    "### Prompt 4: Four Architecture Decisions (10:25 AM)\n> (Answered refined 4 questions:)\n> - Auth code flow: Headless OIDC + updated the design markdown\n> - Java 8 compat: Portable utility classes (Recommended)\n> - Session mgmt: Focus spec on auth only\n> - Login page arch: Next.js client component (Recommended)\n→ Response: Read updated `input-design-pkce.md` (now with sequence diagram showing React→Keycloak→Spring flow), wrote full v1.3 incremental PRD.",
+    "if [ \"$CLAUDECODE\" = \"1\" ]; then echo \"claude-code\"\nelif [ -d \"$HOME/.codex\" ]; then echo \"codex\"\nelse echo \"unknown\"; fi",
+    "---\ntitle: \"Prompt Log\"\nproject: jack-dev-server-configs\nsub_project: generic-harness-v1\ntype: prompt-log\ndate: 2026-04-12\ntags: []\nwhy_private: \"one phrase, written by the model\"\nstatus: stable\nsource_repo: https://github.com/jackzhaojin/jack-dev-server-configs\nsource_tool: claude-code\n---",
+    "npx skills add jackzhaojin/ai-builder-kit"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/5U_fOYZxMD4"
+    },
+    {
+      "label": "ai-builder-kit",
+      "href": "https://github.com/jackzhaojin/ai-builder-kit/tree/93cfafd"
+    },
+    {
+      "label": "ai-docs",
+      "href": "https://github.com/jackzhaojin/ciam-demo/tree/a5195f9/ai-docs"
+    },
+    {
+      "label": "ai-builder-kit",
+      "href": "https://github.com/jackzhaojin/ai-builder-kit"
+    },
+    {
+      "label": "0:21 Making the team better at AI",
+      "href": "https://youtu.be/5U_fOYZxMD4?t=21"
+    },
+    {
+      "label": "a5195f9 on GitHub",
+      "href": "https://github.com/jackzhaojin/ciam-demo/blob/a5195f9/ai-docs/prompt-logs/2026-02-22-01-v1-3-pre-plan.md#L60-L68"
+    },
+    {
+      "label": "93cfafd on GitHub",
+      "href": "https://github.com/jackzhaojin/ai-builder-kit/blob/93cfafd/skills/conversation-logger/SKILL.md#L24-L26"
+    },
+    {
+      "label": "1:20 Why log the human side",
+      "href": "https://youtu.be/5U_fOYZxMD4?t=80"
+    },
+    {
+      "label": "1:51 A real log",
+      "href": "https://youtu.be/5U_fOYZxMD4?t=111"
+    },
+    {
+      "label": "ciam/scripts",
+      "href": "https://github.com/jackzhaojin/ciam-demo/tree/a5195f9/ciam/scripts"
+    },
+    {
+      "label": "3:26 Building reusable skills",
+      "href": "https://youtu.be/5U_fOYZxMD4?t=206"
+    },
+    {
+      "label": "4:21 The skill creator",
+      "href": "https://youtu.be/5U_fOYZxMD4?t=261"
+    },
+    {
+      "label": "5:51 The finished skill",
+      "href": "https://youtu.be/5U_fOYZxMD4?t=351"
+    },
+    {
+      "label": "Making AI-Driven Development Modules Reusable",
+      "href": "/writing/2026-02-05-reusable-ai-development-modules/"
+    },
+    {
+      "label": "kickoff guide",
+      "href": "https://github.com/jackzhaojin/ciam-demo/blob/a5195f9/ai-docs/working-docs/2026-02-07-06-kickoff-guide.md"
+    },
+    {
+      "label": "6:17 Making AI work findable",
+      "href": "https://youtu.be/5U_fOYZxMD4?t=377"
+    },
+    {
+      "label": "6:54 Prompt packets",
+      "href": "https://youtu.be/5U_fOYZxMD4?t=414"
+    },
+    {
+      "label": "source",
+      "href": "https://github.com/jackzhaojin/ai-builder-kit/blob/93cfafd/skills/ai-knowledge-harvester/SKILL.md"
+    },
+    {
+      "label": "A prompt log in a monorepo",
+      "href": null
+    },
+    {
+      "label": "A spec",
+      "href": null
+    },
+    {
+      "label": "A CLAUDE.md",
+      "href": null
+    },
+    {
+      "label": "A kickoff guide",
+      "href": null
+    },
+    {
+      "label": "A README",
+      "href": null
+    },
+    {
+      "label": "A docs/ page",
+      "href": null
+    },
+    {
+      "label": "three folders",
+      "href": "https://github.com/jackzhaojin/ciam-demo/tree/a5195f9/ai-docs"
+    },
+    {
+      "label": "8:04 The AI Knowledge Harvester",
+      "href": "https://youtu.be/5U_fOYZxMD4?t=484"
+    },
+    {
+      "label": "8:54 Installing the skills",
+      "href": "https://youtu.be/5U_fOYZxMD4?t=534"
+    },
+    {
+      "label": "AI Builder Kit",
+      "href": "/portfolio/#ch-kit"
+    },
+    {
+      "label": "CIAM Demo: customer identity, end to end",
+      "href": "/portfolio/#ch-ciam"
+    },
+    {
+      "label": "Making AI-Driven Development Modules Reusable",
+      "href": "/writing/2026-02-05-reusable-ai-development-modules/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Since thenOne log file per session",
+      "href": "#changed"
+    },
+    {
+      "label": "Part 1Coaching a team on AI",
+      "href": "#part-1"
+    },
+    {
+      "label": "Part 2Logging what you typed",
+      "href": "#part-2"
+    },
+    {
+      "label": "Part 3A one-off build into a skill",
+      "href": "#part-3"
+    },
+    {
+      "label": "Part 4Prompt packets",
+      "href": "#part-4"
+    },
+    {
+      "label": "Part 5Filing under one taxonomy",
+      "href": "#part-5"
+    },
+    {
+      "label": "Wrap-upInstall, and what I learned",
+      "href": "#part-6"
+    },
+    {
+      "label": "Watch the video, 9:49",
+      "href": "#video"
+    },
+    {
+      "label": "Code on GitHub",
+      "href": "https://github.com/jackzhaojin/ai-builder-kit/tree/93cfafd"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://youtu.be/5U_fOYZxMD4",
+    "https://github.com/jackzhaojin/ai-builder-kit/tree/93cfafd",
+    "https://github.com/jackzhaojin/ciam-demo/tree/a5195f9/ai-docs",
+    "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/#changed",
+    "https://github.com/jackzhaojin/ai-builder-kit",
+    "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/#part-1",
+    "https://youtu.be/5U_fOYZxMD4?t=21",
+    "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/#part-2",
+    "https://github.com/jackzhaojin/ciam-demo/blob/a5195f9/ai-docs/prompt-logs/2026-02-22-01-v1-3-pre-plan.md#L60-L68",
+    "https://github.com/jackzhaojin/ai-builder-kit/blob/93cfafd/skills/conversation-logger/SKILL.md#L24-L26",
+    "https://youtu.be/5U_fOYZxMD4?t=80",
+    "https://youtu.be/5U_fOYZxMD4?t=111",
+    "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/#part-3",
+    "https://github.com/jackzhaojin/ciam-demo/tree/a5195f9/ciam/scripts",
+    "https://youtu.be/5U_fOYZxMD4?t=206",
+    "https://youtu.be/5U_fOYZxMD4?t=261",
+    "https://youtu.be/5U_fOYZxMD4?t=351",
+    "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/#part-4",
+    "https://www.jackzhaojin.com/writing/2026-02-05-reusable-ai-development-modules/",
+    "https://github.com/jackzhaojin/ciam-demo/blob/a5195f9/ai-docs/working-docs/2026-02-07-06-kickoff-guide.md",
+    "https://youtu.be/5U_fOYZxMD4?t=377",
+    "https://youtu.be/5U_fOYZxMD4?t=414",
+    "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/#part-5",
+    "https://github.com/jackzhaojin/ai-builder-kit/blob/93cfafd/skills/ai-knowledge-harvester/SKILL.md",
+    "https://youtu.be/5U_fOYZxMD4?t=484",
+    "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/#part-6",
+    "https://youtu.be/5U_fOYZxMD4?t=534",
+    "https://www.jackzhaojin.com/portfolio/#ch-kit",
+    "https://www.jackzhaojin.com/portfolio/#ch-ciam",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/#video",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/images/goals-and-skills.png",
+        "alt": "Diagram titled AI Skills on Enabling Your Team. Three goals across the top: Share Knowledge and Give Feedback, Building reusable skills, and Making your AI-docs findable under a single taxonomy. Arrows lead down to two skills: Conversation Logger and AI Knowledge Harvester.",
+        "w": 1600,
+        "h": 650
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/images/thumb-goal-1.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/images/thumb-logger.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/images/thumb-goal-2.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/images/thumb-goal-3.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-04-12-two-ai-skills-team-enablement/images/thumb-harvester.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 6,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/5U_fOYZxMD4?rel=0",
+        "title": "I Built Two AI Skills to Make Team AI Work Repeatable and Shareable (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 9,
+    "mainTextLen": 12115,
+    "realImageCount": 6,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 122,
+        "hits": 1,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 3
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      },
+      {
+        "host": "www.google.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 1,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 2,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2026-04-12-two-ai-skills-team-enablement.png",
+  "renderedHtml": "pages/writing-2026-04-12-two-ai-skills-team-enablement.html",
+  "slots": {
+    "type": "article",
+    "headline": "Two AI Skills for Team Enablement: Log the Prompts You Typed, File the AI Docs Behind Them",
+    "deck": "To make a team's AI work repeatable, keep the prompts people actually typed and file the documents behind them where others can find them. Two open source skills do that: a Conversation Logger that records the human side verbatim and the AI's side in one line, and an AI Knowledge Harvester that files specs, logs and prompt packets under one taxonomy. Along the way: how to coach a team on AI, and how to turn a one-off build into a reusable skill.",
+    "byline": "By Jack Jin · April 12, 2026 · Updated October 4, 2026 · 8 min read · Includes my 9:49 video",
+    "meta": {
+      "times": [
+        "April 12, 2026",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "video",
+      "src": "https://www.youtube-nocookie.com/embed/5U_fOYZxMD4?rel=0"
+    },
+    "body": {
+      "h2": [
+        "Since April, the logger writes one file per session",
+        "1. Coaching a team on AI: show, watch, three likes and one thought",
+        "2. The Conversation Logger keeps what you typed, word for word",
+        "3. Turning a one-off build into a skill with the skill creator",
+        "4. Complex builds need a prompt packet, not one prompt",
+        "5. The AI Knowledge Harvester files AI docs under one taxonomy",
+        "6. Installing both skills, and what I learned",
+        "Related"
+      ],
+      "figures": 5,
+      "codeBlocks": 2,
+      "tables": 0,
+      "embeds": 1
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "AI Builder Kit",
+        "href": "/portfolio/#ch-kit"
+      },
+      {
+        "title": "CIAM Demo: customer identity, end to end",
+        "href": "/portfolio/#ch-ciam"
+      },
+      {
+        "title": "Making AI-Driven Development Modules Reusable",
+        "href": "/writing/2026-02-05-reusable-ai-development-modules/"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 9,
+    "authorBox": true
+  }
+}

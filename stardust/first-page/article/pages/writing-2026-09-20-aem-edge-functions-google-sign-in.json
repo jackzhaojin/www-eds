@@ -1,0 +1,844 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T14:21:44.213Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2026-09-20-aem-edge-functions-google-sign-in",
+  "url": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T14:21:44.213Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+  "title": "AEM Edge Functions on a Laptop: Google Sign-in at the Edge | Jack Jin",
+  "description": "Google sign-in, members-only pages and API data on an Edge Delivery site with AEM Edge Functions, built on my laptop. The six parts of my video, with the code.",
+  "og": {
+    "title": "AEM Edge Functions on a Laptop: Google Sign-in at the Edge | Jack Jin",
+    "description": "Google sign-in, members-only pages and API data on an Edge Delivery site with AEM Edge Functions, built on my laptop. The six parts of my video, with the code.",
+    "image": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/video-poster.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "AEM Edge Functions on a Laptop: Google Sign-in, Members-Only Pages and API Data at the Edge"
+    },
+    {
+      "tag": "h2",
+      "text": "1. Sign-in and personalization on a static Edge Delivery site#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. What an Edge Function is, and where it runs#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. Getting Edge Functions running on my laptop#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. Signing in with Google at the edge#"
+    },
+    {
+      "tag": "h2",
+      "text": "5. Proving the token is checked against Google's public keys#"
+    },
+    {
+      "tag": "h2",
+      "text": "6. Calling an API from the edge#"
+    },
+    {
+      "tag": "h2",
+      "text": "Edge Functions bring server-side rendering back, with limits#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "AEM Edge Functions on a Laptop",
+    "By Jack Jin · October 2, 2026 · Updated October 4, 2026 · 8 min read · Includes my 12:31 video",
+    "AEM Edge Functions are Adobe's new way to run your own code on its CDN, in front of an Edge Delivery site. I spent a weekend learning them and got a working version on my laptop: Google sign-in, a members-only section, and a greeting bar with the user's data from an API. Everything runs locally, and the code is open source.",
+    "I broke it into the same six parts as the video. Every part links to its moment in the video if you'd rather watch.",
+    "Code: adapt-to-2026-edge-functions at 1c3485f, with 38 tests, and local/ runs the whole demo. Edge Functions went generally available in AEM 2026.8.0 on August 27, 2026.",
+    "The requirement is a common one. I kept it simple. Sign in with Google, no customer identity platform. Once you're signed in, you see your name in a banner and you can open a part of the site you couldn't before. Then something more fun: the page shows your own data from an API.",
+    "AEM 6.5 and AEM as a Cloud Service would render that on the server. Edge Delivery Services doesn't. The site is static, cached and fast, and I didn't want to touch the site code. So where does the login and personalization code run?",
+    "Watch this part0:54 The requirement",
+    "Adobe's architecture diagram explains it well. An Edge Function runs after the CDN cache and before your backends, with a fetch cache of its own. It's part of the CDN, the same idea as other edge platforms like Akamai's or Cloudflare Workers. And the backend can be AEM itself or an external API. My demo does both: it fetches the Edge Delivery page and calls an API.",
+    "In production, the browser asks Adobe's CDN for a page on your custom domain, and the paths listed in cdn.yaml go to the function. The function is WebAssembly running on Fastly, and it rewrites the HTML on the way back. On my laptop it's the same pattern. Caddy plays the CDN, and Viceroy, Fastly's local runtime, runs the same WebAssembly. (On camera I wasn't sure I was saying Viceroy right.) The one difference is that Caddy sends every request to the function, with no cache in front.",
+    "Watch this part2:33 What an Edge Function is4:00 Caddy and Viceroy on the laptop",
+    "There are two repos: the Edge Delivery site, which I didn't change, and the Edge Function. The Edge Function repo looks a lot like an AEM as a Cloud Service repo. There's a cdn.yaml and an edgeFunctions.yaml that go through Cloud Manager, and a src folder with the JavaScript that gets compiled into WebAssembly. Keep in mind that the JavaScript you write has to be WebAssembly compatible.",
+    "Adobe's setup instructions get you most of the way. These are the commands I ran:",
+    "Then the Google side. I created an OAuth client in Google Cloud. In the video I called the setting that matters the redirect URIs. It's actually the authorized JavaScript origins, the sites Google will accept a sign-in from, and this flow has no redirect URI at all. I added http://localhost:7676, Viceroy's default port, and https://local.jackzhaojin.com, a hostname Caddy serves over HTTPS. The client secret doesn't matter here, because the function only checks Google's public keys. More on that in part 5.",
+    "Caddy, the hosts entry, the mock API and the things that tripped me up are in the repo's local/README.md.",
+    "Watch this part1:34 The Google sign-in client3:12 Running it locally5:09 The two repos",
+    "On the local site I click Sign in with Google. Google's sign-in page comes up, I pick my account, and because the origin is registered correctly, Google lets it through. And here's me logged in. This is actually quite cool in Edge Delivery, because sign-in wasn't something it did natively before.",
+    "The three tabs below show the same page three ways: straight from Edge Delivery, through the function while signed out, and through the function signed in. The site code is the same in all three; only the function adds the bar.",
+    "The thing I'd stress is that the greeting isn't client-side JavaScript doing things after the page renders. It comes back in the HTML, before any JavaScript has run. Edge-side rendering, I should say.",
+    "Google gives the browser a token. The function checks it and stores it as a cookie. On every request after that, the function verifies the cookie, fetches the page from Edge Delivery, calls the API with the token, and sends back the page with your details in it.",
+    "The members-only part works the same way. Open an article that needs a login while you're signed out, and the function sends you to sign in, then brings you back. The login experience could obviously be better. For a weekend demo, it's what I have.",
+    "Watch this part5:38 Signing in with Google7:51 The sign-in flow8:32 The members-only page",
+    "This isn't just a fake Google sign-in. The function doesn't blindly accept what Google's script tells it. On every request it checks the token against Google's public keys, which Google publishes as a JWKS document. The checks run in this order, and the claims only get read after the signature holds:",
+    "Below, the same four checks run in your browser, with the same error messages, on tokens signed with a demo key made on this page instead of Google's. Pick a token. The valid one passes all four. Each of the other five is a way to fake or reuse a token, and each is stopped at a different check. Note that the edited name fails at the signature, so the fake name is never read. The line at the bottom says what the page would show that visitor.",
+    "The cookie holds this token. Three parts, split by dots.",
+    "eyJhbGciOiJSUzI1NiIsImtpZCI6ImRlbW8ta2V5LTEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhdWQiOiJkZW1vLWNsaWVudC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExMDI0ODQ5NTkyMTIzODk4NjQyMCIsImVtYWlsIjoidHJhaWwucmVhZGVyQGV4YW1wbGUuY29tIiwibmFtZSI6IlRyYWlsIFJlYWRlciIsImdpdmVuX25hbWUiOiJUcmFpbCIsImlhdCI6MTc5MDAwMDAwMCwiZXhwIjoxNzkwMDAzNjAwfQ.fFY838nLwKZdXiDSYa5JeLfyWP8jORxm-IzPV5mEl2TCwDfqLP-LjZdHlupGhdhR7pTJp3bqwnexcv8KWLte-YLslNoUhn15XY8zUF4f7znjL2tgk8pYXTj-w1xFPQccNn5QFV4bNISARY8l7qDvdu-dcJ8VmN5Af3Ge8K9aZ-DxJOWoFxCNZgOQMQnzu7e6KQChnmsYpJmdh3riftqhKzzdQqbxMAjO1B0DGN4qhFlCXpGA3e1jhcqjpSdCzNLjcUDm_L2lbvzHCGvBlANB-i3rEoiOqF86XD2ZXmfDCAdyBSzetxbHnFom-8hZhPXKY5ck1lvgpavK5ppzGb3Ziw",
+    "Decoded, nothing is secret. Anyone can read it and anyone can edit it.",
+    "Published public keys",
+    "kid demo-key-1 n: generated in your browser",
+    "A demo key pair made on this page. Google's real keys are at googleapis.com/oauth2/v3/certs.",
+    "1Algorithm is RS256Never let the token pick something weaker.",
+    "2Key ID is publishedFind the public key the token says it was signed with.",
+    "3Signature matchesVerify header.payload against that key.",
+    "4Claims are acceptableOnly now: issuer, audience, expiry (60 s leeway).",
+    "With JavaScript on, this signs real tokens in your browser and runs the four checks on each one.",
+    "It's very possible to do a full introspection instead, where you ask the identity provider about the token. That needs a client secret, and I just didn't do it for this demo. A public key check is enough to know the token is real. One of the biggest benefits of edge-side compute is that it can do these token checks fairly quickly.",
+    "Watch this part6:50 Checking the token against Google's public keys",
+    "This last part goes past sign-in. The function can also call an API in the same request, the server-side rendering we all miss and love from AEM 6.5. For this demo the API is completely mocked up: /trails returns your saved trails. Once you're logged in, the API knows who you are because the function sends it the same Google token as a Bearer header, and the API verifies that token itself. It trusts the token, not the edge.",
+    "So the saved trails in the greeting bar aren't a client-side fetch. They're baked into the HTML the function returns.",
+    "My first version put the bar inside <main>. The layout broke. Edge Delivery's aem.js turns a <div> inside <main> into a section, and a <div> inside a section into a block. My bar became a section, its inner <div> became a block called edge-greeting__inner, and the page went looking for a block script that doesn't exist. Now the bar goes just before <main>. It's also HTML and CSS only, because aem.page sends a Content Security Policy that would block an injected script.",
+    "Switch between the two placements below to see the DOM aem.js produces for each and what the browser console reports.",
+    "The DOM after aem.js runs",
+    "The page",
+    "console: no errors",
+    "Watch this part9:13 Calling an API from the edge",
+    "If nothing else, I hope this gives you a good sense of what Edge Functions can do and how to think about designing with them on an Edge Delivery or AEM as a Cloud Service project. Here's where I landed:",
+    "It runs on the edge. The sign-in, the members-only page and the saved trails all come back in the HTML, before any JavaScript has fired in the browser.",
+    "It's fast. One of the biggest benefits of edge compute is that it can do a check like this one, a Google token against Google's public keys, fairly quickly.",
+    "It has limitations. Your JavaScript has to be WebAssembly compatible, and it runs with different limits than a server you own. Check Adobe's documentation for the current numbers before you design around them.",
+    "The potential is high. The server-side rendering we all miss and love from AEM 6.5 is very much possible again on AEM as a Cloud Service and Edge Delivery Services. It just gets executed on the edge.",
+    "My demo stops short in a few places: the trails API is mocked up, the token check uses public keys without a full introspection, and the login experience could obviously be better. All of it is open source, so if you're technical, clone the repo and follow local/README.md to see how you could expand on it.",
+    "Watch this part10:55 Recap",
+    "PortfolioCIAM Demo: customer identity, end to endThe full identity platform version, where this demo keeps it to Google sign-in.",
+    "PortfolioConversion FactoryAgents that evolve blocks on an Edge Delivery site.",
+    "TalkAI Agent-Driven Content Migration for Edge Delivery ServicesadaptTo() 2026, Berlin.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Part 1Sign-in on a static site",
+    "Part 2What it is, where it runs",
+    "Part 3Running it on my laptop",
+    "Part 4Signing in with Google",
+    "Part 5Checking Google's keys",
+    "Part 6Calling an API from the edge",
+    "Wrap-upServer-side rendering is back"
+  ],
+  "codeBlocks": [
+    "npm install -g @adobe/aio-cli\naio plugins:install @adobe/aio-cli-plugin-aem-edge-functions\nnpm install && npm test            # 38 passing\naio aem edge-functions serve --watch\n# Listening on http://127.0.0.1:7676",
+    "// 1. Only the algorithm Google uses. Never let the token pick something weaker.\n  if (header.alg !== 'RS256') throw new Error(`unsupported algorithm \"${header.alg}\"`);\n  // 2. Find the public key the token says it was signed with.\n  const jwks = await getJwks();\n  const jwk = (jwks.keys || []).find((key) => key.kid === header.kid);\n  if (!jwk) throw new Error(`no published key matches kid \"${header.kid}\"`);\n  // 3. Check the signature over header.payload.\n  const key = await crypto.subtle.importKey(\n    'jwk',\n    { kty: jwk.kty, n: jwk.n, e: jwk.e },\n    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },\n    false,\n    ['verify'],\n  );\n  const valid = await crypto.subtle.verify(\n    'RSASSA-PKCS1-v1_5',\n    key,\n    signature,\n    new TextEncoder().encode(signingInput),\n  );\n  if (!valid) throw new Error('signature is invalid');\n  // 4. Only now look at the claims: issuer, audience, expiry.\n  const problems = checkClaims(payload, { issuers, audience: clientId, now });\n  if (problems.length > 0) throw new Error(problems.join('; '));",
+    "{\n  \"header\": {\n    \"alg\": \"RS256\", \"kid\": \"demo-key-1\"\n  },\n  \"payload\": {\n    \"iss\": \"https://accounts.google.com\",\n    \"aud\": \"demo-client.apps.googleusercontent.com\",\n    \"email\": \"trail.reader@example.com\",\n    \"name\": \"Trail Reader\",\n    \"exp\": 1790003600\n  }\n}",
+    "// Signed in: ask the first-party API for this visitor's data while we have the\n  // page in hand, so the result is rendered into the HTML, not fetched by the browser.\n  let trails = null;\n  if (session.user) {\n    try {\n      trails = (await fetchTrails(session.token)).trails;\n    } catch (err) {\n      console.log(`trails unavailable for greeting: ${err.message}`);\n    }\n  }\n  const url = new URL(req.url);\n  const html = await res.text();\n  const body = injectGreeting(html, { user: session.user, path: `${url.pathname}${url.search}`, trails });",
+    "<body>\n  <header>…</header>\n  <aside class=\"edge-greeting\">   added by the edge\n  <main>\n    <div class=\"section\">\n      <div class=\"default-content-wrapper\">\n        <p> <h1> <p> …\n    <div class=\"section\">\n      …"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/J5DpmRjqNQQ"
+    },
+    {
+      "label": "adapt-to-2026-edge-functions",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/tree/1c3485f"
+    },
+    {
+      "label": "0:54 The requirement",
+      "href": "https://youtu.be/J5DpmRjqNQQ?t=54"
+    },
+    {
+      "label": "2:33 What an Edge Function is",
+      "href": "https://youtu.be/J5DpmRjqNQQ?t=153"
+    },
+    {
+      "label": "4:00 Caddy and Viceroy on the laptop",
+      "href": "https://youtu.be/J5DpmRjqNQQ?t=240"
+    },
+    {
+      "label": "setup instructions",
+      "href": "https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/edge-functions/edge-functions-setup/setup-eds"
+    },
+    {
+      "label": "local/README.md",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/blob/1c3485f/local/README.md"
+    },
+    {
+      "label": "1:34 The Google sign-in client",
+      "href": "https://youtu.be/J5DpmRjqNQQ?t=94"
+    },
+    {
+      "label": "3:12 Running it locally",
+      "href": "https://youtu.be/J5DpmRjqNQQ?t=192"
+    },
+    {
+      "label": "5:09 The two repos",
+      "href": "https://youtu.be/J5DpmRjqNQQ?t=309"
+    },
+    {
+      "label": "Edge Delivery",
+      "href": null
+    },
+    {
+      "label": "Through the function",
+      "href": null
+    },
+    {
+      "label": "Signed in",
+      "href": null
+    },
+    {
+      "label": "5:38 Signing in with Google",
+      "href": "https://youtu.be/J5DpmRjqNQQ?t=338"
+    },
+    {
+      "label": "7:51 The sign-in flow",
+      "href": "https://youtu.be/J5DpmRjqNQQ?t=471"
+    },
+    {
+      "label": "8:32 The members-only page",
+      "href": "https://youtu.be/J5DpmRjqNQQ?t=512"
+    },
+    {
+      "label": "1c3485f on GitHub",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/blob/1c3485f/src/lib/google-token.js#L27-L53"
+    },
+    {
+      "label": "source",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/blob/1c3485f/src/lib/google-token.js#L20-L55"
+    },
+    {
+      "label": "A valid token",
+      "href": null
+    },
+    {
+      "label": "Name edited after signing",
+      "href": null
+    },
+    {
+      "label": "Signed with someone else's key",
+      "href": null
+    },
+    {
+      "label": "Algorithm set to none",
+      "href": null
+    },
+    {
+      "label": "Issued for another site",
+      "href": null
+    },
+    {
+      "label": "Expired an hour ago",
+      "href": null
+    },
+    {
+      "label": "6:50 Checking the token against Google's public keys",
+      "href": "https://youtu.be/J5DpmRjqNQQ?t=410"
+    },
+    {
+      "label": "1c3485f on GitHub",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/blob/1c3485f/src/proxy.js#L44-L57"
+    },
+    {
+      "label": "Before <main>, what ships",
+      "href": null
+    },
+    {
+      "label": "Inside <main>, as a <div>",
+      "href": null
+    },
+    {
+      "label": "9:13 Calling an API from the edge",
+      "href": "https://youtu.be/J5DpmRjqNQQ?t=553"
+    },
+    {
+      "label": "local/README.md",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/blob/1c3485f/local/README.md"
+    },
+    {
+      "label": "10:55 Recap",
+      "href": "https://youtu.be/J5DpmRjqNQQ?t=655"
+    },
+    {
+      "label": "CIAM Demo: customer identity, end to end",
+      "href": "/portfolio/#ch-ciam"
+    },
+    {
+      "label": "Conversion Factory",
+      "href": "/portfolio/#ch-conv"
+    },
+    {
+      "label": "AI Agent-Driven Content Migration for Edge Delivery Services",
+      "href": "/talks/#adaptto-2026"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Part 1Sign-in on a static site",
+      "href": "#part-1"
+    },
+    {
+      "label": "Part 2What it is, where it runs",
+      "href": "#part-2"
+    },
+    {
+      "label": "Part 3Running it on my laptop",
+      "href": "#part-3"
+    },
+    {
+      "label": "Part 4Signing in with Google",
+      "href": "#part-4"
+    },
+    {
+      "label": "Part 5Checking Google's keys",
+      "href": "#part-5"
+    },
+    {
+      "label": "Part 6Calling an API from the edge",
+      "href": "#part-6"
+    },
+    {
+      "label": "Wrap-upServer-side rendering is back",
+      "href": "#takeaways"
+    },
+    {
+      "label": "Watch the video, 12:31",
+      "href": "#video"
+    },
+    {
+      "label": "Code on GitHub",
+      "href": "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/tree/1c3485f"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://youtu.be/J5DpmRjqNQQ",
+    "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/tree/1c3485f",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-1",
+    "https://youtu.be/J5DpmRjqNQQ?t=54",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-2",
+    "https://youtu.be/J5DpmRjqNQQ?t=153",
+    "https://youtu.be/J5DpmRjqNQQ?t=240",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-3",
+    "https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/edge-functions/edge-functions-setup/setup-eds",
+    "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/blob/1c3485f/local/README.md",
+    "https://youtu.be/J5DpmRjqNQQ?t=94",
+    "https://youtu.be/J5DpmRjqNQQ?t=192",
+    "https://youtu.be/J5DpmRjqNQQ?t=309",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-4",
+    "https://youtu.be/J5DpmRjqNQQ?t=338",
+    "https://youtu.be/J5DpmRjqNQQ?t=471",
+    "https://youtu.be/J5DpmRjqNQQ?t=512",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-5",
+    "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/blob/1c3485f/src/lib/google-token.js#L27-L53",
+    "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/blob/1c3485f/src/lib/google-token.js#L20-L55",
+    "https://youtu.be/J5DpmRjqNQQ?t=410",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#part-6",
+    "https://github.com/jackzhaojin/adapt-to-2026-edge-functions/blob/1c3485f/src/proxy.js#L44-L57",
+    "https://youtu.be/J5DpmRjqNQQ?t=553",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#takeaways",
+    "https://youtu.be/J5DpmRjqNQQ?t=655",
+    "https://www.jackzhaojin.com/portfolio/#ch-ciam",
+    "https://www.jackzhaojin.com/portfolio/#ch-conv",
+    "https://www.jackzhaojin.com/talks/#adaptto-2026",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/#video",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/board-1-situation.png",
+        "alt": "Diagram: the browser talks to an Edge Delivery site, with a question mark in between. Notes list sign in with Google, members-only articles, greet the user by name, and their saved data from an API. Under the site: static, cached, fast, do not want to touch the site code.",
+        "w": 1400,
+        "h": 542
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/board-2-where-it-runs.png",
+        "alt": "Diagram with two rows. Production: browser, Adobe's CDN, Edge Function as WASM on Fastly, Edge Delivery site. On my laptop: browser, Caddy playing the CDN, Edge Function as WASM on Viceroy, Edge Delivery site. Notes: only the paths in cdn.yaml go to the function in production; locally Caddy sends every request, with no cache in front.",
+        "w": 1800,
+        "h": 606
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/aem-page-blocks.png",
+        "alt": "The page on aem.page, straight from Edge Delivery",
+        "w": 1280,
+        "h": 540
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/edge-guest-blocks.png",
+        "alt": "The same page through the function, signed out",
+        "w": 1280,
+        "h": 540
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/edge-signed-in-blocks.png",
+        "alt": "Signed in: my name, my Google picture and my saved trails from the API",
+        "w": 1280,
+        "h": 540
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/board-3-sign-in.png",
+        "alt": "Sign-in flow diagram. 1, Google gives the browser a token. 2, the browser sends it to the Edge Function as a cookie, and the function verifies it. 3, the function fetches the page from the Edge Delivery site and gets HTML back. 4, it sends the token to the mock API, which verifies it and returns data. 5, the page plus the user's details go back to the browser.",
+        "w": 1300,
+        "h": 886
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/bar-before-main.png",
+        "alt": "The Block Library page with the green guest bar under the navigation and the page content in its normal place",
+        "w": 1280,
+        "h": 540
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/thumb-part-1.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/thumb-part-2.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/thumb-part-3.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/thumb-part-4.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/thumb-part-5.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/thumb-part-6.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/images/thumb-takeaways.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 15,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/J5DpmRjqNQQ?rel=0",
+        "title": "AEM Edge Functions: Google Sign-in and Personalization on Edge Delivery Services (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 9,
+    "mainTextLen": 14853,
+    "realImageCount": 14,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.google-analytics.com",
+        "path": "/g/collect",
+        "query": [
+          "_ee",
+          "_fv",
+          "_nsi",
+          "_p",
+          "_s",
+          "_ss",
+          "cid",
+          "dl",
+          "dma",
+          "dt",
+          "en",
+          "frm",
+          "gcd",
+          "gtm",
+          "ngs",
+          "npa",
+          "pscdl",
+          "rcb",
+          "sct",
+          "seg",
+          "sid",
+          "sr",
+          "tag_exp",
+          "tfd",
+          "tid",
+          "uaa",
+          "uab",
+          "uafvl",
+          "uam",
+          "uamb",
+          "uap",
+          "uapv",
+          "uaw",
+          "ul",
+          "v"
+        ],
+        "resourceType": "fetch",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.google-analytics.com/g/collect",
+        "sameSite": false
+      },
+      {
+        "method": "GET",
+        "host": "www.gstatic.com",
+        "path": "/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+        "query": [],
+        "resourceType": "fetch",
+        "contentType": "image/svg+xml",
+        "status": 200,
+        "bytes": 272,
+        "hits": 1,
+        "example": "https://www.gstatic.com/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 122,
+        "hits": 1,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 3
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      },
+      {
+        "host": "www.google.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 1,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 4,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2026-09-20-aem-edge-functions-google-sign-in.png",
+  "renderedHtml": "pages/writing-2026-09-20-aem-edge-functions-google-sign-in.html"
+}

@@ -1,0 +1,30 @@
+{
+ "site": "Jack Jin (www.jackzhaojin.com)",
+ "origin": "https://www.jackzhaojin.com",
+ "scope_path": "/",
+ "reference_blocks": {
+  "name": "aem-boilerplate + AEM Block Collection",
+  "count": 0
+ },
+ "rum": {
+  "available": false,
+  "window": null,
+  "bundles": null
+ },
+ "sitemap_urls": 34,
+ "inventory_total": 34,
+ "inventory_source": "sitemap",
+ "sample_note": null,
+ "fetch_sources": {
+  "live": 34
+ },
+ "evidence_note": null,
+ "built_at": "2026-10-25T14:22:11",
+ "built_by": "stardust spec skill",
+ "provenance": "Built from the live site only (34 sitemap pages, S1-S9 on 2026-10-25) and the source repo's design-system v3 docs; it uses no output from any migration work. Judged by the Track B (site-scope) context, which ran extract and spec only and never opened blocks/, styles/, scripts/, head.html, stardust/first-page/ or stardust/replica/. S5 (real-user data) skipped: no RUM domain key.",
+ "variant_cut": "Jaccard 0.5 average linkage",
+ "capture_format": "jpg",
+ "i18n_notes": [
+  "Single language (en), no hreflang, no locale trees. The dynamics I18N rows are external link paths (linkedin.com/in, experienceleague /en/), not locales."
+ ]
+}

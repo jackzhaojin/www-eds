@@ -1,0 +1,874 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:41:19.757Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "certifications",
+  "url": "https://www.jackzhaojin.com/certifications/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:41:19.757Z",
+  "finalUrl": "https://www.jackzhaojin.com/certifications/",
+  "title": "Certifications | Jack Jin",
+  "description": "Jack Jin's Adobe, Microsoft Azure and AI credentials, with earned dates and direct verification links.",
+  "og": {
+    "title": "Certifications | Jack Jin",
+    "description": "Jack Jin's Adobe, Microsoft Azure and AI credentials, with earned dates and direct verification links.",
+    "image": "https://www.jackzhaojin.com/assets/site-social.png",
+    "type": "website"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Certifications"
+    },
+    {
+      "tag": "h2",
+      "text": "Accenture and AI Certifications"
+    },
+    {
+      "tag": "h3",
+      "text": "Claude Certified Architect - Professional"
+    },
+    {
+      "tag": "h3",
+      "text": "Claude Certified Developer - Foundations"
+    },
+    {
+      "tag": "h3",
+      "text": "Claude Certified Associate - Foundations"
+    },
+    {
+      "tag": "h3",
+      "text": "Claude Certified Architect - Foundations"
+    },
+    {
+      "tag": "h3",
+      "text": "Senior Technology Architect"
+    },
+    {
+      "tag": "h3",
+      "text": "AI Automation Explorer"
+    },
+    {
+      "tag": "h2",
+      "text": "Adobe Certifications"
+    },
+    {
+      "tag": "h3",
+      "text": "Adobe Experience Manager Sites Architect"
+    },
+    {
+      "tag": "h3",
+      "text": "Adobe Experience Manager Sites Developer"
+    },
+    {
+      "tag": "h3",
+      "text": "Adobe Experience Manager as a Cloud Service Migration"
+    },
+    {
+      "tag": "h3",
+      "text": "Adobe Experience Manager Dev/Ops Engineer"
+    },
+    {
+      "tag": "h3",
+      "text": "Adobe Experience Manager Sites Business Practitioner"
+    },
+    {
+      "tag": "h3",
+      "text": "Adobe Experience Manager Assets Developer"
+    },
+    {
+      "tag": "h3",
+      "text": "Adobe Experience Manager Business Practitioner"
+    },
+    {
+      "tag": "h3",
+      "text": "Adobe Digital Experience Developer"
+    },
+    {
+      "tag": "h2",
+      "text": "Microsoft + Azure Certifications"
+    },
+    {
+      "tag": "h3",
+      "text": "AZ-305: Microsoft Azure Solutions Architect Expert"
+    },
+    {
+      "tag": "h3",
+      "text": "GH-300: GitHub CoPilot"
+    },
+    {
+      "tag": "h3",
+      "text": "AZ-204: Microsoft Azure Developer"
+    },
+    {
+      "tag": "h3",
+      "text": "AZ-104: Microsoft Azure Administrator"
+    },
+    {
+      "tag": "h3",
+      "text": "AI-102: Microsoft Azure AI Engineer"
+    },
+    {
+      "tag": "h3",
+      "text": "AZ-900: Microsoft Azure Fundamentals"
+    },
+    {
+      "tag": "h3",
+      "text": "AI-900: Microsoft Azure AI Fundamentals"
+    },
+    {
+      "tag": "h3",
+      "text": "PL-900: Microsoft Power Platform Fundamentals"
+    },
+    {
+      "tag": "h2",
+      "text": "Looking for presentations?"
+    }
+  ],
+  "body": [
+    "Home",
+    "Certifications",
+    "Credentials across Adobe Experience Manager, Microsoft Azure, and AI. Each entry links to its verification record.",
+    "Earned and expiry dates reflect the available credential records. For current status, follow the verification link.",
+    "Issued by Anthropic",
+    "Earned: Aug 26, 2026",
+    "Expires: Aug 26, 2027",
+    "Issued by Anthropic",
+    "Earned: Aug 23, 2026",
+    "Expires: Aug 23, 2027",
+    "Issued by Anthropic",
+    "Earned: Aug 13, 2026",
+    "Expires: Aug 13, 2027",
+    "Issued by Anthropic",
+    "Earned: Mar 23, 2026",
+    "Expires: Mar 23, 2027",
+    "Issued by Accenture",
+    "Earned: June 23, 2025",
+    "Issued by Make",
+    "Earned: Nov 24, 2025",
+    "Adobe Certified Master",
+    "Earned: May 15, 2023",
+    "Expires: Jul 25, 2027",
+    "Adobe Certified Expert",
+    "Earned: May 15, 2023",
+    "Expires: Jul 25, 2027",
+    "Adobe Certified Expert",
+    "Earned: Sep 08, 2023",
+    "Expires: Jul 25, 2027",
+    "Adobe Certified Expert",
+    "Earned: Mar 30, 2026",
+    "Expires: Mar 30, 2028",
+    "Adobe Certified Expert",
+    "Earned: Jun 13, 2026",
+    "Expires: Jun 13, 2028",
+    "Adobe Certified Professional",
+    "Earned: Jan 24, 2026",
+    "Expires: Jan 24, 2028",
+    "Adobe Certified Professional",
+    "Earned: Apr 10, 2026",
+    "Expires: Jun 13, 2028",
+    "Issued by Adobe",
+    "Earned: Aug 27, 2018",
+    "Issued by Microsoft",
+    "Earned: May 19, 2025",
+    "Renewed: Jan 31, 2026",
+    "Expires: May 19, 2027",
+    "Issued by Microsoft",
+    "Earned: Nov 29, 2025",
+    "Expires: Nov 29, 2027",
+    "Issued by Microsoft",
+    "Earned: Apr 14, 2025",
+    "Renewed: Jan 31, 2026",
+    "Expires: Apr 14, 2027",
+    "Issued by Microsoft",
+    "Earned: Feb 16, 2025",
+    "Renewed: Jan 31, 2026",
+    "Expires: Feb 17, 2027",
+    "Issued by Microsoft",
+    "Earned: Aug 18, 2024",
+    "Renewed: Mar 25, 2025",
+    "Expires: Aug 18, 2026",
+    "Issued by Microsoft",
+    "Earned: Jun 7, 2023",
+    "Issued by Microsoft",
+    "Earned: Aug 16, 2023",
+    "Issued by Microsoft",
+    "Earned: Aug 25, 2024",
+    "Conference sessions and community talks have their own home."
+  ],
+  "codeBlocks": [],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Claude Certified Architect - Professional",
+      "href": "https://www.credly.com/badges/b6f37455-423d-49f9-9dfe-7c3e4e558000"
+    },
+    {
+      "label": "Verify credential: Claude Certified Architect - Professional",
+      "href": "https://www.credly.com/badges/b6f37455-423d-49f9-9dfe-7c3e4e558000"
+    },
+    {
+      "label": "Claude Certified Developer - Foundations",
+      "href": "https://www.credly.com/badges/c278bfde-aa69-4b5d-ab10-d70b69dd57a1"
+    },
+    {
+      "label": "Verify credential: Claude Certified Developer - Foundations",
+      "href": "https://www.credly.com/badges/c278bfde-aa69-4b5d-ab10-d70b69dd57a1"
+    },
+    {
+      "label": "Claude Certified Associate - Foundations",
+      "href": "https://www.credly.com/badges/6a79f1e4-d41e-4f3a-8931-db98964d8faf"
+    },
+    {
+      "label": "Verify credential: Claude Certified Associate - Foundations",
+      "href": "https://www.credly.com/badges/6a79f1e4-d41e-4f3a-8931-db98964d8faf"
+    },
+    {
+      "label": "Claude Certified Architect - Foundations",
+      "href": "https://www.credly.com/badges/854221f9-d37f-46ea-af1c-3c5f8adf26f6"
+    },
+    {
+      "label": "Verify credential: Claude Certified Architect - Foundations",
+      "href": "https://www.credly.com/badges/854221f9-d37f-46ea-af1c-3c5f8adf26f6"
+    },
+    {
+      "label": "Senior Technology Architect",
+      "href": "https://www.credly.com/badges/11e07aec-04a0-4e93-bdce-fdbd29744fcb/linked_in_profile"
+    },
+    {
+      "label": "Verify credential: Senior Technology Architect",
+      "href": "https://www.credly.com/badges/11e07aec-04a0-4e93-bdce-fdbd29744fcb/linked_in_profile"
+    },
+    {
+      "label": "AI Automation Explorer",
+      "href": "https://www.credly.com/badges/81961bf9-8aa2-44cd-a58d-25d727a5f471/linked_in_profile"
+    },
+    {
+      "label": "Verify credential: AI Automation Explorer",
+      "href": "https://www.credly.com/badges/81961bf9-8aa2-44cd-a58d-25d727a5f471/linked_in_profile"
+    },
+    {
+      "label": "Adobe Experience Manager Sites Architect",
+      "href": "https://www.credly.com/badges/91c0efc5-4064-4c3d-9f71-9f0a6d5bf92c/linked_in_profile"
+    },
+    {
+      "label": "Verify credential: Adobe Experience Manager Sites Architect",
+      "href": "https://www.credly.com/badges/91c0efc5-4064-4c3d-9f71-9f0a6d5bf92c/linked_in_profile"
+    },
+    {
+      "label": "Adobe Experience Manager Sites Developer",
+      "href": "https://www.credly.com/badges/0218f043-a552-4278-8f03-837b0e2d0689/linked_in_profile"
+    },
+    {
+      "label": "Verify credential: Adobe Experience Manager Sites Developer",
+      "href": "https://www.credly.com/badges/0218f043-a552-4278-8f03-837b0e2d0689/linked_in_profile"
+    },
+    {
+      "label": "Adobe Experience Manager as a Cloud Service Migration",
+      "href": "https://www.credly.com/badges/04524b37-0bcf-43fb-a239-f297ec549b0c/linked_in_profile"
+    },
+    {
+      "label": "Verify credential: Adobe Experience Manager as a Cloud Service Migration",
+      "href": "https://www.credly.com/badges/04524b37-0bcf-43fb-a239-f297ec549b0c/linked_in_profile"
+    },
+    {
+      "label": "Adobe Experience Manager Dev/Ops Engineer",
+      "href": "https://certification.adobe.com/credential/verify/ef61dcaf-a09b-11f1-bdd6-42010a400002"
+    },
+    {
+      "label": "Verify credential: Adobe Experience Manager Dev/Ops Engineer",
+      "href": "https://certification.adobe.com/credential/verify/ef61dcaf-a09b-11f1-bdd6-42010a400002"
+    },
+    {
+      "label": "Adobe Experience Manager Sites Business Practitioner",
+      "href": "https://certification.adobe.com/credential/verify/ef66508e-a09b-11f1-bdd6-42010a400002"
+    },
+    {
+      "label": "Verify credential: Adobe Experience Manager Sites Business Practitioner",
+      "href": "https://certification.adobe.com/credential/verify/ef66508e-a09b-11f1-bdd6-42010a400002"
+    },
+    {
+      "label": "Adobe Experience Manager Assets Developer",
+      "href": "https://certification.adobe.com/credential/verify/fb5cec36-fd38-11f0-81b9-42010a400fdc/linkedin"
+    },
+    {
+      "label": "Verify credential: Adobe Experience Manager Assets Developer",
+      "href": "https://certification.adobe.com/credential/verify/fb5cec36-fd38-11f0-81b9-42010a400fdc/linkedin"
+    },
+    {
+      "label": "Adobe Experience Manager Business Practitioner",
+      "href": "https://certification.adobe.com/credential/verify/ef900d6d-a09b-11f1-bdd6-42010a400002"
+    },
+    {
+      "label": "Verify credential: Adobe Experience Manager Business Practitioner",
+      "href": "https://certification.adobe.com/credential/verify/ef900d6d-a09b-11f1-bdd6-42010a400002"
+    },
+    {
+      "label": "Adobe Digital Experience Developer",
+      "href": "https://certification.adobe.com/credential/verify/dcf29117-d81e-47fb-a6cf-52ea3a5d060a"
+    },
+    {
+      "label": "Verify credential: Adobe Digital Experience Developer",
+      "href": "https://certification.adobe.com/credential/verify/dcf29117-d81e-47fb-a6cf-52ea3a5d060a"
+    },
+    {
+      "label": "AZ-305: Microsoft Azure Solutions Architect Expert",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/593378EEF6DF7EE3?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "Verify credential: AZ-305: Microsoft Azure Solutions Architect Expert",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/593378EEF6DF7EE3?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "GH-300: GitHub CoPilot",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/EB0C1218AC440BE1?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "Verify credential: GH-300: GitHub CoPilot",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/EB0C1218AC440BE1?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "AZ-204: Microsoft Azure Developer",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/D1DBEB9137B07C7B?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "Verify credential: AZ-204: Microsoft Azure Developer",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/D1DBEB9137B07C7B?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "AZ-104: Microsoft Azure Administrator",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/23F22C21B2692A?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "Verify credential: AZ-104: Microsoft Azure Administrator",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/23F22C21B2692A?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "AI-102: Microsoft Azure AI Engineer",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/C401D7EBEA322EB8?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "Verify credential: AI-102: Microsoft Azure AI Engineer",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/C401D7EBEA322EB8?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "AZ-900: Microsoft Azure Fundamentals",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/DD7D57615CCFE854?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "Verify credential: AZ-900: Microsoft Azure Fundamentals",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/DD7D57615CCFE854?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "AI-900: Microsoft Azure AI Fundamentals",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/BA672553563383CA?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "Verify credential: AI-900: Microsoft Azure AI Fundamentals",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/BA672553563383CA?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "PL-900: Microsoft Power Platform Fundamentals",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/21E4E039B8D5B9D5?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "Verify credential: PL-900: Microsoft Power Platform Fundamentals",
+      "href": "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/21E4E039B8D5B9D5?sharingId=9B9C780AB67D07B0"
+    },
+    {
+      "label": "View talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/certifications/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://www.credly.com/badges/b6f37455-423d-49f9-9dfe-7c3e4e558000",
+    "https://www.credly.com/badges/c278bfde-aa69-4b5d-ab10-d70b69dd57a1",
+    "https://www.credly.com/badges/6a79f1e4-d41e-4f3a-8931-db98964d8faf",
+    "https://www.credly.com/badges/854221f9-d37f-46ea-af1c-3c5f8adf26f6",
+    "https://www.credly.com/badges/11e07aec-04a0-4e93-bdce-fdbd29744fcb/linked_in_profile",
+    "https://www.credly.com/badges/81961bf9-8aa2-44cd-a58d-25d727a5f471/linked_in_profile",
+    "https://www.credly.com/badges/91c0efc5-4064-4c3d-9f71-9f0a6d5bf92c/linked_in_profile",
+    "https://www.credly.com/badges/0218f043-a552-4278-8f03-837b0e2d0689/linked_in_profile",
+    "https://www.credly.com/badges/04524b37-0bcf-43fb-a239-f297ec549b0c/linked_in_profile",
+    "https://certification.adobe.com/credential/verify/ef61dcaf-a09b-11f1-bdd6-42010a400002",
+    "https://certification.adobe.com/credential/verify/ef66508e-a09b-11f1-bdd6-42010a400002",
+    "https://certification.adobe.com/credential/verify/fb5cec36-fd38-11f0-81b9-42010a400fdc/linkedin",
+    "https://certification.adobe.com/credential/verify/ef900d6d-a09b-11f1-bdd6-42010a400002",
+    "https://certification.adobe.com/credential/verify/dcf29117-d81e-47fb-a6cf-52ea3a5d060a",
+    "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/593378EEF6DF7EE3?sharingId=9B9C780AB67D07B0",
+    "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/EB0C1218AC440BE1?sharingId=9B9C780AB67D07B0",
+    "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/D1DBEB9137B07C7B?sharingId=9B9C780AB67D07B0",
+    "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/23F22C21B2692A?sharingId=9B9C780AB67D07B0",
+    "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/C401D7EBEA322EB8?sharingId=9B9C780AB67D07B0",
+    "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/DD7D57615CCFE854?sharingId=9B9C780AB67D07B0",
+    "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/BA672553563383CA?sharingId=9B9C780AB67D07B0",
+    "https://learn.microsoft.com/api/credentials/share/en-us/JackJin-6120/21E4E039B8D5B9D5?sharingId=9B9C780AB67D07B0",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin",
+    "https://github.com/jackzhaojin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://images.credly.com/size/340x340/images/7583afbc-4aab-4c7d-8af4-d9af72786ab3/blob",
+        "alt": "",
+        "w": 340,
+        "h": 340
+      },
+      {
+        "src": "https://images.credly.com/size/340x340/images/f101c6ac-8a2d-4220-b381-70e3e6c364e3/blob",
+        "alt": "",
+        "w": 340,
+        "h": 340
+      },
+      {
+        "src": "https://images.credly.com/size/340x340/images/a6387cbd-5ac1-4894-833a-da2cbc28587e/blob",
+        "alt": "",
+        "w": 340,
+        "h": 340
+      },
+      {
+        "src": "https://images.credly.com/size/340x340/images/f2040db3-3904-4240-8966-e87b1510bea0/blob",
+        "alt": "",
+        "w": 604,
+        "h": 604
+      },
+      {
+        "src": "https://images.credly.com/size/680x680/images/6fa5594b-2554-43a9-84ad-f4012caa6488/image.png",
+        "alt": "",
+        "w": 600,
+        "h": 600
+      },
+      {
+        "src": "https://www.jackzhaojin.com/assets/ai-automation-explorer-badge.png",
+        "alt": "",
+        "w": 512,
+        "h": 512
+      },
+      {
+        "src": "https://images.credly.com/size/340x340/images/f8bb518f-e604-4531-83f3-52a47ba5b72d/Adobe_Certified_Master_Experience_Cloud_products_Digital_Badge.png",
+        "alt": "",
+        "w": 340,
+        "h": 340
+      },
+      {
+        "src": "https://images.credly.com/size/340x340/images/176ea367-7201-4605-a51a-c423bc6a518e/Adobe_Certified_Expert_Experience_Cloud_products_Digital_Badge.png",
+        "alt": "",
+        "w": 340,
+        "h": 340
+      },
+      {
+        "src": "https://images.credly.com/size/340x340/images/176ea367-7201-4605-a51a-c423bc6a518e/Adobe_Certified_Expert_Experience_Cloud_products_Digital_Badge.png",
+        "alt": "",
+        "w": 340,
+        "h": 340
+      },
+      {
+        "src": "https://images.credly.com/size/340x340/images/176ea367-7201-4605-a51a-c423bc6a518e/Adobe_Certified_Expert_Experience_Cloud_products_Digital_Badge.png",
+        "alt": "",
+        "w": 340,
+        "h": 340
+      },
+      {
+        "src": "https://images.credly.com/size/340x340/images/176ea367-7201-4605-a51a-c423bc6a518e/Adobe_Certified_Expert_Experience_Cloud_products_Digital_Badge.png",
+        "alt": "",
+        "w": 340,
+        "h": 340
+      },
+      {
+        "src": "https://www.jackzhaojin.com/assets/adobe-certified-professional-badge.png",
+        "alt": "",
+        "w": 480,
+        "h": 480
+      },
+      {
+        "src": "https://www.jackzhaojin.com/assets/adobe-certified-professional-badge.png",
+        "alt": "",
+        "w": 480,
+        "h": 480
+      },
+      {
+        "src": "https://www.jackzhaojin.com/assets/adobe-digital-experience-developer-badge.png",
+        "alt": "",
+        "w": 600,
+        "h": 600
+      },
+      {
+        "src": "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-expert-badge.svg",
+        "alt": "",
+        "w": 150,
+        "h": 150
+      },
+      {
+        "src": "https://www.jackzhaojin.com/assets/github-copilot-badge.svg",
+        "alt": "",
+        "w": 348,
+        "h": 349
+      },
+      {
+        "src": "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
+        "alt": "",
+        "w": 150,
+        "h": 150
+      },
+      {
+        "src": "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
+        "alt": "",
+        "w": 150,
+        "h": 150
+      },
+      {
+        "src": "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-associate-badge.svg",
+        "alt": "",
+        "w": 150,
+        "h": 150
+      },
+      {
+        "src": "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
+        "alt": "",
+        "w": 150,
+        "h": 150
+      },
+      {
+        "src": "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
+        "alt": "",
+        "w": 150,
+        "h": 150
+      },
+      {
+        "src": "https://learn.microsoft.com/media/learn/certification/badges/microsoft-certified-fundamentals-badge.svg",
+        "alt": "",
+        "w": 150,
+        "h": 150
+      }
+    ],
+    "allImgCount": 22,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": []
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 27,
+    "mainTextLen": 4030,
+    "realImageCount": 22,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 0,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 0,
+      "thirdPartyScriptHosts": 2,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/certifications.png",
+  "renderedHtml": "pages/certifications.html",
+  "slots": {
+    "type": "listing",
+    "index-headline": "Certifications",
+    "summary": "Credentials across Adobe Experience Manager, Microsoft Azure, and AI. Each entry links to its verification record.",
+    "filter-controls": null,
+    "card-grid": {
+      "kind": "credential-row",
+      "count": 22,
+      "sample": [
+        {
+          "title": "Claude Certified Architect - Professional",
+          "href": "https://www.credly.com/badges/b6f37455-423d-49f9-9dfe-7c3e4e558000",
+          "date": null
+        },
+        {
+          "title": "Claude Certified Developer - Foundations",
+          "href": "https://www.credly.com/badges/c278bfde-aa69-4b5d-ab10-d70b69dd57a1",
+          "date": null
+        },
+        {
+          "title": "Claude Certified Associate - Foundations",
+          "href": "https://www.credly.com/badges/6a79f1e4-d41e-4f3a-8931-db98964d8faf",
+          "date": null
+        }
+      ]
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "class": "band band--plain graphic-hero graphic-hero--certifications",
+        "heading": "Certifications"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "class": "band band--plain",
+        "heading": "Accenture and AI Certifications"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "class": "band band--plain",
+        "heading": "Adobe Certifications"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "class": "band band--plain",
+        "heading": "Microsoft + Azure Certifications"
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "class": "band band--alt",
+        "heading": "Looking for presentations?"
+      }
+    ]
+  }
+}

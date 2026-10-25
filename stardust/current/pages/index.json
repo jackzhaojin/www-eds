@@ -1,0 +1,519 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:30.540Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "index",
+  "url": "https://www.jackzhaojin.com/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:30.540Z",
+  "finalUrl": "https://www.jackzhaojin.com/",
+  "title": "Jack Jin | AEM Champion, AI Agents & Adobe Experience Manager",
+  "description": "Jack Jin: Adobe Experience Manager Champion 2026-2027, AEM Rockstar 2024 winner, Adobe Certified Master. Builds AI agents on AEM and Edge Delivery Services.",
+  "og": {
+    "title": "Jack Jin | AEM Champion, AI Agents & Adobe Experience Manager",
+    "description": "Jack Jin: Adobe Experience Manager Champion 2026-2027, AEM Rockstar 2024 winner, Adobe Certified Master. Builds AI agents on AEM and Edge Delivery Services.",
+    "image": "https://www.jackzhaojin.com/assets/site-social.png",
+    "type": "website"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Jack Jin"
+    },
+    {
+      "tag": "h2",
+      "text": "Selected work"
+    },
+    {
+      "tag": "h3",
+      "text": "Anima Mesh"
+    },
+    {
+      "tag": "h2",
+      "text": "Talks & presentations"
+    },
+    {
+      "tag": "h2",
+      "text": "Technical Writing"
+    },
+    {
+      "tag": "h2",
+      "text": "Certifications"
+    }
+  ],
+  "body": [
+    "Adobe Experience Manager.AI agents.Work you can explore.",
+    "I'm an Adobe Experience Manager Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024, and an Adobe Certified Master. As an Associate Director in Accenture's Adobe Business Group in Columbus, Ohio, I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Explore the portfolioSee my talks",
+    "Adobe recognition",
+    "AEM Champion 2026-2027Announced by Adobe on Sep 1, 2026",
+    "AEM Rockstar winnerAdobe Summit 2024, Las Vegas",
+    "Adobe Certified MasterAEM Sites Architect, valid through Jul 2027",
+    "The company-of-zero experiment: an agent system for recurring work.",
+    "Cloud execution, shared memory, governance, and human approval for consequential actions. The portfolio follows the architecture and the decisions behind it.",
+    "Most recent: adaptTo() 2026 in Berlin on Sep 29, 2026, on AI agent-driven content migration for Edge Delivery Services. Earlier sessions include AEM Rockstar at Adobe Summit 2024, AI Tinkerers, Columbus AI Week, and Denison University.",
+    "Latest: adaptTo() 2026 Recap: 25 AEM Conference Talks in 15 Minutes. All 25 full talks from the AEM developer conference in Berlin: what each one is, why to watch it, and my take, with a 15-minute video. More of my video walkthroughs on AEM, Edge Delivery Services and AI are being written up here, each as a complete guide.",
+    "Eight Adobe credentials, including Adobe Certified Master for AEM Sites Architect, alongside Anthropic Claude, Microsoft Azure, and GitHub Copilot certifications. Every entry links to its issuer's verification record."
+  ],
+  "codeBlocks": [],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Explore the portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "See my talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "AEM Champion 2026-2027",
+      "href": "https://business.adobe.com/blog/introducing-the-adobe-champion-class-of-2026-2027"
+    },
+    {
+      "label": "AEM Rockstar winner",
+      "href": "/talks/#aem-rockstar-2024"
+    },
+    {
+      "label": "Adobe Certified Master",
+      "href": "/certifications/#adobe-experience-manager-sites-architect"
+    },
+    {
+      "label": "View all certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Full portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Anima Mesh",
+      "href": "/portfolio/#ch-anima"
+    },
+    {
+      "label": "Explore Anima Mesh",
+      "href": "/portfolio/#ch-anima"
+    },
+    {
+      "label": "AEM Rockstar 2024Generative AI inside AEM's authoring UI, winner at Adobe Summit",
+      "href": "/portfolio/#ch-rockstar"
+    },
+    {
+      "label": "The Content FactoryAI agents that generate, migrate, and evaluate EDS content",
+      "href": "/portfolio/#ch-factory"
+    },
+    {
+      "label": "AI Builder KitNine Claude Code skills anyone can install",
+      "href": "/portfolio/#ch-kit"
+    },
+    {
+      "label": "Built with BruceGames made with my son",
+      "href": "/portfolio/#ch-bruce"
+    },
+    {
+      "label": "Explore the talk history",
+      "href": "/talks/"
+    },
+    {
+      "label": "adaptTo() 2026 Recap: 25 AEM Conference Talks in 15 Minutes",
+      "href": "/writing/2026-10-10-adaptto-2026-25-talks/"
+    },
+    {
+      "label": "Visit Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "View all certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://business.adobe.com/blog/introducing-the-adobe-champion-class-of-2026-2027",
+    "https://www.jackzhaojin.com/talks/#aem-rockstar-2024",
+    "https://www.jackzhaojin.com/certifications/#adobe-experience-manager-sites-architect",
+    "https://www.jackzhaojin.com/portfolio/#ch-anima",
+    "https://www.jackzhaojin.com/portfolio/#ch-rockstar",
+    "https://www.jackzhaojin.com/portfolio/#ch-factory",
+    "https://www.jackzhaojin.com/portfolio/#ch-kit",
+    "https://www.jackzhaojin.com/portfolio/#ch-bruce",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin",
+    "https://github.com/jackzhaojin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/assets/aem-champion-2026-2027.webp",
+        "alt": "Adobe Experience Manager Champion, class of 2026-2027",
+        "w": 756,
+        "h": 426
+      },
+      {
+        "src": "https://www.jackzhaojin.com/portfolio/assets/anima/cloud-architecture.svg?v=3",
+        "alt": "Anima Mesh cloud architecture",
+        "w": 192,
+        "h": 150
+      }
+    ],
+    "allImgCount": 2,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": []
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 6,
+    "mainTextLen": 2100,
+    "realImageCount": 2,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "www.google-analytics.com",
+        "path": "/g/collect",
+        "query": [
+          "_ee",
+          "_fv",
+          "_nsi",
+          "_p",
+          "_s",
+          "_ss",
+          "cid",
+          "dl",
+          "dma",
+          "dt",
+          "en",
+          "frm",
+          "gcd",
+          "gtm",
+          "ngs",
+          "npa",
+          "pscdl",
+          "rcb",
+          "sct",
+          "seg",
+          "sid",
+          "sr",
+          "tag_exp",
+          "tfd",
+          "tid",
+          "uaa",
+          "uab",
+          "uafvl",
+          "uam",
+          "uamb",
+          "uap",
+          "uapv",
+          "uaw",
+          "ul",
+          "v"
+        ],
+        "resourceType": "fetch",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.google-analytics.com/g/collect",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 0,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 1,
+      "thirdPartyScriptHosts": 2,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/index.png",
+  "renderedHtml": "pages/index.html",
+  "slots": {
+    "type": "landing",
+    "hero": {
+      "headline": "Jack Jin",
+      "positioning": "Adobe Experience Manager.AI agents.Work you can explore.",
+      "summary": "I'm an Adobe Experience Manager Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024, and an Adobe Certified Master. As an Associate Director in Accenture's Adobe Business Group in Columbus, Ohio, I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+      "actions": [
+        {
+          "label": "Explore the portfolio",
+          "href": "/portfolio/"
+        },
+        {
+          "label": "See my talks",
+          "href": "/talks/"
+        }
+      ],
+      "aside": "Adobe recognitionAEM Champion 2026-2027Announced by Adobe on Sep 1, 2026AEM Rockstar winnerAdobe Summit 2024, Las VegasAdobe Certified MasterAEM Sites Architect, valid through Jul 2027View all certifi"
+    },
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "class": "band band--plain graphic-hero graphic-hero--home",
+        "heading": "Jack Jin"
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "class": "band band--tint",
+        "heading": "Selected work"
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "class": "band band--plain",
+        "heading": "Talks & presentations"
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "class": "band band--alt",
+        "heading": "Certifications"
+      }
+    ]
+  }
+}

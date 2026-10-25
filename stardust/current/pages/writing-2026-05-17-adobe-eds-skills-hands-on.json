@@ -1,0 +1,776 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:43.752Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2026-05-17-adobe-eds-skills-hands-on",
+  "url": "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:43.752Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/",
+  "title": "Adobe EDS Skills Hands-On: create-site and CDD | Jack Jin",
+  "description": "What Adobe's create-site and content-driven-development skills do on a real Edge Delivery build, how to see in MLflow which skill fired, and the gap left.",
+  "og": {
+    "title": "Adobe EDS Skills Hands-On: create-site and CDD | Jack Jin",
+    "description": "What Adobe's create-site and content-driven-development skills do on a real Edge Delivery build, how to see in MLflow which skill fired, and the gap left.",
+    "image": "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Adobe's EDS Skills on a Real Build: create-site and Content-Driven Development, Traced in MLflow"
+    },
+    {
+      "tag": "h2",
+      "text": "1. Tracing the run, and a hook that shows which skill fired#"
+    },
+    {
+      "tag": "h2",
+      "text": "2. create-site stands up a new EDS site, with one human step#"
+    },
+    {
+      "tag": "h2",
+      "text": "3. Content-driven development writes the content before the code#"
+    },
+    {
+      "tag": "h2",
+      "text": "4. What I'd want next is a skill that themes a new site#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "Adobe's EDS skills, hands-on",
+    "By Jack Jin · May 17, 2026 · Updated October 4, 2026 · 10 min read · Includes my 14:10 video",
+    "Adobe publishes agent skills for Edge Delivery Services in its public adobe/skills repo. I ran two of them end to end on a real build: create-site to stand up a brand-new site, and content-driven-development to build a teaser block. Claude Opus 4.7 did the work, I watched, and MLflow traced every session. Here's what each skill does, what it built, how to make MLflow show which skill actually fired, and the skill I'd want next: one that themes a new site.",
+    "I wrote it up in the same four parts as the video. Each part links to its moment in the video if you'd rather watch.",
+    "First published as a LinkedIn video on May 17, 2026. Rewritten for this site in October 2026. Code: eds-skill-assess-2026-05, the site, the teaser block and the MLflow hook. Skills: adobe/skills at 03fc683, the version on main the day I recorded.",
+    "There's a lot of conversation about skills as a service and how much Adobe's skills could change EDS work, but not much footage of anyone driving them. So I picked two and put them through a small assessment. create-site is a multi-step skill that creates a new site. content-driven-development, CDD for short, is a bigger one that loads other skills as it goes. If something goes wrong in this run, it's more likely my ability to use them than anything Adobe did.",
+    "Adobe's Developing with AI Tools page lists the skills and how to install them. In Claude Code it's two commands:",
+    "Traces come first in the framework I used to judge the run. With skills, my first question is whether the agent picked up Adobe's skill at all. Only then do I ask whether it did well. So MLflow traced every Claude Code session: each prompt became a trace, with the turns it took and the tools it called. Then I compared the output with what people usually do on an EDS project.",
+    "About ten minutes into the build I hit the first wall. MLflow showed me tool calls, and only tool calls. A skill can start two ways in Claude Code. The model can call the Skill tool, which MLflow records as a generic tool_Skill span with the skill's name buried in its input. Or I can type the skill as a slash command, like /content-driven-development, which skips the tool call entirely, so MLflow records no span for it at all.",
+    "That evening I had Claude build a small Stop hook to fix it. Claude Code runs it when a session stops, alongside MLflow's own hook. It reads the session transcript, finds both kinds of skill calls, and writes them onto the trace as tags, so a search like tags.skills_used LIKE '%create-site%' finds every trace that used the skill. This is the part that finds them:",
+    "Below is a short demo session in the transcript format the hook reads. Untick a line to drop it from the session, and compare what MLflow records on its own with the tags the hook adds. The slash command leaves no span at all, and each Skill call shows up only as a generic tool_Skill, which is why I couldn't search MLflow for a skill by name until the hook existed.",
+    "Lines in this session (demo lines, in the format the hook reads)",
+    "I type a slash command{\"content\": \"<command-name>/content-driven-development</command-name>\"}",
+    "The model calls the Skill tool{\"type\": \"tool_use\", \"name\": \"Skill\", \"input\": {\"skill\": \"building-blocks\"}}",
+    "The model runs a shell command{\"type\": \"tool_use\", \"name\": \"Bash\", \"input\": {\"command\": \"gh pr create\"}}",
+    "I compact the session{\"content\": \"<command-name>/compact</command-name>\"}",
+    "The model calls another skill{\"type\": \"tool_use\", \"name\": \"Skill\", \"input\": {\"skill\": \"testing-blocks\"}}",
+    "What MLflow records on its own",
+    "no span/content-driven-development",
+    "tool_Skillname only inside the input",
+    "tool_Bash",
+    "no span/compact",
+    "tool_Skillname only inside the input",
+    "Tags the Stop hook writes on the trace",
+    "MLflow alone names none of the 3 skills. The hook tags all 3 on the trace. Built-in commands like /compact are dropped. The Bash call is a tool, not a skill.",
+    "Two lines of setup make it run. In the project's .claude/settings.json, the Stop hooks list MLflow's autolog claude stop-hook first and skill_tracker.py second. The hook retries its trace lookup a few times because both hooks fire in parallel and MLflow may not have written the trace yet. You can see the tags at work in my next video's trace, where skill_invocation_sources sits at the top of the trace.",
+    "Watch this part0:52 The framework6:01 The create-site traces",
+    "create-site starts a brand-new Edge Delivery site from scratch: a GitHub repo from Adobe's boilerplate, the AEM Code Sync app, the first pages in DA, and a preview URL. What I liked right away is that it shows its execution plan before doing anything, so I, the engineer and architect, can review what it's about to do. The plan comes straight from the checklist at the top of the skill:",
+    "Gather inputsGitHub org, repo name and site name. It doesn't continue until it has all three.SKILL.md lines 53 to 61",
+    "Create the GitHub repositorygh repo create with --template adobe/aem-boilerplate, or the GitHub API if gh isn't there.lines 65 to 96",
+    "Install AEM Code Sync, a human actionThe skill can't do this one. It hands you the install URL and waits for you to reply \"done\", then checks the admin status endpoint.lines 100 to 117",
+    "Authenticate with DAChecks for a cached IMS token in ~/.aem/da-token.json and whether it has expired before starting a new login.lines 121 to 159",
+    "Create the initial content in DAnav, footer and index, the three pages every EDS site needs.lines 163 to 224",
+    "Trigger previewPreviews all three paths through the admin API.lines 228 to 246",
+    "Hand offThe preview URL, the DA links and the commands to start developing locally.lines 250 to 271",
+    "All of it made sense. I already had a DA token cached, and the skill knew it was still valid until the next day. The AEM Code Sync step was mine. I did it in the browser while the other steps ran: add the new repo, give the app access, and the site was registered.",
+    "Is this faster than clicking through the UI? Yes, absolutely. The first time you create an EDS site, you should probably click through and follow Adobe's instructions so you know what's happening. The tenth time, a skill like this saves quite a bit of time.",
+    "This is also where I broke my own test a little. Partway through, I decided I wanted the Author Kit as my starting point instead of everything the skill was setting up. So I jumped in with screenshots and told the agent what I'd done: we have some content, but no navigation yet. That makes part of this assessment about a human and an agent working together, not the skill on its own.",
+    "The traces showed the rest. The GitHub repo was created correctly, my assessment files were moved over, and somewhere in the middle the agent added .gitignore and .hlxignore entries for the MLflow files. I don't think that came from the skill. Still, it's a plus. Good job, Claude. The live site rendered, DA was running, the links worked, and the skill created the navigation in its fifth step, as written. Overall, Claude Opus 4.7 followed this skill very well.",
+    "Watch this part1:49 Starting create-site3:39 The human step4:36 Where I broke my own test6:53 The live site",
+    "CDD is Adobe's big one, and it loads several skills by itself. On camera I said it has seven steps. The SKILL.md on main that day lists eight tasks: start the dev server, analyze and plan, design the content model, find or create test content, implement, lint and test, validate, and ship it. Steps two, three, four and five each hand off to another skill.",
+    "I have one small critique. From what I remember studying for my Claude certification exam, a skill should point to its other files near the top, in the first hundred lines or so. CDD gets to its first sub-skill on line 122 of 449, and its list of related skills starts on line 428:",
+    "Lines 1 to 100 A sub-skill reference, line 1 on the left, line 449 on the right",
+    "122analyze-and-plan step 2",
+    "147content-modeling step 3",
+    "202da-auth step 4, when pushing content to DA",
+    "222find-test-content step 4, for an existing block",
+    "256building-blocks step 5, which brings in testing-blocks",
+    "428Related Skills list",
+    "The new site didn't have many blocks yet, which was perfect. I asked for a teaser block using content-driven development: a banner teaser that works a bit like a hero, plus teasers that hold two, three or four cards side by side, so the layout looks better when there's more than one entry. And I told it to think about what content is needed first, then create the block.",
+    "While it ran, I read Adobe's reasoning. Their philosophy is that content comes first, before functionality. Content is a contract between authors and developers, the same way an API is a contract between engineering teams. If you use Universal Editor, those model.json files are literally contracts. It makes a lot of sense to shift into the CDD mindset, and I think it's really cool to see Adobe build that into a skill.",
+    "Here's what the contract looked like for the teaser. The author writes one row per entry: an image, an eyebrow in italics, a heading, body text and a link. The block's code promises to turn exactly that into the layout. Pick a change an author might make and see what the block's real decorate() function does with it. Small differences in the authored content change the markup, which is why CDD settles the content before it writes the code.",
+    "What the author writes",
+    "The block in the DA document (rows based on the /teasers test page)",
+    "Scale",
+    "Content at scale",
+    "Publish more in less time with smaller teams.",
+    "Learn how",
+    "Predictability",
+    "Previews at 100% fidelity",
+    "What authors see is what visitors get.",
+    "Try a preview",
+    "Team",
+    "Author-friendly by default",
+    "Anyone who can edit a document can publish a page.",
+    "See the workflow",
+    "Matches the contract. The variant comes from the block name: cards-3. A first paragraph holding only italics becomes the eyebrow. The last paragraph of links becomes a primary button.",
+    "What decorate() turns it into",
+    "The decorated block, drawn with rules modeled on teaser.css",
+    "The PR the skill opened tells the same story in its own words. It pushed a /teasers test page to DA covering all four variants, checked that the undecorated divs came through the dev server, wrote teaser.js and teaser.css against that real content, tested at 375, 768 and 1280 pixels with no console errors, and got lint clean.",
+    "A few other things I noticed along the way:",
+    "It put the teasers on the homepage. I was hoping for a block library page out of the box, since the skill clearly knew about one, but maybe not.",
+    "It tests a lot with Playwright, through the CLI or MCP. That's great if you want to watch AI work for you. Headful browsers can be disruptive, though. I usually run several Claude Code sessions at once and prefer things headless so I don't get interrupted.",
+    "It created a pull request by default instead of committing to the main branch, so definitely points there.",
+    "It takes a while. The long run took about 83 turns and many tool calls. My prompt log has the CDD prompt at 4:05 PM and my \"ship it\" at 4:17 PM. It takes a bit of tokens and quite a few minutes, but at the end I had properly authored, content-first content and a site that gave me what I asked for.",
+    "Since this was a test project, I told the agent to merge PR 1 with gh and go back to main for the next test.",
+    "Watch this part7:40 Starting CDD8:41 The teaser prompt9:31 Content as a contract12:18 A PR by default",
+    "I didn't find any skill from Adobe that manages themes. If I were doing a project agentically, I'd create the site first. Then, before building any blocks, I'd get the default content looking right: the typography and the style system, as much as possible. Only then would content-driven development start. Later that afternoon I asked Claude straight out whether anything in Adobe's skills styles the whole site or generates its styles.css. It didn't find one.",
+    "The other thought I had while CDD was running is about parallel work. Once you have a real design theme, from Google Stitch or something similar, you can have Claude build several blocks in parallel. Anyone who has played with harnesses knows AI generates code fast now. The output isn't the bottleneck anymore. The input and the process you give it are. So my immediate thought with CDD was: can we run ten of these at the same time, and what would we fix in the input, the skill or the harness to make that work? While CDD ran, I showed a more mature page from a different session, one with a proper design system, where everything on the page came from a single prompt with the blocks built in parallel.",
+    "A week later I took my own run at the theme step, theming this same site with Google Stitch and MCP. In August I tried Adobe Stardust, which redesigns an existing site. Its own description says it's not for designing a brand-new site from scratch, so the greenfield theme step is still a gap in my book. When I rechecked on October 3, 2026, CDD on main still listed eight tasks with its first sub-skill on line 122.",
+    "There's a lot more to try: Adobe's content import skills, the DA Live MCP server and the authentication pieces Adobe has built.",
+    "Watch this part11:14 Parallel blocks11:58 A page built in parallel13:22 The missing theme skill",
+    "ArticleTheming a brand-new EDS site with Google Stitch and MCPThe theme step this run was missing, on the same site a week later.",
+    "ArticleAdobe Stardust explainedAdobe's design skill, tested on real EDS blocks.",
+    "PortfolioAI Builder Kit: skills anyone can installMy own skills, built the same way.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Part 1Which skill fired",
+    "Part 2create-site, one human step",
+    "Part 3Content first, then code",
+    "Part 4A theme skill, next"
+  ],
+  "codeBlocks": [
+    "/plugin marketplace add adobe/skills\n/plugin install aem-edge-delivery-services@adobe-skills",
+    "if isinstance(content, list):\n                for part in content:\n                    if (\n                        isinstance(part, dict)\n                        and part.get(\"type\") == \"tool_use\"\n                        and part.get(\"name\") == \"Skill\"\n                    ):\n                        skill = (part.get(\"input\") or {}).get(\"skill\")\n                        if skill:\n                            invocations.append({\n                                \"skill\": skill.strip(),\n                                \"source\": \"model_tool_call\",\n                                \"timestamp\": ts,\n                            })\n            if isinstance(content, str):\n                for m in COMMAND_TAG_RE.finditer(content):\n                    name = m.group(1).strip().lstrip(\"/\").strip()\n                    if not name or name in BUILTIN_COMMANDS:\n                        continue\n                    invocations.append({\n                        \"skill\": name,\n                        \"source\": \"slash_command\",\n                        \"timestamp\": ts,\n                    })",
+    "skills_used\n  [\"building-blocks\", \"content-driven-development\", \"testing-blocks\"]\nskills_used_count\n  3\nskills_unique_count\n  3\nskill_invocation_sources\n  [\"model_tool_call\", \"slash_command\"]\nskills_used_breakdown\n  {\"content-driven-development\": 1, \"building-blocks\": 1, \"testing-blocks\": 1}",
+    "<div class=\"teaser cards-3\">\n  <ul>\n    <li class=\"teaser-item\">\n      <div class=\"teaser-visual\">\n        <picture>\n      <div class=\"teaser-text\">\n        <p class=\"teaser-eyebrow\"> Scale\n        <h3> Content at scale\n        <p> Publish more in less time…\n        <p class=\"teaser-ctas\">\n          <a class=\"button primary\"> Learn how\n    <li class=\"teaser-item\"> …2 more"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/uTFBqT1ULhk"
+    },
+    {
+      "label": "eds-skill-assess-2026-05",
+      "href": "https://github.com/jackzhaojin/eds-skill-assess-2026-05"
+    },
+    {
+      "label": "adobe/skills at 03fc683",
+      "href": "https://github.com/adobe/skills/tree/03fc683c7484dd8efaff06dc9739251add475d47/plugins/aem/edge-delivery-services/skills"
+    },
+    {
+      "label": "Developing with AI Tools",
+      "href": "https://www.aem.live/developer/ai-coding-agents"
+    },
+    {
+      "label": "a4bcb3c on GitHub",
+      "href": "https://github.com/jackzhaojin/eds-skill-assess-2026-05/blob/a4bcb3c74dd6563bbd3ace26296e98eebdb106b5/2026-05-eds-skill-assessment-with-mlflow/hooks/skill_tracker.py#L79-L103"
+    },
+    {
+      "label": "source",
+      "href": "https://github.com/jackzhaojin/eds-skill-assess-2026-05/blob/a4bcb3c74dd6563bbd3ace26296e98eebdb106b5/2026-05-eds-skill-assessment-with-mlflow/hooks/skill_tracker.py#L63-L163"
+    },
+    {
+      "label": "my next video's trace",
+      "href": "/writing/2026-05-24-theming-eds-with-google-stitch/"
+    },
+    {
+      "label": "0:52 The framework",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=52"
+    },
+    {
+      "label": "6:01 The create-site traces",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=361"
+    },
+    {
+      "label": "create-site's SKILL.md",
+      "href": "https://github.com/adobe/skills/blob/03fc683c7484dd8efaff06dc9739251add475d47/plugins/aem/edge-delivery-services/skills/create-site/SKILL.md#L39-L49"
+    },
+    {
+      "label": "1:49 Starting create-site",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=109"
+    },
+    {
+      "label": "3:39 The human step",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=219"
+    },
+    {
+      "label": "4:36 Where I broke my own test",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=276"
+    },
+    {
+      "label": "6:53 The live site",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=413"
+    },
+    {
+      "label": "CDD's SKILL.md",
+      "href": "https://github.com/adobe/skills/blob/03fc683c7484dd8efaff06dc9739251add475d47/plugins/aem/edge-delivery-services/skills/content-driven-development/SKILL.md#L120-L122"
+    },
+    {
+      "label": "4a15caf",
+      "href": "https://github.com/jackzhaojin/eds-skill-assess-2026-05/blob/4a15caf1168af146b45ae8a4dbc014183f916887/blocks/teaser/teaser.js"
+    },
+    {
+      "label": "As the skill authored it",
+      "href": null
+    },
+    {
+      "label": "One row, no variant named",
+      "href": null
+    },
+    {
+      "label": "Eyebrow not in italics",
+      "href": null
+    },
+    {
+      "label": "Extra words next to the link",
+      "href": null
+    },
+    {
+      "label": "7:40 Starting CDD",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=460"
+    },
+    {
+      "label": "8:41 The teaser prompt",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=521"
+    },
+    {
+      "label": "9:31 Content as a contract",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=571"
+    },
+    {
+      "label": "12:18 A PR by default",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=738"
+    },
+    {
+      "label": "theming this same site with Google Stitch and MCP",
+      "href": "/writing/2026-05-24-theming-eds-with-google-stitch/"
+    },
+    {
+      "label": "Adobe Stardust",
+      "href": "/writing/2026-08-09-adobe-stardust-explained/"
+    },
+    {
+      "label": "11:14 Parallel blocks",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=674"
+    },
+    {
+      "label": "11:58 A page built in parallel",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=718"
+    },
+    {
+      "label": "13:22 The missing theme skill",
+      "href": "https://youtu.be/uTFBqT1ULhk?t=802"
+    },
+    {
+      "label": "Theming a brand-new EDS site with Google Stitch and MCP",
+      "href": "/writing/2026-05-24-theming-eds-with-google-stitch/"
+    },
+    {
+      "label": "Adobe Stardust explained",
+      "href": "/writing/2026-08-09-adobe-stardust-explained/"
+    },
+    {
+      "label": "AI Builder Kit: skills anyone can install",
+      "href": "/portfolio/#ch-kit"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Part 1Which skill fired",
+      "href": "#part-1"
+    },
+    {
+      "label": "Part 2create-site, one human step",
+      "href": "#part-2"
+    },
+    {
+      "label": "Part 3Content first, then code",
+      "href": "#part-3"
+    },
+    {
+      "label": "Part 4A theme skill, next",
+      "href": "#part-4"
+    },
+    {
+      "label": "Watch the video, 14:10",
+      "href": "#video"
+    },
+    {
+      "label": "Code on GitHub",
+      "href": "https://github.com/jackzhaojin/eds-skill-assess-2026-05"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://youtu.be/uTFBqT1ULhk",
+    "https://github.com/jackzhaojin/eds-skill-assess-2026-05",
+    "https://github.com/adobe/skills/tree/03fc683c7484dd8efaff06dc9739251add475d47/plugins/aem/edge-delivery-services/skills",
+    "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/#part-1",
+    "https://www.aem.live/developer/ai-coding-agents",
+    "https://github.com/jackzhaojin/eds-skill-assess-2026-05/blob/a4bcb3c74dd6563bbd3ace26296e98eebdb106b5/2026-05-eds-skill-assessment-with-mlflow/hooks/skill_tracker.py#L79-L103",
+    "https://github.com/jackzhaojin/eds-skill-assess-2026-05/blob/a4bcb3c74dd6563bbd3ace26296e98eebdb106b5/2026-05-eds-skill-assessment-with-mlflow/hooks/skill_tracker.py#L63-L163",
+    "https://www.jackzhaojin.com/writing/2026-05-24-theming-eds-with-google-stitch/",
+    "https://youtu.be/uTFBqT1ULhk?t=52",
+    "https://youtu.be/uTFBqT1ULhk?t=361",
+    "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/#part-2",
+    "https://github.com/adobe/skills/blob/03fc683c7484dd8efaff06dc9739251add475d47/plugins/aem/edge-delivery-services/skills/create-site/SKILL.md#L39-L49",
+    "https://youtu.be/uTFBqT1ULhk?t=109",
+    "https://youtu.be/uTFBqT1ULhk?t=219",
+    "https://youtu.be/uTFBqT1ULhk?t=276",
+    "https://youtu.be/uTFBqT1ULhk?t=413",
+    "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/#part-3",
+    "https://github.com/adobe/skills/blob/03fc683c7484dd8efaff06dc9739251add475d47/plugins/aem/edge-delivery-services/skills/content-driven-development/SKILL.md#L120-L122",
+    "https://github.com/jackzhaojin/eds-skill-assess-2026-05/blob/4a15caf1168af146b45ae8a4dbc014183f916887/blocks/teaser/teaser.js",
+    "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/#",
+    "https://youtu.be/uTFBqT1ULhk?t=460",
+    "https://youtu.be/uTFBqT1ULhk?t=521",
+    "https://youtu.be/uTFBqT1ULhk?t=571",
+    "https://youtu.be/uTFBqT1ULhk?t=738",
+    "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/#part-4",
+    "https://www.jackzhaojin.com/writing/2026-08-09-adobe-stardust-explained/",
+    "https://youtu.be/uTFBqT1ULhk?t=674",
+    "https://youtu.be/uTFBqT1ULhk?t=718",
+    "https://youtu.be/uTFBqT1ULhk?t=802",
+    "https://www.jackzhaojin.com/portfolio/#ch-kit",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/#video",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/images/mlflow-trace.jpg",
+        "alt": "MLflow trace view for the create-site session. The trace breakdown lists llm, tool_Bash, tool_Write and tool_Read spans. The chat panel shows my prompt, go, and the assistant replying that it is executing step 1, creating the GitHub repo from the boilerplate template.",
+        "w": 1155,
+        "h": 438
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/images/teaser-showcase.jpg",
+        "alt": "The Teaser block showcase page on localhost:3000. A heading reads One block, four variants. Below it, the Banner variant: a blurred tunnel photo on the left and, on the right, the eyebrow MLFLOW + EDS, the heading Auto-trace every block you build, a line of body text and two buttons, View traces and Explore the repo.",
+        "w": 1280,
+        "h": 791
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/images/thumb-traces.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-05-17-adobe-eds-skills-hands-on/images/thumb-cdd.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 4,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/uTFBqT1ULhk?rel=0",
+        "title": "I Ran Adobe's EDS Skills on a Real Build: create-site and Content-Driven Development (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 6,
+    "mainTextLen": 16978,
+    "realImageCount": 4,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 122,
+        "hits": 1,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 3
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      },
+      {
+        "host": "www.google.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 2,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 2,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2026-05-17-adobe-eds-skills-hands-on.png",
+  "renderedHtml": "pages/writing-2026-05-17-adobe-eds-skills-hands-on.html",
+  "slots": {
+    "type": "article",
+    "headline": "Adobe's EDS Skills on a Real Build: create-site and Content-Driven Development, Traced in MLflow",
+    "deck": "Adobe publishes agent skills for Edge Delivery Services in its public adobe/skills repo. I ran two of them end to end on a real build: create-site to stand up a brand-new site, and content-driven-development to build a teaser block. Claude Opus 4.7 did the work, I watched, and MLflow traced every session. Here's what each skill does, what it built, how to make MLflow show which skill actually fired, and the skill I'd want next: one that themes a new site.",
+    "byline": "By Jack Jin · May 17, 2026 · Updated October 4, 2026 · 10 min read · Includes my 14:10 video",
+    "meta": {
+      "times": [
+        "May 17, 2026",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "video",
+      "src": "https://www.youtube-nocookie.com/embed/uTFBqT1ULhk?rel=0"
+    },
+    "body": {
+      "h2": [
+        "1. Tracing the run, and a hook that shows which skill fired",
+        "2. create-site stands up a new EDS site, with one human step",
+        "3. Content-driven development writes the content before the code",
+        "4. What I'd want next is a skill that themes a new site",
+        "Related"
+      ],
+      "figures": 8,
+      "codeBlocks": 1,
+      "tables": 1,
+      "embeds": 1
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "Theming a brand-new EDS site with Google Stitch and MCP",
+        "href": "/writing/2026-05-24-theming-eds-with-google-stitch/"
+      },
+      {
+        "title": "Adobe Stardust explained",
+        "href": "/writing/2026-08-09-adobe-stardust-explained/"
+      },
+      {
+        "title": "AI Builder Kit: skills anyone can install",
+        "href": "/portfolio/#ch-kit"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 6,
+    "authorBox": true
+  }
+}

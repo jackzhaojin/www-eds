@@ -1,0 +1,1362 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:audit",
+    "writtenAt": "2026-10-25T14:43:00.027Z",
+    "againstInput": "https://www.jackzhaojin.com",
+    "track": "site-scope",
+    "readArtifacts": [
+      "stardust/current/_brand-extraction.json",
+      "stardust/current/brand-review.html",
+      "stardust/current/_computed-styles.json",
+      "stardust/current/pages/*.json + *.html (34)",
+      "stardust/current/DESIGN.json#extensions.breakpoints",
+      "stardust/.work/site-scope/cwv.json",
+      "stardust/.work/site-scope/ai-readability.json",
+      "stardust/.work/spec/martech/",
+      "stardust/.work/site-scope/critique/ (impeccable 4.7.1 critique + audit)"
+    ],
+    "synthesizedInputs": [],
+    "stardustVersion": "0.36.0"
+  },
+  "site": {
+    "url": "https://www.jackzhaojin.com",
+    "domainSlug": "jackzhaojin-com",
+    "pagesAudited": [
+      "index",
+      "writing",
+      "writing-2026-10-10-adaptto-2026-25-talks",
+      "writing-2026-09-20-aem-edge-functions-google-sign-in",
+      "writing-2026-08-15-anima-mesh-company-of-zero",
+      "writing-2026-08-09-adobe-stardust-explained",
+      "writing-2026-07-21-four-frontier-models-one-prompt",
+      "writing-2026-06-28-patterns-of-work",
+      "writing-2026-05-31-continuous-agent-second-brain",
+      "writing-2026-05-24-theming-eds-with-google-stitch",
+      "writing-2026-05-17-adobe-eds-skills-hands-on",
+      "writing-2026-04-12-two-ai-skills-team-enablement",
+      "writing-2026-04-05-continuous-executive-agent-v2-1",
+      "writing-2026-03-23-eds-hlx-admin-agentic-config",
+      "writing-2026-02-05-reusable-ai-development-modules",
+      "writing-2026-01-29-playwright-stakeholder-demos",
+      "writing-2026-01-05-from-prompts-to-harness",
+      "writing-2025-10-12-da-live-mcp-across-ai-platforms",
+      "writing-2025-10-05-mcp-server-for-eds-da-live",
+      "writing-2025-09-01-aem-caching-production-architectures",
+      "writing-2025-07-13-three-eds-offerings",
+      "writing-2025-07-12-aem-headless-omnichannel-architecture",
+      "writing-2025-07-11-scaling-ai-coding-delivery-methodology",
+      "writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+      "writing-2025-07-06-ai-coded-nextjs-agent-release-1",
+      "writing-2025-06-12-azure-rbac-cicd-for-ai-agents",
+      "writing-2025-06-08-edge-cms-shift-adobe-eds",
+      "writing-2025-06-04-seven-aem-capabilities-tradeoffs",
+      "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+      "writing-2025-04-13-vibe-coding-star-story-generator",
+      "portfolio",
+      "talks",
+      "certifications",
+      "privacy"
+    ],
+    "extraction": {
+      "reused": true,
+      "extractedAt": "2026-10-25T14:00:09.911Z",
+      "pageCount": 34
+    }
+  },
+  "assumptions": [
+    "Primary conversion assumed to be engagement with the work (portfolio, writing, talks), not a contact form: the site has no form, no booking link and no price.",
+    "The audit covers the 34 sitemap pages; the 7 GitHub Pages project sites on the same host are out of scope.",
+    "Design findings marked registerCandidate are candidates for the replica's inconsistency register, not fixes; the replica keeps the live design unless a register entry says otherwise.",
+    "Lab metrics only: PageSpeed Insights returned 429 (daily quota, no key), so TBT stands in for INP.",
+    "Captures are light mode; the dark theme was not scored (impeccable reported 0 AA failures in both themes)."
+  ],
+  "scorecard": {
+    "overall": 74,
+    "scoredWeight": 100,
+    "dimensions": {
+      "brand-expression": {
+        "score": 78,
+        "weight": 10,
+        "evidence": [
+          "measurements.brandColorShare",
+          "measurements.radiusSprawl",
+          "T-radius-vocab",
+          "T-explainer-tokens",
+          "F-010",
+          "F-013"
+        ],
+        "notMeasured": [],
+        "basis": "Lavender family is 45% of painted pixels on the home page and Playfair carries a distinct display register (90 anchor traits), but six radii are in use and the explainers run their own token layer (70 anchor tension)"
+      },
+      "visual-hierarchy-craft": {
+        "score": 64,
+        "weight": 15,
+        "evidence": [
+          "measurements.typeScale",
+          "T-scale",
+          "F-007",
+          "F-008",
+          "F-009",
+          "F-011"
+        ],
+        "notMeasured": [],
+        "basis": "Ad-hoc type ladder (40 anchor marker) offset by a single clear focal point and a what/who/ask hero in one viewport; secondary pages vary title caps and the writing index flattens hierarchy"
+      },
+      "conversion-focus": {
+        "score": 74,
+        "weight": 20,
+        "evidence": [
+          "measurements.ctaFragmentation",
+          "F-003",
+          "F-006"
+        ],
+        "notMeasured": [],
+        "basis": "One destination-named primary CTA in the first viewport and real proof (Adobe announcement, issuer verification links), no bucket fragmentation; the home underweights the writing and hubs end inconsistently"
+      },
+      "accessibility": {
+        "score": 84,
+        "weight": 10,
+        "evidence": [
+          "measurements.contrast",
+          "measurements.altCoverage",
+          "F-015",
+          "F-020"
+        ],
+        "notMeasured": [],
+        "basis": "14 of 15 palette pairs pass AA in role (one at 4.49); 99% of content images carry meaningful alt; full landmarks and exactly one h1 on 34/34 pages; reduced motion honored; duplicate links per credential and small article targets remain"
+      },
+      "technical-seo": {
+        "score": 86,
+        "weight": 15,
+        "evidence": [
+          "measurements.sitemapValid",
+          "measurements.redirectChain",
+          "measurements.seoPageChecks",
+          "measurements.jsonldTypes",
+          "F-016",
+          "F-017"
+        ],
+        "notMeasured": [],
+        "basis": "Robots, sitemap (34 with lastmod), self canonicals, single-hop https, unique titles, descriptions, complete OG and page-type JSON-LD on every page; 19 titles exceed 60 characters and email obfuscation plants a 404 link"
+      },
+      "content-llm-visibility": {
+        "score": 88,
+        "weight": 15,
+        "evidence": [
+          "measurements.llmsTxt",
+          "measurements.aiReadability",
+          "measurements.jsonldTypes",
+          "measurements.extractableProseWords",
+          "F-025"
+        ],
+        "notMeasured": [],
+        "basis": "llms.txt present, served = rendered words (99-100% strict on 7 pages), Person + TechArticle + VideoObject + credential schema, article median 2387 extractable words with specific claims; only 11% of headings read as questions"
+      },
+      "performance": {
+        "score": 50,
+        "weight": 15,
+        "evidence": [
+          "measurements.cwv",
+          "F-001",
+          "F-002",
+          "F-004"
+        ],
+        "notMeasured": [],
+        "basis": "Mobile TBT (lab INP proxy) is poor on / (1182 ms) and /portfolio/ (3962 ms), which sets the 40 anchor; LCP and CLS are good on every page and desktop is good everywhere, so the score sits above the anchor"
+      }
+    }
+  },
+  "measurements": {
+    "brandColorShare": {
+      "value": 0.453,
+      "unit": "share-of-painted-pixels",
+      "status": "measured",
+      "method": "pixel-sample",
+      "detail": {
+        "screenshot": "stardust/current/assets/screenshots/index.png",
+        "size": "1440x2751",
+        "grid": "every 8th px",
+        "samples": 61920,
+        "paintedPixels": 6610,
+        "brandPixels": 2994,
+        "grounds": "paper, alt, surface, raised within RGB distance 10",
+        "brandFamily": "lavender accent 600/700/300/200 and accent-soft over paper within RGB distance 28"
+      }
+    },
+    "ctaFragmentation": {
+      "value": 0,
+      "unit": "distinct-labels-per-bucket",
+      "status": "measured",
+      "method": "pages-json-aggregation",
+      "detail": {
+        "buckets": "see-more, start, contact, buy, signup, donate, vague-here (brand-review-template closed list)",
+        "hits": {},
+        "note": "No CTA label on the 34 pages matches any bucket member exactly; CTA labels name destinations (Explore the portfolio, See my talks, View all certifications, Visit Technical Writing)."
+      }
+    },
+    "typeScale": {
+      "value": "ad-hoc",
+      "unit": "scale-kind",
+      "status": "measured",
+      "method": "brand-extraction",
+      "detail": {
+        "headingSizes": [
+          41.6,
+          30,
+          20,
+          19
+        ],
+        "tokens": [
+          11,
+          13,
+          14,
+          16,
+          19,
+          20,
+          30,
+          44,
+          64
+        ],
+        "ratio": null,
+        "ratios": [
+          1.182,
+          1.077,
+          1.143,
+          1.188,
+          1.053,
+          1.5,
+          1.467,
+          1.455
+        ]
+      }
+    },
+    "radiusSprawl": {
+      "value": 6,
+      "unit": "distinct-radii",
+      "status": "measured",
+      "method": "brand-extraction",
+      "detail": {
+        "occurrences": {
+          "4px": 1350,
+          "10px": 892,
+          "12px": 524,
+          "6px": 456,
+          "999px": 370,
+          "14px": 147
+        },
+        "tokens": {
+          "sm": "4px",
+          "md": "6px",
+          "lg": "10px",
+          "pill": "999px"
+        }
+      }
+    },
+    "contrast": {
+      "status": "measured",
+      "method": "wcag-computed",
+      "detail": {
+        "pairs": [
+          {
+            "fg": "#1a1917",
+            "bg": "#f6f4f0",
+            "role": "heading / body ink on paper",
+            "ratio": 15.99,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#4a4744",
+            "bg": "#f6f4f0",
+            "role": "body text (ink-muted) on paper",
+            "ratio": 8.4,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#6f6b66",
+            "bg": "#f6f4f0",
+            "role": "meta / caption (ink-faint) on paper",
+            "ratio": 4.81,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#6f6b66",
+            "bg": "#ffffff",
+            "role": "caption on surface",
+            "ratio": 5.29,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#6f6b66",
+            "bg": "#efece6",
+            "role": "meta on alt band",
+            "ratio": 4.49,
+            "passesAA": false,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#5b4bc4",
+            "bg": "#f6f4f0",
+            "role": "link text (accent) on paper",
+            "ratio": 5.89,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#5b4bc4",
+            "bg": "#ffffff",
+            "role": "link text on surface",
+            "ratio": 6.46,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#f6f4f0",
+            "bg": "#1a1917",
+            "role": "primary button text on ink",
+            "ratio": 15.99,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#e8e5e3",
+            "bg": "#1a1a19",
+            "role": "code text (bone) on night",
+            "ratio": 13.89,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#c0b3ff",
+            "bg": "#1a1a19",
+            "role": "code token lavender on night",
+            "ratio": 9.23,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#9fe0c0",
+            "bg": "#1a1a19",
+            "role": "code token mint on night",
+            "ratio": 11.53,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#f0cf8e",
+            "bg": "#1a1a19",
+            "role": "code token gold on night",
+            "ratio": 11.63,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#2f6bb3",
+            "bg": "#f6f4f0",
+            "role": "topic aem blue on paper",
+            "ratio": 4.93,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#c2433d",
+            "bg": "#f6f4f0",
+            "role": "topic agents red on paper",
+            "ratio": 4.59,
+            "passesAA": true,
+            "passesAALarge": true
+          },
+          {
+            "fg": "#7d5f0e",
+            "bg": "#f6f4f0",
+            "role": "topic work gold on paper",
+            "ratio": 5.44,
+            "passesAA": true,
+            "passesAALarge": true
+          }
+        ]
+      }
+    },
+    "altCoverage": {
+      "value": 0.47,
+      "unit": "share-of-images-with-meaningful-alt",
+      "status": "measured",
+      "method": "rendered-dom-aggregation",
+      "detail": {
+        "images": 371,
+        "emptyAlt": 198,
+        "emptyAltDecorative": 197,
+        "emptyAltContent": 1,
+        "genericAlt": 0,
+        "contentImageCoverage": 0.99,
+        "decorativeRule": "alt=\"\" on rail thumbnails, writing-index covers beside their title, credential badges beside the credential name"
+      }
+    },
+    "cwv": {
+      "status": "measured",
+      "method": "playwright-lab",
+      "detail": {
+        "pages": {
+          "/": {
+            "mobile": {
+              "lcp": {
+                "value": 0.84,
+                "unit": "s",
+                "class": "good",
+                "element": "P.summary"
+              },
+              "cls": {
+                "value": 0.001,
+                "unit": "score",
+                "class": "good"
+              },
+              "tbt": {
+                "value": 1182,
+                "unit": "ms",
+                "class": "poor"
+              },
+              "fcpMs": 836,
+              "longTasks": 4
+            },
+            "desktop": {
+              "lcp": {
+                "value": 0.35,
+                "unit": "s",
+                "class": "good",
+                "element": "P.summary"
+              },
+              "cls": {
+                "value": 0.002,
+                "unit": "score",
+                "class": "good"
+              },
+              "tbt": {
+                "value": 27,
+                "unit": "ms",
+                "class": "good"
+              },
+              "fcpMs": 348,
+              "longTasks": 3
+            }
+          },
+          "/writing/": {
+            "mobile": {
+              "lcp": {
+                "value": 0.84,
+                "unit": "s",
+                "class": "good",
+                "element": "H1.page-title page-title--display"
+              },
+              "cls": {
+                "value": 0.009,
+                "unit": "score",
+                "class": "good"
+              },
+              "tbt": {
+                "value": 233,
+                "unit": "ms",
+                "class": "needs-improvement"
+              },
+              "fcpMs": 836,
+              "longTasks": 6
+            },
+            "desktop": {
+              "lcp": {
+                "value": 0.33,
+                "unit": "s",
+                "class": "good",
+                "element": "H1.page-title page-title--display"
+              },
+              "cls": {
+                "value": 0.051,
+                "unit": "score",
+                "class": "good"
+              },
+              "tbt": {
+                "value": 0,
+                "unit": "ms",
+                "class": "good"
+              },
+              "fcpMs": 332,
+              "longTasks": 0
+            }
+          },
+          "/writing/2026-08-09-adobe-stardust-explained/": {
+            "mobile": {
+              "lcp": {
+                "value": 0.95,
+                "unit": "s",
+                "class": "good",
+                "element": "P.summary"
+              },
+              "cls": {
+                "value": 0.001,
+                "unit": "score",
+                "class": "good"
+              },
+              "tbt": {
+                "value": 131,
+                "unit": "ms",
+                "class": "good"
+              },
+              "fcpMs": 952,
+              "longTasks": 5
+            },
+            "desktop": {
+              "lcp": {
+                "value": 0.29,
+                "unit": "s",
+                "class": "good",
+                "element": "P.summary"
+              },
+              "cls": {
+                "value": 0.002,
+                "unit": "score",
+                "class": "good"
+              },
+              "tbt": {
+                "value": 0,
+                "unit": "ms",
+                "class": "good"
+              },
+              "fcpMs": 292,
+              "longTasks": 0
+            }
+          },
+          "/portfolio/": {
+            "mobile": {
+              "lcp": {
+                "value": 2.1,
+                "unit": "s",
+                "class": "good",
+                "element": "P.hero-deck reveal d2"
+              },
+              "cls": {
+                "value": 0.001,
+                "unit": "score",
+                "class": "good"
+              },
+              "tbt": {
+                "value": 3962,
+                "unit": "ms",
+                "class": "poor"
+              },
+              "fcpMs": 1000,
+              "longTasks": 77
+            },
+            "desktop": {
+              "lcp": {
+                "value": 0.46,
+                "unit": "s",
+                "class": "good",
+                "element": "H1.reveal d1"
+              },
+              "cls": {
+                "value": 0.009,
+                "unit": "score",
+                "class": "good"
+              },
+              "tbt": {
+                "value": 0,
+                "unit": "ms",
+                "class": "good"
+              },
+              "fcpMs": 292,
+              "longTasks": 0
+            }
+          },
+          "/certifications/": {
+            "mobile": {
+              "lcp": {
+                "value": 0.74,
+                "unit": "s",
+                "class": "good",
+                "element": "P.summary"
+              },
+              "cls": {
+                "value": 0.001,
+                "unit": "score",
+                "class": "good"
+              },
+              "tbt": {
+                "value": 198,
+                "unit": "ms",
+                "class": "good"
+              },
+              "fcpMs": 744,
+              "longTasks": 4
+            },
+            "desktop": {
+              "lcp": {
+                "value": 0.56,
+                "unit": "s",
+                "class": "good",
+                "element": "H1.page-title page-title--display"
+              },
+              "cls": {
+                "value": 0.002,
+                "unit": "score",
+                "class": "good"
+              },
+              "tbt": {
+                "value": 0,
+                "unit": "ms",
+                "class": "good"
+              },
+              "fcpMs": 560,
+              "longTasks": 0
+            }
+          }
+        },
+        "mobileProfile": "375x667 DPR2, CPU 4x, 150 ms RTT, 1.6 Mbps down, cache disabled",
+        "desktopProfile": "1440x900, no throttling",
+        "note": "Lab TBT is a proxy for INP; field data unavailable (PageSpeed Insights answered 429 quota exceeded without a key)."
+      }
+    },
+    "sitemapValid": {
+      "value": true,
+      "status": "measured",
+      "method": "curl + xml parse",
+      "detail": {
+        "url": "/sitemap.xml",
+        "urls": 34,
+        "lastmod": 34,
+        "declaredInRobots": true
+      }
+    },
+    "robotsTxt": {
+      "value": "User-agent: * / Allow: / / Sitemap declared",
+      "status": "measured",
+      "method": "curl"
+    },
+    "redirectChain": {
+      "status": "measured",
+      "method": "curl -I",
+      "detail": {
+        "http://www": "301 -> https://www (1 hop)",
+        "https://apex": "301 -> https://www (1 hop)",
+        "/writing (no slash)": "301 -> /writing/"
+      }
+    },
+    "seoPageChecks": {
+      "status": "measured",
+      "method": "rendered-dom aggregation",
+      "detail": {
+        "pages": 34,
+        "titleOver60": [
+          "index:61",
+          "writing-2026-09-20-aem-edge-functions-google-sign-in:69",
+          "writing-2026-07-21-four-frontier-models-one-prompt:66",
+          "writing-2026-04-12-two-ai-skills-team-enablement:66",
+          "writing-2026-04-05-continuous-executive-agent-v2-1:64",
+          "writing-2026-03-23-eds-hlx-admin-agentic-config:61",
+          "writing-2026-02-05-reusable-ai-development-modules:68",
+          "writing-2026-01-29-playwright-stakeholder-demos:71",
+          "writing-2026-01-05-from-prompts-to-harness:65",
+          "writing-2025-10-12-da-live-mcp-across-ai-platforms:63",
+          "writing-2025-10-05-mcp-server-for-eds-da-live:66",
+          "writing-2025-09-01-aem-caching-production-architectures:81",
+          "writing-2025-07-13-three-eds-offerings:61",
+          "writing-2025-07-12-aem-headless-omnichannel-architecture:68",
+          "writing-2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure:67",
+          "writing-2025-07-06-ai-coded-nextjs-agent-release-1:76",
+          "writing-2025-06-04-seven-aem-capabilities-tradeoffs:76",
+          "writing-2025-05-28-aem-headless-when-frontend-teams-lead:64",
+          "writing-2025-04-13-vibe-coding-star-story-generator:64"
+        ],
+        "descMissing": [],
+        "descOver160": 3,
+        "canonicalNotSelf": [],
+        "noindex": [],
+        "ogIncomplete": [],
+        "h1Not1": [],
+        "headingSkipPages": [],
+        "landmarkGaps": [],
+        "jsonldMissing": [],
+        "jsonldInvalid": [],
+        "duplicateTitles": [],
+        "questionHeadingShare": 0.11,
+        "mainWordsMedianArticles": 2387,
+        "mainWordsHome": 295
+      }
+    },
+    "jsonldTypes": {
+      "status": "measured",
+      "method": "rendered-dom JSON-LD parse",
+      "detail": {
+        "pagesWithJsonld": 34,
+        "invalid": 0,
+        "types": [
+          "WebSite",
+          "Person",
+          "BreadcrumbList",
+          "TechArticle (27)",
+          "BlogPosting",
+          "Article",
+          "VideoObject (20)",
+          "CollectionPage (4)",
+          "ItemList",
+          "ProfilePage",
+          "EducationalOccupationalCredential (22)",
+          "Organization"
+        ]
+      }
+    },
+    "llmsTxt": {
+      "value": true,
+      "status": "measured",
+      "method": "curl",
+      "detail": {
+        "url": "/llms.txt",
+        "status": 200,
+        "bytes": 12359
+      }
+    },
+    "headingQuestionCoverage": {
+      "value": 0.11,
+      "unit": "share-of-h2-h3",
+      "status": "measured",
+      "method": "rendered-dom regex (ends with ? or starts with how/what/why/when/which/who/where/can/does/is/should)"
+    },
+    "extractableProseWords": {
+      "status": "measured",
+      "method": "rendered-dom main text word count",
+      "detail": {
+        "home": 295,
+        "articleMedian": 2387
+      }
+    },
+    "aiReadability": {
+      "status": "measured",
+      "method": "skills/deploy/scripts/ai-readability.mjs (Adobe AI Content Visibility Checker formula, ChatGPT-User UA)",
+      "detail": {
+        "pages": [
+          {
+            "path": "/",
+            "strict": 100,
+            "served": 585,
+            "rendered": 585
+          },
+          {
+            "path": "/writing/",
+            "strict": 100,
+            "served": 2930,
+            "rendered": 2932
+          },
+          {
+            "path": "/portfolio/",
+            "strict": 100,
+            "served": 4445,
+            "rendered": 4447
+          },
+          {
+            "path": "/talks/",
+            "strict": 100,
+            "served": 1284,
+            "rendered": 1284
+          },
+          {
+            "path": "/certifications/",
+            "strict": 100,
+            "served": 1654,
+            "rendered": 1654
+          },
+          {
+            "path": "/writing/2026-08-09-adobe-stardust-explained/",
+            "strict": 100,
+            "served": 2518,
+            "rendered": 2518
+          },
+          {
+            "path": "/writing/2025-09-01-aem-caching-production-architectures/",
+            "strict": 99,
+            "served": 2758,
+            "rendered": 2791
+          }
+        ],
+        "min": 99,
+        "gate": 98
+      }
+    },
+    "securityHeaders": {
+      "value": "none",
+      "status": "measured",
+      "method": "spec-martech headers.json (curl)",
+      "detail": {
+        "present": [
+          "cache-control: max-age=600"
+        ],
+        "absent": [
+          "content-security-policy",
+          "strict-transport-security",
+          "permissions-policy",
+          "x-content-type-options",
+          "referrer-policy"
+        ]
+      }
+    },
+    "thirdParty": {
+      "status": "measured",
+      "method": "spec-martech vendors.json + tags.json",
+      "detail": {
+        "gtag": "G-ZVENE6BXTJ on 34/34, library 540328 bytes, no consent-mode defaults",
+        "cloudflareBeacon": "34/34",
+        "youtubeNocookie": "19/34"
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "severity": "P1",
+      "dimension": "performance",
+      "title": "Home hero canvas blocks the main thread on mobile",
+      "evidence": {
+        "type": "measurement",
+        "ref": "measurements.cwv",
+        "observed": "mobile TBT 1182 ms (poor) on /; desktop 27 ms. Critique trace: page-art.js resize() builds a blur(14px) copy mask in a 620-740 ms task at 4x CPU, also under reduced motion"
+      },
+      "businessImpact": "The flagship demo targets Lighthouse 100; a poor mobile TBT is the one metric that misses it on the home page",
+      "fix": "Build the mask in idle time after LCP and skip it under reduced motion; cap the per-frame cost",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    },
+    {
+      "id": "F-002",
+      "severity": "P1",
+      "dimension": "performance",
+      "title": "Portfolio signal-field canvas janks phones",
+      "evidence": {
+        "type": "measurement",
+        "ref": "measurements.cwv",
+        "observed": "mobile TBT 3962 ms (poor), 77 long tasks on /portfolio/; desktop 0 ms. Critique: #signal-field loop in portfolio/script.js"
+      },
+      "businessImpact": "The portfolio is the site's proof page; a phone visitor gets a stuttering first scroll",
+      "fix": "Throttle the signal field to visible frames and pause it off-screen; start after first interaction on mobile",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    },
+    {
+      "id": "F-003",
+      "severity": "P1",
+      "dimension": "conversion-focus",
+      "title": "Home underweights the writing, the site's main product",
+      "evidence": {
+        "type": "screenshot",
+        "ref": "stardust/current/assets/screenshots/index.png, lower band",
+        "observed": "Technical Writing gets one paragraph and one link, the work band gets a feature plus five entries; 28 articles carry the site's depth (article median 2387 words)"
+      },
+      "businessImpact": "Readers who come for AEM and AI agent know-how do not see the writing from the home page",
+      "fix": "List the three latest articles from the writing index on the home page",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    },
+    {
+      "id": "F-004",
+      "severity": "P2",
+      "dimension": "performance",
+      "title": "Portfolio LCP waits on a reveal fade",
+      "evidence": {
+        "type": "measurement",
+        "ref": "measurements.cwv",
+        "observed": "mobile LCP 2.1 s on P.hero-deck.reveal (good but 2x every other page); desktop LCP element H1.reveal"
+      },
+      "businessImpact": "The largest paint waits for an animation, not for content",
+      "fix": "Render the hero copy visible at first paint; animate only below the fold",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    },
+    {
+      "id": "F-005",
+      "severity": "P2",
+      "dimension": "performance",
+      "title": "Listing images far larger than their slots",
+      "evidence": {
+        "type": "screenshot",
+        "ref": "stardust/current/assets/screenshots/writing.png",
+        "observed": "Critique: 28 full 1280px covers (2.45 MB) shown at 286px on /writing/; 340-604px badges in 78px slots on /certifications/, hotlinked from Credly"
+      },
+      "businessImpact": "Mobile visitors download megabytes they never see",
+      "fix": "Serve sized renditions (EDS picture breakpoints do this once images live in DA)",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    },
+    {
+      "id": "F-006",
+      "severity": "P2",
+      "dimension": "conversion-focus",
+      "title": "Hub pages end differently",
+      "evidence": {
+        "type": "screenshot",
+        "ref": "certifications, writing, talks, index screenshots (page ends)",
+        "observed": "certifications and writing end on a closing band with a next step; talks and home run straight into the footer"
+      },
+      "businessImpact": "A reader who finishes a hub has no consistent next step",
+      "fix": "One shared closing band on every hub",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    },
+    {
+      "id": "F-007",
+      "severity": "P2",
+      "dimension": "visual-hierarchy-craft",
+      "title": "Display title sizes diverge by page",
+      "evidence": {
+        "type": "measurement",
+        "ref": "measurements.typeScale",
+        "observed": "Critique: home h1 96px (site.css:34), hubs 64px, portfolio 76px, articles 32-41.6px; canon v3 reserves the display size for home"
+      },
+      "businessImpact": "Page titles do not signal page rank consistently",
+      "fix": "One display cap for home, one headline cap for everything else",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-008",
+      "severity": "P2",
+      "dimension": "visual-hierarchy-craft",
+      "title": "Writing index rows are 28 equal 30px headings",
+      "evidence": {
+        "type": "screenshot",
+        "ref": "stardust/current/assets/screenshots/writing.png",
+        "observed": "28 row titles at --text-h2 (30px), the same size as section headings"
+      },
+      "businessImpact": "The list reads as a wall of headlines; scanning is slow",
+      "fix": "Row titles at the 20px card-title step",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-009",
+      "severity": "P2",
+      "dimension": "visual-hierarchy-craft",
+      "title": "Ad-hoc type ladder with sub-12px text",
+      "evidence": {
+        "type": "tension",
+        "ref": "T-scale",
+        "observed": "Tokens 11/13/14/16/19/20/30/44/64 px, ratios 1.05 to 1.5; critique detector tiny-text x24 (.writing-row__talk 11.5px, .bruce-dates 11px)"
+      },
+      "businessImpact": "Small text costs legibility, mostly on phones",
+      "fix": "Name the steps; hold a 12px floor",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-010",
+      "severity": "P2",
+      "dimension": "brand-expression",
+      "title": "Radius vocabulary drifts off the tokens",
+      "evidence": {
+        "type": "tension",
+        "ref": "T-radius-vocab",
+        "observed": "In use: 4px (1350), 10px (892), 12px (524), 6px (456), 999px (370), 14px (147); tokens 4/6/10/999"
+      },
+      "businessImpact": "Cards and code blocks look subtly different page to page",
+      "fix": "Snap 12px and 14px to the 10px card token",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-011",
+      "severity": "P2",
+      "dimension": "visual-hierarchy-craft",
+      "title": "Off-ladder breakpoints in page-family CSS",
+      "evidence": {
+        "type": "tension",
+        "ref": "T-breakpoints",
+        "observed": "System 480/768/1024/1280; site.css, article.css, explainers.css, portfolio/styles.css add 600, 640, 700, 760, 860, 1080, 1100"
+      },
+      "businessImpact": "Layouts change at widths the system does not know, so responsive QA has more edges",
+      "fix": "Remap each to the nearest system step",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-012",
+      "severity": "P2",
+      "dimension": "visual-hierarchy-craft",
+      "title": "Portfolio content cap is 1200px, the rest 1280px",
+      "evidence": {
+        "type": "tension",
+        "ref": "T-content-cap",
+        "observed": "cap-probe: contentMaxWidth 1280 on home, writing, article, talks, certifications; 1200 on /portfolio/ (portfolio/styles.css --max)"
+      },
+      "businessImpact": "The portfolio column jumps 80px against the header at wide widths",
+      "fix": "Normalize to --container-max 1280px",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-013",
+      "severity": "P2",
+      "dimension": "brand-expression",
+      "title": "Explainers run a private token alias layer",
+      "evidence": {
+        "type": "tension",
+        "ref": "T-explainer-tokens",
+        "observed": "/css/explainers.css re-declares --night, --bone, --lav, --mint, --gold and its own --ease; 26 articles add a local explainer.css"
+      },
+      "businessImpact": "Theme or token changes miss the explainers",
+      "fix": "Alias the explainer variables to v3 semantic tokens",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-014",
+      "severity": "P2",
+      "dimension": "brand-expression",
+      "title": "Portfolio nests cards inside cards",
+      "evidence": {
+        "type": "screenshot",
+        "ref": "stardust/current/assets/screenshots/portfolio.png, middle",
+        "observed": "Critique detector nested-cards x19 (.bruce-card, .pulse-panel inside .story)"
+      },
+      "businessImpact": "Borders stack and the depth model (tonal, not boxed) breaks",
+      "fix": "Inner panels drop the card frame for hairlines",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-015",
+      "severity": "P2",
+      "dimension": "accessibility",
+      "title": "Two links per credential card",
+      "evidence": {
+        "type": "check",
+        "ref": "certifications.html .credential-row",
+        "observed": "46 links for 22 credentials: the title and Verify credential point to the same URL"
+      },
+      "businessImpact": "Screen-reader and keyboard users meet every destination twice",
+      "fix": "One link per card (the title), the verify cue as text",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-016",
+      "severity": "P2",
+      "dimension": "technical-seo",
+      "title": "Cloudflare email obfuscation rewrites article text",
+      "evidence": {
+        "type": "check",
+        "ref": "spec S4 broken.jsonl",
+        "observed": "Server HTML of 3 articles links /cdn-cgi/l/email-protection, which answers 404 to non-JS crawlers; email-like strings in code samples are replaced"
+      },
+      "businessImpact": "Crawlers and AI answer engines read a broken link instead of the code the article shows",
+      "fix": "Turn off Scrape Shield email obfuscation for www",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    },
+    {
+      "id": "F-017",
+      "severity": "P3",
+      "dimension": "technical-seo",
+      "title": "Titles run past 60 characters on 19 pages",
+      "evidence": {
+        "type": "check",
+        "ref": "check:title-missing",
+        "observed": "Longest 81 chars (/writing/2025-09-01-aem-caching-production-architectures/), home 61"
+      },
+      "businessImpact": "Search results truncate the titles, often after the value term",
+      "fix": "Trim to 60 characters, value term first",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    },
+    {
+      "id": "F-018",
+      "severity": "P3",
+      "dimension": "technical-seo",
+      "title": "No security headers on HTML",
+      "evidence": {
+        "type": "measurement",
+        "ref": "measurements.securityHeaders",
+        "observed": "Only cache-control; no CSP, HSTS, permissions policy, nosniff or referrer policy"
+      },
+      "businessImpact": "Header scanners and some enterprise proxies mark the site down",
+      "fix": "Set the headers on the new stack (EDS headers config or Cloudflare)",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    },
+    {
+      "id": "F-019",
+      "severity": "P3",
+      "dimension": "performance",
+      "title": "GA4 library loads on every page without a delay phase",
+      "evidence": {
+        "type": "measurement",
+        "ref": "measurements.thirdParty",
+        "observed": "gtag.js 540 KB async on 34/34 pages"
+      },
+      "businessImpact": "Adds main-thread work during load on phones",
+      "fix": "Load it in a delayed phase after LCP",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    },
+    {
+      "id": "F-020",
+      "severity": "P3",
+      "dimension": "accessibility",
+      "title": "Faint meta text on the alt band misses AA by 0.01",
+      "evidence": {
+        "type": "measurement",
+        "ref": "measurements.contrast",
+        "observed": "#6f6b66 on #efece6 computes 4.49:1"
+      },
+      "businessImpact": "Small meta text in closing bands is marginally below AA",
+      "fix": "Use ink-muted for text on the alt ground",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-021",
+      "severity": "P3",
+      "dimension": "accessibility",
+      "title": "Portfolio repo callout label below AA",
+      "evidence": {
+        "type": "screenshot",
+        "ref": "stardust/current/assets/screenshots/portfolio.png",
+        "observed": "Critique detector low-contrast: p.repo-callout-label 11px #6f6b66 about 4.2:1 on a gradient"
+      },
+      "businessImpact": "A small label is hard to read",
+      "fix": "Ink-muted at 12px",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-022",
+      "severity": "P3",
+      "dimension": "accessibility",
+      "title": "Small targets in articles on phones",
+      "evidence": {
+        "type": "check",
+        "ref": "impeccable audit @390",
+        "observed": "26 targets under 24px on the Stardust article; heading anchors (#) 15x17px"
+      },
+      "businessImpact": "Fat-finger misses on phones",
+      "fix": "Pad section anchors and inline controls to 24px",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    },
+    {
+      "id": "F-023",
+      "severity": "P3",
+      "dimension": "visual-hierarchy-craft",
+      "title": "Prose measures diverge",
+      "evidence": {
+        "type": "check",
+        "ref": "impeccable detector line-length x27",
+        "observed": ".rung-body p about 110ch; article paragraphs 66ch at 17px, about 90 characters"
+      },
+      "businessImpact": "Long lines slow reading on the portfolio",
+      "fix": "One measure near 70ch",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-024",
+      "severity": "P3",
+      "dimension": "brand-expression",
+      "title": "Off-token accents on the home hero",
+      "evidence": {
+        "type": "screenshot",
+        "ref": "stardust/current/assets/screenshots/index.png, top right",
+        "observed": "site.css:38 2px #fa0f00 Adobe rule; the Adobe recognition label in Inter 14px instead of the mono label voice"
+      },
+      "businessImpact": "Small breaks in the label voice",
+      "fix": "Record the Adobe red as a named exception; set the label in the mono label voice",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": true
+    },
+    {
+      "id": "F-025",
+      "severity": "P3",
+      "dimension": "content-llm-visibility",
+      "title": "Few headings read as questions",
+      "evidence": {
+        "type": "measurement",
+        "ref": "measurements.headingQuestionCoverage",
+        "observed": "11% of h2/h3 are questions; article headings are numbered statements"
+      },
+      "businessImpact": "Answer engines match questions to headings first",
+      "fix": "Phrase hub section heads as the reader's question where it fits (the canon already asks for it)",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    },
+    {
+      "id": "F-026",
+      "severity": "P3",
+      "dimension": "accessibility",
+      "title": "One content image without alt",
+      "evidence": {
+        "type": "measurement",
+        "ref": "measurements.altCoverage",
+        "observed": "1 of 174 content images (portfolio YouTube thumbnail hqdefault.jpg) has alt=\"\"; 197 empty alts are decorative by intent"
+      },
+      "businessImpact": "The video thumbnail is unnamed for screen readers",
+      "fix": "Name the video in the thumbnail alt",
+      "guides": [],
+      "ledgerId": null,
+      "registerCandidate": false
+    }
+  ],
+  "registerCandidates": [
+    {
+      "id": "F-007",
+      "title": "Display title sizes diverge by page",
+      "evidence": "measurements.typeScale"
+    },
+    {
+      "id": "F-008",
+      "title": "Writing index rows are 28 equal 30px headings",
+      "evidence": "stardust/current/assets/screenshots/writing.png"
+    },
+    {
+      "id": "F-009",
+      "title": "Ad-hoc type ladder with sub-12px text",
+      "evidence": "T-scale"
+    },
+    {
+      "id": "F-010",
+      "title": "Radius vocabulary drifts off the tokens",
+      "evidence": "T-radius-vocab"
+    },
+    {
+      "id": "F-011",
+      "title": "Off-ladder breakpoints in page-family CSS",
+      "evidence": "T-breakpoints"
+    },
+    {
+      "id": "F-012",
+      "title": "Portfolio content cap is 1200px, the rest 1280px",
+      "evidence": "T-content-cap"
+    },
+    {
+      "id": "F-013",
+      "title": "Explainers run a private token alias layer",
+      "evidence": "T-explainer-tokens"
+    },
+    {
+      "id": "F-014",
+      "title": "Portfolio nests cards inside cards",
+      "evidence": "stardust/current/assets/screenshots/portfolio.png, middle"
+    },
+    {
+      "id": "F-015",
+      "title": "Two links per credential card",
+      "evidence": "certifications.html .credential-row"
+    },
+    {
+      "id": "F-020",
+      "title": "Faint meta text on the alt band misses AA by 0.01",
+      "evidence": "measurements.contrast"
+    },
+    {
+      "id": "F-021",
+      "title": "Portfolio repo callout label below AA",
+      "evidence": "stardust/current/assets/screenshots/portfolio.png"
+    },
+    {
+      "id": "F-023",
+      "title": "Prose measures diverge",
+      "evidence": "impeccable detector line-length x27"
+    },
+    {
+      "id": "F-024",
+      "title": "Off-token accents on the home hero",
+      "evidence": "stardust/current/assets/screenshots/index.png, top right"
+    }
+  ],
+  "benchmarks": {
+    "status": "skipped",
+    "reason": "refero MCP not available in this session",
+    "references": []
+  },
+  "upliftDirections": [
+    {
+      "id": "A",
+      "pitch": "Tomorrow's version of the site you have today.",
+      "summary": "Same IA and look with the performance and hierarchy fixes: idle-built canvases, sized images, one title cap per rank, latest writing on the home page.",
+      "addressesFindings": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-005",
+        "F-007",
+        "F-008"
+      ]
+    },
+    {
+      "id": "B",
+      "pitch": "What if the evidence led?",
+      "summary": "Amplify the captured proof vocabulary (facts tables, dated rows, proof links, verification links) into the compositional spine of home and hubs.",
+      "addressesFindings": [
+        "F-003",
+        "F-006"
+      ]
+    },
+    {
+      "id": "C",
+      "pitch": "What if motion was part of the identity?",
+      "register": "ambient",
+      "summary": "Same IA as A; the geometric ambient field becomes the site's continuous motion layer, cheap enough for phones.",
+      "addressesFindings": [
+        "F-001",
+        "F-002"
+      ]
+    }
+  ],
+  "degradations": [
+    {
+      "capability": "refero-mcp",
+      "status": "absent",
+      "effect": "Phase 5 benchmarks skipped"
+    },
+    {
+      "capability": "marketing-skills",
+      "status": "absent",
+      "effect": "SEO and LLM checks run directly"
+    },
+    {
+      "capability": "modern-web-guidance",
+      "status": "not-probed",
+      "effect": "generic remediation text, guides: [] (probing it means executing a remote npm package, outside this track's scope)"
+    },
+    {
+      "capability": "pagespeed-insights",
+      "status": "unreachable",
+      "effect": "429 quota exceeded without a key; Playwright lab metrics"
+    },
+    {
+      "capability": "rollout-ledger",
+      "status": "absent",
+      "effect": "no findings.mjs recording; ledgerId null"
+    }
+  ]
+}

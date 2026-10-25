@@ -45,3 +45,7 @@
 {"ts":"2026-10-25T14:23:09Z","skill":"stardust:dynamics","phase":"triage","event":"end","track":"site-scope","detail":"14 features (10 self, 4 owner batch), 24 detector rows merged or classified; 0 decided-out; search parity drafted (5 probes)","artifact":"stardust/dynamic-features.md"}
 {"ts":"2026-10-25T15:10:52Z","skill":"stardust:replica","phase":"source-fidelity-gate","event":"start","track":"first-page","detail":"article archetype, published origin"}
 {"ts":"2026-10-25T15:10:52Z","skill":"stardust:replica","phase":"source-fidelity-gate","event":"end","track":"first-page","detail":"article pub6: 1440 0.05% dh0 cd 0/0; 360 0.84% dh0 cd 0/0 (7 owner-accepted); chrome quiet; cap PASS; dark 0.01/4.17; LH mobile 100; EW 110/110"}
+{"ts":"2026-10-25T15:11:47Z","skill":"stardust:audit","phase":"run","event":"start","track":"site-scope","detail":"live site, reused extraction (34 pages)"}
+{"ts":"2026-10-25T15:11:47Z","skill":"stardust:audit","phase":"run","event":"end","track":"site-scope","detail":"74/100; 26 findings (3 P1, 13 P2, 10 P3); 13 register candidates; report via impeccable craft","artifact":"stardust/audit/jackzhaojin-com/audit.json"}
+{"ts":"2026-10-25T15:14:06Z","skill":"stardust:replica","phase":"reconcile-first-page","event":"start","detail":"Track B done; promote, check, record"}
+{"ts":"2026-10-25T15:15:08Z","skill":"stardust:replica","phase":"reconcile-first-page","event":"end","detail":"promoted verbatim, v3 agrees; catalog corrected (7 rows); approval pending Jack"}

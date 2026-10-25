@@ -1,0 +1,634 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:spec S7 (Track B, site-scope)",
+    "writtenAt": "2026-10-25T14:20:00Z",
+    "blind": "Judged from the 34 live source pages (captures, rendered DOM, S3 trees, S6 contact sheets) and the design-system v3 docs of the source repo. No migration file was read: blocks/, styles/, scripts/, head.html, stardust/first-page/, stardust/replica/ stayed closed. Seeded from the owner's starting hypothesis; names and verdicts below are the spec's.",
+    "verdictTarget": "Pixel parity with the live site (replica flow). Structural reuse of an aem-boilerplate or Block Collection block is recorded as variant when parity needs a variant class and CSS; reuse only where the reference block renders the source as-is.",
+    "referenceBlocks": "aem-boilerplate (hero, cards, columns, header, footer, fragment) + AEM Block Collection (video, embed, table, tabs, carousel, accordion, quote, ...)",
+    "styleWords": "Section bands map to section-metadata style words: band--plain -> plain, band--alt -> alt, band--tint -> tint (+ an accent word such as aem-ai, aem, agents, work, cyan, amber, leaf, bronze, mint, rose for the band accent), and inverse for the canon's inverse band (not on any of the 34 pages)."
+  },
+  "blocks": {
+    "header": {
+      "kind": "global",
+      "family": "other",
+      "description": "Sticky site header: text wordmark Jack Jin, four nav links (Technical Writing, Portfolio, Talks, Certifications), Light/Dark/System theme control; folds behind a Menu toggle below 1024px.",
+      "aem": [
+        "header.site-header"
+      ],
+      "reference": "header",
+      "verdict": "variant",
+      "rationale": "34/34 pages, one fingerprint. Boilerplate header loads /nav as a fragment; parity needs the three-zone layout, the 44px targets, the current-page rule and the theme control, so it is the boilerplate header with site CSS and a tools section."
+    },
+    "footer": {
+      "kind": "global",
+      "family": "other",
+      "description": "Compact one-row footer: copyright with city and four profile links.",
+      "aem": [
+        "footer.site-footer"
+      ],
+      "reference": "footer",
+      "verdict": "variant",
+      "rationale": "34/34 pages, one fingerprint. Boilerplate footer fragment as-is structurally; the single compact row is CSS."
+    },
+    "section-style": {
+      "kind": "block",
+      "family": "other",
+      "description": "Full-bleed section band: the section-metadata Style word sets the ground (plain, alt, tint, inverse) and an optional accent word keys the tint.",
+      "aem": [
+        "section.band"
+      ],
+      "reference": "section-metadata",
+      "verdict": "reuse",
+      "rationale": "EDS section metadata is built in; the band classes become section classes. 16 bands on the 5 non-article pages. Articles and the portfolio do not use bands.",
+      "variants": {
+        "band--plain": {
+          "verdict": "variant",
+          "rationale": "Style: plain (Paper ground). 12 bands."
+        },
+        "band--alt": {
+          "verdict": "variant",
+          "rationale": "Style: alt (Paper Alt ground), the closing note bands. 3 bands."
+        },
+        "band--tint": {
+          "verdict": "variant",
+          "rationale": "Style: tint (+ accent word), the home Selected work band. 1 band."
+        }
+      },
+      "reconcile": "RECONCILE 2026-10-25: section-metadata style words plain (default), alt, tint, inverse; related closes an article column. Keys id and note-label are data, not styles."
+    },
+    "hero": {
+      "kind": "block",
+      "family": "hero",
+      "description": "Page opening: breadcrumb where present, the serif title, then the page's lede. The home, writing, talks and certifications heroes carry the ambient canvas (page-art.js) behind the copy.",
+      "aem": [
+        "div.h1.list",
+        "graphic-hero",
+        "article-head",
+        "page-head",
+        "hero"
+      ],
+      "reference": "hero",
+      "verdict": "variant",
+      "rationale": "One block on all 34 pages with five content shapes. None of the source heroes has a background picture, so the boilerplate hero renders none of them as-is; each variant is the boilerplate hero cell model (heading, text, buttons) plus a variant class and CSS. The canvas is decoration added by code, never authored.",
+      "variants": {
+        "home": {
+          "verdict": "variant",
+          "rationale": "Display title, three-line positioning with an italic last line, summary, one primary button and a text link; the champion proof list sits beside it (proof-list)."
+        },
+        "hub": {
+          "verdict": "variant",
+          "rationale": "Writing, talks, certifications: breadcrumb, display title, one-line summary over the ambient canvas."
+        },
+        "article": {
+          "verdict": "variant",
+          "rationale": "28 articles: breadcrumb, title, mono byline (author, date, updated, read time, video length), summary; three articles add a series nav (Part 1/2/3). Byline values come from page metadata."
+        },
+        "page": {
+          "verdict": "variant",
+          "rationale": "Privacy: breadcrumb and display title only."
+        },
+        "portfolio": {
+          "verdict": "variant",
+          "rationale": "Portfolio: kicker, title, deck, primary button, featured links over its own signal-field and glow (portfolio/script.js)."
+        }
+      },
+      "reconcile": "RECONCILE 2026-10-25: built: home. Other variants (hub, article, page, portfolio) are Phase 2 (C1, G1, F)."
+    },
+    "proof-list": {
+      "kind": "block",
+      "family": "panel",
+      "description": "Hero aside of dated facts: the Adobe Champion badge image, three rows (link + dated note), a View all link.",
+      "aem": [
+        "home-note"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "Home only. It is the canon proof list (label + dated value rows) with a badge image on top; no reference block lays out a ruled definition list.",
+      "variants": {
+        "champion": {
+          "verdict": "new",
+          "rationale": "The badge image variant on the home hero."
+        }
+      },
+      "reconcile": "RECONCILE 2026-10-25: delivered as the hero (home) block's second cell (blocks/hero), as v3's \"hero with proof list\" is one component; the content model (label, linked badge image, list of link + dated note, closing link) is this entry's. A standalone proof-list block is built only if another page needs one."
+    },
+    "breadcrumb": {
+      "kind": "dynamic",
+      "family": "other",
+      "description": "Home / Section / Page trail in mono 12px; separators drawn by CSS.",
+      "aem": [
+        "breadcrumb"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "On 32/34 pages (inside the hero on articles, in the hub band elsewhere). Derived from the path and page title, so code builds it; authors never type it.",
+      "reconcile": "RECONCILE 2026-10-25: authored as an ordered list in the article head section, wrapped as nav.breadcrumb by templates/article (EW5: a list is one editable unit)."
+    },
+    "showcase": {
+      "kind": "block",
+      "family": "grid",
+      "description": "Text column beside a media column (frame, panel, deck, timeline); flip puts media first from 768px, wide stacks centered text over full-width media.",
+      "aem": [
+        "work-feature",
+        "story",
+        "talk"
+      ],
+      "reference": "columns",
+      "verdict": "variant",
+      "rationale": "Two cells, text and media, is the columns model; parity needs the showcase CSS (serif title with an italic accent phrase, mono meta, lead) and the band-accent rule. On the portfolio a story often holds a block of its own (frame, diagram deck, carousel, ladder, stat chips, flow); EDS blocks do not nest, so those stay their own rows next to the showcase (nested_in in page-blocks).",
+      "variants": {
+        "feature": {
+          "verdict": "variant",
+          "rationale": "Home Selected work: Anima Mesh text beside a diagram frame."
+        },
+        "talk": {
+          "verdict": "variant",
+          "rationale": "adaptTo() 2026 recap: 25 talks, each a slide image beside notes."
+        },
+        "with-nested-blocks": {
+          "verdict": "variant",
+          "rationale": "Portfolio story whose media is another block."
+        },
+        "flip": {
+          "verdict": "variant",
+          "rationale": "class story flip on 5 portfolio stories (rendered DOM); the parser does not split it, so it has no count in blocks.json."
+        },
+        "wide": {
+          "verdict": "variant",
+          "rationale": "class story wide on 14 portfolio stories (rendered DOM); not split by the parser."
+        }
+      },
+      "reconcile": "RECONCILE 2026-10-25: built: feature. talk, with-nested-blocks, flip, wide are Phase 2 (C3, F)."
+    },
+    "row-list": {
+      "kind": "block",
+      "family": "news-list",
+      "description": "Hairline-ruled rows: a mono kind or date column, a linked title, a short note; the talks variant adds an event line and links.",
+      "aem": [
+        "rowlist",
+        "talk-row",
+        "home-work-links"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "Related list closing all 28 articles, the 9-row talk history and the home work links. No reference block draws ruled definition-style rows.",
+      "variants": {
+        "related": {
+          "verdict": "new",
+          "rationale": "28 articles: kind (Article, Talk, Video) + title + note."
+        },
+        "talks": {
+          "verdict": "new",
+          "rationale": "Talks page: date column, title, event and place, links to recordings and write-ups."
+        },
+        "links": {
+          "verdict": "new",
+          "rationale": "Home: four linked work rows with a one-line note each.",
+          "reconcile": "RECONCILE 2026-10-25: moved to cards (list)."
+        }
+      },
+      "reconcile": "RECONCILE 2026-10-25: built: related (default look). talks is G1."
+    },
+    "author-box": {
+      "kind": "block",
+      "family": "people",
+      "description": "Closing author card: initials avatar, name, role line, three profile links.",
+      "aem": [
+        "author-box"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "28/28 articles with identical copy; a candidate for a shared fragment so one edit updates every article.",
+      "reconcile": "RECONCILE 2026-10-25: built in D1 (blocks/author-box); pattern and vocabulary in stardust/explainer-family.md."
+    },
+    "rail": {
+      "kind": "block",
+      "family": "sticky-nav",
+      "description": "Sticky right rail on articles: On this page, a progress bar, numbered part links (some with 72x46 thumbnails), and links to the video and source.",
+      "aem": [
+        "article-rail"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "28/28 articles. The part titles are shorter than the H2s and the thumbnails are chosen per part, so the rows are authored; the progress bar and the current-part state are code.",
+      "reconcile": "RECONCILE 2026-10-25: built in D1 (blocks/rail); pattern and vocabulary in stardust/explainer-family.md."
+    },
+    "figure": {
+      "kind": "block",
+      "family": "media-gallery",
+      "description": "Framed figure: an image (hand-drawn board, slide or diagram) with a caption; shot is a narrower screenshot with a soft drop shadow.",
+      "aem": [
+        "board",
+        "shot"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "92 figures on 25 articles. Default-content images would lose the frame, caption rule and zoom; neither reference library has a captioned figure.",
+      "variants": {
+        "board": {
+          "verdict": "new",
+          "rationale": "83 instances: boards, slides and diagrams at xwide or wide width."
+        },
+        "shot": {
+          "verdict": "new",
+          "rationale": "9 instances on 3 articles: product screenshots, some shot--narrow."
+        }
+      },
+      "reconcile": "RECONCILE 2026-10-25: built: board (default); a YouTube link makes it a video. shot is D2."
+    },
+    "video": {
+      "kind": "block",
+      "family": "video",
+      "description": "YouTube nocookie embed in a 16:9 frame with a caption linking to YouTube.",
+      "aem": [
+        "video"
+      ],
+      "reference": "video",
+      "verdict": "variant",
+      "rationale": "20 embeds on 19 pages. The Block Collection video/embed block covers YouTube; parity needs the caption figure and the nocookie host.",
+      "reconcile": "RECONCILE 2026-10-25: delivered by figure: a YouTube link paragraph in a figure block plays in place (caption below); a lone YouTube link in default content is auto-blocked into a figure (scripts.js buildVideoAutoBlocks). No separate video block."
+    },
+    "code": {
+      "kind": "block",
+      "family": "other",
+      "description": "Dark code block (Night 850 ground, 14px radius) with line numbers, token colors and an optional caption; static, wrap and prose variants by class.",
+      "aem": [
+        "code"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "45 blocks on 18 articles. Tokens are pre-highlighted spans (tk-k, tk-s, tk-n, tk-c) in the source; the migration needs either authored code with client highlighting or the spans carried as HTML, an implementer decision.",
+      "reconcile": "RECONCILE 2026-10-25: built in D1 (blocks/code); pattern and vocabulary in stardust/explainer-family.md."
+    },
+    "lab": {
+      "kind": "block",
+      "family": "other",
+      "description": "Interactive explainer frame: a mono bar (what it models + a source link) over a two-column grid of controls and readout.",
+      "aem": [
+        "lab"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "30 labs on 13 articles. The frame is shared; what runs inside is per article (state machines, token labs, gates), which is the explainer question.",
+      "reconcile": "RECONCILE 2026-10-25: built in D1 (blocks/lab); pattern and vocabulary in stardust/explainer-family.md.",
+      "variants": {
+        "token": {
+          "verdict": "new",
+          "rationale": "RECONCILE 2026-10-25: the token lab engine (Web Crypto RS256, the four checks of google-token.js)."
+        }
+      }
+    },
+    "compare": {
+      "kind": "block",
+      "family": "tabs",
+      "description": "Tabbed before/after or side-by-side panes.",
+      "aem": [
+        "cmp"
+      ],
+      "reference": "tabs",
+      "verdict": "variant",
+      "rationale": "5 articles. Tabs from the Block Collection give the tablist; the panes and the stage are site CSS.",
+      "reconcile": "RECONCILE 2026-10-25: built in D1 (blocks/compare); pattern and vocabulary in stardust/explainer-family.md."
+    },
+    "data-table": {
+      "kind": "block",
+      "family": "table",
+      "description": "Captioned data table in a scrolling wrap: mono uppercase headers over a strong rule, first column in Ink.",
+      "aem": [
+        "table-wrap",
+        "table-scroll",
+        "table"
+      ],
+      "reference": "table",
+      "verdict": "variant",
+      "rationale": "14 tables on 9 articles. Block Collection table builds the table from rows; parity needs the caption, the 36rem minimum and the scroll wrap.",
+      "variants": {
+        "scroll": {
+          "verdict": "variant",
+          "rationale": "2 wide tables in a horizontal scroller."
+        }
+      }
+    },
+    "chips": {
+      "kind": "block",
+      "family": "tag-links",
+      "description": "Row of mono chips with a dot.",
+      "aem": [
+        "chips"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "2 standalone instances; most chips live inside labs and explainers."
+    },
+    "explainer": {
+      "kind": "block",
+      "family": "other",
+      "description": "Bespoke interactive article explainers: request flows, cache labs, walkthrough steps, tabbed tables, DOM terminals, comparison stages, verdict callouts. Each renders complete without JavaScript and is driven by an article script.",
+      "aem": [
+        "figure.list",
+        "figure.media",
+        "figure",
+        "div.list.media",
+        "div.media",
+        "pipe",
+        "eras",
+        "roles",
+        "trail",
+        "eds-map",
+        "swr",
+        "relay",
+        "loopx",
+        "lens",
+        "dia",
+        "blend",
+        "loop",
+        "linemap",
+        "ccl",
+        "tkl",
+        "pow",
+        "sdl",
+        "gates",
+        "pvl",
+        "legend",
+        "keys",
+        "details",
+        "verdict",
+        "ciam-flow"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "32 root instances on 21 articles plus the labs; 26 articles ship a local explainer.css and most a script. One block name with one variant per explainer keeps the catalog honest; whether each variant is a block with authored rows or a code-only widget is open question explainer-build.",
+      "variants": {
+        "interactive": {
+          "verdict": "new",
+          "rationale": "Two-letter explainers the parser cannot name (vs, ru, pv, pq, mx, mg, hv, ff, bp, pl): cache lab, request flow, walkthrough steps, tabbed table, DOM terminal."
+        },
+        "request-flow": {
+          "verdict": "new",
+          "rationale": "Portfolio CIAM flow (three nodes); the walkthrough and request-flow explainers in articles share the shape."
+        },
+        "verdict": {
+          "verdict": "new",
+          "rationale": "Verdict callout outside a lab."
+        },
+        "details": {
+          "verdict": "new",
+          "rationale": "A details disclosure inside an explainer (azure-rbac article); not a FAQ."
+        }
+      }
+    },
+    "jump-links": {
+      "kind": "block",
+      "family": "sticky-nav",
+      "description": "Portfolio in-page jump links to the project chapters.",
+      "aem": [
+        "portfolio-jumps"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "Portfolio only, five links."
+    },
+    "timeline": {
+      "kind": "block",
+      "family": "other",
+      "description": "Time-based structures: the portfolio Gantt of projects over time, the release ladder (versions on a rail) and the career milestones.",
+      "aem": [
+        "timeline-section",
+        "ladder",
+        "career"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "Portfolio (3) plus ladders inside two article labs. The canon timeline (release ladder) is one variant; the Gantt is drawn from data rows.",
+      "variants": {
+        "gantt": {
+          "verdict": "new",
+          "rationale": "Projects over time: rows of bars on a year scale with a now marker and a method legend."
+        },
+        "ladder": {
+          "verdict": "new",
+          "rationale": "Continuous Executive Agent release history: eras and rungs."
+        },
+        "milestones": {
+          "verdict": "new",
+          "rationale": "Career notes milestone list."
+        }
+      }
+    },
+    "divider": {
+      "kind": "block",
+      "family": "other",
+      "description": "Labeled divider between portfolio chapters (mono label between hairlines); the year variant is the large outlined year numeral.",
+      "aem": [
+        "tdiv",
+        "year-band"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "11 on the portfolio. A plain hr loses the label; section metadata could carry it, but the label is content, so a small block.",
+      "variants": {
+        "year": {
+          "verdict": "new",
+          "rationale": "One year band (2025)."
+        }
+      }
+    },
+    "chapter-head": {
+      "kind": "block",
+      "family": "other",
+      "description": "Project chapter opening: outlined numeral, title with italic subtitle, mono meta and method line, thesis, optional arc and facts.",
+      "aem": [
+        "chapter-head"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "11 chapters on the portfolio; the Anima Mesh chapter carries class flagship (larger title), two chapters class lofi. Variants flagship and lofi are classes on the chapter, not split by the parser."
+    },
+    "frame": {
+      "kind": "block",
+      "family": "media-gallery",
+      "description": "Bordered figure for a diagram or screenshot with a mono caption; diagram variant links the full-size file; portrait caps at 340px.",
+      "aem": [
+        "frame"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "Home work feature and portfolio stories (frame--diagram, diagram-frame, portrait in the DOM). Kept apart from figure because the portfolio frame has the diagram-ground and link-to-full-size rules."
+    },
+    "tabs": {
+      "kind": "block",
+      "family": "tabs",
+      "description": "Diagram deck: a toolbar, tab buttons and six diagram panes.",
+      "aem": [
+        "diagram-deck"
+      ],
+      "reference": "tabs",
+      "verdict": "variant",
+      "rationale": "Portfolio Anima Mesh, one instance with six panes.",
+      "variants": {
+        "diagram-deck": {
+          "verdict": "variant",
+          "rationale": "Toolbar label and position counter above the tabs."
+        }
+      }
+    },
+    "panel": {
+      "kind": "block",
+      "family": "panel",
+      "description": "Chapter-closing panel (edge): a heading and a grid of short approaches or a roadmap note.",
+      "aem": [
+        "edge"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "2 on the portfolio. The canon's panel--inverse appears on none of the 34 pages.",
+      "variants": {
+        "edge": {
+          "verdict": "new",
+          "rationale": "Edge grid with a closing line."
+        }
+      }
+    },
+    "stat-chips": {
+      "kind": "block",
+      "family": "statistics",
+      "description": "Wrapping row of evidence chips, the value bold in the band accent.",
+      "aem": [
+        "stat-chips"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "2 on the portfolio, nested in stories."
+    },
+    "stats": {
+      "kind": "block",
+      "family": "statistics",
+      "description": "Counter row of block stat values (lifetime figures).",
+      "aem": [
+        "cea-lifetime"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "1 on the portfolio; values are in the HTML, a script may count them up.",
+      "variants": {
+        "lifetime": {
+          "verdict": "new",
+          "rationale": "Continuous Executive Agent lifetime counters."
+        }
+      }
+    },
+    "carousel": {
+      "kind": "block",
+      "family": "media-gallery",
+      "description": "Three-slide image carousel with controls and a count.",
+      "aem": [
+        "carousel"
+      ],
+      "reference": "carousel",
+      "verdict": "variant",
+      "rationale": "Shadow Pivot chapter, one instance (slides load lazily)."
+    },
+    "cards": {
+      "kind": "block",
+      "family": "grid",
+      "description": "Grid of compact tool cards, each card itself a link to a repo.",
+      "aem": [
+        "workbench-section"
+      ],
+      "reference": "cards",
+      "verdict": "variant",
+      "rationale": "Portfolio Smaller repos: 7 tool cards. Boilerplate cards plus the tool variant (the card is the link, repo mark, mono title).",
+      "variants": {
+        "tool": {
+          "verdict": "variant",
+          "rationale": "The one card whose element is the link."
+        },
+        "list": {
+          "verdict": "variant",
+          "rationale": "RECONCILE 2026-10-25: the home's four selected-work links (a 4-up grid of linked items under a strong rule), built as cards (list); moved here from row-list (links): the look is a card grid, each card one link."
+        }
+      }
+    },
+    "writing-filter": {
+      "kind": "widget",
+      "family": "search",
+      "description": "Writing index filter bar: topic and year filter pills with counts and a search field (GET ?q=).",
+      "aem": [
+        "filter-bar"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "Configuration only, everything else comes from the index and user input: a widget."
+    },
+    "writing-list": {
+      "kind": "dynamic",
+      "family": "news-list",
+      "description": "Writing index rows: cover, date, title, summary, tags, facts; 28 rows today.",
+      "aem": [
+        "writing-list"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "Authored by hand on the source; on EDS it renders from the query index so a new article lists itself."
+    },
+    "facts": {
+      "kind": "block",
+      "family": "other",
+      "description": "Article facts paragraph (first published, rewritten, skill or repo version) in the label voice.",
+      "aem": [
+        "p.article-facts"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "On 28 articles as p.article-facts. The parser reads a paragraph as default content, so page-blocks never places it and blocks.json shows 0; reach is the facts signal in implementation.json. Authors cannot class a paragraph in EDS, so parity needs a block (or an auto-block rule).",
+      "reconcile": "RECONCILE 2026-10-25: built as block fine-print (blocks/fine-print), so the name facts stays free for v3's facts table (C2)."
+    },
+    "chapters": {
+      "kind": "block",
+      "family": "video",
+      "description": "Watch this part: timestamp links into the article video, one row per part.",
+      "aem": [
+        "p.watch"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "p.watch paragraphs on 17 articles (signal watch). Same parser limit as facts: 0 in blocks.json, measured by signal.",
+      "reconcile": "RECONCILE 2026-10-25: the article's \"Watch this part\" rows are default content (a paragraph starting \"Watch this part\" with video links), decorated by templates/article; chapters stays for v3's chapters list (C3)."
+    },
+    "proof-links": {
+      "kind": "block",
+      "family": "tag-links",
+      "description": "Row of typed links (repo, post, video, live) with masked line icons.",
+      "aem": [
+        "div.proof-links"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "3 rows inside portfolio story text; the parser keeps them in the showcase text cell. Typed by destination per the canon."
+    },
+    "switch": {
+      "kind": "block",
+      "family": "explainer",
+      "description": "Two or more modes of one explainer behind a radio switch (the explainer kit's two-way switch: the bar placement bp, production vs laptop pvl). Mode rows: label | columns; a single-cell row before the modes names it, after them is the caption. Code marks (mark, add, note) color runs of a mode's code.",
+      "aem": [
+        "blocks/switch"
+      ],
+      "reference": null,
+      "verdict": "new",
+      "rationale": "RECONCILE 2026-10-25: added. Built in D1 for the article archetype (bp); the explainer interactive variant listed bp among the two-letter explainers. pvl maps here in D2.",
+      "variants": {}
+    }
+  },
+  "notObserved": {
+    "_about": "Owner-hypothesis components with no instance on the 34 in-scope pages. Not blocks of this migration unless a page adds them.",
+    "cards:link": "No card--link on any page.",
+    "cards:hub": "No hub cards; the canon home with four hub cards is not the live home.",
+    "cards:rules": "No grid--rules.",
+    "faq": "No FAQ; the one details element is an explainer disclosure.",
+    "panel:inverse": "No panel--inverse or inverse band.",
+    "transcript": "No transcript component; the word appears only in copy.",
+    "frame:portrait": "Present as a class inside portfolio story media (frame sub portrait), so it is a frame variant, not a separate block.",
+    "explainer:typed-terminal": "Folded into explainer interactive (the DOM terminal explainer on the edge-functions article).",
+    "explainer:video-facade": "One click-to-load YouTube facade inside portfolio story media; a video variant if kept."
+  }
+}

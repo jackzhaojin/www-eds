@@ -1,0 +1,386 @@
+{
+  "_about": "S7 mapping for www.jackzhaojin.com (generic parser, stripPrefix in spec.config.json). Judged blind: from the 34 live source pages and design-system v3 docs only; no migration files read (blocks/, styles/, scripts/, stardust/first-page/, stardust/replica/). Rationale per decision lives in catalog.json.",
+  "direct": {
+    "article-head": {
+      "kind": "block",
+      "block": "hero",
+      "variant": "article"
+    },
+    "graphic-hero": {
+      "kind": "block",
+      "block": "hero",
+      "variant": "hub"
+    },
+    "div.h1.list": {
+      "kind": "block",
+      "block": "hero",
+      "variant": "home"
+    },
+    "page-head": {
+      "kind": "block",
+      "block": "hero",
+      "variant": "page"
+    },
+    "hero": {
+      "kind": "block",
+      "block": "hero",
+      "variant": "portfolio"
+    },
+    "home-note": {
+      "kind": "block",
+      "block": "proof-list",
+      "variant": "champion"
+    },
+    "breadcrumb": {
+      "kind": "dynamic",
+      "block": "breadcrumb"
+    },
+    "div.h2": {
+      "kind": "default",
+      "block": "text"
+    },
+    "div.h3": {
+      "kind": "default",
+      "block": "text"
+    },
+    "work-feature": {
+      "kind": "block",
+      "block": "showcase",
+      "variant": "feature"
+    },
+    "home-work-links": {
+      "kind": "block",
+      "block": "row-list",
+      "variant": "links"
+    },
+    "talk-row": {
+      "kind": "block",
+      "block": "row-list",
+      "variant": "talks"
+    },
+    "rowlist": {
+      "kind": "block",
+      "block": "row-list",
+      "variant": "related"
+    },
+    "author-box": {
+      "kind": "block",
+      "block": "author-box"
+    },
+    "article-rail": {
+      "kind": "block",
+      "block": "rail"
+    },
+    "filter-bar": {
+      "kind": "widget",
+      "block": "writing-filter"
+    },
+    "writing-list": {
+      "kind": "dynamic",
+      "block": "writing-list"
+    },
+    "board": {
+      "kind": "block",
+      "block": "figure",
+      "variant": "board"
+    },
+    "shot": {
+      "kind": "block",
+      "block": "figure",
+      "variant": "shot"
+    },
+    "video": {
+      "kind": "block",
+      "block": "video"
+    },
+    "code": {
+      "kind": "block",
+      "block": "code"
+    },
+    "lab": {
+      "kind": "block",
+      "block": "lab"
+    },
+    "cmp": {
+      "kind": "block",
+      "block": "compare"
+    },
+    "table-wrap": {
+      "kind": "block",
+      "block": "data-table"
+    },
+    "table-scroll": {
+      "kind": "block",
+      "block": "data-table",
+      "variant": "scroll"
+    },
+    "table": {
+      "kind": "block",
+      "block": "data-table"
+    },
+    "chips": {
+      "kind": "block",
+      "block": "chips"
+    },
+    "verdict": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "verdict"
+    },
+    "ul.list": {
+      "kind": "default",
+      "block": "list"
+    },
+    "ol.list": {
+      "kind": "default",
+      "block": "list"
+    },
+    "talk": {
+      "kind": "block",
+      "block": "showcase",
+      "variant": "talk"
+    },
+    "portfolio-jumps": {
+      "kind": "block",
+      "block": "jump-links"
+    },
+    "timeline-section": {
+      "kind": "block",
+      "block": "timeline",
+      "variant": "gantt"
+    },
+    "tdiv": {
+      "kind": "block",
+      "block": "divider"
+    },
+    "year-band": {
+      "kind": "block",
+      "block": "divider",
+      "variant": "year"
+    },
+    "chapter-head": {
+      "kind": "block",
+      "block": "chapter-head"
+    },
+    "story-text": {
+      "kind": "default",
+      "block": "text"
+    },
+    "story-media": {
+      "kind": "default",
+      "block": "image"
+    },
+    "frame": {
+      "kind": "block",
+      "block": "frame"
+    },
+    "diagram-deck": {
+      "kind": "block",
+      "block": "tabs",
+      "variant": "diagram-deck"
+    },
+    "stat-chips": {
+      "kind": "block",
+      "block": "stat-chips"
+    },
+    "carousel": {
+      "kind": "block",
+      "block": "carousel"
+    },
+    "carousel-controls": {
+      "kind": "drop"
+    },
+    "ladder": {
+      "kind": "block",
+      "block": "timeline",
+      "variant": "ladder"
+    },
+    "ciam-flow": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "request-flow"
+    },
+    "edge": {
+      "kind": "block",
+      "block": "panel",
+      "variant": "edge"
+    },
+    "cea-lifetime": {
+      "kind": "block",
+      "block": "stats",
+      "variant": "lifetime"
+    },
+    "career": {
+      "kind": "block",
+      "block": "timeline",
+      "variant": "milestones"
+    },
+    "workbench-section": {
+      "kind": "block",
+      "block": "cards",
+      "variant": "tool"
+    },
+    "pipe": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "pipe"
+    },
+    "eras": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "eras"
+    },
+    "roles": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "roles"
+    },
+    "trail": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "trail"
+    },
+    "eds-map": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "eds-map"
+    },
+    "swr": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "swr"
+    },
+    "relay": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "relay"
+    },
+    "loopx": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "loopx"
+    },
+    "lens": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "lens"
+    },
+    "dia": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "dia"
+    },
+    "blend": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "blend"
+    },
+    "loop": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "loop"
+    },
+    "linemap": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "linemap"
+    },
+    "ccl": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "ccl"
+    },
+    "tkl": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "tkl"
+    },
+    "pow": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "pow"
+    },
+    "sdl": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "sdl"
+    },
+    "gates": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "gates"
+    },
+    "pvl": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "pvl"
+    },
+    "legend": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "legend"
+    },
+    "keys": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "keys"
+    },
+    "figure.list": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "interactive"
+    },
+    "figure.media": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "interactive"
+    },
+    "figure": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "interactive"
+    },
+    "div.list.media": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "interactive"
+    },
+    "div.media": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "interactive"
+    },
+    "details": {
+      "kind": "block",
+      "block": "explainer",
+      "variant": "details"
+    },
+    "div.h3.list": {
+      "kind": "default",
+      "block": "text"
+    }
+  },
+  "layout": [
+    "article-layout",
+    "article-body",
+    "article-related",
+    "chapter",
+    "div",
+    "div.list"
+  ],
+  "sections": {
+    "band": {
+      "block": "section-style",
+      "modsMatch": "^band--"
+    }
+  },
+  "nesting": {
+    "story": "showcase"
+  },
+  "carousels": {},
+  "rows": {
+    "cards": "cards",
+    "columns": "columns",
+    "video": "video"
+  }
+}

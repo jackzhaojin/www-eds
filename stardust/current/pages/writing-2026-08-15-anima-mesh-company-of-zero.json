@@ -1,0 +1,872 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:37.460Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2026-08-15-anima-mesh-company-of-zero",
+  "url": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:37.460Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/",
+  "title": "Company of Zero: AnimaMesh on Cloudflare Workers | Jack Jin",
+  "description": "AnimaMesh, an open source engine where AI agents run a company's back office on Cloudflare Workers: one public engine, a private markdown brain per company.",
+  "og": {
+    "title": "Company of Zero: AnimaMesh on Cloudflare Workers | Jack Jin",
+    "description": "AnimaMesh, an open source engine where AI agents run a company's back office on Cloudflare Workers: one public engine, a private markdown brain per company.",
+    "image": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Company of Zero: How AnimaMesh Runs a Company's Back Office on Cloudflare Workers"
+    },
+    {
+      "tag": "h2",
+      "text": "Letting one founder run more than one company#"
+    },
+    {
+      "tag": "h2",
+      "text": "One public engine, many private brains#"
+    },
+    {
+      "tag": "h2",
+      "text": "A brain is markdown files with zero lines of code#"
+    },
+    {
+      "tag": "h2",
+      "text": "Decoupled beats let agents take sick days#"
+    },
+    {
+      "tag": "h2",
+      "text": "The brain reaches files where they already live#"
+    },
+    {
+      "tag": "h2",
+      "text": "Every line of code in the open source engine#"
+    },
+    {
+      "tag": "h2",
+      "text": "The brain files its own GitHub issues#"
+    },
+    {
+      "tag": "h2",
+      "text": "The live demo read my non-compete to answer a question#"
+    },
+    {
+      "tag": "h2",
+      "text": "The real unlock is AI that reaches out to you#"
+    },
+    {
+      "tag": "h2",
+      "text": "What works today and where it stops#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "Company of Zero",
+    "By Jack Jin · August 15, 2026 · Updated October 4, 2026 · 14 min read · Includes my 11:09 video",
+    "AnimaMesh is an open source engine where AI agents do a company's back office on Cloudflare Workers and the human only approves. One public engine holds all the code, and each company gets a private brain of markdown with zero lines of code. Part by part, with the code behind each: decoupled beats where one agent can fail without stopping the rest, read-only reach into SharePoint, a brain that files its own GitHub issues past a leak guard, and AI that reaches out to the owner instead of waiting for a prompt. It started as my AI Tinkerers Columbus talk on August 3, 2026.",
+    "I follow the order of the talk. Every part links to its moment in the recorded version if you'd rather watch.",
+    "Code: anima-mesh at 0874733 (v0.17.0, the engine as it stood for the recording), Apache-2.0. The engine has since moved to v0.17.2. I gave the talk with a deck at AI Tinkerers Columbus on August 3, 2026, and it took second place in AI Tinkerers' global Top AI Demos #40. I shared the conference pre-read deck on LinkedIn on August 3, 2026, and a 35-second clip on August 25. Both are folded into this page, rewritten for this site in October 2026.",
+    "The dream of this project is to let founders start more than one company. As people, we're still liable for the LLC, the C Corp or the S Corp. But so much of what keeps a company running is preparable work: the compliance calendar, bookkeeping prep, keeping documents in order, governance, research. How much of that can run agentically, with the human as the approval gate?",
+    "One founder running seven companies is a thought experiment for now. The project started from two simple requirements:",
+    "All of the company's knowledge lives in markdown files. The format I picked is Google's Open Knowledge Format (OKF): one concept per file, YAML frontmatter on top, and links between files that turn them into a graph an agent can read.",
+    "AI reaches out to the owners, instead of the owners reaching out to AI.",
+    "With those two, I set out to build what I presented at AI Tinkerers.",
+    "Watch this part0:00 The company of zero dream",
+    "The first idea is the split. The engine is where all the code is. It's a public GitHub repository that anyone can use, and it never names a company, a person or a persona. The brain is the real knowledge: one company, in a private repository, with zero lines of code. Just markdown and a little JSON for configuration.",
+    "The dependency only goes one way. The brain picks an engine version by git tag, so if your brain isn't ready to upgrade to the latest AnimaMesh, it doesn't have to. The engine never knows the brain exists. That's how one engine can power many companies. The whole coupling is a few lines in the brain's config:",
+    "The brain also decides its own staff. Because the agents are data and not code, the brain configures its own capabilities. The sample brain in the repo, a made-up company, has five agents on its roster, and each one does something different. Each brain defines how many agents it wants.",
+    "Watch this part1:00 One engine, many brains",
+    "A lot of this is based on the second brain idea, except it's for a company. You want the different kinds of memory in one place: facts, decisions, events, the constitution of hard limits. Everything that works in a second brain for a person goes here.",
+    "OKF gives it a structure. Every concept is its own markdown file with a required type in its frontmatter, and two files are reserved: index.md is the map and log.md is the story. I chose it because the same file is readable by a person, an agent and a validator. There's no database, no admin UI and nothing to export. One concept per file means every git diff is one meaningful change, and typed frontmatter means pnpm cli validate can check the whole brain. The deck adds where this came from: plain files under git, adopted after a SaaS vendor deleted years of data.",
+    "An agent is a file too. Here is the hub's wiring from the sample brain. The job itself is prose underneath.",
+    "level is the agent's rung on an autonomy ladder from L1 (report only) to L4 (external actions, each behind a human approval). harness picks the model provider, heartbeat sets its rhythm, and whitelist lists the writes it may propose. Adding an agent is copying a template. Retiring one is deleting the file. Promoting one is a one-line edit, and git history is the paper trail.",
+    "What's more unique is that agents run on Cloudflare and check out the brain to work on it. The brain's GitHub repo is every agent's source of truth. Every agent commits what it did, and at the end the chief of staff pulls everything together and sends one brief to the CEO of the company, who is a human. In the talk I said the whole thing is basically free, because it's fractional serverless compute that runs under the Workers limits. The reason it fits is that a model call is waiting on the network, not using the Worker's CPU.",
+    "Watch this part3:20 Inside a brain",
+    "The third idea is the sequence. Each agent runs when its beat comes up, and the chief of staff runs last to get everyone's results together. In the cloud, one Durable Object alarm fires at 08:00 in the company's own timezone and decides who is due:",
+    "Each agent declares daily, weekly, monthly or quarterly, and the beat compares that with the agent's last run-completed line in the ledger. The thresholds sit under the calendar period (6 days for weekly, 27 for monthly, 85 for quarterly), so a beat that drifts by a few minutes never skips a run.",
+    "Daily means \"not yet today\" on the local calendar, not 20 hours since the last run. A comment in the code says why: on the first scheduled morning, my 1 a.m. debug runs silenced the 8 a.m. brief.",
+    "The due spokes run one at a time in alphabetical order, and the hub runs last so its brief reads the day's fresh reports.",
+    "Everything lands in one commit. Only then does the brief go out.",
+    "It's this decoupled for two reasons: I want it to run for free on Cloudflare, and I want each brain to be able to customize itself. Each company should have its own staff. The deck adds why the spokes run one after another: the hub needs them finished, one vendor call at a time keeps rate-limit errors from piling up, and a failure points at exactly one agent.",
+    "Because it's my most decoupled agent architecture, two or three agents failing doesn't fail the whole thing. Say your company has 20 or 40 agents. If two or three fail, that's reported as a failure, but it doesn't crash the beat. People take sick days and the company keeps going. Their work isn't done that day, and that's maybe okay. The rule came from a real failure, and the comment is still in the code:",
+    "A failure still has to reach the human. If anything failed, the Worker sends a separate failure DM. No DM means the mesh is healthy, so silence must mean success.",
+    "Below is a simplified model of one morning's beat on the sample brain's five agents, with research-watch set to fail. Press Run the 08:00 beat: the other agents still finish, the brief still goes out, and a separate failure DM says which agent broke. Then press Next day and the failed agent is simply due again.",
+    "research-watch failed, and the beat kept going: 1 agent still ran, the brief went out, and a separate failure DM names research-watch. It never logged a finished run, so it is due again at the next beat.",
+    "Example: the beat on Monday, July 27, 2026, with research-watch failing",
+    "research-watch weekly: last ran 7 days ago, so it is duefailed, the beat continues",
+    "chief-of-staff daily: not yet run todayreport writtenits prompt includes a note to remind me about compliance-ops and librarian",
+    "Skipped",
+    "compliance-ops due, but it only runs on my laptop, so the brief reminds me to run it",
+    "librarian due, but it only runs on my laptop, so the brief reminds me to run it",
+    "sales-qualification commercial agent, stays off until its activation gates open",
+    "With JavaScript on, you can run this beat and the days after it.",
+    "A simplified model. The five agents and the starting ledger come from the repo's sample brain. It runs the code's due rules, run order, commit message and failure DM on the cloud tier, with the code's reasons reworded for reading, and one change: the agents keep their declared providers (the sample's own config reroutes them to an offline fake provider). Failures are simulated; nothing calls a model.",
+    "Watch the laptop-only agents. When one is due, the cloud tier doesn't just skip it: it rides into the hub's prompt as a note, so the brief nags me to run it locally. And a failed agent never writes its run-completed line, so it's simply due again at the next beat.",
+    "Watch this part4:38 Decoupled beats",
+    "The fourth idea is reach. Just like people, I sometimes need to reach into a file cabinet, because I don't have perfect memory of, in theory, the ten companies I'm running. I need to dig out a piece of paper I read two years ago. AI is the same. Not everything has to be in OKF, but the agents need to reach into your SharePoint or your Google Drive.",
+    "Right now the project is Microsoft based. Documents stay in SharePoint and OneDrive and are read through Microsoft Graph: delegated, read-only, with the live folder listing in the agent's prompt. The brain records where the truth lives and what it means, and the original stays put: the EIN stays in the letter. The brain doesn't need all the knowledge, just like a human brain doesn't. It needs to know where to get the files. The demo is built for SharePoint, and I think it can be extended to Google Workspace.",
+    "The deck and repo go a little further than the talk did. The CRM was bootstrapped from the mailbox's sent items with a one-off consent and a token that's never saved, because your outbox is the ground truth of your real relationships. The cloud tier also reads sibling GitHub repos as sources. And there's one deliberate gap: no direct bank access. It's designed, not wired, and money stays behind the constitution's gates.",
+    "Watch this part5:57 Reach into SharePoint",
+    "Number five is a big part of the goal. I want every single line of code in the open source code base, and each company, each brain, to have only its own markdown files. It's deliberate. The engine can be improved for everyone, and each brain is an instance of the engine.",
+    "That's a new way I'm thinking about my open source projects. If something is private and I don't want to share it, that's fine: separate the knowledge from the engine. The rule that makes it safe is strict. No private identity, real email, secret or persona name ever goes into engine code, templates, tests or docs, because one leaked name in a public repo is history you can't take back. When a brain proves a capability that's generally useful, it gets promoted into the engine with placeholders instead of names.",
+    "Watch this part7:02 Open source engine, private knowledge",
+    "This is the part I find the coolest. The brain is all markdown and zero lines of code, but the AI running it is fairly smart, and sometimes it realizes there's a bug in the engine. The brain can only change files in its own repo. It can't modify the engine. So the AI opens an issue on the engine, the same way people open issues on a project they don't control. No human does anything. When I recorded the video there were five issues on the engine, and all five had been opened by AI. Then I, as the maintainer of the engine, can see which brain hit what. My AI looks at the issue and makes a fix, the engine tags a release, and every brain gets the fix when it moves its pin.",
+    "Code decides what leaves a private brain for a public repo. The agent only writes the report, ending it with a fenced defect-report block, and four checks run on it:",
+    "The whitelist gate: only an L3 agent with defect-report on its whitelist may ask.",
+    "The identity-leak guard: any word of the principal's or persona's name, or any configured email, and the report is never filed. The guard denies; it never rewrites, because a guard that edits text is one you can't audit.",
+    "Title dedup against the engine's open defect issues, so a recurring bug is one issue.",
+    "A cap of two per run, and a ledger line either way. Anything that can't be filed becomes a private draft in the brain.",
+    "Issue #4 was an agent twice reporting a failure of a web tool that never existed: its job budgeted web searches while its harness sent no tools. That became the v0.12 release, where providers declare what they can actually do and the prompt says so out loud. Issues #5 and #6 were filed by a mesh's own hub and became v0.13, where an agent's required files are always put in its prompt or marked as missing.",
+    "Below, the engine's real checks run in your browser on a sample report. Each preset trips one of the four checks, and switching the agent to research-watch trips the first. The top line says what happened, and the lines under it are the ledger entries the engine would write. You can also edit the report text.",
+    "The end of the agent's report",
+    "Identity the guard checks (the sample brain's fictional people)",
+    "Casey Lund · casey@copperline.exampleMira Solen · mira.solen@copperline.example",
+    "Open defect issues on the engine, October 3, 2026",
+    "#7 claude-code harness: opaque failure when local login expires; instance env not passed to CLI providers",
+    "Passes all four checks: this would become a public issue on the engine.",
+    "1 defect-report block parsed",
+    "External web-fetch tool returns no usable content across consecutive agent runsdefect-filedWould file a new public issue on the engine, labeled defect. No draft kept.",
+    "The parse rule, the leak guard, the dedup, the cap and the gate messages are the engine's, run in your browser; it assumes the brain holds its filing token. Issue #4 is closed now, so its title passes dedup, which only looks at open issues. Nothing is sent to GitHub from this page.",
+    "Watch this part7:47 The AI files its own GitHub issues",
+    "The last thing I demoed took a little longer in Columbus. I still work for Accenture, so I asked a real question: with my non-compete, can I still present at AI Tinkerers Columbus, or would that be a problem? During the demo, the agent read the knowledge graph, pulled my actual non-compete PDF out of SharePoint through Microsoft Graph, read it and answered.",
+    "What I find powerful is that it didn't just answer from the knowledge graph. It went from the graph to the document, worked through it, and figured out what applied. I'm not showing the answer here, since it's my own employment paperwork.",
+    "Reading one specific document on request is v0.17.0, tagged the day of the talk. The agent ends its output with a read-request block naming files it saw in a listing, and deterministic code checks the source allowlist, the path and the caps (4 files, about 32K characters) before it serves them, with a ledger entry either way.",
+    "Watch this part9:13 Demo: asking my non-compete a question",
+    "The crux of the engine wasn't demoable, because I'm not going to show a company's real data. The powerful part is that AI reaches out to the owners, not the other way around. Most of the time when people use AI, they sit down and type into it. Very seldom does AI take the mental load and the friction off you, organize its 10 or 25 workers, and then reach out to you about what's missing. To me, that's the only way one person could run ten companies: the mental load moves off the individual and into an agent orchestration layer.",
+    "The 35-second clip I posted on August 25 is this part of the live talk. If AI reaches out to you as the owner, it carries the mental load and keeps you focused, assuming the AI is good enough. My example was that AI may need me to download a statement from Chase.",
+    "In the engine, everything the mesh does ends in a channel I already live in. The daily brief arrives as a Discord DM. A failed beat sends its own DM. A nag comes back every morning with its day count until its done-condition is met. Due work the cloud can't run becomes an explicit ask. And the ask arrives with the work started: the sample brain's prep pack for a bank export has a session starter to paste, the prep already done, and quiz questions, so answering takes judgment, not reloading context. The machine holds the calendar and the state. I hold only the decisions.",
+    "Watch this part10:06 The real unlock",
+    "The engine runs its beat on Workers and Durable Objects against a private GitHub brain, and the same brain runs on a laptop through the CLI. You don't need my brain or any credentials to try it. The sample brain validates and runs on the engine's offline fake provider:",
+    "Where it stops:",
+    "It's pre-release. The deck documents v0.16.1 and the recording runs v0.17.0.",
+    "Seven companies with one founder is still a thought experiment.",
+    "Reach is SharePoint, OneDrive and the mailbox through Microsoft Graph, plus GitHub. Google Drive isn't built.",
+    "There's no direct bank access, on purpose, and the commercial agents stay dormant until their activation gates are open.",
+    "The spokes run one at a time by design, so a busy beat takes as long as its model calls.",
+    "A CRM kept as one file per record suits hundreds of relationships, not tens of thousands.",
+    "Agents can still be wrong, and a failed agent's work just doesn't happen that day. That's why money movement, filings, publishing, credentials and access always end at the human.",
+    "The repo has the full talk as a page, diagram then code, stop by stop, and a guide from an empty directory to a running brain. Since the recording, v0.17.1 and v0.17.2 have followed. If you're building anything agent-memory powered that reaches out to builders, not the other way around, I'd like to hear how you're doing it.",
+    "PortfolioAnima Mesh: the company-of-0 experimentThe project chapter, with the cloud architecture and all six diagrams.",
+    "ArticleContinuous agent, second brainThe second brain idea for one person, before I applied it to a company.",
+    "ArticleContinuous executive agent v2.1My 24/7 coding agent, from my earlier AI Tinkerers Columbus talk.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "0:00One founder, many companies",
+    "1:00Public engine, private brains",
+    "3:20A brain with zero code",
+    "4:38Agents take sick days",
+    "5:57Reaching files where they live",
+    "7:02All code in the open engine",
+    "7:47The brain files its own issues",
+    "9:13Demo: reading my non-compete",
+    "10:06AI reaches out to you",
+    "Wrap-upWhat works, where it stops"
+  ],
+  "codeBlocks": [
+    "\"engine\": {\n    \"repo\": \"github.com/jackzhaojin/anima-mesh\",\n    \"ref\": \"v0.12.0\",\n    \"localPath\": \"../..\"\n  },",
+    "level: L3\nmodel: \"claude-sonnet-5\"\nharness: anthropic-api\nheartbeat: daily\nwhitelist: [schedule-update, draft-write, defect-report]",
+    "// One spoke's failure never aborts the beat - an unattended mesh must\n  // degrade agent-by-agent, not collapse. (Lesson from the first launchd\n  // beat: an auth error in one provider killed the remaining runs.)\n  const hubName = config.delivery?.deliverAgent ?? \"chief-of-staff\";\n  const runs: RunReport[] = [];\n  const failures: HeartbeatFailure[] = [];\n  for (const { agent } of due) {\n    progress(`heartbeat: running ${agent.name}`);\n    try {\n      // lines 228 to 242: run the agent; the hub also gets the scheduler notes\n    } catch (err) {\n      const message = err instanceof Error ? err.message : String(err);\n      failures.push({ agent: agent.name, error: message });\n      progress(`heartbeat: x ${agent.name} failed - ${message.slice(0, 200)} (continuing)\n    }\n  }",
+    "pnpm cli validate docs/sample-brain\npnpm cli run chief-of-staff --instance docs/sample-brain"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/zYytfy1PAkc"
+    },
+    {
+      "label": "anima-mesh",
+      "href": "https://github.com/jackzhaojin/anima-mesh/tree/0874733"
+    },
+    {
+      "label": "AI Tinkerers Columbus on August 3, 2026",
+      "href": "/talks/#ai-tinkerers-2026-animamesh"
+    },
+    {
+      "label": "Top AI Demos #40",
+      "href": "https://post-training.aitinkerers.org/p/top-ai-demos-40-zero-cost-companies-declarative-agents-and-llm-world-sims"
+    },
+    {
+      "label": "0:00 The company of zero dream",
+      "href": "https://youtu.be/zYytfy1PAkc"
+    },
+    {
+      "label": "0874733 on GitHub",
+      "href": "https://github.com/jackzhaojin/anima-mesh/blob/0874733/docs/sample-brain/animamesh.config.json#L7-L11"
+    },
+    {
+      "label": "1:00 One engine, many brains",
+      "href": "https://youtu.be/zYytfy1PAkc?t=60"
+    },
+    {
+      "label": "0874733 on GitHub",
+      "href": "https://github.com/jackzhaojin/anima-mesh/blob/0874733/docs/sample-brain/bundle/agents/chief-of-staff.md#L5-L9"
+    },
+    {
+      "label": "3:20 Inside a brain",
+      "href": "https://youtu.be/zYytfy1PAkc?t=200"
+    },
+    {
+      "label": "0874733 on GitHub",
+      "href": "https://github.com/jackzhaojin/anima-mesh/blob/0874733/src/harness/heartbeat-core.ts#L219-L248"
+    },
+    {
+      "label": "source",
+      "href": "https://github.com/jackzhaojin/anima-mesh/blob/0874733/src/harness/heartbeat-core.ts#L98-L134"
+    },
+    {
+      "label": "4:38 Decoupled beats",
+      "href": "https://youtu.be/zYytfy1PAkc?t=278"
+    },
+    {
+      "label": "5:57 Reach into SharePoint",
+      "href": "https://youtu.be/zYytfy1PAkc?t=357"
+    },
+    {
+      "label": "7:02 Open source engine, private knowledge",
+      "href": "https://youtu.be/zYytfy1PAkc?t=422"
+    },
+    {
+      "label": "source",
+      "href": "https://github.com/jackzhaojin/anima-mesh/blob/0874733/src/harness/defects.ts#L51-L184"
+    },
+    {
+      "label": "7:47 The AI files its own GitHub issues",
+      "href": "https://youtu.be/zYytfy1PAkc?t=467"
+    },
+    {
+      "label": "9:13 Demo: asking my non-compete a question",
+      "href": "https://youtu.be/zYytfy1PAkc?t=553"
+    },
+    {
+      "label": "10:06 The real unlock",
+      "href": "https://youtu.be/zYytfy1PAkc?t=606"
+    },
+    {
+      "label": "diagram then code, stop by stop",
+      "href": "https://github.com/jackzhaojin/anima-mesh/blob/0874733/docs/sample-brain/2026-08-04-ai-tinkerers-talk.md"
+    },
+    {
+      "label": "a guide from an empty directory to a running brain",
+      "href": "https://github.com/jackzhaojin/anima-mesh/blob/0874733/docs/starting-a-company.md"
+    },
+    {
+      "label": "Anima Mesh: the company-of-0 experiment",
+      "href": "/portfolio/#ch-anima"
+    },
+    {
+      "label": "Continuous agent, second brain",
+      "href": "/writing/2026-05-31-continuous-agent-second-brain/"
+    },
+    {
+      "label": "Continuous executive agent v2.1",
+      "href": "/writing/2026-04-05-continuous-executive-agent-v2-1/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "0:00One founder, many companies",
+      "href": "#dream"
+    },
+    {
+      "label": "1:00Public engine, private brains",
+      "href": "#engine"
+    },
+    {
+      "label": "3:20A brain with zero code",
+      "href": "#brain"
+    },
+    {
+      "label": "4:38Agents take sick days",
+      "href": "#beat"
+    },
+    {
+      "label": "5:57Reaching files where they live",
+      "href": "#reach"
+    },
+    {
+      "label": "7:02All code in the open engine",
+      "href": "#open-source"
+    },
+    {
+      "label": "7:47The brain files its own issues",
+      "href": "#issues"
+    },
+    {
+      "label": "9:13Demo: reading my non-compete",
+      "href": "#demo"
+    },
+    {
+      "label": "10:06AI reaches out to you",
+      "href": "#unlock"
+    },
+    {
+      "label": "Wrap-upWhat works, where it stops",
+      "href": "#result"
+    },
+    {
+      "label": "Watch the video, 11:09",
+      "href": "#video"
+    },
+    {
+      "label": "Code on GitHub",
+      "href": "https://github.com/jackzhaojin/anima-mesh/tree/0874733"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://youtu.be/zYytfy1PAkc",
+    "https://github.com/jackzhaojin/anima-mesh/tree/0874733",
+    "https://www.jackzhaojin.com/talks/#ai-tinkerers-2026-animamesh",
+    "https://post-training.aitinkerers.org/p/top-ai-demos-40-zero-cost-companies-declarative-agents-and-llm-world-sims",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/#dream",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/#engine",
+    "https://github.com/jackzhaojin/anima-mesh/blob/0874733/docs/sample-brain/animamesh.config.json#L7-L11",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/engine-and-instance.svg?v=2",
+    "https://youtu.be/zYytfy1PAkc?t=60",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/#brain",
+    "https://github.com/jackzhaojin/anima-mesh/blob/0874733/docs/sample-brain/bundle/agents/chief-of-staff.md#L5-L9",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/brain-anatomy.svg?v=2",
+    "https://youtu.be/zYytfy1PAkc?t=200",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/#beat",
+    "https://github.com/jackzhaojin/anima-mesh/blob/0874733/src/harness/heartbeat-core.ts#L219-L248",
+    "https://github.com/jackzhaojin/anima-mesh/blob/0874733/src/harness/heartbeat-core.ts#L98-L134",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/heartbeat-sequence.svg?v=2",
+    "https://youtu.be/zYytfy1PAkc?t=278",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/#reach",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/resource-reach.svg?v=2",
+    "https://youtu.be/zYytfy1PAkc?t=357",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/#open-source",
+    "https://youtu.be/zYytfy1PAkc?t=422",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/#issues",
+    "https://github.com/jackzhaojin/anima-mesh/blob/0874733/src/harness/defects.ts#L51-L184",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/defect-loop.svg?v=2",
+    "https://youtu.be/zYytfy1PAkc?t=467",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/#demo",
+    "https://youtu.be/zYytfy1PAkc?t=553",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/#unlock",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/ai-comes-to-you.svg?v=2",
+    "https://youtu.be/zYytfy1PAkc?t=606",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/#result",
+    "https://github.com/jackzhaojin/anima-mesh/blob/0874733/docs/sample-brain/2026-08-04-ai-tinkerers-talk.md",
+    "https://github.com/jackzhaojin/anima-mesh/blob/0874733/docs/starting-a-company.md",
+    "https://www.jackzhaojin.com/portfolio/#ch-anima",
+    "https://www.jackzhaojin.com/writing/2026-05-31-continuous-agent-second-brain/",
+    "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/#video",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/engine-and-instance.svg?v=2",
+        "alt": "Diagram of the two repos. Left, the public engine: src with the harness, providers, sources, gates, ledger and channels; workers for the cloud tier; templates and docs; and the one hard rule that no private identity ever appears in engine code. Right, the private brain: animamesh.config.json pins the engine by tag, bundle holds one concept per file, the ledger, approvals, reports and drafts hold the evidence, and credentials stay outside git. An arrow shows the brain depends on the engine, and a dashed arrow shows capabilities promoted back to the engine de-identified.",
+        "w": 196,
+        "h": 150
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/brain-anatomy.svg?v=2",
+        "alt": "Anatomy of a brain in three columns. The knowledge: constitution, facts, decisions, events, ops, the cabinet, the CRM, index and log. The roster: chief-of-staff as the daily hub, compliance-ops daily, librarian and research-watch weekly, bookkeeper monthly, governance quarterly, and three commercial agents that stay dormant. The evidence surfaces: the append-only ledger, approvals as the human gate, reports and drafts, plus the cloud deploy workspace and a note that no code lives in the brain.",
+        "w": 190,
+        "h": 150
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/heartbeat-sequence.svg?v=2",
+        "alt": "Sequence diagram of one beat, in fourteen steps across the Durable Object, the brain repo, read sources, model vendors and the principal: the alarm fires at 08:00 local, the beat takes a lock, reads the whole brain as one tarball, makes the due decision, loops over due spokes one at a time, runs the hub last, flushes one commit, delivers the brief as a bot DM, sends a failure DM only when something failed, and re-arms tomorrow's alarm.",
+        "w": 175,
+        "h": 150
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/resource-reach.svg?v=2",
+        "alt": "Resource reach diagram in three columns. Corporate resources: SharePoint and OneDrive read through Microsoft Graph, the company mailbox, GitHub repos, and a bank read that is not wired on purpose. The brain, one private repo: cabinet, facts and ops, the CRM and the agent roster. Actions, gated and ledgered: the daily brief, beat commits, public issues on the engine repo, and approvals as the human gate for money, filings, publishing, credentials and access.",
+        "w": 218,
+        "h": 150
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/defect-loop.svg?v=2",
+        "alt": "The defect loop. A brain mid-run ends its report with a defect-report block. The trust pipeline runs four checks: whitelist gate, identity-leak guard as the hard stop, title dedup and a per-run cap with a ledger line. A clean report becomes a public issue on the engine, with exhibits #4 the phantom web tool, #5 context-assembly gaps and #6 filed by the cloud beat. A leaky report falls back to a private draft. The flywheel: the maintainer fixes, the engine tags a release, every brain re-pins by tag.",
+        "w": 253,
+        "h": 150
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/ai-comes-to-you.svg?v=2",
+        "alt": "The AI comes to you diagram. The mesh, on its own clock, runs the 08:00 beat and treats delivery as part of the beat. What travels toward the human: the daily brief, the failure DM, the nag with its day count, the blocked ask, the prep pack and the ticket. You, minutes a day: read the DM, answer a quiz question, approve, veto or redirect, and a reply becomes a direction. Deliberately absent: a dashboard to open, a status meeting, a backlog to groom.",
+        "w": 262,
+        "h": 150
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/thumb-engines.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/thumb-brain.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/thumb-beat.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/thumb-reach.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/thumb-issues.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/images/thumb-unlock.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 12,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/zYytfy1PAkc?rel=0",
+        "title": "I Built an AI Engine That Runs a Company of Zero on Cloudflare Workers (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 12,
+    "mainTextLen": 22169,
+    "realImageCount": 12,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "GET",
+        "host": "www.gstatic.com",
+        "path": "/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+        "query": [],
+        "resourceType": "fetch",
+        "contentType": "image/svg+xml",
+        "status": 200,
+        "bytes": 272,
+        "hits": 1,
+        "example": "https://www.gstatic.com/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 122,
+        "hits": 1,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 3
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      },
+      {
+        "host": "www.google.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 2,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 3,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2026-08-15-anima-mesh-company-of-zero.png",
+  "renderedHtml": "pages/writing-2026-08-15-anima-mesh-company-of-zero.html",
+  "slots": {
+    "type": "article",
+    "headline": "Company of Zero: How AnimaMesh Runs a Company's Back Office on Cloudflare Workers",
+    "deck": "AnimaMesh is an open source engine where AI agents do a company's back office on Cloudflare Workers and the human only approves. One public engine holds all the code, and each company gets a private brain of markdown with zero lines of code. Part by part, with the code behind each: decoupled beats where one agent can fail without stopping the rest, read-only reach into SharePoint, a brain that files its own GitHub issues past a leak guard, and AI that reaches out to the owner instead of waiting for a prompt. It started as my AI Tinkerers Columbus talk on August 3, 2026.",
+    "byline": "By Jack Jin · August 15, 2026 · Updated October 4, 2026 · 14 min read · Includes my 11:09 video",
+    "meta": {
+      "times": [
+        "August 15, 2026",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "video",
+      "src": "https://www.youtube-nocookie.com/embed/zYytfy1PAkc?rel=0"
+    },
+    "body": {
+      "h2": [
+        "Letting one founder run more than one company",
+        "One public engine, many private brains",
+        "A brain is markdown files with zero lines of code",
+        "Decoupled beats let agents take sick days",
+        "The brain reaches files where they already live",
+        "Every line of code in the open source engine",
+        "The brain files its own GitHub issues",
+        "The live demo read my non-compete to answer a question",
+        "The real unlock is AI that reaches out to you",
+        "What works today and where it stops",
+        "Related"
+      ],
+      "figures": 12,
+      "codeBlocks": 3,
+      "tables": 1,
+      "embeds": 1
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "Anima Mesh: the company-of-0 experiment",
+        "href": "/portfolio/#ch-anima"
+      },
+      {
+        "title": "Continuous agent, second brain",
+        "href": "/writing/2026-05-31-continuous-agent-second-brain/"
+      },
+      {
+        "title": "Continuous executive agent v2.1",
+        "href": "/writing/2026-04-05-continuous-executive-agent-v2-1/"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 12,
+    "authorBox": true
+  }
+}

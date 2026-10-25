@@ -1,0 +1,53 @@
+{
+ "_provenance": {
+  "writtenBy": "stardust:dynamics plan",
+  "writtenAt": "2026-10-25T14:22:11.475Z",
+  "knowledge": "stardust/spec/knowledge"
+ },
+ "method": "drafted from the spec's search probes: fill resultSelector (the rebuilt results' item selector), check path against the rebuilt search page, then curate into parity.json",
+ "features": [
+  {
+   "id": "writing-filter",
+   "feature": "writing-filter",
+   "class": "S",
+   "status": "pending",
+   "checks": [
+    {
+     "type": "search-query",
+     "path": "/writing/",
+     "param": "#q=",
+     "term": "stardust",
+     "resultSelector": null
+    },
+    {
+     "type": "search-query",
+     "path": "/writing/",
+     "param": "#q=",
+     "term": "playwright",
+     "resultSelector": null
+    },
+    {
+     "type": "search-query",
+     "path": "/writing/",
+     "param": "#q=",
+     "term": "mcp",
+     "resultSelector": null
+    },
+    {
+     "type": "search-query",
+     "path": "/writing/",
+     "param": "#q=",
+     "term": "edge functions",
+     "resultSelector": null
+    },
+    {
+     "type": "search-query",
+     "path": "/writing/",
+     "param": "#q=",
+     "term": "caching",
+     "resultSelector": null
+    }
+   ]
+  }
+ ]
+}

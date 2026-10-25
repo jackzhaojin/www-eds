@@ -1,0 +1,610 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:41:14.223Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2025-05-28-aem-headless-when-frontend-teams-lead",
+  "url": "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:41:14.223Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/",
+  "title": "Why AEM Headless Makes Sense When Frontend Teams Lead | Jack Jin",
+  "description": "When a client's Next.js or Vue frontend comes first, AEM headless can be the right call. How I'd start, persisted queries, preview, and when I wouldn't.",
+  "og": {
+    "title": "Why AEM Headless Makes Sense When Frontend Teams Lead | Jack Jin",
+    "description": "When a client's Next.js or Vue frontend comes first, AEM headless can be the right call. How I'd start, persisted queries, preview, and when I wouldn't.",
+    "image": "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/images/cover.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Why AEM Headless Makes Sense When Frontend Teams Lead"
+    },
+    {
+      "tag": "h2",
+      "text": "What changed since I wrote this#"
+    },
+    {
+      "tag": "h2",
+      "text": "When the frontend came before the CMS#"
+    },
+    {
+      "tag": "h2",
+      "text": "Start with one page and three components#"
+    },
+    {
+      "tag": "h2",
+      "text": "Use persisted queries so responses can be cached#"
+    },
+    {
+      "tag": "h2",
+      "text": "Plan for translation, personalization and preview#"
+    },
+    {
+      "tag": "h2",
+      "text": "Where it works, and when I wouldn't recommend it#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "AEM Headless When Frontend Teams Lead",
+    "By Jack Jin · May 28, 2025 · Updated October 4, 2026 · 5 min read",
+    "Some clients have already put years into their frontend: a Next.js or Vue application, or a UI tightly coupled to an ERP or commerce system. When AEM comes into that picture, I think AEM headless, with Universal Editor added on top, can be a better call than forcing classic Sites authoring. Here is how I'd start that kind of project, the parts that need care, and when I would not recommend it.",
+    "First published as a LinkedIn article on May 28, 2025. Rewritten for this site in October 2026. The scenarios are illustrative: I write \"it's possible to do this\" rather than \"we did this x times\" to protect current and past clients.",
+    "I kept the original article light on omnichannel strategy and AEM's full headless capabilities on purpose, and said I'd come back to them. I did in July 2025: AEM headless and omnichannel architecture walks through three diagrams for getting content out of AEM to websites, apps and email. A week after this article, I also put headless next to the other ways to build on AEM in Making sense of 7 AEM capabilities.",
+    "The advice below is what I wrote in May 2025. The two Adobe mechanics I show, persisted queries and Universal Editor instrumentation, are checked against Adobe's current documentation and linked.",
+    "Picture a client that has invested heavily in its frontend stack. Maybe it's a sleek Next.js application, or maybe the team has fallen in love with Vue. Maybe the UI is tightly coupled to an ERP or an ecommerce system. Switching all of that out to fit a CMS feels like a non-starter. In many modern organizations the frontend is no longer just a layer. It's the foundation.",
+    "Sometimes content comes second, if at all. The UI must go live, and content follows.",
+    "When AEM comes in as a headless CMS, some clients worry they're stepping back in time. They expect to lose WYSIWYG, in-context editing and the power their authors once had. I've seen this cycle repeat across 18 years in content management. This time, it can be different.",
+    "Frontend teams often want full ownership, too. HTL components were a step up from JSPs, sure. A fully decoupled frontend lets the team own the entire experience, from layout to routing, animation to rendering.",
+    "A smart starting point is to start together and start small. One approach: spin up a single page with just three components. Don't boil the ocean. Build trust and a shared vocabulary first. Get one working pattern, and learn together.",
+    "In the explorations that go well, you'll often find working sessions every day, sometimes twice a day, during the proof of concept. They're more than a sync. The teams solve problems together and walk through the code and the content structures side by side.",
+    "GraphQL persisted queries have emerged as a clear win for security and caching. Adobe's persisted queries documentation explains the mechanism. A standard GraphQL query is sent as a POST, and the response to a POST can't easily be cached. A persisted query is saved in AEM ahead of time and run with a GET, and a GET response can be cached at the Dispatcher and the CDN. The two URL formats, as Adobe documents them:",
+    "Variables go on the end of the URL, each after a semicolon. That detail matters for caching. Every combination of values is its own URL, so it's its own cache entry.",
+    "The model below shows what that means for traffic. Each press of \"Send request\" is one request from the frontend, and it starts with five already sent. Pick the regular query or the persisted one, pick a locale, and send: a POST goes to AEM every time, while a repeat GET for the same URL is answered by the cache and never reaches AEM.",
+    "GET /graphql/execute.json/my-site/articles-by-locale;locale=en",
+    "Five requests so far: both POSTs reached AEM, the first GET for each locale reached AEM once, and the repeat GET came from the cache. Send ;locale=en again and AEM never sees it.",
+    "5 sent · 4 reached AEM · 1 served from cache",
+    "There's nuance, though. With 12 page templates and a library of 30 or more components, you'll want to avoid writing the same query definitions over and over.",
+    "Internationalization is front and center too. In AEM as a Cloud Service, structured content, language roots and translation workflows help manage global scale. Going headless doesn't mean ignoring localization. Translation workflows and translation projects apply here just as much.",
+    "Personalization is another layer that fits well. It's possible to publish content fragments into Adobe Target or other personalization platforms. In some cases those fragments are personalized for persona segments mapped from Adobe Experience Platform or other data sources. I'd prefer the targeting tool to choose which content to show, and avoid persona tagging in AEM. Sometimes that isn't practical, and that's OK. All of this allows scalable, dynamic experiences without coupling the logic into the frontend.",
+    "Finally, preview matters. In-context preview in AEM as a Cloud Service reconnects authors to what they're publishing, even in a decoupled setup. With Universal Editor instrumentation, editors see their edits reflected live in the experience. Instrumentation is work the frontend team does in its own markup. These lines are from Adobe's Universal Editor getting started guide:",
+    "The meta tag points the editor at the AEM instance, the script lets the editor talk to the page, and the data-aue-* attributes tie each element to the content and property behind it. The frontend still renders the page its own way. The attributes are what let an author click an element and edit the content behind it.",
+    "In successful models, the frontend is already up and running. Universal Editor becomes an additive layer rather than a blocker. Strong frontend teams thrive here. They move fast, deliver rich experiences, and AEM becomes the source of structured truth.",
+    "If the frontend leans into server-side rendering, for example Next.js in production mode with React Server Components, the performance story is strong: fast loads, prefetching, and SEO-friendly markup with minimal compromise.",
+    "Would I recommend AEM headless to everyone? Not quite. It depends on your team setup. If you have a passionate frontend team deeply committed to its stack, or a UI tightly coupled with another system, then forcing classic AEM Sites authoring might be the real architectural mistake. Maybe even an architectural sin.",
+    "ArticleAEM headless and omnichannel architectureThe omnichannel follow-up this article promised, with three diagrams.",
+    "ArticleMaking sense of 7 AEM capabilitiesHeadless next to six other ways to build on AEM, side by side.",
+    "ArticleAEM caching in production architecturesMore on the caching layers a persisted query lands in.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "Since 2025What changed since I wrote this",
+    "SituationWhen the frontend came first",
+    "ApproachOne page, three components",
+    "CachingPersisted queries for caching",
+    "AuthoringTranslation, personalization, preview",
+    "ResultWhere it works, where it doesn't"
+  ],
+  "codeBlocks": [
+    "GET <AEM_HOST>/graphql/execute.json/<PERSISTENT_PATH>\nGET <AEM_HOST>/graphql/execute.json/<PERSISTENT_QUERY_PATH>;variable1=value1;variable2=value2",
+    "<meta name=\"urn:adobe:aue:system:aemconnection\" content=\"aem:https://localhost:4502\">\n<script src=\"https://universal-editor-service.adobe.io/cors.js\" async></script>\n\n<ul data-aue-resource=\"urn:aemconnection:/content/example/list\" data-aue-type=\"container\">\n  <p data-aue-prop=\"name\" data-aue-type=\"text\">Jane Doe</p>"
+  ],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "AEM headless and omnichannel architecture",
+      "href": "/writing/2025-07-12-aem-headless-omnichannel-architecture/"
+    },
+    {
+      "label": "Making sense of 7 AEM capabilities",
+      "href": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+    },
+    {
+      "label": "persisted queries documentation",
+      "href": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/headless/graphql-api/persisted-queries"
+    },
+    {
+      "label": "Regular, POST",
+      "href": null
+    },
+    {
+      "label": "Persisted, GET",
+      "href": null
+    },
+    {
+      "label": "en",
+      "href": null
+    },
+    {
+      "label": "de",
+      "href": null
+    },
+    {
+      "label": "fr",
+      "href": null
+    },
+    {
+      "label": "Send request",
+      "href": null
+    },
+    {
+      "label": "Start over",
+      "href": null
+    },
+    {
+      "label": "Universal Editor getting started guide",
+      "href": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/universal-editor/getting-started"
+    },
+    {
+      "label": "AEM headless and omnichannel architecture",
+      "href": "/writing/2025-07-12-aem-headless-omnichannel-architecture/"
+    },
+    {
+      "label": "Making sense of 7 AEM capabilities",
+      "href": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+    },
+    {
+      "label": "AEM caching in production architectures",
+      "href": "/writing/2025-09-01-aem-caching-production-architectures/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Since 2025What changed since I wrote this",
+      "href": "#what-changed"
+    },
+    {
+      "label": "SituationWhen the frontend came first",
+      "href": "#situation"
+    },
+    {
+      "label": "ApproachOne page, three components",
+      "href": "#start-small"
+    },
+    {
+      "label": "CachingPersisted queries for caching",
+      "href": "#persisted-queries"
+    },
+    {
+      "label": "AuthoringTranslation, personalization, preview",
+      "href": "#global-and-preview"
+    },
+    {
+      "label": "ResultWhere it works, where it doesn't",
+      "href": "#outcome"
+    },
+    {
+      "label": "Try the cache lab",
+      "href": "#persisted-queries"
+    },
+    {
+      "label": "Accenture",
+      "href": "https://www.accenture.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jackjin"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/#what-changed",
+    "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/",
+    "https://www.jackzhaojin.com/writing/2025-06-04-seven-aem-capabilities-tradeoffs/",
+    "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/#situation",
+    "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/#start-small",
+    "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/#persisted-queries",
+    "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/headless/graphql-api/persisted-queries",
+    "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/#global-and-preview",
+    "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/universal-editor/getting-started",
+    "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/#outcome",
+    "https://www.jackzhaojin.com/writing/2025-09-01-aem-caching-production-architectures/",
+    "https://github.com/jackzhaojin",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/images/frontend-first.jpg",
+        "alt": "Illustration: a frontend platform connected to an ERP system, an e-commerce system, a database and a customer, with a cloud service above them.",
+        "w": 1200,
+        "h": 800
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/images/ui-plus-ue.jpg",
+        "alt": "Illustration titled Robust UI + AEM UE: a monitor showing a rich web page with charts inside a Universal Editor window.",
+        "w": 1200,
+        "h": 800
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/images/thumb-situation.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/images/thumb-persisted-queries.png",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2025-05-28-aem-headless-when-frontend-teams-lead/images/thumb-outcome.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 5,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": []
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 8,
+    "mainTextLen": 9098,
+    "realImageCount": 5,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 1,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 0,
+      "thirdPartyScriptHosts": 2,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2025-05-28-aem-headless-when-frontend-teams-lead.png",
+  "renderedHtml": "pages/writing-2025-05-28-aem-headless-when-frontend-teams-lead.html",
+  "slots": {
+    "type": "article",
+    "headline": "Why AEM Headless Makes Sense When Frontend Teams Lead",
+    "deck": "Some clients have already put years into their frontend: a Next.js or Vue application, or a UI tightly coupled to an ERP or commerce system. When AEM comes into that picture, I think AEM headless, with Universal Editor added on top, can be a better call than forcing classic Sites authoring. Here is how I'd start that kind of project, the parts that need care, and when I would not recommend it.",
+    "byline": "By Jack Jin · May 28, 2025 · Updated October 4, 2026 · 5 min read",
+    "meta": {
+      "times": [
+        "May 28, 2025",
+        "October 4, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "image",
+      "src": "images/frontend-first.jpg",
+      "alt": "Illustration: a frontend platform connected to an ERP system, an e-commerce system, a database and a customer, with a cloud service above them."
+    },
+    "body": {
+      "h2": [
+        "What changed since I wrote this",
+        "When the frontend came before the CMS",
+        "Start with one page and three components",
+        "Use persisted queries so responses can be cached",
+        "Plan for translation, personalization and preview",
+        "Where it works, and when I wouldn't recommend it",
+        "Related"
+      ],
+      "figures": 3,
+      "codeBlocks": 0,
+      "tables": 1,
+      "embeds": 0
+    },
+    "pullquotes": [
+      "cache lab · regular query vs persisted queryillustrative names Query Regular, POST Persisted, GET Variable locale en de fr Send requestStart over GET /graphql/e"
+    ],
+    "related": [
+      {
+        "title": "AEM headless and omnichannel architecture",
+        "href": "/writing/2025-07-12-aem-headless-omnichannel-architecture/"
+      },
+      {
+        "title": "Making sense of 7 AEM capabilities",
+        "href": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+      },
+      {
+        "title": "AEM caching in production architectures",
+        "href": "/writing/2025-09-01-aem-caching-production-architectures/"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 7,
+    "authorBox": true
+  }
+}

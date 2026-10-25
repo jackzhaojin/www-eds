@@ -1,0 +1,153 @@
+[
+ {
+  "code": "writing#1",
+  "template_id": "writing",
+  "rank": 1,
+  "label": "author-box + code + explainer + figure + hero:article + rail + row-list + video",
+  "core": [
+   "author-box",
+   "code",
+   "explainer",
+   "figure",
+   "hero:article",
+   "rail",
+   "row-list",
+   "video"
+  ],
+  "optional": [
+   [
+    "lab",
+    0.46
+   ],
+   [
+    "data-table",
+    0.32
+   ],
+   [
+    "compare",
+    0.18
+   ],
+   [
+    "chips",
+    0.07
+   ],
+   [
+    "showcase",
+    0.04
+   ]
+  ],
+  "url_count": 28,
+  "pageviews_90d": 0,
+  "distinct_sets": 20,
+  "rep_url": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/",
+  "rep_capture_key": "b9c670a249a38e3b"
+ },
+ {
+  "code": "writing#2",
+  "template_id": "writing",
+  "rank": 2,
+  "label": "breadcrumb + hero:hub + writing-filter + writing-list",
+  "core": [
+   "breadcrumb",
+   "hero:hub",
+   "writing-filter",
+   "writing-list"
+  ],
+  "optional": [],
+  "url_count": 1,
+  "pageviews_90d": 0,
+  "distinct_sets": 1,
+  "rep_url": "https://www.jackzhaojin.com/writing/",
+  "rep_capture_key": "564364b82bbf9c6d"
+ },
+ {
+  "code": "(root)#1",
+  "template_id": "(root)",
+  "rank": 1,
+  "label": "hero:home + proof-list + row-list + showcase",
+  "core": [
+   "hero:home",
+   "proof-list",
+   "row-list",
+   "showcase"
+  ],
+  "optional": [],
+  "url_count": 1,
+  "pageviews_90d": 0,
+  "distinct_sets": 1,
+  "rep_url": "https://www.jackzhaojin.com/",
+  "rep_capture_key": "f4e1fe2ee78a1538"
+ },
+ {
+  "code": "certifications#1",
+  "template_id": "certifications",
+  "rank": 1,
+  "label": "breadcrumb + hero:hub",
+  "core": [
+   "breadcrumb",
+   "hero:hub"
+  ],
+  "optional": [],
+  "url_count": 1,
+  "pageviews_90d": 0,
+  "distinct_sets": 1,
+  "rep_url": "https://www.jackzhaojin.com/certifications/",
+  "rep_capture_key": "a273b1f8129066f9"
+ },
+ {
+  "code": "privacy#1",
+  "template_id": "privacy",
+  "rank": 1,
+  "label": "breadcrumb + hero:page",
+  "core": [
+   "breadcrumb",
+   "hero:page"
+  ],
+  "optional": [],
+  "url_count": 1,
+  "pageviews_90d": 0,
+  "distinct_sets": 1,
+  "rep_url": "https://www.jackzhaojin.com/privacy/",
+  "rep_capture_key": "4982d63ad442d399"
+ },
+ {
+  "code": "portfolio#1",
+  "template_id": "portfolio",
+  "rank": 1,
+  "label": "cards + chapter-head + divider + hero:portfolio + jump-links + panel + showcase + stats + timeline",
+  "core": [
+   "cards",
+   "chapter-head",
+   "divider",
+   "hero:portfolio",
+   "jump-links",
+   "panel",
+   "showcase",
+   "stats",
+   "timeline"
+  ],
+  "optional": [],
+  "url_count": 1,
+  "pageviews_90d": 0,
+  "distinct_sets": 1,
+  "rep_url": "https://www.jackzhaojin.com/portfolio/",
+  "rep_capture_key": "cbf20f4c2c03eb3f"
+ },
+ {
+  "code": "talks#1",
+  "template_id": "talks",
+  "rank": 1,
+  "label": "breadcrumb + hero:hub + row-list",
+  "core": [
+   "breadcrumb",
+   "hero:hub",
+   "row-list"
+  ],
+  "optional": [],
+  "url_count": 1,
+  "pageviews_90d": 0,
+  "distinct_sets": 1,
+  "rep_url": "https://www.jackzhaojin.com/talks/",
+  "rep_capture_key": "40f0cc5313246bfc"
+ }
+]

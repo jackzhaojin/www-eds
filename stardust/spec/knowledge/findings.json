@@ -1,0 +1,97 @@
+[
+ {
+  "title": "One design system, six templates, one dominant layout.",
+  "text": "34 live pages. The writing template holds 29 of them (28 articles and the index) in 2 layout variants; home, portfolio, talks, certifications and privacy are one page each.",
+  "numbers": [
+   34,
+   29,
+   2
+  ],
+  "chapter": "start",
+  "rank": 1
+ },
+ {
+  "title": "Build the article once and most of the site is done.",
+  "text": "28 articles share the hero article, rail, related row list and author box; 25 carry framed figures, 19 pages a YouTube embed and 18 a dark code block.",
+  "numbers": [
+   28,
+   25,
+   19,
+   18
+  ],
+  "chapter": "pages",
+  "rank": 1
+ },
+ {
+  "title": "Mostly new blocks, because parity is the target.",
+  "text": "23 of 34 catalog entries are new; the rest extend a boilerplate or Block Collection block with a variant class. Nothing renders as-is under pixel parity except section metadata.",
+  "numbers": [
+   23,
+   34
+  ],
+  "chapter": "build",
+  "rank": 1
+ },
+ {
+  "title": "The long tail is the article explainers.",
+  "text": "27 articles carry bespoke interactive explainers or labs (32 explainer and 30 lab instances); 26 pages load a per-article explainer.css. How they are built is the one blocking implementation question.",
+  "numbers": [
+   27,
+   32,
+   30,
+   26
+  ],
+  "chapter": "build",
+  "rank": 2
+ },
+ {
+  "title": "Little of the site is data-driven.",
+  "text": "14 features. The writing index is the only listing (1 page); the GA4 tag and the Cloudflare beacon run on 34 pages. Everything else is chrome (theme control, menu) or client-only compute that ships with its block.",
+  "numbers": [
+   14,
+   1,
+   34
+  ],
+  "chapter": "dynamic",
+  "rank": 1
+ },
+ {
+  "title": "Two paragraph patterns are invisible to the block map.",
+  "text": "Facts paragraphs on 28 articles and Watch this part chapters on 17 are classed paragraphs, which DA authors cannot reproduce; the catalog lists facts and chapters as blocks even though the parser counts them as default content.",
+  "numbers": [
+   28,
+   17
+  ],
+  "chapter": "risks",
+  "rank": 1
+ },
+ {
+  "title": "No redirects needed if every page keeps its folder URL.",
+  "text": "Every page is a folder URL with a trailing slash; 0 delivered paths change beyond the trailing-slash rule. Authoring each page as an index document keeps every URL, so the redirect sheet stays empty.",
+  "numbers": [
+   0
+  ],
+  "chapter": "risks",
+  "rank": 2
+ },
+ {
+  "title": "Cloudflare rewrites content at the edge.",
+  "text": "Email obfuscation turned email-like strings on 3 articles into /cdn-cgi links, and the zone injects the analytics beacon on 34 pages; both follow the site to EDS unless the zone settings change.",
+  "numbers": [
+   3,
+   34
+  ],
+  "chapter": "risks",
+  "rank": 3
+ },
+ {
+  "title": "Decisions before launch.",
+  "text": "5 of 15 open questions block launch (URL format, image hosting, CDN routing, parity target, explainer build); each ships a default, and two already carry the owner's recorded answer.",
+  "numbers": [
+   5,
+   15
+  ],
+  "chapter": "decide",
+  "rank": 1
+ }
+]

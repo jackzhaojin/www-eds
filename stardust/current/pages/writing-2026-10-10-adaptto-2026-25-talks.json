@@ -1,0 +1,1483 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-10-25T13:40:30.547Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "writing-2026-10-10-adaptto-2026-25-talks",
+  "url": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-10-25T13:40:30.547Z",
+  "finalUrl": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/",
+  "title": "adaptTo() 2026 Recap: 25 AEM Talks in 15 Minutes | Jack Jin",
+  "description": "All 25 full talks from adaptTo() 2026, the AEM developer conference in Berlin, in conference order: what each one is, why to watch it, and my take.",
+  "og": {
+    "title": "adaptTo() 2026 Recap: 25 AEM Talks in 15 Minutes | Jack Jin",
+    "description": "All 25 full talks from adaptTo() 2026, the AEM developer conference in Berlin, in conference order: what each one is, why to watch it, and my take.",
+    "image": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/video-poster.jpg",
+    "type": "article"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "adaptTo() 2026 Recap: 25 AEM Conference Talks in 15 Minutes"
+    },
+    {
+      "tag": "h2",
+      "text": "Why I went through all 25 talks#"
+    },
+    {
+      "tag": "h2",
+      "text": "Day 1: Monday, September 28#"
+    },
+    {
+      "tag": "h3",
+      "text": "01Agents don't browse - AEM in the Age of AI"
+    },
+    {
+      "tag": "h3",
+      "text": "02One AEM MCP Server to Rule Them All"
+    },
+    {
+      "tag": "h3",
+      "text": "03Rolling Out MCP on AEM: Lessons from Early Production"
+    },
+    {
+      "tag": "h3",
+      "text": "04Advancing AEM Elasticity: Earlier Signals, Faster Readiness, Better Resilience"
+    },
+    {
+      "tag": "h3",
+      "text": "05Securing AEM Customer Code: Automated fixes for vulnerabilities in dependencies"
+    },
+    {
+      "tag": "h3",
+      "text": "06AEM Content Requests - Reduce, Reduce, Reduce!"
+    },
+    {
+      "tag": "h3",
+      "text": "07Develop Faster with AEM AI Tooling"
+    },
+    {
+      "tag": "h3",
+      "text": "08Migrate to AEM Cloud Service Faster - An Agentic Workflow with MCP and Adobe Migration Skills"
+    },
+    {
+      "tag": "h3",
+      "text": "09Comparador - Spot the Difference: Surviving AEM Migrations & Deployments Without Going Blind"
+    },
+    {
+      "tag": "h2",
+      "text": "Day 2: Tuesday, September 29#"
+    },
+    {
+      "tag": "h3",
+      "text": "10AI Agent-Driven Content Migration for Edge Delivery Services"
+    },
+    {
+      "tag": "h3",
+      "text": "11Hybrid AEM Architecture: Bridging Server-Side Rendering with Headless React at the Component Level"
+    },
+    {
+      "tag": "h3",
+      "text": "12Tales from the AEM Migration Trenches"
+    },
+    {
+      "tag": "h3",
+      "text": "13Spiritually-Succeeding AEM: Advanced Author Customization in DA"
+    },
+    {
+      "tag": "h3",
+      "text": "14Spellforge to Experience Workspace: Building a Skill-Driven Agent System for DA/AEM"
+    },
+    {
+      "tag": "h3",
+      "text": "15Measuring the Unmeasurable: Pre/Post Experimentation for Brand Visibility in LLMs"
+    },
+    {
+      "tag": "h3",
+      "text": "16Building an Efficient Content Supply Chain for the AI Era"
+    },
+    {
+      "tag": "h3",
+      "text": "17Shifting the Search Paradigm"
+    },
+    {
+      "tag": "h3",
+      "text": "18From Cache Invalidation to Continuous Materialization"
+    },
+    {
+      "tag": "h2",
+      "text": "Day 3: Wednesday, September 30#"
+    },
+    {
+      "tag": "h3",
+      "text": "19Reimagining AEM Forms Rule Authoring with Coding Agents"
+    },
+    {
+      "tag": "h3",
+      "text": "20Tracking Through the Transition: A Flexible Tracking Architecture for AEM Migrations"
+    },
+    {
+      "tag": "h3",
+      "text": "21Stop Messing with Index Definitions: Index Optimizer and Simplified Index Management in AEM"
+    },
+    {
+      "tag": "h3",
+      "text": "22Project Asset Hub - Modernizing AEM Asset Share with Edge Delivery Services, Content Hub, and Edge Compute"
+    },
+    {
+      "tag": "h3",
+      "text": "23Editorial AI in AEM: Giving Editors Control Over LLM-Generated Image Descriptions"
+    },
+    {
+      "tag": "h3",
+      "text": "2415 Years of Women at adaptTo() - The Facts and the Untold Stories Behind the Numbers"
+    },
+    {
+      "tag": "h3",
+      "text": "25Make Your Own DAM Breakfast with Adobe Experience Manager"
+    },
+    {
+      "tag": "h2",
+      "text": "Thanks to the speakers and the organizers#"
+    },
+    {
+      "tag": "h2",
+      "text": "Related"
+    }
+  ],
+  "body": [
+    "Home",
+    "Technical Writing",
+    "adaptTo() 2026: 25 talks",
+    "By Jack Jin · October 10, 2026 · 16 min read · Includes my 14:43 video",
+    "adaptTo() 2026 was three days of AEM talks in Berlin, September 28 to 30. I went through all 25 full talks in a 15-minute video: what the talk is, why you should watch it, and my take. This is the written version, in conference order.",
+    "adaptTo() 2026, Berlin, September 28 to 30, 2026. Slot times are Berlin time. Each talk links its page and slides on adapt.to.",
+    "adaptTo() is Europe's developer conference for Adobe Experience Manager (AEM), organized by diva-e Conclusion. I was just there for the 2026 edition, its 15th anniversary. It was one of the best conferences I've ever attended. Engineers and researchers from Adobe were there, along with engineers and researchers from all over the world. Katie Phillips from Best Buy and I gave a talk there too.",
+    "So I gave each of the 25 full talks about 30 seconds on camera. I left out the lightning talks. For each talk I cover three things:",
+    "What the talk is",
+    "Why you should watch it",
+    "My take",
+    "It's meant to help you pick which recordings to watch once they're up. Each take is my own limited understanding from the room. Some of it may be wrong, and a few takes are a little spicy.",
+    "Below, every talk has its slot, its speakers, links to its page, slides and moment in the video, and the slide I had on screen while I gave my take.",
+    "Dominik Steinacher and Carsten Ziegeler, Adobe · Monday 12:30 · Slides (PDF) · Watch at 0:27",
+    "Tanju Erinmez and Jabran Asghar, Adobe · Monday 12:55 · Slides (PDF) · Watch at 1:00",
+    "Divanshu Goyal (TechX) and Pranay Rajput (Pitney Bowes) · Monday 13:30 · Slides (PDF) · Watch at 1:26",
+    "Tudor Rogoz and Dominik Süß, Adobe · Monday 14:25 · Slides (PDF) · Watch at 1:56",
+    "Andrés Bott and Ramon Bißwanger, Adobe · Monday 15:00 · Slides (PDF) · Watch at 2:21",
+    "Damian Langsweirdt, Adobe · Monday 15:40 · Slides (PDF) · Watch at 2:54",
+    "Abhishek Garg, Adobe · Monday 17:30 · Slides (PDF) · Watch at 3:30",
+    "Himani Chauhan and Bharat Wadhwa, Adobe · Monday 18:05 · Slides (PDF) · Watch at 3:54",
+    "Krystian Panek and Tomasz Sobczyk · Monday 18:40 · Slides (PDF) · Watch at 4:19",
+    "Jack Jin (Accenture) and Katie Phillips (Best Buy) · Tuesday 09:00 · Slides (PDF) · Watch at 4:43",
+    "Like most talks at the conference, ours is very agentic. It's also AI using AI, where most of the other talks were about humans using AI.",
+    "We think about evals.",
+    "It's a multi-step process, and the AI agents share a common working process.",
+    "Shashi Kumar and Daniel Jebaraj, Calix · Tuesday 09:35 · Slides (PDF) · Watch at 5:40",
+    "David Catalan and Karl Pauls, Adobe · Tuesday 10:25 · Slides (PDF) · Watch at 6:07",
+    "Laurel Timko (JMP Statistical Discovery) and Tad Reeves (Arbory Digital) · Tuesday 11:00 · Slides (PDF) · Watch at 6:43",
+    "Natalia Venditto and Sharanya Vinod, Adobe · Tuesday 11:35 · Slides (PDF) · Watch at 7:13",
+    "Nitin Gupta, Adobe · Tuesday 13:30 · Slides (PDF) · Watch at 7:47",
+    "Istvan Krajnek and Veselin Petrov · Tuesday 14:05 · Slides (PDF) · Watch at 8:10",
+    "Mohit Kataria and Bianca Necula, Adobe · Tuesday 14:55 · Slides (PDF) · Watch at 8:35",
+    "Marek Czajkowski and Paweł Sobolewski · Tuesday 15:20 · Slides (PDF) · Watch at 9:07",
+    "Navneet Agarwal and Ravisanker E, Adobe · Wednesday 09:00 · Slides (PDF) · Watch at 9:38",
+    "Janic Wyslich and Martin Schröter · Wednesday 09:35 · Slides (PDF) · Watch at 10:15",
+    "Paul Chibulcuteanu and Benjamin Habegger, Adobe · Wednesday 10:00 · Slides (PDF) · Watch at 11:05",
+    "Alexander Klimetschek, Adobe · Wednesday 10:50 · Slides (PDF) · Watch at 11:44",
+    "José María Franco Fraiz, Cognizant Netcentric · Wednesday 11:25 · Slides (PDF) · Watch at 12:26",
+    "Alina Rublea and Angela Schreiber, Adobe · Wednesday 13:30 · Slides (PDF) · Watch at 13:03",
+    "Lisa Brown, Accenture · Wednesday 13:55 · Slides (PDF) · Watch at 13:37",
+    "If you made it this far, thank you. And thank you to all the speakers, and to diva-e Conclusion for organizing adaptTo().",
+    "The official talk videos should be on the adapt.to schedule in the next week or so. If you'd rather watch than read, the video at the top covers all 25 in under 15 minutes.",
+    "TalkAI Agent-Driven Content Migration for Edge Delivery ServicesOur adaptTo() 2026 talk, with Katie Phillips.",
+    "TalkConversion FactoryMy lightning talk at adaptTo() 2026.",
+    "WritingAEM Edge Functions on a LaptopGoogle sign-in at the edge of an Edge Delivery site.",
+    "Jack Jin",
+    "Associate Director in Accenture's Adobe Business Group, Columbus, Ohio. AEM Champion (class of 2026-2027), AEM Rockstar winner at Adobe Summit 2024 and Adobe Certified Master. I build AI agent systems on AEM and Edge Delivery Services, then write up what I learn.",
+    "Portfolio Talks GitHub",
+    "IntroWhy all 25 talks",
+    "01 · Mon 12:30Agents don't browse",
+    "02 · Mon 12:55One AEM MCP Server",
+    "03 · Mon 13:30Rolling out MCP on AEM",
+    "04 · Mon 14:25Advancing AEM elasticity",
+    "05 · Mon 15:00Securing AEM customer code",
+    "06 · Mon 15:40AEM content requests",
+    "07 · Mon 17:30Develop faster with AI tooling",
+    "08 · Mon 18:05Migrate to Cloud Service faster",
+    "09 · Mon 18:40Comparador",
+    "10 · Tue 09:00Our talk: AI content migration",
+    "11 · Tue 09:35Hybrid AEM architecture",
+    "12 · Tue 10:25Tales from the migration trenches",
+    "13 · Tue 11:00Spiritually-succeeding AEM",
+    "14 · Tue 11:35Spellforge to Experience Workspace",
+    "15 · Tue 13:30Brand visibility in LLMs",
+    "16 · Tue 14:05Content supply chain",
+    "17 · Tue 14:55Shifting the search paradigm",
+    "18 · Tue 15:20Continuous materialization",
+    "19 · Wed 09:00AEM Forms rule authoring",
+    "20 · Wed 09:35Tracking through the transition",
+    "21 · Wed 10:00Index Optimizer",
+    "22 · Wed 10:50Project Asset Hub",
+    "23 · Wed 11:25Editorial AI in AEM",
+    "24 · Wed 13:3015 years of women at adaptTo()",
+    "25 · Wed 13:55DAM breakfast",
+    "CloseThanks, and the recordings"
+  ],
+  "codeBlocks": [],
+  "ctas": [
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "Certifications",
+      "href": "/certifications/"
+    },
+    {
+      "label": "Light",
+      "href": null
+    },
+    {
+      "label": "Dark",
+      "href": null
+    },
+    {
+      "label": "System",
+      "href": null
+    },
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Technical Writing",
+      "href": "/writing/"
+    },
+    {
+      "label": "Jack Jin",
+      "href": "/"
+    },
+    {
+      "label": "watch it on YouTube",
+      "href": "https://youtu.be/d1S1yVgFep8"
+    },
+    {
+      "label": "adapt.to",
+      "href": "https://adapt.to/2026/schedule"
+    },
+    {
+      "label": "Agents don't browse - AEM in the Age of AI",
+      "href": "https://adapt.to/2026/schedule/agents-dont-browse"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-agents-dont-browse.pdf"
+    },
+    {
+      "label": "Watch at 0:27",
+      "href": "https://youtu.be/d1S1yVgFep8?t=27"
+    },
+    {
+      "label": "One AEM MCP Server to Rule Them All",
+      "href": "https://adapt.to/2026/schedule/one-aem-mcp-server-to-rule-them-all"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-one-aem-mcp-server-to-rule-them-all.pdf"
+    },
+    {
+      "label": "Watch at 1:00",
+      "href": "https://youtu.be/d1S1yVgFep8?t=60"
+    },
+    {
+      "label": "Rolling Out MCP on AEM: Lessons from Early Production",
+      "href": "https://adapt.to/2026/schedule/rolling-out-mcp-on-aem-lessons-from-early-production"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-rolling-out-mcp-on-aem-lessons-from-early-production.pdf"
+    },
+    {
+      "label": "Watch at 1:26",
+      "href": "https://youtu.be/d1S1yVgFep8?t=86"
+    },
+    {
+      "label": "Advancing AEM Elasticity: Earlier Signals, Faster Readiness, Better Resilience",
+      "href": "https://adapt.to/2026/schedule/advancing-aem-elasticity-earlier-signals-faster-readiness-better-resilience"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-advancing-aem-elasticity-earlier-signals-faster-readiness-better-resilience.pdf"
+    },
+    {
+      "label": "Watch at 1:56",
+      "href": "https://youtu.be/d1S1yVgFep8?t=116"
+    },
+    {
+      "label": "Securing AEM Customer Code: Automated fixes for vulnerabilities in dependencies",
+      "href": "https://adapt.to/2026/schedule/securing-aem-customer-code-automated-fixes-for-vulnerabilities-in-dependencies"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-securing-aem-customer-code-automated-fixes-for-vulnerabilities-in-dependencies.pdf"
+    },
+    {
+      "label": "Watch at 2:21",
+      "href": "https://youtu.be/d1S1yVgFep8?t=141"
+    },
+    {
+      "label": "AEM Content Requests - Reduce, Reduce, Reduce!",
+      "href": "https://adapt.to/2026/schedule/aem-content-requests-reduce-reduce-reduce"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-aem-content-requests-reduce-reduce-reduce.pdf"
+    },
+    {
+      "label": "Watch at 2:54",
+      "href": "https://youtu.be/d1S1yVgFep8?t=174"
+    },
+    {
+      "label": "Develop Faster with AEM AI Tooling",
+      "href": "https://adapt.to/2026/schedule/develop-faster-with-aem-ai-tooling"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-develop-faster-with-aem-ai-tooling.pdf"
+    },
+    {
+      "label": "Watch at 3:30",
+      "href": "https://youtu.be/d1S1yVgFep8?t=210"
+    },
+    {
+      "label": "Migrate to AEM Cloud Service Faster - An Agentic Workflow with MCP and Adobe Migration Skills",
+      "href": "https://adapt.to/2026/schedule/migrate-to-aem-cloud-service-faster-an-agentic-workflow-with-mcp-and-adobe-migration-skills"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-migrate-to-aem-cloud-service-faster-an-agentic-workflow-with-mcp-and-adobe-migration-skills.pdf"
+    },
+    {
+      "label": "Watch at 3:54",
+      "href": "https://youtu.be/d1S1yVgFep8?t=234"
+    },
+    {
+      "label": "Comparador - Spot the Difference: Surviving AEM Migrations & Deployments Without Going Blind",
+      "href": "https://adapt.to/2026/schedule/comparador-spot-the-difference-surviving-aem-migrations-and-deployments-without-going-blind"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-comparador-spot-the-difference-surviving-aem-migrations-and-deployments-without-going-blind.pdf"
+    },
+    {
+      "label": "Watch at 4:19",
+      "href": "https://youtu.be/d1S1yVgFep8?t=259"
+    },
+    {
+      "label": "AI Agent-Driven Content Migration for Edge Delivery Services",
+      "href": "https://adapt.to/2026/schedule/ai-agent-driven-content-migration-for-edge-delivery-services"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-ai-agent-driven-content-migration-for-edge-delivery-services.pdf"
+    },
+    {
+      "label": "Watch at 4:43",
+      "href": "https://youtu.be/d1S1yVgFep8?t=283"
+    },
+    {
+      "label": "Hybrid AEM Architecture: Bridging Server-Side Rendering with Headless React at the Component Level",
+      "href": "https://adapt.to/2026/schedule/hybrid-aem-architecture-bridging-server-side-rendering-with-headless-react-at-the-component-level"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-hybrid-aem-architecture-bridging-server-side-rendering-with-headless-react-at-the-component-level.pdf"
+    },
+    {
+      "label": "Watch at 5:40",
+      "href": "https://youtu.be/d1S1yVgFep8?t=340"
+    },
+    {
+      "label": "Tales from the AEM Migration Trenches",
+      "href": "https://adapt.to/2026/schedule/tales-from-the-aem-migration-trenches"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-tales-from-the-aem-migration-trenches.pdf"
+    },
+    {
+      "label": "Watch at 6:07",
+      "href": "https://youtu.be/d1S1yVgFep8?t=367"
+    },
+    {
+      "label": "Spiritually-Succeeding AEM: Advanced Author Customization in DA",
+      "href": "https://adapt.to/2026/schedule/spiritually-succeeding-aem-advanced-author-customization-in-da"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-spiritually-succeeding-aem-advanced-author-customization-in-da.pdf"
+    },
+    {
+      "label": "Watch at 6:43",
+      "href": "https://youtu.be/d1S1yVgFep8?t=403"
+    },
+    {
+      "label": "Spellforge to Experience Workspace: Building a Skill-Driven Agent System for DA/AEM",
+      "href": "https://adapt.to/2026/schedule/spellforge-to-experience-workspace-building-a-skill-driven-agent-system-for-da-aem"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-spellforge-to-experience-workspace-building-a-skill-driven-agent-system-for-da-aem.pdf"
+    },
+    {
+      "label": "Watch at 7:13",
+      "href": "https://youtu.be/d1S1yVgFep8?t=433"
+    },
+    {
+      "label": "Measuring the Unmeasurable: Pre/Post Experimentation for Brand Visibility in LLMs",
+      "href": "https://adapt.to/2026/schedule/measuring-the-unmeasurable-pre-post-experimentation-for-brand-visibility-in-llms"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-measuring-the-unmeasurable-pre-post-experimentation-for-brand-visibility-in-llms.pdf"
+    },
+    {
+      "label": "Watch at 7:47",
+      "href": "https://youtu.be/d1S1yVgFep8?t=467"
+    },
+    {
+      "label": "Building an Efficient Content Supply Chain for the AI Era",
+      "href": "https://adapt.to/2026/schedule/building-an-efficient-content-supply-chain-for-the-ai-era"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-building-an-efficient-content-supply-chain-for-the-ai-era.pdf"
+    },
+    {
+      "label": "Watch at 8:10",
+      "href": "https://youtu.be/d1S1yVgFep8?t=490"
+    },
+    {
+      "label": "Shifting the Search Paradigm",
+      "href": "https://adapt.to/2026/schedule/shifting-the-search-paradigm"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-shifting-the-search-paradigm.pdf"
+    },
+    {
+      "label": "Watch at 8:35",
+      "href": "https://youtu.be/d1S1yVgFep8?t=515"
+    },
+    {
+      "label": "From Cache Invalidation to Continuous Materialization",
+      "href": "https://adapt.to/2026/schedule/from-cache-invalidation-to-continuous-materialization"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-from-cache-invalidation-to-continuous-materialization.pdf"
+    },
+    {
+      "label": "Watch at 9:07",
+      "href": "https://youtu.be/d1S1yVgFep8?t=547"
+    },
+    {
+      "label": "Reimagining AEM Forms Rule Authoring with Coding Agents",
+      "href": "https://adapt.to/2026/schedule/reimagining-aem-forms-rule-authoring-with-coding-agents"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-reimagining-aem-forms-rule-authoring-with-coding-agents.pdf"
+    },
+    {
+      "label": "Watch at 9:38",
+      "href": "https://youtu.be/d1S1yVgFep8?t=578"
+    },
+    {
+      "label": "Tracking Through the Transition: A Flexible Tracking Architecture for AEM Migrations",
+      "href": "https://adapt.to/2026/schedule/tracking-through-the-transition-a-flexible-tracking-architecture-for-aem-migrations"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-tracking-through-the-transition-a-flexible-tracking-architecture-for-aem-migrations.pdf"
+    },
+    {
+      "label": "Watch at 10:15",
+      "href": "https://youtu.be/d1S1yVgFep8?t=615"
+    },
+    {
+      "label": "Stop Messing with Index Definitions: Index Optimizer and Simplified Index Management in AEM",
+      "href": "https://adapt.to/2026/schedule/stop-messing-with-index-definitions-index-optimizer-and-simplified-index-management-in-aem"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-stop-messing-with-index-definitions-index-optimizer-and-simplified-index-management-in-aem.pdf"
+    },
+    {
+      "label": "Watch at 11:05",
+      "href": "https://youtu.be/d1S1yVgFep8?t=665"
+    },
+    {
+      "label": "Project Asset Hub - Modernizing AEM Asset Share with Edge Delivery Services, Content Hub, and Edge Compute",
+      "href": "https://adapt.to/2026/schedule/project-asset-hub-modernizing-aem-asset-share-with-edge-delivery-services-content-hub-and-edge-compute"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-project-asset-hub-modernizing-aem-asset-share-with-edge-delivery-services-content-hub-and-edge-compute.pdf"
+    },
+    {
+      "label": "Watch at 11:44",
+      "href": "https://youtu.be/d1S1yVgFep8?t=704"
+    },
+    {
+      "label": "Editorial AI in AEM: Giving Editors Control Over LLM-Generated Image Descriptions",
+      "href": "https://adapt.to/2026/schedule/editorial-ai-in-aem-giving-editors-control-over-llm-generated-image-descriptions"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-editorial-ai-in-aem-giving-editors-control-over-llm-generated-image-descriptions.pdf"
+    },
+    {
+      "label": "Watch at 12:26",
+      "href": "https://youtu.be/d1S1yVgFep8?t=746"
+    },
+    {
+      "label": "15 Years of Women at adaptTo() - The Facts and the Untold Stories Behind the Numbers",
+      "href": "https://adapt.to/2026/schedule/15-years-of-women-at-adaptto-the-facts-and-the-untold-stories-behind-the-numbers"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-15-years-of-women-at-adaptto-the-facts-and-the-untold-stories-behind-the-numbers.pdf"
+    },
+    {
+      "label": "Watch at 13:03",
+      "href": "https://youtu.be/d1S1yVgFep8?t=783"
+    },
+    {
+      "label": "Make Your Own DAM Breakfast with Adobe Experience Manager",
+      "href": "https://adapt.to/2026/schedule/make-your-own-dam-breakfast-with-adobe-experience-manager"
+    },
+    {
+      "label": "Slides (PDF)",
+      "href": "https://adapt.to/2026/presentations/adaptto-2026-make-your-own-dam-breakfast-with-adobe-experience-manager.pdf"
+    },
+    {
+      "label": "Watch at 13:37",
+      "href": "https://youtu.be/d1S1yVgFep8?t=817"
+    },
+    {
+      "label": "adapt.to schedule",
+      "href": "https://adapt.to/2026/schedule"
+    },
+    {
+      "label": "AI Agent-Driven Content Migration for Edge Delivery Services",
+      "href": "/talks/#adaptto-2026"
+    },
+    {
+      "label": "Conversion Factory",
+      "href": "/talks/#adaptto-2026-lightning"
+    },
+    {
+      "label": "AEM Edge Functions on a Laptop",
+      "href": "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "Talks",
+      "href": "/talks/"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jackzhaojin"
+    },
+    {
+      "label": "IntroWhy all 25 talks",
+      "href": "#intro"
+    },
+    {
+      "label": "01 · Mon 12:30Agents don't browse",
+      "href": "#talk-01-agents-dont-browse"
+    },
+    {
+      "label": "02 · Mon 12:55One AEM MCP Server",
+      "href": "#talk-02-one-aem-mcp-server"
+    },
+    {
+      "label": "03 · Mon 13:30Rolling out MCP on AEM",
+      "href": "#talk-03-rolling-out-mcp-on-aem"
+    },
+    {
+      "label": "04 · Mon 14:25Advancing AEM elasticity",
+      "href": "#talk-04-aem-elasticity"
+    }
+  ],
+  "links": [
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#main",
+    "https://www.jackzhaojin.com/",
+    "https://www.jackzhaojin.com/writing/",
+    "https://www.jackzhaojin.com/portfolio/",
+    "https://www.jackzhaojin.com/talks/",
+    "https://www.jackzhaojin.com/certifications/",
+    "https://youtu.be/d1S1yVgFep8",
+    "https://adapt.to/2026/schedule",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#intro",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#day-1",
+    "https://adapt.to/2026/schedule/agents-dont-browse",
+    "https://adapt.to/2026/presentations/adaptto-2026-agents-dont-browse.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=27",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-01-agents-dont-browse.jpg",
+    "https://adapt.to/2026/schedule/one-aem-mcp-server-to-rule-them-all",
+    "https://adapt.to/2026/presentations/adaptto-2026-one-aem-mcp-server-to-rule-them-all.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=60",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-02-one-aem-mcp-server.jpg",
+    "https://adapt.to/2026/schedule/rolling-out-mcp-on-aem-lessons-from-early-production",
+    "https://adapt.to/2026/presentations/adaptto-2026-rolling-out-mcp-on-aem-lessons-from-early-production.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=86",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-03-rolling-out-mcp-on-aem.jpg",
+    "https://adapt.to/2026/schedule/advancing-aem-elasticity-earlier-signals-faster-readiness-better-resilience",
+    "https://adapt.to/2026/presentations/adaptto-2026-advancing-aem-elasticity-earlier-signals-faster-readiness-better-resilience.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=116",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-04-aem-elasticity.jpg",
+    "https://adapt.to/2026/schedule/securing-aem-customer-code-automated-fixes-for-vulnerabilities-in-dependencies",
+    "https://adapt.to/2026/presentations/adaptto-2026-securing-aem-customer-code-automated-fixes-for-vulnerabilities-in-dependencies.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=141",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-05-securing-aem-customer-code.jpg",
+    "https://adapt.to/2026/schedule/aem-content-requests-reduce-reduce-reduce",
+    "https://adapt.to/2026/presentations/adaptto-2026-aem-content-requests-reduce-reduce-reduce.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=174",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-06-aem-content-requests.jpg",
+    "https://adapt.to/2026/schedule/develop-faster-with-aem-ai-tooling",
+    "https://adapt.to/2026/presentations/adaptto-2026-develop-faster-with-aem-ai-tooling.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=210",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-07-develop-faster-aem-ai-tooling.jpg",
+    "https://adapt.to/2026/schedule/migrate-to-aem-cloud-service-faster-an-agentic-workflow-with-mcp-and-adobe-migration-skills",
+    "https://adapt.to/2026/presentations/adaptto-2026-migrate-to-aem-cloud-service-faster-an-agentic-workflow-with-mcp-and-adobe-migration-skills.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=234",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-08-migrate-to-aem-cloud-service-faster.jpg",
+    "https://adapt.to/2026/schedule/comparador-spot-the-difference-surviving-aem-migrations-and-deployments-without-going-blind",
+    "https://adapt.to/2026/presentations/adaptto-2026-comparador-spot-the-difference-surviving-aem-migrations-and-deployments-without-going-blind.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=259",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-09-comparador.jpg",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#day-2",
+    "https://adapt.to/2026/schedule/ai-agent-driven-content-migration-for-edge-delivery-services",
+    "https://adapt.to/2026/presentations/adaptto-2026-ai-agent-driven-content-migration-for-edge-delivery-services.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=283",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-10-ai-agent-driven-content-migration.jpg",
+    "https://adapt.to/2026/schedule/hybrid-aem-architecture-bridging-server-side-rendering-with-headless-react-at-the-component-level",
+    "https://adapt.to/2026/presentations/adaptto-2026-hybrid-aem-architecture-bridging-server-side-rendering-with-headless-react-at-the-component-level.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=340",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-11-hybrid-aem-architecture.jpg",
+    "https://adapt.to/2026/schedule/tales-from-the-aem-migration-trenches",
+    "https://adapt.to/2026/presentations/adaptto-2026-tales-from-the-aem-migration-trenches.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=367",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-12-tales-from-migration-trenches.jpg",
+    "https://adapt.to/2026/schedule/spiritually-succeeding-aem-advanced-author-customization-in-da",
+    "https://adapt.to/2026/presentations/adaptto-2026-spiritually-succeeding-aem-advanced-author-customization-in-da.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=403",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-13-spiritually-succeeding-aem.jpg",
+    "https://adapt.to/2026/schedule/spellforge-to-experience-workspace-building-a-skill-driven-agent-system-for-da-aem",
+    "https://adapt.to/2026/presentations/adaptto-2026-spellforge-to-experience-workspace-building-a-skill-driven-agent-system-for-da-aem.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=433",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-14-spellforge-to-experience-workspace.jpg",
+    "https://adapt.to/2026/schedule/measuring-the-unmeasurable-pre-post-experimentation-for-brand-visibility-in-llms",
+    "https://adapt.to/2026/presentations/adaptto-2026-measuring-the-unmeasurable-pre-post-experimentation-for-brand-visibility-in-llms.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=467",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-15-brand-visibility-in-llms.jpg",
+    "https://adapt.to/2026/schedule/building-an-efficient-content-supply-chain-for-the-ai-era",
+    "https://adapt.to/2026/presentations/adaptto-2026-building-an-efficient-content-supply-chain-for-the-ai-era.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=490",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-16-content-supply-chain.jpg",
+    "https://adapt.to/2026/schedule/shifting-the-search-paradigm",
+    "https://adapt.to/2026/presentations/adaptto-2026-shifting-the-search-paradigm.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=515",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-17-shifting-the-search-paradigm.jpg",
+    "https://adapt.to/2026/schedule/from-cache-invalidation-to-continuous-materialization",
+    "https://adapt.to/2026/presentations/adaptto-2026-from-cache-invalidation-to-continuous-materialization.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=547",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-18-continuous-materialization.jpg",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#day-3",
+    "https://adapt.to/2026/schedule/reimagining-aem-forms-rule-authoring-with-coding-agents",
+    "https://adapt.to/2026/presentations/adaptto-2026-reimagining-aem-forms-rule-authoring-with-coding-agents.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=578",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-19-aem-forms-rule-authoring.jpg",
+    "https://adapt.to/2026/schedule/tracking-through-the-transition-a-flexible-tracking-architecture-for-aem-migrations",
+    "https://adapt.to/2026/presentations/adaptto-2026-tracking-through-the-transition-a-flexible-tracking-architecture-for-aem-migrations.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=615",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-20-tracking-through-the-transition.jpg",
+    "https://adapt.to/2026/schedule/stop-messing-with-index-definitions-index-optimizer-and-simplified-index-management-in-aem",
+    "https://adapt.to/2026/presentations/adaptto-2026-stop-messing-with-index-definitions-index-optimizer-and-simplified-index-management-in-aem.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=665",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-21-index-optimizer.jpg",
+    "https://adapt.to/2026/schedule/project-asset-hub-modernizing-aem-asset-share-with-edge-delivery-services-content-hub-and-edge-compute",
+    "https://adapt.to/2026/presentations/adaptto-2026-project-asset-hub-modernizing-aem-asset-share-with-edge-delivery-services-content-hub-and-edge-compute.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=704",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-22-project-asset-hub.jpg",
+    "https://adapt.to/2026/schedule/editorial-ai-in-aem-giving-editors-control-over-llm-generated-image-descriptions",
+    "https://adapt.to/2026/presentations/adaptto-2026-editorial-ai-in-aem-giving-editors-control-over-llm-generated-image-descriptions.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=746",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-23-editorial-ai-in-aem.jpg",
+    "https://adapt.to/2026/schedule/15-years-of-women-at-adaptto-the-facts-and-the-untold-stories-behind-the-numbers",
+    "https://adapt.to/2026/presentations/adaptto-2026-15-years-of-women-at-adaptto-the-facts-and-the-untold-stories-behind-the-numbers.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=783",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-24-15-years-of-women.jpg",
+    "https://adapt.to/2026/schedule/make-your-own-dam-breakfast-with-adobe-experience-manager",
+    "https://adapt.to/2026/presentations/adaptto-2026-make-your-own-dam-breakfast-with-adobe-experience-manager.pdf",
+    "https://youtu.be/d1S1yVgFep8?t=817",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-25-dam-breakfast.jpg",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#close",
+    "https://www.jackzhaojin.com/talks/#adaptto-2026",
+    "https://www.jackzhaojin.com/talks/#adaptto-2026-lightning",
+    "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+    "https://github.com/jackzhaojin",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-01-agents-dont-browse",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-02-one-aem-mcp-server",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-03-rolling-out-mcp-on-aem",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-04-aem-elasticity",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-05-securing-aem-customer-code",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-06-aem-content-requests",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-07-develop-faster-aem-ai-tooling",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-08-migrate-to-aem-cloud-service-faster",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-09-comparador",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-10-ai-agent-driven-content-migration",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-11-hybrid-aem-architecture",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-12-tales-from-migration-trenches",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-13-spiritually-succeeding-aem",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-14-spellforge-to-experience-workspace",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-15-brand-visibility-in-llms",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-16-content-supply-chain",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-17-shifting-the-search-paradigm",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-18-continuous-materialization",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-19-aem-forms-rule-authoring",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-20-tracking-through-the-transition",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-21-index-optimizer",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-22-project-asset-hub",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-23-editorial-ai-in-aem",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-24-15-years-of-women",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#talk-25-dam-breakfast",
+    "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/#video",
+    "https://www.accenture.com/",
+    "https://www.linkedin.com/in/jackjin"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-01-agents-dont-browse.jpg",
+        "alt": "Slide titled On the Shoulders of Giants: a CX Coworker Headless box with planning, policing, approvals, sandboxing and memory, next to marketplaces of plugins (skill, API and MCP tools) and context, making scoped calls to AEM product services and third-party services.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-02-one-aem-mcp-server.jpg",
+        "alt": "Slide titled What's next?: skills become policies that travel with the token, MCP capability cards in the Adobe Developer Console, AEM MCP governance controls, and an invitation to talk about custom MCP servers behind the AEM MCP server.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-03-rolling-out-mcp-on-aem.jpg",
+        "alt": "Slide titled Blast Radius, not access control: permissions decide what a person is authorized to do, and the server split decides what a machine is even capable of attempting.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-04-aem-elasticity.jpg",
+        "alt": "Slide titled Why Signal Quality Matters: use signals independent of request size, namely absolute CPU usage, server load ratio, response time P95 and queue depth.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-05-securing-aem-customer-code.jpg",
+        "alt": "Slide titled Security: AI landscape: vulnerabilities identified and exploited faster than ever, about 2.3 years in 2018 and hours in 2026, next to a falling line chart from zerodayclock.com.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-06-aem-content-requests.jpg",
+        "alt": "Slide titled Real results from a customer: 80%+ reduction over 3 iterations, above a bar chart of daily content requests by type that drops over time.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-07-develop-faster-aem-ai-tooling.jpg",
+        "alt": "Slide titled Confidently wrong: an AI-generated Dispatcher filter with /smartCache and /autoInvalidate properties, stamped WRONG, next to the words Fluent. Confident. Not real. The caption says those filter properties don't exist.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-08-migrate-to-aem-cloud-service-faster.jpg",
+        "alt": "Slide titled The cost of migrating: how long does an AEM migration really take? Months from start to cutover, 8,000+ findings in one BPA report, and about 30% less time to cutover once automated, 6 months manual versus about 4.2 months with Adobe Skills.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-09-comparador.jpg",
+        "alt": "Slide titled The solution: Comparador, a freeware Chrome extension for Chromium, Edge, Brave, Opera and Vivaldi, with screenshots and a list of features: under a minute to install, visual diffing, HTML source diffing, HTTP headers comparison, console logs diffing, metrics comparison and shareable project setups.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-10-ai-agent-driven-content-migration.jpg",
+        "alt": "Slide titled Conceptually: One Framework, Any Content Process: any trigger (human UI, deterministic, AI trigger) flows through a migrator, an eval step, an orchestrator, a generator and a human step to human oversight, preview publish and final publish, with human governance on the entire flow.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-11-hybrid-aem-architecture.jpg",
+        "alt": "Slide titled Calix Web Platform - Evolution: three screenshots, Calix.com rebuilt in 2024, MyCalix as it was until 2025, and MyCalix refreshed in 2026.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-12-tales-from-migration-trenches.jpg",
+        "alt": "Slide with four labels, AI Cloud Workers, Skills, Harnesses and Models (LLMs), around a small S, A, H, M badge, above three screenshots of migrated websites.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-13-spiritually-succeeding-aem.jpg",
+        "alt": "Slide titled The Anatomy of a Plugin: a short tools/plugin/index.js that reads the page context, calls an API and writes back into the document, a da.live config table that registers it, and a note that about 15 lines of JavaScript plus a simple HTML file make a complete plugin, served from the same repo as the site.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-14-spellforge-to-experience-workspace.jpg",
+        "alt": "Slide titled Bring It Inside: before, authors use a separate AI agent outside the authoring experience; after, AI becomes part of the authoring experience in da.live.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-15-brand-visibility-in-llms.jpg",
+        "alt": "Slide titled Finding the right pages: automated scoring: citabilityScore (content gain from optimization) and agenticTraffic (existing AI-crawler traffic) combine into an automated signal that selects pages for experimentation.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-16-content-supply-chain.jpg",
+        "alt": "Slide titled The problem in plain words: a website visit, a customer record and a browsing history that are not connected, a Tuesday to Thursday timeline where the marketing email goes out after the customer bought elsewhere, and four questions nobody can answer in time: identity, intent, action and delivery.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-17-shifting-the-search-paradigm.jpg",
+        "alt": "Slide titled 2026 Evolution, Ease and Practicality: MCP on top of keyword, semantic, hybrid, prefix, multifield, generative and natural language search, aggregates and analyzers, on an indexing and retrieval engine fed by acquisition, custom and AEM content sources.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-18-continuous-materialization.jpg",
+        "alt": "Slide titled When the content changes: Correctness. An edited promo teaser experience fragment is used on /home, /products, /sale and hundreds more pages. The cache key is the URL and the invalidation key is the path, but the real dependency is a graph. The safe fallback, a full-site purge, throws every good entry away to catch the stale ones: manual, error-prone and hard to reproduce.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-19-aem-forms-rule-authoring.jpg",
+        "alt": "Slide titled Visual Rule Editor: no-code visual authoring, predefined rule types (When, Show, Set Value Of, Validate), managing and reusing rules, and drag and drop building.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-21-index-optimizer.jpg",
+        "alt": "Slide titled Simplified Index Management: a NEW badge on index.diff with customizations, the same for Quickstart.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-22-project-asset-hub.jpg",
+        "alt": "Architecture slide: an Asset Portal UI as the custom frontend, an edge worker and storage on an Adobe-managed edge platform (Cloudflare, Fastly) with identity providers and third-party systems, Edge Delivery Services and Content Hub APIs for delivery, and document authoring and AEM Assets author underneath.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-23-editorial-ai-in-aem.jpg",
+        "alt": "Slide titled Prompt anatomy: a minimal e-commerce prompt example that asks for concise, accurate alt text for consumer goods images, with links to fuller versions of the prompts.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/talk-24-15-years-of-women.jpg",
+        "alt": "Slide titled This is the room today: a photo of the adaptTo() 2026 audience in the conference hall, credited to Marta Cukierman, with the line: Something has shifted. Slowly, but significantly. And we are glad to be back.",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-intro.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-01.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-02.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-03.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-04.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-05.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-06.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-07.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-08.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-09.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-10.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-11.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-12.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-13.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-14.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-15.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-16.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-17.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-18.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-19.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-20.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-21.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-22.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-23.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-24.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      },
+      {
+        "src": "https://www.jackzhaojin.com/writing/2026-10-10-adaptto-2026-25-talks/images/thumb-25.jpg",
+        "alt": "",
+        "w": 144,
+        "h": 92
+      }
+    ],
+    "allImgCount": 51,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": [
+      {
+        "src": "https://www.youtube-nocookie.com/embed/d1S1yVgFep8?rel=0",
+        "title": "adaptTo() 2026 Recap: 25 AEM Conference Talks in 15 Minutes (YouTube video)"
+      }
+    ]
+  },
+  "customProps": {
+    "--palette-warm-0": "#ffffff",
+    "--palette-warm-50": "#f6f4f0",
+    "--palette-warm-100": "#f1eee9",
+    "--palette-warm-150": "#efece6",
+    "--palette-warm-200": "#e6e2db",
+    "--palette-ink-900": "#1a1917",
+    "--palette-ink-700": "#4a4744",
+    "--palette-ink-500": "#6f6b66",
+    "--palette-night-950": "#0e0e0e",
+    "--palette-night-900": "#131313",
+    "--palette-night-850": "#1a1a19",
+    "--palette-night-800": "#201f1f",
+    "--palette-night-700": "#2a2a2a",
+    "--palette-bone-100": "#e8e5e3",
+    "--palette-bone-300": "#b2afac",
+    "--palette-bone-400": "#94908c",
+    "--palette-lavender-700": "#4a3ba8",
+    "--palette-lavender-600": "#5b4bc4",
+    "--palette-lavender-300": "#c0b3ff",
+    "--palette-lavender-200": "#d6cdff",
+    "--palette-blue-600": "#2f6bb3",
+    "--palette-blue-300": "#9db8e8",
+    "--palette-red-600": "#c2433d",
+    "--palette-red-300": "#ff9d9d",
+    "--palette-gold-700": "#7d5f0e",
+    "--palette-gold-300": "#f0cf8e",
+    "--palette-cyan-300": "#8fd8e8",
+    "--palette-cyan-700": "#1d6b7a",
+    "--palette-amber-300": "#ffc46b",
+    "--palette-amber-700": "#8a5a00",
+    "--palette-leaf-300": "#b3dba0",
+    "--palette-leaf-700": "#3b7628",
+    "--palette-bronze-300": "#d8b48f",
+    "--palette-bronze-700": "#7a4f2c",
+    "--palette-mint-300": "#9fe0c0",
+    "--palette-mint-700": "#1f6e52",
+    "--palette-rose-300": "#e8a9b8",
+    "--palette-rose-700": "#a63658",
+    "--palette-line-warm": "rgba(20, 18, 15, 0.10)",
+    "--palette-line-warm-strong": "rgba(20, 18, 15, 0.48)",
+    "--palette-line-night": "rgba(255, 255, 255, 0.08)",
+    "--palette-line-night-strong": "rgba(255, 255, 255, 0.36)",
+    "--palette-lavender-tint-light": "rgba(91, 75, 196, 0.08)",
+    "--palette-lavender-tint-dark": "rgba(192, 179, 255, 0.10)",
+    "--font-display": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+    "--font-body": "\"Inter\", -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif",
+    "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace",
+    "--size-11": "11px",
+    "--size-13": "13px",
+    "--size-14": "14px",
+    "--size-16": "16px",
+    "--size-19": "19px",
+    "--size-20": "20px",
+    "--size-30": "30px",
+    "--size-44": "44px",
+    "--size-64": "64px",
+    "--text-display": "clamp(2.75rem, 1.9rem + 3vw, 4rem)",
+    "--text-h1": "clamp(2rem, 1.5rem + 1.8vw, 2.75rem)",
+    "--text-h2": "clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem)",
+    "--text-h3": "1.25rem",
+    "--text-body-lg": "clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem)",
+    "--text-body": "1rem",
+    "--text-small": "0.875rem",
+    "--text-label": "0.6875rem",
+    "--text-mono": "0.8125rem",
+    "--leading-tight": "1.12",
+    "--leading-body": "1.65",
+    "--tracking-label": "0.14em",
+    "--weight-regular": "400",
+    "--weight-medium": "500",
+    "--weight-bold": "600",
+    "--space-1": "4px",
+    "--space-2": "8px",
+    "--space-3": "12px",
+    "--space-4": "16px",
+    "--space-5": "24px",
+    "--space-6": "32px",
+    "--space-7": "48px",
+    "--space-8": "64px",
+    "--space-9": "96px",
+    "--space-10": "128px",
+    "--container-max": "1280px",
+    "--band-pad": "clamp(48px, 8vw, 96px)",
+    "--gutter": "clamp(20px, 5vw, 64px)",
+    "--measure": "66ch",
+    "--header-height": "62px",
+    "--target-min": "44px",
+    "--radius-sm": "4px",
+    "--radius-md": "6px",
+    "--radius-lg": "10px",
+    "--radius-pill": "999px",
+    "--border-width": "1px",
+    "--duration-fast": "120ms",
+    "--duration-base": "250ms",
+    "--ease-standard": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "--z-header": "100",
+    "--band-tint-strong": "9%",
+    "--band-tint-soft": "5%",
+    "--band-tint-edge": "4%",
+    "--color-bg": "#f6f4f0",
+    "--color-bg-alt": "#efece6",
+    "--color-surface": "#ffffff",
+    "--color-surface-raised": "#f1eee9",
+    "--color-text": "#1a1917",
+    "--color-text-muted": "#4a4744",
+    "--color-text-faint": "#6f6b66",
+    "--color-line": "rgba(20, 18, 15, 0.10)",
+    "--color-line-strong": "rgba(20, 18, 15, 0.48)",
+    "--color-accent": "#5b4bc4",
+    "--color-accent-hover": "#4a3ba8",
+    "--color-on-accent": "#ffffff",
+    "--color-accent-soft": "rgba(91, 75, 196, 0.08)",
+    "--color-focus": "#5b4bc4",
+    "--color-inverse-bg": "#1a1917",
+    "--color-inverse-text": "#f6f4f0",
+    "--color-topic-aem-ai": "#5b4bc4",
+    "--color-topic-aem": "#2f6bb3",
+    "--color-topic-agents": "#c2433d",
+    "--color-topic-work": "#7d5f0e",
+    "--color-project-cyan": "#1d6b7a",
+    "--color-project-amber": "#8a5a00",
+    "--color-project-leaf": "#3b7628",
+    "--color-project-bronze": "#7a4f2c",
+    "--color-project-mint": "#1f6e52",
+    "--color-project-rose": "#a63658",
+    "--color-diagram-ground": "#f6f4f0",
+    "--shadow-1": "0 1px 2px rgba(20, 18, 15, 0.04)",
+    "--shadow-2": "0 8px 24px rgba(20, 18, 15, 0.07)",
+    "--button-radius": "6px",
+    "--button-pad": "12px 20px",
+    "--button-pad-sm": "8px 14px",
+    "--card-radius": "10px",
+    "--card-pad": "22px",
+    "--chip-radius": "4px",
+    "--chip-dot": "7px",
+    "--panel-pad": "26px",
+    "--proof-label": "104px",
+    "--icon-video": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E\")",
+    "--icon-article": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.2' y='1.2' width='11.6' height='13.6' rx='2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M5 5h6M5 8h6M5 11h4' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-post": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E\")",
+    "--icon-chevron": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+    "--icon-repo": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E\")",
+    "--icon-live": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    "--color-adobe": "#fa0f00",
+    "--bg": "#f6f4f0",
+    "--surface": "#ffffff",
+    "--ink": "#1a1917",
+    "--ink-2": "#4a4744",
+    "--muted": "#6f6b66",
+    "--line": "rgba(20, 18, 15, 0.10)",
+    "--line-strong": "rgba(20, 18, 15, 0.48)",
+    "--accent": "#5b4bc4",
+    "--accent-tint": "rgba(91, 75, 196, 0.08)",
+    "--night": "#1a1a19",
+    "--night-2": "#201f1f",
+    "--night-line": "rgba(255, 255, 255, 0.08)",
+    "--bone": "#e8e5e3",
+    "--bone-2": "#b2afac",
+    "--bone-3": "#94908c",
+    "--lav": "#c0b3ff",
+    "--mint": "#9fe0c0",
+    "--gold": "#f0cf8e",
+    "--rose": "#e8a9b8",
+    "--ease": "cubic-bezier(.4, 0, .2, 1)",
+    "--differs": "#7d5f0e",
+    "--pass-ink": "#1f6e52"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 32,
+    "mainTextLen": 22331,
+    "realImageCount": 49,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "dynamic": {
+    "endpoints": [
+      {
+        "method": "POST",
+        "host": "www.google-analytics.com",
+        "path": "/g/collect",
+        "query": [
+          "_ee",
+          "_fv",
+          "_nsi",
+          "_p",
+          "_s",
+          "_ss",
+          "cid",
+          "dl",
+          "dma",
+          "dt",
+          "en",
+          "frm",
+          "gcd",
+          "gtm",
+          "ngs",
+          "npa",
+          "pscdl",
+          "rcb",
+          "sct",
+          "seg",
+          "sid",
+          "sr",
+          "tag_exp",
+          "tfd",
+          "tid",
+          "uaa",
+          "uab",
+          "uafvl",
+          "uam",
+          "uamb",
+          "uap",
+          "uapv",
+          "uaw",
+          "ul",
+          "v"
+        ],
+        "resourceType": "fetch",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.google-analytics.com/g/collect",
+        "sameSite": false
+      },
+      {
+        "method": "GET",
+        "host": "www.gstatic.com",
+        "path": "/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+        "query": [],
+        "resourceType": "fetch",
+        "contentType": "image/svg+xml",
+        "status": 200,
+        "bytes": 272,
+        "hits": 1,
+        "example": "https://www.gstatic.com/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "jnn-pa.googleapis.com",
+        "path": "/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "application/json+protobuf",
+        "status": 200,
+        "bytes": 122,
+        "hits": 1,
+        "example": "https://jnn-pa.googleapis.com/$rpc/google.internal.waa.v1.Waa/GenerateIT",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.jackzhaojin.com",
+        "path": "/cdn-cgi/rum",
+        "query": [],
+        "resourceType": "xhr",
+        "contentType": "text/plain",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.jackzhaojin.com/cdn-cgi/rum",
+        "sameSite": true
+      },
+      {
+        "method": "GET",
+        "host": "www.youtube-nocookie.com",
+        "path": "/embed/establish_zw",
+        "query": [],
+        "resourceType": "fetch",
+        "contentType": "text/html",
+        "status": 204,
+        "bytes": null,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/embed/establish_zw",
+        "sameSite": false
+      },
+      {
+        "method": "POST",
+        "host": "www.youtube-nocookie.com",
+        "path": "/youtubei/v1/log_event",
+        "query": [
+          "alt"
+        ],
+        "resourceType": "xhr",
+        "contentType": "application/json",
+        "status": 200,
+        "bytes": 31,
+        "hits": 1,
+        "example": "https://www.youtube-nocookie.com/youtubei/v1/log_event",
+        "sameSite": false
+      }
+    ],
+    "thirdPartyScriptHosts": [
+      {
+        "host": "www.youtube-nocookie.com",
+        "count": 3
+      },
+      {
+        "host": "static.cloudflareinsights.com",
+        "count": 1
+      },
+      {
+        "host": "www.googletagmanager.com",
+        "count": 1
+      },
+      {
+        "host": "www.google.com",
+        "count": 1
+      }
+    ],
+    "truncated": false,
+    "inlineData": [],
+    "globalState": [
+      "dataLayer"
+    ],
+    "frameworkHints": [],
+    "forms": [],
+    "ariaLiveRegions": 0,
+    "triggers": [],
+    "mediaIds": [],
+    "summary": {
+      "sameSiteEndpoints": 1,
+      "thirdPartyEndpoints": 5,
+      "thirdPartyScriptHosts": 4,
+      "inlineDataBlobs": 0,
+      "forms": 0,
+      "searchForms": 0,
+      "hydrated": false
+    }
+  },
+  "screenshot": "assets/screenshots/writing-2026-10-10-adaptto-2026-25-talks.png",
+  "renderedHtml": "pages/writing-2026-10-10-adaptto-2026-25-talks.html",
+  "slots": {
+    "type": "article",
+    "headline": "adaptTo() 2026 Recap: 25 AEM Conference Talks in 15 Minutes",
+    "deck": "adaptTo() 2026 was three days of AEM talks in Berlin, September 28 to 30. I went through all 25 full talks in a 15-minute video: what the talk is, why you should watch it, and my take. This is the written version, in conference order.",
+    "byline": "By Jack Jin · October 10, 2026 · 16 min read · Includes my 14:43 video",
+    "meta": {
+      "times": [
+        "October 10, 2026"
+      ],
+      "facts": 0
+    },
+    "lead-image": {
+      "kind": "video",
+      "src": "https://www.youtube-nocookie.com/embed/d1S1yVgFep8?rel=0"
+    },
+    "body": {
+      "h2": [
+        "Why I went through all 25 talks",
+        "Day 1: Monday, September 28",
+        "Day 2: Tuesday, September 29",
+        "Day 3: Wednesday, September 30",
+        "Thanks to the speakers and the organizers",
+        "Related"
+      ],
+      "figures": 26,
+      "codeBlocks": 0,
+      "tables": 0,
+      "embeds": 1
+    },
+    "pullquotes": [],
+    "related": [
+      {
+        "title": "AI Agent-Driven Content Migration for Edge Delivery Services",
+        "href": "/talks/#adaptto-2026"
+      },
+      {
+        "title": "Conversion Factory",
+        "href": "/talks/#adaptto-2026-lightning"
+      },
+      {
+        "title": "AEM Edge Functions on a Laptop",
+        "href": "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+      },
+      {
+        "title": "Portfolio",
+        "href": "/portfolio/"
+      },
+      {
+        "title": "Talks",
+        "href": "/talks/"
+      },
+      {
+        "title": "GitHub",
+        "href": "https://github.com/jackzhaojin"
+      }
+    ],
+    "rail": 29,
+    "authorBox": true
+  }
+}

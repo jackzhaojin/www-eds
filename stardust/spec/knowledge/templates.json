@@ -1,0 +1,56 @@
+[
+ {
+  "id": "(root)",
+  "label": "Home",
+  "url_count": 1,
+  "pageviews_90d": 0,
+  "variant_count": 1,
+  "top_variants_share": 1,
+  "rep_url": "https://www.jackzhaojin.com/"
+ },
+ {
+  "id": "certifications",
+  "label": "Certifications",
+  "url_count": 1,
+  "pageviews_90d": 0,
+  "variant_count": 1,
+  "top_variants_share": 1,
+  "rep_url": "https://www.jackzhaojin.com/certifications/"
+ },
+ {
+  "id": "portfolio",
+  "label": "Portfolio",
+  "url_count": 1,
+  "pageviews_90d": 0,
+  "variant_count": 1,
+  "top_variants_share": 1,
+  "rep_url": "https://www.jackzhaojin.com/portfolio/"
+ },
+ {
+  "id": "privacy",
+  "label": "Privacy",
+  "url_count": 1,
+  "pageviews_90d": 0,
+  "variant_count": 1,
+  "top_variants_share": 1,
+  "rep_url": "https://www.jackzhaojin.com/privacy/"
+ },
+ {
+  "id": "talks",
+  "label": "Talks",
+  "url_count": 1,
+  "pageviews_90d": 0,
+  "variant_count": 1,
+  "top_variants_share": 1,
+  "rep_url": "https://www.jackzhaojin.com/talks/"
+ },
+ {
+  "id": "writing",
+  "label": "Writing (index + articles)",
+  "url_count": 29,
+  "pageviews_90d": 0,
+  "variant_count": 2,
+  "top_variants_share": 1,
+  "rep_url": "https://www.jackzhaojin.com/writing/2025-07-12-aem-headless-omnichannel-architecture/"
+ }
+]
