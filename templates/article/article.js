@@ -1,3 +1,5 @@
+import { getMetadata } from '../../scripts/aem.js';
+
 /*
  * Technical Writing article template (metadata "template: article").
  *
@@ -56,28 +58,27 @@ function decorateByline(p) {
 }
 
 /**
- * Title words the source keeps on one line: hyphenated or dotted words (Sign-in, da.live) and
- * phrases joined by a no-break space. A presentation refinement: the text is unchanged.
+ * Title words kept on one line: the page metadata "title-keep-together" lists them, comma
+ * separated (Sign-in, Members-Only), as the source marks them title by title. Each first
+ * match in the h1 gets a nowrap span: a presentation refinement, the text is unchanged.
  */
 function keepTogether(h1) {
-  const NOWRAP = /[A-Za-z0-9]+(?:[-.][A-Za-z0-9]+)+|[^\s\u00a0]+(?:\u00a0[^\s\u00a0]+)+/g;
-  [...h1.childNodes].forEach((node) => {
-    if (node.nodeType !== Node.TEXT_NODE) return;
-    const text = node.textContent;
-    const frag = document.createDocumentFragment();
-    let last = 0;
-    text.replace(NOWRAP, (match, offset) => {
-      frag.append(text.slice(last, offset));
-      const span = document.createElement('span');
-      span.className = 'nowrap';
-      span.textContent = match;
-      frag.append(span);
-      last = offset + match.length;
-      return match;
-    });
-    if (!last) return;
-    frag.append(text.slice(last));
-    node.replaceWith(frag);
+  const runs = (getMetadata('title-keep-together') || '').split(',').map((r) => r.trim()).filter(Boolean);
+  runs.forEach((run) => {
+    const walker = document.createTreeWalker(h1, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      const at = node.textContent.indexOf(run);
+      if (at >= 0 && !node.parentElement.classList.contains('nowrap')) {
+        const tail = node.splitText(at);
+        tail.splitText(run.length);
+        const span = document.createElement('span');
+        span.className = 'nowrap';
+        tail.replaceWith(span);
+        span.append(tail);
+        return;
+      }
+    }
   });
 }
 

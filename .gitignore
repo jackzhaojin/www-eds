@@ -20,3 +20,6 @@ helix-importer-ui
 # playwright temp output
 .playwright-cli/
 .playwright-mcp/
+
+# agent worktrees
+.claude/worktrees/

@@ -297,6 +297,8 @@ const metaRows = [
   ['description', esc(meta('description'))],
   ['template', 'article'],
 ];
+const keep = $('.article-head h1 .nowrap').map((_, e) => $(e).text()).get();
+if (keep.length) metaRows.push(['title-keep-together', esc(keep.join(', '))]);
 if (ogImage) metaRows.push(['image', `${img($(`<img src="${ogImage}" alt="${esc(meta('og:image:alt'))}">`)[0])}`]);
 if (meta('og:image:alt')) metaRows.push(['image:alt', esc(meta('og:image:alt'))]);
 if (meta('article:published_time')) metaRows.push(['published-time', meta('article:published_time')]);

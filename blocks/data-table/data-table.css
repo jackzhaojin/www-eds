@@ -30,7 +30,9 @@
   vertical-align: top;
 }
 
-.data-table.nowrap :is(th, td):last-child {
+/* On the paragraphs too: their text-wrap: pretty (styles.css) resets the mode they inherit. */
+.data-table.nowrap :is(th, td):last-child,
+.data-table.nowrap :is(th, td):last-child :is(p, div) {
   white-space: nowrap;
 }
 
