@@ -1,0 +1,127 @@
+{
+  "messageId": "c784cc83-b3b9-40d4-8c7e-99ee1dede844",
+  "job": {
+    "topic": "index",
+    "user": "jackzhaojin@gmail.com",
+    "name": "job-2026-10-25-23-04-35-fd3d7666",
+    "state": "created",
+    "createTime": "2026-10-25T23:04:35.435Z",
+    "data": {
+      "paths": [
+        {
+          "path": "/"
+        },
+        {
+          "path": "/certifications/"
+        },
+        {
+          "path": "/design-systems/v3/"
+        },
+        {
+          "path": "/portfolio/"
+        },
+        {
+          "path": "/privacy/"
+        },
+        {
+          "path": "/talks/"
+        },
+        {
+          "path": "/writing/"
+        },
+        {
+          "path": "/writing/2025-04-13-vibe-coding-star-story-generator/"
+        },
+        {
+          "path": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead/"
+        },
+        {
+          "path": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+        },
+        {
+          "path": "/writing/2025-06-08-edge-cms-shift-adobe-eds/"
+        },
+        {
+          "path": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/"
+        },
+        {
+          "path": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+        },
+        {
+          "path": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/"
+        },
+        {
+          "path": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology/"
+        },
+        {
+          "path": "/writing/2025-07-12-aem-headless-omnichannel-architecture/"
+        },
+        {
+          "path": "/writing/2025-07-13-three-eds-offerings/"
+        },
+        {
+          "path": "/writing/2025-09-01-aem-caching-production-architectures/"
+        },
+        {
+          "path": "/writing/2025-10-05-mcp-server-for-eds-da-live/"
+        },
+        {
+          "path": "/writing/2025-10-12-da-live-mcp-across-ai-platforms/"
+        },
+        {
+          "path": "/writing/2026-01-05-from-prompts-to-harness/"
+        },
+        {
+          "path": "/writing/2026-01-29-playwright-stakeholder-demos/"
+        },
+        {
+          "path": "/writing/2026-02-05-reusable-ai-development-modules/"
+        },
+        {
+          "path": "/writing/2026-03-23-eds-hlx-admin-agentic-config/"
+        },
+        {
+          "path": "/writing/2026-04-05-continuous-executive-agent-v2-1/"
+        },
+        {
+          "path": "/writing/2026-04-12-two-ai-skills-team-enablement/"
+        },
+        {
+          "path": "/writing/2026-05-17-adobe-eds-skills-hands-on/"
+        },
+        {
+          "path": "/writing/2026-05-24-theming-eds-with-google-stitch/"
+        },
+        {
+          "path": "/writing/2026-05-31-continuous-agent-second-brain/"
+        },
+        {
+          "path": "/writing/2026-06-28-patterns-of-work/"
+        },
+        {
+          "path": "/writing/2026-07-21-four-frontier-models-one-prompt/"
+        },
+        {
+          "path": "/writing/2026-08-09-adobe-stardust-explained/"
+        },
+        {
+          "path": "/writing/2026-08-15-anima-mesh-company-of-zero/"
+        },
+        {
+          "path": "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+        },
+        {
+          "path": "/writing/2026-10-10-adaptto-2026-25-talks/"
+        },
+        {
+          "path": "/writing/2026-10-25-eds-migration-two-goal-prompts/"
+        }
+      ],
+      "indexNames": []
+    }
+  },
+  "links": {
+    "list": "https://admin.hlx.page/job/jackzhaojin/www-eds/main/index",
+    "self": "https://admin.hlx.page/job/jackzhaojin/www-eds/main/index/job-2026-10-25-23-04-35-fd3d7666"
+  }
+}

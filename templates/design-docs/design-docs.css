@@ -1323,6 +1323,45 @@ body.design-docs main.ds-layout .ds-card strong[data-status="flagship"]::before 
   background: var(--color-topic-aem-ai);
 }
 
+/* The tool card story is the live cards (tool) block, drawn at v3's .card--tool sizes: a 13px
+   medium title, a 13px excerpt and an uppercase label meta 8px + 4px below it. The grid opens
+   at the story label's 14px, not the home page's 30px, in v3's grid--3 columns. */
+body.design-docs main.ds-layout .cards.tool {
+  margin-top: 0;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (width >= 768px) {
+  body.design-docs main.ds-layout .cards.tool {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 1024px) {
+  body.design-docs main.ds-layout .cards.tool {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+body.design-docs main.ds-layout .cards.tool .cards-card p {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+body.design-docs main.ds-layout .cards.tool .cards-card strong {
+  font-size: 13px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+body.design-docs main.ds-layout .cards.tool .cards-card em {
+  font-size: var(--text-label);
+  line-height: 1.65;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 /* ------------------------------------------------------------ v3 counts strip */
 body.design-docs main.ds-layout > :is([data-demo="counts"], [data-demo="counts-inline"]) ul {
   display: flex;
@@ -1386,6 +1425,11 @@ body.design-docs main.ds-layout :is(.ds-story, .ds-story-part) .showcase .showca
 body.design-docs main.ds-layout :is(.showcase-pattern, .chapter-head-meta) em {
   font-style: normal;
   color: var(--band-accent, var(--color-accent));
+}
+
+/* v3's chapter head closes 48px to 96px down (the portfolio block's own is 40px to 80px) */
+body.design-docs main.ds-layout .chapter-head {
+  margin-bottom: clamp(var(--space-7), 6vw, var(--space-9));
 }
 
 body.design-docs main.ds-layout .chapter-head .chapter-head-meta p {
@@ -1717,7 +1761,24 @@ body.design-docs main.ds-layout > .ds-story.cols-2 .frame.diagram .frame-figure 
   margin-inline: auto;
 }
 
-/* cols-2: a story's blocks side by side (v3 grid--2 inside a story) */
+/* v3's image there has no size of its own, so the SVG takes the 300px default object width; a
+   fixed 300px keeps that box whether or not the lazy image has loaded yet */
+body.design-docs main.ds-layout > .ds-story.cols-2 .frame.diagram .frame-figure img {
+  width: 300px;
+  max-width: 100%;
+}
+
+/* cols-2: a story's blocks side by side (v3 grid--2 inside a story). A second frame keeps v3's
+   .frame + .frame 16px; below 768px the grid is one column and that 16px adds to its 16px gap,
+   since a grid item's margin never collapses. */
+body.design-docs main.ds-layout > .ds-story.cols-2 .frame.sub .frame-figure {
+  margin-top: var(--space-4);
+}
+
+body.design-docs main.ds-layout > .ds-story.cols-2 > div:not(.default-content-wrapper) + div {
+  margin-top: calc(var(--space-4) * 2);
+}
+
 @media (width >= 768px) {
   body.design-docs main.ds-layout > .ds-story.cols-2 {
     display: grid;
@@ -1730,7 +1791,7 @@ body.design-docs main.ds-layout > .ds-story.cols-2 .frame.diagram .frame-figure 
     grid-column: 1 / -1;
   }
 
-  body.design-docs main.ds-layout > .ds-story.cols-2 > div + div {
+  body.design-docs main.ds-layout > .ds-story.cols-2 > div:not(.default-content-wrapper) + div {
     margin-top: 0;
   }
 }

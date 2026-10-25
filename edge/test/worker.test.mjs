@@ -4,7 +4,8 @@ import assert from 'node:assert/strict';
 import worker from '../src/index.mjs';
 import { isProjectPath, PROJECT_SITES } from '../src/routes.mjs';
 
-const WWW = { ORIGIN_HOSTNAME: 'main--www-eds--jackzhaojin.aem.live', PROJECT_ORIGIN: 'passthrough' };
+const WWW = { ORIGIN_HOSTNAME: 'main--www-eds--jackzhaojin.aem.live', PROJECT_ORIGIN: 'passthrough', INDEXABLE: 'true' };
+const GH = { MODE: 'github', GITHUB_ORIGIN: 'https://www.jackzhaojin.com' };
 const STAGING = {
   ORIGIN_HOSTNAME: 'main--www-eds--jackzhaojin.aem.live',
   PROJECT_ORIGIN: 'https://www.jackzhaojin.com',
@@ -45,7 +46,7 @@ test('www: a project site passes through to the zone origin untouched', async ()
 });
 
 test('staging: a project site comes from www, path and query kept', async () => {
-  await worker.fetch(get('https://next.jackzhaojin.com/bruce-lava-dash/?seed=7'), STAGING, {});
+  await worker.fetch(get('https://eds.jackzhaojin.com/bruce-lava-dash/?seed=7'), STAGING, {});
   assert.equal(calls[0].url, 'https://www.jackzhaojin.com/bruce-lava-dash/?seed=7');
 });
 
@@ -61,9 +62,9 @@ test('a page goes to the EDS origin with the BYO CDN headers and no query string
 });
 
 test('staging opts out of push invalidation', async () => {
-  await worker.fetch(get('https://next.jackzhaojin.com/'), STAGING, {});
+  await worker.fetch(get('https://eds.jackzhaojin.com/'), STAGING, {});
   assert.equal(calls[0].headers.get('x-push-invalidation'), null);
-  assert.equal(calls[0].headers.get('x-forwarded-host'), 'next.jackzhaojin.com');
+  assert.equal(calls[0].headers.get('x-forwarded-host'), 'eds.jackzhaojin.com');
 });
 
 test('media keeps only its image parameters; json keeps limit, offset, sheet', async () => {
@@ -83,3 +84,50 @@ test('an unknown path is an EDS path (its 404 comes from EDS), including the unm
   await worker.fetch(get('https://www.jackzhaojin.com/design-systems/2026-09-13/'), WWW, {});
   assert.equal(new URL(calls[0].url).host, 'main--www-eds--jackzhaojin.aem.live');
 });
+
+test('only www is indexable: eds answers noindex on pages and project sites', async () => {
+  const page = await worker.fetch(get('https://eds.jackzhaojin.com/writing/'), STAGING, {});
+  assert.equal(page.headers.get('x-robots-tag'), 'noindex, nofollow');
+  const project = await worker.fetch(get('https://eds.jackzhaojin.com/bruce-play-ten/'), STAGING, {});
+  assert.equal(project.headers.get('x-robots-tag'), 'noindex, nofollow');
+  const www = await worker.fetch(get('https://www.jackzhaojin.com/bruce-play-ten/'), WWW, {});
+  assert.equal(www.headers.get('x-robots-tag'), null);
+});
+
+test('gh: every path is the GitHub Pages site from www, path and query kept, noindex', async () => {
+  const res = await worker.fetch(get('https://gh.jackzhaojin.com/writing/?q=1'), GH, {});
+  assert.equal(calls[0].url, 'https://www.jackzhaojin.com/writing/?q=1');
+  assert.equal(res.headers.get('x-robots-tag'), 'noindex, nofollow');
+  await worker.fetch(get('https://gh.jackzhaojin.com/ai-sandbox/'), GH, {});
+  assert.equal(calls[1].url, 'https://www.jackzhaojin.com/ai-sandbox/');
+});
+
+test('gh: a redirect GitHub sends to www stays on gh; one elsewhere is left alone', async () => {
+  globalThis.fetch = async (input) => {
+    const req = input instanceof Request ? input : new Request(input);
+    calls.push(req);
+    const to = req.url.includes('/writing') ? 'https://www.jackzhaojin.com/writing/' : 'https://github.com/jackzhaojin';
+    return new Response(null, { status: 301, headers: { location: to } });
+  };
+  const res = await worker.fetch(get('https://gh.jackzhaojin.com/writing'), GH, {});
+  assert.equal(res.status, 301);
+  assert.equal(res.headers.get('location'), 'https://gh.jackzhaojin.com/writing/');
+  const away = await worker.fetch(get('https://gh.jackzhaojin.com/elsewhere'), GH, {});
+  assert.equal(away.headers.get('location'), 'https://github.com/jackzhaojin');
+});
+
+test('robots.txt and the sitemaps are 404s on eds and gh, never fetched; www serves them', async () => {
+  for (const [host, env] of [['eds', STAGING], ['gh', GH]]) {
+    for (const path of ['/robots.txt', '/sitemap.xml', '/sitemap.json']) {
+      // eslint-disable-next-line no-await-in-loop
+      const res = await worker.fetch(get(`https://${host}.jackzhaojin.com${path}`), env, {});
+      assert.equal(res.status, 404, `${host}${path}`);
+      assert.equal(res.headers.get('x-robots-tag'), 'noindex, nofollow');
+    }
+  }
+  assert.equal(calls.length, 0);
+  const www = await worker.fetch(get('https://www.jackzhaojin.com/robots.txt'), WWW, {});
+  assert.equal(www.status, 200);
+  assert.equal(calls.length, 1);
+});
+

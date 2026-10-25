@@ -1,7 +1,11 @@
 # The www.jackzhaojin.com Worker (routing-cloudflare.md in jackzhaojin.github.io/ai-docs).
-# Deploy staging only: `npx wrangler deploy --env staging`, after `wrangler login` (Jack).
+# Before the cutover, deploy only the two non-production hosts, after `wrangler login`:
+#   npx wrangler deploy --env staging   eds.jackzhaojin.com, the EDS site, noindex
+#   npx wrangler deploy --env gh        gh.jackzhaojin.com, the GitHub Pages site, noindex
 # The production route www.jackzhaojin.com/* is NOT in this file on purpose: it is added in the
 # Cloudflare dashboard at cutover (its own approval), so no deploy can switch production.
+# Vars are not inherited by an env: only the top level (www) sets INDEXABLE, so a host that is
+# not www answers noindex.
 name = "www-eds-edge"
 main = "src/index.mjs"
 compatibility_date = "2025-03-17"
@@ -11,10 +15,12 @@ workers_dev = false
 ORIGIN_HOSTNAME = "main--www-eds--jackzhaojin.aem.live"
 # www: project sites go to the zone's own origin (GitHub Pages), untouched.
 PROJECT_ORIGIN = "passthrough"
+# www is the one host search engines may index.
+INDEXABLE = "true"
 
 [env.staging]
 name = "www-eds-edge-staging"
-routes = [{ pattern = "next.jackzhaojin.com/*", zone_name = "jackzhaojin.com" }]
+routes = [{ pattern = "eds.jackzhaojin.com/*", zone_name = "jackzhaojin.com" }]
 
 [env.staging.vars]
 ORIGIN_HOSTNAME = "main--www-eds--jackzhaojin.aem.live"
@@ -22,3 +28,13 @@ ORIGIN_HOSTNAME = "main--www-eds--jackzhaojin.aem.live"
 PROJECT_ORIGIN = "https://www.jackzhaojin.com"
 # Push invalidation is set up for the www zone at cutover (step 4); staging opts out.
 PUSH_INVALIDATION = "disabled"
+
+[env.gh]
+name = "www-eds-edge-gh"
+routes = [{ pattern = "gh.jackzhaojin.com/*", zone_name = "jackzhaojin.com" }]
+
+[env.gh.vars]
+# The whole GitHub Pages site, read through www while GitHub Pages still answers there. At
+# cutover GitHub Pages moves to gh itself and this becomes the zone origin (cutover runbook).
+MODE = "github"
+GITHUB_ORIGIN = "https://www.jackzhaojin.com"

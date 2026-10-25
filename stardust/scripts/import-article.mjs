@@ -308,6 +308,12 @@ function convert(el) {
   if (tag === 'p') return `<p>${inline(el)}</p>`;
   if (tag === 'h3' || tag === 'h4') return `<${tag}>${inline(el)}</${tag}>`;
   if (tag === 'ul' || tag === 'ol') return `<${tag}>${$el.children('li').map((__, li) => `<li>${inline(li)}</li>`).get().join('')}</${tag}>`;
+  if (tag === 'pre' && $el.find('.prompt__by').length) {
+    // A pasted prompt: its byline becomes the first line (section style prompt styles it).
+    const $c = $el.clone();
+    const by = $c.find('.prompt__by').first().remove().text();
+    return `<pre><code>${esc(by)}\n${esc($c.text())}</code></pre>`;
+  }
   if (tag === 'pre') return `<pre><code>${esc($el.text())}</code></pre>`;
   if (tag === 'blockquote') return `<blockquote>${$el.children('p').map((__, p) => `<p>${inline(p)}</p>`).get().join('') || `<p>${inline(el)}</p>`}</blockquote>`;
   if (tag === 'table' || (tag === 'div' && $el.is('.table-wrap, .table-scroll') && $el.find('table').length && !$el.is('.mx-wrap'))) return dataTable(el);
@@ -355,6 +361,8 @@ $('.article-body').children().each((_, el) => {
     if (tag === 'pre' && codePlainWraps) addStyle('code-wrap');
     if (tag === 'pre' && codePlainWrapsWide) addStyle('code-wrap-wide');
     if (tag === 'h3' && roomyH3) addStyle('roomy-h3');
+    if (tag === 'pre' && $el.hasClass('prompt')) addStyle('prompt');
+    if (tag === 'ul' && $el.hasClass('commit-trail')) addStyle('commit-trail');
     current.push(convert(el));
   }
 });
@@ -364,7 +372,8 @@ flush();
 const meta = (n) => $(`meta[name="${n}"], meta[property="${n}"]`).attr('content') || '';
 const ogImage = meta('og:image');
 const metaRows = [
-  ['title', esc($('title').text())],
+  // head > title: an inline SVG's <title> in the body is not the page title.
+  ['title', esc($('head > title').first().text())],
   ['description', esc(meta('description'))],
   ['template', 'article'],
 ];

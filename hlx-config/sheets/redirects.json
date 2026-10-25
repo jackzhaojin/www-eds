@@ -1,0 +1,300 @@
+{
+  "total": 73,
+  "limit": 73,
+  "offset": 0,
+  "data": [
+    {
+      "Source": "/index.html",
+      "Destination": "/"
+    },
+    {
+      "Source": "/certifications",
+      "Destination": "/certifications/"
+    },
+    {
+      "Source": "/certifications/index.html",
+      "Destination": "/certifications/"
+    },
+    {
+      "Source": "/design-systems/v3",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/v3/index.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/portfolio",
+      "Destination": "/portfolio/"
+    },
+    {
+      "Source": "/portfolio/index.html",
+      "Destination": "/portfolio/"
+    },
+    {
+      "Source": "/privacy",
+      "Destination": "/privacy/"
+    },
+    {
+      "Source": "/privacy/index.html",
+      "Destination": "/privacy/"
+    },
+    {
+      "Source": "/talks",
+      "Destination": "/talks/"
+    },
+    {
+      "Source": "/talks/index.html",
+      "Destination": "/talks/"
+    },
+    {
+      "Source": "/writing",
+      "Destination": "/writing/"
+    },
+    {
+      "Source": "/writing/index.html",
+      "Destination": "/writing/"
+    },
+    {
+      "Source": "/writing/2025-04-13-vibe-coding-star-story-generator",
+      "Destination": "/writing/2025-04-13-vibe-coding-star-story-generator/"
+    },
+    {
+      "Source": "/writing/2025-04-13-vibe-coding-star-story-generator/index.html",
+      "Destination": "/writing/2025-04-13-vibe-coding-star-story-generator/"
+    },
+    {
+      "Source": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead",
+      "Destination": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead/"
+    },
+    {
+      "Source": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead/index.html",
+      "Destination": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead/"
+    },
+    {
+      "Source": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs",
+      "Destination": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+    },
+    {
+      "Source": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/index.html",
+      "Destination": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/"
+    },
+    {
+      "Source": "/writing/2025-06-08-edge-cms-shift-adobe-eds",
+      "Destination": "/writing/2025-06-08-edge-cms-shift-adobe-eds/"
+    },
+    {
+      "Source": "/writing/2025-06-08-edge-cms-shift-adobe-eds/index.html",
+      "Destination": "/writing/2025-06-08-edge-cms-shift-adobe-eds/"
+    },
+    {
+      "Source": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents",
+      "Destination": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/"
+    },
+    {
+      "Source": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/index.html",
+      "Destination": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/"
+    },
+    {
+      "Source": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1",
+      "Destination": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+    },
+    {
+      "Source": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/index.html",
+      "Destination": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/"
+    },
+    {
+      "Source": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+      "Destination": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/"
+    },
+    {
+      "Source": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/index.html",
+      "Destination": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/"
+    },
+    {
+      "Source": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology",
+      "Destination": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology/"
+    },
+    {
+      "Source": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology/index.html",
+      "Destination": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology/"
+    },
+    {
+      "Source": "/writing/2025-07-12-aem-headless-omnichannel-architecture",
+      "Destination": "/writing/2025-07-12-aem-headless-omnichannel-architecture/"
+    },
+    {
+      "Source": "/writing/2025-07-12-aem-headless-omnichannel-architecture/index.html",
+      "Destination": "/writing/2025-07-12-aem-headless-omnichannel-architecture/"
+    },
+    {
+      "Source": "/writing/2025-07-13-three-eds-offerings",
+      "Destination": "/writing/2025-07-13-three-eds-offerings/"
+    },
+    {
+      "Source": "/writing/2025-07-13-three-eds-offerings/index.html",
+      "Destination": "/writing/2025-07-13-three-eds-offerings/"
+    },
+    {
+      "Source": "/writing/2025-09-01-aem-caching-production-architectures",
+      "Destination": "/writing/2025-09-01-aem-caching-production-architectures/"
+    },
+    {
+      "Source": "/writing/2025-09-01-aem-caching-production-architectures/index.html",
+      "Destination": "/writing/2025-09-01-aem-caching-production-architectures/"
+    },
+    {
+      "Source": "/writing/2025-10-05-mcp-server-for-eds-da-live",
+      "Destination": "/writing/2025-10-05-mcp-server-for-eds-da-live/"
+    },
+    {
+      "Source": "/writing/2025-10-05-mcp-server-for-eds-da-live/index.html",
+      "Destination": "/writing/2025-10-05-mcp-server-for-eds-da-live/"
+    },
+    {
+      "Source": "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+      "Destination": "/writing/2025-10-12-da-live-mcp-across-ai-platforms/"
+    },
+    {
+      "Source": "/writing/2025-10-12-da-live-mcp-across-ai-platforms/index.html",
+      "Destination": "/writing/2025-10-12-da-live-mcp-across-ai-platforms/"
+    },
+    {
+      "Source": "/writing/2026-01-05-from-prompts-to-harness",
+      "Destination": "/writing/2026-01-05-from-prompts-to-harness/"
+    },
+    {
+      "Source": "/writing/2026-01-05-from-prompts-to-harness/index.html",
+      "Destination": "/writing/2026-01-05-from-prompts-to-harness/"
+    },
+    {
+      "Source": "/writing/2026-01-29-playwright-stakeholder-demos",
+      "Destination": "/writing/2026-01-29-playwright-stakeholder-demos/"
+    },
+    {
+      "Source": "/writing/2026-01-29-playwright-stakeholder-demos/index.html",
+      "Destination": "/writing/2026-01-29-playwright-stakeholder-demos/"
+    },
+    {
+      "Source": "/writing/2026-02-05-reusable-ai-development-modules",
+      "Destination": "/writing/2026-02-05-reusable-ai-development-modules/"
+    },
+    {
+      "Source": "/writing/2026-02-05-reusable-ai-development-modules/index.html",
+      "Destination": "/writing/2026-02-05-reusable-ai-development-modules/"
+    },
+    {
+      "Source": "/writing/2026-03-23-eds-hlx-admin-agentic-config",
+      "Destination": "/writing/2026-03-23-eds-hlx-admin-agentic-config/"
+    },
+    {
+      "Source": "/writing/2026-03-23-eds-hlx-admin-agentic-config/index.html",
+      "Destination": "/writing/2026-03-23-eds-hlx-admin-agentic-config/"
+    },
+    {
+      "Source": "/writing/2026-04-05-continuous-executive-agent-v2-1",
+      "Destination": "/writing/2026-04-05-continuous-executive-agent-v2-1/"
+    },
+    {
+      "Source": "/writing/2026-04-05-continuous-executive-agent-v2-1/index.html",
+      "Destination": "/writing/2026-04-05-continuous-executive-agent-v2-1/"
+    },
+    {
+      "Source": "/writing/2026-04-12-two-ai-skills-team-enablement",
+      "Destination": "/writing/2026-04-12-two-ai-skills-team-enablement/"
+    },
+    {
+      "Source": "/writing/2026-04-12-two-ai-skills-team-enablement/index.html",
+      "Destination": "/writing/2026-04-12-two-ai-skills-team-enablement/"
+    },
+    {
+      "Source": "/writing/2026-05-17-adobe-eds-skills-hands-on",
+      "Destination": "/writing/2026-05-17-adobe-eds-skills-hands-on/"
+    },
+    {
+      "Source": "/writing/2026-05-17-adobe-eds-skills-hands-on/index.html",
+      "Destination": "/writing/2026-05-17-adobe-eds-skills-hands-on/"
+    },
+    {
+      "Source": "/writing/2026-05-24-theming-eds-with-google-stitch",
+      "Destination": "/writing/2026-05-24-theming-eds-with-google-stitch/"
+    },
+    {
+      "Source": "/writing/2026-05-24-theming-eds-with-google-stitch/index.html",
+      "Destination": "/writing/2026-05-24-theming-eds-with-google-stitch/"
+    },
+    {
+      "Source": "/writing/2026-05-31-continuous-agent-second-brain",
+      "Destination": "/writing/2026-05-31-continuous-agent-second-brain/"
+    },
+    {
+      "Source": "/writing/2026-05-31-continuous-agent-second-brain/index.html",
+      "Destination": "/writing/2026-05-31-continuous-agent-second-brain/"
+    },
+    {
+      "Source": "/writing/2026-06-28-patterns-of-work",
+      "Destination": "/writing/2026-06-28-patterns-of-work/"
+    },
+    {
+      "Source": "/writing/2026-06-28-patterns-of-work/index.html",
+      "Destination": "/writing/2026-06-28-patterns-of-work/"
+    },
+    {
+      "Source": "/writing/2026-07-21-four-frontier-models-one-prompt",
+      "Destination": "/writing/2026-07-21-four-frontier-models-one-prompt/"
+    },
+    {
+      "Source": "/writing/2026-07-21-four-frontier-models-one-prompt/index.html",
+      "Destination": "/writing/2026-07-21-four-frontier-models-one-prompt/"
+    },
+    {
+      "Source": "/writing/2026-08-09-adobe-stardust-explained",
+      "Destination": "/writing/2026-08-09-adobe-stardust-explained/"
+    },
+    {
+      "Source": "/writing/2026-08-09-adobe-stardust-explained/index.html",
+      "Destination": "/writing/2026-08-09-adobe-stardust-explained/"
+    },
+    {
+      "Source": "/writing/2026-08-15-anima-mesh-company-of-zero",
+      "Destination": "/writing/2026-08-15-anima-mesh-company-of-zero/"
+    },
+    {
+      "Source": "/writing/2026-08-15-anima-mesh-company-of-zero/index.html",
+      "Destination": "/writing/2026-08-15-anima-mesh-company-of-zero/"
+    },
+    {
+      "Source": "/writing/2026-09-20-aem-edge-functions-google-sign-in",
+      "Destination": "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+    },
+    {
+      "Source": "/writing/2026-09-20-aem-edge-functions-google-sign-in/index.html",
+      "Destination": "/writing/2026-09-20-aem-edge-functions-google-sign-in/"
+    },
+    {
+      "Source": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "Destination": "/writing/2026-10-10-adaptto-2026-25-talks/"
+    },
+    {
+      "Source": "/writing/2026-10-10-adaptto-2026-25-talks/index.html",
+      "Destination": "/writing/2026-10-10-adaptto-2026-25-talks/"
+    },
+    {
+      "Source": "/writing/2026-10-25-eds-migration-two-goal-prompts",
+      "Destination": "/writing/2026-10-25-eds-migration-two-goal-prompts/"
+    },
+    {
+      "Source": "/writing/2026-10-25-eds-migration-two-goal-prompts/index.html",
+      "Destination": "/writing/2026-10-25-eds-migration-two-goal-prompts/"
+    },
+    {
+      "Source": "/blogs.html",
+      "Destination": "/writing/"
+    },
+    {
+      "Source": "/certifications.html",
+      "Destination": "/certifications/"
+    }
+  ],
+  ":type": "sheet"
+}

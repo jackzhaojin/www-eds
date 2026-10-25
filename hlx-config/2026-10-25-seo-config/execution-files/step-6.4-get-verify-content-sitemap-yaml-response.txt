@@ -1,0 +1,8 @@
+# The sitemap (Admin API: /config/jackzhaojin/sites/www-eds/content/sitemap.yaml), built from
+# the query index, on the production host, with last modification dates.
+sitemaps:
+  default:
+    origin: https://www.jackzhaojin.com
+    source: /query-index.json
+    destination: /sitemap.xml
+    lastmod: YYYY-MM-DD

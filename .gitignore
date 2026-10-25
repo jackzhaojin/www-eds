@@ -16,6 +16,8 @@ helix-importer-ui
 .env
 .env.*
 # <<< stardust
+# templates without secrets stay tracked
+!.env.example
 
 # playwright temp output
 .playwright-cli/

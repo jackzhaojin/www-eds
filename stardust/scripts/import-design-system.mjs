@@ -933,7 +933,7 @@ $('.docs-content > .docs-section').each((_, sec) => {
 // page metadata
 const meta = (n) => $(`meta[name="${n}"]`).attr('content') || '';
 const pageMeta = block('metadata', [
-  [p('title'), p(esc($('title').text().trim()))],
+  [p('title'), p(esc($('head > title').first().text().trim()))],
   [p('description'), p(esc(meta('description')))],
   [p('template'), p('design-docs')],
   [p('nav'), p('/design-systems/v3/nav')],

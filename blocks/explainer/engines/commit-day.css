@@ -1,0 +1,262 @@
+/* Explainer engine "commit-day": the day in commits (the page styles of
+   writing/2026-10-25-eds-migration-two-goal-prompts). Authored paragraphs inside the controls,
+   labels and lanes run inline, as the source's text does. */
+.explainer.commit-day .day {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 20px 16px;
+}
+
+.explainer.commit-day .day__bar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font: 500 12px/1.4 var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.explainer.commit-day .day__bar a {
+  color: var(--ink-2);
+}
+
+.explainer.commit-day .day__static img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 14px;
+  border-radius: 10px;
+}
+
+.explainer.commit-day .day.is-live .day__static {
+  display: none;
+}
+
+.explainer.commit-day .day__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.explainer.commit-day .day__controls [role="button"] {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: 500 13px/1.2 var(--font-body);
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.explainer.commit-day .day__controls [role="button"]:hover {
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.explainer.commit-day .day__controls [role="button"]:focus-visible,
+.explainer.commit-day .day__range:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.explainer.commit-day .day__controls p,
+.explainer.commit-day .day__labels p,
+.explainer.commit-day .day__lane p {
+  display: inline;
+}
+
+.explainer.commit-day .day__controls .day__t {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  margin-right: 4px;
+  opacity: 0.8;
+}
+
+.explainer.commit-day .day__plot {
+  position: relative;
+  margin-top: 16px;
+  touch-action: none;
+  cursor: ew-resize;
+}
+
+.explainer.commit-day .day__plot svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.explainer.commit-day .day__band,
+.explainer.commit-day .day__area {
+  fill: var(--accent-tint);
+}
+
+.explainer.commit-day .day__guide {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.explainer.commit-day .day__curve {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.explainer.commit-day .day__curve--dim {
+  stroke: var(--line-strong);
+  stroke-width: 2;
+}
+
+.explainer.commit-day .day__dot {
+  fill: var(--c);
+  opacity: 0.92;
+  transition: opacity 0.15s var(--ease);
+}
+
+.explainer.commit-day .day__dot.is-later {
+  opacity: 0.16;
+}
+
+.explainer.commit-day .day__cursor {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.explainer.commit-day .day__head {
+  fill: var(--surface);
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+
+.explainer.commit-day .ln-shared { --c: var(--color-text-faint); }
+.explainer.commit-day .ln-art { --c: var(--color-accent); }
+.explainer.commit-day .ln-ds { --c: var(--color-project-amber); }
+.explainer.commit-day .ln-port { --c: var(--color-project-mint); }
+.explainer.commit-day .ln-list { --c: var(--color-project-rose); }
+.explainer.commit-day .ln-qa { --c: var(--color-project-cyan); }
+
+.explainer.commit-day .day__labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.explainer.commit-day .day__labels > span {
+  position: absolute;
+  transform: translateX(-50%);
+  font: 500 11px/1 var(--font-mono);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.explainer.commit-day .day__labels .day__bandlbl {
+  transform: none;
+  top: 2px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.explainer.commit-day .day__ticks {
+  position: relative;
+  height: 18px;
+  margin-top: 4px;
+}
+
+.explainer.commit-day .day__ticks span {
+  position: absolute;
+  top: 2px;
+  transform: translateX(-50%);
+  font: 500 11px/1 var(--font-mono);
+  color: var(--muted);
+}
+
+.explainer.commit-day .day__range {
+  width: 100%;
+  margin-top: 8px;
+  accent-color: var(--accent);
+}
+
+.explainer.commit-day .day__readout {
+  margin: 10px 0 0;
+  font: 500 14px/1.5 var(--font-mono);
+  color: var(--ink);
+}
+
+.explainer.commit-day .day__commit {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  min-height: 3em;
+}
+
+.explainer.commit-day .day__commit a {
+  font-family: var(--font-mono);
+}
+
+.explainer.commit-day .day__lanes {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.explainer.commit-day .day__lanes li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  transition: color 0.15s var(--ease);
+}
+
+.explainer.commit-day .day__lanes li::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c);
+  opacity: 0.5;
+}
+
+.explainer.commit-day .day__lanes li.is-on {
+  color: var(--ink);
+}
+
+.explainer.commit-day .day__lanes li.is-on::before {
+  opacity: 1;
+}
+
+.explainer.commit-day .day figcaption {
+  margin-top: 12px;
+}
+
+@container (width <= 520px) {
+  .explainer.commit-day .day__ticks span:nth-child(even) {
+    display: none;
+  }
+
+  .explainer.commit-day .day {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explainer.commit-day .day__dot,
+  .explainer.commit-day .day__lanes li {
+    transition: none;
+  }
+}

@@ -1,0 +1,65 @@
+# What's left
+
+Everything below is a stop point from the plan (Jack's call, his credentials or a config change) or a known residual with its cause. The plan's own checklist is `jackzhaojin.github.io/ai-docs/2026-10-24-eds-migration/start-here.md` (its Done, Left and Run log were updated locally and are not committed; Jack commits that repo).
+
+## 1. Register review (decisions 15 and 16)
+
+`stardust/replica/inconsistency-register.md`, 24 entries:
+- **Needs a decision:** R3 (one frame of the light canvas before a stored Dark choice applies).
+- **Applied, needs review:** R6 (lab verdict box reserves its height), R11 (2026-08-15 ships working explainers), R16 (theme-swap's extra Google Fonts), R18 (a caption link moved to the media copy), R20 (explainer pickers are one tab stop with arrow keys).
+- **Needs review:** R7 (owner-accepted rail thumbnail diffs at 360, now 96 entries in `accepted.json`), R22 (inline-drawn SVG diagrams), R23 (sentence templates with `{placeholders}` in explainer rows).
+- **Proposed changes:** R1, R2, R4, R5, R8, R9, R10, R12, R13, R14, R15, R17, R19, R21.
+- **Resolved:** R24.
+
+## 2. Config (stop point: any Experience Workspace or site config change)
+
+**Done 2026-10-25 evening, at Jack's request (SEO parity with www):** the production host (`cdn.prod.host`), robots.txt, the query index, the sitemap (the same 35 URLs as www), the redirects sheet (trailing slashes, `index.html`, `/blogs.html`, `/certifications.html`), bulk metadata (`og:type`, `og:site_name`, `og:locale`) and per-page JSON-LD, titles, share titles and article tags. Files and the step-by-step log: `hlx-config/`. Still open below: the Experience Workspace items, the library sheet, GA4 and push invalidation.
+
+
+- Experience Workspace enablement: `ew.enabled` in the DA config `flags` tab and the Sidekick `editUrlPattern`.
+- The block library sheet (rows listed in `stardust/rollout/streams.md`, design system section).
+- The query index, so the writing listing reads `/query-index.json`, with the article metadata it needs.
+- ~~Redirects~~, ~~the sitemap~~, ~~robots~~, ~~bulk metadata~~, ~~JSON-LD~~: done (above). Headers: none needed (www sets none). GA4 in `consented.js` (decision 9) is still open.
+- Push invalidation: the zone ID and a Cache Purge token in the EDS site config (Jack creates the token).
+
+## 3. Cloudflare and the cutover
+
+Jack's host plan (19:25): GitHub Pages moves to gh.jackzhaojin.com without SEO, EDS gets eds.jackzhaojin.com without SEO before the cutover, and www keeps its SEO after it.
+
+**Done 2026-10-25 evening:**
+- DNS records `eds` and `gh`, AAAA `100::`, proxied (Claude filled the forms in Jack's Chrome, Jack saved them).
+- Workers deployed from `edge/` with the existing wrangler sign-in: `www-eds-edge-staging` on `eds.jackzhaojin.com/*` (EDS and the project sites) and `www-eds-edge-gh` on `gh.jackzhaojin.com/*` (the whole GitHub Pages site, read through www for now). Every host but www answers `X-Robots-Tag: noindex, nofollow`; canonicals point at www; robots.txt allows crawling, so crawlers see the noindex.
+- `check-host.mjs` passes on both live hosts; www is unchanged (its home page is byte-identical to the source repo).
+- Off www, robots.txt and the sitemaps are 404s from the Worker. The zone's managed robots.txt (AI Crawl Control) fills the robots.txt 404 with its content-signals comments, no rules and no sitemap; Jack chose to leave that setting on (19:45).
+
+**The cutover, in this order:**
+1. Push invalidation: Jack creates a Cache Purge token; the EDS CDN config (`hlx-config/cdn-prod.json`) gains `type: cloudflare`, the zone ID and the token (Jack enters the token).
+2. GitHub Pages moves to gh: the `CNAME` file in jackzhaojin.github.io says `gh.jackzhaojin.com` (Jack commits it) and Pages settings follow; the gh DNS record becomes a CNAME to `jackzhaojin.github.io`, DNS-only until GitHub shows its certificate, then proxied; the gh env's `GITHUB_ORIGIN` becomes `passthrough` (the zone origin, GitHub). From here www shows GitHub's 404 until step 3, so do 2 and 3 together.
+3. The www Worker: `PROJECT_ORIGIN` becomes `https://gh.jackzhaojin.com` (never before step 2: gh would read www, and www would read gh, a loop), deploy, then the www route in the dashboard (its own approval).
+4. `node edge/scripts/check-host.mjs --base https://www.jackzhaojin.com`, the sitemap in Search Console, `docs/site-operations.md`, the README in jackzhaojin.github.io. Later comparisons with the old site use gh.
+
+## 4. Known residuals
+
+- **2026-08-15** (R11): about -379px and one ROLE SWAP against a source whose explainers never run.
+- **2025-07-06** at 1440 (R13): -10px from the watch-row spacing.
+- **Design system page**: passes at both widths (4d7c0ad: 1440 1.68%, +2px; 360 3.66%, -4px; 0 red, 0 nothing-lost). Left: its bracketed placeholder text is Inter 15px where v3 uses mono 12.75px (+6px per placeholder story at 360; needs a content marker and a re-import), and its stories use the site's own blocks (R17, for review).
+- **qa leftovers** (none a migration defect): the noindex header aem.live sends before cutover; findings the source has too (contrast in two explainers, unfocusable code scroll regions, a link told apart by colour only on the home, R1); heuristics (fleet-consensus template blocks, duplicate text, upscaled small images).
+- **Quick-edit drift** in a few explainers whose derived state lines hide while editing (hook-guard, hook-switchboard, parser-lab, credential-chain, task-loop); authored text stays editable everywhere.
+- **Links that stay on www**: 35 links to the v3 prototype templates and 10 portfolio diagram files are not migrated and will 404 after cutover unless those files stay served.
+
+## 5. Double migration until the cutover
+
+Every page published on GitHub Pages before the cutover also has to land here. The recipe, as used for the article about this build on the evening of 2026-10-25:
+1. `node stardust/scripts/import-article.mjs <source index.html> <slug> content/writing/<slug>/index.html`; an `UNSUPPORTED` line means an explainer needs an engine (`blocks/explainer/engines/<word>.js` and `.css`, plus `stardust/scripts/import-engines/<word>.mjs`).
+2. `node stardust/scripts/import-listing-pages.mjs <source root> content <work dir>` for the listing row. It also rewrites talks and privacy and drops the hand-added social image metadata on writing: restore those (`git diff content/`).
+3. `node stardust/scripts/deploy/localize-links.mjs --source-host www.jackzhaojin.com --content content`.
+4. `da-media-upload.mjs` for the article's images (`--scope writing/<slug> --dir <source images>`) and for the listing thumbnail (`--scope writing --manifest` with the one new entry of the listing importer's `media-writing.json`; without it the listing shows `about:error`).
+5. `deploy-batch.mjs` for the two paths (`--force` for the listing), then gate both at 1440 and 360; rail thumbnails at 360 go to `accepted.json` (R7). Add the page to `stardust/rollout/gate-state.json` and the line to `llms.txt`.
+6. The SEO steps in `hlx-config/README.md`: sync the head metadata (JSON-LD, titles), republish, rebuild the redirects sheet, check the sitemap.
+
+## 6. Follow-ups worth doing
+
+- A pull request to adobe/skills adding a colour-scheme option to stardust's capture scripts (decision 18); the dark sweep here used `stardust/.work/dark-sweep.mjs`.
+- Fold the one-article variants into defaults at the next design round (R12) once the register is reviewed.
+- `localize-links.mjs` rewrites every file in `content/`; a per-file option would have saved the streams some reverting.
+- `import-listing-pages.mjs` could keep page metadata it does not own (the social image rows) and write one listing at a time.
