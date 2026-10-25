@@ -1,0 +1,66 @@
+/* Explainer engine "request-pipe": the source's .pipe figure (writing/2025-04-13-vibe-coding-star-story-generator/explainer.css). */
+/* stylelint-disable selector-class-pattern -- the source's BEM names are kept so the port stays faithful */
+.explainer.request-pipe .pipe {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.explainer.request-pipe .pipe__list {
+  display: grid;
+  gap: 10px;
+  counter-reset: p;
+}
+
+.explainer.request-pipe .pipe__step {
+  counter-increment: p;
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.explainer.request-pipe .pipe__step::before {
+  content: counter(p);
+  font: 500 12px/24px var(--font-mono);
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--muted);
+}
+
+.explainer.request-pipe .pipe__title p {
+  font-size: 15px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.explainer.request-pipe .pipe__title strong {
+  font-weight: 600;
+}
+
+.explainer.request-pipe .pipe__text p {
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+.explainer.request-pipe .pipe__fn p {
+  display: inline-block;
+  margin-top: 4px;
+  font: 500 11.5px/1.4 var(--font-mono);
+  color: var(--accent);
+  background: var(--accent-tint);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+@container (min-width: 640px) {
+  .explainer.request-pipe .pipe__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px 18px;
+  }
+}
