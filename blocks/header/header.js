@@ -1,11 +1,9 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import buildThemeControl from '../../scripts/theme-control.js';
 
-const THEME_KEY = 'jj-theme';
-const THEMES = [['light', 'Light'], ['dark', 'Dark'], ['system', 'System']];
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const DESKTOP = window.matchMedia('(width >= 1024px)');
-const DARK_OS = window.matchMedia('(prefers-color-scheme: dark)');
 
 function menuIcon() {
   const svg = document.createElementNS(SVG_NS, 'svg');
@@ -16,61 +14,6 @@ function menuIcon() {
   path.setAttribute('d', 'M4 7h16M4 12h16M4 17h16');
   svg.append(path);
   return svg;
-}
-
-function syncTheme(control) {
-  const root = document.documentElement;
-  const choice = root.dataset.themeChoice || 'light';
-  const dark = choice === 'dark' || (choice === 'system' && DARK_OS.matches);
-  root.dataset.themeEffective = dark ? 'dark' : 'light';
-  control.querySelectorAll('[data-set-theme]').forEach((button) => {
-    button.setAttribute('aria-pressed', String(button.dataset.setTheme === choice));
-  });
-}
-
-function applyTheme(choice, control) {
-  const root = document.documentElement;
-  if (choice === 'system') root.removeAttribute('data-theme');
-  else root.dataset.theme = choice;
-  root.dataset.themeChoice = choice;
-  syncTheme(control);
-}
-
-/**
- * The v3 theme control: Light, Dark, System. The choice persists under jj-theme; scripts.js
- * applies it before the body appears on the next page.
- */
-function buildThemeControl() {
-  const control = document.createElement('div');
-  control.className = 'theme-control';
-  control.setAttribute('role', 'group');
-  control.setAttribute('aria-label', 'Color theme');
-  THEMES.forEach(([value, label]) => {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'theme-control-button';
-    button.dataset.setTheme = value;
-    button.textContent = label;
-    control.append(button);
-  });
-  control.addEventListener('click', (event) => {
-    const button = event.target.closest('[data-set-theme]');
-    if (!button) return;
-    applyTheme(button.dataset.setTheme, control);
-    try {
-      localStorage.setItem(THEME_KEY, button.dataset.setTheme);
-    } catch {
-      // optional persistence
-    }
-  });
-  window.addEventListener('storage', (event) => {
-    if (event.key !== THEME_KEY) return;
-    const valid = THEMES.some(([value]) => value === event.newValue);
-    applyTheme(valid ? event.newValue : 'light', control);
-  });
-  DARK_OS.addEventListener('change', () => syncTheme(control));
-  syncTheme(control);
-  return control;
 }
 
 function markCurrent(list) {
@@ -106,7 +49,10 @@ export default async function decorate(block) {
 
   const nav = document.createElement('nav');
   nav.className = 'site-nav';
-  nav.id = 'site-nav';
+  // A second instance (a design-system story) gets its own id, so the toggle controls its nav.
+  let id = 'site-nav';
+  for (let n = 2; document.getElementById(id); n += 1) id = `site-nav-${n}`;
+  nav.id = id;
   nav.setAttribute('aria-label', 'Primary');
   const links = document.createElement('div');
   links.className = 'site-nav-links';
@@ -123,7 +69,7 @@ export default async function decorate(block) {
   const toggle = document.createElement('button');
   toggle.type = 'button';
   toggle.className = 'nav-toggle';
-  toggle.setAttribute('aria-controls', 'site-nav');
+  toggle.setAttribute('aria-controls', id);
   toggle.setAttribute('aria-expanded', 'false');
   const open = document.createElement('span');
   open.className = 'nav-toggle-open';
