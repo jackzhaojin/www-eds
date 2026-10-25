@@ -266,6 +266,37 @@ function tokenEngine(lab, parts) {
       }
     });
   });
+  // The verdict box keeps the height of the first check's result from the start, so the page
+  // never shifts while the check runs (the source grows it, a layout shift).
+  const reserve = () => {
+    const probe = document.createElement('p');
+    probe.className = 'lab-result lab-probe';
+    const lead = document.createElement('span');
+    lead.className = 'ok';
+    lead.textContent = 'Signed in as Trail Reader.';
+    probe.append(lead, ' The greeting bar says hello, and the page is marked private.');
+    const log = document.createElement('span');
+    log.className = 'lab-result log lab-probe';
+    log.textContent = 'verified by adapt-edge-function';
+    verdict.style.minHeight = '';
+    const shown = [...verdict.children].filter((el) => !el.hidden);
+    shown.forEach((el) => { el.hidden = true; });
+    verdict.append(probe, log);
+    const h = verdict.getBoundingClientRect().height;
+    probe.remove();
+    log.remove();
+    shown.forEach((el) => { el.hidden = false; });
+    if (h) verdict.style.minHeight = `${h}px`;
+  };
+  if ('ResizeObserver' in window) {
+    let width = 0;
+    new ResizeObserver(([e]) => {
+      if (Math.round(e.contentRect.width) === width) return;
+      width = Math.round(e.contentRect.width);
+      reserve();
+    }).observe(verdict);
+  } else reserve();
+
   // The demo keys are made as soon as the lab is decorated, so the first check starts the
   // moment the lab is in view.
   const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 1));
