@@ -175,12 +175,14 @@ body.design-docs main.ds-layout > .section:not(.ds-outline-section) pre {
   margin-top: var(--space-3);
 }
 
-body.design-docs main.ds-layout > .ds-flow > .default-content-wrapper > :is(p, ul, ol) {
+/* Docs prose (the source's .docs-section > p, ul, ol). Descendant selectors, so the look holds
+   when quick edit wraps each authored element in its editor; nested wrappers set their own. */
+body.design-docs main.ds-layout > .ds-flow :where(.default-content-wrapper) :where(p, ul, ol) {
   color: var(--color-text-muted);
   max-width: var(--measure);
 }
 
-body.design-docs main.ds-layout > .ds-flow:not(.ds-in-component) > .default-content-wrapper > p + p {
+body.design-docs main.ds-layout > .ds-flow:not(.ds-in-component) .default-content-wrapper > :is(p, .prosemirror-editor:has(> div > p)) + :is(p, .prosemirror-editor:has(> div > p)) {
   margin-top: var(--space-3);
 }
 
@@ -190,7 +192,8 @@ body.design-docs main.ds-layout > .ds-in-component :is(ul, ol) {
 }
 
 /* A section ends where the next one starts: the source's adjacent margins collapse there. */
-body.design-docs main.ds-layout > .section .default-content-wrapper > :last-child {
+body.design-docs main.ds-layout > .section .default-content-wrapper > :last-child,
+body.design-docs main.ds-layout > .section .default-content-wrapper > .prosemirror-editor:last-child > div > * {
   margin-bottom: 0;
 }
 
@@ -219,7 +222,8 @@ body.design-docs :is(.ds-byline, .ds-summary) p {
   max-width: var(--measure);
 }
 
-body.design-docs main.ds-layout > .ds-docs h1 ~ h2 {
+body.design-docs main.ds-layout > .ds-docs h1 ~ h2,
+body.design-docs main.ds-layout > .ds-docs .prosemirror-editor:has(h1) ~ .prosemirror-editor h2 {
   margin-top: var(--space-6);
 }
 
@@ -274,7 +278,7 @@ body.design-docs .ds-status[data-status="deprecated"] p::before {
 }
 
 /* Captions of docs tables */
-body.design-docs .ds-caption p {
+body.design-docs main.ds-layout .ds-caption p {
   font-family: var(--font-mono);
   font-size: var(--text-label);
   letter-spacing: var(--tracking-label);
@@ -403,10 +407,6 @@ body.design-docs main.ds-layout .ds-story-label p {
   text-transform: uppercase;
   color: var(--color-text-faint);
   margin-bottom: 14px;
-}
-
-body.design-docs main.ds-layout > .ds-story > .default-content-wrapper > :is(p, ul, ol) {
-  color: inherit;
 }
 
 /* Two blocks in one story stack with the v3 stack gap, as the source's div.stack does. */
