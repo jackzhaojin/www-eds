@@ -22,8 +22,17 @@
   gap: 6px;
 }
 
+/* The box is on the item, so it keeps its size in quick edit, where the label and checkbox go. */
 .explainer.hook-switchboard .sb-flags li {
   margin: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+}
+
+.explainer.hook-switchboard .sb-flags li:hover {
+  border-color: var(--line-strong);
 }
 
 .explainer.hook-switchboard .sb-flags label {
@@ -31,15 +40,9 @@
   grid-template-columns: 20px 1fr;
   gap: 10px;
   align-items: start;
+  margin: -9px -12px;
   padding: 9px 12px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--bg);
   cursor: pointer;
-}
-
-.explainer.hook-switchboard .sb-flags label:hover {
-  border-color: var(--line-strong);
 }
 
 .explainer.hook-switchboard .sb-flags input {
@@ -94,10 +97,6 @@
 }
 
 .explainer.hook-switchboard .sb-steps li {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 4px 12px;
-  align-items: start;
   margin: 0;
   padding: 10px 12px;
   border: 1px solid var(--line);
@@ -107,7 +106,16 @@
   color: var(--ink-2);
 }
 
+/* The grid needs the engine's line wrappers; in quick edit the item stacks its parts instead. */
+.explainer.hook-switchboard .sb-steps li:has(> .sb-line) {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 12px;
+  align-items: start;
+}
+
 .explainer.hook-switchboard .sb-steps strong {
+  display: block;
   color: var(--ink);
   font-weight: 600;
 }
@@ -129,7 +137,7 @@
 }
 
 .explainer.hook-switchboard .sb-steps em {
-  display: block;
+  display: inline-block;
   font: 600 10.5px/1 var(--font-mono);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -138,6 +146,10 @@
   border: 1px solid var(--line-strong);
   color: var(--muted);
   white-space: nowrap;
+}
+
+.explainer.hook-switchboard .sb-steps .sb-tag em {
+  display: block;
 }
 
 .explainer.hook-switchboard .sb-steps li[data-s] {
