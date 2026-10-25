@@ -14,8 +14,8 @@
  *   project - a grid of project cards (the portfolio's games): a dates paragraph, the heading,
  *     the summary, a paragraph of typed links; a last row with no heading is the note under
  *     the grid
- *   repo - a grid of repository cards, each card one link (card-as-link, as list and tool):
- *     the linked dates paragraph, the heading, the summary
+ *   repo - a grid of repository cards whose dates line is the link (the whole card clicks
+ *     through to it): the linked dates paragraph, the heading, the summary
  */
 
 const VARIANTS = ['list', 'tool', 'project', 'repo'];
@@ -51,14 +51,7 @@ function decorateRoleCard(row, repo) {
   if (!nodes.length) return null;
   const heading = nodes.find((n) => /^H[1-6]$/.test(n.tagName));
   if (!heading) return slot('cards-note', nodes);
-  // A repo card is its dates line's link; the link's text stays in place (EW6).
-  const link = repo && nodes.map((n) => n.querySelector('a[href]')).find(Boolean);
-  const card = link ? document.createElement('a') : slot('cards-card', []);
-  if (link) {
-    card.className = 'cards-card';
-    card.href = link.getAttribute('href');
-    link.replaceWith(...link.childNodes);
-  }
+  const card = slot('cards-card', []);
   let seenHeading = false;
   nodes.forEach((n) => {
     n.classList.remove('text-link-wrapper');
@@ -66,7 +59,7 @@ function decorateRoleCard(row, repo) {
     if (n === heading) {
       seenHeading = true;
       card.append(slot('cards-title', [n]));
-    } else if (!seenHeading) card.append(slot('cards-dates', [n]));
+    } else if (!seenHeading) card.append(slot(repo ? 'cards-dates cards-link' : 'cards-dates', [n]));
     else if (n.querySelectorAll('a').length && !repo) card.append(slot('cards-links link-types', [n]));
     else card.append(slot('cards-summary', [n]));
   });
