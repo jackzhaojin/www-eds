@@ -806,6 +806,11 @@ body.design-docs main.ds-layout > .section.feature h3 a:any-link {
   }
 }
 
+/* narrow: the story's block capped at 640px (the source story's inline max-width) */
+body.design-docs main.ds-layout > .ds-story.narrow > div:not(.default-content-wrapper) {
+  max-width: 640px;
+}
+
 /* cols-2: a story's blocks side by side (v3 grid--2 inside a story) */
 @media (width >= 768px) {
   body.design-docs main.ds-layout > .ds-story.cols-2 {

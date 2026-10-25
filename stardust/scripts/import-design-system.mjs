@@ -93,34 +93,34 @@ function pre(el) {
   return `<pre><code>${esc($(el).text())}</code></pre>`;
 }
 
-/** A v3 table as a data-table block; its caption (shown or sr-only) as the paragraph before. */
+/**
+ * A v3 table (.table) as data-table (mono-head), compact for .table--compact. The caption is
+ * the last row (caption, or sr-caption when the source hides it). A row-header cell spanning
+ * rows (th rowspan) leaves the rows under it one cell short (span-first, row-heads).
+ */
 function dataTable(el) {
   const $t = $(el).is('table') ? $(el) : $(el).find('table').first();
-  const caption = $t.children('caption').text().trim();
-  const spans = [];
+  const $cap = $t.children('caption');
+  const caption = $cap.text().trim();
   const rows = [];
+  let spanned = false;
   $t.find('tr').each((ri, tr) => {
     const cells = [];
-    let col = 0;
-    const take = () => {
-      while (spans[col] && spans[col].left > 0) {
-        spans[col].left -= 1;
-        cells.push('');
-        col += 1;
-      }
-    };
     $(tr).children('th, td').each((_, c) => {
-      take();
-      const rs = Number($(c).attr('rowspan') || 1);
-      if (rs > 1) spans[col] = { left: rs - 1 };
+      if (Number($(c).attr('rowspan') || 1) > 1) spanned = true;
       cells.push(p(inline(c)));
-      col += 1;
     });
-    take();
     rows.push(cells);
     return ri;
   });
-  return `${caption ? p(esc(caption)) : ''}${block('data-table', rows)}`;
+  const variants = ['mono-head'];
+  if ($t.hasClass('table--compact')) variants.push('compact');
+  if (spanned) variants.push('span-first', 'row-heads');
+  if (caption) {
+    variants.push($cap.hasClass('sr-only') ? 'sr-caption' : 'caption');
+    rows.push([p(esc(caption))]);
+  }
+  return block(`data-table ${variants.join(' ')}`, rows);
 }
 
 /** Flattens any story markup to default content: lists stay lists, inline runs paragraphs. */
@@ -218,7 +218,7 @@ const storyMeta = (story, extra = []) => {
 };
 const linkPara = (a, mark) => {
   const href = $(a).attr('href');
-  const text = squash(inline(a));
+  const text = squash(inlineIcons(a));
   if (!href) return p(mark ? `<${mark}>${text}</${mark}>` : text);
   const link = `<a href="${attr(absHref(href))}">${text}</a>`;
   return p(mark ? `<${mark}>${link}</${mark}>` : link);
@@ -390,7 +390,9 @@ function convertBuiltStory(story, owner, n) {
   if (owner === 'c-frame') {
     const figs = first.is('figure') ? first.toArray() : first.children('figure').toArray();
     const html = figs.map((f) => frameBlock(f, $(f).hasClass('frame--diagram') ? 'diagram' : 'sub')).join('');
-    const meta = figs.length > 1 ? [['style', 'story, cols-2']] : [];
+    // v3 caps the single diagram story at 640px (inline style); two frames sit side by side
+    const narrow = /max-width:\s*640px/.test($(figs[0]).attr('style') || '');
+    const meta = figs.length > 1 ? [['style', 'story, cols-2']] : (narrow && [['style', 'story, narrow']]) || [];
     const s = open(meta.length ? [...meta, ...storyMeta(story).filter(([k]) => k !== 'style')] : storyMeta(story));
     s.html.push(label(story), html);
     return true;
@@ -664,7 +666,7 @@ function convertStory(story, owner) {
     }).get();
     open(storyMeta(story, [['items', looks.join(', ')]])).html.push(label(story), ...kids.map((_, k) => {
       const html = squash(inlineIcons(k));
-      return k.name === 'a' ? p(`<a href="${attr(absHref($(k).attr('href')))}">${html}</a>`) : p(html);
+      return k.name === 'a' ? buttonPara(k) : p(html);
     }).get());
     return;
   }
