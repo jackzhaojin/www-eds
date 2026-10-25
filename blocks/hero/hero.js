@@ -7,7 +7,8 @@
  * paragraph is the summary); link paragraphs are the actions (bold link = primary button,
  * plain link = text link). Side note: a short plain paragraph is its label, a paragraph with an
  * image is the banner, a list is the identity list, a link paragraph is the closing link.
- * Anything else is kept in place.
+ * Anything else is kept in place. The note's accessible name is the section metadata key
+ * note-label (Experience Workspace content), or else its label paragraph.
  *
  * The section gets a decorative canvas (blocks/hero/page-art.js), started after the page
  * loads and never painted under reduced motion.
@@ -51,15 +52,16 @@ function decorateIntro(cell) {
   return intro;
 }
 
-function decorateNote(cell) {
+function decorateNote(cell, label) {
   const note = document.createElement('aside');
   note.className = 'hero-note';
+  if (label) note.setAttribute('aria-label', label);
   [...cell.children].forEach((el) => {
     if (el.matches('ul, ol')) note.append(slot('hero-note-list', [el]));
     else if (el.querySelector('picture, img')) note.append(slot('hero-note-banner', [el]));
     else if (isLinkParagraph(el)) note.append(slot('hero-note-link cta-slot', [el]));
     else if (el.tagName === 'P' && !note.querySelector('.hero-note-label')) {
-      note.setAttribute('aria-label', el.textContent);
+      if (!label) note.setAttribute('aria-label', el.textContent);
       note.append(slot('hero-note-label', [el]));
     } else note.append(el);
   });
@@ -85,7 +87,7 @@ export default function decorate(block) {
   if (!introCell) return;
   const parts = [decorateIntro(introCell)];
   cells.filter((c) => c !== introCell).forEach((c) => {
-    if (c.children.length) parts.push(decorateNote(c));
+    if (c.children.length) parts.push(decorateNote(c, block.closest('.section')?.dataset.noteLabel));
   });
   block.replaceChildren(...parts);
   startArt(block, 'home');

@@ -17,14 +17,12 @@ footer .footer {
   width: 100%;
 }
 
-.footer .footer-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-}
-
 .footer .footer-meta p {
   margin: 0;
+}
+
+.footer .footer-meta br {
+  display: none;
 }
 
 .footer .footer-place {
@@ -55,11 +53,8 @@ footer .footer {
     gap: 12px;
   }
 
-  .footer .footer-meta {
-    display: block;
-  }
-
   .footer .footer-place {
+    display: block;
     margin: 6px 0 0;
   }
 }

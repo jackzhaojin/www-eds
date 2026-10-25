@@ -5,8 +5,8 @@ const PROFILE_HOSTS = ['www.linkedin.com', 'github.com'];
 
 /**
  * Loads and decorates the footer: the v3 compact footer. Content comes from the footer
- * document: its paragraphs are the copyright line (the second one is the muted place), its
- * first list is the profile links.
+ * document: its paragraph is the copyright line (the place follows a line break and shows
+ * muted beside it), its first list is the profile links.
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
@@ -15,13 +15,23 @@ export default async function decorate(block) {
   const fragment = await loadFragment(footerPath);
   if (!fragment) return;
 
+  // The copyright line: after its line break comes the place, muted beside it.
   const meta = document.createElement('div');
   meta.className = 'footer-meta';
-  [...fragment.querySelectorAll('p')].forEach((p, i) => {
-    const slot = document.createElement('div');
-    slot.className = i === 0 ? 'footer-copy' : 'footer-place';
-    slot.append(p);
-    meta.append(slot);
+  fragment.querySelectorAll('p').forEach((p) => {
+    const br = p.querySelector('br');
+    if (br && br.nextSibling) {
+      const place = document.createElement('span');
+      place.className = 'footer-place';
+      let node = br.nextSibling;
+      while (node) {
+        const next = node.nextSibling;
+        place.append(node);
+        node = next;
+      }
+      br.after(place);
+    }
+    meta.append(p);
   });
 
   const nav = document.createElement('nav');

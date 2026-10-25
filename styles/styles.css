@@ -684,6 +684,10 @@ main > .section {
   background: var(--color-bg);
 }
 
+main > .section:empty {
+  display: none;
+}
+
 main > .section > div {
   max-width: var(--container-max);
   margin-inline: auto;

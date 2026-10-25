@@ -16,20 +16,25 @@
   margin: 0;
 }
 
-.cards.list .cards-card-title p {
+/* The source sets the note as an inline span on the card's 16px line, so its line box is the
+   body line height, not the 14px one. The title is the bold run before the line break. */
+.cards.list .cards-card p {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  line-height: calc(var(--text-body) * var(--leading-body));
+}
+
+.cards.list .cards-card strong {
+  display: block;
   font-family: var(--font-display);
   font-size: 23px;
-  font-weight: var(--weight-bold);
+  line-height: var(--leading-body);
   color: var(--color-text);
   margin-bottom: 8px;
 }
 
-/* The source sets the note as an inline span on the card's 16px line, so its line box is the
-   body line height, not the 14px one. */
-.cards.list .cards-card-text p {
-  color: var(--color-text-muted);
-  font-size: 14px;
-  line-height: calc(var(--text-body) * var(--leading-body));
+.cards.list .cards-card br {
+  display: none;
 }
 
 .cards a.cards-card .prosemirror-editor a:any-link {
