@@ -8,6 +8,18 @@
 /** The robots header on every host but production (www): eds and gh stay out of search. */
 export const NOINDEX = 'noindex, nofollow';
 
+/** Crawler files only production serves: elsewhere robots.txt and the sitemaps are 404s. */
+const CRAWLER_FILES = /^\/(robots\.txt|sitemap[^/]*\.(xml|json))$/;
+
+/**
+ * True when this host must not hand crawlers its robots.txt or sitemaps (every host but www).
+ * @param {string} pathname The request path
+ * @param {{INDEXABLE?: string}} env Worker vars
+ */
+export function hiddenFromCrawlers(pathname, env) {
+  return env.INDEXABLE !== 'true' && CRAWLER_FILES.test(pathname);
+}
+
 /** The account's GitHub Pages project sites served under www (checked 2026-10-24). */
 export const PROJECT_SITES = [
   'adapt-to-2026-demo',

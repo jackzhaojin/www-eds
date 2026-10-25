@@ -67,11 +67,22 @@ for (const repo of PROJECT_SITES) {
   line(res.status === 200 && !html.includes('/scripts/aem.js'), `/${repo}/`, String(res.status));
 }
 
-console.log('3. root files');
+console.log(`3. root files${indexable ? '' : ' (robots.txt and the sitemap are 404s off www)'}`);
 for (const path of ['/google57906613577fdd42.html', '/BingSiteAuth.xml', '/robots.txt', '/sitemap.xml', '/llms.txt', '/favicon.ico']) {
   // eslint-disable-next-line no-await-in-loop
   const res = await get(path);
-  line(res.status === 200, path, String(res.status));
+  const crawlerFile = ['/robots.txt', '/sitemap.xml'].includes(path);
+  if (!crawlerFile || indexable) {
+    line(res.status === 200, path, String(res.status));
+  } else if (path === '/robots.txt' && res.status === 200) {
+    // The zone's managed robots.txt (AI Crawl Control) answers in place of the Worker's 404:
+    // its content-signals comments carry no rule and no sitemap, which crawlers read as a 404.
+    // eslint-disable-next-line no-await-in-loop
+    const rules = (await res.text()).split('\n').filter((l) => l.trim() && !l.trim().startsWith('#'));
+    line(rules.length === 0, path, rules.length ? `200 with rules: ${rules.join(' | ')}` : '200, Cloudflare managed, no rules');
+  } else {
+    line(res.status === 404, path, String(res.status));
+  }
 }
 
 if (github) {
@@ -98,7 +109,7 @@ if (github) {
 }
 
 console.log(`6. search engines: ${indexable ? 'indexable (no x-robots-tag)' : 'noindex on every response'}`);
-for (const path of ['/', pages.find((p) => p.startsWith('/writing/2')) || '/writing/', `/${PROJECT_SITES[0]}/`, '/robots.txt']) {
+for (const path of ['/', pages.find((p) => p.startsWith('/writing/2')) || '/writing/', `/${PROJECT_SITES[0]}/`, '/llms.txt']) {
   // eslint-disable-next-line no-await-in-loop
   const res = await get(path);
   const tag = res.headers.get('x-robots-tag');

@@ -115,3 +115,19 @@ test('gh: a redirect GitHub sends to www stays on gh; one elsewhere is left alon
   const away = await worker.fetch(get('https://gh.jackzhaojin.com/elsewhere'), GH, {});
   assert.equal(away.headers.get('location'), 'https://github.com/jackzhaojin');
 });
+
+test('robots.txt and the sitemaps are 404s on eds and gh, never fetched; www serves them', async () => {
+  for (const [host, env] of [['eds', STAGING], ['gh', GH]]) {
+    for (const path of ['/robots.txt', '/sitemap.xml', '/sitemap.json']) {
+      // eslint-disable-next-line no-await-in-loop
+      const res = await worker.fetch(get(`https://${host}.jackzhaojin.com${path}`), env, {});
+      assert.equal(res.status, 404, `${host}${path}`);
+      assert.equal(res.headers.get('x-robots-tag'), 'noindex, nofollow');
+    }
+  }
+  assert.equal(calls.length, 0);
+  const www = await worker.fetch(get('https://www.jackzhaojin.com/robots.txt'), WWW, {});
+  assert.equal(www.status, 200);
+  assert.equal(calls.length, 1);
+});
+
