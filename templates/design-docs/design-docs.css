@@ -191,9 +191,10 @@ body.design-docs main.ds-layout > .ds-flow:not(.ds-in-component) .default-conten
   max-width: var(--measure);
 }
 
-/* A section ends where the next one starts: the source's adjacent margins collapse there. */
-body.design-docs main.ds-layout > .section .default-content-wrapper > :last-child,
-body.design-docs main.ds-layout > .section .default-content-wrapper > .prosemirror-editor:last-child > div > * {
+/* A section ends where the next one starts: the source's adjacent margins collapse there.
+   Before a block in the same section the margin stays, as it does on the source. */
+body.design-docs main.ds-layout > .section .default-content-wrapper:last-child > :last-child,
+body.design-docs main.ds-layout > .section .default-content-wrapper:last-child > .prosemirror-editor:last-child > div > * {
   margin-bottom: 0;
 }
 
@@ -1448,7 +1449,7 @@ body.design-docs main.ds-layout .ds-in-component .stat-chips li + li {
 }
 
 /* an accented value (bold and italic) is v3's .stat--block.stat--accent counter */
-body.design-docs main.ds-layout .ds-in-component .stat-chips li:has(strong em) {
+body.design-docs main.ds-layout .ds-in-component .stat-chips li:has(strong em, em strong) {
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
@@ -1456,7 +1457,7 @@ body.design-docs main.ds-layout .ds-in-component .stat-chips li:has(strong em) {
   color: var(--color-text-faint);
 }
 
-body.design-docs main.ds-layout .ds-in-component .stat-chips li:has(strong em) strong {
+body.design-docs main.ds-layout .ds-in-component .stat-chips li:has(strong em, em strong) strong {
   font-size: 21px;
   line-height: 1.1;
   margin-right: 0;
@@ -1464,7 +1465,7 @@ body.design-docs main.ds-layout .ds-in-component .stat-chips li:has(strong em) s
   color: var(--band-accent, var(--color-accent));
 }
 
-body.design-docs main.ds-layout .ds-in-component .stat-chips li strong em {
+body.design-docs main.ds-layout .ds-in-component .stat-chips li :is(strong em, em) {
   font-style: normal;
 }
 
@@ -1493,7 +1494,7 @@ body.design-docs main.ds-layout .ds-in-component .proof-links .proof-links-row p
 body.design-docs main.ds-layout .ds-in-component .proof-links .proof-links-row a:any-link {
   display: inline-block;
   min-height: 0;
-  padding: 10px 0 0;
+  padding: 10px 0 2px;
   margin: -10px 0 0;
   font-size: var(--text-mono);
   line-height: 1.4;
@@ -1516,6 +1517,12 @@ body.design-docs main.ds-layout .ds-in-component .proof-links a[href*="github.co
 
 body.design-docs main.ds-layout .ds-in-component .proof-links a:is([href*="youtube.com"], [href*="youtu.be"])::before {
   --ds-licon: url("../../icons/video.svg");
+}
+
+/* under a chapter head the proof row keeps its 18px: on the source it sits inside the head,
+   before the head's bottom margin, so the two never collapse */
+body.design-docs main.ds-layout .ds-story-part .chapter-head-wrapper + .proof-links-wrapper {
+  display: flow-root;
 }
 
 /* the band story's row opens flush (v3's inline margin-top 0 there) */
