@@ -17,8 +17,15 @@
  * - style <band words>, in-story: a section band shown inside the story frame before it (the
  *   bands keep the site's own band styles, so the story is the real band);
  * - demo <word>: a docs-only demo drawn from the authored text (swatches, specimens, space,
- *   radius, shadow, motion, icons, grid-2, grid-3, grid-4, grid-auto, skip-link);
+ *   radius, shadow, motion, icons, grid-2, grid-3, grid-4, grid-auto, skip-link, chips, proof,
+ *   embed, theme-control);
  * - check contrast: the contrast table, re-verified in this browser against the live tokens;
+ * - items <look, look ...>: one docs-only look per paragraph of the section, in order: kicker,
+ *   kicker-accent, kicker-rule, note, mono, mono-lg, button, chip-plain, page-title,
+ *   page-title-display, byline, summary, positioning (the v3 kicker, page head, icon samples);
+ * - band words on a section: a topic or project accent (aem-ai, aem, agents, work, cyan, amber,
+ *   leaf, bronze, mint, rose), dots, milestone, flagship, feature (the inverse panel), and
+ *   cols-2 on a story (its blocks side by side);
  * - any other section continues the docs section or component before it.
  *
  * Content rules: a "Do" paragraph and a "Don't" paragraph, each followed by its text, are the
@@ -30,7 +37,11 @@
  * layout classes.
  */
 
-const STATUS = /^(stable|beta|deprecated|flagship)$/i;
+const STATUS = /^(stable|beta|deprecated|flagship|upcoming|delivered)$/i;
+const TOPICS = {
+  'AEM + AI': 'aem-ai', AEM: 'aem', 'Adobe AEM and EDS': 'aem', 'AI Agents': 'agents', 'Working with AI': 'work',
+};
+const FORMATS = ['video', 'article', 'post'];
 
 function wrap(el, className, tag = 'div') {
   const box = document.createElement(tag);
@@ -141,6 +152,12 @@ const SPLIT = (li) => {
   li.append(value);
 };
 
+/** The paragraphs a story shows, after its label (link paragraphs included). */
+function storyParagraphs(section) {
+  return [...section.querySelectorAll('.default-content-wrapper p')]
+    .filter((p) => !p.closest('.ds-story-label, .ds-caption'));
+}
+
 const DEMOS = {
   swatches(section) {
     section.querySelectorAll('li').forEach((li) => {
@@ -226,7 +243,96 @@ const DEMOS = {
       slot.replaceWith(...slot.children);
     });
   },
+  /* Chips: each paragraph is one chip; its kind comes from the site's words (the topics,
+     formats and statuses), and a bold chip is the pressed one. */
+  chips(section) {
+    storyParagraphs(section).forEach((p) => {
+      const chip = wrap(p, 'ds-chip');
+      const word = text(p);
+      const kind = TOPICS[word] ? 'topic' : (FORMATS.includes(word.toLowerCase()) && 'format')
+        || (STATUS.test(word) && 'status') || (word === 'All' ? 'default' : 'plain');
+      chip.dataset.kind = kind;
+      if (kind === 'topic') chip.dataset.topic = TOPICS[word];
+      if (kind === 'format') chip.dataset.format = word.toLowerCase();
+      if (kind === 'status') chip.dataset.status = word.toLowerCase();
+      if (p.querySelector('strong')) chip.dataset.pressed = 'true';
+    });
+  },
+  /* Proof list: per item, the bold label, the value (a link or text), a line break, the note. */
+  proof(section) {
+    section.querySelectorAll('li').forEach((li) => {
+      const label = li.querySelector('strong');
+      const br = li.querySelector('br');
+      if (!label || !br) return;
+      const value = document.createElement('span');
+      value.className = 'ds-proof-value';
+      const note = document.createElement('span');
+      note.className = 'ds-proof-note';
+      let node = label.nextSibling;
+      while (node && node !== br) {
+        const next = node.nextSibling;
+        value.append(node);
+        node = next;
+      }
+      while (br.nextSibling) note.append(br.nextSibling);
+      const dd = document.createElement('span');
+      dd.className = 'ds-proof-dd';
+      dd.append(value, br, note);
+      li.append(dd);
+      wrap(label, 'ds-proof-label', 'span');
+    });
+  },
+  /* Embed placeholder: the frame text in a 16:9 frame with the play mark, then the caption. */
+  embed(section) {
+    const [frameText, caption] = storyParagraphs(section);
+    if (!frameText) return;
+    const figure = document.createElement('div');
+    figure.className = 'ds-embed';
+    frameText.before(figure);
+    const frame = document.createElement('div');
+    frame.className = 'ds-embed-frame';
+    const play = document.createElement('span');
+    play.className = 'ds-embed-play';
+    play.setAttribute('aria-hidden', 'true');
+    frame.append(play, frameText);
+    figure.append(frame);
+    if (caption) figure.append(wrap(caption, 'ds-embed-caption'));
+  },
+  /* The live theme control (scripts/theme-control.js): it changes the whole page. */
+  'theme-control': (section) => {
+    const wrapper = section.querySelector('.default-content-wrapper');
+    if (!wrapper) return;
+    const host = document.createElement('div');
+    host.className = 'ds-theme-control';
+    wrapper.append(host);
+    import(`${window.hlx.codeBasePath}/scripts/theme-control.js`)
+      .then(({ default: buildThemeControl }) => host.append(buildThemeControl()))
+      .catch(() => host.remove());
+  },
 };
+
+/** Section metadata "items": one look per paragraph, in order (a docs-only presentation). */
+function decorateItems(section) {
+  const looks = section.dataset.items.split(',').map((w) => w.trim().toLowerCase());
+  storyParagraphs(section).forEach((p, i) => {
+    const look = looks[i];
+    if (!look || !/^[a-z][a-z0-9-]*$/.test(look)) return;
+    const slot = p.closest('.cta-slot');
+    if (slot) {
+      p.classList.remove('text-link-wrapper');
+      p.querySelectorAll('a').forEach((a) => a.classList.remove('text-link'));
+    }
+    wrap(p, `ds-item ds-item-${look}`);
+  });
+}
+
+/** Icons (icons/<name>.svg) paint in the text color: the image becomes the icon's mask. */
+function decorateIconMasks(main) {
+  main.querySelectorAll('span.icon').forEach((span) => {
+    const img = span.querySelector('img');
+    if (img && img.getAttribute('src')) span.style.setProperty('--ds-icon', `url("${img.getAttribute('src')}")`);
+  });
+}
 
 // ------------------------------------------------------------------ contrast check
 function channels(color) {
@@ -357,10 +463,12 @@ export default function decorate(main) {
     decorateCaptions(section);
     const demo = section.dataset.demo && DEMOS[section.dataset.demo];
     if (demo) demo(section);
+    if (section.dataset.items) decorateItems(section);
     if (section.dataset.check === 'contrast') checkContrast(section);
   });
 
   main.style.setProperty('--ds-rows', String(row));
+  decorateIconMasks(main);
 
   groups.forEach((g) => {
     const first = g.sections[0];

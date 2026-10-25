@@ -258,17 +258,199 @@ function ctaBand($band) {
 }
 
 /** A v3 band inside a story becomes its own section, shown in the story frame. */
-function bandSection(band, story, inner) {
+function bandSection(band, story, inner, { words: more = [], meta: extra = [] } = {}) {
   const $b = $(band);
   const words = ['plain', 'alt', 'tint', 'inverse', 'milestone', 'dots']
     .filter((w) => $b.hasClass(`band--${w}`));
   const accent = ($b.attr('style') || '').match(/--color-(?:topic|project)-([a-z-]+)/);
-  const style = [...words, ...(accent ? [accent[1]] : []), 'in-story'];
-  const meta = [['style', style.join(', ')]];
+  const style = [...words, ...(accent ? [accent[1]] : []), ...more, 'in-story'];
+  const meta = [['style', style.join(', ')], ...extra];
   if (themeOf(story)) meta.push(['theme', themeOf(story)]);
   const s = open(meta);
   s.html.push(inner);
   return s;
+}
+
+/** Inline content with v3 sprite icons written as EDS icon notation (:name:). */
+function inlineIcons(node) {
+  const $c = $(node).clone();
+  $c.find('svg').each((_, svg) => {
+    const ref = $(svg).find('use').attr('href') || '';
+    const name = ref.replace(/^#icon-/, '');
+    $(svg).replaceWith(name ? `:${name}:` : '');
+  });
+  return inline($c);
+}
+
+/** A story whose own section holds a band (and the band's blocks). */
+function bandStory(story, band, inner, opts) {
+  const s = open(storyMeta(story));
+  s.html.push(label(story));
+  bandSection(band, story, inner, opts);
+}
+
+const heading = (el) => `<${el.name}>${squash(inline(el))}</${el.name}>`;
+const statItems = ($els) => `<ul>${$els.map((_, st) => {
+  const $st = $(st).clone();
+  const value = $st.children('b').text();
+  $st.children('b').remove();
+  const accent = $(st).hasClass('stat--accent');
+  return `<li><strong>${accent ? `<em>${esc(value)}</em>` : esc(value)}</strong> ${squash(inline($st))}</li>`;
+}).get().join('')}</ul>`;
+
+/** v3 showcase text as a showcase (story) text cell, in source order; proof links follow. */
+function showcaseParts($article) {
+  const text = [];
+  const after = [];
+  $article.children('.showcase__text').children().each((_, c) => {
+    const $c = $(c);
+    if (/^h[1-6]$/.test(c.name)) text.push(heading(c));
+    else if ($c.hasClass('proof-links')) after.push(block('proof-links', [[p(inline(c))]]));
+    else if ($c.hasClass('stat-chips')) after.push(block('stat-chips', [[statItems($c.children('.stat'))]]));
+    else text.push(p(inline(c)));
+  });
+  const $fig = $article.find('.showcase__media figure');
+  const media = `${p(inline($fig.children('a').length ? $fig.children('a') : $fig.children('img')))}${p(inline($fig.children('figcaption')))}`;
+  return { text: text.join(''), media, after: after.join('') };
+}
+
+/** A v3 frame as a frame block: the (linked) image paragraph, then the caption. */
+function frameBlock(fig, variant) {
+  const $f = $(fig);
+  const imgPara = p(inline($f.children('a').length ? $f.children('a') : $f.children('img')));
+  return block(variant ? `frame ${variant}` : 'frame', [[`${imgPara}${p(inline($f.children('figcaption')))}`]]);
+}
+
+/** A v3 chapter head as a chapter-head block; its proof links follow as their own block. */
+function chapterHead($head) {
+  const $body = $head.find('.chapter-head__body');
+  const parts = [];
+  let after = '';
+  $body.children().each((_, c) => {
+    if (/^h[1-6]$/.test(c.name)) parts.push(heading(c));
+    else if ($(c).hasClass('proof-links')) after = block('proof-links', [[p(inline(c))]]);
+    else parts.push(p(inline(c)));
+  });
+  return `${block('chapter-head', [[parts.join('')]])}${after}`;
+}
+
+/** A v3 timeline as a timeline (ladder): era rows, then version | heading, date, text rungs. */
+function ladder($ol) {
+  const rows = [];
+  $ol.children('li').each((_, li) => {
+    const $li = $(li);
+    if ($li.hasClass('timeline__era')) {
+      rows.push([p(inline(li))]);
+      return;
+    }
+    const body = $li.find('.timeline__body').children().map((__, c) => (/^h[1-6]$/.test(c.name) ? heading(c) : p(inline(c)))).get().join('');
+    rows.push([p(inline($li.children('.timeline__version'))), body]);
+  });
+  return block('timeline ladder', rows);
+}
+
+/** Stories of the blocks other streams built, using those blocks as they are. */
+function convertBuiltStory(story, owner, n) {
+  const $s = $(story);
+  const first = $s.children().not('.story__label').first();
+  const kids = $s.children().not('.story__label');
+  const bandOf = ($el) => ($el.is('section.band') ? $el : null);
+
+  if (owner === 'c-card') {
+    const cards = first.children('.card').toArray();
+    if (first.children('.card--tool').length) {
+      const rows = cards.map((a) => {
+        const $a = $(a);
+        const link = `<a href="${attr(absHref($a.attr('href')))}">${esc($a.children('.card__title').text())}</a>`;
+        return [p(`<strong>${link}</strong><br>${squash(inline($a.children('.card__excerpt')))}<br><em>${esc($a.children('.card__meta').text())}</em>`)];
+      });
+      open(storyMeta(story)).html.push(label(story), block('cards tool', rows));
+      return true;
+    }
+    const rows = cards.map((card) => [$(card).children().map((_, c) => (/^h[1-6]$/.test(c.name) ? heading(c) : p(inline(c)))).get().join('')]);
+    open(storyMeta(story)).html.push(label(story), block('cards project', rows));
+    return true;
+  }
+  if (owner === 'c-counts') {
+    const items = first.children('div').map((_, d) => `<li>${esc($(d).children('dt').text())} <strong>${esc($(d).children('dd').text())}</strong></li>`).get().join('');
+    open(storyMeta(story)).html.push(label(story), block('stats', [[`<ul>${items}</ul>`]]));
+    return true;
+  }
+  if (owner === 'c-showcase') {
+    const band = bandOf(first);
+    const $art = band ? band.find('article.showcase') : first;
+    const { text, media, after } = showcaseParts($art);
+    // v3 flip puts the media first (EDS story); v3 default puts it after the text (EDS flip)
+    const variant = $art.hasClass('showcase--flip') ? 'showcase story' : 'showcase flip';
+    const html = `${block(variant, [[text, media]])}${after}`;
+    if (band) bandStory(story, band.get(0), html);
+    else open(storyMeta(story)).html.push(label(story), html);
+    return true;
+  }
+  if (owner === 'c-frame') {
+    const figs = first.is('figure') ? first.toArray() : first.children('figure').toArray();
+    const html = figs.map((f) => frameBlock(f, $(f).hasClass('frame--diagram') ? 'diagram' : 'sub')).join('');
+    const meta = figs.length > 1 ? [['style', 'story, cols-2']] : [];
+    const s = open(meta.length ? [...meta, ...storyMeta(story).filter(([k]) => k !== 'style')] : storyMeta(story));
+    s.html.push(label(story), html);
+    return true;
+  }
+  if (owner === 'c-proof-links') {
+    const band = bandOf(first);
+    const $p = band ? band.find('.proof-links') : first;
+    const html = block('proof-links', [[p(inline($p))]]);
+    if (band) bandStory(story, band.get(0), html);
+    else open(storyMeta(story)).html.push(label(story), html);
+    return true;
+  }
+  if (owner === 'c-stat') {
+    const s = open(storyMeta(story));
+    s.html.push(label(story));
+    // both v3 rows are stat chips (the counter row is stat--block); EDS stat-chips has the
+    // inline chip look only
+    kids.filter('.stat-chips').each((_, row) => {
+      s.html.push(block('stat-chips', [[statItems($(row).children('.stat'))]]));
+    });
+    return true;
+  }
+  if (owner === 'c-chapter-head') {
+    const band = bandOf(first);
+    const $head = band.find('.chapter-head');
+    bandStory(story, band.get(0), chapterHead($head), { words: $head.hasClass('chapter-head--flagship') ? ['flagship'] : [] });
+    return true;
+  }
+  if (owner === 'c-timeline') {
+    const band = bandOf(first);
+    if (band) bandStory(story, band.get(0), ladder(band.find('ol.timeline')));
+    else open(storyMeta(story)).html.push(label(story), ladder(first));
+    return true;
+  }
+  if (owner === 'c-panel-inverse') {
+    const $panel = first;
+    const $stack = $panel.children('.stack');
+    const text = $stack.children().map((_, c) => {
+      if (/^h[1-6]$/.test(c.name)) return heading(c);
+      if ($(c).hasClass('cluster')) return $(c).children('a').map((__, a) => buttonPara(a)).get().join('');
+      return p(inline(c));
+    }).get().join('');
+    const $t = $panel.children('table.facts');
+    const rows = [[p(esc($t.children('caption').text().trim()))]];
+    $t.find('tr').each((_, tr) => rows.push([p(inline($(tr).children('th'))), p(inline($(tr).children('td')))]));
+    const s = open(storyMeta(story));
+    s.html.push(label(story));
+    const sec = open([['style', 'inverse, feature, in-story'], ['items', 'period, lead'], ...(themeOf(story) ? [['theme', themeOf(story)]] : [])]);
+    sec.html.push(text, block('facts caption', rows));
+    return true;
+  }
+  if (owner === 'c-divider') {
+    const s = open(storyMeta(story));
+    s.html.push(label(story));
+    kids.filter('.divider').each((_, d) => {
+      s.html.push(block('divider rule', [[p(esc($(d).children('.divider__label').text()))]]));
+    });
+    return true;
+  }
+  return false;
 }
 
 const WAITING = {
@@ -430,36 +612,99 @@ function convertStory(story, owner) {
     s.html.push(label(story), ctaBand(first));
     return;
   }
-  if (owner === 'c-showcase' && n === 0) {
-    const $t = first.children('.showcase__text');
-    const text = [];
-    $t.children().each((_, c) => {
-      if (/^h[1-6]$/.test(c.name)) text.push(`<${c.name}>${squash(inline(c))}</${c.name}>`);
-      else if ($(c).hasClass('proof-links')) $(c).children('a').each((__, a) => text.push(linkPara(a)));
-      else text.push(p(inline(c)));
-    });
-    const $fig = first.find('.showcase__media figure');
-    const media = `${p(inline($fig.children('a').length ? $fig.children('a') : $fig.children('img')))}${p(inline($fig.children('figcaption')))}`;
-    const s = open(storyMeta(story));
-    s.html.push(label(story), block('showcase', [[text.join(''), media]]));
-    return;
-  }
   if (owner === 'c-band') {
     const s = open(storyMeta(story));
     s.html.push(label(story));
     const bands = first.is('section.band') ? first.toArray() : first.children('section.band').toArray();
     bands.forEach((band) => {
       const $b = $(band);
-      if ($b.hasClass('band--milestone')) waiting.push(`${owner} #${n + 1}: milestone band (listings: divider year, or main: band word milestone)`);
-      if ($b.hasClass('band--dots')) waiting.push(`${owner} #${n + 1}: dots band (main: band word dots)`);
-      if (/--color-(topic|project)-/.test($b.attr('style') || '')) waiting.push(`${owner} #${n + 1}: band accent word (main: section accent words)`);
       const $c = $b.children('.container');
+      if ($b.hasClass('band--milestone')) {
+        // the milestone band holds the year divider: the outlined numeral, the caption
+        const year = block('divider year', [[p(esc($c.children('.band__numeral').text())), p(esc($c.children('.band__caption').text()))]]);
+        bandSection(band, story, year);
+        return;
+      }
       const ctas = $c.children('.cta-band');
-      const inner = ctas.length ? ctaBand(ctas) : flatten($c);
-      bandSection(band, story, inner);
+      if (ctas.length) {
+        bandSection(band, story, ctaBand(ctas));
+        return;
+      }
+      // a band note: the kicker (accent-colored in a tint), then the muted small line
+      const kicker = $c.children('.kicker').first();
+      const look = $b.hasClass('band--tint') || kicker.hasClass('kicker--accent') ? 'kicker-accent' : 'kicker';
+      bandSection(band, story, flatten($c), { meta: [['items', `${look}, note`]] });
     });
     return;
   }
+  if (owner === 'c-kicker') {
+    const looks = kids.map((_, k) => {
+      if ($(k).hasClass('kicker--accent')) return 'kicker-accent';
+      if ($(k).hasClass('kicker--rule')) return 'kicker-rule';
+      return 'kicker';
+    }).get();
+    open(storyMeta(story, [['items', looks.join(', ')]])).html.push(label(story), ...kids.map((_, k) => p(inline(k))).get());
+    return;
+  }
+  if (owner === 'c-chip') {
+    // each chip its own paragraph; a pressed chip is bold (the template reads the kind from
+    // the site's topic, format and status words)
+    const chips = kids.map((_, k) => {
+      const text = squash(inline(k));
+      return p($(k).attr('aria-pressed') === 'true' ? `<strong>${text}</strong>` : text);
+    }).get();
+    open(storyMeta(story, [['demo', 'chips']])).html.push(label(story), ...chips);
+    return;
+  }
+  if (owner === 'c-icons') {
+    const looks = kids.map((_, k) => {
+      if ($(k).hasClass('btn')) return 'button';
+      if ($(k).hasClass('chip')) return 'chip-plain';
+      return $(k).find('.icon--lg').length ? 'mono-lg' : 'mono';
+    }).get();
+    open(storyMeta(story, [['items', looks.join(', ')]])).html.push(label(story), ...kids.map((_, k) => {
+      const html = squash(inlineIcons(k));
+      return k.name === 'a' ? p(`<a href="${attr(absHref($(k).attr('href')))}">${html}</a>`) : p(html);
+    }).get());
+    return;
+  }
+  if (owner === 'theming') {
+    // the live control comes from scripts/theme-control.js: its labels are interface chrome
+    open(storyMeta(story, [['demo', 'theme-control']])).html.push(label(story));
+    return;
+  }
+  if (owner === 'c-proof') {
+    const items = first.children('div').map((_, d) => {
+      const $dd = $(d).children('dd').clone();
+      const note = $dd.children('.proof__note').text();
+      $dd.children('.proof__note').remove();
+      return `<li><strong>${esc($(d).children('dt').text())}</strong> ${squash(inline($dd))}<br>${esc(note)}</li>`;
+    }).get().join('');
+    open(storyMeta(story, [['demo', 'proof']])).html.push(label(story), `<ul>${items}</ul>`);
+    return;
+  }
+  if (owner === 'c-embed') {
+    open(storyMeta(story, [['demo', 'embed']])).html.push(
+      label(story),
+      p(esc(first.find('.embed__frame').text().trim())),
+      p(esc(first.find('figcaption').text().trim())),
+    );
+    return;
+  }
+  if (owner === 'c-page-head') {
+    const looks = first.children('p').map((_, c) => {
+      const $c = $(c);
+      if ($c.hasClass('kicker')) return 'kicker';
+      if ($c.hasClass('page-title--display')) return 'page-title-display';
+      if ($c.hasClass('page-title')) return 'page-title';
+      if ($c.hasClass('byline')) return 'byline';
+      if ($c.hasClass('positioning')) return 'positioning';
+      return 'summary';
+    }).get();
+    open(storyMeta(story, [['items', looks.join(', ')]])).html.push(label(story), ...first.children('p').map((_, c) => p(inline(c))).get());
+    return;
+  }
+  if (convertBuiltStory(story, owner, n)) return;
 
   // waiting: the text as default content until the block lands
   const why = WAITING[owner] || 'unmapped';
@@ -491,8 +736,8 @@ function convertDemo(el) {
   } else if ($el.hasClass('motion-demo')) {
     demo('motion').html.push(p(esc($el.text().trim())));
   } else if ($el.hasClass('icon-grid')) {
-    waiting.push('iconography grid: main: v3 icon set in icons/');
-    demo('icons').html.push(`<ul>${$el.children('div').map((_, d) => `<li>${esc($(d).text().trim())}</li>`).get().join('')}</ul>`);
+    // each tile: the icon (EDS icon notation, icons/<name>.svg), then its name
+    demo('icons').html.push(`<ul>${$el.children('div').map((_, d) => `<li>${squash(inlineIcons(d))}</li>`).get().join('')}</ul>`);
   } else return false;
   return true;
 }

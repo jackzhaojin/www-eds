@@ -16,6 +16,23 @@
   border: 0;
 }
 
+.facts.caption caption {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  padding: 0 0 10px;
+}
+
 .facts p {
   margin: 0;
 }

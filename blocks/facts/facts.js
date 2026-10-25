@@ -6,7 +6,8 @@
  * A real table, so parsers lift it verbatim: keys become row headers, and each authored
  * paragraph is moved into its cell, so it stays editable.
  *
- * @variants (none)
+ * @variants caption
+ *   caption - the caption shows above the rows (the inverse panel's "Key facts")
  */
 
 /** Value links read as inline links, never as text-link or button boxes. */

@@ -147,16 +147,16 @@ body.design-docs main.ds-layout > .ds-component {
   border-top: var(--border-width) dashed var(--color-line);
 }
 
-body.design-docs main.ds-layout > .section:not(.ds-outline-section) h2 {
+:where(body.design-docs main.ds-layout) > .section h2 {
   margin-bottom: var(--space-3);
 }
 
-body.design-docs main.ds-layout > .section:not(.ds-outline-section) h3 {
+:where(body.design-docs main.ds-layout) > .section h3 {
   margin-top: var(--space-6);
   margin-bottom: var(--space-2);
 }
 
-body.design-docs main.ds-layout > .section:not(.ds-outline-section) h4 {
+:where(body.design-docs main.ds-layout) > .section h4 {
   margin-top: var(--space-5);
   margin-bottom: var(--space-2);
   font-family: var(--font-mono);
@@ -167,11 +167,11 @@ body.design-docs main.ds-layout > .section:not(.ds-outline-section) h4 {
   color: var(--color-text-faint);
 }
 
-body.design-docs main.ds-layout > .section:not(.ds-outline-section) li + li {
+:where(body.design-docs main.ds-layout) > .section:not(.ds-outline-section) li + li {
   margin-top: 4px;
 }
 
-body.design-docs main.ds-layout > .section:not(.ds-outline-section) pre {
+:where(body.design-docs main.ds-layout) > .section pre {
   margin-top: var(--space-3);
 }
 
@@ -186,7 +186,7 @@ body.design-docs main.ds-layout > .ds-flow:not(.ds-in-component) .default-conten
   margin-top: var(--space-3);
 }
 
-body.design-docs main.ds-layout > .ds-in-component :is(ul, ol) {
+:where(body.design-docs main.ds-layout) > .ds-in-component :is(ul, ol) {
   color: var(--color-text-muted);
   max-width: var(--measure);
 }
@@ -363,29 +363,6 @@ body.design-docs main.ds-layout > .section.ds-story-part {
   width: auto;
   margin-inline: calc(var(--space-5) + var(--border-width));
   margin-top: var(--space-2);
-}
-
-/* Workaround until styles.css also matches a section-level theme: styles.css sets the dark
-   inverse tokens under [data-theme="dark"] main > .section.inverse > div, an ancestor match, so
-   a band forced dark by its own section metadata got the light inverse set (light text on the
-   light ground). Same values as styles.css. */
-body.design-docs main.ds-layout > .section.inverse[data-theme="dark"] > div {
-  --color-bg: var(--palette-bone-100);
-  --color-bg-alt: color-mix(in srgb, var(--palette-bone-100) 94%, var(--palette-night-900));
-  --color-surface: color-mix(in srgb, var(--palette-bone-100) 92%, var(--palette-night-900));
-  --color-surface-raised: color-mix(in srgb, var(--palette-bone-100) 88%, var(--palette-night-900));
-  --color-text: var(--palette-night-900);
-  --color-text-muted: color-mix(in srgb, var(--palette-night-900) 82%, var(--palette-bone-100));
-  --color-text-faint: color-mix(in srgb, var(--palette-night-900) 72%, var(--palette-bone-100));
-  --color-line: color-mix(in srgb, var(--palette-night-900) 14%, transparent);
-  --color-line-strong: color-mix(in srgb, var(--palette-night-900) 42%, transparent);
-  --color-accent: var(--palette-lavender-700);
-  --color-accent-hover: var(--palette-lavender-600);
-  --color-on-accent: var(--palette-warm-0);
-  --color-accent-soft: color-mix(in srgb, var(--palette-lavender-700) 12%, transparent);
-  --color-focus: var(--palette-lavender-700);
-  --color-inverse-bg: var(--palette-night-900);
-  --color-inverse-text: var(--palette-bone-100);
 }
 
 body.design-docs main.ds-layout > .section.ds-story-part.inverse {
@@ -708,4 +685,494 @@ body.design-docs [data-demo^="grid-"] li {
   body.design-docs main.ds-layout > [data-demo="grid-4"] ul {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+}
+
+/* ------------------------------------------------------------ the portfolio blocks' page tokens
+   The portfolio blocks read the portfolio template's aliases (templates/portfolio). They are
+   set per section here, and again on the inner wrapper, so a forced theme or an inverse band
+   resolves them with its own tokens. */
+body.design-docs main.ds-layout > .section,
+body.design-docs main.ds-layout > .section > div {
+  --bg: var(--color-bg);
+  --bg-low: var(--color-bg-alt);
+  --surface: var(--color-surface);
+  --surface-2: var(--color-surface-raised);
+  --surface-3: var(--color-bg-alt);
+  --ink: var(--color-text);
+  --ink-soft: var(--color-text-muted);
+  --ink-faint: var(--color-text-faint);
+  --line: var(--color-line);
+  --line-soft: var(--color-line);
+  --accent: var(--band-accent, var(--color-accent));
+  --max: 1200px;
+  --pad: clamp(20px, 5vw, 80px);
+  --radius: var(--radius-lg);
+}
+
+/* ------------------------------------------------------------ band words (v3 band--*) */
+body.design-docs main.ds-layout > .section.aem-ai { --band-accent: var(--color-topic-aem-ai); }
+body.design-docs main.ds-layout > .section.aem { --band-accent: var(--color-topic-aem); }
+body.design-docs main.ds-layout > .section.agents { --band-accent: var(--color-topic-agents); }
+body.design-docs main.ds-layout > .section.work { --band-accent: var(--color-topic-work); }
+body.design-docs main.ds-layout > .section.cyan { --band-accent: var(--color-project-cyan); }
+body.design-docs main.ds-layout > .section.amber { --band-accent: var(--color-project-amber); }
+body.design-docs main.ds-layout > .section.leaf { --band-accent: var(--color-project-leaf); }
+body.design-docs main.ds-layout > .section.bronze { --band-accent: var(--color-project-bronze); }
+body.design-docs main.ds-layout > .section.mint { --band-accent: var(--color-project-mint); }
+body.design-docs main.ds-layout > .section.rose { --band-accent: var(--color-project-rose); }
+
+/* dots: the motif layer, six tiny accent dots tiled at half opacity (decorative) */
+body.design-docs main.ds-layout > .section.dots::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(circle 1.5px at 12% 22%, color-mix(in srgb, var(--band-accent) 35%, transparent) 99%, transparent),
+    radial-gradient(circle 1px at 34% 64%, color-mix(in srgb, var(--band-accent) 28%, transparent) 99%, transparent),
+    radial-gradient(circle 1.5px at 58% 18%, color-mix(in srgb, var(--band-accent) 30%, transparent) 99%, transparent),
+    radial-gradient(circle 1px at 78% 48%, color-mix(in srgb, var(--band-accent) 26%, transparent) 99%, transparent),
+    radial-gradient(circle 1.5px at 90% 76%, color-mix(in srgb, var(--band-accent) 30%, transparent) 99%, transparent),
+    radial-gradient(circle 1px at 22% 86%, color-mix(in srgb, var(--band-accent) 24%, transparent) 99%, transparent);
+  background-size: 900px 700px;
+}
+
+/* milestone: the year band over the tint wash; the divider (year) block inside is the band's
+   own padding and rules, so the section adds none */
+body.design-docs main.ds-layout > .section.milestone {
+  --band-accent: var(--color-accent);
+
+  text-align: center;
+  border-top: 0;
+  padding-block: 0;
+}
+
+body.design-docs main.ds-layout > .section.milestone > div {
+  padding-inline: 0;
+}
+
+body.design-docs main.ds-layout > .section.milestone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%, color-mix(in srgb, var(--band-accent) var(--band-tint-strong), transparent), transparent 70%),
+    linear-gradient(180deg, color-mix(in srgb, var(--band-accent) var(--band-tint-soft), transparent), transparent 30%, transparent 78%, color-mix(in srgb, var(--band-accent) var(--band-tint-edge), transparent));
+}
+
+/* feature: the inverse panel (v3 panel--inverse feature), a rounded inverse box, two columns */
+body.design-docs main.ds-layout > .section.ds-story-part.feature {
+  padding: clamp(var(--space-5), 3.5vw, var(--space-7));
+  border-radius: var(--card-radius);
+  border-top-color: transparent;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: start;
+}
+
+body.design-docs main.ds-layout > .section.ds-story-part.feature > div {
+  padding-inline: 0;
+}
+
+body.design-docs main.ds-layout > .section.feature .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+body.design-docs main.ds-layout > .section.feature .default-content-wrapper .cta-slot {
+  gap: 14px;
+}
+
+body.design-docs main.ds-layout > .section.feature h3 {
+  margin: 0;
+  font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  line-height: 1.1;
+}
+
+body.design-docs main.ds-layout > .section.feature h3 a:any-link {
+  color: var(--color-accent);
+}
+
+@media (width >= 1024px) {
+  body.design-docs main.ds-layout > .section.ds-story-part.feature {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: var(--space-8);
+  }
+}
+
+/* cols-2: a story's blocks side by side (v3 grid--2 inside a story) */
+@media (width >= 768px) {
+  body.design-docs main.ds-layout > .ds-story.cols-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-4);
+    align-items: start;
+  }
+
+  body.design-docs main.ds-layout > .ds-story.cols-2 > .default-content-wrapper {
+    grid-column: 1 / -1;
+  }
+
+  body.design-docs main.ds-layout > .ds-story.cols-2 > div + div {
+    margin-top: 0;
+  }
+}
+
+/* ------------------------------------------------------------ items: docs-only looks */
+body.design-docs main.ds-layout :is(.ds-item-kicker, .ds-item-kicker-accent, .ds-item-kicker-rule) p {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  line-height: 1.5;
+}
+
+body.design-docs main.ds-layout .ds-item-kicker-accent p {
+  color: var(--band-accent, var(--color-accent));
+}
+
+body.design-docs main.ds-layout .ds-item-kicker-rule p {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+body.design-docs main.ds-layout .ds-item-kicker-rule p::after {
+  content: "";
+  height: var(--border-width);
+  width: 56px;
+  background: currentcolor;
+  opacity: 0.4;
+}
+
+body.design-docs main.ds-layout .ds-item-note p {
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+}
+
+body.design-docs main.ds-layout :is(.ds-item-mono, .ds-item-mono-lg) p {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+}
+
+body.design-docs main.ds-layout .ds-item-mono-lg .icon {
+  width: 24px;
+  height: 24px;
+}
+
+body.design-docs main.ds-layout .ds-item-button a:any-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  padding: var(--button-pad-sm);
+  border-radius: var(--button-radius);
+  border: var(--border-width) solid var(--color-line-strong);
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+body.design-docs main.ds-layout .ds-item-chip-plain p,
+body.design-docs main.ds-layout .ds-chip p {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--chip-radius);
+  padding: 3px 8px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+body.design-docs main.ds-layout .ds-item-chip-plain .icon {
+  width: 12px;
+  height: 12px;
+}
+
+/* page head (v3 page-head): kicker, title, byline, summary 16px apart */
+body.design-docs main.ds-layout :is(.ds-item-page-title, .ds-item-byline, .ds-item-summary, .ds-item-positioning) {
+  margin-top: var(--space-4);
+  max-width: 860px;
+}
+
+body.design-docs main.ds-layout :is(.ds-item-page-title, .ds-item-page-title-display) p {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-h1);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  color: var(--color-text);
+}
+
+body.design-docs main.ds-layout .ds-item-page-title-display p {
+  font-size: var(--text-display);
+  line-height: 1.05;
+}
+
+body.design-docs main.ds-layout .ds-item-byline p {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--color-text-faint);
+  line-height: 1.6;
+}
+
+body.design-docs main.ds-layout .ds-item-summary p {
+  font-size: var(--text-body-lg);
+  line-height: 1.55;
+  color: var(--color-text);
+  max-width: var(--measure);
+}
+
+body.design-docs main.ds-layout .ds-item-positioning p {
+  font-size: 20px;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+body.design-docs main.ds-layout .ds-item-period p {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+body.design-docs main.ds-layout .ds-item-lead p {
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------------------ chips (v3 chip) */
+body.design-docs main.ds-layout .ds-chip p::before {
+  content: "";
+  display: inline-block;
+  width: var(--chip-dot);
+  height: var(--chip-dot);
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+
+body.design-docs main.ds-layout .ds-chip[data-kind="plain"] p::before {
+  display: none;
+}
+
+body.design-docs main.ds-layout .ds-chip[data-topic="aem-ai"] p::before { background: var(--color-topic-aem-ai); }
+body.design-docs main.ds-layout .ds-chip[data-topic="aem"] p::before { background: var(--color-topic-aem); }
+body.design-docs main.ds-layout .ds-chip[data-topic="agents"] p::before { background: var(--color-topic-agents); }
+body.design-docs main.ds-layout .ds-chip[data-topic="work"] p::before { background: var(--color-topic-work); }
+body.design-docs main.ds-layout .ds-chip[data-status="beta"] p::before { background: var(--color-topic-work); }
+
+body.design-docs main.ds-layout .ds-chip[data-kind="format"] p::before {
+  width: 12px;
+  height: 12px;
+  border-radius: 0;
+  background: currentcolor;
+  mask: url("../../icons/post.svg") center / contain no-repeat;
+}
+
+body.design-docs main.ds-layout .ds-chip[data-format="video"] p::before { mask-image: url("../../icons/video.svg"); }
+body.design-docs main.ds-layout .ds-chip[data-format="article"] p::before { mask-image: url("../../icons/article.svg"); }
+
+body.design-docs main.ds-layout .ds-chip[data-pressed] p {
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+  border-color: var(--color-inverse-bg);
+}
+
+body.design-docs main.ds-layout .ds-chip[data-pressed] p::before {
+  background: var(--color-inverse-text);
+}
+
+body.design-docs main.ds-layout .ds-chip p strong {
+  font-weight: inherit;
+}
+
+/* ------------------------------------------------------------ proof list (v3 proof) */
+body.design-docs main.ds-layout > [data-demo="proof"] ul {
+  border-top: var(--border-width) solid var(--color-line-strong);
+}
+
+body.design-docs [data-demo="proof"] li {
+  display: grid;
+  grid-template-columns: var(--proof-label) minmax(0, 1fr);
+  gap: 4px 16px;
+  padding: 14px 0;
+  border-bottom: var(--border-width) solid var(--color-line);
+  align-items: baseline;
+  color: var(--color-text);
+}
+
+body.design-docs .ds-proof-label strong {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  line-height: 1.6;
+}
+
+body.design-docs .ds-proof-dd {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 16px;
+  line-height: 1.4;
+  min-width: 0;
+}
+
+body.design-docs .ds-proof-dd br {
+  display: none;
+}
+
+body.design-docs .ds-proof-value a:any-link {
+  color: var(--color-text);
+  border-bottom: var(--border-width) solid var(--color-line-strong);
+}
+
+body.design-docs .ds-proof-note {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--color-text-faint);
+  line-height: 1.6;
+}
+
+@media (width <= 479px) {
+  body.design-docs [data-demo="proof"] li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+}
+
+/* ------------------------------------------------------------ embed placeholder (v3 embed) */
+body.design-docs .ds-embed {
+  max-width: 520px;
+}
+
+body.design-docs .ds-embed-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--card-radius);
+  background: var(--color-surface-raised);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: var(--space-4);
+  text-align: center;
+}
+
+body.design-docs main.ds-layout .ds-embed-frame p {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-faint);
+}
+
+body.design-docs .ds-embed-play {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: var(--border-width) solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+}
+
+body.design-docs .ds-embed-play::after {
+  content: "";
+  width: 22px;
+  height: 22px;
+  margin-left: 3px;
+  background: currentcolor;
+  mask: url("../../icons/play.svg") center / contain no-repeat;
+}
+
+body.design-docs main.ds-layout .ds-embed-caption p {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--color-text-faint);
+  line-height: 1.8;
+}
+
+/* ------------------------------------------------------------ theme control story */
+body.design-docs .ds-theme-control .theme-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--button-radius);
+  background: transparent;
+}
+
+body.design-docs .ds-theme-control .theme-control-button {
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  min-height: 34px;
+  padding: 0 11px;
+  border-radius: var(--radius-sm);
+  transition: background var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
+}
+
+body.design-docs .ds-theme-control .theme-control-button:hover {
+  color: var(--color-text);
+}
+
+body.design-docs .ds-theme-control .theme-control-button[aria-pressed="true"] {
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+  box-shadow: inset 0 0 0 var(--border-width) color-mix(in srgb, var(--color-accent) 38%, transparent);
+}
+
+/* ------------------------------------------------------------ icons (icons/<name>.svg) */
+body.design-docs main span.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  flex-shrink: 0;
+  background: currentcolor;
+  mask: var(--ds-icon) center / contain no-repeat;
+}
+
+body.design-docs main span.icon img {
+  display: none;
+}
+
+body.design-docs [data-demo="icons"] li .icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-text);
 }

@@ -10,10 +10,6 @@
   margin: 0;
 }
 
-.cta-band .cta-band-title :is(h2, h3, h4) {
-  margin: 0;
-}
-
 .cta-band .cta-band-title h2 {
   font-size: 26px;
 }
