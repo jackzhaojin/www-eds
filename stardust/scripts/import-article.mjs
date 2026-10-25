@@ -109,14 +109,20 @@ function figure(el) {
     const bar = $el.find('.bar');
     const label = bar.find('span').first();
     const link = bar.find('a').first();
-    return block(codeWraps ? 'code wrap' : 'code', [
+    const prose = $el.find('.ln').length && $el.find('.ln').length === $el.find('.ln.md').length;
+    return block(['code', codeWraps && 'wrap', prose && 'prose'].filter(Boolean).join(' '), [
       [`<p>${inline(label)}</p><p><a href="${esc(absHref(link.attr('href')))}">${inline(link)}</a></p>`],
       [`<pre><code>${esc(codeText($el.find('pre')))}</code></pre>`],
     ]);
   }
   if ($el.hasClass('board')) {
     const cap = $el.find('figcaption');
-    return block($el.hasClass('fig--native') ? 'figure board native' : 'figure board', [[`<p>${img($el.find('img'))}</p>${cap.length ? `<p>${inline(cap)}</p>` : ''}`]]);
+    const link = $el.find('img').first().parent('a');
+    const words = ['figure board', $el.hasClass('fig--native') && 'native', link.length && 'open'].filter(Boolean).join(' ');
+    const title = link.attr('title') ? ` title="${esc(link.attr('title'))}"` : '';
+    const image = img($el.find('img'));
+    const media = link.length ? `<a href="${/src="([^"]+)"/.exec(image)[1]}"${title}>${image}</a>` : image;
+    return block(words, [[`<p>${media}</p>${cap.length ? `<p>${inline(cap)}</p>` : ''}`]]);
   }
   if ($el.hasClass('bp')) return switchBlock($el);
   unsupported.push(`figure.${($el.attr('class') || '').replace(/ /g, '.')}`);

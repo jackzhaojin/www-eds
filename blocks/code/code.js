@@ -7,9 +7,11 @@
  * colored the way the kit colors them. Both are a presentation refinement of the authored
  * code block: its text, newlines included, is unchanged.
  *
- * @variants wrap
+ * @variants wrap | prose
  *   wrap - the bar's label wraps and the source link stays on one line (the source's later
  *   "quality pass" on five articles)
+ *   prose - lines of prose (a prompt log): they wrap under their text, with a hanging indent,
+ *   instead of scrolling
  */
 
 const KEYWORDS = /\b(const|let|if|return|await|async|new|try|catch|export|function|null)\b/g;

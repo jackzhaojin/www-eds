@@ -93,6 +93,13 @@
   border-left: 2px solid transparent;
 }
 
+.code.prose .ln {
+  display: block;
+  white-space: pre-wrap;
+  padding-left: 3.2em;
+  text-indent: -3.2em;
+}
+
 .code .ln::before {
   content: attr(data-n);
   display: inline-block;
