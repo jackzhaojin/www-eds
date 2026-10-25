@@ -1,0 +1,10 @@
+{
+ "entries": [
+  {
+   "check": "links",
+   "id": "broken-internal-link",
+   "path": "/cdn-cgi/l/email-protection",
+   "reason": "source-inherited: https://www.jackzhaojin.com/cdn-cgi/l/email-protection answered 404 on the source site (spec knowledge, built 2026-10-25T14:22:11); not a migration defect"
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "templates": {
+  "(root)#1": {
+   "urls": [
+    "/"
+   ]
+  },
+  "certifications#1": {
+   "urls": [
+    "/certifications/"
+   ]
+  },
+  "privacy#1": {
+   "urls": [
+    "/privacy/"
+   ]
+  },
+  "portfolio#1": {
+   "urls": [
+    "/portfolio/"
+   ]
+  },
+  "talks#1": {
+   "urls": [
+    "/talks/"
+   ]
+  },
+  "writing#2": {
+   "urls": [
+    "/writing/"
+   ]
+  },
+  "writing#1": {
+   "urls": [
+    "/writing/2025-04-13-vibe-coding-star-story-generator/",
+    "/writing/2025-05-28-aem-headless-when-frontend-teams-lead/",
+    "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/",
+    "/writing/2025-06-08-edge-cms-shift-adobe-eds/",
+    "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/",
+    "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/",
+    "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/",
+    "/writing/2025-07-11-scaling-ai-coding-delivery-methodology/",
+    "/writing/2025-07-13-three-eds-offerings/",
+    "/writing/2025-09-01-aem-caching-production-architectures/",
+    "/writing/2025-10-05-mcp-server-for-eds-da-live/",
+    "/writing/2025-07-12-aem-headless-omnichannel-architecture/",
+    "/writing/2025-10-12-da-live-mcp-across-ai-platforms/",
+    "/writing/2026-01-05-from-prompts-to-harness/",
+    "/writing/2026-01-29-playwright-stakeholder-demos/",
+    "/writing/2026-02-05-reusable-ai-development-modules/",
+    "/writing/2026-03-23-eds-hlx-admin-agentic-config/",
+    "/writing/2026-04-05-continuous-executive-agent-v2-1/",
+    "/writing/2026-05-17-adobe-eds-skills-hands-on/",
+    "/writing/2026-05-24-theming-eds-with-google-stitch/",
+    "/writing/2026-05-31-continuous-agent-second-brain/",
+    "/writing/2026-06-28-patterns-of-work/",
+    "/writing/2026-08-09-adobe-stardust-explained/",
+    "/writing/2026-07-21-four-frontier-models-one-prompt/",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+    "/writing/2026-04-12-two-ai-skills-team-enablement/",
+    "/writing/2026-08-15-anima-mesh-company-of-zero/",
+    "/writing/2026-10-10-adaptto-2026-25-talks/"
+   ]
+  }
+ }
+}

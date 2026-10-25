@@ -20,6 +20,15 @@ Dark check (decision 18; `stardust/.work/dark-sweep.mjs`, stored Dark on source 
 
 v3 eval (`stardust/scripts/v3-eval.mjs`, the v3 contrast gate): PASS on all 36 pages (34 sitemap, the design system page, 404) in stored Light, stored Dark and System on a dark OS: 9 of 9 pairs AA, no document overflow at 390 to 1920, no console errors.
 
+stardust:qa (0.36.0 `qa.mjs`, all 34 pages, template map from the spec; report `stardust/qa/report.html`): first run 49 error / 130 warn; fixed from it: og:image on home, writing, privacy and talks (the source's site-social image, plus `default-meta-image.png`), the token lab's radios carry aria-checked from the start, the patterns-of-work pillar list is presentational, the author box is named by the author (two unlabelled asides), and 2026-03-23 regained its `#guard-lab` anchor (fragment-link check over the whole site: 301 of 301 linked ids resolve). Final run: 45 error / 127 warn, every one triaged, none a migration defect:
+- noindex-on-live (34): the aem.live host's x-robots-tag before cutover;
+- sitemap-lists-fragment (2), missing-og-type (34), trailing-slash-broken (33): config (sitemap, bulk metadata, folder redirects), for Jack;
+- a11y link-in-text-block (home, R1), scrollable-region-focusable (10 pages), color-contrast (3 pages): the same counts on the source (axe 4.10.2 on both, `stardust/.work/axe-compare.mjs`);
+- missing-template-blocks (4): fleet heuristic; those articles have no figure or explainer on the source either;
+- placeholder-copy "todo": editorial code (a `kanban-column-todo` test id); broken-internal-link /ai-content: an aem.page link that answers 200;
+- broken-anchor (42): qa checks before blocks decorate; after decoration every one resolves;
+- duplicate-text, micro-paragraph-run, flattened-collection, upscaled-image: content heuristics, copy carried verbatim.
+
 Mobile Lighthouse performance (12.8.2, aem.live): 100 on home (runs 2 and 3; a cold first run 99), writing listing, the archetype article, portfolio, talks, certifications and privacy (two runs each, all 100; CLS at most 0.012). Reports in `stardust/rollout/lighthouse/` (not committed).
 
 ## Listings (stream-listings, done)
