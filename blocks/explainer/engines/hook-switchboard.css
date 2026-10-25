@@ -76,6 +76,10 @@
   overflow-wrap: anywhere;
 }
 
+.explainer.hook-switchboard .x-names {
+  display: none;
+}
+
 .explainer.hook-switchboard .sb-flag-state {
   display: none;
 }

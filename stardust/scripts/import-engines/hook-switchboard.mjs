@@ -64,6 +64,8 @@ export function convert($, el, h) {
     [`<p>${h.inline(labels.eq(0))}</p><p>${h.inline(labels.eq(1))}</p><ul>${flags}</ul>`,
       `<p>${h.inline(right.find('.lab__label').first())}</p><p>${h.esc(summary)}</p>`],
   ];
+  const group = left.find('[data-scenario]').first().closest('[role=radiogroup]').attr('aria-label');
+  if (group) rows.push([`<p>${h.esc(group)}</p>`]);
   left.find('[data-scenario]').each((_, b) => {
     const steps = STEPS[$(b).attr('data-scenario')];
     if (steps) rows.push([`<p>${h.inline(b)}</p>`, `<ol>${steps(h).join('')}</ol>`]);

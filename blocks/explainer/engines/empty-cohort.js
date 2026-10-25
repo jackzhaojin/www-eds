@@ -17,11 +17,13 @@
  * - one row per code version, in chip order: the chip label | the code block | the log lines
  *   when the write is rejected | the log lines when it passes. A version whose code uses || is the
  *   fixed one; lines that differ between versions are highlighted;
+ * - the chips' names: an optional single-cell row before the env rows and one before the code
+ *   rows (each radio group's accessible name, hidden through its wrapper);
  * - the caption: the last single-cell row.
  *
  * @ew-exempt the first values of the env, process.env, cohortFromEnv and metadata.cohort trace
  *   items are derived (rewritten for each pick); the env lines are hidden data (they feed the
- *   trace, hidden through the .eb-lines wrapper)
+ *   trace, hidden through the .eb-lines wrapper); the chips' names are hidden (assistive tech)
  */
 
 /** Radio behaviour for chip hosts: click, Enter or Space picks; arrows move and pick. */
@@ -83,6 +85,20 @@ export default async function engine(block, { slot, rows, plainLinks }) {
   const multi = all.filter((r) => r.length > 1);
   const barRow = singles[0];
   const capRow = singles.length > 1 ? singles[singles.length - 1] : null;
+  // A single-cell row between the bar and the caption names the chips of the rows after it.
+  const names = [];
+  const nameOf = new Map();
+  let groupCell = null;
+  all.forEach((r) => {
+    if (r.length === 1 && r !== barRow && r !== capRow) {
+      [groupCell] = r;
+      names.push(...groupCell.children);
+    } else if (r.length > 1) nameOf.set(r, groupCell);
+  });
+  const groupName = (list) => {
+    const cell = list.length && nameOf.get(list[0]);
+    return cell ? cell.textContent.trim() : '';
+  };
   const panel = multi.find((r) => r[1].querySelector('ol'));
   const versions = multi.filter((r) => r !== panel && r[1].querySelector('pre'));
   const envs = multi.filter((r) => r !== panel && !versions.includes(r));
@@ -99,8 +115,8 @@ export default async function engine(block, { slot, rows, plainLinks }) {
   frame.append(slot('lab__grid', [left, right]));
 
   const leftLabels = panel ? [...panel[0].children] : [];
-  const envChips = chipGroup(slot, envs, leftLabels[0] && leftLabels[0].textContent.trim());
-  const codeChips = chipGroup(slot, versions, leftLabels[1] && leftLabels[1].textContent.trim());
+  const envChips = chipGroup(slot, envs, groupName(envs));
+  const codeChips = chipGroup(slot, versions, groupName(versions));
 
   // Code versions: the code blocks stack, one shown.
   const codeTexts = versions.map(([, cell]) => cell.querySelector('pre').textContent.split('\n'));
@@ -159,6 +175,7 @@ export default async function engine(block, { slot, rows, plainLinks }) {
   verdict.append(headBad, headOk, ...versionParts.flatMap((v) => [v.bad, v.ok]));
   right.append(verdict);
   if (capRow) frame.append(slot('x-caption', [...capRow[0].children]));
+  if (names.length) frame.append(slot('x-names', names));
   const lines = envs.map(([, cell]) => cell.textContent.trim());
   // The env lines feed the trace; they stay in the block, hidden through their wrapper.
   frame.append(slot('eb-lines', envs.flatMap(([, cell]) => [...cell.children])));

@@ -16,10 +16,12 @@
  *   (italic tag, note). A hook step without that second line is not called in that situation
  *   (muted, not counted). Any other step with a second line shows it when the hook step before
  *   it did not run;
+ * - the chips' name: an optional single-cell row before the situation rows (the radio group's
+ *   accessible name, hidden through its wrapper);
  * - the caption: the last single-cell row.
  *
  * @ew-exempt the summary's counts are derived (rewritten for each pass); the word "off" in a flag
- *   item is hidden config (the flag's starting state)
+ *   item is hidden config (the flag's starting state); the chips' name is hidden (assistive tech)
  */
 
 const HOOK = /^Hook ([A-Z])\b/;
@@ -84,6 +86,16 @@ export default async function engine(block, { slot, rows, plainLinks }) {
   const pairs = all.filter((r) => r.length > 1);
   const barRow = singles[0];
   const capRow = singles.length > 1 ? singles[singles.length - 1] : null;
+  // A single-cell row between the bar and the caption names the chips of the rows after it.
+  const names = [];
+  const nameOf = new Map();
+  let groupCell = null;
+  all.forEach((r) => {
+    if (r.length === 1 && r !== barRow && r !== capRow) {
+      [groupCell] = r;
+      names.push(...groupCell.children);
+    } else if (r.length > 1) nameOf.set(r, groupCell);
+  });
   const panel = pairs.find((r) => !r[1].querySelector('ol'));
   const situations = pairs.filter((r) => r !== panel && r[1].querySelector('ol'));
 
@@ -106,6 +118,8 @@ export default async function engine(block, { slot, rows, plainLinks }) {
   });
   const chips = slot('chips', hosts);
   chips.setAttribute('role', 'radiogroup');
+  const groupName = situations.length && nameOf.get(situations[0]);
+  if (groupName) chips.setAttribute('aria-label', groupName.textContent.trim());
 
   // Flags: a checkbox per hook, the item's content in its label.
   const flags = {};
@@ -134,10 +148,7 @@ export default async function engine(block, { slot, rows, plainLinks }) {
       } else {
         left.append(slot('lab__label', [el]));
         labels += 1;
-        if (labels === 1) {
-          chips.setAttribute('aria-label', el.textContent.trim());
-          left.append(chips);
-        }
+        if (labels === 1) left.append(chips);
       }
     });
     const paras = [...r.children];
@@ -160,6 +171,7 @@ export default async function engine(block, { slot, rows, plainLinks }) {
     right.append(sum);
   }
   if (capRow) frame.append(slot('x-caption', [...capRow[0].children]));
+  if (names.length) frame.append(slot('x-names', names));
   block.replaceChildren(frame);
 
   let current = 0;

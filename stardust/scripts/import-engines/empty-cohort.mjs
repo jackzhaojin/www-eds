@@ -48,10 +48,16 @@ export function convert($, el, h) {
     [`<p>${h.inline(bar.find('span').first())}</p><p><a href="${h.esc(h.absHref(bar.find('a').attr('href')))}">${h.inline(bar.find('a'))}</a></p>`],
     [labels, `<p>${h.inline(right.find('.lab__label').first())}</p><ol>${trace}</ol><p>${h.esc(rejected)}</p><p>${h.esc('The write passes validation and goes to mem0.')}</p>`],
   ];
+  const named = (sel) => {
+    const group = left.find(sel).first().closest('[role=radiogroup]').attr('aria-label');
+    if (group) rows.push([`<p>${h.esc(group)}</p>`]);
+  };
+  named('[data-env]');
   left.find('[data-env]').each((_, b) => {
     const line = ENV[$(b).attr('data-env')];
     if (line) rows.push([`<p>${h.inline(b)}</p>`, `<p><code>${h.esc(line)}</code></p>`]);
   });
+  named('[data-fix]');
   left.find('[data-fix]').each((_, b) => {
     const v = $(b).attr('data-fix');
     if (!CODE[v]) return;

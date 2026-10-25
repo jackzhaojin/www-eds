@@ -24,6 +24,10 @@
   font-variant-ligatures: none;
 }
 
+.explainer.empty-cohort .x-names {
+  display: none;
+}
+
 .explainer.empty-cohort .eb-lines {
   display: none;
 }
