@@ -6,3 +6,10 @@ package.json
 package-lock.json
 test/*
 sync-block-collection.sh
+stardust/
+content/
+design-system/
+edge/
+DESIGN.json
+.playwright-cli/
+.playwright-mcp/

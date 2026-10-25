@@ -1,27 +1,52 @@
-.cards > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* Cards (list): css/site.css .home-work-links. */
+.cards.list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-top: 48px;
 }
 
-.cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+.cards.list .cards-card {
+  display: block;
+  border-top: 1px solid var(--color-line-strong);
+  padding: 24px 0;
 }
 
-.cards .cards-card-body {
-  margin: 16px;
+.cards .cards-card p {
+  margin: 0;
 }
 
-.cards .cards-card-image {
-  line-height: 0;
+.cards.list .cards-card-title p {
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+  margin-bottom: 8px;
 }
 
-.cards > ul > li img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+/* The source sets the note as an inline span on the card's 16px line, so its line box is the
+   body line height, not the 14px one. */
+.cards.list .cards-card-text p {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  line-height: calc(var(--text-body) * var(--leading-body));
+}
+
+.cards a.cards-card .prosemirror-editor a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (width <= 1023px) {
+  .cards.list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width <= 760px) {
+  .cards.list {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 32px;
+  }
 }

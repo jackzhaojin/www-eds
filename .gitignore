@@ -11,3 +11,12 @@ helix-importer-ui
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
+
+# >>> stardust
+.env
+.env.*
+# <<< stardust
+
+# playwright temp output
+.playwright-cli/
+.playwright-mcp/

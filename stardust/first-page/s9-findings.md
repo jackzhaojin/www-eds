@@ -1,0 +1,15 @@
+# best-practices.md section 9 findings (2026-10-25)
+
+Source research: shallow clones of adobe/da-live, da-nx, da-universal, ew-extensions, helix-tools-website, helix-html-pipeline (2026-10-22 to 10-23) and aem.live docs. GET only, no token. Live checks on main--www-eds--jackzhaojin are noted per item.
+
+1. **Library from /design-systems/v3/.** Confirmed with caveats. The `blocks` sheet keeps any row with `name` and `path` (da-live `blocks/edit/da-library/helpers/index.js:220`); `/library/blocks` is only the docs' convention. Edit mode rewrites aem.page/live URLs to content.da.live and falls back to AEM on 404; the canvas adds `.plain.html` and goes through the `*.preview.da.live` proxy to aem.page. `library-metadata` is not hidden by the pipeline or the boilerplate; the Block Collection hides it in its own lazy-styles (`main .library-metadata { display: none; }`). Implication: register `https://content.da.live/jackzhaojin/www-eds/design-systems/v3/<block>` paths, ship the hide rule ourselves.
+2. **Quick-edit bootstrap.** Confirmed: auto-injected. The preview proxy appends the bootstrap to `scripts/scripts.js` when it has a top-level `loadPage` and no `quick-edit.js` import (da-universal `quick-edit.js:88, 255-257`, `aem-proxy.js:57-59`; "Inject Quick Edit (#224)", 2026-06-03). `/docs/ew/about` is out of date. Implication: add nothing; keep `loadPage()` and the `/scripts/scripts.js` tag.
+3. **Redirects sheet.** Confirmed: a DA sheet named `redirects` at the site root, columns `Source` and `Destination`, single default tab, preview and publish. Proven on adobe/da-live (`/redirects.json` sourced from content.da.live, `/adaptto` 301). Pipeline serves the 301 from `x-amz-meta-redirect-location`.
+4. **Push invalidation config path.** Both work: `cdn.json` with `{"prod":{...}}` or `cdn/prod.json` flat; helix-admin calls them two views of one node; tools.aem.live writes `cdn/prod.json`. Keys: `host`, `type: "cloudflare"`, `plan` (free|pro|business|enterprise, default free), `zoneId`, `apiToken`; optional `route`, `branch`.
+5. **Scheduling.** Partly: `/docs/deprecation` covers only the old `.helix` `crontab` sheet. Experience Workspace Schedule Publish is supported (built in; `helix-snapshot-scheduler-prod`), enabled by a `prepare` tab row titled `Schedule Publish` in the DA site or org config plus Register site at https://da.live/apps/scheduler. Config change, so Jack's OK first.
+6. **`ew.enabled`.** `flags` tab of the DA config (site or org), `ew.enabled` = `true`; off by default (da-nx `nx2/utils/ewFlags.js:163`). Sidekick: config service `sidekick.json`, `editUrlPattern: "https://da.live/canvas#/{{org}}/{{site}}{{pathname}}"`. The `ew-setup` tool (adobe-rnd/ew-extensions) does exactly those two writes.
+
+Live checks (unauthenticated):
+- `/index` returns 404 on aem.page and aem.live (pipeline rejects `/index` by design, `fetch-content.js:70`); `/` 200.
+- `.plain.html` carries section metadata as classes (`<div class="highlight">`), with the section-metadata table removed: server-side section metadata confirmed for this site.
+- `/redirects.json` 404 (no sheet yet).

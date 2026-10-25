@@ -37,6 +37,31 @@ if (window.trustedTypes && window.trustedTypes.createPolicy) {
   });
 }
 
+const THEME_KEY = 'jj-theme';
+const THEMES = ['light', 'dark', 'system'];
+
+/**
+ * Applies the stored Light, Dark or System choice before the body appears, so content never
+ * paints in the wrong theme. No stored choice means Light, as on the source site. System is
+ * pure CSS: no data-theme attribute lets the OS preference decide (design-system/v3/tokens.css).
+ * The jj-theme key and the data-theme / data-theme-choice attributes carry stored choices over.
+ */
+function applyStoredTheme() {
+  const root = document.documentElement;
+  root.classList.add('js');
+  root.dataset.themeDefault = 'light';
+  let choice = 'light';
+  try {
+    const stored = localStorage.getItem(THEME_KEY);
+    if (THEMES.includes(stored)) choice = stored;
+  } catch {
+    // storage blocked: keep the default
+  }
+  if (choice === 'system') root.removeAttribute('data-theme');
+  else root.dataset.theme = choice;
+  root.dataset.themeChoice = choice;
+}
+
 /**
  * load fonts.css and set a session storage flag
  */
@@ -124,7 +149,12 @@ function decorateButtons(main) {
     // require authored formatting for buttonization
     const strong = a.closest('strong');
     const em = a.closest('em');
-    if (!strong && !em) return;
+    if (!strong && !em) {
+      // a plain link alone in its paragraph is a v3 text link
+      p.classList.add('text-link-wrapper');
+      a.classList.add('text-link');
+      return;
+    }
 
     p.className = 'button-wrapper';
     a.className = 'button';
@@ -143,6 +173,21 @@ function decorateButtons(main) {
 }
 
 /**
+ * Marks a default-content wrapper that holds only a heading and one text link, ahead of a
+ * block, as a v3 section head (heading left, link right).
+ * @param {Element} main The container element
+ */
+function decorateSectionHeads(main) {
+  main.querySelectorAll('.section > .default-content-wrapper').forEach((wrapper) => {
+    if (!wrapper.nextElementSibling) return;
+    const [heading, para, ...rest] = [...wrapper.children];
+    if (rest.length || !heading || !para || !/^H[2-4]$/.test(heading.tagName)) return;
+    if (para.tagName !== 'P' || !para.classList.contains('text-link-wrapper')) return;
+    wrapper.classList.add('section-head');
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -153,6 +198,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
+  decorateSectionHeads(main);
 }
 
 /**
@@ -160,10 +206,12 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
+  applyStoredTheme();
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
+    main.id = 'main';
     decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);

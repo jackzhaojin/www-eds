@@ -1,0 +1,873 @@
+[
+ {
+  "slug": "v3",
+  "checks": [
+   {
+    "page": "(folder)",
+    "check": "file README.md",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "file index.html",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "file tokens.css",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "file tokens.json",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "file base.css",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "file components.css",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "file templates/home.html",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "file templates/post.html",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "file templates/blog.html",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "no unicode dashes in any file",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "all semantic tokens defined",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "color tokens defined for both themes",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "theme selector structure",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "color-scheme declared",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "tokens.json valid DTCG",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "all component classes styled",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "band tint uses color-mix",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "home uses five bands across three variants",
+    "pass": true,
+    "detail": "7 bands, variants ['alt', 'inverse', 'tint']"
+   },
+   {
+    "page": "(folder)",
+    "check": "post uses a non-plain band",
+    "pass": true,
+    "detail": "2 bands, variants ['alt']"
+   },
+   {
+    "page": "(folder)",
+    "check": "blog uses a non-plain band",
+    "pass": true,
+    "detail": "4 bands, variants ['alt', 'tint']"
+   },
+   {
+    "page": "(folder)",
+    "check": "reduced motion respected",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "focus-visible styled",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "no opacity-zero reveal",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "(folder)",
+    "check": "README headings in order",
+    "pass": true,
+    "detail": "[]"
+   },
+   {
+    "page": "index.html",
+    "check": "lang=en",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "theme default light",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "gtag first after viewport",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "canonical",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "robots noindex",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "pre-paint snippet verbatim",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "shared theme.js referenced",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "css order tokens>base>components",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "no external scripts except gtag",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "no tailwind cdn",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "no material symbols",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "fonts only from fonts.googleapis.com",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "skip link",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "exactly one h1",
+    "pass": true,
+    "detail": "1 h1"
+   },
+   {
+    "page": "index.html",
+    "check": "no skipped heading levels",
+    "pass": true,
+    "detail": "[]"
+   },
+   {
+    "page": "index.html",
+    "check": "wordmark is Jack Jin only",
+    "pass": true,
+    "detail": "'Jack Jin'"
+   },
+   {
+    "page": "index.html",
+    "check": "theme control present",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "no href=\"#\"",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "img alt",
+    "pass": true,
+    "detail": "0 missing"
+   },
+   {
+    "page": "index.html",
+    "check": "decorative svg aria-hidden",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "internal links resolve",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #overview",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #color",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #typography",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #spacing",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #layout",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #shape-elevation",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #motion",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #iconography",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #theming",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #components",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #patterns",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #templates",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #status",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #changelog",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-button",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-card",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-facts-table",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-band",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-divider",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-proof",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-panel-inverse",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-showcase",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-frame",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-proof-links",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-stat",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-chapter-head",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "docs section #c-timeline",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "dark story frame",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "index.html",
+    "check": "code samples escaped",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "lang=en",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "theme default light",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "gtag first after viewport",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "canonical",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "robots noindex",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "pre-paint snippet verbatim",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "shared theme.js referenced",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "css order tokens>base>components",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "no external scripts except gtag",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "no tailwind cdn",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "no material symbols",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "fonts only from fonts.googleapis.com",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "skip link",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "exactly one h1",
+    "pass": true,
+    "detail": "1 h1"
+   },
+   {
+    "page": "templates/home.html",
+    "check": "no skipped heading levels",
+    "pass": true,
+    "detail": "[]"
+   },
+   {
+    "page": "templates/home.html",
+    "check": "wordmark is Jack Jin only",
+    "pass": true,
+    "detail": "'Jack Jin'"
+   },
+   {
+    "page": "templates/home.html",
+    "check": "theme control present",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "no href=\"#\"",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "img alt",
+    "pass": true,
+    "detail": "0 missing"
+   },
+   {
+    "page": "templates/home.html",
+    "check": "decorative svg aria-hidden",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "internal links resolve",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/home.html",
+    "check": "four hub cards",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "lang=en",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "theme default light",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "gtag first after viewport",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "canonical",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "robots noindex",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "pre-paint snippet verbatim",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "shared theme.js referenced",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "css order tokens>base>components",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "no external scripts except gtag",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "no tailwind cdn",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "no material symbols",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "fonts only from fonts.googleapis.com",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "skip link",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "exactly one h1",
+    "pass": true,
+    "detail": "1 h1"
+   },
+   {
+    "page": "templates/post.html",
+    "check": "no skipped heading levels",
+    "pass": true,
+    "detail": "[]"
+   },
+   {
+    "page": "templates/post.html",
+    "check": "wordmark is Jack Jin only",
+    "pass": true,
+    "detail": "'Jack Jin'"
+   },
+   {
+    "page": "templates/post.html",
+    "check": "theme control present",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "no href=\"#\"",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "img alt",
+    "pass": true,
+    "detail": "0 missing"
+   },
+   {
+    "page": "templates/post.html",
+    "check": "decorative svg aria-hidden",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "internal links resolve",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "post has .facts",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "post has chapters",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "post has transcript",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "post has author-box",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/post.html",
+    "check": "post has embed__fallback",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "lang=en",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "theme default light",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "gtag first after viewport",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "canonical",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "robots noindex",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "pre-paint snippet verbatim",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "shared theme.js referenced",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "css order tokens>base>components",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "no external scripts except gtag",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "no tailwind cdn",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "no material symbols",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "fonts only from fonts.googleapis.com",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "skip link",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "exactly one h1",
+    "pass": true,
+    "detail": "1 h1"
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "no skipped heading levels",
+    "pass": true,
+    "detail": "[]"
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "wordmark is Jack Jin only",
+    "pass": true,
+    "detail": "'Jack Jin'"
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "theme control present",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "no href=\"#\"",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "img alt",
+    "pass": true,
+    "detail": "0 missing"
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "decorative svg aria-hidden",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "internal links resolve",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "page": "templates/blog.html",
+    "check": "39 post cards",
+    "pass": true,
+    "detail": "39"
+   }
+  ],
+  "passed": 144,
+  "total": 144
+ }
+]

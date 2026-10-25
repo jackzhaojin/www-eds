@@ -1,0 +1,26 @@
+{
+  "media/home/aem-champion-2026-2027.webp": {
+    "status": "uploaded",
+    "file": "stardust/first-page/current/assets/media/aem-champion-2026-2027.webp",
+    "size": 17046,
+    "sha256": "a0bba7720c802a53f6545a82e8bbe27a2102438d46b0222bf7fd3c4bbcb221bc",
+    "contentType": "image/webp",
+    "source": null,
+    "contentUrl": "https://content.da.live/jackzhaojin/www-eds/media/home/aem-champion-2026-2027.webp",
+    "httpStatus": 201,
+    "attempts": 1,
+    "ts": "2026-10-25T13:52:45.268Z"
+  },
+  "media/home/anima-cloud-architecture.svg": {
+    "status": "uploaded",
+    "file": "stardust/first-page/current/assets/media/anima-cloud-architecture.svg",
+    "size": 14377,
+    "sha256": "d2e4aa717c73fb21eaf8f9bc5eb16ec533aa71873fb1baf2745c46a291f1f072",
+    "contentType": "image/svg+xml",
+    "source": null,
+    "contentUrl": "https://content.da.live/jackzhaojin/www-eds/media/home/anima-cloud-architecture.svg",
+    "httpStatus": 201,
+    "attempts": 1,
+    "ts": "2026-10-25T13:52:47.139Z"
+  }
+}

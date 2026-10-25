@@ -1,91 +1,321 @@
 /*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
+ * www.jackzhaojin.com on Edge Delivery Services: design system v3.
+ * Tokens are design-system/v3/tokens.css as is (README decision 1), with one delivery-only change:
+ * each font stack names its metric-matched fallback face second. Base, bands, buttons and text
+ * links follow design-system/v3/base.css and components.css. Blocks carry their own components.
  */
 
+/* stylelint-disable -- design-system/v3/tokens.css carried as is (README decision 1) */
+/* ------------------------------------------------------------ primitives */
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  /* warm neutrals (light) */
+  --palette-warm-0: #ffffff;
+  --palette-warm-50: #f6f4f0;
+  --palette-warm-100: #f1eee9;
+  --palette-warm-150: #efece6;
+  --palette-warm-200: #e6e2db;
+  --palette-ink-900: #1a1917;
+  --palette-ink-700: #4a4744;
+  --palette-ink-500: #6f6b66;
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* night neutrals (dark) */
+  --palette-night-950: #0e0e0e;
+  --palette-night-900: #131313;
+  --palette-night-850: #1a1a19;
+  --palette-night-800: #201f1f;
+  --palette-night-700: #2a2a2a;
+  --palette-bone-100: #e8e5e3;
+  --palette-bone-300: #b2afac;
+  --palette-bone-400: #94908c;
 
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  /* lavender accent */
+  --palette-lavender-700: #4a3ba8;
+  --palette-lavender-600: #5b4bc4;
+  --palette-lavender-300: #c0b3ff;
+  --palette-lavender-200: #d6cdff;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  /* topic colors, from the portfolio diagram palette */
+  --palette-blue-600: #2f6bb3;
+  --palette-blue-300: #9db8e8;
+  --palette-red-600: #c2433d;
+  --palette-red-300: #ff9d9d;
+  --palette-gold-700: #7d5f0e;
+  --palette-gold-300: #f0cf8e;
 
-  /* nav height */
-  --nav-height: 64px;
+  /* project accents, from the portfolio's per-project palette (v2); 300 for dark, 700 for light */
+  --palette-cyan-300: #8fd8e8;
+  --palette-cyan-700: #1d6b7a;
+  --palette-amber-300: #ffc46b;
+  --palette-amber-700: #8a5a00;
+  --palette-leaf-300: #b3dba0;
+  --palette-leaf-700: #3b7628;
+  --palette-bronze-300: #d8b48f;
+  --palette-bronze-700: #7a4f2c;
+  --palette-mint-300: #9fe0c0;
+  --palette-mint-700: #1f6e52;
+  --palette-rose-300: #e8a9b8;
+  --palette-rose-700: #a63658;
+
+  /* hairlines and tints (alpha over the page background) */
+  --palette-line-warm: rgba(20, 18, 15, 0.10);
+  --palette-line-warm-strong: rgba(20, 18, 15, 0.48);
+  --palette-line-night: rgba(255, 255, 255, 0.08);
+  --palette-line-night-strong: rgba(255, 255, 255, 0.36);
+  --palette-lavender-tint-light: rgba(91, 75, 196, 0.08);
+  --palette-lavender-tint-dark: rgba(192, 179, 255, 0.10);
+
+  /* type families */
+  --font-display: "Playfair Display", playfair-display-fallback, Georgia, "Times New Roman", serif;
+  --font-body: "Inter", inter-fallback, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", jetbrains-mono-fallback, ui-monospace, Menlo, Consolas, monospace;
+
+  /* raw sizes */
+  --size-11: 11px;
+  --size-13: 13px;
+  --size-14: 14px;
+  --size-16: 16px;
+  --size-19: 19px;
+  --size-20: 20px;
+  --size-30: 30px;
+  --size-44: 44px;
+  --size-64: 64px;
 }
 
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
+/* ------------------------------------------------------------ semantic, theme independent */
+:root {
+  /* typography */
+  --text-display: clamp(2.75rem, 1.9rem + 3vw, 4rem);          /* 44 to 64 */
+  --text-h1: clamp(2rem, 1.5rem + 1.8vw, 2.75rem);              /* 32 to 44 */
+  --text-h2: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);           /* 24 to 30 */
+  --text-h3: 1.25rem;                                           /* 20 */
+  --text-body-lg: clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);   /* 17 to 19 */
+  --text-body: 1rem;                                            /* 16 */
+  --text-small: 0.875rem;                                       /* 14 */
+  --text-label: 0.6875rem;                                      /* 11 */
+  --text-mono: 0.8125rem;                                       /* 13 */
+  --leading-tight: 1.12;
+  --leading-body: 1.65;
+  --tracking-label: 0.14em;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 600;
+
+  /* spacing, 4px base */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* layout */
+  --container-max: 1280px;
+  --band-pad: clamp(var(--space-7), 8vw, var(--space-9));       /* 48 to 96 */
+  --gutter: clamp(20px, 5vw, 64px);
+  --measure: 66ch;
+  --header-height: 62px;
+  --target-min: 44px;                                           /* smallest tap target on touch */
+
+  /* shape */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+  --border-width: 1px;
+
+  /* motion */
+  --duration-fast: 120ms;
+  --duration-base: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* stacking */
+  --z-header: 100;
 }
 
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
+/* ------------------------------------------------------------ light (default) */
+:root, [data-theme="light"] {
+  --band-tint-strong: 9%;
+  --band-tint-soft: 5%;
+  --band-tint-edge: 4%;
+  color-scheme: light;
+  --color-bg: var(--palette-warm-50);
+  --color-bg-alt: var(--palette-warm-150);
+  --color-surface: var(--palette-warm-0);
+  --color-surface-raised: var(--palette-warm-100);
+  --color-text: var(--palette-ink-900);
+  --color-text-muted: var(--palette-ink-700);
+  --color-text-faint: var(--palette-ink-500);
+  --color-line: var(--palette-line-warm);
+  --color-line-strong: var(--palette-line-warm-strong);
+  --color-accent: var(--palette-lavender-600);
+  --color-accent-hover: var(--palette-lavender-700);
+  --color-on-accent: var(--palette-warm-0);
+  --color-accent-soft: var(--palette-lavender-tint-light);
+  --color-focus: var(--palette-lavender-600);
+  --color-inverse-bg: var(--palette-ink-900);
+  --color-inverse-text: var(--palette-warm-50);
+  --color-topic-aem-ai: var(--palette-lavender-600);
+  --color-topic-aem: var(--palette-blue-600);
+  --color-topic-agents: var(--palette-red-600);
+  --color-topic-work: var(--palette-gold-700);
+  --color-project-cyan: var(--palette-cyan-700);
+  --color-project-amber: var(--palette-amber-700);
+  --color-project-leaf: var(--palette-leaf-700);
+  --color-project-bronze: var(--palette-bronze-700);
+  --color-project-mint: var(--palette-mint-700);
+  --color-project-rose: var(--palette-rose-700);
+  --color-diagram-ground: var(--palette-warm-50);
+  --shadow-1: 0 1px 2px rgba(20, 18, 15, 0.04);
+  --shadow-2: 0 8px 24px rgba(20, 18, 15, 0.07);
 }
 
-@media (width >= 900px) {
-  :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
+/* ------------------------------------------------------------ dark (explicit) */
+[data-theme="dark"] {
+  --band-tint-strong: 7%;
+  --band-tint-soft: 4%;
+  --band-tint-edge: 3%;
+  color-scheme: dark;
+  --color-bg: var(--palette-night-900);
+  --color-bg-alt: var(--palette-night-950);
+  --color-surface: var(--palette-night-850);
+  --color-surface-raised: var(--palette-night-800);
+  --color-text: var(--palette-bone-100);
+  --color-text-muted: var(--palette-bone-300);
+  --color-text-faint: var(--palette-bone-400);
+  --color-line: var(--palette-line-night);
+  --color-line-strong: var(--palette-line-night-strong);
+  --color-accent: var(--palette-lavender-300);
+  --color-accent-hover: var(--palette-lavender-200);
+  --color-on-accent: var(--palette-night-900);
+  --color-accent-soft: var(--palette-lavender-tint-dark);
+  --color-focus: var(--palette-lavender-300);
+  --color-inverse-bg: var(--palette-bone-100);
+  --color-inverse-text: var(--palette-night-900);
+  --color-topic-aem-ai: var(--palette-lavender-300);
+  --color-topic-aem: var(--palette-blue-300);
+  --color-topic-agents: var(--palette-red-300);
+  --color-topic-work: var(--palette-gold-300);
+  --color-project-cyan: var(--palette-cyan-300);
+  --color-project-amber: var(--palette-amber-300);
+  --color-project-leaf: var(--palette-leaf-300);
+  --color-project-bronze: var(--palette-bronze-300);
+  --color-project-mint: var(--palette-mint-300);
+  --color-project-rose: var(--palette-rose-300);
+  --color-diagram-ground: var(--palette-warm-50);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.30);
+  --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.40);
+}
 
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+/* ------------------------------------------------------------ dark (system choice, OS prefers dark) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    --band-tint-strong: 7%;
+    --band-tint-soft: 4%;
+    --band-tint-edge: 3%;
+    color-scheme: dark;
+    --color-bg: var(--palette-night-900);
+    --color-bg-alt: var(--palette-night-950);
+    --color-surface: var(--palette-night-850);
+    --color-surface-raised: var(--palette-night-800);
+    --color-text: var(--palette-bone-100);
+    --color-text-muted: var(--palette-bone-300);
+    --color-text-faint: var(--palette-bone-400);
+    --color-line: var(--palette-line-night);
+    --color-line-strong: var(--palette-line-night-strong);
+    --color-accent: var(--palette-lavender-300);
+    --color-accent-hover: var(--palette-lavender-200);
+    --color-on-accent: var(--palette-night-900);
+    --color-accent-soft: var(--palette-lavender-tint-dark);
+    --color-focus: var(--palette-lavender-300);
+    --color-inverse-bg: var(--palette-bone-100);
+    --color-inverse-text: var(--palette-night-900);
+    --color-topic-aem-ai: var(--palette-lavender-300);
+    --color-topic-aem: var(--palette-blue-300);
+    --color-topic-agents: var(--palette-red-300);
+    --color-topic-work: var(--palette-gold-300);
+    --color-project-cyan: var(--palette-cyan-300);
+    --color-project-amber: var(--palette-amber-300);
+    --color-project-leaf: var(--palette-leaf-300);
+    --color-project-bronze: var(--palette-bronze-300);
+    --color-project-mint: var(--palette-mint-300);
+    --color-project-rose: var(--palette-rose-300);
+    --color-diagram-ground: var(--palette-warm-50);
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.30);
+    --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.40);
   }
 }
 
-body {
-  display: none;
-  margin: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
-  line-height: 1.6;
+/* ------------------------------------------------------------ component tokens (components.css :root) */
+:root {
+  --button-radius: var(--radius-md);
+  --button-pad: 12px 20px;
+  --button-pad-sm: 8px 14px;
+  --card-radius: var(--radius-lg);
+  --card-pad: 22px;
+  --chip-radius: var(--radius-sm);
+  --chip-dot: 7px;
+  --panel-pad: 26px;
+  --proof-label: 104px;
+}
+/* stylelint-enable */
+
+/* ------------------------------------------------------------ metric-matched fallback faces
+   Measured in Chromium against the self-hosted woff2 (stardust/.work/fontmetrics.mjs), so the
+   swap after LCP (styles/fonts.css) moves nothing. Delivery only: the look does not change. */
+@font-face {
+  font-family: inter-fallback;
+  size-adjust: 106.4%;
+  ascent-override: 91.16%;
+  descent-override: 22.56%;
+  line-gap-override: 0%;
+  src: local('Arial');
 }
 
+@font-face {
+  font-family: playfair-display-fallback;
+  size-adjust: 104.8%;
+  ascent-override: 103.05%;
+  descent-override: 23.86%;
+  line-gap-override: 0%;
+  src: local('Times New Roman');
+}
+
+@font-face {
+  font-family: playfair-display-fallback;
+  font-style: italic;
+  size-adjust: 106.08%;
+  ascent-override: 101.81%;
+  descent-override: 23.57%;
+  line-gap-override: 0%;
+  src: local('Times New Roman Italic'), local('Times New Roman');
+}
+
+@font-face {
+  font-family: jetbrains-mono-fallback;
+  size-adjust: 99.98%;
+  ascent-override: 102.02%;
+  descent-override: 30%;
+  line-gap-override: 0%;
+  src: local('Courier New');
+}
+
+/* ------------------------------------------------------------ boilerplate structural layer
+   The body stays hidden until scripts.js has applied the stored theme and decorated main. */
 body.appear {
-  display: block;
+  display: flex;
 }
 
-header {
-  height: var(--nav-height);
+body > header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  min-height: calc(var(--header-height) + var(--border-width));
+  background: var(--color-bg);
+  border-bottom: var(--border-width) solid var(--color-line);
 }
 
 header .header,
@@ -98,228 +328,514 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
+/* ------------------------------------------------------------ v3 base (design-system/v3/base.css) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  background: var(--color-bg);
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--color-line-strong) var(--color-bg);
+}
+
+body {
+  display: none;
+  flex-direction: column;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-weight: var(--weight-regular);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: clip;
+  caret-color: var(--color-accent);
+}
+
+main {
+  flex: 1;
+}
+
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+  display: block;
+}
+
+img {
+  height: auto;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+ul,
+ol {
+  padding-left: 1.25em;
+}
+
+[id] {
+  scroll-margin-top: 90px;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
-  font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
-  scroll-margin: 40px;
+h4 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+  text-wrap: pretty;
+  letter-spacing: -0.01em;
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
+h1 {
+  font-size: var(--text-h1);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
 
-p,
-dl,
-ol,
-ul,
-pre,
-blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+h2 {
+  font-size: var(--text-h2);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: var(--text-h3);
+  line-height: 1.3;
+}
+
+h4 {
+  font-size: var(--text-body);
+  line-height: 1.4;
+}
+
+h1 em,
+h2 em {
+  font-style: italic;
+  font-weight: inherit;
+  color: var(--color-accent);
+}
+
+p {
+  text-wrap: pretty;
+}
+
+small {
+  font-size: var(--text-small);
 }
 
 code,
-pre {
-  font-size: var(--body-font-size-s);
+kbd,
+pre,
+samp {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+}
+
+code {
+  background: var(--color-surface-raised);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.4em;
+  color: var(--color-text);
 }
 
 pre {
-  padding: 16px;
-  border-radius: 8px;
-  background-color: var(--light-color);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
   overflow-x: auto;
-  white-space: pre;
+  line-height: 1.6;
+  color: var(--color-text-muted);
 }
 
-main > div {
-  margin: 40px 16px;
+pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
 }
 
-input,
-textarea,
-select,
-button {
-  font: inherit;
+hr {
+  border: 0;
+  border-top: var(--border-width) solid var(--color-line);
+  margin: var(--space-6) 0;
 }
 
-/* links */
-a:any-link {
-  color: var(--link-color);
+strong,
+b {
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+}
+
+time {
+  font-variant-numeric: tabular-nums;
+}
+
+a {
+  color: var(--color-accent);
   text-decoration: none;
-  overflow-wrap: break-word;
+  transition: color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard);
 }
 
 a:hover {
-  color: var(--link-hover-color);
-  text-decoration: underline;
+  color: var(--color-accent-hover);
 }
 
-/* buttons */
-p.button-wrapper {
-  margin: 12px 0;
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: calc(var(--z-header) + 1);
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+}
+
+.skip-link:focus {
+  left: var(--space-3);
+  top: var(--space-3);
+}
+
+/* ------------------------------------------------------------ links and buttons
+   A link alone in its paragraph is a v3 text link (scripts.js decorateButtons). Buttons are
+   opt-in: bold is primary (v3 btn--primary), italic is secondary, bold and italic is accent. */
+.text-link,
+a.text-link:any-link {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+  border-bottom: var(--border-width) solid var(--color-line-strong);
+  padding: 12px 0 13px;
+  margin: -12px 0 -13px;
+  line-height: 1.4;
+}
+
+a.text-link:hover {
+  color: var(--color-text);
+  border-color: var(--color-text);
+}
+
+/* Block link slots: a block moves each link paragraph into a .cta-slot wrapper. The look keys
+   off the wrapper and the authored marks, so it holds in quick edit, where the classes that
+   decoration added are gone. */
+.cta-slot p {
+  margin: 0;
+}
+
+.cta-slot a:any-link:not(.button, strong a, em a) {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+  border-bottom: var(--border-width) solid var(--color-line-strong);
+  padding: 12px 0 13px;
+  margin: -12px 0 -13px;
+  line-height: 1.4;
+}
+
+.cta-slot a:any-link:not(.button, strong a, em a):hover {
+  color: var(--color-text);
+  border-color: var(--color-text);
 }
 
 a.button:any-link,
 button.button {
-  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  max-width: 100%;
-  margin: 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font: inherit;
-  font-weight: 500;
-  line-height: 1.25;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  font-weight: var(--weight-regular);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  padding: var(--button-pad);
+  border-radius: var(--button-radius);
+  border: var(--border-width) solid var(--color-line-strong);
+  background: transparent;
+  color: var(--color-text);
+  white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  transition: color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), background var(--duration-fast) var(--ease-standard), transform var(--duration-base) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard);
 }
 
-a.button[aria-disabled="true"],
-button.button:disabled {
-  cursor: not-allowed;
-  pointer-events: none;
+a.button:hover {
+  border-color: var(--color-text);
+  color: var(--color-text);
 }
 
-a.button.primary,
-button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
+a.button.primary:any-link {
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+  border-color: var(--color-inverse-bg);
 }
 
-a.button.primary:hover,
-a.button.primary:focus-visible,
-button.button.primary:hover,
-button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
+a.button.primary:hover {
+  color: var(--color-inverse-text);
+  border-color: var(--color-inverse-bg);
+  opacity: 0.88;
+  transform: translateY(-1px);
 }
 
-a.button.primary[aria-disabled="true"],
-a.button.primary[aria-disabled="true"]:hover,
-a.button.primary[aria-disabled="true"]:focus-visible,
-button.button.primary:disabled,
-button.button.primary:disabled:hover,
-button.button.primary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+a.button.accent:any-link {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border-color: var(--color-accent);
 }
 
-a.button.secondary,
-button.button.secondary {
-  border-color: var(--text-color);
-  background-color: transparent;
-  color: var(--text-color);
+a.button.accent:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: var(--color-on-accent);
 }
 
-a.button.secondary:hover,
-a.button.secondary:focus-visible,
-button.button.secondary:hover,
-button.button.secondary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-a.button.secondary[aria-disabled="true"],
-a.button.secondary[aria-disabled="true"]:hover,
-a.button.secondary[aria-disabled="true"]:focus-visible,
-button.button.secondary:disabled,
-button.button.secondary:disabled:hover,
-button.button.secondary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-/* high-impact call-to-action */
-a.button.accent,
-button.button.accent {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
-  color: var(--background-color);
-}
-
-a.button.accent:hover,
-a.button.accent:focus-visible,
-button.button.accent:hover,
-button.button.accent:focus-visible {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
-}
-
-a.button.accent[aria-disabled="true"],
-a.button.accent[aria-disabled="true"]:hover,
-a.button.accent[aria-disabled="true"]:focus-visible,
-button.button.accent:disabled,
-button.button.accent:disabled:hover,
-button.button.accent:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-main img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-}
-
-.icon {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-}
-
-.icon img {
-  height: 100%;
-  width: 100%;
-}
-
-/* sections */
+/* ------------------------------------------------------------ sections are v3 bands
+   Section metadata style words: plain (default), alt, tint, inverse. Each wrapper inside a
+   section is one v3 container. */
 main > .section {
-  margin: 40px 0;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  border-top: var(--border-width) solid var(--color-line);
+  padding-block: var(--band-pad);
+  background: var(--color-bg);
 }
 
 main > .section > div {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  width: 100%;
 }
 
-main > .section:first-of-type {
-  margin-top: 0;
+main > .section.alt {
+  background: var(--color-bg-alt);
 }
 
-@media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
+main > .section.tint {
+  --band-accent: var(--color-accent);
+}
+
+main > .section.tint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%, color-mix(in srgb, var(--band-accent) var(--band-tint-strong), transparent), transparent 70%),
+    linear-gradient(180deg, color-mix(in srgb, var(--band-accent) var(--band-tint-soft), transparent), transparent 30%, transparent 78%, color-mix(in srgb, var(--band-accent) var(--band-tint-edge), transparent));
+}
+
+main > .section.inverse {
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+  border-top-color: transparent;
+}
+
+main > .section.inverse > div {
+  --color-bg: var(--palette-ink-900);
+  --color-bg-alt: color-mix(in srgb, var(--palette-ink-900) 94%, var(--palette-warm-50));
+  --color-surface: color-mix(in srgb, var(--palette-ink-900) 92%, var(--palette-warm-50));
+  --color-surface-raised: color-mix(in srgb, var(--palette-ink-900) 88%, var(--palette-warm-50));
+  --color-text: var(--palette-warm-50);
+  --color-text-muted: color-mix(in srgb, var(--palette-warm-50) 84%, var(--palette-ink-900));
+  --color-text-faint: color-mix(in srgb, var(--palette-warm-50) 70%, var(--palette-ink-900));
+  --color-line: color-mix(in srgb, var(--palette-warm-50) 14%, transparent);
+  --color-line-strong: color-mix(in srgb, var(--palette-warm-50) 42%, transparent);
+  --color-accent: var(--palette-lavender-300);
+  --color-accent-hover: var(--palette-lavender-200);
+  --color-on-accent: var(--palette-ink-900);
+  --color-accent-soft: color-mix(in srgb, var(--palette-lavender-300) 14%, transparent);
+  --color-focus: var(--palette-lavender-300);
+  --color-inverse-bg: var(--palette-warm-50);
+  --color-inverse-text: var(--palette-ink-900);
+}
+
+[data-theme="dark"] main > .section.inverse > div {
+  --color-bg: var(--palette-bone-100);
+  --color-bg-alt: color-mix(in srgb, var(--palette-bone-100) 94%, var(--palette-night-900));
+  --color-surface: color-mix(in srgb, var(--palette-bone-100) 92%, var(--palette-night-900));
+  --color-surface-raised: color-mix(in srgb, var(--palette-bone-100) 88%, var(--palette-night-900));
+  --color-text: var(--palette-night-900);
+  --color-text-muted: color-mix(in srgb, var(--palette-night-900) 82%, var(--palette-bone-100));
+  --color-text-faint: color-mix(in srgb, var(--palette-night-900) 72%, var(--palette-bone-100));
+  --color-line: color-mix(in srgb, var(--palette-night-900) 14%, transparent);
+  --color-line-strong: color-mix(in srgb, var(--palette-night-900) 42%, transparent);
+  --color-accent: var(--palette-lavender-700);
+  --color-accent-hover: var(--palette-lavender-600);
+  --color-on-accent: var(--palette-warm-0);
+  --color-accent-soft: color-mix(in srgb, var(--palette-lavender-700) 12%, transparent);
+  --color-focus: var(--palette-lavender-700);
+  --color-inverse-bg: var(--palette-night-900);
+  --color-inverse-text: var(--palette-bone-100);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) main > .section.inverse > div {
+    --color-bg: var(--palette-bone-100);
+    --color-bg-alt: color-mix(in srgb, var(--palette-bone-100) 94%, var(--palette-night-900));
+    --color-surface: color-mix(in srgb, var(--palette-bone-100) 92%, var(--palette-night-900));
+    --color-surface-raised: color-mix(in srgb, var(--palette-bone-100) 88%, var(--palette-night-900));
+    --color-text: var(--palette-night-900);
+    --color-text-muted: color-mix(in srgb, var(--palette-night-900) 82%, var(--palette-bone-100));
+    --color-text-faint: color-mix(in srgb, var(--palette-night-900) 72%, var(--palette-bone-100));
+    --color-line: color-mix(in srgb, var(--palette-night-900) 14%, transparent);
+    --color-line-strong: color-mix(in srgb, var(--palette-night-900) 42%, transparent);
+    --color-accent: var(--palette-lavender-700);
+    --color-accent-hover: var(--palette-lavender-600);
+    --color-on-accent: var(--palette-warm-0);
+    --color-accent-soft: color-mix(in srgb, var(--palette-lavender-700) 12%, transparent);
+    --color-focus: var(--palette-lavender-700);
+    --color-inverse-bg: var(--palette-night-900);
+    --color-inverse-text: var(--palette-bone-100);
   }
 }
 
-/* section metadata */
-main .section.light,
-main .section.highlight {
-  background-color: var(--light-color);
+@media (width <= 479px) {
+  main > .section {
+    padding-block: var(--space-7);
+  }
+}
+
+/* ------------------------------------------------------------ default content
+   The home and listing rhythm from css/site.css (.home-two, .credential-intro). Articles set
+   their own prose rhythm in the article template. */
+main .default-content-wrapper p {
+  max-width: 60ch;
+  margin: 20px 0 28px;
+}
+
+main .default-content-wrapper p.text-link-wrapper,
+main .default-content-wrapper p.button-wrapper {
   margin: 0;
-  padding: 40px 0;
+}
+
+/* A heading followed by one text link, ahead of a block: the v3 section head (scripts.js). */
+main .section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-5);
+}
+
+main .section-head :is(h2, h3, p) {
+  margin: 0;
+}
+
+/* stylelint-disable no-descending-specificity -- edit-mode repaints must follow what they repaint */
+
+/* ------------------------------------------------------------ edit-mode foundation
+   Experience Workspace quick edit re-renders authored elements without the classes decoration
+   added. These repaint links from the authored marks, so a block looks the same while edited. */
+.prosemirror-editor strong a:any-link,
+.prosemirror-editor em a:any-link {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  padding: var(--button-pad);
+  border-radius: var(--button-radius);
+  border: var(--border-width) solid var(--color-line-strong);
+  color: var(--color-text);
+  font-weight: var(--weight-regular);
+  font-style: normal;
+}
+
+.prosemirror-editor strong a:any-link {
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+  border-color: var(--color-inverse-bg);
+}
+
+a .prosemirror-editor a:any-link {
+  color: inherit;
+  text-decoration: none;
 }

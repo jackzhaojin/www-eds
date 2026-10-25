@@ -1,37 +1,163 @@
-.hero-container .hero-wrapper {
-  max-width: unset;
-  padding: 0;
+/* Hero (home): css/site.css .graphic-hero, .home-intro, .home-note on v3 page title and
+   positioning. The section clips the decorative canvas; content sits above it. */
+.section.hero-container {
+  overflow: hidden;
+}
+
+.section.hero-container > div {
+  position: relative;
+  z-index: 1;
+}
+
+.section.hero-container .hero-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .hero {
-  position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+  --color-adobe: #fa0f00; /* Adobe brand red, used only for the recognition rule */
 }
 
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
+.hero.home {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(230px, 0.7fr);
+  gap: clamp(32px, 7vw, 100px);
+  align-items: center;
 }
 
-.hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+.hero .hero-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.hero img {
-  object-fit: cover;
+.hero .hero-title :is(h1, h2, h3) {
+  flex-shrink: 0;
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.hero .hero-art-space {
+  width: clamp(130px, 19vw, 250px);
+  flex: 0 1 250px;
+  min-width: 0;
+  min-height: 140px;
+  margin-block: -16px;
+  pointer-events: none;
+}
+
+.hero .hero-positioning p {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3vw, 2.7rem);
+  line-height: 1.25;
+  margin: 24px 0;
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+.hero .hero-intro em {
+  color: var(--color-accent);
+}
+
+.hero .hero-summary p {
+  font-size: var(--text-body-lg);
+  line-height: 1.55;
+  color: var(--color-text);
+  max-width: 58ch;
+}
+
+.hero .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-top: var(--space-2);
+}
+
+.hero .hero-note {
+  border-top: 2px solid var(--color-adobe);
+  padding-top: 24px;
+}
+
+.hero .hero-note-label p {
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+}
+
+.hero .hero-note-banner p {
+  margin: 0;
+}
+
+.hero .hero-note-banner a {
+  display: block;
+  margin: 18px 0 6px;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #0a0a14;
+}
+
+.hero .hero-note-banner img {
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
-@media (width >= 900px) {
-  .hero {
-    padding: 40px 32px;
+.hero .hero-note-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 30px;
+}
+
+.hero .hero-note-list li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-line);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/* The source's li is set in the display face with the link inline and the note as a block
+   span; here the link is the block and the note flows under it, at the same line heights. */
+.hero .hero-note-list li a {
+  display: block;
+  width: fit-content;
+  margin-bottom: 3px;
+  font-family: var(--font-display);
+  font-size: 21px;
+  color: var(--color-text);
+  border-bottom: 1px solid transparent;
+}
+
+.hero .hero-note-list li a:hover {
+  color: var(--color-accent);
+  border-color: currentcolor;
+}
+
+@media (width <= 760px) {
+  .hero.home {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .hero .hero-note {
+    max-width: 100%;
+  }
+
+  .hero .hero-art-space {
+    max-width: 42%;
+    min-height: 100px;
+    margin-block: 0;
+  }
+}
+
+@media print {
+  .section.hero-container .hero-art,
+  .hero .hero-art-space {
+    display: none;
   }
 }

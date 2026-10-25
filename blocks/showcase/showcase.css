@@ -1,0 +1,81 @@
+/* Showcase (feature): css/site.css .work-feature with the v3 frame (frame--diagram). */
+.showcase.feature {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
+  gap: 48px;
+  margin-top: 36px;
+}
+
+.showcase .showcase-text,
+.showcase .showcase-media {
+  min-width: 0;
+}
+
+.showcase .showcase-title :is(h2, h3, h4) {
+  font-size: 32px;
+}
+
+.showcase .showcase-lead p,
+.showcase .showcase-body p {
+  margin: 16px 0 24px;
+}
+
+.showcase .showcase-lead p {
+  font-size: var(--text-body-lg);
+  line-height: 1.55;
+  color: var(--color-text);
+  max-width: var(--measure);
+}
+
+.showcase .frame {
+  margin: 0;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.showcase .frame.diagram {
+  max-width: 1040px;
+  margin-inline: auto;
+}
+
+.showcase .frame-media p {
+  margin: 0;
+}
+
+.showcase .frame-media a {
+  display: block;
+}
+
+.showcase .frame.diagram .frame-media :is(a, img) {
+  background: var(--color-diagram-ground);
+}
+
+.showcase .frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.showcase .frame figcaption {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--color-text-faint);
+  padding: 10px 14px;
+  border-top: var(--border-width) solid var(--color-line);
+}
+
+.showcase .frame figcaption p {
+  margin: 0;
+}
+
+@media (width <= 760px) {
+  .showcase.feature {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}

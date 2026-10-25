@@ -1,0 +1,176 @@
+{
+ "_provenance": {
+  "writtenBy": "stardust:dynamics detect",
+  "writtenAt": "2026-10-25T13:39:30.932Z",
+  "settleMs": 5000,
+  "width": 1440,
+  "urls": [
+   "https://www.jackzhaojin.com/"
+  ]
+ },
+ "pages": {
+  "/": {
+   "url": "https://www.jackzhaojin.com/",
+   "status": 200,
+   "host": "www.jackzhaojin.com",
+   "title": "Jack Jin | AEM Champion, AI Agents & Adobe Experience Manager",
+   "forms": [],
+   "controlGroups": [],
+   "triggers": [],
+   "dialogs": [],
+   "dialogCount": 0,
+   "media": [],
+   "iframes": [],
+   "mounts": [],
+   "auth": [],
+   "commerce": {
+    "cart": false,
+    "prices": 0
+   },
+   "locale": {
+    "lang": "en",
+    "hreflang": [],
+    "switcher": [
+     "https://www.linkedin.com/in/jackjin"
+    ]
+   },
+   "cms": {
+    "dataLayer": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "push"
+    ]
+   },
+   "framework": null,
+   "globals": [
+    "google_tag_manager",
+    "gtag"
+   ],
+   "clientRendered": [],
+   "listingCandidates": [
+    {
+     "cls": "container",
+     "cards": 3,
+     "sameSite": 3,
+     "hasDate": false
+    }
+   ],
+   "inlineScripts": 2,
+   "inlineFetch": false,
+   "mainText": 2134,
+   "domAddedAfterLoad": 0,
+   "hosts": {
+    "www.jackzhaojin.com": 10,
+    "static.cloudflareinsights.com": 1,
+    "fonts.googleapis.com": 1,
+    "fonts.gstatic.com": 4,
+    "www.googletagmanager.com": 1,
+    "www.google-analytics.com": 1
+   },
+   "thirdPartyHosts": [
+    "static.cloudflareinsights.com",
+    "fonts.googleapis.com",
+    "fonts.gstatic.com",
+    "www.googletagmanager.com",
+    "www.google-analytics.com"
+   ],
+   "scripts": [
+    "https://www.jackzhaojin.com/js/page-art.js?v=4-ink",
+    "https://www.jackzhaojin.com/js/site.js?v=3",
+    "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+    "https://www.googletagmanager.com/gtag/js?id=G-ZVENE6BXTJ"
+   ],
+   "firstPartyApi": [
+    {
+     "method": "POST",
+     "host": "www.jackzhaojin.com",
+     "path": "/cdn-cgi/rum",
+     "query": [],
+     "status": 204,
+     "contentType": "text/plain",
+     "example": "https://www.jackzhaojin.com/cdn-cgi/rum"
+    }
+   ],
+   "thirdPartyXhr": [
+    "POST www.google-analytics.com/g/collect"
+   ],
+   "postBodies": [
+    {
+     "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-ZVENE6BXTJ&gtm=45je6al1h1v9264040996za208zd9264040996xf1&_p=1792935571147&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=868228854.1792935571&frm=0&ngs=1&pscdl=n",
+     "body": ""
+    },
+    {
+     "url": "https://www.jackzhaojin.com/cdn-cgi/rum?",
+     "body": "{\"startTime\":1792935570983,\"pageloadId\":\"dea0d959-9f57-4107-9e40-2504f5d25f05\",\"eventType\":1,\"nt\":\"navigate\",\"location\":\"https://www.jackzhaojin.com/\",\"versions\":{\"fl\":\"2024.11.0\",\"js\":\"2026.10.1\",\"timings\":2},\"bi\":{\"be\":\"Blink\",\"bev\":\"156\",\"bv\":\"156\",\"ov\":\"26.5\"},\"memory\":{\"totalJSHeapSize\":10000000,\"usedJSHeapSize\":10000000,\"jsHeapSizeLimit\":3760000000},\"firstPaint\":332,\"firstContentfulPaint\":33"
+    }
+   ],
+   "textAtLoad": 2134,
+   "mainEmptyAtLoad": false
+  }
+ },
+ "findings": [
+  {
+   "id": "a-cms-app-settings-object-datalayer",
+   "class": "A",
+   "feature": "CMS / app settings object dataLayer",
+   "hint": "settings",
+   "evidence": [],
+   "pages": [
+    "/"
+   ]
+  },
+  {
+   "id": "i18n-locale-variants-in",
+   "class": "I18N",
+   "feature": "locale variants in",
+   "hint": "locale",
+   "evidence": [
+    "https://www.linkedin.com/in/jackjin"
+   ],
+   "pages": [
+    "/"
+   ]
+  },
+  {
+   "id": "t-unknown-third-party-host-static-cloudflareinsights-com",
+   "class": "T",
+   "feature": "unknown third-party host static.cloudflareinsights.com",
+   "hint": "inspect",
+   "evidence": [
+    "static.cloudflareinsights.com"
+   ],
+   "pages": [
+    "/"
+   ]
+  },
+  {
+   "id": "t-tag-manager-google-tag-manager",
+   "class": "T",
+   "feature": "tag manager: Google Tag Manager",
+   "role": "tag manager: Google Tag Manager",
+   "hint": "tags",
+   "evidence": [
+    "www.googletagmanager.com"
+   ],
+   "pages": [
+    "/"
+   ]
+  },
+  {
+   "id": "t-analytics-google-analytics-ads",
+   "class": "T",
+   "feature": "analytics: Google Analytics / Ads",
+   "role": "analytics: Google Analytics / Ads",
+   "hint": "tags",
+   "evidence": [
+    "www.google-analytics.com"
+   ],
+   "pages": [
+    "/"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,249 @@
+/* v3 design tokens (base: claude-fable-5-1, round 2026-09-13)
+   Three tiers, one-way dependency: primitives (palette, fonts, raw sizes) define options,
+   semantic tokens reference primitives, components consume semantic tokens only.
+   Light is the default. Dark is applied by [data-theme="dark"] or by the OS preference
+   when no data-theme attribute is present (the "system" choice). Selector structure is
+   fixed by SPEC section 4 so a nested frame can be forced to one theme. */
+
+/* ------------------------------------------------------------ primitives */
+:root {
+  /* warm neutrals (light) */
+  --palette-warm-0: #ffffff;
+  --palette-warm-50: #f6f4f0;
+  --palette-warm-100: #f1eee9;
+  --palette-warm-150: #efece6;
+  --palette-warm-200: #e6e2db;
+  --palette-ink-900: #1a1917;
+  --palette-ink-700: #4a4744;
+  --palette-ink-500: #6f6b66;
+
+  /* night neutrals (dark) */
+  --palette-night-950: #0e0e0e;
+  --palette-night-900: #131313;
+  --palette-night-850: #1a1a19;
+  --palette-night-800: #201f1f;
+  --palette-night-700: #2a2a2a;
+  --palette-bone-100: #e8e5e3;
+  --palette-bone-300: #b2afac;
+  --palette-bone-400: #94908c;
+
+  /* lavender accent */
+  --palette-lavender-700: #4a3ba8;
+  --palette-lavender-600: #5b4bc4;
+  --palette-lavender-300: #c0b3ff;
+  --palette-lavender-200: #d6cdff;
+
+  /* topic colors, from the portfolio diagram palette */
+  --palette-blue-600: #2f6bb3;
+  --palette-blue-300: #9db8e8;
+  --palette-red-600: #c2433d;
+  --palette-red-300: #ff9d9d;
+  --palette-gold-700: #7d5f0e;
+  --palette-gold-300: #f0cf8e;
+
+  /* project accents, from the portfolio's per-project palette (v2); 300 for dark, 700 for light */
+  --palette-cyan-300: #8fd8e8;
+  --palette-cyan-700: #1d6b7a;
+  --palette-amber-300: #ffc46b;
+  --palette-amber-700: #8a5a00;
+  --palette-leaf-300: #b3dba0;
+  --palette-leaf-700: #3b7628;
+  --palette-bronze-300: #d8b48f;
+  --palette-bronze-700: #7a4f2c;
+  --palette-mint-300: #9fe0c0;
+  --palette-mint-700: #1f6e52;
+  --palette-rose-300: #e8a9b8;
+  --palette-rose-700: #a63658;
+
+  /* hairlines and tints (alpha over the page background) */
+  --palette-line-warm: rgba(20, 18, 15, 0.10);
+  --palette-line-warm-strong: rgba(20, 18, 15, 0.48);
+  --palette-line-night: rgba(255, 255, 255, 0.08);
+  --palette-line-night-strong: rgba(255, 255, 255, 0.36);
+  --palette-lavender-tint-light: rgba(91, 75, 196, 0.08);
+  --palette-lavender-tint-dark: rgba(192, 179, 255, 0.10);
+
+  /* type families */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  /* raw sizes */
+  --size-11: 11px;
+  --size-13: 13px;
+  --size-14: 14px;
+  --size-16: 16px;
+  --size-19: 19px;
+  --size-20: 20px;
+  --size-30: 30px;
+  --size-44: 44px;
+  --size-64: 64px;
+}
+
+/* ------------------------------------------------------------ semantic, theme independent */
+:root {
+  /* typography */
+  --text-display: clamp(2.75rem, 1.9rem + 3vw, 4rem);          /* 44 to 64 */
+  --text-h1: clamp(2rem, 1.5rem + 1.8vw, 2.75rem);              /* 32 to 44 */
+  --text-h2: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);           /* 24 to 30 */
+  --text-h3: 1.25rem;                                           /* 20 */
+  --text-body-lg: clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);   /* 17 to 19 */
+  --text-body: 1rem;                                            /* 16 */
+  --text-small: 0.875rem;                                       /* 14 */
+  --text-label: 0.6875rem;                                      /* 11 */
+  --text-mono: 0.8125rem;                                       /* 13 */
+  --leading-tight: 1.12;
+  --leading-body: 1.65;
+  --tracking-label: 0.14em;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 600;
+
+  /* spacing, 4px base */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* layout */
+  --container-max: 1280px;
+  --band-pad: clamp(var(--space-7), 8vw, var(--space-9));       /* 48 to 96 */
+  --gutter: clamp(20px, 5vw, 64px);
+  --measure: 66ch;
+  --header-height: 62px;
+  --target-min: 44px;                                           /* smallest tap target on touch */
+
+  /* shape */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+  --border-width: 1px;
+
+  /* motion */
+  --duration-fast: 120ms;
+  --duration-base: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* stacking */
+  --z-header: 100;
+}
+
+/* ------------------------------------------------------------ light (default) */
+:root, [data-theme="light"] {
+  --band-tint-strong: 9%;
+  --band-tint-soft: 5%;
+  --band-tint-edge: 4%;
+  color-scheme: light;
+  --color-bg: var(--palette-warm-50);
+  --color-bg-alt: var(--palette-warm-150);
+  --color-surface: var(--palette-warm-0);
+  --color-surface-raised: var(--palette-warm-100);
+  --color-text: var(--palette-ink-900);
+  --color-text-muted: var(--palette-ink-700);
+  --color-text-faint: var(--palette-ink-500);
+  --color-line: var(--palette-line-warm);
+  --color-line-strong: var(--palette-line-warm-strong);
+  --color-accent: var(--palette-lavender-600);
+  --color-accent-hover: var(--palette-lavender-700);
+  --color-on-accent: var(--palette-warm-0);
+  --color-accent-soft: var(--palette-lavender-tint-light);
+  --color-focus: var(--palette-lavender-600);
+  --color-inverse-bg: var(--palette-ink-900);
+  --color-inverse-text: var(--palette-warm-50);
+  --color-topic-aem-ai: var(--palette-lavender-600);
+  --color-topic-aem: var(--palette-blue-600);
+  --color-topic-agents: var(--palette-red-600);
+  --color-topic-work: var(--palette-gold-700);
+  --color-project-cyan: var(--palette-cyan-700);
+  --color-project-amber: var(--palette-amber-700);
+  --color-project-leaf: var(--palette-leaf-700);
+  --color-project-bronze: var(--palette-bronze-700);
+  --color-project-mint: var(--palette-mint-700);
+  --color-project-rose: var(--palette-rose-700);
+  --color-diagram-ground: var(--palette-warm-50);
+  --shadow-1: 0 1px 2px rgba(20, 18, 15, 0.04);
+  --shadow-2: 0 8px 24px rgba(20, 18, 15, 0.07);
+}
+
+/* ------------------------------------------------------------ dark (explicit) */
+[data-theme="dark"] {
+  --band-tint-strong: 7%;
+  --band-tint-soft: 4%;
+  --band-tint-edge: 3%;
+  color-scheme: dark;
+  --color-bg: var(--palette-night-900);
+  --color-bg-alt: var(--palette-night-950);
+  --color-surface: var(--palette-night-850);
+  --color-surface-raised: var(--palette-night-800);
+  --color-text: var(--palette-bone-100);
+  --color-text-muted: var(--palette-bone-300);
+  --color-text-faint: var(--palette-bone-400);
+  --color-line: var(--palette-line-night);
+  --color-line-strong: var(--palette-line-night-strong);
+  --color-accent: var(--palette-lavender-300);
+  --color-accent-hover: var(--palette-lavender-200);
+  --color-on-accent: var(--palette-night-900);
+  --color-accent-soft: var(--palette-lavender-tint-dark);
+  --color-focus: var(--palette-lavender-300);
+  --color-inverse-bg: var(--palette-bone-100);
+  --color-inverse-text: var(--palette-night-900);
+  --color-topic-aem-ai: var(--palette-lavender-300);
+  --color-topic-aem: var(--palette-blue-300);
+  --color-topic-agents: var(--palette-red-300);
+  --color-topic-work: var(--palette-gold-300);
+  --color-project-cyan: var(--palette-cyan-300);
+  --color-project-amber: var(--palette-amber-300);
+  --color-project-leaf: var(--palette-leaf-300);
+  --color-project-bronze: var(--palette-bronze-300);
+  --color-project-mint: var(--palette-mint-300);
+  --color-project-rose: var(--palette-rose-300);
+  --color-diagram-ground: var(--palette-warm-50);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.30);
+  --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.40);
+}
+
+/* ------------------------------------------------------------ dark (system choice, OS prefers dark) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    --band-tint-strong: 7%;
+    --band-tint-soft: 4%;
+    --band-tint-edge: 3%;
+    color-scheme: dark;
+    --color-bg: var(--palette-night-900);
+    --color-bg-alt: var(--palette-night-950);
+    --color-surface: var(--palette-night-850);
+    --color-surface-raised: var(--palette-night-800);
+    --color-text: var(--palette-bone-100);
+    --color-text-muted: var(--palette-bone-300);
+    --color-text-faint: var(--palette-bone-400);
+    --color-line: var(--palette-line-night);
+    --color-line-strong: var(--palette-line-night-strong);
+    --color-accent: var(--palette-lavender-300);
+    --color-accent-hover: var(--palette-lavender-200);
+    --color-on-accent: var(--palette-night-900);
+    --color-accent-soft: var(--palette-lavender-tint-dark);
+    --color-focus: var(--palette-lavender-300);
+    --color-inverse-bg: var(--palette-bone-100);
+    --color-inverse-text: var(--palette-night-900);
+    --color-topic-aem-ai: var(--palette-lavender-300);
+    --color-topic-aem: var(--palette-blue-300);
+    --color-topic-agents: var(--palette-red-300);
+    --color-topic-work: var(--palette-gold-300);
+    --color-project-cyan: var(--palette-cyan-300);
+    --color-project-amber: var(--palette-amber-300);
+    --color-project-leaf: var(--palette-leaf-300);
+    --color-project-bronze: var(--palette-bronze-300);
+    --color-project-mint: var(--palette-mint-300);
+    --color-project-rose: var(--palette-rose-300);
+    --color-diagram-ground: var(--palette-warm-50);
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.30);
+    --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.40);
+  }
+}
