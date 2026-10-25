@@ -92,6 +92,12 @@
   transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@media (width <= 640px) {
+  .compare.touch .compare-tab {
+    min-height: 44px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .compare.is-live .compare-pane {
     transition: none;

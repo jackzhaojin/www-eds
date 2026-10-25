@@ -47,6 +47,11 @@
   margin-inline: auto;
 }
 
+.figure.native img {
+  width: auto;
+  max-width: min(100%, 690px);
+}
+
 .figure .figure-open {
   display: block;
   border-radius: 12px;

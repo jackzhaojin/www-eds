@@ -71,6 +71,7 @@ const srcCss = (() => {
 })();
 const codeWraps = /\.code \.bar > a\s*\{[^}]*white-space:\s*nowrap/.test(srcCss);
 const tableNowrap = /td:last-child[^{]*\{[^}]*white-space:\s*nowrap/.test(srcCss);
+const compareTouch = /\.cmp__tabs button\s*\{[^}]*min-height:\s*44px/.test(srcCss);
 const shotSlim = /\.shot--narrow\s*\{\s*max-width:\s*460px/.test(srcCss);
 
 function codeText($pre) {
@@ -115,7 +116,7 @@ function figure(el) {
   }
   if ($el.hasClass('board')) {
     const cap = $el.find('figcaption');
-    return block('figure board', [[`<p>${img($el.find('img'))}</p>${cap.length ? `<p>${inline(cap)}</p>` : ''}`]]);
+    return block($el.hasClass('fig--native') ? 'figure board native' : 'figure board', [[`<p>${img($el.find('img'))}</p>${cap.length ? `<p>${inline(cap)}</p>` : ''}`]]);
   }
   if ($el.hasClass('bp')) return switchBlock($el);
   unsupported.push(`figure.${($el.attr('class') || '').replace(/ /g, '.')}`);
@@ -130,7 +131,8 @@ function compare(el) {
     const cap = $p.find('figcaption');
     return [[`<p>${inline(tabs.eq(i))}</p>`, `<p>${img($p.find('img'))}</p>${cap.length ? `<p>${inline(cap)}</p>` : ''}`]];
   }).get();
-  return block($el.hasClass('cmp--narrow') ? 'compare narrow' : 'compare', rows);
+  const words = ['compare', $el.hasClass('cmp--narrow') && 'narrow', compareTouch && 'touch'].filter(Boolean);
+  return block(words.join(' '), rows);
 }
 
 // Code marks from the source's highlight spans, in document order.

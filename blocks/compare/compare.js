@@ -6,8 +6,9 @@
  * tabs switch them (arrow keys move between tabs). Tabs host their authored label paragraph,
  * so a tab is a focusable element with role="tab", not a <button> (EW7).
  *
- * @variants narrow
+ * @variants narrow | touch
  *   narrow - portrait screenshots, the compare kept at most 560px wide, each opens full size
+ *   touch - tabs at least 44px tall on phones (the source's later quality pass on one article)
  */
 
 /** Links a pane's picture to the delivered image at full size (derived, not authored). */

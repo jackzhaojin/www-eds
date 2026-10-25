@@ -10,7 +10,7 @@
  * on the source.
  *
  * @ew-exempt <p> video link - the embed's source link, never displayed
- * @variants board | shot | page | narrow | slim (default board)
+ * @variants board | shot | page | narrow | slim | native (default board)
  *   board - a diagram on a white ground with a hairline, as the source's boards
  *   shot - a product screenshot, the same frame, opens full size
  *   page - a photographed notebook page, at most 420px wide, opens full size
@@ -18,6 +18,7 @@
  *   its caption kept at most 520px wide, centered
  *   slim - with shot: a portrait screenshot kept at most 460px wide (one article's narrower
  *   setting; register R8 proposes one width)
+ *   native - the image at its own size, never upscaled, left-aligned
  */
 
 const VARIANTS = ['board', 'shot', 'page'];
