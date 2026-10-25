@@ -1,0 +1,706 @@
+/* Design system template: design-system/v3 components.css "docs" (docs-layout, docs-nav,
+   docs-section, component, story, do-dont, swatches, specimen, space-scale, radius-demo,
+   shadow-demo, icon-grid, grid-demo, motion-demo). The docs rules reach into stories the
+   way the source's docs-section rules do, so the stories read as they do there. */
+
+/* ------------------------------------------------------------ layout: outline + content */
+body.design-docs main.ds-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: var(--space-6) var(--gutter) var(--space-9);
+  isolation: isolate;
+}
+
+body.design-docs main.ds-layout > .section {
+  grid-column: 1;
+  min-width: 0;
+}
+
+body.design-docs main.ds-layout > .ds-frame {
+  grid-column: 1;
+  align-self: stretch;
+  position: relative;
+  min-width: 0;
+}
+
+@media (width >= 1024px) {
+  body.design-docs main.ds-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+    column-gap: var(--space-8);
+  }
+
+  body.design-docs main.ds-layout > .section,
+  body.design-docs main.ds-layout > .ds-frame {
+    grid-column: 2;
+  }
+}
+
+/* Docs sections, components and stories are not bands: the column carries them. */
+body.design-docs main.ds-layout > .section:where(.ds-outline-section, .ds-flow, .ds-story) {
+  border-top: 0;
+  padding: 0;
+  background: transparent;
+  isolation: auto;
+}
+
+body.design-docs main.ds-layout > .section:where(.ds-outline-section, .ds-flow, .ds-story) > div {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+/* The band rhythm of styles.css (main > .section > .default-content-wrapper p) does not apply
+   here; same specificity, later in the cascade, so every rule below can set its own. */
+:where(body.design-docs) main > .section > .default-content-wrapper p {
+  margin: 0;
+  max-width: none;
+}
+
+/* ------------------------------------------------------------ outline (docs-nav) */
+body.design-docs main.ds-layout > .ds-outline-section {
+  grid-column: 1;
+  grid-row: 1;
+  margin-bottom: var(--space-7);
+}
+
+body.design-docs .ds-outline ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+
+body.design-docs .ds-outline ul ul {
+  display: none;
+  padding-left: 12px;
+  border-left: var(--border-width) solid var(--color-line);
+  margin: 4px 0 8px;
+}
+
+body.design-docs .ds-outline a:any-link {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+  padding: 5px 0;
+}
+
+body.design-docs .ds-outline a:hover {
+  color: var(--color-text);
+}
+
+body.design-docs .ds-outline .ds-kicker p {
+  margin-bottom: 8px;
+}
+
+@media (width >= 1024px) {
+  body.design-docs main.ds-layout > .ds-outline-section {
+    grid-row: 1 / span var(--ds-rows, 1);
+    align-self: stretch;
+    margin-bottom: 0;
+  }
+
+  body.design-docs .ds-outline {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-5));
+    max-height: calc(100vh - var(--header-height) - var(--space-7));
+    overflow-y: auto;
+  }
+
+  body.design-docs .ds-outline ul {
+    display: block;
+  }
+
+  body.design-docs .ds-outline ul ul {
+    display: block;
+  }
+}
+
+/* ------------------------------------------------------------ kicker (docs chrome) */
+body.design-docs .ds-kicker p {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  line-height: 1.5;
+}
+
+/* ------------------------------------------------------------ docs sections and components */
+body.design-docs main.ds-layout > .ds-docs ~ .ds-docs {
+  margin-top: var(--space-7);
+  padding-top: var(--space-7);
+  border-top: var(--border-width) solid var(--color-line);
+}
+
+body.design-docs main.ds-layout > .ds-component {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: var(--border-width) dashed var(--color-line);
+}
+
+body.design-docs main.ds-layout > .section:not(.ds-outline-section) h2 {
+  margin-bottom: var(--space-3);
+}
+
+body.design-docs main.ds-layout > .section:not(.ds-outline-section) h3 {
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-2);
+}
+
+body.design-docs main.ds-layout > .section:not(.ds-outline-section) h4 {
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+body.design-docs main.ds-layout > .section:not(.ds-outline-section) li + li {
+  margin-top: 4px;
+}
+
+body.design-docs main.ds-layout > .section:not(.ds-outline-section) pre {
+  margin-top: var(--space-3);
+}
+
+body.design-docs main.ds-layout > .ds-flow > .default-content-wrapper > :is(p, ul, ol) {
+  color: var(--color-text-muted);
+  max-width: var(--measure);
+}
+
+body.design-docs main.ds-layout > .ds-flow:not(.ds-in-component) > .default-content-wrapper > p + p {
+  margin-top: var(--space-3);
+}
+
+body.design-docs main.ds-layout > .ds-in-component :is(ul, ol) {
+  color: var(--color-text-muted);
+  max-width: var(--measure);
+}
+
+/* A section ends where the next one starts: the source's adjacent margins collapse there. */
+body.design-docs main.ds-layout > .section .default-content-wrapper > :last-child {
+  margin-bottom: 0;
+}
+
+body.design-docs main.ds-layout .data-table {
+  margin-top: 0;
+}
+
+/* Page head */
+body.design-docs .ds-byline p {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+}
+
+body.design-docs .ds-summary p {
+  margin-top: var(--space-3);
+  font-size: var(--text-body-lg);
+  line-height: 1.55;
+}
+
+/* The source's docs rule (.docs-section > p) outranks .byline and .summary for color. */
+body.design-docs :is(.ds-byline, .ds-summary) p {
+  color: var(--color-text-muted);
+  max-width: var(--measure);
+}
+
+body.design-docs main.ds-layout > .ds-docs h1 ~ h2 {
+  margin-top: var(--space-6);
+}
+
+/* Component head and status chip */
+body.design-docs .ds-component-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+body.design-docs main.ds-layout > .section .ds-component-head h3 {
+  margin: 0;
+}
+
+body.design-docs .ds-status {
+  display: flex;
+}
+
+body.design-docs .ds-status p {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--chip-radius);
+  padding: 3px 8px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+body.design-docs .ds-status p::before {
+  content: "";
+  display: inline-block;
+  width: var(--chip-dot);
+  height: var(--chip-dot);
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+
+body.design-docs .ds-status[data-status="beta"] p::before {
+  background: var(--color-topic-work);
+}
+
+body.design-docs .ds-status[data-status="deprecated"] p::before {
+  background: var(--color-topic-agents);
+}
+
+/* Captions of docs tables */
+body.design-docs .ds-caption p {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  padding-bottom: 10px;
+}
+
+/* Do and don't */
+body.design-docs .ds-dodont {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+  max-width: none;
+}
+
+body.design-docs .ds-dodont-item {
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--card-radius);
+  padding: 18px 22px;
+  background: var(--color-surface);
+}
+
+body.design-docs main.ds-layout .ds-dodont-item p {
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+
+/* On the source, .do-dont p outranks .kicker, so the label reads at 15px. */
+body.design-docs main.ds-layout .ds-dodont .ds-kicker p {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+body.design-docs main.ds-layout .ds-do .ds-kicker p {
+  color: var(--color-topic-work);
+}
+
+body.design-docs main.ds-layout .ds-dont .ds-kicker p {
+  color: var(--color-topic-agents);
+}
+
+@media (width >= 768px) {
+  body.design-docs .ds-dodont {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ------------------------------------------------------------ story frames */
+body.design-docs .ds-frame {
+  margin-top: var(--space-3);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--card-radius);
+  background: var(--color-bg);
+}
+
+body.design-docs .ds-frame[data-theme] {
+  border-color: var(--color-line-strong);
+}
+
+/* A frame shows with its story: sections load in turn and stay hidden until then. */
+body.design-docs .ds-frame:has(+ .section:not([data-section-status="loaded"])) {
+  display: none;
+}
+
+body.design-docs main.ds-layout > .section.ds-story {
+  margin-top: var(--space-3);
+  padding: calc(var(--space-5) + var(--border-width));
+  color: var(--color-text);
+  overflow-x: auto;
+}
+
+body.design-docs main.ds-layout > .section.ds-story:not(.ds-story-last) {
+  padding-bottom: 0;
+}
+
+/* A band inside a story frame. A forced theme sets the tokens on the section itself; the color
+   it inherits was computed at the body, so it is set again here. */
+body.design-docs main.ds-layout > .section.ds-story-part {
+  color: var(--color-text);
+  width: auto;
+  margin-inline: calc(var(--space-5) + var(--border-width));
+  margin-top: var(--space-2);
+}
+
+/* Workaround until styles.css also matches a section-level theme: styles.css sets the dark
+   inverse tokens under [data-theme="dark"] main > .section.inverse > div, an ancestor match, so
+   a band forced dark by its own section metadata got the light inverse set (light text on the
+   light ground). Same values as styles.css. */
+body.design-docs main.ds-layout > .section.inverse[data-theme="dark"] > div {
+  --color-bg: var(--palette-bone-100);
+  --color-bg-alt: color-mix(in srgb, var(--palette-bone-100) 94%, var(--palette-night-900));
+  --color-surface: color-mix(in srgb, var(--palette-bone-100) 92%, var(--palette-night-900));
+  --color-surface-raised: color-mix(in srgb, var(--palette-bone-100) 88%, var(--palette-night-900));
+  --color-text: var(--palette-night-900);
+  --color-text-muted: color-mix(in srgb, var(--palette-night-900) 82%, var(--palette-bone-100));
+  --color-text-faint: color-mix(in srgb, var(--palette-night-900) 72%, var(--palette-bone-100));
+  --color-line: color-mix(in srgb, var(--palette-night-900) 14%, transparent);
+  --color-line-strong: color-mix(in srgb, var(--palette-night-900) 42%, transparent);
+  --color-accent: var(--palette-lavender-700);
+  --color-accent-hover: var(--palette-lavender-600);
+  --color-on-accent: var(--palette-warm-0);
+  --color-accent-soft: color-mix(in srgb, var(--palette-lavender-700) 12%, transparent);
+  --color-focus: var(--palette-lavender-700);
+  --color-inverse-bg: var(--palette-night-900);
+  --color-inverse-text: var(--palette-bone-100);
+}
+
+body.design-docs main.ds-layout > .section.ds-story-part.inverse {
+  color: var(--color-inverse-text);
+}
+
+body.design-docs main.ds-layout > .ds-story + .ds-story-part {
+  margin-top: 0;
+}
+
+body.design-docs main.ds-layout > .section.ds-story-part.ds-story-last {
+  margin-bottom: calc(var(--space-5) + var(--border-width));
+}
+
+body.design-docs main.ds-layout .ds-story-label p {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  margin-bottom: 14px;
+}
+
+body.design-docs main.ds-layout > .ds-story > .default-content-wrapper > :is(p, ul, ol) {
+  color: inherit;
+}
+
+/* Two blocks in one story stack with the v3 stack gap, as the source's div.stack does. */
+body.design-docs main.ds-layout > .ds-story > div:not(.default-content-wrapper) + div:not(.default-content-wrapper) {
+  margin-top: var(--space-4);
+}
+
+/* story--row: a wrapping row of items under the label */
+body.design-docs main.ds-layout > .ds-story.row > .default-content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+body.design-docs main.ds-layout > .ds-story.row .ds-story-label {
+  flex-basis: 100%;
+}
+
+body.design-docs main.ds-layout > .ds-story.row .ds-story-label p {
+  margin-bottom: 0;
+}
+
+body.design-docs main.ds-layout > .ds-story.row .cta-slot {
+  display: contents;
+}
+
+/* live chrome inside a story: static, no page gutter */
+body.design-docs .ds-story .skip-link {
+  position: static;
+  display: inline-block;
+}
+
+body.design-docs .ds-story .header .site-header,
+body.design-docs .ds-story .footer .footer-row {
+  padding-inline: 0;
+}
+
+/* ------------------------------------------------------------ demos */
+body.design-docs main.ds-layout > .section[data-demo] .default-content-wrapper :is(ul, ol) {
+  list-style: none;
+  padding: 0;
+  max-width: none;
+}
+
+body.design-docs main.ds-layout > .section[data-demo] .default-content-wrapper li + li {
+  margin-top: 0;
+}
+
+/* swatches */
+body.design-docs main.ds-layout > [data-demo="swatches"] ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+body.design-docs [data-demo="swatches"] li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+body.design-docs [data-demo="swatches"] li br {
+  display: none;
+}
+
+body.design-docs .ds-swatch-chip {
+  display: block;
+  height: 52px;
+  border-radius: var(--button-radius);
+  border: var(--border-width) solid var(--color-line-strong);
+}
+
+body.design-docs :is(.ds-swatch-name, .ds-swatch-value) {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+body.design-docs .ds-swatch-name {
+  color: var(--color-text-muted);
+}
+
+body.design-docs .ds-swatch-value {
+  color: var(--color-text-faint);
+}
+
+/* type specimens */
+body.design-docs .ds-specimen {
+  border-top: var(--border-width) solid var(--color-line);
+  padding: var(--space-4) 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px 32px;
+}
+
+body.design-docs main.ds-layout .ds-specimen-meta p {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--color-text-faint);
+  line-height: 1.6;
+}
+
+body.design-docs .ds-specimen-meta strong {
+  display: block;
+  color: var(--color-text);
+  font-weight: var(--weight-medium);
+}
+
+body.design-docs main.ds-layout .ds-specimen-sample p {
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+  font-size: var(--ds-size, var(--text-body));
+  line-height: var(--ds-leading, var(--leading-body));
+  font-weight: var(--ds-weight, var(--weight-regular));
+}
+
+body.design-docs main.ds-layout .ds-specimen-sample.display p {
+  font-family: var(--font-display);
+}
+
+body.design-docs main.ds-layout .ds-specimen-sample.mono p {
+  font-family: var(--font-mono);
+}
+
+body.design-docs main.ds-layout .ds-specimen-sample.muted p {
+  color: var(--color-text-muted);
+}
+
+body.design-docs main.ds-layout .ds-specimen-sample.label p {
+  font-family: var(--font-mono);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+@media (width >= 768px) {
+  body.design-docs .ds-specimen {
+    grid-template-columns: 200px minmax(0, 1fr);
+    align-items: baseline;
+  }
+}
+
+/* spacing scale */
+body.design-docs main.ds-layout > [data-demo="space"] ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: var(--space-3);
+}
+
+body.design-docs [data-demo="space"] li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+body.design-docs .ds-space-label {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--color-text-faint);
+  flex: 0 0 120px;
+}
+
+body.design-docs [data-demo="space"] li i {
+  display: block;
+  height: 14px;
+  max-width: 60vw;
+  background: var(--color-accent);
+  opacity: 0.85;
+  border-radius: 2px;
+}
+
+/* radii and shadows */
+body.design-docs main.ds-layout > :is([data-demo="radius"], [data-demo="shadow"]) ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+body.design-docs :is([data-demo="radius"], [data-demo="shadow"]) li {
+  width: 120px;
+  height: 80px;
+  border: var(--border-width) solid var(--color-line-strong);
+  background: var(--color-surface);
+  display: flex;
+  align-items: flex-end;
+  padding: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-faint);
+}
+
+body.design-docs [data-demo="shadow"] li {
+  border-radius: var(--radius-lg);
+}
+
+/* motion */
+body.design-docs .ds-motion {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: var(--space-3);
+}
+
+body.design-docs main.ds-layout .ds-motion p {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  color: var(--color-text-faint);
+}
+
+body.design-docs .ds-motion i {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background: var(--color-accent);
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+
+body.design-docs .ds-motion:hover i {
+  transform: translateX(48px);
+}
+
+/* icon grid */
+body.design-docs main.ds-layout > [data-demo="icons"] ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+body.design-docs [data-demo="icons"] li {
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--button-radius);
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-surface);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-faint);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* grid demos (layout) */
+body.design-docs main.ds-layout > [data-demo^="grid-"] ul {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+body.design-docs main.ds-layout > [data-demo="grid-auto"] ul {
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+}
+
+body.design-docs [data-demo^="grid-"] li {
+  border: var(--border-width) dashed var(--color-line-strong);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-faint);
+  text-align: center;
+  background: var(--color-surface);
+}
+
+@media (width >= 480px) {
+  body.design-docs main.ds-layout > [data-demo="grid-4"] ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 768px) {
+  body.design-docs main.ds-layout > :is([data-demo="grid-2"], [data-demo="grid-3"]) ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 1024px) {
+  body.design-docs main.ds-layout > [data-demo="grid-3"] ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 1280px) {
+  body.design-docs main.ds-layout > [data-demo="grid-4"] ul {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
