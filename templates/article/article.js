@@ -171,6 +171,21 @@ function decorateQuestions(body) {
   });
 }
 
+/** Section style prompt: the first line of each plain code box is the prompt's byline. */
+function decoratePrompts(body) {
+  body.querySelectorAll('.section.prompt .default-content-wrapper pre > code').forEach((code) => {
+    const first = code.firstChild;
+    if (!first || first.nodeType !== Node.TEXT_NODE) return;
+    const at = first.data.indexOf('\n');
+    if (at < 1) return;
+    first.splitText(at + 1);
+    const by = document.createElement('span');
+    by.className = 'prompt-by';
+    first.replaceWith(by);
+    by.append(first);
+  });
+}
+
 export default function decorate(main) {
   const sections = [...main.querySelectorAll(':scope > .section')];
   if (!sections.length) return;
@@ -193,5 +208,6 @@ export default function decorate(main) {
   decorateWatch(body);
   body.querySelectorAll('h2').forEach((h2) => keepTogether(h2, 'heading-keep-together'));
   decorateQuestions(body);
+  decoratePrompts(body);
   decorateHeadingLinks(body);
 }

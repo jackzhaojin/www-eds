@@ -261,6 +261,34 @@
   }
 }
 
+/* Section style prompt: a pasted prompt in a plain code box, wrapped, its first line the
+   byline (the source's pre.prompt; one article). */
+.article .article-body .section.prompt .default-content-wrapper pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.article .article-body .section.prompt .default-content-wrapper pre .prompt-by {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--palette-bone-400);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+/* Section style commit-trail: a list of commits without bullets, the SHAs in mono (one
+   article). */
+.article .article-body .section.commit-trail .default-content-wrapper ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.article .article-body .section.commit-trail .default-content-wrapper ul a {
+  font: 500 0.9em var(--font-mono);
+}
+
 /* Page theme code-nowrap: inline code in the column's prose and lists never breaks (header names
    such as Cache-Control keep their hyphen; one article). The source's summary rule never
    matched (its summary sits outside .article-body), so the head summary is left out. */
