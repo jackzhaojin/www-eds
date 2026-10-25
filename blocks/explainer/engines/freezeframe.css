@@ -210,6 +210,16 @@
   margin: 0;
 }
 
+/* the column's inline code look (the template leaves .lab code alone) */
+.explainer.freezeframe .ff-caption code {
+  font: 500 0.86em var(--font-mono);
+  background: var(--accent-tint);
+  color: var(--color-text);
+  padding: 1px 5px;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-sm);
+}
+
 .explainer.freezeframe.is-live .ff-static {
   display: none;
 }

@@ -1,0 +1,246 @@
+/* Explainer (retry-ladder): the failure ladder (writing/2026-04-05 explainer.css, .ladder, on
+   the kit's .lab and .verdict). */
+.explainer.retry-ladder {
+  --ladder-fail: #c2433d;
+}
+
+.explainer.retry-ladder .ladder-picks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 18px 18px 0;
+}
+
+@container (min-width: 720px) {
+  .explainer.retry-ladder .ladder-picks {
+    padding: 24px 28px 0;
+  }
+}
+
+.explainer.retry-ladder .ladder-chip {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 7px 13px;
+  font-size: 13.5px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.explainer.retry-ladder .ladder-chip:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.explainer.retry-ladder .ladder-chip[aria-checked="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.explainer.retry-ladder .ladder-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explainer.retry-ladder .lab__grid {
+  align-items: start;
+}
+
+.explainer.retry-ladder .lab__label:first-child {
+  margin-top: 0;
+}
+
+.explainer.retry-ladder .ladder-count {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 6px 0 10px;
+}
+
+.explainer.retry-ladder .ladder-count b {
+  font: 600 28px/1 var(--font-mono);
+  color: var(--ink);
+}
+
+.explainer.retry-ladder .ladder-count span {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.explainer.retry-ladder .ladder-pips {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+  margin-bottom: 6px;
+}
+
+.explainer.retry-ladder .ladder-pips i {
+  display: block;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--line);
+  transition: background 0.25s var(--ease);
+}
+
+.explainer.retry-ladder .ladder-pips i[data-k="fail"] {
+  background: var(--ladder-fail);
+}
+
+.explainer.retry-ladder .ladder-pips i[data-k="diag"] {
+  background: var(--lav, #7a6bd1);
+}
+
+.explainer.retry-ladder .ladder-pips i[data-k="fix"] {
+  background: var(--differs);
+}
+
+.explainer.retry-ladder .ladder-pips i[data-k="pass"] {
+  background: var(--pass-ink);
+}
+
+.explainer.retry-ladder .ladder-legend ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  font: 500 11px/1.4 var(--font-mono);
+  color: var(--muted);
+}
+
+.explainer.retry-ladder .ladder-legend li {
+  margin: 0;
+}
+
+.explainer.retry-ladder .ladder-legend li::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  margin-right: 6px;
+}
+
+.explainer.retry-ladder .ladder-legend li:nth-child(1)::before {
+  background: var(--ladder-fail);
+}
+
+.explainer.retry-ladder .ladder-legend li:nth-child(2)::before {
+  background: var(--lav, #7a6bd1);
+}
+
+.explainer.retry-ladder .ladder-legend li:nth-child(3)::before {
+  background: var(--differs);
+}
+
+.explainer.retry-ladder .ladder-legend li:nth-child(4)::before {
+  background: var(--pass-ink);
+}
+
+.explainer.retry-ladder .verdict {
+  margin-top: 16px;
+  min-height: 0;
+}
+
+.explainer.retry-ladder .verdict p.ok {
+  color: var(--mint);
+}
+
+.explainer.retry-ladder .verdict p.no {
+  color: var(--bone);
+}
+
+.explainer.retry-ladder .ladder-log,
+.explainer.retry-ladder .ladder-static pre {
+  margin: 0;
+  padding: 12px 14px;
+  overflow: auto;
+  background: var(--night);
+  border-radius: 12px;
+  border: 0;
+  font: 400 12px/1.65 var(--font-mono);
+  font-variant-ligatures: none;
+  color: var(--bone-3);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.explainer.retry-ladder .ladder-log {
+  max-height: 340px;
+}
+
+.explainer.retry-ladder .ladder-log .a {
+  color: var(--lav);
+}
+
+.explainer.retry-ladder .ladder-log .d {
+  color: var(--bone-2);
+}
+
+.explainer.retry-ladder .ladder-log .x {
+  color: var(--rose);
+}
+
+.explainer.retry-ladder .ladder-log .ok {
+  color: var(--mint);
+}
+
+.explainer.retry-ladder .ladder-log .n {
+  color: #8f8b86;
+}
+
+.explainer.retry-ladder .ladder-static code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+
+.explainer.retry-ladder.is-live .ladder-static,
+.explainer.retry-ladder .ladder-data {
+  display: none;
+}
+
+.explainer.retry-ladder .ladder-caption {
+  padding: 0 18px 18px;
+}
+
+@container (min-width: 720px) {
+  .explainer.retry-ladder .ladder-caption {
+    padding: 0 28px 22px;
+  }
+}
+
+.explainer.retry-ladder .ladder-caption p {
+  margin: 0;
+}
+
+.explainer.retry-ladder .ladder-caption code {
+  font: 500 0.86em var(--font-mono);
+  background: var(--accent-tint);
+  color: var(--color-text);
+  padding: 1px 5px;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-sm);
+}
+
+@media (width <= 640px) {
+  .explainer.retry-ladder .ladder-pips {
+    gap: 3px;
+  }
+
+  .explainer.retry-ladder .ladder-count b {
+    font-size: 24px;
+  }
+
+  .explainer.retry-ladder .ladder-chip {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
