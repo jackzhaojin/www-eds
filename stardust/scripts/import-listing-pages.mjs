@@ -7,7 +7,7 @@
 // new site. Images point at DA media (scopes writing and certifications); the media
 // manifests for da-media-upload.mjs --manifest are written beside the work files.
 //
-// Usage: node stardust/scripts/import-engines/listing-pages.mjs <source-root> <content-dir> <work-dir>
+// Usage: node stardust/scripts/import-listing-pages.mjs <source-root> <content-dir> <work-dir>
 // Writes: <content-dir>/{writing,talks,certifications,privacy}/index.html and
 //         <work-dir>/media-writing.json, <work-dir>/media-certifications.json
 import fs from 'node:fs';
@@ -16,7 +16,7 @@ import * as cheerio from 'cheerio';
 
 const [srcRoot, contentDir, workDir] = process.argv.slice(2);
 if (!srcRoot || !contentDir || !workDir) {
-  console.error('usage: listing-pages.mjs <source-root> <content-dir> <work-dir>');
+  console.error('usage: import-listing-pages.mjs <source-root> <content-dir> <work-dir>');
   process.exit(2);
 }
 const SITE = 'https://www.jackzhaojin.com';
