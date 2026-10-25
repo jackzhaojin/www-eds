@@ -218,6 +218,9 @@ const engineDir = path.join(here, 'import-engines');
 const engines = [];
 if (fs.existsSync(engineDir)) {
   for (const f of fs.readdirSync(engineDir).filter((x) => x.endsWith('.mjs')).sort()) {
+    // Only modules with the engine contract load: a standalone script here would run on import.
+    const code = fs.readFileSync(path.join(engineDir, f), 'utf8');
+    if (!/export\s+(?:async\s+)?(?:function|const|let)\s+match\b/.test(code)) continue;
     // eslint-disable-next-line no-await-in-loop
     const mod = await import(pathToFileURL(path.join(engineDir, f)).href);
     engines.push({ name: f.replace(/\.mjs$/, ''), ...mod });
@@ -286,6 +289,11 @@ $('.article-body').children().each((_, el) => {
     flush();
     if ($el.attr('id')) currentMeta.push(['id', $el.attr('id')]);
     current.push(figure(el));
+  } else if ((tag === 'figure' || tag === 'div') && $el.attr('id')) {
+    // A link target in the column (#video, #explore) starts its own section, which keeps the id.
+    flush();
+    currentMeta.push(['id', $el.attr('id')]);
+    current.push(tag === 'figure' && $el.hasClass('video') ? figure(el) : convert(el));
   } else if (tag === 'p' && $el.hasClass('article-facts')) {
     current.push(block('fine-print', [[`<p>${inline(el)}</p>`]]));
   } else if (tag === 'p' && $el.hasClass('watch')) {

@@ -65,7 +65,8 @@ function track(details, list, bar) {
     if (!rail || rail.scrollHeight <= rail.clientHeight) return;
     const b = a.getBoundingClientRect();
     const r = rail.getBoundingClientRect();
-    if (b.top < r.top + 48 || b.bottom > r.bottom - 48) rail.scrollTop += b.top - r.top - r.height / 3;
+    const near = b.top < r.top + 48 || b.bottom > r.bottom - 48;
+    if (near) rail.scrollTop += b.top - r.top - r.height / 3;
   };
   const current = () => {
     const line = window.innerHeight / 3;
