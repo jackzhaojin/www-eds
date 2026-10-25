@@ -1,0 +1,47 @@
+{"ts":"2026-10-25T13:38:39Z","skill":"stardust:replica","phase":"first-page","event":"start","track":"first-page","detail":"home, gated run mode, v3 canon"}
+{"ts":"2026-10-25T13:39:57Z","skill":"stardust:extract","phase":"discovery","event":"start","track":"site-scope","detail":"prep+dynamics, sitemap 34 URLs, project-site prefixes excluded"}
+{"ts":"2026-10-25T13:52:34Z","skill":"stardust:extract","phase":"discovery","event":"end","track":"site-scope","detail":"34 sitemap URLs, 0 junk, 8 excluded prefixes absent from sitemap"}
+{"ts":"2026-10-25T13:52:34Z","skill":"stardust:extract","phase":"per-page-extraction","event":"start","track":"site-scope","detail":"crawl.mjs medium x4 --dynamics (start logged late, crawl ran 13:40)"}
+{"ts":"2026-10-25T13:52:34Z","skill":"stardust:extract","phase":"per-page-extraction","event":"end","track":"site-scope","detail":"34/34 live, 0 failed; 3 recaptured at slow","artifact":"stardust/current/pages"}
+{"ts":"2026-10-25T13:52:34Z","skill":"stardust:extract","phase":"vision-verification","event":"start","track":"site-scope","detail":"subagent thumb.mjs read, 34 pages"}
+{"ts":"2026-10-25T13:52:34Z","skill":"stardust:extract","phase":"vision-verification","event":"end","track":"site-scope","detail":"31 ok, 1 recaptured (writing), 2 suspect (portfolio, patterns-of-work: native lazy imgs unfetched)","artifact":"stardust/current/_crawl-log.json"}
+{"ts":"2026-10-25T13:52:34Z","skill":"stardust:extract","phase":"brand-surface-extraction","event":"start","track":"site-scope","detail":"style-census 1440+360, 34 pages"}
+{"ts":"2026-10-25T14:00:20Z","skill":"stardust:extract","phase":"brand-surface-extraction","event":"end","track":"site-scope","detail":"census 34x2 widths; 8 palette roles, 3 families, 7 system components; cap-probe 7 archetypes (1280 shell, portfolio 1200)","artifact":"stardust/current/_brand-extraction.json"}
+{"ts":"2026-10-25T14:00:20Z","skill":"stardust:extract","phase":"seed","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:00:20Z","skill":"stardust:extract","phase":"seed","event":"end","track":"site-scope","detail":"current PRODUCT.md, DESIGN.md, DESIGN.json (18 module candidates)","artifact":"stardust/current/DESIGN.md"}
+{"ts":"2026-10-25T14:00:20Z","skill":"stardust:extract","phase":"brand-review","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:00:20Z","skill":"stardust:extract","phase":"brand-review","event":"end","track":"site-scope","detail":"7 tensions (4 mechanical, 3 agent)","artifact":"stardust/current/brand-review.html"}
+{"ts":"2026-10-25T14:00:20Z","skill":"stardust:extract","phase":"prep","event":"start","track":"site-scope","detail":"types, module candidates, slots"}
+{"ts":"2026-10-25T14:00:53Z","skill":"stardust:extract","phase":"prep","event":"end","track":"site-scope","detail":"types landing 1, listing 3, article 28, unique 1, static 1; 18 module candidates; slots on 34/34"}
+{"ts":"2026-10-25T14:00:53Z","skill":"stardust:extract","phase":"state-and-report","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:00:53Z","skill":"stardust:extract","phase":"state-and-report","event":"end","track":"site-scope","detail":"34/34 live; uncaptured first-level targets: none (no locale root captured)","artifact":"stardust/state.json","next":"stardust:spec generic S1-S10"}
+{"ts":"2026-10-25T14:01:35Z","skill":"stardust:spec","phase":"s1-inventory","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:01:43Z","skill":"stardust:spec","phase":"s1-inventory","event":"end","track":"site-scope","detail":"34 urls from sitemap, unsampled","artifact":"stardust/.work/spec/inventory/urls.txt"}
+{"ts":"2026-10-25T14:01:43Z","skill":"stardust:spec","phase":"s2-fetch","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:02:19Z","skill":"stardust:spec","phase":"s2-fetch","event":"end","track":"site-scope","detail":"34 live, 0 blocked","artifact":"stardust/.work/spec/fetch/fetch.jsonl"}
+{"ts":"2026-10-25T14:02:20Z","skill":"stardust:spec","phase":"s3-parse","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:04:54Z","skill":"stardust:spec","phase":"s3-parse","event":"end","track":"site-scope","detail":"34 pages, has_main all; 102 components; stripPrefix ^(fig|xwide)$","artifact":"stardust/.work/spec/parse/components.jsonl"}
+{"ts":"2026-10-25T14:04:54Z","skill":"stardust:spec","phase":"s4-links","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:05:12Z","skill":"stardust:spec","phase":"s4-links","event":"end","track":"site-scope","detail":"5 discovered pages: 4 out-of-scope project sites (200), /cdn-cgi/l/email-protection 404; 80 assets ok","artifact":"stardust/.work/spec/links"}
+{"ts":"2026-10-25T14:05:12Z","skill":"stardust:spec","phase":"s5-real-user","event":"start","track":"site-scope","detail":"skipped"}
+{"ts":"2026-10-25T14:05:12Z","skill":"stardust:spec","phase":"s5-real-user","event":"end","track":"site-scope","detail":"SKIPPED: no RUM domain key (rum: null in spec.config.json); traffic bands and pageviews_90d stay null"}
+{"ts":"2026-10-25T14:05:17Z","skill":"stardust:spec","phase":"s6-first","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:10:36Z","skill":"stardust:spec","phase":"s6-first","event":"end","track":"site-scope","detail":"28 pages captured (components-only pick, 2 per component)","artifact":"stardust/.work/spec/media"}
+{"ts":"2026-10-25T14:10:36Z","skill":"stardust:spec","phase":"s7-judgement","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:12:56Z","skill":"stardust:spec","phase":"s7-judgement","event":"end","track":"site-scope","detail":"spec-map: 34 pages, 0 unmapped; catalog 36 entries (33 emitted + facts, chapters, proof-links by signal)","artifact":"stardust/spec/judgement/catalog.json"}
+{"ts":"2026-10-25T14:12:56Z","skill":"stardust:spec","phase":"s8-variants","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:13:24Z","skill":"stardust:spec","phase":"s8-variants","event":"end","track":"site-scope","detail":"7 variants across 6 templates; 28 captures","artifact":"stardust/.work/spec/map/variants.json"}
+{"ts":"2026-10-25T14:13:24Z","skill":"stardust:spec","phase":"s9-implementation","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:19:06Z","skill":"stardust:replica","phase":"source-fidelity-gate","event":"start","track":"first-page","detail":"home, published origin"}
+{"ts":"2026-10-25T14:19:06Z","skill":"stardust:replica","phase":"source-fidelity-gate","event":"end","track":"first-page","detail":"home pub5: 1440 0.25% dh0 cd none; 360 1.11% dh0 cd none; chrome 100%; cap PASS; dark 0.13/0.93; LH mobile 100; EW 28/28"}
+{"ts":"2026-10-25T14:19:45Z","skill":"stardust:spec","phase":"s9-implementation","event":"end","track":"site-scope","detail":"dynamics-detect 10 reps (24 findings, 14 curated features), martech (gtag only, no CMP, no security headers), header explore; catalog, implementation, findings, search probes written","artifact":"stardust/spec/judgement/implementation.json"}
+{"ts":"2026-10-25T14:19:45Z","skill":"stardust:spec","phase":"s10-knowledge","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:21:23Z","skill":"stardust:spec","phase":"s10-knowledge","event":"end","track":"site-scope","detail":"spec-knowledge exit 0, every rule computed; 34 blocks, 7 variants, 6 templates, 14 features, 15 open questions all with defaults (2 answered), 0 migration redirects, 1 broken (cdn-cgi email-protection)","artifact":"stardust/spec/knowledge","next":"stardust:dynamics triage, stardust:audit"}
+{"ts":"2026-10-25T14:21:40Z","skill":"stardust:dynamics","phase":"detect","event":"start","track":"site-scope","detail":"10 archetype URLs (spec S9 run)"}
+{"ts":"2026-10-25T14:21:40Z","skill":"stardust:dynamics","phase":"detect","event":"end","track":"site-scope","detail":"24 findings; reach from extract --dynamics","artifact":"stardust/current/_dynamics.json"}
+{"ts":"2026-10-25T14:21:40Z","skill":"stardust:dynamics","phase":"classify","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:21:40Z","skill":"stardust:dynamics","phase":"classify","event":"end","track":"site-scope","detail":"vendors.json: GTM/GA, YouTube; unknown hosts kept as inspect"}
+{"ts":"2026-10-25T14:21:40Z","skill":"stardust:dynamics","phase":"triage","event":"start","track":"site-scope"}
+{"ts":"2026-10-25T14:23:09Z","skill":"stardust:dynamics","phase":"triage","event":"end","track":"site-scope","detail":"14 features (10 self, 4 owner batch), 24 detector rows merged or classified; 0 decided-out; search parity drafted (5 probes)","artifact":"stardust/dynamic-features.md"}
+{"ts":"2026-10-25T15:10:52Z","skill":"stardust:replica","phase":"source-fidelity-gate","event":"start","track":"first-page","detail":"article archetype, published origin"}
+{"ts":"2026-10-25T15:10:52Z","skill":"stardust:replica","phase":"source-fidelity-gate","event":"end","track":"first-page","detail":"article pub6: 1440 0.05% dh0 cd 0/0; 360 0.84% dh0 cd 0/0 (7 owner-accepted); chrome quiet; cap PASS; dark 0.01/4.17; LH mobile 100; EW 110/110"}

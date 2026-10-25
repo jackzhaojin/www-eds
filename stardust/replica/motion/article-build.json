@@ -1,0 +1,2935 @@
+{
+  "url": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+  "width": 1440,
+  "headerTimeline": [
+    {
+      "y": 0,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 0,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 1200,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 2400,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 3600,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 4800,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 6000,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 7200,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 8400,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 9600,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 9299,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 7799,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 2400,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 1200,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 800,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 500,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 300,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 200,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 150,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 120,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 90,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 60,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 30,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    },
+    {
+      "y": 0,
+      "cls": "header-wrapper",
+      "position": "sticky",
+      "height": "63px",
+      "transform": "none",
+      "transition": "all",
+      "mainPadTop": "0px",
+      "bodyPadTop": "0px",
+      "headerCount": 2
+    }
+  ],
+  "widgetSamples": [
+    {
+      "sel": "[role=\"tab\"][data-i=\"1\"]",
+      "frames": [
+        {
+          "t": 32886.300000190735,
+          "trackTransform": null,
+          "trackTransition": null,
+          "boxScrollLeft": null,
+          "boxTransform": null,
+          "dots": []
+        },
+        {
+          "t": 33089.700000047684,
+          "trackTransform": null,
+          "trackTransition": null,
+          "boxScrollLeft": null,
+          "boxTransform": null,
+          "dots": []
+        },
+        {
+          "t": 33292.10000014305,
+          "trackTransform": null,
+          "trackTransition": null,
+          "boxScrollLeft": null,
+          "boxTransform": null,
+          "dots": []
+        },
+        {
+          "t": 33495.90000009537,
+          "trackTransform": null,
+          "trackTransition": null,
+          "boxScrollLeft": null,
+          "boxTransform": null,
+          "dots": []
+        }
+      ]
+    },
+    {
+      "sel": "[data-scenario=\"edited\"]",
+      "frames": [
+        {
+          "t": 34514.40000009537,
+          "trackTransform": null,
+          "trackTransition": null,
+          "boxScrollLeft": null,
+          "boxTransform": null,
+          "dots": []
+        },
+        {
+          "t": 34718.40000009537,
+          "trackTransform": null,
+          "trackTransition": null,
+          "boxScrollLeft": null,
+          "boxTransform": null,
+          "dots": []
+        },
+        {
+          "t": 34922.10000014305,
+          "trackTransform": null,
+          "trackTransition": null,
+          "boxScrollLeft": null,
+          "boxTransform": null,
+          "dots": []
+        },
+        {
+          "t": 35128.40000009537,
+          "trackTransform": null,
+          "trackTransition": null,
+          "boxScrollLeft": null,
+          "boxTransform": null,
+          "dots": []
+        }
+      ]
+    },
+    {
+      "sel": "[aria-label=\"Where the edge puts the bar\"] > [role=\"radio\"]:last-child",
+      "frames": [
+        {
+          "t": 36140,
+          "trackTransform": null,
+          "trackTransition": null,
+          "boxScrollLeft": null,
+          "boxTransform": null,
+          "dots": []
+        },
+        {
+          "t": 36343.200000047684,
+          "trackTransform": null,
+          "trackTransition": null,
+          "boxScrollLeft": null,
+          "boxTransform": null,
+          "dots": []
+        },
+        {
+          "t": 36547.300000190735,
+          "trackTransform": null,
+          "trackTransition": null,
+          "boxScrollLeft": null,
+          "boxTransform": null,
+          "dots": []
+        },
+        {
+          "t": 36752,
+          "trackTransform": null,
+          "trackTransition": null,
+          "boxScrollLeft": null,
+          "boxTransform": null,
+          "dots": []
+        }
+      ]
+    }
+  ],
+  "hoverSamples": [
+    {
+      "sel": ".rail-list a, .rail__list a",
+      "changed": [
+        "self.color",
+        "self.background",
+        "img..color"
+      ],
+      "before": {
+        "self": {
+          "transform": "none",
+          "color": "rgb(74, 71, 68)",
+          "background": "rgba(0, 0, 0, 0)",
+          "boxShadow": "none",
+          "opacity": "1",
+          "transition": "background 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1)"
+        },
+        "subs": [
+          {
+            "el": "img.",
+            "transform": "none",
+            "color": "rgb(74, 71, 68)",
+            "background": "rgb(255, 255, 255)",
+            "boxShadow": "none",
+            "opacity": "0.75",
+            "transition": "opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1)"
+          }
+        ]
+      },
+      "after": {
+        "self": {
+          "transform": "none",
+          "color": "rgb(26, 25, 23)",
+          "background": "rgb(241, 238, 233)",
+          "boxShadow": "none",
+          "opacity": "1",
+          "transition": "background 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1)"
+        },
+        "subs": [
+          {
+            "el": "img.",
+            "transform": "none",
+            "color": "rgb(26, 25, 23)",
+            "background": "rgb(255, 255, 255)",
+            "boxShadow": "none",
+            "opacity": "0.75",
+            "transition": "opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1)"
+          }
+        ]
+      }
+    }
+  ],
+  "media": {
+    "videos": [],
+    "idleClassMutations": [],
+    "idleClassMutationCount": 0
+  },
+  "events": {
+    "animations": [
+      {
+        "name": "spin",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "txt": "Algorithm is RS256 Never let the token pick someth",
+        "y": 6274
+      },
+      {
+        "name": "spin",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "txt": "Key ID is published Find the public key the token ",
+        "y": 6412
+      },
+      {
+        "name": "spin",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "txt": "Signature matches Verify header.payload against th",
+        "y": 6800
+      },
+      {
+        "name": "spin",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "txt": "Claims are acceptable Only now: issuer, audience, ",
+        "y": 7200
+      },
+      {
+        "name": "spin",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "txt": "Algorithm is RS256 Never let the token pick someth",
+        "y": 6308
+      },
+      {
+        "name": "spin",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "txt": "Key ID is published Find the public key the token ",
+        "y": 6309
+      },
+      {
+        "name": "spin",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "txt": "Signature matches Verify header.payload against th",
+        "y": 6716
+      },
+      {
+        "name": "stamp",
+        "el": "div.switch-col > div.switch-code > pre > code > span.code-add",
+        "txt": "section edge-greeting__inner-container",
+        "y": 8383
+      },
+      {
+        "name": "stamp",
+        "el": "div.switch-col > div.switch-code > pre > code > span.code-add",
+        "txt": "<div class=\"edge-greeting__inner-wrapper\">",
+        "y": 8383
+      },
+      {
+        "name": "stamp",
+        "el": "div.switch-col > div.switch-code > pre > code > span.code-add",
+        "txt": "block",
+        "y": 8383
+      }
+    ],
+    "transitions": [
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 630,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 674,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 704,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 727,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 745,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 758,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 769,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 778,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 790,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 794,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 800,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 834,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 882,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 963,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1030,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1074,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1104,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1127,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1145,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1158,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1169,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1178,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1184,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1194,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1199,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1234,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1282,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1363,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1430,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1474,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1504,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1527,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1545,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1558,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1569,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1578,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1584,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1590,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1597,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1634,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1682,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1763,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "opacity",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "background-color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "opacity",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "background-color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 1830,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1830,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1874,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1904,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1927,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1945,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1958,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1969,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1978,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1984,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1990,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 1997,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2012,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2034,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2082,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2163,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2230,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2274,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2304,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2327,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2345,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2358,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2369,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2378,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2384,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2390,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2394,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2400,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2434,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2482,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2563,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2630,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "opacity",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "background-color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "opacity",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "background-color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 2674,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2674,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2704,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2727,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2745,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2758,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2769,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2778,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2784,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2794,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2799,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2834,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2882,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 2963,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3030,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3074,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3104,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3127,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3145,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3158,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3169,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3178,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3184,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3190,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3197,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3234,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3282,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3363,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3430,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3474,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "background-color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "opacity",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "opacity",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "background-color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 3504,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3504,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3527,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3545,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3558,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3569,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3578,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3584,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3590,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3597,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3612,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3634,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3682,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3763,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3830,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3874,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3904,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3927,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3945,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3958,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3969,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3978,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3984,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3990,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 3994,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4000,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4034,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4082,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4163,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4230,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4274,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4304,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4327,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4345,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4358,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4369,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4378,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4384,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4394,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4399,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4434,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4482,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4563,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4630,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4674,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4704,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4727,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4745,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4758,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4769,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4778,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4784,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4794,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4799,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4834,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4882,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 4963,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5030,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5074,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5104,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5127,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5145,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5158,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5169,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5178,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5184,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5190,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5197,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5212,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5234,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5282,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "opacity",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "opacity",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "background-color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "background-color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 5363,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5363,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5430,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5474,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5504,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5527,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5545,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5558,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5569,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5578,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5584,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5590,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5594,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5600,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5634,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5682,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5763,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5830,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5874,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5904,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5927,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5945,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5958,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5969,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5978,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5984,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 5994,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6000,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6034,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6082,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6163,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6230,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "opacity",
+        "el": "div.lab-grid > div.lab-left > div.lab-token > p > span.seg.seg-p",
+        "y": 6274,
+        "dur": "0.3s, 0.3s"
+      },
+      {
+        "prop": "opacity",
+        "el": "div.lab-grid > div.lab-left > div.lab-token > p > span.seg.seg-s",
+        "y": 6274,
+        "dur": "0.3s, 0.3s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6274,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6274,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6274,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6274,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "div.lab-grid > div.lab-left > div.lab-chip-row > ul.lab-chips > li",
+        "y": 6274,
+        "dur": "0.2s"
+      },
+      {
+        "prop": "background-color",
+        "el": "div.lab-grid > div.lab-left > div.lab-chip-row > ul.lab-chips > li",
+        "y": 6274,
+        "dur": "0.2s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "div.lab-grid > div.lab-left > div.lab-chip-row > ul.lab-chips > li",
+        "y": 6274,
+        "dur": "0.2s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "div.lab-grid > div.lab-left > div.lab-chip-row > ul.lab-chips > li",
+        "y": 6274,
+        "dur": "0.2s"
+      },
+      {
+        "prop": "color",
+        "el": "div.lab-grid > div.lab-left > div.lab-chip-row > ul.lab-chips > li",
+        "y": 6274,
+        "dur": "0.2s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "div.lab-grid > div.lab-left > div.lab-chip-row > ul.lab-chips > li",
+        "y": 6274,
+        "dur": "0.2s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6274,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6304,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6327,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6345,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6358,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6369,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6378,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6384,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6394,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6399,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6412,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6412,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6412,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6412,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6412,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6412,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6412,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6412,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6434,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6482,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6563,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6630,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6674,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6704,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6727,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6745,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6758,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6769,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6778,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6784,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6790,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6797,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6800,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6800,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6800,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6800,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "opacity",
+        "el": "div.lab-grid > div.lab-left > div.lab-token > p > span.seg.seg-p",
+        "y": 6800,
+        "dur": "0.3s, 0.3s"
+      },
+      {
+        "prop": "opacity",
+        "el": "div.lab-grid > div.lab-left > div.lab-token > p > span.seg.seg-s",
+        "y": 6800,
+        "dur": "0.3s, 0.3s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6800,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6800,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6800,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 6800,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6834,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6882,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 6963,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7030,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7074,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7104,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7127,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7145,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7158,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7169,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7178,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7184,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7190,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7197,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7200,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 7200,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 7200,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 7200,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 7200,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 7200,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 7200,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 7200,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 7200,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "opacity",
+        "el": "div.lab-grid > div.lab-left > div.lab-token > p > span.seg.seg-s",
+        "y": 7200,
+        "dur": "0.3s, 0.3s"
+      },
+      {
+        "prop": "opacity",
+        "el": "div.lab-grid > div.lab-left > div.lab-token > p > span.seg.seg-h",
+        "y": 7200,
+        "dur": "0.3s, 0.3s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7234,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7282,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7363,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7430,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7474,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7504,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "opacity",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "background-color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "background-color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "color",
+        "el": "details.rail-outline > nav > ol.rail-list > li > a",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "opacity",
+        "el": "li > a > div.rail-thumb > picture > img",
+        "y": 7527,
+        "dur": "0.25s, 0.25s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7527,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7545,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7558,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7569,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7578,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7590,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7594,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7600,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "border-top-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 7600,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-bottom-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 7600,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-left-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 7600,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "border-right-color",
+        "el": "div.lab-grid > div.lab-right > div.lab-checks > ol.lab-gates > li",
+        "y": 7600,
+        "dur": "0.3s, 0.3s, 0.3s"
+      },
+      {
+        "prop": "opacity",
+        "el": "div.lab-grid > div.lab-left > div.lab-token > p > span.seg.seg-s",
+        "y": 7600,
+        "dur": "0.3s, 0.3s"
+      },
+      {
+        "prop": "opacity",
+        "el": "div.lab-grid > div.lab-left > div.lab-token > p > span.seg.seg-h",
+        "y": 7600,
+        "dur": "0.3s, 0.3s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7634,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7682,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7763,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7830,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7874,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7904,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7927,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7945,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7958,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7969,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7978,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7984,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7994,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 7999,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8034,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8082,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8163,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8230,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8274,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8304,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8327,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8345,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8358,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8369,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8378,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8384,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8390,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8397,
+        "dur": "0.12s"
+      },
+      {
+        "prop": "transform",
+        "el": "div.rail-wrapper > div.rail.block > details.rail-outline > div.rail-progress > span",
+        "y": 8434,
+        "dur": "0.12s"
+      }
+    ],
+    "classMutations": [
+      {
+        "added": [
+          "on"
+        ],
+        "el": "div.section.compare-container.figure-container > div.compare-wrapper > div.compare.block.is-live > div.compare-stage > figure.compare-pane.on",
+        "y": 3588
+      },
+      {
+        "added": [
+          "changed"
+        ],
+        "el": "div.lab-grid > div.lab-left > div.lab-token > p > span.seg.seg-p.changed",
+        "y": 6304
+      },
+      {
+        "added": [
+          "is-live"
+        ],
+        "el": "div.article-layout > div.article-body > div.section.code-container.switch-container > div.switch-wrapper > div.switch.block.is-live",
+        "y": 8383
+      }
+    ]
+  }
+}

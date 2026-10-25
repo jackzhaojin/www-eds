@@ -1,21 +1,154 @@
 {
-  "types": {
-    "home": {
-      "pageType": "home",
-      "liveUrl": "https://www.jackzhaojin.com/",
-      "edsUrl": "https://main--www-eds--jackzhaojin.aem.live/",
-      "prototype": "none: the EDS build is the recreation (v3 CSS is canon and ported, decision 1); gated on the published origin",
-      "iterations": { "1440": 5, "360": 5 },
-      "gate": {
-        "1440": { "label": "pub5", "pixelPct": 0.25, "heightDelta": 0, "contentDiff": "none (0 red, 0 nothing-lost yellow)", "chromeParity": "quiet", "chromeCrop": { "header": 100, "footer": 99.99 }, "clipped": 0, "overflow": "ok", "verdict": "PASS" },
-        "360": { "label": "pub5", "pixelPct": 1.11, "heightDelta": 0, "contentDiff": "none (0 red, 0 nothing-lost yellow)", "chromeParity": "quiet", "chromeCrop": { "header": 100, "footer": 100 }, "clipped": 0, "overflow": "ok", "verdict": "PASS" }
-      },
-      "capProbe": "PASS at 2560 (1280 = 1280, 4 modules)",
-      "dark": { "1440": 0.13, "360": 0.93, "heightDelta": 0 },
-      "editability": "28/28 editable, 0 dead, 0 duplicated, 0 edit-mode drift, block height delta 0",
-      "lighthouseMobile": { "performance": 100, "runs": 3, "lcp": "0.9-1.1 s", "tbt": "0 ms", "cls": 0, "sourceBaseline": { "performance": 98, "lcp": "2.1 s" } },
-      "motion": { "observed": 10, "implemented": 7, "dead": ["header scroll-morph", "theme buttons (no sampled box change)"], "compare": "7 parity, 0 missing, 0 extra" },
-      "residuals": []
+ "types": {
+  "home": {
+   "pageType": "home",
+   "liveUrl": "https://www.jackzhaojin.com/",
+   "edsUrl": "https://main--www-eds--jackzhaojin.aem.live/",
+   "prototype": "none: the EDS build is the recreation (v3 CSS is canon and ported, decision 1); gated on the published origin",
+   "iterations": {
+    "1440": 6,
+    "360": 6
+   },
+   "gate": {
+    "1440": {
+     "label": "pub6",
+     "pixelPct": 0.24,
+     "heightDelta": 0,
+     "contentDiff": "none (0 red, 0 nothing-lost yellow)",
+     "chromeParity": "quiet",
+     "chromeCrop": {
+      "header": 100,
+      "footer": 99.99
+     },
+     "clipped": 0,
+     "overflow": "ok",
+     "verdict": "PASS"
+    },
+    "360": {
+     "label": "pub6",
+     "pixelPct": 1.11,
+     "heightDelta": 0,
+     "contentDiff": "none (0 red, 0 nothing-lost yellow)",
+     "chromeParity": "quiet",
+     "chromeCrop": {
+      "header": 100,
+      "footer": 100
+     },
+     "clipped": 0,
+     "overflow": "ok",
+     "verdict": "PASS"
     }
+   },
+   "capProbe": "PASS at 2560 (1280 = 1280, 4 modules)",
+   "dark": {
+    "1440": 0.13,
+    "360": 0.93,
+    "heightDelta": 0
+   },
+   "editability": "28/28 editable, 0 dead, 0 duplicated, 0 edit-mode drift, block height delta 0",
+   "lighthouseMobile": {
+    "performance": 100,
+    "runs": 3,
+    "lcp": "0.9-1.1 s",
+    "tbt": "0 ms",
+    "cls": 0,
+    "sourceBaseline": {
+     "performance": 98,
+     "lcp": "2.1 s"
+    }
+   },
+   "motion": {
+    "observed": 10,
+    "implemented": 7,
+    "dead": [
+     "header scroll-morph",
+     "theme buttons (no sampled box change)"
+    ],
+    "compare": "7 parity, 0 missing, 0 extra"
+   },
+   "residuals": []
+  },
+  "article": {
+   "pageType": "article",
+   "liveUrl": "https://www.jackzhaojin.com/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+   "edsUrl": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+   "prototype": "none: the EDS build is the recreation (v3 and the explainer kit CSS ported); gated on the published origin",
+   "template": "templates/article",
+   "blocks": [
+    "figure",
+    "code",
+    "compare",
+    "switch",
+    "lab",
+    "rail",
+    "row-list",
+    "author-box",
+    "fine-print"
+   ],
+   "iterations": {
+    "1440": 6,
+    "360": 6
+   },
+   "gate": {
+    "1440": {
+     "label": "pub6",
+     "pixelPct": 0.05,
+     "heightDelta": 0,
+     "contentDiff": "0 red, 0 nothing-lost yellow, 24 advisory",
+     "chromeParity": "quiet",
+     "chromeCrop": {
+      "header": 100,
+      "footer": 99.99
+     },
+     "clipped": 0,
+     "overflow": "ok",
+     "verdict": "PASS"
+    },
+    "360": {
+     "label": "pub6",
+     "pixelPct": 0.84,
+     "heightDelta": 0,
+     "contentDiff": "0 red, 0 nothing-lost yellow, 7 owner-accepted (rail thumbnails, stardust/replica/accepted.json), 24 advisory",
+     "chromeParity": "quiet",
+     "chromeCrop": {
+      "header": 100,
+      "footer": 99.38
+     },
+     "clipped": 0,
+     "overflow": "ok",
+     "verdict": "PASS"
+    }
+   },
+   "capProbe": "PASS at 2560",
+   "dark": {
+    "1440": 0.01,
+    "360": 4.17,
+    "heightDelta": {
+     "1440": 0,
+     "360": 1
+    }
+   },
+   "editability": "110/110 editable, 0 dead, 0 duplicated, edit-mode drift 0 and block height delta 0 in every block; text drift: 7 part headings carry the # self link (as on the source), 1 lab token text rewritten by the engine",
+   "lighthouseMobile": {
+    "performance": 100,
+    "cls": 0.003,
+    "lcp": "0.9 s",
+    "sourceBaseline": {
+     "performance": 93,
+     "cls": 0.131,
+     "lcp": "2.0 s"
+    }
+   },
+   "motion": {
+    "observed": 18,
+    "implemented": 14,
+    "dead": [
+     "header scroll-morph",
+     "compare tab, lab chip and switch option pokes (no sampled box change)"
+    ],
+    "compare": "14 parity, 0 missing, 0 extra"
+   },
+   "residuals": []
   }
+ }
 }

@@ -1,0 +1,53 @@
+{
+  "accepted": [
+    {
+      "kind": "ICON DIFF",
+      "text": "part 1 sign-in on a static site",
+      "root": "main",
+      "probe": "content-diff",
+      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+    },
+    {
+      "kind": "ICON DIFF",
+      "text": "part 2 what it is, where it runs",
+      "root": "main",
+      "probe": "content-diff",
+      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+    },
+    {
+      "kind": "ICON DIFF",
+      "text": "part 3 running it on my laptop",
+      "root": "main",
+      "probe": "content-diff",
+      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+    },
+    {
+      "kind": "ICON DIFF",
+      "text": "part 4 signing in with google",
+      "root": "main",
+      "probe": "content-diff",
+      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+    },
+    {
+      "kind": "ICON DIFF",
+      "text": "part 5 checking google's keys",
+      "root": "main",
+      "probe": "content-diff",
+      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+    },
+    {
+      "kind": "ICON DIFF",
+      "text": "part 6 calling an api from the edge",
+      "root": "main",
+      "probe": "content-diff",
+      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+    },
+    {
+      "kind": "ICON DIFF",
+      "text": "wrap-up server-side rendering is back",
+      "root": "main",
+      "probe": "content-diff",
+      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+    }
+  ]
+}
