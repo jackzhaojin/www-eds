@@ -11,7 +11,7 @@
   "/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-25T18:36:52.394Z",
+    "ts": "2026-10-25T19:40:19.895Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -38,7 +38,7 @@
   "/talks/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-25T18:36:52.394Z",
+    "ts": "2026-10-25T19:40:19.895Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -65,7 +65,7 @@
   "/writing/2026-03-23-eds-hlx-admin-agentic-config/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-25T18:36:57.380Z",
+    "ts": "2026-10-25T19:48:12.434Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -164,7 +164,34 @@
   "/writing/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-25T18:37:19.859Z",
+    "ts": "2026-10-25T19:40:19.895Z",
+    "put": 200,
+    "preview": 200,
+    "live": 200,
+    "verify": "ok"
+  },
+  "/writing/2025-07-12-aem-headless-omnichannel-architecture/index": {
+    "status": "live",
+    "attempts": 1,
+    "ts": "2026-10-25T19:27:04.030Z",
+    "put": 200,
+    "preview": 200,
+    "live": 200,
+    "verify": "ok"
+  },
+  "/writing/2025-09-01-aem-caching-production-architectures/index": {
+    "status": "live",
+    "attempts": 1,
+    "ts": "2026-10-25T19:27:04.030Z",
+    "put": 200,
+    "preview": 200,
+    "live": 200,
+    "verify": "ok"
+  },
+  "/privacy/index": {
+    "status": "live",
+    "attempts": 1,
+    "ts": "2026-10-25T19:40:19.895Z",
     "put": 200,
     "preview": 200,
     "live": 200,
