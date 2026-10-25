@@ -445,6 +445,11 @@ body.design-docs .ds-story .footer .footer-row {
   padding-inline: 0;
 }
 
+/* A breadcrumb shown alone: the hero's head has nothing to hold. */
+body.design-docs .ds-story .hero .hero-head:empty {
+  display: none;
+}
+
 /* ------------------------------------------------------------ demos */
 body.design-docs main.ds-layout > .section[data-demo] .default-content-wrapper :is(ul, ol) {
   list-style: none;

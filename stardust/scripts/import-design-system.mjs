@@ -273,23 +273,23 @@ function bandSection(band, story, inner) {
 
 const WAITING = {
   'c-site-header': null,
-  'c-breadcrumb': 'listings: hero breadcrumb (or the article template head)',
-  'c-page-head': 'listings: hero variants',
+  'c-breadcrumb': 'hero (page)',
+  'c-page-head': 'no instance yet: the post head is the article template head, and hero needs a real heading (the story keeps one h1)',
   'c-kicker': 'main: global kicker style',
-  'c-chip': 'listings: chips',
+  'c-chip': 'no chips block on main (chips live inside writing-list and the writing filter)',
   'c-card': 'portfolio: cards variants (link, hub, project, tool, rules)',
-  'c-counts': 'listings: stats',
-  'c-filter-bar': 'listings: writing filter',
+  'c-counts': 'portfolio: stats',
+  'c-filter-bar': 'no instance: the site filter is the writing-filter widget over a writing-list (search, topic, year)',
   'c-embed': 'main: figure placeholder state (register candidate)',
   'c-showcase': 'portfolio: showcase flip, stat-chips, frame (and main: band accent words)',
   'c-frame': 'portfolio: frame',
   'c-proof-links': 'portfolio: proof-links',
-  'c-stat': 'portfolio: stat-chips (and listings: stats)',
+  'c-stat': 'portfolio: stat-chips and stats',
   'c-chapter-head': 'portfolio: chapter-head',
   'c-timeline': 'portfolio: timeline',
-  'c-proof': 'listings: hero proof list',
+  'c-proof': 'no block: the home hero note list has no label column',
   'c-panel-inverse': 'portfolio: panel',
-  'c-divider': 'listings: divider',
+  'c-divider': 'portfolio: divider',
   'c-icons': 'main: v3 icon set in icons/',
   theming: 'main: theme control outside the header',
 };
@@ -416,6 +416,13 @@ function convertStory(story, owner) {
       const text = $a.children('p').not('.callout__label').map((__, para) => p(inline(para))).get().join('');
       s.html.push(block(name, [lab.length ? [p(esc(lab.text())), text] : [text]]));
     });
+    return;
+  }
+  if (owner === 'c-breadcrumb') {
+    // the hero's page variant: a list alone is the breadcrumb, its last item this page
+    const items = first.find('li').map((_, li) => `<li>${squash(inline(li))}</li>`).get().join('');
+    const s = open(storyMeta(story));
+    s.html.push(label(story), block('hero page', [[`<ol>${items}</ol>`]]));
     return;
   }
   if (owner === 'c-cta-band') {
