@@ -14,8 +14,9 @@
  *   project - a grid of project cards (the portfolio's games): a dates paragraph, the heading,
  *     the summary, a paragraph of typed links; a last row with no heading is the note under
  *     the grid
- *   repo - a grid of repository cards whose dates line is the link (the whole card clicks
- *     through to it): the linked dates paragraph, the heading, the summary
+ *   repo - a grid of repository cards, each card one link as on the source: the linked dates
+ *     paragraph, the heading, the summary. The dates link becomes the card's link; its text,
+ *     the heading and the summary move inside it (the emptied paragraph stays, hidden)
  */
 
 const VARIANTS = ['list', 'tool', 'project', 'repo'];
@@ -45,6 +46,23 @@ function decorateCard(row) {
   return card;
 }
 
+/**
+ * A repo card is one link (the source's a.repo-card): the authored dates link takes the card's
+ * content, its own text in an inline span first, so the link's label is the dates and the
+ * heading and summary stay what they are. Every authored node is moved, none rebuilt.
+ */
+function linkWholeCard(card) {
+  const dates = card.querySelector('.cards-link');
+  const link = dates && dates.querySelector('a[href]');
+  if (!link) return;
+  const label = document.createElement('span');
+  label.className = 'cards-dates-label';
+  label.append(...link.childNodes);
+  link.append(label, ...[...card.children].filter((c) => c !== dates));
+  dates.classList.add('cards-source');
+  card.prepend(link);
+}
+
 /** project and repo cards: roles by content (dates, heading, summary, links). */
 function decorateRoleCard(row, repo) {
   const nodes = [...row.querySelectorAll(':scope > div > *')];
@@ -63,6 +81,7 @@ function decorateRoleCard(row, repo) {
     else if (n.querySelectorAll('a').length && !repo) card.append(slot('cards-links link-types', [n]));
     else card.append(slot('cards-summary', [n]));
   });
+  if (repo) linkWholeCard(card);
   return card;
 }
 
