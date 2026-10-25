@@ -79,6 +79,11 @@
   margin-top: var(--space-2);
 }
 
+/* In the source the links are the flex items; a flex paragraph gives each the same box. */
+.hero .hero-actions p {
+  display: flex;
+}
+
 .hero .hero-note {
   border-top: 2px solid var(--color-adobe);
   padding-top: 24px;
