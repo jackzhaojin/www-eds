@@ -14,6 +14,12 @@ gate-all on the published origin over all 34 sitemap pages (`stardust/rollout/ga
 
 The one failure at each width is the portfolio's content presence MISSING 2: the postal repo cards, whose source wraps heading and summary in one link (recorded residual). 2025-09-01 is 0px at both widths after the code-nowrap fix.
 
+Portfolio's failure is register R24, now a documented override (gate-all: 33 PASS + 1 delivered with override at each width).
+
+Dark check (decision 18; `stardust/.work/dark-sweep.mjs`, stored Dark on source and EDS, all 34 pages): 1440 32 of 34 within 10% and 8px, 360 33 of 34; outside only 2026-08-15 (R11) and 2025-07-06 at 1440 (+10px, R13). 2025-07-12 and 2025-09-01 were outside (13.89% / -32px) until the page theme `board-mat` (their dark-theme board mat) landed; now 0% to 0.46%.
+
+v3 eval (`stardust/scripts/v3-eval.mjs`, the v3 contrast gate): PASS on all 36 pages (34 sitemap, the design system page, 404) in stored Light, stored Dark and System on a dark OS: 9 of 9 pairs AA, no document overflow at 390 to 1920, no console errors.
+
 Mobile Lighthouse performance (12.8.2, aem.live): 100 on home (runs 2 and 3; a cold first run 99), writing listing, the archetype article, portfolio, talks, certifications and privacy (two runs each, all 100; CLS at most 0.012). Reports in `stardust/rollout/lighthouse/` (not committed).
 
 ## Listings (stream-listings, done)
