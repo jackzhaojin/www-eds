@@ -38,6 +38,10 @@
   max-width: 560px;
 }
 
+.figure.shot.slim {
+  max-width: 460px;
+}
+
 .figure.board.narrow :is(img, figcaption) {
   max-width: 520px;
   margin-inline: auto;

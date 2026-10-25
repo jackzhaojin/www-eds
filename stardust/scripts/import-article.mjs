@@ -71,6 +71,7 @@ const srcCss = (() => {
 })();
 const codeWraps = /\.code \.bar > a\s*\{[^}]*white-space:\s*nowrap/.test(srcCss);
 const tableNowrap = /td:last-child[^{]*\{[^}]*white-space:\s*nowrap/.test(srcCss);
+const shotSlim = /\.shot--narrow\s*\{\s*max-width:\s*460px/.test(srcCss);
 
 function codeText($pre) {
   const lines = $pre.find('.ln');
@@ -90,7 +91,9 @@ function dataTable(el) {
 function figure(el) {
   const $el = $(el);
   if ($el.hasClass('shot') || $el.hasClass('page')) {
-    const kind = $el.hasClass('page') ? 'page' : `shot${$el.hasClass('shot--narrow') ? ' narrow' : ''}`;
+    let narrow = '';
+    if ($el.hasClass('shot--narrow')) narrow = shotSlim ? ' slim' : ' narrow';
+    const kind = $el.hasClass('page') ? 'page' : `shot${narrow}`;
     const cap = $el.find('figcaption');
     return block(`figure ${kind}`, [[`<p>${img($el.find('img'))}</p>${cap.length ? `<p>${inline(cap)}</p>` : ''}`]]);
   }
