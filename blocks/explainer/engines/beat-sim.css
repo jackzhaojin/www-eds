@@ -1,0 +1,380 @@
+/* Explainer (beat-sim): the source's explainer.css for the beat simulator, scoped. The frame is
+   its own container, as figure.fig is on the source, so the container queries read the same width. */
+/* stylelint-disable selector-class-pattern -- the source's BEM names are kept */
+.explainer.beat-sim .bs {
+  container-type: inline-size;
+}
+
+.explainer.beat-sim .bs__data {
+  display: none;
+}
+
+.explainer.beat-sim .lab__bar p {
+  margin: 0;
+}
+
+.explainer.beat-sim .bs__body {
+  padding: 18px 18px 22px;
+  display: grid;
+  gap: 18px;
+}
+
+@container (min-width: 720px) {
+  .explainer.beat-sim .bs__body {
+    padding: 22px 26px 26px;
+  }
+}
+
+.explainer.beat-sim .bs__table-wrap {
+  overflow-x: auto;
+  margin: 0 -18px;
+  padding: 0 18px;
+}
+
+.explainer.beat-sim .bs__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 560px;
+}
+
+.explainer.beat-sim .bs__table th,
+.explainer.beat-sim .bs__table td {
+  text-align: left;
+  padding: 8px 10px 8px 0;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+  color: var(--ink-2);
+}
+
+.explainer.beat-sim .bs__table thead th {
+  font: 500 11px var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.explainer.beat-sim .bs__table tbody th {
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.explainer.beat-sim .bs__table th code {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  color: inherit;
+}
+
+/* the hub mark: the authored emphasis after the name */
+.explainer.beat-sim .bs__table th em {
+  font: 500 10.5px var(--font-mono);
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 1px 6px;
+  margin-left: 4px;
+}
+
+.explainer.beat-sim .bs__tier,
+.explainer.beat-sim .bs__tier p {
+  display: inline;
+}
+
+.explainer.beat-sim .bs__tier {
+  font: 500 12px var(--font-mono);
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.explainer.beat-sim .bs__tier--cloud {
+  background: color-mix(in srgb, var(--pass-ink) 14%, transparent);
+  color: var(--pass-ink);
+}
+
+.explainer.beat-sim .bs__tier--laptop {
+  background: color-mix(in srgb, var(--differs) 14%, transparent);
+  color: var(--differs);
+}
+
+.explainer.beat-sim .bs__tier--gated {
+  background: var(--accent-tint);
+  color: var(--ink-2);
+}
+
+.explainer.beat-sim .bs__tgs {
+  white-space: nowrap;
+}
+
+.explainer.beat-sim .bs__tg {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.explainer.beat-sim .bs__tg input {
+  accent-color: var(--accent);
+  width: 15px;
+  height: 15px;
+  margin: 0;
+}
+
+.explainer.beat-sim .bs__na {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.explainer.beat-sim .bs__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+}
+
+.explainer.beat-sim .bs__when {
+  font: 500 13px var(--font-mono);
+  color: var(--ink);
+  margin-right: auto;
+}
+
+.explainer.beat-sim .bs__btn {
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.explainer.beat-sim .bs__btn--primary {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.explainer.beat-sim .bs__btn[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.explainer.beat-sim .bs__btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explainer.beat-sim .bs__out {
+  outline: none;
+}
+
+.explainer.beat-sim .bs__label {
+  font: 500 11px var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 14px 0 6px;
+}
+
+.explainer.beat-sim .bs__out > .bs__label:first-child {
+  margin-top: 0;
+}
+
+.explainer.beat-sim .bs__hint {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+.explainer.beat-sim .bs__takeaway {
+  margin: 0 0 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.explainer.beat-sim .bs__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.explainer.beat-sim .bs__list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: 14px;
+}
+
+.explainer.beat-sim .bs__list b {
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 13.5px;
+}
+
+.explainer.beat-sim .bs__why {
+  color: var(--muted);
+  font-size: 13px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.explainer.beat-sim .bs__res {
+  margin-left: auto;
+  font: 500 12px var(--font-mono);
+}
+
+.explainer.beat-sim .bs__sub {
+  flex-basis: 100%;
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+
+.explainer.beat-sim .bs__list li.is-ok {
+  border-color: color-mix(in srgb, var(--pass-ink) 45%, transparent);
+}
+
+.explainer.beat-sim .bs__list li.is-ok .bs__res {
+  color: var(--pass-ink);
+}
+
+.explainer.beat-sim .bs__list li.is-fail {
+  border-color: rgb(194 67 61 / 55%);
+  background: rgb(194 67 61 / 5%);
+}
+
+.explainer.beat-sim .bs__list li.is-fail .bs__res {
+  color: #c2433d;
+}
+
+[data-theme="dark"] .explainer.beat-sim .bs__list li.is-fail .bs__res {
+  color: var(--rose);
+}
+
+.explainer.beat-sim .bs__list li.is-skip {
+  opacity: 0.78;
+}
+
+.explainer.beat-sim .bs__term {
+  margin-top: 14px;
+  background: var(--night);
+  color: var(--bone);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: grid;
+  gap: 4px;
+  font: 400 12.5px/1.55 var(--font-mono);
+  overflow-wrap: anywhere;
+}
+
+.explainer.beat-sim .bs__term i {
+  font-style: normal;
+  color: var(--bone-3);
+  display: inline-block;
+  min-width: 8.5em;
+}
+
+.explainer.beat-sim .bs__term .ok {
+  color: var(--mint);
+}
+
+.explainer.beat-sim .bs__term .no {
+  color: var(--rose);
+}
+
+@container (max-width: 520px) {
+  .explainer.beat-sim .bs__term i {
+    display: block;
+    min-width: 0;
+  }
+}
+
+/* the lab note under the figure */
+.explainer.beat-sim .x-caption p {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-top: 10px;
+  max-width: var(--measure);
+}
+
+@media (width <= 640px) {
+  .explainer.beat-sim .bs__btn {
+    min-height: 44px;
+  }
+}
+
+/* On narrow screens each agent becomes a card, so the toggles are not hidden off to the right. */
+@container (max-width: 600px) {
+  .explainer.beat-sim .bs__table-wrap {
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+  }
+
+  .explainer.beat-sim .bs__table {
+    min-width: 0;
+    display: block;
+  }
+
+  .explainer.beat-sim .bs__table thead {
+    display: none;
+  }
+
+  .explainer.beat-sim .bs__table tbody {
+    display: grid;
+    gap: 8px;
+  }
+
+  .explainer.beat-sim .bs__table tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg);
+  }
+
+  .explainer.beat-sim .bs__table th,
+  .explainer.beat-sim .bs__table td {
+    padding: 0;
+    border: 0;
+  }
+
+  .explainer.beat-sim .bs__table tbody th {
+    flex-basis: 100%;
+  }
+
+  .explainer.beat-sim .bs__table td.bs__tgs {
+    flex-basis: 100%;
+    white-space: normal;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 4px;
+  }
+
+  .explainer.beat-sim .bs__tg {
+    min-height: 44px;
+    margin-right: 10px;
+  }
+}

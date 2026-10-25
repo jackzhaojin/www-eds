@@ -1,0 +1,206 @@
+/* Explainer (defect-lab): the source's explainer.css for the defect gate lab, scoped. The frame is
+   its own container, as figure.fig is on the source, so the container queries read the same width.
+   Where the source's kit rule `.verdict p` outranks the article's rule (margin, color of the
+   verdict and count lines), the values here are the ones the source computes. */
+/* stylelint-disable selector-class-pattern -- the source's BEM names are kept */
+.explainer.defect-lab .dl {
+  container-type: inline-size;
+}
+
+.explainer.defect-lab .dl__data {
+  display: none;
+}
+
+.explainer.defect-lab .lab__bar p,
+.explainer.defect-lab .lab__label p {
+  margin: 0;
+}
+
+.explainer.defect-lab .dl__grid {
+  display: grid;
+  gap: 22px;
+  padding: 18px 18px 22px;
+}
+
+@container (min-width: 760px) {
+  .explainer.defect-lab .dl__grid {
+    grid-template-columns: 1.05fr 1fr;
+    padding: 22px 26px 26px;
+    gap: 30px;
+  }
+}
+
+.explainer.defect-lab .dl__grid > * {
+  min-width: 0;
+}
+
+.explainer.defect-lab textarea {
+  display: block;
+  width: 100%;
+  min-height: 220px;
+  resize: vertical;
+  box-sizing: border-box;
+  background: var(--night);
+  color: var(--bone);
+  border: 1px solid var(--night-line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font: 400 12.5px/1.6 var(--font-mono);
+}
+
+.explainer.defect-lab textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explainer.defect-lab .dl__opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+
+.explainer.defect-lab .dl__opts p {
+  margin: 0;
+}
+
+/* the agent options: the authored list, styled as the kit's chips through the wrapper */
+.explainer.defect-lab .dl__agents ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.explainer.defect-lab .dl__agents li {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 7px 13px;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.explainer.defect-lab .dl__agents li:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.explainer.defect-lab .dl__agents li[aria-checked="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.explainer.defect-lab .dl__agents li:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explainer.defect-lab .chips p {
+  margin: 0;
+}
+
+.explainer.defect-lab .dl__issues ul {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.explainer.defect-lab .dl__issues li {
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--line);
+  overflow-wrap: anywhere;
+}
+
+.explainer.defect-lab .verdict {
+  min-height: 120px;
+}
+
+.explainer.defect-lab .dl__verdict {
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.explainer.defect-lab .dl__count {
+  font: 500 12px var(--font-mono);
+}
+
+.explainer.defect-lab .dl__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.explainer.defect-lab .dl__steps li {
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--night-2);
+  color: var(--bone-2);
+  font-size: 13.5px;
+  border: 1px solid var(--night-line);
+  overflow-wrap: anywhere;
+}
+
+.explainer.defect-lab .dl__steps b {
+  color: var(--bone);
+  font-weight: 500;
+}
+
+.explainer.defect-lab .dl__ledger {
+  font: 500 11.5px var(--font-mono);
+  color: var(--lav);
+  margin-top: 4px;
+}
+
+.explainer.defect-lab .dl__steps li.is-file {
+  border-left-color: var(--mint);
+}
+
+.explainer.defect-lab .dl__steps li.is-dup,
+.explainer.defect-lab .dl__steps li.is-draft {
+  border-left-color: var(--gold);
+}
+
+.explainer.defect-lab .dl__steps li.is-deny {
+  border-left-color: var(--rose);
+}
+
+.explainer.defect-lab .dl__first {
+  margin-top: 0;
+}
+
+.explainer.defect-lab .dl__who p {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  margin: 0;
+  color: var(--ink-2);
+}
+
+/* the lab note under the figure */
+.explainer.defect-lab .x-caption p {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-top: 10px;
+  max-width: var(--measure);
+}
+
+@media (pointer: coarse), (width <= 640px) {
+  .explainer.defect-lab .dl__agents li {
+    min-height: 44px;
+  }
+}
