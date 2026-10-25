@@ -86,5 +86,8 @@ export default function decorate(block) {
   if (video) block.classList.add('video');
   else if (!VARIANTS.some((v) => block.classList.contains(v))) block.classList.add('board');
   if (['shot', 'page', 'open'].some((v) => block.classList.contains(v))) openFull(media);
+  // A native image keeps its own width before it loads, so the figure never collapses.
+  const nativeImg = block.classList.contains('native') && media.querySelector('img[width]');
+  if (nativeImg) nativeImg.style.width = `${nativeImg.getAttribute('width')}px`;
   block.replaceChildren(figure);
 }
