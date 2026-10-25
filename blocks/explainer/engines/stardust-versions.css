@@ -1,0 +1,116 @@
+/* Explainer engine stardust-versions: the three-version block viewer (source explainer.css,
+   the vs rules). Option and tab hosts take the kit's chip and tab looks. */
+.explainer.stardust-versions .vs__names {
+  display: none;
+}
+
+.explainer.stardust-versions .vs__controls {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.explainer.stardust-versions .vs__tabs {
+  margin-bottom: 0;
+}
+
+.explainer.stardust-versions .vs__tabs > :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explainer.stardust-versions .vs__grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+}
+
+@container (min-width: 640px) {
+  .explainer.stardust-versions .vs__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.explainer.stardust-versions .vs__pane {
+  margin: 0;
+  min-width: 0;
+}
+
+.explainer.stardust-versions .vs__pane img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+
+.explainer.stardust-versions .vs__pane figcaption {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.explainer.stardust-versions .vs__pane figcaption :is(strong, b) {
+  color: var(--ink);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.explainer.stardust-versions .vs.is-live .vs__grid {
+  grid-template-columns: 1fr;
+}
+
+.explainer.stardust-versions .vs.is-live .vs__pane {
+  display: none;
+}
+
+.explainer.stardust-versions .vs.is-live .vs__pane.on {
+  display: block;
+  animation: vs-in 0.3s var(--ease) both;
+}
+
+.explainer.stardust-versions .vs.is-live .vs__pane img {
+  border-radius: 12px;
+  box-shadow: 0 20px 40px -30px rgb(0 0 0 / 35%);
+}
+
+.explainer.stardust-versions .vs__cap {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+@keyframes vs-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explainer.stardust-versions .vs.is-live .vs__pane.on {
+    animation: none;
+  }
+}
+
+/* 44px touch targets on phones; the block options wrap instead of scrolling */
+@media (width <= 640px) {
+  .explainer.stardust-versions .vs__tabs > * {
+    min-height: 44px;
+  }
+
+  .explainer.stardust-versions .chips {
+    flex-wrap: wrap;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+  }
+
+  .explainer.stardust-versions .chips > * {
+    min-height: 44px;
+  }
+
+  /* a host's label stays centered, as in a button */
+  .explainer.stardust-versions :is(.chips, .vs__tabs) > * {
+    display: inline-flex;
+    align-items: center;
+  }
+}
