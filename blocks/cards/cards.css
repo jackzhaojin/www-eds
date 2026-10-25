@@ -55,3 +55,228 @@
     margin-top: 32px;
   }
 }
+
+/* Cards (tool): portfolio/styles.css .workbench-grid, .tool-card, .tool-name, .tool-meta. The
+   card is one paragraph: the bold name, the note, the italic dates. The dates sit on the
+   card's 16px line, as the source's inline dates span does. */
+.cards.tool {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.cards.tool .cards-card {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 20px;
+  text-decoration: none;
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.cards.tool .cards-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--ink-faint);
+}
+
+.cards.tool .cards-card p {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.cards.tool .cards-card strong {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: var(--weight-regular);
+  color: var(--ink);
+}
+
+.cards.tool .cards-card strong::before {
+  content: "";
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-right: 6px;
+  vertical-align: -1px;
+  opacity: 0.65;
+  background: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.cards.tool .cards-card br {
+  display: none;
+}
+
+.cards.tool .cards-card em {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 11px;
+  line-height: calc(var(--text-body) * var(--leading-body));
+  color: var(--ink-faint);
+}
+
+/* Cards (project): .bruce-grid, .bruce-card, .bruce-dates, .bruce-note. Cards (repo):
+   .repo-grid, .repo-card, .rc-dates; each repo card is one link, as on the source. */
+.cards:is(.project, .repo) .cards-grid {
+  display: grid;
+  margin: 0 auto;
+}
+
+.cards.project .cards-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 1100px;
+}
+
+.cards.repo .cards-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  max-width: var(--max);
+}
+
+.cards:is(.project, .repo) .cards-card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.cards.project .cards-card {
+  padding: 26px;
+}
+
+.cards.repo .cards-card > a:any-link {
+  display: block;
+  padding: 22px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: inherit;
+}
+
+.cards.repo .cards-card > a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* The dates paragraph that held the link, emptied when the link takes the card. */
+.cards.repo .cards-source {
+  display: none;
+}
+
+.cards.repo .cards-dates-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: calc(var(--text-body) * var(--leading-body));
+  color: var(--accent);
+}
+
+.cards.project .cards-card:hover,
+.cards.repo .cards-card:has(> a:hover) {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.cards:is(.project, .repo) .cards-dates p {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: calc(var(--text-body) * var(--leading-body));
+  color: var(--accent);
+}
+
+.cards:is(.project, .repo) .cards-title :is(h2, h3, h4) {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.cards.project .cards-title :is(h2, h3, h4) {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.cards.repo .cards-title :is(h2, h3, h4) {
+  font-size: clamp(23px, 2.6vw, 32px);
+  margin-bottom: 12px;
+}
+
+.cards.project .cards-summary p {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.cards.repo .cards-summary p {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.cards.project .cards-links p {
+  margin-top: 18px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.cards.project .cards-links a:any-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 0 2px;
+  margin: -10px 0 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  transition: border-color 0.25s;
+}
+
+.cards.project .cards-links a:hover {
+  border-color: var(--accent);
+}
+
+.cards.project .cards-links a[href*="github.com"] {
+  color: var(--ink);
+  border-bottom-color: var(--color-line);
+}
+
+.cards.project .cards-links a:is([href*="youtube.com"], [href*="youtu.be"]) {
+  color: var(--ink-soft);
+  border-bottom-color: var(--color-line);
+}
+
+.cards.project .cards-note p {
+  max-width: 980px;
+  margin: 26px auto 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink-soft);
+}
+
+@media (width <= 1100px) {
+  .cards.project .cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cards.project .cards-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (width <= 700px) {
+  .cards.project .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

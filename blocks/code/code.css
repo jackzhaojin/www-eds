@@ -41,6 +41,17 @@
   display: flex;
 }
 
+.code.wrap .code-bar p:not(:has(a)) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.code.wrap .code-bar p:has(a) {
+  flex: none;
+  white-space: nowrap;
+}
+
 .code .code-bar a:any-link {
   color: var(--palette-lavender-300);
   text-decoration: underline;
@@ -53,7 +64,6 @@
   color: var(--palette-bone-100);
 }
 
-/* Inline line spans keep their own newlines when edited. */
 .code pre {
   position: relative;
   margin: 0;
@@ -76,9 +86,18 @@
   color: inherit;
 }
 
+/* Lines stay inline: their own newline breaks them, so the code reads the same while it is
+   edited (the editor shows the plain text with the same newlines). */
 .code .ln {
   padding: 0 20px 0 0;
   border-left: 2px solid transparent;
+}
+
+.code.prose .ln {
+  display: block;
+  white-space: pre-wrap;
+  padding-left: 3.2em;
+  text-indent: -3.2em;
 }
 
 .code .ln::before {
@@ -106,4 +125,12 @@
 
 .code .tk-n {
   color: var(--palette-gold-300);
+}
+
+@media (width <= 640px) {
+  .code.stack .code-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
 }

@@ -66,3 +66,98 @@ footer .footer {
     margin: 6px 0 0;
   }
 }
+
+/* The v3 full footer (design-systems/v3 components.css .site-footer), drawn only when the
+   footer document has headed columns. The default compact footer is unchanged. */
+footer .footer.footer-full {
+  padding: var(--space-7) 0 var(--space-6);
+}
+
+.footer.footer-full .footer-grid,
+.footer.footer-full .footer-meta-row {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.footer.footer-full .footer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 20px;
+}
+
+.footer.footer-full .footer-col h2 {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.footer.footer-full .footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer.footer-full .footer-col li {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+}
+
+.footer.footer-full .footer-col a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.footer.footer-full .footer-col a:hover {
+  color: var(--color-text);
+}
+
+.footer.footer-full .footer-meta-row {
+  margin-top: var(--space-6);
+  padding-top: 18px;
+  border-top: var(--border-width) solid var(--color-line);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--color-text-faint);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.footer.footer-full .footer-meta-row p {
+  margin: 0;
+}
+
+@media (width >= 768px) {
+  .footer.footer-full .footer-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+}
+
+.footer.footer-full .footer-col .placeholder {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  font-family: var(--font-mono);
+  font-size: max(0.85em, 12px);
+  color: var(--color-text-faint);
+  border: var(--border-width) dashed var(--color-line-strong);
+  border-radius: var(--radius-sm);
+  padding: 0 6px;
+  white-space: normal;
+}

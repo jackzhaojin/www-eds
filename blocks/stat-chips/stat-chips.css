@@ -1,0 +1,34 @@
+/* Stat chips: portfolio/styles.css .stat-chips, .center-chips, .stat. */
+.stat-chips .stat-chips-row :is(ul, ol) {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.showcase.wide .stat-chips .stat-chips-row :is(ul, ol) {
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.stat-chips .stat-chips-row li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  line-height: 1.4;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 7px 12px;
+  background: var(--color-surface);
+}
+
+.stat-chips .stat-chips-row strong {
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 4px;
+}

@@ -1,0 +1,360 @@
+/* Explainer (theme-swap): the token swap lab (writing/2026-05-24 explainer.css, .tkl). The
+   preview reads the real values from styles/styles.css before and after commit d6355ee, at
+   about half size; each group (colors, fonts, buttons) is a class on the preview. The fonts
+   load with display=swap, so the preview text shows in a fallback face until they arrive. */
+.explainer.theme-swap .tkl-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  padding: 16px 18px 0;
+}
+
+@container (min-width: 720px) {
+  .explainer.theme-swap .tkl-controls {
+    padding: 20px 28px 0;
+  }
+}
+
+.explainer.theme-swap .tkl-toggles ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.explainer.theme-swap .tkl-toggles li {
+  position: relative;
+  margin: 0;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 7px 13px 7px 34px;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.explainer.theme-swap .tkl-toggles li::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  border-radius: 4px;
+  border: 1.5px solid var(--line-strong);
+  background: var(--surface);
+  box-sizing: border-box;
+}
+
+.explainer.theme-swap .tkl-toggles li[aria-checked="true"] {
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.explainer.theme-swap .tkl-toggles li[aria-checked="true"]::before {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 3px var(--surface);
+}
+
+.explainer.theme-swap .tkl-toggles li:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* the preview page: boilerplate values by default, each group class swaps in the theme */
+.explainer.theme-swap .tkl-page {
+  --tk-bg: #fff;
+  --tk-light: #f8f8f8;
+  --tk-dark: #505050;
+  --tk-text: #131313;
+  --tk-link: #3b63fb;
+  --tk-eyebrow: #505050;
+  --tk-border: #f8f8f8;
+  --tk-body: roboto, "Roboto", arial, sans-serif;
+  --tk-head: "Roboto Condensed", arial, sans-serif;
+  --tk-head-weight: 700;
+  --tk-head-track: 0;
+
+  background: var(--tk-bg);
+  color: var(--tk-text);
+  font-family: var(--tk-body);
+  font-size: 12px;
+  line-height: 1.55;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 18px 18px;
+  min-width: 0;
+  container-type: inline-size;
+  transition: background-color 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+.explainer.theme-swap .tkl-page.c-after {
+  --tk-light: #f5f5f7;
+  --tk-dark: #424245;
+  --tk-text: #1d1d1f;
+  --tk-link: #1473e6;
+  --tk-eyebrow: #6e6e73;
+  --tk-border: #e8e8ed;
+}
+
+.explainer.theme-swap .tkl-page.f-after {
+  --tk-body: "Source Sans 3", arial, sans-serif;
+  --tk-head: "Inter", arial, sans-serif;
+  --tk-head-track: -0.02em;
+}
+
+.explainer.theme-swap .tkl-page p {
+  margin: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+.explainer.theme-swap .tkl-h1 {
+  font: var(--tk-head-weight) 26px/1.2 var(--tk-head);
+  letter-spacing: var(--tk-head-track);
+  margin-bottom: 6px;
+}
+
+.explainer.theme-swap .tkl-h2 {
+  font: var(--tk-head-weight) 18px/1.2 var(--tk-head);
+  letter-spacing: var(--tk-head-track);
+  margin: 2px 0 6px;
+}
+
+.explainer.theme-swap .tkl-page .tkl-p {
+  margin-bottom: 8px;
+}
+
+.explainer.theme-swap .tkl-page code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: inherit;
+  background: var(--tk-light);
+  border: 0;
+  padding: 0 3px;
+  border-radius: 3px;
+}
+
+.explainer.theme-swap .tkl-page u {
+  color: var(--tk-link);
+  text-decoration: underline;
+}
+
+.explainer.theme-swap .tkl-teaser {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0;
+  border: 1px solid var(--tk-border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--tk-light);
+  transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+
+@container (min-width: 380px) {
+  .explainer.theme-swap .tkl-teaser {
+    flex-direction: row;
+  }
+
+  .explainer.theme-swap .tkl-visual {
+    flex: 1;
+  }
+
+  .explainer.theme-swap .tkl-text {
+    flex: 1.1;
+  }
+}
+
+.explainer.theme-swap .tkl-visual {
+  min-height: 110px;
+  background: linear-gradient(120deg, #0b2a5b, #3f8fd6 45%, #d7ecff 60%, #2a5ea8);
+}
+
+.explainer.theme-swap .tkl-text {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.explainer.theme-swap .tkl-text .tkl-p {
+  margin-bottom: 8px;
+}
+
+.explainer.theme-swap .tkl-eyebrow {
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--tk-eyebrow);
+}
+
+.explainer.theme-swap .tkl-page.f-after .tkl-eyebrow {
+  font-family: var(--tk-head);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.explainer.theme-swap .tkl-ctas ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+}
+
+/* buttons: boilerplate shape, then the theme shape */
+.explainer.theme-swap .tkl-ctas li {
+  display: inline-block;
+  margin: 0;
+  border: 2px solid transparent;
+  border-radius: 2.4em;
+  padding: 0.5em 1.2em;
+  font: 500 11px/1.25 var(--tk-body);
+  white-space: nowrap;
+  transition: all 0.35s var(--ease);
+}
+
+.explainer.theme-swap .tkl-ctas li:nth-child(1) {
+  border-color: var(--tk-text);
+  background: var(--tk-text);
+  color: var(--tk-bg);
+}
+
+.explainer.theme-swap .tkl-ctas li:nth-child(2) {
+  border-color: var(--tk-text);
+  background: transparent;
+  color: var(--tk-text);
+}
+
+.explainer.theme-swap .tkl-page.b-after .tkl-ctas li {
+  border-width: 1.5px;
+  border-radius: 999px;
+  padding: 0.95em 2em;
+  font: 700 9px/1.25 var(--tk-head);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.explainer.theme-swap .tkl-page.b-after .tkl-ctas li:nth-child(1) {
+  border-color: var(--tk-link);
+  background: var(--tk-link);
+  color: #fff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
+}
+
+/* the token table */
+.explainer.theme-swap .tkl-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.explainer.theme-swap .tkl-table th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 6px 8px 6px 0;
+  border-bottom: 1px solid var(--line-strong);
+  font-size: 12.5px;
+}
+
+.explainer.theme-swap .tkl-table td {
+  padding: 6px 8px 6px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+  vertical-align: top;
+  font-size: 12.5px;
+  overflow-wrap: break-word;
+}
+
+.explainer.theme-swap .tkl-table :is(td, th) :is(p, div) {
+  display: inline;
+}
+
+.explainer.theme-swap .tkl-table td:first-child {
+  font-family: var(--font-body);
+}
+
+.explainer.theme-swap .tkl-table td code {
+  font: 500 11.5px var(--font-mono);
+  color: var(--ink);
+  background: var(--accent-tint);
+  padding: 1px 4px;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.explainer.theme-swap .tkl-table td i {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  margin-right: 6px;
+  vertical-align: -1px;
+  background: var(--c);
+  border: 1px solid var(--line-strong);
+  box-sizing: border-box;
+}
+
+.explainer.theme-swap .tkl-table td.tkl-none {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.explainer.theme-swap .tkl-table td:nth-child(3) {
+  color: var(--ink);
+}
+
+/* keep each swatch on the same line as its hex value */
+.explainer.theme-swap .tkl-table tr[data-g="colors"] td,
+.explainer.theme-swap .tkl-table tr[data-g="colors"] td :is(p, div) {
+  white-space: nowrap;
+}
+
+.explainer.theme-swap .tkl-table table.is-live td:nth-child(2),
+.explainer.theme-swap .tkl-table table.is-live td:nth-child(3) {
+  transition: background 0.3s var(--ease);
+}
+
+.explainer.theme-swap .tkl-table table.is-live tr[data-on="before"] td:nth-child(2),
+.explainer.theme-swap .tkl-table table.is-live tr[data-on="after"] td:nth-child(3) {
+  background: var(--accent-tint);
+  color: var(--ink);
+}
+
+.explainer.theme-swap .tkl-table table.is-live tr[data-on="before"] td:nth-child(3) {
+  color: var(--muted);
+}
+
+.explainer.theme-swap .tkl-note p {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.explainer.theme-swap .tkl-data {
+  display: none;
+}
+
+@media (width <= 640px) {
+  .explainer.theme-swap .tkl-table :is(th, td):first-child {
+    width: 38%;
+  }
+
+  .explainer.theme-swap .tkl-toggles li {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,0 +1,135 @@
+/* Explainer engine empty-cohort: the source article's .eb lab (writing/2026-05-31-continuous-
+   agent-second-brain/explainer.css) on the kit's .lab, .chips and .verdict. Authored lists, code
+   and paragraphs are styled through their wrappers so the look holds in quick edit. */
+.explainer.empty-cohort p {
+  text-wrap: wrap;
+}
+
+.explainer.empty-cohort .lab__grid {
+  align-items: start;
+}
+
+.explainer.empty-cohort [hidden] {
+  display: none !important;
+}
+
+/* Inline code takes the article's inline code look (the source's article rule outranks the lab's
+   own code rules); the article template leaves code in a lab alone, so it is restated here. */
+.explainer.empty-cohort :is(li, .x-caption) code {
+  font: 500 0.86em var(--font-mono);
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  font-variant-ligatures: none;
+}
+
+.explainer.empty-cohort .x-names {
+  display: none;
+}
+
+.explainer.empty-cohort .eb-lines {
+  display: none;
+}
+
+/* code */
+.explainer.empty-cohort .eb-code pre {
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--night);
+  color: var(--bone);
+  border-radius: 12px;
+  font: 400 12.5px/1.75 var(--font-mono);
+  white-space: pre-wrap;
+  overflow: visible;
+  overflow-wrap: anywhere;
+  border: 0;
+  font-variant-ligatures: none;
+}
+
+.explainer.empty-cohort .eb-code code {
+  font: inherit;
+  white-space: inherit;
+}
+
+.explainer.empty-cohort .eb-code .c {
+  color: #8f8a85;
+}
+
+.explainer.empty-cohort .eb-code .hl {
+  color: var(--gold);
+}
+
+/* trace */
+.explainer.empty-cohort .eb-trace ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.explainer.empty-cohort .eb-trace li {
+  margin: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.explainer.empty-cohort .eb-trace strong {
+  display: block;
+  font: 500 11.5px/1.4 var(--font-mono);
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.explainer.empty-cohort .eb-trace li code {
+  font: 500 13px var(--font-mono);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.explainer.empty-cohort .eb-trace br {
+  display: none;
+}
+
+.explainer.empty-cohort .eb-trace li[data-s="bad"] {
+  border-color: #c2433d;
+  background: rgb(194 67 61 / 6%);
+}
+
+.explainer.empty-cohort .eb-trace li[data-s="good"] {
+  border-color: var(--pass-ink);
+}
+
+/* verdict */
+.explainer.empty-cohort .verdict .no p {
+  color: var(--rose);
+}
+
+.explainer.empty-cohort .verdict .ok p {
+  color: var(--mint);
+}
+
+.explainer.empty-cohort .verdict .log p {
+  color: var(--bone-3);
+}
+
+/* caption */
+.explainer.empty-cohort .x-caption {
+  margin: 0;
+  padding: 0 18px 18px;
+}
+
+.explainer.empty-cohort .x-caption p {
+  margin: 0;
+}
+
+@container (min-width: 720px) {
+  .explainer.empty-cohort .x-caption {
+    padding: 0 28px 22px;
+  }
+}

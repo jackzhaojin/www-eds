@@ -6,12 +6,48 @@
  * the player frame shows the video, titled from the link text. A lone YouTube link in default
  * content becomes this block too (scripts.js), so authors never build an embed table.
  *
+ * Screenshots, pages and boards marked open show full size on click (the delivered image, at its
+ * own width), as on the source. An authored link around the image keeps its title; its href
+ * becomes the delivered image, since the authored media URL is not public.
+ *
  * @ew-exempt <p> video link - the embed's source link, never displayed
- * @variants board (default board)
- *   board - a diagram or screenshot on a white ground with a hairline, as the source's boards
+ * @variants board | shot | page | narrow | slim | compact | tall | native | open (default board)
+ *   board - a diagram on a white ground with a hairline, as the source's boards
+ *   shot - a product screenshot, the same frame, opens full size
+ *   page - a photographed notebook page, at most 420px wide, opens full size
+ *   narrow - with shot: a portrait screenshot kept at most 560px wide; with board: a photo and
+ *   its caption kept at most 520px wide, centered
+ *   slim - with shot: a portrait screenshot kept at most 460px wide (one article's narrower
+ *   setting; register R8 proposes one width)
+ *   tall - with board: a tall image at its own size, at most 560px wide (one article)
+ *   compact - with board: the whole figure kept at most 560px wide, left-aligned (one
+ *   article's board--narrow)
+ *   native - the image at its own size, never upscaled, left-aligned
+ *   open - with board: the diagram opens full size on click
+ * Page theme board-mat (metadata theme): in the dark theme boards sit on a framed dark mat.
  */
 
-const VARIANTS = ['board'];
+const VARIANTS = ['board', 'shot', 'page'];
+
+/** Links the picture to the delivered image at full size (the href is derived, not authored). */
+function openFull(media) {
+  const img = media.querySelector('img');
+  if (!img) return;
+  const full = new URL(img.getAttribute('src'), window.location);
+  full.searchParams.delete('width');
+  const authored = img.closest('a');
+  const a = authored || document.createElement('a');
+  a.classList.add('figure-open');
+  a.href = full.href;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  if (!authored) {
+    const picture = img.closest('picture') || img;
+    picture.before(a);
+    a.append(picture);
+  }
+}
+
 const YOUTUBE = /(?:youtube(?:-nocookie)?\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([\w-]{11})/;
 
 function videoFrame(link) {
@@ -45,7 +81,8 @@ export default function decorate(block) {
       source.className = 'figure-source';
       source.append(el);
       media.append(source, videoFrame(link));
-    } else if (!media.children.length && (el.matches('picture, img') || el.querySelector('picture, img'))) {
+    } else if (!video && !caption.children.length && (el.matches('picture, img') || el.querySelector('picture, img'))) {
+      // Image paragraphs before the caption are the media: a board split in two has two.
       media.append(el);
     } else caption.append(el);
   });
@@ -53,5 +90,9 @@ export default function decorate(block) {
   if (caption.children.length) figure.append(caption);
   if (video) block.classList.add('video');
   else if (!VARIANTS.some((v) => block.classList.contains(v))) block.classList.add('board');
+  if (['shot', 'page', 'open'].some((v) => block.classList.contains(v))) openFull(media);
+  // A native or tall image keeps its own width before it loads, so the figure never collapses.
+  const nativeImg = ['native', 'tall'].some((v) => block.classList.contains(v)) && media.querySelector('img[width]');
+  if (nativeImg) nativeImg.style.width = `${nativeImg.getAttribute('width')}px`;
   block.replaceChildren(figure);
 }

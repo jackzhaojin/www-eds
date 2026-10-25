@@ -1,0 +1,179 @@
+/* Explainer engine "option-pair": the source's .mx compare-two figure
+   (writing/2025-06-04-seven-aem-capabilities-tradeoffs/explainer.css), with the article's select look. */
+/* stylelint-disable selector-class-pattern -- the source's BEM names are kept so the port stays faithful */
+.explainer.option-pair .mx {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  padding: 16px;
+}
+
+.explainer.option-pair .mx__source {
+  display: none;
+}
+
+.explainer.option-pair .mx__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: end;
+}
+
+.explainer.option-pair .mx__pick {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  flex: 1 1 220px;
+}
+
+.explainer.option-pair .mx__pick-label {
+  font: 500 12px/1.2 var(--font-mono);
+  color: var(--ink-2);
+  letter-spacing: 0.02em;
+}
+
+.explainer.option-pair .mx__pick select {
+  width: 100%;
+  font: 500 14.5px/1.3 var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  appearance: none;
+  min-height: 44px;
+  padding: 9px 38px 9px 12px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23807a73' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px 8px;
+}
+
+.explainer.option-pair .mx__pick select:hover {
+  border-color: var(--ink-2);
+}
+
+.explainer.option-pair :is(.mx__pick select, .mx__only input):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explainer.option-pair .mx__only {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  color: var(--ink-2);
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.explainer.option-pair .mx__only input {
+  accent-color: var(--accent);
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+.explainer.option-pair .mx__summary {
+  margin: 14px 0 0;
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.explainer.option-pair .mx__out {
+  display: grid;
+  gap: 16px;
+  margin-top: 10px;
+  min-width: 0;
+}
+
+.explainer.option-pair .mx__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.45;
+  table-layout: fixed;
+}
+
+.explainer.option-pair .mx__table caption {
+  caption-side: top;
+  text-align: left;
+  padding: 6px 0;
+  font: 500 12px/1.3 var(--font-mono);
+  letter-spacing: 0.03em;
+  color: var(--ink-2);
+}
+
+.explainer.option-pair .mx__table :is(th, td) {
+  text-align: left;
+  vertical-align: top;
+  padding: 9px 10px 9px 0;
+  border-bottom: 1px solid var(--line);
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.explainer.option-pair .mx__table thead th {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom-color: var(--line-strong);
+}
+
+.explainer.option-pair .mx__table thead th:first-child {
+  width: 30%;
+}
+
+.explainer.option-pair .mx__table tbody th {
+  font-weight: 500;
+  color: var(--ink-2);
+  padding-left: 8px;
+}
+
+.explainer.option-pair .mx__table td {
+  color: var(--ink);
+}
+
+.explainer.option-pair .mx__table tr.is-diff :is(th, td) {
+  background: color-mix(in srgb, var(--differs) 7%, transparent);
+}
+
+.explainer.option-pair .mx__table :is(a, code) {
+  overflow-wrap: anywhere;
+  hyphens: none;
+}
+
+.explainer.option-pair .mx__table a:any-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.explainer.option-pair .mx__tag {
+  display: block;
+  margin-top: 3px;
+  font: 500 11px/1 var(--font-mono);
+  color: var(--differs);
+  letter-spacing: 0.03em;
+}
+
+.explainer.option-pair .mx__same {
+  color: var(--muted);
+}
+
+.explainer.option-pair figcaption {
+  margin-top: 12px;
+}
+
+@container (max-width: 480px) {
+  .explainer.option-pair .mx__table thead th:first-child {
+    width: 34%;
+  }
+
+  .explainer.option-pair .mx__table {
+    font-size: 13.5px;
+  }
+}

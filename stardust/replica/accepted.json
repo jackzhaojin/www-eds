@@ -1,53 +1,676 @@
 {
-  "accepted": [
-    {
-      "kind": "ICON DIFF",
-      "text": "part 1 sign-in on a static site",
-      "root": "main",
-      "probe": "content-diff",
-      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
-    },
-    {
-      "kind": "ICON DIFF",
-      "text": "part 2 what it is, where it runs",
-      "root": "main",
-      "probe": "content-diff",
-      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
-    },
-    {
-      "kind": "ICON DIFF",
-      "text": "part 3 running it on my laptop",
-      "root": "main",
-      "probe": "content-diff",
-      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
-    },
-    {
-      "kind": "ICON DIFF",
-      "text": "part 4 signing in with google",
-      "root": "main",
-      "probe": "content-diff",
-      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
-    },
-    {
-      "kind": "ICON DIFF",
-      "text": "part 5 checking google's keys",
-      "root": "main",
-      "probe": "content-diff",
-      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
-    },
-    {
-      "kind": "ICON DIFF",
-      "text": "part 6 calling an api from the edge",
-      "root": "main",
-      "probe": "content-diff",
-      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
-    },
-    {
-      "kind": "ICON DIFF",
-      "text": "wrap-up server-side rendering is back",
-      "root": "main",
-      "probe": "content-diff",
-      "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
-    }
-  ]
+ "accepted": [
+  {
+   "kind": "ICON DIFF",
+   "text": "part 1 sign-in on a static site",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 2 what it is, where it runs",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 3 running it on my laptop",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 4 signing in with google",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 5 checking google's keys",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 6 calling an api from the edge",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "wrap-up server-side rendering is back",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same seven images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub3, article-1440). Recorded 2026-10-25 for Jack's register review."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "1 two pipelines, by branch",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-cicd.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_10c4db6850...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-07), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "2 five actors, one code path",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-auth.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_12af0230e4...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-07), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "3 public copy on ec2",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-aws.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1ad64f98f3...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-07), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "4 how a request moves",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-arch.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1915e200ed...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-07), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "1 what, how and when",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-docs.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1483e2d7d1...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-11), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "4 what changes with ai",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-different.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1982f4aebd...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-11), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "5 a mixed team, and leadership",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-team.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_122b0ac152...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-11), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 1 one aem, many channels",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-goal.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1bf8b6e837...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-12), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 2 solution 1, fragments and events",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-solution-1.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_13fdf4a112...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-12), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 3 solution 2, fragments to target",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-solution-2.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_193cf9497f...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-12), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 4 solution 3, one publish tier",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-solution-3.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_141d03cf01...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-12), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 5 six considerations compared",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-considerations.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1bc69ddaf9...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-12), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 1 documents in google docs or word",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-documents.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_159a2baf6c...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-13), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 2 aem with the universal editor",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-universal-editor.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_12a5cc32ab...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-13), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 3 da.live, the newest one",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-da-live.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_12fb17e89d...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-13), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 4 one shared path to the edge",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-shared.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_11db501df9...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-07-13), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 2 the scripted flow",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-scripted.jpg) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_112a9e7b9a...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-10-05), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 4 two tools and an agent",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-agent.jpg) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_121c81c0b7...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-10-05), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 5 the claude desktop demo",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-demo.jpg) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_147d2fa7c3...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-10-05), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 1 three models, three tool formats",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-llms.jpg) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1aae889886...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-10-12), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 3 n8n over streamable http",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-n8n.jpg) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1e85f31185...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-10-12), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 4 two integration patterns",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-patterns.jpg) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1fec3d5ffb...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-10-12), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 1 scan plus agent score",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-project-1.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1a9eca5bfb...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2026-01-05), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 2 three levels of capability",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-capabilities.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_134aad09ad...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2026-01-05), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 3 sub-agents for long sessions",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-subagents.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1c12c43d85...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2026-01-05), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 4 a harness and its requirements",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-harness.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1bf15e4b36...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2026-01-05), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 5 run on main, improve on develop",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-iterate.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1c430c6829...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2026-01-05), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 6 defects become subtasks",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-loop.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_137e92ec11...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2026-01-05), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 1 a typical aem setup",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-debate.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_165e1503e6...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-09-01), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 2 publish sets the headers",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-publish.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_141f1723b2...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-09-01), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 3 the dispatcher's own rules",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-dispatcher.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1f56ec09e2...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-09-01), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 4 adobe's cdn and serving stale",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-adobe-cdn.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1c32cf2a9e...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-09-01), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 5 respect below, override above",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-client-cdn.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1e1565bde7...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-09-01), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 6 decoupled apps own their cache",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail (thumb-application.png) inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_1ca93e1dde...). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels. Batch A2 (2025-09-01), local entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "the frame five layers, one spine",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-06-28-patterns-of-work/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "layer 1 one person, many loops",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-06-28-patterns-of-work/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "layer 2 teams, speed does not add",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-06-28-patterns-of-work/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "layer 3 ai as a contributor",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-06-28-patterns-of-work/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "layer 4 ai and human management, siloed",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-06-28-patterns-of-work/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "between 4 and 5 ai with humans is the ha",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-06-28-patterns-of-work/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "layer 5 humans and ai, one mesh",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-06-28-patterns-of-work/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "the spine context, governance, observabi",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-06-28-patterns-of-work/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "the foundation shared context services",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-06-28-patterns-of-work/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 1 one prompt, four ingredients",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-07-21-four-frontier-models-one-prompt/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 2 gpt 5.6, best home screen",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-07-21-four-frontier-models-one-prompt/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 3 kimi k3, deepest on context",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-07-21-four-frontier-models-one-prompt/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 4 gemini 3.5 flash, most basic",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-07-21-four-frontier-models-one-prompt/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 5 claude fable 5, most premium",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-07-21-four-frontier-models-one-prompt/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 6 the merge, and what it kept",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-07-21-four-frontier-models-one-prompt/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "wrap-up what i took away, which to pay f",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "A4 local run only, not committed. Rail thumbnail inside the article rail, closed below 1081px on both sides, so the probe falls back to file names (DA rehosts as media_<hash>). /writing/2026-07-21-four-frontier-models-one-prompt/ at 1440, where the rail is open, raises 0 ICON DIFF (content-diff-pub1)."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 4 stitch vs two stardust runs",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same rail images raise no ICON DIFF at 1440, where the rail is open (content-diff-pub1, 2026-08-09-adobe-stardust-explained-1440). Local entry for A4 stardust runs, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 5 deploy builds eds in one shot",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same rail images raise no ICON DIFF at 1440, where the rail is open (content-diff-pub1, 2026-08-09-adobe-stardust-explained-1440). Local entry for A4 stardust runs, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "intro why all 25 talks",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "01 · mon 12:30 agents don't browse",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "02 · mon 12:55 one aem mcp server",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "03 · mon 13:30 rolling out mcp on aem",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "04 · mon 14:25 advancing aem elasticity",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "05 · mon 15:00 securing aem customer cod",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "06 · mon 15:40 aem content requests",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "07 · mon 17:30 develop faster with ai to",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "08 · mon 18:05 migrate to cloud service ",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "09 · mon 18:40 comparador",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "10 · tue 09:00 our talk: ai content migr",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "11 · tue 09:35 hybrid aem architecture",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "12 · tue 10:25 tales from the migration ",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "13 · tue 11:00 spiritually-succeeding ae",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "14 · tue 11:35 spellforge to experience ",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "15 · tue 13:30 brand visibility in llms",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "16 · tue 14:05 content supply chain",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "17 · tue 14:55 shifting the search parad",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "18 · tue 15:20 continuous materializatio",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "19 · wed 09:00 aem forms rule authoring",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "20 · wed 09:35 tracking through the tran",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "21 · wed 10:00 index optimizer",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "22 · wed 10:50 project asset hub",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "23 · wed 11:25 editorial ai in aem",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "24 · wed 13:30 15 years of women at adap",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "25 · wed 13:55 dam breakfast",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, adaptto-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 1 execute but not learn",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, second-brain-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 2 a second brain, git canonical",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, second-brain-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 3 five memory types",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, second-brain-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 5 retrieving in plain english",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, second-brain-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 6 rollout and the empty-string bug",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, second-brain-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "1:00 public engine, private brains",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, anima-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "3:20 a brain with zero code",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, anima-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "4:38 agents take sick days",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, anima-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "5:57 reaching files where they live",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, anima-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "7:47 the brain files its own issues",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, anima-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "10:06 ai reaches out to you",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, anima-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  }
+ ]
 }

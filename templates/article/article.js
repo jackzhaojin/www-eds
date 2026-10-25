@@ -1,3 +1,5 @@
+import { getMetadata } from '../../scripts/aem.js';
+
 /*
  * Technical Writing article template (metadata "template: article").
  *
@@ -56,28 +58,28 @@ function decorateByline(p) {
 }
 
 /**
- * Title words the source keeps on one line: hyphenated or dotted words (Sign-in, da.live) and
- * phrases joined by a no-break space. A presentation refinement: the text is unchanged.
+ * Words kept on one line: the page metadata "title-keep-together" lists them for the h1 and
+ * "heading-keep-together" for the h2s, comma separated (Sign-in, Members-Only), as the source
+ * marks them heading by heading. Each first match in a heading gets a nowrap span: a
+ * presentation refinement, the text is unchanged.
  */
-function keepTogether(h1) {
-  const NOWRAP = /[A-Za-z0-9]+(?:[-.][A-Za-z0-9]+)+|[^\s\u00a0]+(?:\u00a0[^\s\u00a0]+)+/g;
-  [...h1.childNodes].forEach((node) => {
-    if (node.nodeType !== Node.TEXT_NODE) return;
-    const text = node.textContent;
-    const frag = document.createDocumentFragment();
-    let last = 0;
-    text.replace(NOWRAP, (match, offset) => {
-      frag.append(text.slice(last, offset));
-      const span = document.createElement('span');
-      span.className = 'nowrap';
-      span.textContent = match;
-      frag.append(span);
-      last = offset + match.length;
-      return match;
-    });
-    if (!last) return;
-    frag.append(text.slice(last));
-    node.replaceWith(frag);
+function keepTogether(heading, key) {
+  const runs = (getMetadata(key) || '').split(',').map((r) => r.trim()).filter(Boolean);
+  runs.forEach((run) => {
+    const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      const at = node.textContent.indexOf(run);
+      if (at >= 0 && !node.parentElement.classList.contains('nowrap')) {
+        const tail = node.splitText(at);
+        tail.splitText(run.length);
+        const span = document.createElement('span');
+        span.className = 'nowrap';
+        tail.replaceWith(span);
+        span.append(tail);
+        return;
+      }
+    }
   });
 }
 
@@ -97,7 +99,7 @@ function decorateHead(section) {
   }
   const h1 = content.querySelector('h1');
   if (h1) {
-    keepTogether(h1);
+    keepTogether(h1, 'title-keep-together');
     wrap(h1, 'article-title');
   }
   [...content.querySelectorAll('p')].forEach((p) => {
@@ -162,6 +164,13 @@ function decorateHeadingLinks(body) {
   });
 }
 
+/** An h3 that asks a question gets the Q&A voice (the source's h3.qa). */
+function decorateQuestions(body) {
+  body.querySelectorAll('.default-content-wrapper h3').forEach((h) => {
+    if (/\?\s*$/.test(h.textContent)) wrap(h, 'question');
+  });
+}
+
 export default function decorate(main) {
   const sections = [...main.querySelectorAll(':scope > .section')];
   if (!sections.length) return;
@@ -182,5 +191,7 @@ export default function decorate(main) {
   head.after(layout);
 
   decorateWatch(body);
+  body.querySelectorAll('h2').forEach((h2) => keepTogether(h2, 'heading-keep-together'));
+  decorateQuestions(body);
   decorateHeadingLinks(body);
 }

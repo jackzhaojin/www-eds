@@ -1,0 +1,201 @@
+/* Explainer engine hook-switchboard: the source article's .sb lab (writing/2026-05-31-continuous-
+   agent-second-brain/explainer.css) on the kit's .lab, .chips and .verdict. Authored lists and
+   paragraphs are styled through their wrappers so the look holds in quick edit. */
+.explainer.hook-switchboard p {
+  text-wrap: wrap;
+}
+
+.explainer.hook-switchboard .lab__grid {
+  align-items: start;
+}
+
+.explainer.hook-switchboard [hidden] {
+  display: none !important;
+}
+
+/* flags */
+.explainer.hook-switchboard .sb-flags ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+/* The box is on the item, so it keeps its size in quick edit, where the label and checkbox go. */
+.explainer.hook-switchboard .sb-flags li {
+  margin: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+}
+
+.explainer.hook-switchboard .sb-flags li:hover {
+  border-color: var(--line-strong);
+}
+
+.explainer.hook-switchboard .sb-flags label {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 10px;
+  align-items: start;
+  margin: -9px -12px;
+  padding: 9px 12px;
+  cursor: pointer;
+}
+
+.explainer.hook-switchboard .sb-flags input {
+  margin: 3px 0 0;
+  accent-color: var(--color-accent);
+  width: 16px;
+  height: 16px;
+}
+
+.explainer.hook-switchboard .sb-flags input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explainer.hook-switchboard .sb-flags strong {
+  display: block;
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Inline code takes the article's inline code look (the source's article rule outranks the lab's
+   own code rules); the article template leaves code in a lab alone, so it is restated here. */
+.explainer.hook-switchboard :is(li, .x-caption) code {
+  font: 500 0.86em var(--font-mono);
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  font-variant-ligatures: none;
+}
+
+.explainer.hook-switchboard .sb-flags code {
+  overflow-wrap: anywhere;
+}
+
+.explainer.hook-switchboard .x-names {
+  display: none;
+}
+
+.explainer.hook-switchboard .sb-flag-state {
+  display: none;
+}
+
+/* steps */
+.explainer.hook-switchboard .sb-steps ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.explainer.hook-switchboard .sb-steps li {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+/* The grid needs the engine's line wrappers; in quick edit the item stacks its parts instead. */
+.explainer.hook-switchboard .sb-steps li:has(> .sb-line) {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 12px;
+  align-items: start;
+}
+
+.explainer.hook-switchboard .sb-steps strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.explainer.hook-switchboard .sb-steps .sb-line {
+  display: contents;
+}
+
+.explainer.hook-switchboard .sb-steps br {
+  display: none;
+}
+
+.explainer.hook-switchboard .sb-steps .sb-note {
+  grid-column: 1 / -1;
+  font: 400 12px/1.5 var(--font-mono);
+  color: var(--muted);
+  overflow-wrap: anywhere;
+  font-variant-ligatures: none;
+}
+
+.explainer.hook-switchboard .sb-steps em {
+  display: inline-block;
+  font: 600 10.5px/1 var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.explainer.hook-switchboard .sb-steps .sb-tag em {
+  display: block;
+}
+
+.explainer.hook-switchboard .sb-steps li[data-s] {
+  border-color: var(--line-strong);
+}
+
+.explainer.hook-switchboard .sb-steps li[data-s="read"] {
+  border-color: var(--color-accent);
+  background: var(--accent-tint);
+}
+
+.explainer.hook-switchboard .sb-steps li[data-s="write"] {
+  border-color: var(--pass-ink);
+}
+
+.explainer.hook-switchboard .sb-steps li[data-s="skip"] {
+  opacity: 0.62;
+}
+
+.explainer.hook-switchboard .sb-steps li[data-s="read"] em {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.explainer.hook-switchboard .sb-steps li[data-s="write"] em {
+  border-color: var(--pass-ink);
+  color: var(--pass-ink);
+}
+
+/* summary */
+.explainer.hook-switchboard .sb-sum {
+  margin: 12px 0 0;
+}
+
+/* caption */
+.explainer.hook-switchboard .x-caption {
+  margin: 0;
+  padding: 0 18px 18px;
+}
+
+.explainer.hook-switchboard .x-caption p {
+  margin: 0;
+}
+
+@container (min-width: 720px) {
+  .explainer.hook-switchboard .x-caption {
+    padding: 0 28px 22px;
+  }
+}

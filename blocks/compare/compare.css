@@ -4,6 +4,16 @@
   margin-block: var(--space-6);
 }
 
+.compare.narrow {
+  max-width: 560px;
+}
+
+.compare .compare-open {
+  display: block;
+  border-radius: 12px;
+  cursor: zoom-in;
+}
+
 .compare .compare-tabs {
   display: flex;
   gap: 6px;
@@ -80,6 +90,12 @@
   opacity: 1;
   visibility: visible;
   transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (width <= 640px) {
+  .compare.touch .compare-tab {
+    min-height: 44px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

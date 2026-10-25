@@ -1,0 +1,38 @@
+/* Callout: design-system/v3 components.css "callout". No colored left border. */
+.callout {
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--card-radius);
+  background: var(--color-accent-soft);
+  padding: 18px 22px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.callout p {
+  margin: 0;
+}
+
+.callout .callout-label p {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 6px;
+}
+
+/* v3: .callout p + p, the label counted (its margin collapses into this one). */
+.callout .callout-body p + p,
+.callout .callout-label + .callout-body p:first-child {
+  margin-top: 8px;
+}
+
+.callout.warn {
+  background: var(--color-surface-raised);
+}
+
+.callout.warn .callout-label p {
+  color: var(--color-topic-agents);
+}

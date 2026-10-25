@@ -1,0 +1,184 @@
+/* Chapter head: portfolio/styles.css .chapter-head, .chapter-num, .chapter-title-block,
+   .method-line, .thesis, .arc, .repo-callout and the css/site.css overrides. The accent and
+   the flagship / lofi looks key off the chapter section's style words. */
+.chapter-head {
+  max-width: var(--max);
+  margin: 0 auto clamp(40px, 6vw, 80px);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(20px, 4vw, 60px);
+  align-items: start;
+}
+
+.chapter-head .chapter-head-num {
+  font-family: var(--font-display);
+  font-size: clamp(60px, 9vw, 130px);
+  font-weight: 700;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.section.lofi .chapter-head .chapter-head-num {
+  -webkit-text-stroke-color: rgb(232 169 184 / 40%);
+}
+
+.chapter-head .chapter-head-heading h2 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.4vw, 54px);
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 14px 0 18px;
+}
+
+.section.flagship .chapter-head .chapter-head-heading h2 {
+  font-size: clamp(34px, 5.2vw, 64px);
+}
+
+.chapter-head .chapter-head-heading h2 em {
+  display: block;
+  margin-top: 6px;
+  font-style: italic;
+  font-size: 0.72em;
+  color: var(--accent);
+}
+
+.chapter-head .chapter-head-meta p {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.chapter-head .chapter-head-method p {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  line-height: 1.9;
+  color: var(--color-text-muted);
+}
+
+.chapter-head .chapter-head-method strong {
+  font-weight: 500;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+
+.chapter-head .chapter-head-thesis p {
+  margin-top: 18px;
+  max-width: 62ch;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  font-size: clamp(15px, 1.5vw, 17px);
+}
+
+.section.lofi .chapter-head .chapter-head-thesis p {
+  font-size: 15px;
+}
+
+.chapter-head .chapter-head-arc p {
+  max-width: 62ch;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin-top: 14px;
+}
+
+/* repo callout */
+.chapter-head .chapter-head-callout {
+  margin-top: clamp(22px, 3vw, 32px);
+  max-width: 62ch;
+  padding: clamp(18px, 2.4vw, 26px) clamp(18px, 2.4vw, 28px);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  border-radius: var(--radius);
+  background: linear-gradient(140deg, color-mix(in srgb, var(--accent) 9%, transparent), var(--color-surface) 62%);
+}
+
+.chapter-head .chapter-head-label p {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.chapter-head .chapter-head-repo a:any-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  max-width: 100%;
+  margin-top: 10px;
+  padding: 0 0 4px;
+  font-family: var(--font-mono);
+  font-size: clamp(14px, 2.3vw, 24px);
+  font-weight: 500;
+  letter-spacing: normal;
+  line-height: 1.25;
+  color: var(--accent);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  transition: border-color 0.25s, color 0.25s;
+}
+
+.chapter-head .chapter-head-repo a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.chapter-head .chapter-head-arrow {
+  font-size: 0.7em;
+  white-space: nowrap;
+}
+
+.chapter-head .chapter-head-note p {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.chapter-head .chapter-head-links p {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.chapter-head .chapter-head-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-bottom: 2px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.chapter-head .chapter-head-links a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink-soft);
+}
+
+@media (width <= 700px) {
+  .chapter-head {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}

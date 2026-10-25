@@ -1,0 +1,251 @@
+/* Explainer (freezeframe): two tracks on one clock (writing/2026-01-29 explainer.css, .ff). */
+.explainer.freezeframe .ff-body {
+  padding: 20px 18px 22px;
+  display: grid;
+  gap: 18px;
+}
+
+@container (min-width: 720px) {
+  .explainer.freezeframe .ff-body {
+    padding: 24px 28px 26px;
+  }
+}
+
+.explainer.freezeframe .ff-body > * {
+  min-width: 0;
+}
+
+.explainer.freezeframe .ff-controls {
+  display: grid;
+  gap: 14px;
+}
+
+@container (min-width: 620px) {
+  .explainer.freezeframe .ff-controls {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}
+
+.explainer.freezeframe .ff-ctl {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--ink-2);
+  min-width: 0;
+}
+
+/* the label and its output share one line; the editor's wrapper divs flow inline too */
+.explainer.freezeframe .ff-ctl-head :is(p, div) {
+  display: inline;
+}
+
+.explainer.freezeframe .ff-ctl-head strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.explainer.freezeframe .ff-out {
+  font: 500 13px var(--font-mono);
+  color: var(--accent);
+}
+
+.explainer.freezeframe .ff-ctl input[type="range"] {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.explainer.freezeframe .ff-reset {
+  justify-self: start;
+}
+
+.explainer.freezeframe .ff-scroll {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.explainer.freezeframe .ff-tracks {
+  min-width: 560px;
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.explainer.freezeframe .ff-names ul,
+.explainer.freezeframe .ff-lanes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.explainer.freezeframe .ff-names li {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font: 500 11px var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.explainer.freezeframe .ff-track {
+  position: relative;
+  height: 30px;
+  border-radius: 6px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.explainer.freezeframe .ff-seg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: color-mix(in srgb, var(--ink) 14%, transparent);
+  border-right: 1px solid var(--surface);
+}
+
+.explainer.freezeframe .ff-seg-hold {
+  background: repeating-linear-gradient(135deg, var(--differs) 0 4px, color-mix(in srgb, var(--differs) 35%, transparent) 4px 8px);
+}
+
+.explainer.freezeframe .ff-clip {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  border: 1px solid var(--accent);
+  font: 500 10px/22px var(--font-mono);
+  color: var(--ink);
+  text-align: center;
+  overflow: hidden;
+}
+
+.explainer.freezeframe .ff-legend ul {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.explainer.freezeframe .ff-legend li {
+  margin: 0;
+}
+
+.explainer.freezeframe .ff-legend li::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 10px;
+  margin-right: 6px;
+  vertical-align: -1px;
+  border-radius: 2px;
+}
+
+.explainer.freezeframe .ff-legend li:nth-child(1)::before {
+  background: color-mix(in srgb, var(--ink) 14%, transparent);
+}
+
+.explainer.freezeframe .ff-legend li:nth-child(2)::before {
+  background: repeating-linear-gradient(135deg, var(--differs) 0 3px, transparent 3px 6px);
+  border: 1px solid var(--differs);
+}
+
+.explainer.freezeframe .ff-legend li:nth-child(3)::before {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  border: 1px solid var(--accent);
+}
+
+.explainer.freezeframe .ff-summary p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.explainer.freezeframe .ff-list ol {
+  margin: 0;
+  padding-left: 1.2em;
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.explainer.freezeframe .ff-list li {
+  margin: 0;
+}
+
+.explainer.freezeframe .ff-t {
+  font: 500 13px var(--font-mono);
+  color: var(--differs);
+  margin-right: 4px;
+}
+
+.explainer.freezeframe .ff-data {
+  display: none;
+}
+
+.explainer.freezeframe .ff-caption {
+  padding: 14px 18px 18px;
+  border-top: 1px solid var(--line);
+}
+
+@container (min-width: 720px) {
+  .explainer.freezeframe .ff-caption {
+    padding: 14px 28px 20px;
+  }
+}
+
+.explainer.freezeframe .ff-caption p {
+  margin: 0;
+}
+
+/* the column's inline code look (the template leaves .lab code alone) */
+.explainer.freezeframe .ff-caption code {
+  font: 500 0.86em var(--font-mono);
+  background: var(--accent-tint);
+  color: var(--color-text);
+  padding: 1px 5px;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-sm);
+}
+
+.explainer.freezeframe.is-live .ff-static {
+  display: none;
+}
+
+.explainer.freezeframe .ff-static p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.explainer.freezeframe .ff-static ol {
+  margin: 18px 0 0;
+  padding-left: 1.2em;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+@media (width <= 640px) {
+  .explainer.freezeframe .ff-reset {
+    min-height: 44px;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+  }
+
+  .explainer.freezeframe .ff-ctl input[type="range"] {
+    min-height: 44px;
+  }
+}

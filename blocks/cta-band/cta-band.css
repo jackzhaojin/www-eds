@@ -1,0 +1,119 @@
+/* CTA band: design-system/v3 components.css "cta band". */
+.cta-band {
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--card-radius);
+  background: var(--color-surface);
+  padding: 36px 40px;
+}
+
+.cta-band p {
+  margin: 0;
+}
+
+.cta-band .cta-band-title h2 {
+  font-size: 26px;
+}
+
+/* a paragraph title (v3 p.cta-band__title) opens 8px down, as .cta-band > p sets it */
+.cta-band .cta-band-title p {
+  margin-top: 8px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+}
+
+.cta-band .cta-band-title strong {
+  font-weight: inherit;
+}
+
+.cta-band .cta-band-text p {
+  margin-top: 8px;
+  font-size: 15.5px;
+  color: var(--color-text-muted);
+  max-width: 64ch;
+}
+
+.cta-band .cta-band-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+/* On the source, .cta-band > p outranks the contact and profile rules: those paragraphs open
+   8px down at 15.5px, as rendered there. */
+.cta-band .cta-band-contact p {
+  margin-top: 8px;
+  padding-top: var(--space-4);
+  border-top: var(--border-width) solid var(--color-line);
+  font-size: 15.5px;
+  color: var(--color-text-muted);
+  max-width: 64ch;
+  line-height: 1.6;
+}
+
+.cta-band .cta-band-contact a:any-link {
+  color: var(--color-text);
+  border-bottom: var(--border-width) solid var(--color-line-strong);
+}
+
+.cta-band .cta-band-contact a:hover {
+  color: var(--color-accent);
+  border-color: currentcolor;
+}
+
+.cta-band .cta-band-profiles p {
+  margin-top: 8px;
+  font-size: 15.5px;
+  line-height: 1.65;
+  max-width: 64ch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.cta-band .cta-band-profiles a:any-link {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+  border-bottom: var(--border-width) solid var(--color-line-strong);
+  padding: 12px 0 13px;
+  margin: -12px 0 -13px;
+  line-height: 1.4;
+}
+
+.cta-band .cta-band-profiles a:hover {
+  color: var(--color-text);
+  border-color: var(--color-text);
+}
+
+.section.inverse .cta-band {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+@media (width <= 479px) {
+  .cta-band {
+    padding: 28px 22px;
+  }
+
+  .cta-band .cta-band-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* The source's buttons are the flex items; a flex paragraph gives them the same box. */
+  .cta-band .cta-band-actions p {
+    display: flex;
+  }
+
+  .cta-band .cta-band-actions a:any-link {
+    flex: 1;
+  }
+}

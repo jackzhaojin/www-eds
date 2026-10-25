@@ -1,0 +1,289 @@
+/* Explainer engine "tool-loop": the decision lab (writing/2025-10-05 explainer.css). */
+.explainer.tool-loop .loopx-meta,
+.explainer.tool-loop .loopx.is-live .loopx-alt:not(.is-on),
+.explainer.tool-loop .loopx__scen[hidden],
+.explainer.tool-loop .loopx__log li.is-pending {
+  display: none;
+}
+
+/* version picker */
+.explainer.tool-loop .loopx__modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 18px 0;
+}
+
+.explainer.tool-loop .loopx__modes > [role="radio"] {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 13.5px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.explainer.tool-loop .loopx__modes > [role="radio"]:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.explainer.tool-loop .loopx__modes > [aria-checked="true"],
+.explainer.tool-loop .loopx__modes > [aria-checked="true"]:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.explainer.tool-loop .loopx__modes strong {
+  font-weight: inherit;
+  color: inherit;
+}
+
+.explainer.tool-loop :is(.loopx__modes, .loopx__scen) > [role="radio"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* grid */
+.explainer.tool-loop .loopx__grid {
+  display: grid;
+  gap: 22px;
+  padding: 18px 18px 22px;
+}
+
+.explainer.tool-loop .loopx__grid > * {
+  min-width: 0;
+}
+
+@container (min-width: 720px) {
+  .explainer.tool-loop .loopx__grid {
+    grid-template-columns: 1fr 1.25fr;
+    gap: 30px;
+    padding: 22px 26px 26px;
+  }
+}
+
+/* choices */
+.explainer.tool-loop .loopx__scen {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.explainer.tool-loop .loopx__scen > [role="radio"] {
+  text-align: left;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.2s var(--ease);
+}
+
+.explainer.tool-loop .loopx__scen p {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.explainer.tool-loop .loopx__scen strong {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.explainer.tool-loop .loopx__scen > [role="radio"]:hover {
+  border-color: var(--line-strong);
+}
+
+.explainer.tool-loop .loopx__scen > [aria-checked="true"],
+.explainer.tool-loop .loopx__scen > [aria-checked="true"]:hover {
+  border-color: var(--accent);
+  background: var(--accent-tint);
+}
+
+/* counts */
+.explainer.tool-loop .loopx__stats :is(ul, ol) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.explainer.tool-loop .loopx__stats li {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: var(--bg);
+  font: 500 11px var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.explainer.tool-loop .loopx__stats li br {
+  display: none;
+}
+
+.explainer.tool-loop .loopx__stats li strong {
+  display: block;
+  margin: 2px 0 0;
+  letter-spacing: normal;
+  font: 600 18px var(--font-mono);
+  color: var(--ink);
+}
+
+/* log */
+.explainer.tool-loop .loopx__log {
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--night);
+  border-radius: 12px;
+  min-height: 220px;
+  max-height: 360px;
+  overflow: auto;
+  font: 400 12.5px/1.6 var(--font-mono);
+  color: var(--bone-3);
+}
+
+.explainer.tool-loop .loopx__log :is(ol, ul) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.explainer.tool-loop .loopx__log li {
+  position: relative;
+  margin: 0;
+  padding-left: 68px;
+}
+
+.explainer.tool-loop .loopx__log li strong {
+  color: var(--bone);
+  font-weight: 500;
+}
+
+.explainer.tool-loop .loopx__log li > strong:first-child {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 400;
+  color: var(--lav);
+}
+
+.explainer.tool-loop .loopx__log li > .who--code {
+  color: var(--gold);
+}
+
+.explainer.tool-loop .loopx__log li > .who--tool {
+  color: var(--mint);
+}
+
+.explainer.tool-loop .loopx__log li > .who--err {
+  color: var(--rose);
+}
+
+.explainer.tool-loop .loopx-static li:not(:has(strong)) {
+  padding-left: 0;
+  margin-top: 4px;
+  color: var(--bone-2);
+}
+
+.explainer.tool-loop .loopx__log li.is-new {
+  animation: loopx-rise 0.25s var(--ease) both;
+}
+
+@keyframes loopx-rise {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* verdict */
+.explainer.tool-loop .loopx__verdict {
+  display: grid;
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink-2);
+  font-size: 14.5px;
+  line-height: 1.55;
+  min-height: 3.2em;
+}
+
+.explainer.tool-loop .loopx__verdict > .is-on {
+  grid-area: 1 / 1;
+}
+
+.explainer.tool-loop .loopx__verdict > .is-ghost {
+  visibility: hidden;
+}
+
+.explainer.tool-loop .loopx__verdict[data-tone="warn"] {
+  border-color: var(--differs);
+}
+
+.explainer.tool-loop .loopx__verdict[data-tone="ok"] {
+  border-color: var(--pass-ink);
+}
+
+.explainer.tool-loop .lab > figcaption {
+  padding: 0 18px 18px;
+  margin-top: 0;
+}
+
+.explainer.tool-loop figcaption a:any-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+@media (width <= 640px) {
+  .explainer.tool-loop .loopx__modes > [role="radio"] {
+    min-height: 44px;
+  }
+
+  .explainer.tool-loop .loopx__log li {
+    padding-left: 0;
+  }
+
+  .explainer.tool-loop .loopx__log li > strong:first-child {
+    position: static;
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explainer.tool-loop .loopx__log li.is-new {
+    animation: none;
+  }
+}
+
+/* bar items keep their own height, so quick edit measures the same box */
+.explainer.tool-loop .lab__bar {
+  align-items: flex-start;
+}

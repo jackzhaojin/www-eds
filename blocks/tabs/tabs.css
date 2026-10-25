@@ -1,0 +1,215 @@
+/* Tabs (diagram-deck): portfolio/styles.css .diagram-deck, .deck-toolbar, .deck-tabs,
+   .deck-tab, .deck-pane, .deck-pane-head and the css/site.css overrides (no shadow, 44px
+   tabs, muted toolbar labels). The accent comes from the chapter section. */
+.tabs.diagram-deck {
+  max-width: 1100px;
+  margin: 0 auto;
+  border: 1px solid var(--color-accent-soft);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.tabs .tabs-toolbar {
+  min-height: 45px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  background: var(--color-line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.tabs .tabs-position b {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.tabs .tabs-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line);
+}
+
+.tabs .tabs-tab {
+  position: relative;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.035em;
+  text-align: left;
+  background: transparent;
+  color: var(--ink-faint);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: color 0.25s, background 0.25s;
+}
+
+.tabs .tabs-tab:nth-child(3n) {
+  border-right: 0;
+}
+
+.tabs .tabs-tab:nth-child(n + 4) {
+  border-bottom: 0;
+}
+
+.tabs .tabs-num {
+  color: color-mix(in srgb, var(--accent) 62%, var(--ink-faint));
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.tabs .tabs-tab::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tabs .tabs-tab:hover {
+  color: var(--ink);
+  background: var(--color-line);
+}
+
+.tabs .tabs-tab.active {
+  color: var(--ink);
+  background: linear-gradient(180deg, var(--color-accent-soft), var(--color-accent-soft));
+}
+
+.tabs .tabs-tab.active::after {
+  transform: scaleX(1);
+}
+
+.tabs .tabs-tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+  z-index: 1;
+}
+
+.tabs .tabs-pane {
+  display: none;
+  margin: 0;
+  background: var(--surface);
+}
+
+.tabs .tabs-pane.active {
+  display: block;
+}
+
+.tabs .tabs-pane.enter {
+  animation: tabs-enter 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tabs-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.tabs .tabs-pane-head {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: clamp(16px, 3vw, 40px);
+  align-items: start;
+  padding: clamp(18px, 3vw, 30px);
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(110deg, var(--color-accent-soft), transparent 55%);
+}
+
+.tabs .tabs-eyebrow p {
+  padding-top: 5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.tabs .tabs-pane-title :is(h3, h4) {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 29px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.tabs .tabs-pane-summary p {
+  max-width: 70ch;
+  margin-top: 7px;
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.tabs .tabs-pane-media p {
+  margin: 0;
+}
+
+.tabs .tabs-pane-media :is(a, picture) {
+  display: block;
+}
+
+.tabs .tabs-pane-media a {
+  background: var(--color-diagram-ground);
+}
+
+.tabs .tabs-pane-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (width <= 700px) {
+  .tabs.diagram-deck {
+    border-radius: 10px;
+  }
+
+  .tabs .tabs-list {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent-soft) transparent;
+  }
+
+  .tabs .tabs-tab,
+  .tabs .tabs-tab:nth-child(3n),
+  .tabs .tabs-tab:nth-child(n + 4) {
+    flex: 0 0 min(190px, 58vw);
+    min-height: 56px;
+    border-right: 1px solid var(--line);
+    border-bottom: 0;
+    scroll-snap-align: start;
+  }
+
+  .tabs .tabs-pane-head {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .tabs .tabs-eyebrow p {
+    padding-top: 0;
+  }
+}

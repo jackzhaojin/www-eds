@@ -1,0 +1,50 @@
+/* Stats (lifetime): portfolio/styles.css .cea-lifetime, .panel-wide, .counter-row, .counter,
+   .accent-counter, .edge-close. */
+.stats.lifetime {
+  max-width: var(--max);
+  margin: 0 auto clamp(60px, 8vw, 100px);
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  padding: clamp(22px, 3vw, 40px);
+}
+
+.stats .stats-counters :is(ul, ol) {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stats .stats-counters li {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.stats .stats-counters strong {
+  display: block;
+  font-size: 21px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.stats .stats-counters strong em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.stats .stats-note p {
+  margin-top: 22px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink);
+}

@@ -1,0 +1,24 @@
+# The www.jackzhaojin.com Worker (routing-cloudflare.md in jackzhaojin.github.io/ai-docs).
+# Deploy staging only: `npx wrangler deploy --env staging`, after `wrangler login` (Jack).
+# The production route www.jackzhaojin.com/* is NOT in this file on purpose: it is added in the
+# Cloudflare dashboard at cutover (its own approval), so no deploy can switch production.
+name = "www-eds-edge"
+main = "src/index.mjs"
+compatibility_date = "2025-03-17"
+workers_dev = false
+
+[vars]
+ORIGIN_HOSTNAME = "main--www-eds--jackzhaojin.aem.live"
+# www: project sites go to the zone's own origin (GitHub Pages), untouched.
+PROJECT_ORIGIN = "passthrough"
+
+[env.staging]
+name = "www-eds-edge-staging"
+routes = [{ pattern = "next.jackzhaojin.com/*", zone_name = "jackzhaojin.com" }]
+
+[env.staging.vars]
+ORIGIN_HOSTNAME = "main--www-eds--jackzhaojin.aem.live"
+# staging has no GitHub origin behind its hostname: project sites come from www.
+PROJECT_ORIGIN = "https://www.jackzhaojin.com"
+# Push invalidation is set up for the www zone at cutover (step 4); staging opts out.
+PUSH_INVALIDATION = "disabled"

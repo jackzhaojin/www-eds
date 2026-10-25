@@ -1,0 +1,44 @@
+/* Chapters: design-system/v3 components.css "chapters". */
+.chapters .chapters-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chapters p {
+  margin: 0;
+}
+
+.chapters li {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-top: var(--border-width) solid var(--color-line);
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+.chapters li:last-child {
+  border-bottom: var(--border-width) solid var(--color-line);
+}
+
+.chapters .chapters-time {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--color-accent);
+  flex: 0 0 48px;
+}
+
+.chapters .chapters-title {
+  min-width: 0;
+}
+
+.chapters a:any-link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.chapters a:hover {
+  color: var(--color-accent);
+}

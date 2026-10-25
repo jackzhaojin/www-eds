@@ -1,0 +1,161 @@
+/* Explainer engine "task-protocol": the task lab (writing/2025-07-11 explainer.css). */
+.explainer.task-protocol .tl-meta,
+.explainer.task-protocol .tl.is-live .tl-static,
+.explainer.task-protocol .tl.is-live .tl-out:not(.is-on) {
+  display: none;
+}
+
+.explainer.task-protocol .chips > .tl-option {
+  display: inline-flex;
+  align-items: center;
+}
+
+.explainer.task-protocol .chips strong {
+  font-weight: inherit;
+  color: inherit;
+}
+
+/* rules */
+.explainer.task-protocol .tl__rules :is(ol, ul) {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.explainer.task-protocol .tl__rules li {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 8px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  transition: border-color 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.explainer.task-protocol .tl__rules li strong {
+  font: 500 11.5px/1.6 var(--font-mono);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.explainer.task-protocol .tl__rules[data-r1="pass"] li:nth-child(1),
+.explainer.task-protocol .tl__rules[data-r2="pass"] li:nth-child(2),
+.explainer.task-protocol .tl__rules[data-r3="pass"] li:nth-child(3),
+.explainer.task-protocol .tl__rules[data-r4="pass"] li:nth-child(4),
+.explainer.task-protocol .tl__rules[data-r5="pass"] li:nth-child(5),
+.explainer.task-protocol .tl__rules[data-r6="pass"] li:nth-child(6) {
+  border-color: var(--pass-ink);
+}
+
+.explainer.task-protocol .tl__rules[data-r1="fail"] li:nth-child(1),
+.explainer.task-protocol .tl__rules[data-r2="fail"] li:nth-child(2),
+.explainer.task-protocol .tl__rules[data-r3="fail"] li:nth-child(3),
+.explainer.task-protocol .tl__rules[data-r4="fail"] li:nth-child(4),
+.explainer.task-protocol .tl__rules[data-r5="fail"] li:nth-child(5),
+.explainer.task-protocol .tl__rules[data-r6="fail"] li:nth-child(6) {
+  border-color: #c2433d;
+  background: rgb(194 67 61 / 6%);
+}
+
+.explainer.task-protocol .tl__rules[data-r1="skip"] li:nth-child(1),
+.explainer.task-protocol .tl__rules[data-r2="skip"] li:nth-child(2),
+.explainer.task-protocol .tl__rules[data-r3="skip"] li:nth-child(3),
+.explainer.task-protocol .tl__rules[data-r4="skip"] li:nth-child(4),
+.explainer.task-protocol .tl__rules[data-r5="skip"] li:nth-child(5),
+.explainer.task-protocol .tl__rules[data-r6="skip"] li:nth-child(6) {
+  opacity: 1;
+  border-style: dashed;
+  background: transparent;
+  color: var(--muted);
+}
+
+/* outcome */
+.explainer.task-protocol .verdict {
+  min-height: 0;
+}
+
+.explainer.task-protocol .verdict strong {
+  color: var(--bone);
+}
+
+.explainer.task-protocol .verdict code {
+  font: 500 0.86em var(--font-mono);
+  background: rgb(255 255 255 / 10%);
+  color: var(--bone);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+}
+
+.explainer.task-protocol .verdict a:any-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.explainer.task-protocol .tl-log {
+  margin-top: 6px;
+}
+
+.explainer.task-protocol .tl-log p {
+  font: 400 12px/1.5 var(--font-mono);
+  color: var(--bone-3);
+}
+
+.explainer.task-protocol .tl-commits :is(ul, ol) {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  font: 400 12px/1.7 var(--font-mono);
+  color: var(--bone-2);
+}
+
+.explainer.task-protocol .tl-commits li {
+  margin: 0;
+}
+
+.explainer.task-protocol .tl-commits li a:any-link {
+  color: var(--lav);
+}
+
+/* caption under the lab, inset to match the lab grid */
+.explainer.task-protocol .lab > figcaption {
+  margin: 0;
+  padding: 0 18px 18px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+@container (min-width: 720px) {
+  .explainer.task-protocol .lab > figcaption {
+    padding: 0 28px 22px;
+  }
+}
+
+.explainer.task-protocol figcaption code {
+  font: 500 0.86em var(--font-mono);
+  background: var(--accent-tint);
+  color: var(--ink);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+}
+
+@media (width <= 640px) {
+  .explainer.task-protocol .lab__bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+/* bar items keep their own height, so quick edit measures the same box */
+.explainer.task-protocol .lab__bar {
+  align-items: flex-start;
+}

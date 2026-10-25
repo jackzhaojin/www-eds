@@ -1,0 +1,265 @@
+/* Writing filter: the v3 filter bar and chips with css/site.css .writing-filter. */
+.writing-filter .writing-filter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: var(--space-7);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--card-radius);
+  background: var(--color-surface);
+  padding: 18px 22px;
+}
+
+.writing-filter .writing-filter-search {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.writing-filter .writing-filter-field {
+  position: relative;
+  flex: 1 1 320px;
+  max-width: 560px;
+}
+
+.writing-filter .writing-filter-field svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  fill: none;
+  stroke: var(--color-text-faint);
+  stroke-width: 1.6;
+  pointer-events: none;
+}
+
+.writing-filter input[type="search"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 40px;
+  font: 400 15px/1.4 var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: var(--border-width) solid var(--color-line-strong);
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.writing-filter input[type="search"]::placeholder {
+  color: var(--color-text-faint);
+}
+
+.writing-filter input[type="search"]:hover {
+  border-color: var(--color-text-faint);
+}
+
+.writing-filter input[type="search"]:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-color: var(--color-text);
+}
+
+.writing-filter .writing-filter-key {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font: 500 11px/1 var(--font-mono);
+  color: var(--color-text-faint);
+  background: none;
+  border: var(--border-width) solid var(--color-line-strong);
+  border-radius: var(--radius-sm);
+  padding: 4px 6px;
+  pointer-events: none;
+}
+
+.writing-filter .writing-filter-field:focus-within .writing-filter-key {
+  display: none;
+}
+
+.writing-filter .writing-filter-count {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-faint);
+}
+
+.writing-filter .writing-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.writing-filter .writing-filter-label,
+.writing-filter .writing-filter-bar label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  flex: 0 0 64px;
+}
+
+.writing-filter .writing-filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.writing-filter .writing-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  border: var(--border-width) solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  color: var(--color-text-muted);
+  background: transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), background var(--duration-fast) var(--ease-standard);
+}
+
+.writing-filter .writing-filter-chip::before {
+  content: "";
+  display: inline-block;
+  width: var(--chip-dot);
+  height: var(--chip-dot);
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.writing-filter .writing-filter-chip.plain::before {
+  display: none;
+}
+
+.writing-filter .writing-filter-chip[data-topic="aem"]::before {
+  background: var(--color-topic-aem);
+}
+
+.writing-filter .writing-filter-chip[data-topic="agents"]::before {
+  background: var(--color-topic-agents);
+}
+
+.writing-filter .writing-filter-chip[data-topic="aem-ai"]::before {
+  background: var(--color-topic-aem-ai);
+}
+
+.writing-filter .writing-filter-chip[data-topic="work"]::before {
+  background: var(--color-topic-work);
+}
+
+.writing-filter .writing-filter-chip:hover {
+  color: var(--color-text);
+  border-color: var(--color-line-strong);
+}
+
+.writing-filter .writing-filter-chip[aria-pressed="true"] {
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+  border-color: var(--color-inverse-bg);
+}
+
+.writing-filter .writing-filter-chip[aria-pressed="true"]::before {
+  background: var(--color-inverse-text);
+}
+
+.writing-filter .writing-filter-chip[aria-pressed="true"]:hover {
+  color: var(--color-inverse-text);
+  border-color: var(--color-inverse-bg);
+  opacity: 0.88;
+}
+
+.writing-filter .writing-filter-n {
+  font-size: 11px;
+  opacity: 0.6;
+  margin-left: 2px;
+}
+
+.writing-filter .writing-filter-chip.is-zero {
+  opacity: 0.45;
+}
+
+.writing-filter .writing-filter-empty {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-bottom: var(--space-6);
+  border: var(--border-width) dashed var(--color-line-strong);
+  border-radius: var(--card-radius);
+  padding: 18px 22px;
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+
+.writing-filter .writing-filter-empty[hidden] {
+  display: none;
+}
+
+.writing-filter .writing-filter-empty p {
+  margin: 0;
+}
+
+.writing-filter .writing-filter-reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  padding: var(--button-pad-sm);
+  border-radius: var(--button-radius);
+  border: var(--border-width) solid var(--color-line-strong);
+  background: transparent;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.writing-filter .writing-filter-reset:hover {
+  border-color: var(--color-text);
+}
+
+@media (width <= 760px) {
+  .writing-filter .writing-filter-bar {
+    padding: 14px 0 14px 16px;
+    gap: 10px;
+  }
+
+  .writing-filter .writing-filter-search {
+    padding-right: 16px;
+  }
+
+  .writing-filter .writing-filter-row {
+    flex-wrap: nowrap;
+  }
+
+  .writing-filter .writing-filter-label {
+    flex: 0 0 52px;
+  }
+
+  .writing-filter .writing-filter-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 2px 16px 2px 2px;
+  }
+
+  .writing-filter .writing-filter-chips::-webkit-scrollbar {
+    display: none;
+  }
+}

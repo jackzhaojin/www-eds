@@ -1,0 +1,10 @@
+{
+  "name": "www-eds-edge",
+  "private": true,
+  "type": "module",
+  "description": "The www.jackzhaojin.com Worker: GitHub Pages project sites, then Edge Delivery",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "check": "node scripts/check-host.mjs"
+  }
+}

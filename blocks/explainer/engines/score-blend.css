@@ -1,0 +1,262 @@
+/* Explainer engine "score-blend": the score lab (writing/2026-01-05 explainer.css). */
+.explainer.score-blend .blend-meta,
+.explainer.score-blend .blend.is-live .blend__static,
+.explainer.score-blend .blend-v:not(.is-on) {
+  display: none;
+}
+
+.explainer.score-blend .blend__static p {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--ink-2);
+}
+
+.explainer.score-blend .blend__ctl {
+  display: grid;
+  gap: 18px;
+}
+
+.explainer.score-blend .blend__row {
+  display: grid;
+  gap: 6px;
+}
+
+.explainer.score-blend .blend__row label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.explainer.score-blend .blend-name p {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.explainer.score-blend .blend-name strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.explainer.score-blend .blend__row output {
+  font: 600 18px/1 var(--font-mono);
+  color: var(--ink);
+  min-width: 2.5ch;
+  text-align: right;
+}
+
+.explainer.score-blend .blend__row--agent output {
+  color: #b0344f;
+}
+
+.explainer.score-blend .blend__row--det output {
+  color: #1f5fa8;
+}
+
+.explainer.score-blend .blend__row input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.explainer.score-blend .blend__row input[type="range"]:focus-visible,
+.explainer.score-blend .blend__fail input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.explainer.score-blend .blend__fail {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14.5px;
+  color: var(--ink-2);
+  padding: 12px 14px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.explainer.score-blend .blend__fail input {
+  margin-top: 3px;
+  accent-color: #c2433d;
+}
+
+.explainer.score-blend .blend__bar {
+  display: flex;
+  height: 18px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+
+.explainer.score-blend .blend__bar span {
+  display: block;
+  height: 100%;
+}
+
+.explainer.score-blend .blend__bar .a {
+  background: color-mix(in srgb, #d0453f 70%, transparent);
+}
+
+.explainer.score-blend .blend__bar .d {
+  background: color-mix(in srgb, #2f74c0 70%, transparent);
+}
+
+.explainer.score-blend .blend.is-fallback .blend__bar .a {
+  width: 0 !important;
+}
+
+.explainer.score-blend .blend__legend :is(ul, ol) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  font: 500 11.5px var(--font-mono);
+  color: var(--muted);
+}
+
+.explainer.score-blend .blend__legend li {
+  margin: 0;
+}
+
+.explainer.score-blend .blend__legend li::before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: 0;
+  background: #d0453f;
+}
+
+.explainer.score-blend .blend__legend li:nth-child(2)::before {
+  background: #2f74c0;
+}
+
+/* formula, verdict, grades */
+.explainer.score-blend .blend__formula {
+  margin: 16px 0 0;
+}
+
+.explainer.score-blend .blend__formula pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow: visible;
+}
+
+.explainer.score-blend .blend__formula code {
+  font: inherit;
+  color: inherit;
+}
+
+.explainer.score-blend .verdict strong {
+  font: 600 22px/1 var(--font-mono);
+  color: var(--bone);
+  margin: 0 4px;
+}
+
+.explainer.score-blend .blend-log {
+  margin-top: 6px;
+}
+
+.explainer.score-blend .blend-log p {
+  font: 400 12px/1.5 var(--font-mono);
+  color: var(--bone-3);
+}
+
+.explainer.score-blend .blend__grades :is(ol, ul) {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+  font: 400 12.5px/1.5 var(--font-mono);
+  color: var(--muted);
+}
+
+.explainer.score-blend .blend__grades li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease), opacity 0.25s var(--ease);
+}
+
+.explainer.score-blend .blend__grades strong {
+  font-weight: inherit;
+  color: inherit;
+}
+
+.explainer.score-blend .blend__grades[data-grade="1"] li:nth-child(1),
+.explainer.score-blend .blend__grades[data-grade="2"] li:nth-child(2),
+.explainer.score-blend .blend__grades[data-grade="3"] li:nth-child(3),
+.explainer.score-blend .blend__grades[data-grade="4"] li:nth-child(4),
+.explainer.score-blend .blend__grades[data-grade="5"] li:nth-child(5),
+.explainer.score-blend .blend__grades[data-grade="6"] li:nth-child(6) {
+  color: var(--ink);
+  background: var(--accent-tint);
+  border-color: var(--accent);
+}
+
+.explainer.score-blend .blend.is-fallback .blend__grades {
+  opacity: 0.4;
+}
+
+[data-theme="dark"] .explainer.score-blend .blend__row--agent output {
+  color: var(--rose);
+}
+
+[data-theme="dark"] .explainer.score-blend .blend__row--det output {
+  color: #8fb8ea;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.score-blend .blend__row--agent output {
+    color: var(--rose);
+  }
+
+  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.score-blend .blend__row--det output {
+    color: #8fb8ea;
+  }
+}
+
+@media (width <= 640px) {
+  .explainer.score-blend .blend__formula {
+    font-size: 11.5px;
+  }
+
+  .explainer.score-blend .blend__fail {
+    min-height: 44px;
+  }
+
+  .explainer.score-blend .blend__fail input {
+    width: 18px;
+    height: 18px;
+  }
+
+  .explainer.score-blend .blend__row input[type="range"] {
+    min-height: 44px;
+  }
+}
+
+/* bar items keep their own height, so quick edit measures the same box */
+.explainer.score-blend .lab__bar {
+  align-items: flex-start;
+}

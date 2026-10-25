@@ -10,13 +10,20 @@
  * Anything else is kept in place. The note's accessible name is the section metadata key
  * note-label (Experience Workspace content), or else its label paragraph.
  *
- * The section gets a decorative canvas (blocks/hero/page-art.js), started after the page
- * loads and never painted under reduced motion.
+ * The hub variants (writing, talks, certifications) and page open a listing or a plain page:
+ * one cell, classified by content: a list is the breadcrumb (its last item is this page), the
+ * heading is the page title, the first plain paragraph is the summary and any further plain
+ * paragraph is a small note under it; link paragraphs are actions. The hub variants keep a
+ * space for the art beside the title (css/site.css .graphic-hero); page has none.
  *
- * @variants home (default home)
+ * The section gets a decorative canvas (blocks/hero/page-art.js) of the variant's kind,
+ * started after the page loads and never painted under reduced motion (not for page).
+ *
+ * @variants home | writing | talks | certifications | page (default home)
  */
 
-const VARIANTS = ['home'];
+const VARIANTS = ['home', 'writing', 'talks', 'certifications', 'page'];
+const ART = ['home', 'writing', 'talks', 'certifications'];
 
 function slot(name, nodes) {
   const div = document.createElement('div');
@@ -80,8 +87,57 @@ function startArt(block, kind) {
   else window.addEventListener('load', begin, { once: true });
 }
 
+/** Hub and page variants: breadcrumb, then the head (title, summary, notes) beside the art. */
+function decorateHead(block, variant) {
+  const cell = block.querySelector(':scope > div > div');
+  if (!cell) return;
+  const nodes = [...cell.children];
+  const list = nodes.find((el) => el.matches('ol, ul'));
+  const heading = nodes.find((el) => /^H[1-3]$/.test(el.tagName));
+  const plain = nodes.filter((el) => el.tagName === 'P' && !isLinkParagraph(el) && !el.querySelector('picture, img'));
+  const actions = nodes.filter(isLinkParagraph);
+  const [summary, ...notes] = plain;
+
+  const parts = [];
+  if (list) {
+    const crumbs = document.createElement('nav');
+    crumbs.className = 'hero-breadcrumb breadcrumb';
+    crumbs.setAttribute('aria-label', 'Breadcrumb');
+    crumbs.append(list);
+    const items = list.querySelectorAll(':scope > li');
+    if (items.length) items[items.length - 1].setAttribute('aria-current', 'page');
+    parts.push(crumbs);
+  }
+  const head = document.createElement('div');
+  head.className = 'hero-head';
+  if (heading) head.append(slot('hero-title', [heading]));
+  if (summary) head.append(slot('hero-summary', [summary]));
+  if (notes.length) head.append(slot('hero-small', notes));
+  if (actions.length) head.append(slot('hero-actions cta-slot', actions));
+  const used = new Set([list, heading, ...plain, ...actions]);
+  nodes.filter((el) => !used.has(el)).forEach((el) => head.append(el));
+
+  const layout = document.createElement('div');
+  layout.className = 'hero-layout';
+  layout.append(head);
+  if (ART.includes(variant)) {
+    const art = document.createElement('div');
+    art.className = 'hero-art-space';
+    art.setAttribute('aria-hidden', 'true');
+    layout.append(art);
+  }
+  parts.push(layout);
+  block.replaceChildren(...parts);
+  if (ART.includes(variant)) startArt(block, variant);
+}
+
 export default function decorate(block) {
   if (!VARIANTS.some((v) => block.classList.contains(v))) block.classList.add('home');
+  const variant = VARIANTS.find((v) => block.classList.contains(v));
+  if (variant !== 'home') {
+    decorateHead(block, variant);
+    return;
+  }
   const cells = [...block.querySelectorAll(':scope > div > div')];
   const introCell = cells.find((c) => c.querySelector('h1')) || cells[0];
   if (!introCell) return;

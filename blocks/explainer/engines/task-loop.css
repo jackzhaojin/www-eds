@@ -1,0 +1,230 @@
+/* Explainer engine "task-loop": the loop model (writing/2026-01-05 explainer.css). */
+.explainer.task-loop .loop-meta,
+.explainer.task-loop .loop.is-live .loop__setting {
+  display: none;
+}
+
+.explainer.task-loop .loop__plan :is(ol, ul) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.explainer.task-loop .loop__plan li {
+  margin: 0;
+  font: 500 12.5px var(--font-mono);
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  color: var(--ink-2);
+  background: var(--bg);
+}
+
+.explainer.task-loop .loop__plan li + li::before {
+  content: "then ";
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.explainer.task-loop .loop__tasks :is(ul, ol) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.explainer.task-loop .loop__tasks li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.explainer.task-loop .loop__tasks strong {
+  font-size: 14.5px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.explainer.task-loop .loop__setting {
+  font: 500 12px var(--font-mono);
+  color: var(--muted);
+}
+
+.explainer.task-loop .loop__seg {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.explainer.task-loop .loop__seg > [role="radio"] {
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  background: none;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  color: var(--ink-2);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.explainer.task-loop .loop__seg > [aria-checked="true"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.explainer.task-loop .loop__seg > [role="radio"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explainer.task-loop .loop__result p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.explainer.task-loop .loop__queue :is(ol, ul) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 34px;
+}
+
+.explainer.task-loop .loop__queue li {
+  margin: 0;
+  font: 600 13px/1 var(--font-mono);
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+  color: var(--ink-2);
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+.explainer.task-loop .loop__queue li.sub {
+  border-style: dashed;
+  border-color: #c2433d;
+  color: #b0344f;
+}
+
+.explainer.task-loop .loop__queue li.done {
+  border-color: var(--pass-ink);
+  color: var(--pass-ink);
+}
+
+.explainer.task-loop .loop__queue li.new {
+  animation: loop-in 0.45s var(--ease) both;
+}
+
+@keyframes loop-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.explainer.task-loop .loop__log pre {
+  margin: 14px 0 0;
+  padding: 14px 16px;
+  background: var(--night);
+  border: 0;
+  border-radius: 12px;
+  font: 400 12.5px/1.7 var(--font-mono);
+  color: var(--bone-3);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  min-height: 13em;
+  max-height: 20em;
+  overflow-y: auto;
+}
+
+.explainer.task-loop .loop__log code {
+  font: inherit;
+  color: inherit;
+}
+
+.explainer.task-loop .loop__log span {
+  display: block;
+}
+
+.explainer.task-loop .loop__log .ok {
+  color: var(--mint);
+}
+
+.explainer.task-loop .loop__log .no {
+  color: var(--rose);
+}
+
+.explainer.task-loop .loop__log .det {
+  color: #8fb8ea;
+}
+
+.explainer.task-loop .lab > figcaption {
+  padding: 0 18px 18px;
+  margin-top: 0;
+}
+
+@container (min-width: 720px) {
+  .explainer.task-loop .lab > figcaption {
+    padding: 0 28px 22px;
+  }
+}
+
+[data-theme="dark"] .explainer.task-loop .loop__queue li.sub {
+  color: var(--rose);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.task-loop .loop__queue li.sub {
+    color: var(--rose);
+  }
+}
+
+@media (width <= 480px) {
+  .explainer.task-loop .loop__tasks li {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (width <= 640px) {
+  .explainer.task-loop .loop__seg > [role="radio"] {
+    min-height: 44px;
+    padding: 0 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explainer.task-loop .loop__queue li.new {
+    animation: none;
+  }
+}
+
+/* bar items keep their own height, so quick edit measures the same box */
+.explainer.task-loop .lab__bar {
+  align-items: flex-start;
+}

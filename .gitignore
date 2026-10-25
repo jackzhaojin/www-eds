@@ -20,3 +20,9 @@ helix-importer-ui
 # playwright temp output
 .playwright-cli/
 .playwright-mcp/
+
+# agent worktrees
+.claude/worktrees/
+.impeccable/hook.cache.json
+.impeccable/config.local.json
+stardust/rollout/lighthouse/

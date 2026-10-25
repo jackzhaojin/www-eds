@@ -16,13 +16,64 @@
   margin: 0;
 }
 
-.figure.board img {
+.figure:is(.board, .shot) img,
+.figure.page img {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 12px;
   border: 1px solid var(--color-line);
   background: #fff;
+}
+
+.figure.page img {
+  background: none;
+}
+
+.figure.page {
+  max-width: 420px;
+}
+
+.figure.shot.narrow {
+  max-width: 560px;
+}
+
+.figure.shot.slim {
+  max-width: 460px;
+}
+
+.figure.board.narrow :is(img, figcaption) {
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+.figure.board.compact {
+  max-width: 560px;
+}
+
+.figure.native img {
+  width: auto;
+  max-width: min(100%, 690px);
+}
+
+.figure.tall img {
+  width: auto;
+  max-width: min(100%, 560px);
+}
+
+.figure .figure-media p + p {
+  margin-top: 12px;
+}
+
+.figure .figure-open {
+  display: block;
+  border-radius: 12px;
+  cursor: zoom-in;
+}
+
+.figure .figure-open:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 .figure.video iframe {
@@ -45,4 +96,32 @@
   text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-thickness: 1px;
+}
+
+/* Page theme board-mat (two articles): in the dark theme the white whiteboard images sit on a
+   dark mat with a hairline frame, slightly dimmed, so they don't glare. */
+:root[data-theme="dark"] .board-mat .figure.board .figure-frame {
+  padding: 12px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 16px;
+  background: var(--color-surface);
+}
+
+:root[data-theme="dark"] .board-mat .figure.board img {
+  filter: brightness(0.88);
+  border-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .board-mat .figure.board .figure-frame {
+    padding: 12px;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 16px;
+    background: var(--color-surface);
+  }
+
+  :root:not([data-theme="light"], [data-theme="dark"]) .board-mat .figure.board img {
+    filter: brightness(0.88);
+    border-color: transparent;
+  }
 }

@@ -1,0 +1,224 @@
+/* Data table: css/article.css .table-wrap and .data. */
+.data-table {
+  margin-top: var(--space-5);
+}
+
+.data-table .data-table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.data-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.data-table th {
+  text-align: left;
+  font-weight: 600;
+  padding: 8px 12px 8px 0;
+  border-bottom: 1px solid var(--color-line-strong);
+  color: var(--color-text);
+  vertical-align: bottom;
+}
+
+.data-table td {
+  padding: 8px 12px 8px 0;
+  border-bottom: 1px solid var(--color-line);
+  color: var(--color-text-muted);
+  vertical-align: top;
+}
+
+/* On the paragraphs too: their text-wrap: pretty (styles.css) resets the mode they inherit. */
+.data-table.nowrap :is(th, td):last-child,
+.data-table.nowrap :is(th, td):last-child :is(p, div) {
+  white-space: nowrap;
+}
+
+.data-table :is(th, td) p {
+  margin: 0;
+}
+
+.data-table code {
+  font: 500 0.86em var(--font-mono);
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+}
+
+.data-table a:any-link {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+/* caption and row-heads: the source's one captioned table with row heads (.sess-table). */
+.data-table caption {
+  caption-side: bottom;
+  text-align: left;
+  font-size: 13px;
+  color: var(--color-text-faint);
+  padding-top: 8px;
+}
+
+.data-table caption p {
+  margin: 0;
+}
+
+.data-table.row-heads :is(th, td) {
+  vertical-align: top;
+}
+
+.data-table.row-heads tbody th {
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* cheat and rank: the source's .cheat and .rank tables (each one article's explainer.css). */
+.data-table.cheat table {
+  font-size: 13.5px;
+}
+
+.data-table.cheat :is(th, td) {
+  padding: 8px 10px 8px 0;
+  vertical-align: top;
+}
+
+.data-table.cheat td:first-child {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.data-table.cheat code {
+  font-size: 12px;
+}
+
+/* The source's cheat and rank tables sit in a plain scroll wrapper: the column's 16px step,
+   not the table wrapper's 24px. */
+.data-table:is(.cheat, .rank) {
+  margin-top: var(--space-4);
+}
+
+.data-table.rank table {
+  font-size: 14.5px;
+}
+
+.data-table.rank :is(th, td) {
+  padding: 10px 12px 10px 0;
+  vertical-align: top;
+}
+
+.data-table.rank td:first-child {
+  font: 500 13px var(--font-mono);
+  color: var(--color-text-faint);
+  white-space: nowrap;
+}
+
+.data-table.rank td b,
+.data-table.rank td strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+@media (width <= 560px) {
+  .data-table.stack thead {
+    display: none;
+  }
+
+  .data-table.stack tr {
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .data-table.stack td {
+    display: block;
+    border: 0;
+    padding: 2px 0;
+  }
+}
+
+/* fill-in: the source's caching matrix template (.relay-matrix, one article's explainer.css). */
+.data-table.fill-in table {
+  table-layout: fixed;
+}
+
+.data-table.fill-in th:nth-child(1) {
+  width: 26%;
+}
+
+.data-table.fill-in th:nth-child(2) {
+  width: 22%;
+}
+
+.data-table.fill-in td:empty::after {
+  content: "\00a0";
+}
+
+.data-table.fill-in tbody td {
+  height: 2.6em;
+}
+
+.data-table.fill-in td code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* mono-head and compact: the design system's own table (v3 components.css .table). */
+.data-table.mono-head table {
+  min-width: 36rem;
+  font-size: 14.5px;
+}
+
+.data-table.mono-head.compact table {
+  min-width: 0;
+}
+
+.data-table.mono-head caption {
+  caption-side: top;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  padding: 0 0 10px;
+}
+
+.data-table.mono-head th {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-medium);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  padding: 10px 14px 10px 0;
+  border-bottom: var(--border-width) solid var(--color-line-strong);
+  vertical-align: bottom;
+  line-height: 1.5;
+}
+
+.data-table.mono-head td {
+  padding: 12px 14px 12px 0;
+  color: var(--color-text-muted);
+  border-bottom: var(--border-width) solid var(--color-line);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.data-table.mono-head tbody th {
+  border-bottom: var(--border-width) solid var(--color-line);
+  vertical-align: top;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 13px;
+  color: var(--color-text);
+  padding: 12px 14px 12px 0;
+}
+
+.data-table.mono-head td:first-child {
+  color: var(--color-text);
+  font-weight: var(--weight-medium);
+}

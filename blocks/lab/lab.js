@@ -314,6 +314,7 @@ function decorateLeft(cell) {
       el.setAttribute('role', 'none');
       [...el.children].forEach((li) => {
         li.setAttribute('role', 'radio');
+        li.setAttribute('aria-checked', 'false');
         li.tabIndex = 0;
       });
       parts.chips = el;

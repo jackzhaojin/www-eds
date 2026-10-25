@@ -7,7 +7,14 @@
  * colored the way the kit colors them. Both are a presentation refinement of the authored
  * code block: its text, newlines included, is unchanged.
  *
- * @variants (none)
+ * @variants wrap | prose | plain | stack
+ *   wrap - the bar's label wraps and the source link stays on one line (the source's later
+ *   "quality pass" on five articles)
+ *   prose - lines that wrap under their text, with a hanging indent, instead of scrolling (a
+ *   prompt log, the source's code--wrap)
+ *   plain - no syntax colors: a prompt in a source file, which the highlighter would color
+ *   wrong (the source's code--prose)
+ *   stack - on phones the bar stacks the label over the link (the 2025 articles' phone pass)
  */
 
 const KEYWORDS = /\b(const|let|if|return|await|async|new|try|catch|export|function|null)\b/g;
@@ -35,12 +42,12 @@ function highlight(line) {
   return out.join('');
 }
 
-function numberLines(pre, start) {
+function numberLines(pre, start, color) {
   const host = pre.querySelector('code') || pre;
   const lines = host.textContent.replace(/\n$/, '').split('\n');
   host.innerHTML = lines.map((line, i) => {
     const nl = i < lines.length - 1 ? '\n' : '';
-    return `<span class="ln" data-n="${start + i}">${highlight(line)}${nl}</span>`;
+    return `<span class="ln" data-n="${start + i}">${color ? highlight(line) : esc(line)}${nl}</span>`;
   }).join('');
 }
 
@@ -60,7 +67,7 @@ export default function decorate(block) {
   if (pre) {
     const label = bar.textContent;
     const from = /\blines? (\d+)/i.exec(label);
-    numberLines(pre, from ? Number(from[1]) : 1);
+    numberLines(pre, from ? Number(from[1]) : 1, !block.classList.contains('plain'));
     frame.append(pre);
   }
   block.replaceChildren(frame);

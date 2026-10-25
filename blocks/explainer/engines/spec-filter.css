@@ -1,0 +1,217 @@
+/* Explainer engine "spec-filter": the source's .sf lab (writing/2025-07-06-ai-coded-nextjs-agent-release-1/explainer.css),
+   on the kit's lab frame, with the article's select look. */
+/* stylelint-disable selector-class-pattern -- the source's BEM names are kept so the port stays faithful */
+.explainer.spec-filter .sf__source {
+  display: none;
+}
+
+.explainer.spec-filter .sf {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+@media (width <= 640px) {
+  .explainer.spec-filter .lab__bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+/* the mode switch: list items host the authored labels */
+.explainer.spec-filter .pvl__switch {
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 14px;
+}
+
+/* The list is the row of options, so it keeps its layout in quick edit, where the editor wraps it. */
+.explainer.spec-filter .pvl__switch > * {
+  flex: 1 1 auto;
+  padding: 0;
+  border-radius: 0;
+}
+
+.explainer.spec-filter .pvl__switch ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.explainer.spec-filter .pvl__switch li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  border: 0;
+  background: none;
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+
+.explainer.spec-filter .pvl__switch li[aria-checked="true"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.explainer.spec-filter .pvl__switch li:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (width <= 640px) {
+  .explainer.spec-filter .pvl__switch li {
+    min-height: 44px;
+  }
+}
+
+.explainer.spec-filter .sf__specs {
+  display: grid;
+  gap: 10px;
+}
+
+.explainer.spec-filter .sf__spec {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.explainer.spec-filter .sf__spec label {
+  font: 500 12.5px var(--font-mono);
+  color: var(--ink-2);
+}
+
+.explainer.spec-filter .sf__spec select {
+  width: 100%;
+  min-width: 0;
+  font: 400 14px var(--font-body);
+  color: var(--ink);
+  appearance: none;
+  min-height: 40px;
+  padding: 8px 34px 8px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background-color: var(--bg);
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-2) 50%), linear-gradient(135deg, var(--ink-2) 50%, transparent 50%);
+  background-position: calc(100% - 17px) 52%, calc(100% - 12px) 52%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  transition: border-color 0.2s var(--ease);
+}
+
+.explainer.spec-filter .sf__spec select:hover {
+  border-color: var(--ink-2);
+}
+
+.explainer.spec-filter .sf__spec select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (width <= 640px) {
+  .explainer.spec-filter .sf__spec select {
+    min-height: 44px;
+  }
+}
+
+.explainer.spec-filter .sf__spec[data-state="pass"] {
+  border-color: var(--pass-ink);
+}
+
+.explainer.spec-filter .sf__spec[data-state="fail"] {
+  border-color: #c2433d;
+  background: rgb(194 67 61 / 6%);
+}
+
+.explainer.spec-filter .sf__spec[data-state="skip"] {
+  border-style: dashed;
+  background: transparent;
+}
+
+.explainer.spec-filter .sf__spec[data-state="skip"] label {
+  color: var(--muted);
+}
+
+.explainer.spec-filter .sf__note {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin: 8px 0 0;
+}
+
+.explainer.spec-filter .sf .verdict {
+  min-height: 120px;
+}
+
+.explainer.spec-filter .sf__status {
+  display: inline-block;
+  font: 600 12px/1 var(--font-mono);
+  padding: 5px 9px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.explainer.spec-filter .sf__status.ok {
+  background: rgb(31 110 82 / 18%);
+  color: var(--mint);
+}
+
+.explainer.spec-filter .sf__status.no {
+  background: rgb(194 67 61 / 22%);
+  color: var(--rose);
+}
+
+.explainer.spec-filter :is(.sf__body, .sf__static pre) {
+  margin: 0;
+  font: 400 12px/1.6 var(--font-mono);
+  color: var(--bone-2);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+.explainer.spec-filter .sf__static pre code {
+  font: inherit;
+  color: inherit;
+  background: none;
+  padding: 0;
+}
+
+.explainer.spec-filter .sf__story {
+  margin: 0; /* the kit's .verdict p margin wins over the source's 10px top */
+  font-size: 14px;
+  color: var(--bone);
+}
+
+.explainer.spec-filter .sf__static h3 {
+  font: 600 13px var(--font-mono);
+  margin: 0 0 6px;
+  color: var(--bone);
+  letter-spacing: normal;
+}
+
+.explainer.spec-filter .sf__static pre {
+  margin-bottom: 14px;
+}
+
+.explainer.spec-filter .sf.is-live .sf__static {
+  display: none;
+}

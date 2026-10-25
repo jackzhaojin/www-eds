@@ -38,5 +38,12 @@ export default function decorate(block) {
     inner.append(slot(role, [p]));
   });
   box.append(inner);
+  // On the source the author box sits in a sectioning element, so it is not a landmark; here it
+  // is one beside the rail, so it takes its name from the author's name (no new text).
+  const name = inner.querySelector('.author-box-name p');
+  if (name) {
+    name.id = name.id || `author-box-name-${document.querySelectorAll('.author-box-frame').length}`;
+    box.setAttribute('aria-labelledby', name.id);
+  }
   block.replaceChildren(box);
 }

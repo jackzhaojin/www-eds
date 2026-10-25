@@ -1,0 +1,42 @@
+/* Pagination: design-system/v3 components.css "pagination". */
+.pagination .pagination-nav :is(ul, ol) {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.pagination .pagination-nav a:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 12px;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--button-radius);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.pagination .pagination-nav a:hover {
+  border-color: var(--color-text);
+  color: var(--color-text);
+}
+
+.pagination .pagination-nav :is(strong, b) {
+  font-weight: inherit;
+}
+
+.pagination .pagination-nav strong a:any-link,
+.pagination .pagination-nav a[aria-current="page"] {
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+  border-color: var(--color-inverse-bg);
+}

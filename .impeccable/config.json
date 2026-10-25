@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "blocks/showcase/showcase.css"
+        ],
+        "createdAt": "2026-10-25T18:13:22.806Z",
+        "reason": "main thread: the ::after draws the play triangle with transparent borders, copied as is from the source portfolio/styles.css:1226 (replica, no design change)"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "blocks/showcase/showcase.css"
+        ],
+        "createdAt": "2026-10-25T18:13:22.827Z",
+        "reason": "main thread: the ::after draws the play triangle with transparent borders, copied as is from the source portfolio/styles.css:1226 (replica, no design change)"
+      }
+    ]
+  }
+}

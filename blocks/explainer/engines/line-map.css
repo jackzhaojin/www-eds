@@ -1,0 +1,106 @@
+/* Explainer (line-map): the CDD line map (writing/2026-05-17 explainer.css, .linemap). */
+.explainer.line-map .lm-bar {
+  position: relative;
+  height: 34px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.explainer.line-map .lm-first {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--w);
+  background: var(--accent-tint);
+  border-right: 2px dashed var(--accent);
+}
+
+.explainer.line-map .lm-bar i {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: var(--x);
+  width: 3px;
+  margin-left: -1px;
+  border-radius: 2px;
+  background: var(--ink);
+}
+
+.explainer.line-map .lm-legend ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.explainer.line-map .lm-legend li {
+  margin: 0;
+}
+
+.explainer.line-map .lm-legend li:first-child::before {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 12px;
+  margin-right: 8px;
+  vertical-align: middle;
+  background: var(--accent-tint);
+  border-right: 2px dashed var(--accent);
+  box-sizing: border-box;
+}
+
+.explainer.line-map .lm-legend li:first-child::after {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  margin-left: 18px;
+  vertical-align: middle;
+  border-radius: 2px;
+  background: var(--ink);
+}
+
+.explainer.line-map .lm-list ol {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 4px 20px;
+  grid-template-columns: 1fr;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+@container (min-width: 600px) {
+  .explainer.line-map .lm-list ol {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.explainer.line-map .lm-list li {
+  margin: 0;
+}
+
+.explainer.line-map .lm-list strong {
+  display: inline-block;
+  min-width: 3.2em;
+  font: 500 12.5px var(--font-mono);
+  color: var(--accent);
+}
+
+.explainer.line-map .lm-data {
+  display: none;
+}
+
+.explainer.line-map .lm-caption a:any-link {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}

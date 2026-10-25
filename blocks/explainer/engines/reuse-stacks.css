@@ -1,0 +1,213 @@
+/* Explainer (reuse-stacks): four stacks from the patterns diagram (writing/2026-02-05
+   explainer.css, .ru). Colors follow the diagram (red, green, blue, orange) through v3. */
+.explainer.reuse-stacks {
+  --c-adhoc: #a8322d;
+  --c-spec: var(--palette-leaf-700);
+  --c-harness: var(--palette-blue-600);
+  --c-agent: var(--palette-amber-700);
+}
+
+[data-theme="dark"] .explainer.reuse-stacks {
+  --c-adhoc: var(--palette-red-300);
+  --c-spec: var(--palette-leaf-300);
+  --c-harness: var(--palette-blue-300);
+  --c-agent: var(--palette-amber-300);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.reuse-stacks {
+    --c-adhoc: var(--palette-red-300);
+    --c-spec: var(--palette-leaf-300);
+    --c-harness: var(--palette-blue-300);
+    --c-agent: var(--palette-amber-300);
+  }
+}
+
+.explainer.reuse-stacks .ru-body {
+  padding: 20px 18px 22px;
+  display: grid;
+  gap: 16px;
+}
+
+@container (min-width: 720px) {
+  .explainer.reuse-stacks .ru-body {
+    padding: 24px 28px 26px;
+  }
+}
+
+.explainer.reuse-stacks .ru-body > * {
+  min-width: 0;
+}
+
+.explainer.reuse-stacks .ru-label p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+
+.explainer.reuse-stacks .ru-picks ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.explainer.reuse-stacks .ru-picks li {
+  margin: 0;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 7px 13px;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.explainer.reuse-stacks .ru-picks li:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.explainer.reuse-stacks .ru-picks li[aria-checked="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.explainer.reuse-stacks .ru-picks li:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explainer.reuse-stacks .ru-stage {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+@container (min-width: 640px) {
+  .explainer.reuse-stacks .ru-stage {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.explainer.reuse-stacks .ru-col {
+  min-width: 0;
+}
+
+.explainer.reuse-stacks .ru-head {
+  margin: 0 0 8px;
+  font: 500 11px/1.3 var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.explainer.reuse-stacks .ru-stack {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.explainer.reuse-stacks .ru-box {
+  --c: var(--ink-2);
+
+  margin: 0;
+  border: 1.5px solid var(--c);
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: opacity 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.explainer.reuse-stacks .ru-box span {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--c);
+  line-height: 1.3;
+}
+
+.explainer.reuse-stacks .ru-box small {
+  font: 500 11px var(--font-mono);
+  color: var(--ink-2);
+}
+
+.explainer.reuse-stacks .ru-box[data-piece="1"] {
+  --c: var(--c-adhoc);
+}
+
+.explainer.reuse-stacks .ru-box[data-piece="2"] {
+  --c: var(--c-spec);
+}
+
+.explainer.reuse-stacks .ru-box[data-piece="3"] {
+  --c: var(--c-harness);
+}
+
+.explainer.reuse-stacks .ru-box[data-piece="4"] {
+  --c: var(--c-agent);
+}
+
+.explainer.reuse-stacks .ru-box-used {
+  border-style: dashed;
+  background: transparent;
+}
+
+.explainer.reuse-stacks .ru-box-used span {
+  font-weight: 500;
+}
+
+.explainer.reuse-stacks .ru-out p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.explainer.reuse-stacks .ru-static p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 15px;
+}
+
+.explainer.reuse-stacks.is-live .ru-static,
+.explainer.reuse-stacks .ru-data {
+  display: none;
+}
+
+.explainer.reuse-stacks .ru-caption {
+  padding: 14px 18px 18px;
+  border-top: 1px solid var(--line);
+}
+
+@container (min-width: 720px) {
+  .explainer.reuse-stacks .ru-caption {
+    padding: 14px 28px 20px;
+  }
+}
+
+.explainer.reuse-stacks .ru-caption p {
+  margin: 0;
+}
+
+@media (width <= 640px) {
+  .explainer.reuse-stacks .ru-picks li {
+    min-height: 44px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explainer.reuse-stacks .ru-box {
+    transition: none;
+  }
+}

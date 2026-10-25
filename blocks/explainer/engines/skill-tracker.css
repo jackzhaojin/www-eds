@@ -1,0 +1,175 @@
+/* Explainer (skill-tracker): the skill tracker lab (writing/2026-05-17 explainer.css, .skl, on
+   the kit's .lab and .json). Inline code keeps the column look (the source's article rule). */
+.explainer.skill-tracker .skl-lines ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.explainer.skill-tracker .skl-lines li {
+  position: relative;
+  margin: 0;
+  padding: 10px 12px 10px 42px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+
+.explainer.skill-tracker .skl-lines li:hover {
+  border-color: var(--line-strong);
+}
+
+.explainer.skill-tracker .skl-lines li[data-off] {
+  opacity: 0.5;
+}
+
+.explainer.skill-tracker .skl-lines input {
+  position: absolute;
+  left: 12px;
+  top: 13px;
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+.explainer.skill-tracker .skl-lines input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explainer.skill-tracker .skl-lines strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.explainer.skill-tracker .skl-lines code {
+  display: block;
+  margin-top: 4px;
+  font: 500 13.76px var(--font-mono);
+  color: var(--color-text);
+  background: var(--accent-tint);
+  padding: 1px 5px;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+
+.explainer.skill-tracker .skl-spans ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+  min-height: 2em;
+}
+
+.explainer.skill-tracker .skl-spans li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.explainer.skill-tracker .skl-spans code {
+  display: block;
+  font: 500 0.86em var(--font-mono);
+  color: var(--color-text);
+  background: var(--accent-tint);
+  padding: 1px 5px;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: 4px;
+}
+
+.explainer.skill-tracker .skl-spans li.is-none code {
+  background: transparent;
+  border: 1px dashed var(--line-strong);
+  color: var(--muted);
+}
+
+.explainer.skill-tracker .skl-tags pre {
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font: 400 12px/1.65 var(--font-mono);
+  color: var(--ink-2);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: var(--bg);
+}
+
+.explainer.skill-tracker .skl-tags code {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.explainer.skill-tracker .skl-tags .k {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.explainer.skill-tracker .skl-note p {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.explainer.skill-tracker .skl-note strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.explainer.skill-tracker .skl-note code,
+.explainer.skill-tracker .skl-caption code {
+  font: 500 0.86em var(--font-mono);
+  color: var(--color-text);
+  background: var(--accent-tint);
+  padding: 1px 5px;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: 4px;
+}
+
+.explainer.skill-tracker .skl-data {
+  display: none;
+}
+
+.explainer.skill-tracker .skl-caption {
+  padding: 0 18px 18px;
+}
+
+@container (min-width: 720px) {
+  .explainer.skill-tracker .skl-caption {
+    padding: 0 28px 22px;
+  }
+}
+
+.explainer.skill-tracker .skl-caption p {
+  margin: 0;
+}
+
+@media (width <= 640px) {
+  .explainer.skill-tracker .skl-lines li {
+    padding: 12px 12px 12px 42px;
+  }
+
+  .explainer.skill-tracker .skl-lines input {
+    width: 20px;
+    height: 20px;
+    top: 13px;
+  }
+}

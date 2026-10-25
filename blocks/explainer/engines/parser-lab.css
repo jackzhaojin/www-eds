@@ -1,0 +1,331 @@
+/* Explainer engine "parser-lab": the source's .pl parser lab (writing/2025-04-13-vibe-coding-star-story-generator/explainer.css),
+   with its October 2026 quality pass folded in. */
+/* stylelint-disable selector-class-pattern -- the source's BEM names are kept so the port stays faithful */
+.explainer.parser-lab .pl {
+  --pl-fail: #b0344f;
+  --pl-err: var(--ink-2);
+
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .explainer.parser-lab .pl {
+  --pl-fail: var(--rose);
+  --pl-err: var(--rose);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .explainer.parser-lab .pl {
+    --pl-fail: var(--rose);
+    --pl-err: var(--rose);
+  }
+}
+
+.explainer.parser-lab .pl__source {
+  display: none;
+}
+
+.explainer.parser-lab .pl__bar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line);
+  font: 500 12px/1.3 var(--font-mono);
+  color: var(--muted);
+}
+
+.explainer.parser-lab .pl__bar a:any-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.explainer.parser-lab .pl__grid {
+  display: grid;
+  gap: 22px;
+  padding: 20px 18px 22px;
+}
+
+@container (min-width: 720px) {
+  .explainer.parser-lab .pl__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 30px;
+    padding: 24px 26px 26px;
+  }
+}
+
+.explainer.parser-lab .pl__grid > div {
+  min-width: 0;
+}
+
+.explainer.parser-lab .pl__label {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 14px 0 8px;
+}
+
+.explainer.parser-lab .pl__grid > div > .pl__label:first-child {
+  margin-top: 0;
+}
+
+.explainer.parser-lab .chips {
+  margin-bottom: 4px;
+}
+
+.explainer.parser-lab .pl__chip {
+  display: inline-flex;
+  align-items: center;
+}
+
+.explainer.parser-lab .pl__chip strong {
+  font-weight: inherit;
+}
+
+.explainer.parser-lab textarea {
+  width: 100%;
+  min-height: 15em;
+  resize: vertical;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--night);
+  color: var(--bone);
+  border: 1px solid var(--night-line);
+  border-radius: 12px;
+  font: 400 12.5px/1.6 var(--font-mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow: auto;
+}
+
+@container (min-width: 720px) {
+  .explainer.parser-lab textarea {
+    min-height: 30em;
+  }
+}
+
+.explainer.parser-lab textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explainer.parser-lab .pl__note {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin: 8px 0 0;
+}
+
+.explainer.parser-lab .psteps ul,
+.explainer.parser-lab .psteps ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+/* The box is on the item; the grid needs the engine's state and message spans, so in quick edit
+   (spans gone) the item's text flows in the same box instead of squeezing into a column. */
+.explainer.parser-lab .psteps li {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  transition: border-color 0.25s var(--ease), opacity 0.25s var(--ease);
+}
+
+.explainer.parser-lab .psteps li:has(> .ps__state) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 10px;
+}
+
+.explainer.parser-lab .psteps strong {
+  font-size: 14.5px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.explainer.parser-lab .ps__state {
+  font: 500 11px/20px var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.explainer.parser-lab .ps__msg {
+  grid-column: 1 / -1;
+  font: 400 12.5px/1.5 var(--font-mono);
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.explainer.parser-lab .ps__msg:empty {
+  display: none;
+}
+
+.explainer.parser-lab .psteps li[data-state="pass"] {
+  border-color: color-mix(in srgb, var(--pass-ink) 45%, var(--line));
+}
+
+.explainer.parser-lab .psteps li[data-state="pass"] .ps__state {
+  color: var(--pass-ink);
+}
+
+.explainer.parser-lab .psteps li[data-state="pass"] .ps__state::after {
+  content: "used";
+}
+
+.explainer.parser-lab .psteps li[data-state="skip"] .ps__state::after {
+  content: "no change";
+}
+
+.explainer.parser-lab .psteps li[data-state="off"] {
+  border-style: dashed;
+  background: transparent;
+}
+
+.explainer.parser-lab .psteps li[data-state="off"] :is(strong, .ps__msg) {
+  color: var(--muted);
+}
+
+.explainer.parser-lab .psteps li[data-state="off"] .ps__state::after {
+  content: "skipped";
+}
+
+.explainer.parser-lab .psteps li[data-state="warn"] {
+  border-color: color-mix(in srgb, var(--differs) 50%, var(--line));
+}
+
+.explainer.parser-lab .psteps li[data-state="warn"] .ps__state {
+  color: var(--differs);
+}
+
+.explainer.parser-lab .psteps li[data-state="warn"] .ps__state::after {
+  content: "filtered";
+}
+
+.explainer.parser-lab .psteps li[data-state="fail"] {
+  border-color: color-mix(in srgb, #b0344f 45%, var(--line));
+}
+
+.explainer.parser-lab .psteps li[data-state="fail"] .ps__state {
+  color: var(--pl-fail);
+}
+
+.explainer.parser-lab .psteps li[data-state="fail"] .ps__state::after {
+  content: "failed";
+}
+
+.explainer.parser-lab .pl__status {
+  margin: 14px 0 8px;
+  font: 600 13px/1.4 var(--font-mono);
+  color: var(--ink);
+}
+
+.explainer.parser-lab .pl__status[data-ok="yes"] {
+  color: var(--pass-ink);
+}
+
+.explainer.parser-lab .pl__status[data-ok="no"] {
+  color: var(--pl-fail);
+}
+
+.explainer.parser-lab .pl__takeaway {
+  margin: 0 0 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.explainer.parser-lab .pl__takeaway:empty {
+  display: none;
+}
+
+.explainer.parser-lab .pl__out {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: var(--bg);
+  overflow: auto;
+}
+
+.explainer.parser-lab .pl__out :is(p, li) {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 0 0 6px;
+  overflow-wrap: anywhere;
+}
+
+.explainer.parser-lab .pl__out ul {
+  margin: 0 0 6px;
+  padding-left: 1.2em;
+}
+
+.explainer.parser-lab .pl__out b {
+  color: var(--ink);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.explainer.parser-lab .pl__story + .pl__story {
+  border-top: 1px dashed var(--line);
+  padding-top: 10px;
+  margin-top: 6px;
+}
+
+/* On the source, ".pl__out p" outranks ".pl__n" and ".pl__err" for size, line height and the
+   light-theme color; these are the values it renders. */
+.explainer.parser-lab .pl__out .pl__n {
+  font: 500 13.5px/1.5 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+}
+
+.explainer.parser-lab .pl__out .pl__err {
+  font-family: var(--font-mono);
+  color: var(--pl-err);
+}
+
+/* the table shown without JavaScript */
+.explainer.parser-lab .pl__static {
+  padding: 0 18px 20px;
+}
+
+.explainer.parser-lab .pl.is-live .pl__static,
+.explainer.parser-lab .pl:not(.is-live) .pl__grid {
+  display: none;
+}
+
+.explainer.parser-lab .pl__static table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.explainer.parser-lab .pl__static :is(th, td) {
+  text-align: left;
+  vertical-align: top;
+  padding: 8px 10px 8px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+}
+
+.explainer.parser-lab .pl__static th {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.explainer.parser-lab figcaption {
+  padding: 0 18px 16px;
+  margin-top: 0;
+}

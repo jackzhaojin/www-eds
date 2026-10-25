@@ -1,0 +1,220 @@
+/* Explainer engine "branch-push": the branch lab (writing/2025-07-07 explainer.css). */
+.explainer.branch-push .br-meta,
+.explainer.branch-push .br.is-live .br-static,
+.explainer.branch-push .br.is-live .br-run:not(.is-on),
+.explainer.branch-push .br.is-live .br-land:not(.is-on) {
+  display: none;
+}
+
+.explainer.branch-push .chips > .br-option {
+  display: inline-flex;
+  align-items: center;
+}
+
+.explainer.branch-push .chips strong {
+  font-weight: inherit;
+  color: inherit;
+}
+
+.explainer.branch-push .verdict {
+  min-height: 0;
+}
+
+.explainer.branch-push .verdict strong {
+  color: var(--bone);
+}
+
+.explainer.branch-push .verdict code {
+  font: 500 0.86em var(--font-mono);
+  background: rgb(255 255 255 / 10%);
+  color: var(--bone);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+}
+
+/* lanes */
+.explainer.branch-push .br__lanes {
+  display: grid;
+  gap: 14px;
+}
+
+.explainer.branch-push .br__lane {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  padding: 12px 14px;
+  transition: border-color 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.explainer.branch-push .br-head h3 {
+  margin: 0;
+  font: 600 13px/1.35 var(--font-mono);
+  color: var(--ink);
+}
+
+.explainer.branch-push .br-head h3 em {
+  display: block;
+  font: 400 12px var(--font-mono);
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.explainer.branch-push .br__lane[data-state="ran"] {
+  border-color: var(--pass-ink);
+}
+
+.explainer.branch-push .br__lane[data-state="failed"] {
+  border-color: #c2433d;
+}
+
+.explainer.branch-push .br__lane[data-state="idle"] {
+  opacity: 1;
+  border-style: dashed;
+  background: transparent;
+}
+
+/* the source keeps the lane's emptied steps list, and its 10px top margin */
+.explainer.branch-push .br-run[data-state="idle"] {
+  padding-bottom: 10px;
+}
+
+.explainer.branch-push :is(.br-run, .br-static) p {
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+
+.explainer.branch-push :is(.br-run, .br-static) :is(ol, ul) {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.explainer.branch-push :is(.br-run, .br-static) li {
+  position: relative;
+  margin: 0;
+  padding-left: 26px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  min-width: 0;
+}
+
+.explainer.branch-push :is(.br-run, .br-static) li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line-strong);
+}
+
+.explainer.branch-push .br-run:is([data-state="ran"], [data-state="failed"]) li::before {
+  background: var(--pass-ink);
+  border-color: var(--pass-ink);
+}
+
+/* the failing step (data-fail = its position) and the skipped steps after it */
+.explainer.branch-push .br-run[data-fail="1"] li:nth-child(1)::before,
+.explainer.branch-push .br-run[data-fail="2"] li:nth-child(2)::before,
+.explainer.branch-push .br-run[data-fail="3"] li:nth-child(3)::before,
+.explainer.branch-push .br-run[data-fail="4"] li:nth-child(4)::before,
+.explainer.branch-push .br-run[data-fail="5"] li:nth-child(5)::before {
+  background: #c2433d;
+  border-color: #c2433d;
+}
+
+.explainer.branch-push .br-run[data-fail="1"] li:nth-child(n + 2),
+.explainer.branch-push .br-run[data-fail="2"] li:nth-child(n + 3),
+.explainer.branch-push .br-run[data-fail="3"] li:nth-child(n + 4),
+.explainer.branch-push .br-run[data-fail="4"] li:nth-child(n + 5),
+.explainer.branch-push .br-run[data-fail="5"] li:nth-child(n + 6) {
+  color: var(--muted);
+}
+
+.explainer.branch-push .br-run[data-fail="1"] li:nth-child(n + 2)::before,
+.explainer.branch-push .br-run[data-fail="2"] li:nth-child(n + 3)::before,
+.explainer.branch-push .br-run[data-fail="3"] li:nth-child(n + 4)::before,
+.explainer.branch-push .br-run[data-fail="4"] li:nth-child(n + 5)::before,
+.explainer.branch-push .br-run[data-fail="5"] li:nth-child(n + 6)::before {
+  background: none;
+  border-color: var(--line-strong);
+}
+
+.explainer.branch-push .br__lane[data-state="idle"] :is(h3, p, li) {
+  color: var(--muted);
+}
+
+.explainer.branch-push :is(.br-run, .br-static) li code {
+  font: 500 0.86em var(--font-mono);
+  background: var(--accent-tint);
+  color: var(--ink);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  overflow-wrap: anywhere;
+}
+
+.explainer.branch-push .br-run li em {
+  display: block;
+  font: 500 12px/1.45 var(--font-mono);
+  color: #b0344f;
+  margin-top: 2px;
+}
+
+[data-theme="dark"] .explainer.branch-push .br-run li em {
+  color: var(--rose);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.branch-push .br-run li em {
+    color: var(--rose);
+  }
+}
+
+/* caption under the lab, inset to match the lab grid */
+.explainer.branch-push .lab > figcaption {
+  margin: 0;
+  padding: 0 18px 18px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+@container (min-width: 720px) {
+  .explainer.branch-push .lab > figcaption {
+    padding: 0 28px 22px;
+  }
+}
+
+.explainer.branch-push figcaption code {
+  font: 500 0.86em var(--font-mono);
+  background: var(--accent-tint);
+  color: var(--ink);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+}
+
+.explainer.branch-push figcaption a:any-link,
+.explainer.branch-push .verdict a:any-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+@media (width <= 640px) {
+  .explainer.branch-push .lab__bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+/* bar items keep their own height, so quick edit measures the same box */
+.explainer.branch-push .lab__bar {
+  align-items: flex-start;
+}

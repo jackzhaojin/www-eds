@@ -739,7 +739,10 @@ main > .section.inverse > div {
   --color-inverse-text: var(--palette-ink-900);
 }
 
-[data-theme="dark"] main > .section.inverse > div {
+/* An inverse band in the dark theme: the page is dark, or the band is forced dark by its own
+   section metadata (theme dark); a band forced light keeps the light inverse. */
+[data-theme="dark"] main > .section.inverse:not([data-theme="light"]) > div,
+main > .section.inverse[data-theme="dark"] > div {
   --color-bg: var(--palette-bone-100);
   --color-bg-alt: color-mix(in srgb, var(--palette-bone-100) 94%, var(--palette-night-900));
   --color-surface: color-mix(in srgb, var(--palette-bone-100) 92%, var(--palette-night-900));
@@ -759,7 +762,7 @@ main > .section.inverse > div {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"], [data-theme="dark"]) main > .section.inverse > div {
+  :root:not([data-theme="light"], [data-theme="dark"]) main > .section.inverse:not([data-theme="light"]) > div {
     --color-bg: var(--palette-bone-100);
     --color-bg-alt: color-mix(in srgb, var(--palette-bone-100) 94%, var(--palette-night-900));
     --color-surface: color-mix(in srgb, var(--palette-bone-100) 92%, var(--palette-night-900));
