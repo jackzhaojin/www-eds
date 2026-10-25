@@ -1,0 +1,214 @@
+/* Talk list: the source's talk recap (writing/2026-10-10-adaptto-2026-25-talks page styles).
+   Every authored element is styled through the wrapper that holds it. The two-column body
+   queries the article column (the template's size container), as the source does. */
+
+.talk-list .talk {
+  margin-top: var(--space-8);
+}
+
+.talk-list .talk:first-child {
+  margin-top: var(--space-5);
+}
+
+.talk-list .talk-anchor {
+  display: none;
+}
+
+/* heading: the number, then the linked title */
+.talk-list .talk-title h3 {
+  font-size: 1.3rem;
+  line-height: 1.3;
+  max-width: 36ch;
+  text-wrap: balance;
+}
+
+.talk-list .talk-title h3 code {
+  display: inline-block;
+  margin-right: 0.6em;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font: 500 0.78rem/1 var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  vertical-align: 0.18em;
+}
+
+.talk-list .talk-title h3 a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.talk-list .talk-title h3 a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+/* meta: speakers, slot, slides and video links */
+.talk-list .talk-meta {
+  margin-top: var(--space-2);
+}
+
+.talk-list .talk-meta p {
+  font-size: var(--text-small);
+  line-height: 1.6;
+  color: var(--color-text-faint);
+}
+
+.talk-list .talk-meta a {
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color-line-strong);
+}
+
+.talk-list .talk-meta a:hover {
+  color: var(--color-accent);
+  text-decoration-color: currentcolor;
+}
+
+/* the video moment (the template's inline-code pill does not apply here) */
+.talk-list.block .talk-head .talk-meta p a code {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font: 500 12.5px var(--font-mono);
+  color: var(--color-accent);
+}
+
+/* body: the slide beside the notes */
+.talk-list .talk-body {
+  margin-top: var(--space-4);
+  display: grid;
+  gap: var(--space-4) var(--space-6);
+}
+
+.talk-list .talk-body > * {
+  min-width: 0;
+}
+
+@container (min-width: 640px) {
+  .talk-list .talk-body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    align-items: start;
+  }
+
+  .talk-list .talk-slide {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .talk-list .talk-parts {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
+
+.talk-list .talk-slide {
+  container-type: inline-size;
+}
+
+.talk-list .talk-media a {
+  display: block;
+  border-radius: 12px;
+}
+
+.talk-list .talk-media a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.talk-list .talk-media picture {
+  display: block;
+}
+
+.talk-list .talk-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+}
+
+.talk-list .talk-caption {
+  margin-top: 8px;
+}
+
+.talk-list .talk-caption p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-faint);
+  text-wrap: inherit;
+}
+
+/* notes: label, then its text */
+.talk-list .talk-part + .talk-part {
+  margin-top: var(--space-4);
+}
+
+.talk-list .talk-label p {
+  font: 500 var(--text-label)/1.2 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  text-wrap: inherit;
+}
+
+.talk-list .talk-label strong {
+  font-weight: inherit;
+}
+
+.talk-list .talk-mine p {
+  color: var(--color-accent);
+}
+
+.talk-list .talk-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.talk-list .talk-label + .talk-text {
+  margin-top: 6px;
+}
+
+.talk-list .talk-text p {
+  text-wrap: inherit;
+}
+
+.talk-list .talk-text ul,
+.talk-list .talk-text ol {
+  margin: 6px 0;
+  padding-left: 1.2em;
+}
+
+.talk-list .talk-text li + li {
+  margin-top: 4px;
+}
+
+.talk-list .talk-text a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.talk-list .talk-ctx {
+  margin-top: 8px;
+}
+
+.talk-list .talk-ctx p {
+  font-size: var(--text-small);
+  line-height: 1.6;
+  color: var(--color-text-faint);
+}
+
+.talk-list .talk-ctx em {
+  font-style: normal;
+}
