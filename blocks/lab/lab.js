@@ -255,7 +255,8 @@ function tokenEngine(lab, parts) {
     verdict.append(line, log);
   };
 
-  chips.hidden = false;
+  parts.chipRow.setAttribute('aria-label', 'Pick a token');
+  parts.chipRow.hidden = false;
   buttons.forEach((b) => {
     b.addEventListener('click', () => play(b.dataset.scenario));
     b.addEventListener('keydown', (e) => {
@@ -275,14 +276,17 @@ function decorateLeft(cell) {
   [...cell.children].forEach((el) => {
     if (el.matches('ul, ol') && !parts.chips) {
       el.classList.add('lab-chips');
-      el.setAttribute('role', 'radiogroup');
-      el.hidden = true;
+      el.setAttribute('role', 'none');
       [...el.children].forEach((li) => {
         li.setAttribute('role', 'radio');
         li.tabIndex = 0;
       });
       parts.chips = el;
-      left.append(slot('lab-chip-row', [el]));
+      const row = slot('lab-chip-row', [el]);
+      row.setAttribute('role', 'radiogroup');
+      row.hidden = true;
+      parts.chipRow = row;
+      left.append(row);
     } else if (el.matches('pre')) {
       parts.decodedEl = el;
       left.append(slot('lab-json', [el]));

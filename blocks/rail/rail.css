@@ -89,13 +89,19 @@
   min-width: 0;
 }
 
-.rail .rail-num p {
+.rail .rail-text strong {
+  display: block;
+  margin-bottom: 2px;
   font: 500 var(--text-label)/1.2 var(--font-mono);
   color: var(--color-text-faint);
   letter-spacing: 0.04em;
 }
 
-.rail .rail-title p {
+.rail .rail-text br {
+  display: none;
+}
+
+.rail .rail-text p {
   font-size: 13.5px;
   line-height: 1.35;
 }
@@ -110,7 +116,7 @@
   border-color: var(--color-accent);
 }
 
-.rail .rail-list a[aria-current="true"] .rail-num p {
+.rail .rail-list a[aria-current="true"] .rail-text strong {
   color: var(--color-accent);
 }
 

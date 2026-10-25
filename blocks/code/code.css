@@ -36,6 +36,11 @@
   margin: 0;
 }
 
+/* In the source the link is a flex item of the bar, so its rule adds to the bar's height. */
+.code .code-bar p:has(a) {
+  display: flex;
+}
+
 .code .code-bar a:any-link {
   color: var(--palette-lavender-300);
   text-decoration: underline;

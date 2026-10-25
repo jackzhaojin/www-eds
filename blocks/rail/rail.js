@@ -1,9 +1,9 @@
 /**
  * Rail: the article outline ("On this page"), the right rail of the article template.
- * One row per entry: a thumbnail cell (optional), then a cell with the part label paragraph
- * and the link paragraph (its text is the short title, its href the part, like #part-1). A
- * row with a single cell holds the rail's closing links. Each entry is one link around its
- * thumbnail, label and title (card-as-link, EW6).
+ * One row per entry: a thumbnail cell (optional), then one paragraph: the part label in bold,
+ * a line break, then the link (its text is the short title, its href the part, like #part-1).
+ * A row with a single cell holds the rail's closing links. Each entry is one link around its
+ * thumbnail and that paragraph (card-as-link, EW6), so it reads as one link, as on the source.
  *
  * The rail marks the current part, shows the reading progress of the column, and starts
  * closed on narrow screens, where it sits above the article.

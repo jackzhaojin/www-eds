@@ -3,6 +3,10 @@
    off wrappers and element types, never positions, so it holds in quick edit. */
 
 /* ---------- head ---------- */
+.article .article-head .nowrap {
+  white-space: nowrap;
+}
+
 .article .article-head {
   max-width: var(--container-max);
   margin-inline: auto;
@@ -204,7 +208,6 @@
 .article .article-body .default-content-wrapper pre {
   background: var(--palette-night-850);
   color: var(--palette-bone-100);
-  border: 0;
   border-radius: var(--radius-lg);
   padding: 16px 18px;
   font: 400 13.5px/1.7 var(--font-mono);

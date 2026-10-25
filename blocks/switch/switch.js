@@ -1,7 +1,8 @@
 /**
  * Switch: two (or more) modes of one explainer behind a radio switch (the explainer kit's
  * two-way switch, as in the bar placement). One row per mode: the first cell is the switch
- * label, the next cells are the mode's columns. A row with a single cell is the caption.
+ * label, the next cells are the mode's columns. A single-cell row before the modes names the
+ * switch for assistive tech (not shown); a single-cell row after them is the caption.
  *
  * In a column: a short paragraph before a code block or an image is its label; the last
  * paragraph after an image is the console line, with one line per error when it has line
@@ -13,7 +14,7 @@
  * previous one (mark = the thing discussed, add = what was added, note = an annotation).
  *
  * @variants (none)
- * @ew-exempt <ul> code marks - text-as-metadata, never displayed
+ * @ew-exempt <ul> code marks, <p> switch name - text-as-metadata, never displayed
  */
 
 const MARK = /^(mark|add|note):\s?(.+)$/;
@@ -98,9 +99,18 @@ export default function decorate(block) {
   group.setAttribute('role', 'radiogroup');
   const modes = [];
   let caption = null;
+  let name = null;
 
   [...block.querySelectorAll(':scope > div')].forEach((row, i) => {
     const cells = [...row.children];
+    if (cells.length === 1 && !modes.length && !name) {
+      name = document.createElement('div');
+      name.className = 'switch-name';
+      name.hidden = true;
+      name.append(...cells[0].children);
+      group.setAttribute('aria-label', name.textContent.trim());
+      return;
+    }
     if (cells.length === 1) {
       caption = document.createElement('figcaption');
       caption.append(...cells[0].children);
@@ -151,6 +161,7 @@ export default function decorate(block) {
 
   const figure = document.createElement('figure');
   figure.className = 'switch-frame';
+  if (name) figure.append(name);
   figure.append(group, ...modes);
   if (caption) figure.append(caption);
   block.replaceChildren(figure);

@@ -119,6 +119,8 @@ function marks($pre) {
 
 function switchBlock($el) {
   const options = $el.find('[role="radio"]');
+  const groupName = $el.find('[role="radiogroup"]').attr('aria-label');
+  const named = groupName ? [[`<p>${esc(groupName)}</p>`]] : [];
   const rows = $el.find('.bp__mode').map((i, mode) => {
     const cols = $(mode).find('.bp__grid > div').map((_, col) => {
       let html = '';
@@ -137,7 +139,7 @@ function switchBlock($el) {
   }).get();
   const cap = $el.children('figcaption');
   if (cap.length) rows.push([`<p>${inline(cap)}</p>`]);
-  return block('switch', rows);
+  return block('switch', [...named, ...rows]);
 }
 
 function lab(el) {
@@ -182,7 +184,7 @@ const railRows = $('.rail__list li').map((_, li) => {
   const $li = $(li);
   const a = $li.find('a');
   const thumb = $li.find('img');
-  return [[thumb.length ? `<p>${img(thumb)}</p>` : '', `<p>${esc($li.find('.rail__num').text())}</p><p><a href="${esc(a.attr('href'))}">${esc($li.find('.rail__title').text())}</a></p>`]];
+  return [[thumb.length ? `<p>${img(thumb)}</p>` : '', `<p><strong>${esc($li.find('.rail__num').text())}</strong><br><a href="${esc(a.attr('href'))}">${esc($li.find('.rail__title').text())}</a></p>`]];
 }).get();
 const railLinks = $('.rail__links a').map((_, a) => `<p><a href="${esc(absHref($(a).attr('href')))}">${inline(a)}</a></p>`).get().join('');
 if (railLinks) railRows.push([railLinks]);

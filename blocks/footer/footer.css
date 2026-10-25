@@ -32,6 +32,12 @@ footer .footer {
   color: var(--color-text-muted);
 }
 
+/* On articles the source's explainer kit redefines .muted as the faint ink; kept as is
+   (inconsistency register R5). */
+.article .footer .footer-place {
+  color: var(--color-text-faint);
+}
+
 .footer .footer-links ul {
   display: flex;
   gap: 24px;

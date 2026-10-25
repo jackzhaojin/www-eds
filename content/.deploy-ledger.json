@@ -25,5 +25,14 @@
     "preview": 200,
     "live": 200,
     "verify": "ok"
+  },
+  "/writing/2026-09-20-aem-edge-functions-google-sign-in/index": {
+    "status": "live",
+    "attempts": 1,
+    "ts": "2026-10-25T14:38:34.859Z",
+    "put": 201,
+    "preview": 200,
+    "live": 200,
+    "verify": "ok"
   }
 }

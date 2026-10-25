@@ -55,6 +55,32 @@ function decorateByline(p) {
   });
 }
 
+/**
+ * Title words the source keeps on one line: hyphenated or dotted words (Sign-in, da.live) and
+ * phrases joined by a no-break space. A presentation refinement: the text is unchanged.
+ */
+function keepTogether(h1) {
+  const NOWRAP = /[A-Za-z0-9]+(?:[-.][A-Za-z0-9]+)+|[^\s\u00a0]+(?:\u00a0[^\s\u00a0]+)+/g;
+  [...h1.childNodes].forEach((node) => {
+    if (node.nodeType !== Node.TEXT_NODE) return;
+    const text = node.textContent;
+    const frag = document.createDocumentFragment();
+    let last = 0;
+    text.replace(NOWRAP, (match, offset) => {
+      frag.append(text.slice(last, offset));
+      const span = document.createElement('span');
+      span.className = 'nowrap';
+      span.textContent = match;
+      frag.append(span);
+      last = offset + match.length;
+      return match;
+    });
+    if (!last) return;
+    frag.append(text.slice(last));
+    node.replaceWith(frag);
+  });
+}
+
 function decorateHead(section) {
   const head = document.createElement('header');
   head.className = 'article-head';
@@ -70,7 +96,10 @@ function decorateHead(section) {
     if (items.length) items[items.length - 1].setAttribute('aria-current', 'page');
   }
   const h1 = content.querySelector('h1');
-  if (h1) wrap(h1, 'article-title');
+  if (h1) {
+    keepTogether(h1);
+    wrap(h1, 'article-title');
+  }
   [...content.querySelectorAll('p')].forEach((p) => {
     if (p.closest('.breadcrumb')) return;
     if (/^By\s/.test(p.textContent)) {

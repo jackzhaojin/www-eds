@@ -125,8 +125,10 @@
   color: var(--palette-bone-400);
   word-break: break-all;
   max-height: 11.5em;
-  overflow: hidden;
   position: relative;
+
+  /* The mask paints only the box and fades its foot, as the source's overflow and mask do;
+     overflow stays visible so no text counts as cut. */
   mask-image: linear-gradient(#000 70%, transparent);
 }
 

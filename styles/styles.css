@@ -786,9 +786,9 @@ main > .section.inverse > div {
 }
 
 /* ------------------------------------------------------------ default content
-   The home and listing rhythm from css/site.css (.home-two, .credential-intro). Articles set
-   their own prose rhythm in the article template. */
-main .default-content-wrapper p {
+   The home and listing rhythm from css/site.css (.home-two, .credential-intro), for band
+   sections. Articles set their own prose rhythm in the article template. */
+main > .section > .default-content-wrapper p {
   max-width: 60ch;
   margin: 20px 0 28px;
 }

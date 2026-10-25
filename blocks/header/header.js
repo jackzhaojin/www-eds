@@ -74,10 +74,11 @@ function buildThemeControl() {
 }
 
 function markCurrent(list) {
-  const here = window.location.pathname;
+  const norm = (p) => p.replace(/\/(index)?$/, '') || '/';
+  const here = norm(window.location.pathname);
   list.querySelectorAll('a[href]').forEach((a) => {
     const { pathname } = new URL(a.href, window.location);
-    if (pathname !== '/' && here.startsWith(pathname)) a.setAttribute('aria-current', 'page');
+    if (norm(pathname) === here) a.setAttribute('aria-current', 'page');
   });
 }
 
