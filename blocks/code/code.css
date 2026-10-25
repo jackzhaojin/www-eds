@@ -74,11 +74,15 @@
   color: inherit;
 }
 
+/* Lines stay inline: their own newline breaks them, so the code reads the same while it is
+   edited (the editor shows the plain text with the same newlines). */
+.code pre {
+  white-space: pre;
+}
+
 .code .ln {
-  display: block;
   padding: 0 20px 0 0;
   border-left: 2px solid transparent;
-  white-space: pre;
 }
 
 .code .ln::before {

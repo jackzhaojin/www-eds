@@ -6,6 +6,7 @@
  * the player frame shows the video, titled from the link text. A lone YouTube link in default
  * content becomes this block too (scripts.js), so authors never build an embed table.
  *
+ * @ew-exempt <p> video link - the embed's source link, never displayed
  * @variants board (default board)
  *   board - a diagram or screenshot on a white ground with a hairline, as the source's boards
  */
@@ -40,8 +41,10 @@ export default function decorate(block) {
     const link = el.matches('a') ? el : el.querySelector('a[href]');
     if (!media.children.length && link && YOUTUBE.test(link.href) && !el.querySelector('picture, img')) {
       video = true;
-      el.hidden = true;
-      media.append(el, videoFrame(link));
+      const source = document.createElement('div');
+      source.className = 'figure-source';
+      source.append(el);
+      media.append(source, videoFrame(link));
     } else if (!media.children.length && (el.matches('picture, img') || el.querySelector('picture, img'))) {
       media.append(el);
     } else caption.append(el);

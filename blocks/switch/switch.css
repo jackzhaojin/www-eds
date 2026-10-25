@@ -101,6 +101,10 @@
   color: inherit;
 }
 
+.switch .switch-marks {
+  display: none;
+}
+
 .switch .code-mark {
   color: var(--palette-gold-300);
 }

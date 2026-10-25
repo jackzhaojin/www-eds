@@ -8,6 +8,10 @@
   margin: 0;
 }
 
+.figure .figure-source {
+  display: none;
+}
+
 .figure .figure-media p {
   margin: 0;
 }

@@ -45,7 +45,6 @@ function applyMarks(pre, list) {
   });
   nodes.push(text.slice(last));
   host.replaceChildren(...nodes);
-  list.hidden = true;
   return true;
 }
 
@@ -56,18 +55,18 @@ function slot(name, nodes) {
   return div;
 }
 
-/** Splits a paragraph at its line breaks into block spans (presentation only). */
+/** Wraps each line of a paragraph in a block span, breaks kept between (presentation only). */
 function splitLines(p) {
-  const lines = [[]];
+  const out = [];
+  let span = document.createElement('span');
   [...p.childNodes].forEach((n) => {
-    if (n.nodeName === 'BR') lines.push([n]);
-    else lines[lines.length - 1].push(n);
+    if (n.nodeName === 'BR') {
+      out.push(span, n);
+      span = document.createElement('span');
+    } else span.append(n);
   });
-  p.replaceChildren(...lines.map((nodes) => {
-    const span = document.createElement('span');
-    span.append(...nodes);
-    return span;
-  }));
+  out.push(span);
+  p.replaceChildren(...out);
 }
 
 function decorateColumn(cell) {
@@ -79,7 +78,7 @@ function decorateColumn(cell) {
     const prev = nodes[i - 1];
     const media = el.querySelector('picture, img');
     if (el.matches('ul, ol') && prev && prev.matches('pre') && applyMarks(prev, el)) {
-      [...col.querySelectorAll('.switch-code')].pop()?.append(el);
+      [...col.querySelectorAll('.switch-code')].pop()?.append(slot('switch-marks', [el]));
     } else if (el.matches('pre')) col.append(slot('switch-code', [el]));
     else if (media) col.append(slot('switch-shot', [el]));
     else if (el.tagName === 'P' && next && (next.matches('pre') || next.querySelector('picture, img'))) {

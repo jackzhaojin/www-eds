@@ -355,8 +355,9 @@ function decorateRight(cell) {
       });
       right.append(slot('lab-checks', [el]));
     } else if (parts.gates) {
-      parts.verdictStatic = el;
-      verdict.append(el);
+      const fallback = slot('lab-static', [el]);
+      parts.verdictStatic = fallback;
+      verdict.append(fallback);
     } else {
       if (!keys.children.length) keys.append(slot('lab-label', [el]));
       else if (el.querySelector('code') && !parts.modulus) {
