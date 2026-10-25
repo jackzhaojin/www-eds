@@ -19,7 +19,7 @@ You are one of several agents migrating www.jackzhaojin.com (GitHub Pages, desig
 
 ## Ownership (one writer per path)
 
-- The main thread owns, and you never edit: `styles/`, `scripts/`, `head.html`, `templates/article/`, `blocks/{header,footer,figure,code,compare,switch,lab,rail,author-box,fine-print,data-table,columns,explainer}/explainer.{js,css}` core files, `stardust/` run state (`status.jsonl`, `state.json`, `journal.md`, `replica/progress.json`, `replica/inconsistency-register.md`, `replica/accepted.json`, `spec/judgement/catalog.json`), `.eslintrc.js`, `.stylelintrc.json`, `.hlxignore`, `package*.json`.
+- The main thread owns, and you never edit: `styles/`, `scripts/`, `head.html`, `templates/article/`, the blocks header, footer, figure, code, compare, switch, lab, rail, author-box, fine-print, data-table, columns, the explainer core (`blocks/explainer/explainer.{js,css}`, not its `engines/`), `stardust/scripts/import-article.mjs`, `stardust/` run state (`status.jsonl`, `state.json`, `journal.md`, `replica/progress.json`, `replica/inconsistency-register.md`, `replica/accepted.json`, `spec/judgement/catalog.json`), `.eslintrc.js`, `.stylelintrc.json`, `.hlxignore`, `package*.json`.
 - You own only the paths your brief lists. If you need a change in a file you do not own, do not edit it: work around it inside your own files if you can, and list the request in your report.
 
 ## Content protocol (pages)
