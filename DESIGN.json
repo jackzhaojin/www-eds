@@ -1,0 +1,136 @@
+{
+  "extensions": {
+    "breakpoints": {
+      "containerMaxWidth": "1280px",
+      "probeWidth": 2560,
+      "shellMaxWidth": null,
+      "caps": [
+        {
+          "kind": "module",
+          "px": 1280,
+          "via": "max-width",
+          "selector": "#main > section.band.band--plain > div.container.home-intro",
+          "pages": [
+            "https://www.jackzhaojin.com/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 717,
+          "via": "fixed",
+          "selector": "#main > section.band.band--plain > div.container.home-intro > div",
+          "pages": [
+            "https://www.jackzhaojin.com/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 695,
+          "via": "max-width",
+          "selector": "section.band.band--plain > div.container.home-intro > div > p.summary",
+          "pages": [
+            "https://www.jackzhaojin.com/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 602,
+          "via": "fixed",
+          "selector": "section.band.band--tint > div.container > div.work-feature > figure.frame.frame--diagram",
+          "pages": [
+            "https://www.jackzhaojin.com/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 526,
+          "via": "fixed",
+          "selector": "#main > section.band.band--plain > div.container.home-two > div",
+          "pages": [
+            "https://www.jackzhaojin.com/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 502,
+          "via": "fixed",
+          "selector": "section.band.band--tint > div.container > div.work-feature > div",
+          "pages": [
+            "https://www.jackzhaojin.com/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 467,
+          "via": "fixed",
+          "selector": "div.container.home-two > div > p > a",
+          "pages": [
+            "https://www.jackzhaojin.com/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 418,
+          "via": "fixed",
+          "selector": "div.container.home-intro > div > p.positioning > em",
+          "pages": [
+            "https://www.jackzhaojin.com/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 319,
+          "via": "fixed",
+          "selector": "div.container.home-intro > div > div.home-title-row > h1.page-title.page-title--display",
+          "pages": [
+            "https://www.jackzhaojin.com/"
+          ]
+        },
+        {
+          "kind": "module",
+          "px": 252,
+          "via": "fixed",
+          "selector": "aside.home-note.home-note--adobe > ul.identity-list > li > a",
+          "pages": [
+            "https://www.jackzhaojin.com/"
+          ]
+        }
+      ],
+      "modules": [
+        {
+          "url": "https://www.jackzhaojin.com/",
+          "section": 0,
+          "selector": "#main > section.band.band--plain",
+          "px": 1280
+        },
+        {
+          "url": "https://www.jackzhaojin.com/",
+          "section": 1,
+          "selector": "#main > section.band.band--tint",
+          "px": 1280
+        },
+        {
+          "url": "https://www.jackzhaojin.com/",
+          "section": 2,
+          "selector": "#main > section.band.band--plain",
+          "px": 1280
+        },
+        {
+          "url": "https://www.jackzhaojin.com/",
+          "section": 3,
+          "selector": "#main > section.band.band--alt",
+          "px": 1280
+        }
+      ],
+      "capRegister": [],
+      "capProvenance": {
+        "writtenBy": "skills/replica/scripts/cap-probe.mjs",
+        "writtenAt": "2026-10-25T13:39:18.880Z",
+        "baseWidth": 1440,
+        "urls": [
+          "https://www.jackzhaojin.com/"
+        ]
+      }
+    }
+  }
+}
