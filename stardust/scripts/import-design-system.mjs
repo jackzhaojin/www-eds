@@ -328,6 +328,14 @@ function cardInline(node) {
   return inline($c);
 }
 
+/** A figure's image, inside its link when the source links it (the full-size file). */
+function figImage($fig) {
+  const $a = $fig.children('a');
+  const $img = $fig.find('img').first();
+  if (!$img.length) return '';
+  return $a.length ? `<a href="${attr(absHref($a.attr('href')))}">${img($img.get(0))}</a>` : img($img.get(0));
+}
+
 /** v3 showcase text as a showcase (story) text cell, in source order; proof links follow. */
 function showcaseParts($article) {
   const text = [];
@@ -341,14 +349,14 @@ function showcaseParts($article) {
     else text.push(p(inline(c)));
   });
   const $fig = $article.find('.showcase__media figure');
-  const media = `${p(inline($fig.children('a').length ? $fig.children('a') : $fig.children('img')))}${p(inline($fig.children('figcaption')))}`;
+  const media = `${p(figImage($fig))}${p(inline($fig.children('figcaption')))}`;
   return { text: text.join(''), media, after: after.join('') };
 }
 
 /** A v3 frame as a frame block: the (linked) image paragraph, then the caption. */
 function frameBlock(fig, variant) {
   const $f = $(fig);
-  const imgPara = p(inline($f.children('a').length ? $f.children('a') : $f.children('img')));
+  const imgPara = p(figImage($f));
   return block(variant ? `frame ${variant}` : 'frame', [[`${imgPara}${p(inline($f.children('figcaption')))}`]]);
 }
 
