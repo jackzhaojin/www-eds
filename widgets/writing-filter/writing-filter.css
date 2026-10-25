@@ -94,7 +94,8 @@
   align-items: center;
 }
 
-.writing-filter .writing-filter-label {
+.writing-filter .writing-filter-label,
+.writing-filter .writing-filter-bar label {
   font-family: var(--font-mono);
   font-size: var(--text-label);
   font-weight: var(--weight-medium);

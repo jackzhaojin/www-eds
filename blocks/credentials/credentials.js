@@ -5,8 +5,8 @@
  * - body: the heading with the credential link, the detail paragraphs (issuer or level,
  *   Earned, Renewed, Expires), then the verification link paragraph.
  * The row's id comes from the heading (claude-certified-architect-professional), the link
- * target the home and other pages use. The verification link gets the credential's name for
- * assistive tech (Verify credential: <name>).
+ * target the home and other pages use. The verification link is named for assistive tech
+ * with the credential (Verify credential: <name>) through a derived suffix beside it.
  *
  * @variants (none)
  */
@@ -54,13 +54,23 @@ function decorateBody(cell, li) {
   if (details.length) body.append(slot('credentials-details', details));
   if (links.length) {
     const name = heading ? heading.textContent.trim() : '';
-    links.forEach((p) => {
+    const verify = slot('credentials-verify cta-slot', []);
+    links.forEach((p, i) => {
+      verify.append(p);
+      if (!name || !li.id) return;
+      // The link is named "Verify credential: <name>" (the source's sr-only suffix). The suffix
+      // sits beside the authored paragraph, never inside it, so the authored text stays as is.
+      const a = p.querySelector('a');
       const sr = document.createElement('span');
       sr.className = 'sr-only';
+      sr.id = `${li.id}-verify-${i}`;
+      sr.setAttribute('aria-hidden', 'true');
       sr.textContent = `: ${name}`;
-      if (name) p.querySelector('a').append(sr);
+      a.id = `${li.id}-verify-link-${i}`;
+      a.setAttribute('aria-labelledby', `${a.id} ${sr.id}`);
+      verify.append(sr);
     });
-    body.append(slot('credentials-verify cta-slot', links));
+    body.append(verify);
   }
   const used = new Set([heading, ...links, ...details]);
   nodes.filter((el) => !used.has(el)).forEach((el) => body.append(el));

@@ -8,12 +8,15 @@
  *   whole row), the summary paragraph, a talk link paragraph followed by its note paragraph,
  *   and the Watch on YouTube link paragraph;
  * - cover (the cell with the image): decorative, the row link names the article;
- * - keywords (an optional cell with one plain paragraph): search terms beyond the visible text.
+ * - keywords (an optional cell of plain paragraphs): search terms beyond the visible text, and
+ *   optionally the title runs to keep on one line (Sign-in, Members-Only): a paragraph of comma
+ *   separated parts that all occur in the title. Each run gets a nowrap span (the source marks
+ *   them title by title), a presentation refinement that keeps the text.
  * Year marks split the list by year. The writing-filter widget filters the rows in place and
  * reads each row's date, topics and search text from the data attributes set here. The section
  * metadata key label names the section for assistive tech (the source's aria-label).
  *
- * @ew-exempt keywords: search terms for the writing-filter widget, hidden (.writing-list-keywords)
+ * @ew-exempt keywords: search terms and keep-together runs, hidden (.writing-list-keywords)
  * @variants (none)
  */
 
@@ -121,6 +124,26 @@ function decorateBody(cell, row) {
   return body;
 }
 
+/** Wraps the first occurrence of each run in a nowrap span; the text is unchanged. */
+function keepTogether(heading, runs) {
+  runs.forEach((run) => {
+    const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      const at = node.textContent.indexOf(run);
+      if (at >= 0 && !node.parentElement.classList.contains('nowrap')) {
+        const tail = node.splitText(at);
+        tail.splitText(run.length);
+        const span = document.createElement('span');
+        span.className = 'nowrap';
+        tail.replaceWith(span);
+        span.append(tail);
+        break;
+      }
+    }
+  });
+}
+
 function decorateRow(div) {
   const row = {
     date: '', topics: [], labels: [], video: false, id: '', title: '', summary: '', keywords: '',
@@ -139,11 +162,18 @@ function decorateRow(div) {
       parts.media = slot('writing-list-media', [...cell.children]);
       parts.media.setAttribute('aria-hidden', 'true');
     } else if (!parts.meta && cell.querySelector('ul, ol')) parts.meta = decorateMeta(cell, row);
-    else {
-      row.keywords = `${row.keywords} ${cell.textContent.trim()}`.trim();
-      parts.keywords = slot('writing-list-keywords', [...cell.children]);
-    }
+    else parts.keywords = slot('writing-list-keywords', [...cell.children]);
   });
+  if (parts.keywords) {
+    const heading = parts.body && parts.body.querySelector('.writing-list-title > *');
+    [...parts.keywords.children].forEach((p) => {
+      const text = p.textContent.trim();
+      const runs = text.split(',').map((r) => r.trim()).filter(Boolean);
+      const isRuns = runs.length && runs.every((r) => row.title.includes(r));
+      if (heading && isRuns) keepTogether(heading, runs);
+      else row.keywords = `${row.keywords} ${text}`.trim();
+    });
+  }
   article.append(...Object.values(parts).filter(Boolean));
   if (row.id) article.id = row.id;
 

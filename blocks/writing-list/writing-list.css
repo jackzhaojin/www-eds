@@ -175,6 +175,10 @@ main > .section.writing-list-container {
   text-wrap: balance;
 }
 
+.writing-list .writing-list-title .nowrap {
+  white-space: nowrap;
+}
+
 .writing-list .writing-list-title a:any-link {
   color: inherit;
   text-decoration: none;
