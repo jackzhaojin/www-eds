@@ -1,0 +1,432 @@
+/* Explainer (work-patterns): "Walk the five layers", ported from the Patterns of Work
+   article's explainer.css. The source's class names sit on the wrappers; authored elements are
+   styled as their descendants, so the look holds in quick edit. */
+/* stylelint-disable selector-class-pattern -- the source's BEM names are kept so the port stays faithful */
+.explainer.work-patterns {
+  --pow-gold: var(--palette-gold-700);
+  --pow-gold-tint: rgb(125 95 14 / 7%);
+  --pow-gold-line: rgb(125 95 14 / 35%);
+  --pow-on-gold: var(--palette-warm-0);
+}
+
+[data-theme="dark"] .explainer.work-patterns {
+  --pow-gold: var(--palette-gold-300);
+  --pow-gold-tint: rgb(240 207 142 / 8%);
+  --pow-gold-line: rgb(240 207 142 / 35%);
+  --pow-on-gold: var(--palette-night-900);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.work-patterns {
+    --pow-gold: var(--palette-gold-300);
+    --pow-gold-tint: rgb(240 207 142 / 8%);
+    --pow-gold-line: rgb(240 207 142 / 35%);
+    --pow-on-gold: var(--palette-night-900);
+  }
+}
+
+.explainer.work-patterns .pow__ui {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+/* ---------- the map ---------- */
+.explainer.work-patterns .pow__map {
+  display: grid;
+  gap: 8px;
+}
+
+.explainer.work-patterns .pow__layers {
+  display: grid;
+  gap: 6px;
+}
+
+.explainer.work-patterns .pow__lbtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font: 500 14px/1.25 var(--font-body);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.explainer.work-patterns .pow__lbtn p {
+  font: inherit;
+  color: inherit;
+}
+
+.explainer.work-patterns .pow__lbtn .pow__n,
+.explainer.work-patterns .pow__row .pow__n {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+}
+
+.explainer.work-patterns .pow__lbtn:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.explainer.work-patterns .pow__lbtn[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-tint);
+  color: var(--ink);
+}
+
+.explainer.work-patterns .pow__layers.is-pillar .pow__lbtn {
+  border-color: var(--pow-gold-line);
+  background: var(--pow-gold-tint);
+}
+
+.explainer.work-patterns .pow__spine {
+  display: grid;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--pow-gold-line);
+  background: var(--pow-gold-tint);
+  border-radius: 10px;
+}
+
+.explainer.work-patterns .pow__spine-label p {
+  font: 600 10.5px/1.2 var(--font-mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--pow-gold);
+  padding: 2px 4px;
+}
+
+.explainer.work-patterns .pow__pillar-list ul,
+.explainer.work-patterns .pow__pillar-list ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.explainer.work-patterns .pow__pillar-list li {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--pow-gold);
+  cursor: pointer;
+  font: 600 11px/1 var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 8px 4px;
+  min-height: 44px;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.explainer.work-patterns .pow__pillar-list li:hover {
+  border-color: var(--pow-gold-line);
+}
+
+.explainer.work-patterns .pow__pillar-list li[aria-pressed="true"] {
+  background: var(--pow-gold);
+  color: var(--pow-on-gold);
+}
+
+.explainer.work-patterns .pow__foundation a:any-link {
+  display: block;
+  padding: 10px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--ink-2);
+  font-size: 13.5px;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.explainer.work-patterns .pow__foundation strong {
+  display: block;
+  font: 600 11px/1.2 var(--font-mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.explainer.work-patterns .pow__foundation a:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+
+.explainer.work-patterns :is(.pow__lbtn, .pow__pillar-list li, .pow__foundation a, .pow__row):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- the panel: one layer card, or the pillar view ---------- */
+.explainer.work-patterns .pow__panel {
+  min-width: 0;
+}
+
+.explainer.work-patterns .pow__layer,
+.explainer.work-patterns .pow__col {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  padding: 18px 20px;
+  min-width: 0;
+  animation: pow-in 0.2s var(--ease) both;
+}
+
+.explainer.work-patterns .pow__col {
+  border-color: var(--pow-gold-line);
+}
+
+.explainer.work-patterns :is(.pow__layer, .pow__col, .pow__data)[hidden] {
+  display: none;
+}
+
+@keyframes pow-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.explainer.work-patterns .pow__layer > * + * {
+  margin-top: 8px;
+}
+
+.explainer.work-patterns .pow__col > * + * {
+  margin-top: 10px;
+}
+
+.explainer.work-patterns .pow__layer .pow__name p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
+}
+
+.explainer.work-patterns .pow__name p {
+  font: 600 1.125rem/1.3 var(--font-body);
+  color: var(--ink);
+}
+
+.explainer.work-patterns .pow__col .pow__name em {
+  font-style: normal;
+  color: var(--pow-gold);
+}
+
+.explainer.work-patterns .pow__n {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--bg);
+  font: 600 13px/1 var(--font-mono);
+}
+
+.explainer.work-patterns .pow__layer[data-layer="3"] .pow__name .pow__n {
+  background: var(--pass-ink);
+}
+
+.explainer.work-patterns .pow__what p {
+  color: var(--ink-2);
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+
+.explainer.work-patterns .pow__layer > .pow__k,
+.explainer.work-patterns .pow__layer > .pow__pillars {
+  margin-top: 14px;
+}
+
+/* the source's list reset (margin: 0) wins over the card's 8px rhythm */
+.explainer.work-patterns .pow__layer > .pow__climb {
+  margin-top: 0;
+}
+
+.explainer.work-patterns .pow__k p {
+  font: 500 11.5px/1.2 var(--font-mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* The climb: each step is a chip, with an arrow (or a plus) before it, outside the chip. */
+.explainer.work-patterns .pow__climb {
+  --pow-sep: "\2192";
+  --pow-sep-w: 13.5px;
+}
+
+.explainer.work-patterns .pow__climb--branch {
+  --pow-sep: "+";
+  --pow-sep-w: 8.94px;
+}
+
+.explainer.work-patterns .pow__climb :is(ol, ul) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 4px;
+}
+
+.explainer.work-patterns .pow__climb li {
+  position: relative;
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  padding: 5px 9px;
+  background: var(--bg);
+}
+
+.explainer.work-patterns .pow__climb li + li {
+  margin-left: calc(var(--pow-sep-w) + 8px);
+}
+
+.explainer.work-patterns .pow__climb li + li::before {
+  content: var(--pow-sep);
+  position: absolute;
+  top: 5px;
+  right: calc(100% + 5px);
+  padding: 0 2px;
+  color: var(--muted);
+}
+
+.explainer.work-patterns .pow__hard p {
+  color: var(--ink);
+  font-size: 15.5px;
+  line-height: 1.6;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 10px 12px;
+}
+
+.explainer.work-patterns .pow__pillars :is(ul, ol) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.explainer.work-patterns .pow__pillars li {
+  border: 1px solid var(--pow-gold-line);
+  background: var(--pow-gold-tint);
+  border-radius: 10px;
+  padding: 8px 11px;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.explainer.work-patterns .pow__pillars strong {
+  display: block;
+  margin-bottom: 4px;
+  font: 600 11px/1.2 var(--font-mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--pow-gold);
+}
+
+.explainer.work-patterns .pow__go p {
+  font-size: 14px;
+}
+
+.explainer.work-patterns .pow__go a:any-link {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* the pillar view */
+.explainer.work-patterns .pow__rows {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.explainer.work-patterns .pow__row {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 9.5em) minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--ink-2);
+  font: 400 13.5px/1.35 var(--font-body);
+  cursor: pointer;
+}
+
+.explainer.work-patterns .pow__row:hover {
+  border-color: var(--pow-gold-line);
+}
+
+.explainer.work-patterns .pow__row b {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.explainer.work-patterns .pow__hint p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+@container (max-width: 620px) {
+  .explainer.work-patterns .pow__ui {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .explainer.work-patterns .pow__pillars :is(ul, ol) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .explainer.work-patterns .pow__row {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+
+  .explainer.work-patterns .pow__row b {
+    grid-column: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explainer.work-patterns :is(.pow__layer, .pow__col) {
+    animation: none;
+  }
+
+  .explainer.work-patterns :is(.pow__lbtn, .pow__pillar-list li) {
+    transition: none;
+  }
+}
