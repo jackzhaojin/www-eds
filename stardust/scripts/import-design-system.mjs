@@ -209,11 +209,29 @@ const waiting = [];
 // ------------------------------------------------------------------ story converters
 const label = (story) => p(esc($(story).children('.story__label').text().trim()));
 const themeOf = (story) => $(story).attr('data-theme');
+/**
+ * The aria-labels a story's own elements carry (not those inside its bands, which become
+ * sections of their own), as section metadata "labels": `tag: label | tag: label`. A div
+ * with a role names the role instead (separator, group).
+ */
+const labelEntry = (el) => {
+  const $el = $(el);
+  const tag = el.name === 'div' && $el.attr('role') ? $el.attr('role') : el.name;
+  return `${tag}: ${$el.attr('aria-label')}`;
+};
+// the live theme control (scripts/theme-control.js) names itself "Color theme" already
+const storyLabels = (story) => $(story).find('[aria-label]')
+  .filter((_, el) => !$(el).closest('section.band').length && el.name !== 'svg')
+  .filter((_, el) => $(el).attr('aria-label') !== 'Color theme')
+  .map((_, el) => labelEntry(el)).get();
+
 const storyMeta = (story, extra = []) => {
   const style = ['story'];
   if ($(story).hasClass('story--row')) style.push('row');
   const meta = [['style', style.join(', ')]];
   if (themeOf(story)) meta.push(['theme', themeOf(story)]);
+  const labels = storyLabels(story);
+  if (labels.length && !extra.some(([k]) => k === 'labels')) meta.push(['labels', labels.join(' | ')]);
   return [...meta, ...extra];
 };
 const linkPara = (a, mark) => {
@@ -265,6 +283,7 @@ function bandSection(band, story, inner, { words: more = [], meta: extra = [] } 
   const accent = ($b.attr('style') || '').match(/--color-(?:topic|project)-([a-z-]+)/);
   const style = [...words, ...(accent ? [accent[1]] : []), ...more, 'in-story'];
   const meta = [['style', style.join(', ')], ...extra];
+  if ($b.attr('aria-label')) meta.push(['labels', labelEntry(band)]);
   if (themeOf(story)) meta.push(['theme', themeOf(story)]);
   const s = open(meta);
   s.html.push(inner);
@@ -704,6 +723,35 @@ function convertStory(story, owner) {
       return 'summary';
     }).get();
     open(storyMeta(story, [['items', looks.join(', ')]])).html.push(label(story), ...first.children('p').map((_, c) => p(inline(c))).get());
+    return;
+  }
+  if (owner === 'c-filter-bar') {
+    // the v3 static filter bar: per row a label, then its chips (or the sort choice); the
+    // site's live filter is the writing-filter widget, so the story keeps v3's own bar
+    const paras = [];
+    const looks = [];
+    first.children('.filter-bar__row').each((_, row) => {
+      $(row).children().each((__, c) => {
+        const $c = $(c);
+        if ($c.hasClass('filter-bar__label') || c.name === 'label') {
+          paras.push(p(esc($c.text().trim())));
+          looks.push('row-label');
+        } else if (c.name === 'select') {
+          const option = $c.find('option[selected]').text() || $c.find('option').first().text();
+          paras.push(p(esc(option)));
+          looks.push('chip-plain');
+        } else {
+          const pressed = $c.attr('aria-pressed') === 'true' || $c.attr('aria-current') === 'true';
+          const textHtml = squash(inline(c));
+          const chip = c.name === 'a' ? `<a href="${attr(absHref($c.attr('href')))}">${textHtml}</a>` : textHtml;
+          // a bold link would become a button, so the pressed chip is an items look
+          paras.push(p(chip));
+          looks.push(pressed ? 'pressed' : 'chip'); // the pipeline drops empty list entries
+        }
+      });
+    });
+    const meta = [['style', 'story, row'], ...storyMeta(story).filter(([k]) => k !== 'style'), ['demo', 'chips'], ['items', looks.join(', ')]];
+    open(meta).html.push(label(story), ...paras);
     return;
   }
   if (convertBuiltStory(story, owner, n)) return;

@@ -4,7 +4,13 @@
   border-collapse: collapse;
 }
 
+/* v3 .facts caption: the label look, read by assistive tech only unless the caption variant */
 .facts caption {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
   position: absolute;
   width: 1px;
   height: 1px;

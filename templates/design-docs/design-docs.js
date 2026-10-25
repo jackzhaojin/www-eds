@@ -22,7 +22,10 @@
  * - check contrast: the contrast table, re-verified in this browser against the live tokens;
  * - items <look, look ...>: one docs-only look per paragraph of the section, in order: kicker,
  *   kicker-accent, kicker-rule, note, mono, mono-lg, button, chip-plain, page-title,
- *   page-title-display, byline, summary, positioning (the v3 kicker, page head, icon samples);
+ *   page-title-display, byline, summary, positioning, period, lead, row-label, chip, pressed
+ *   (the v3 kicker, page head, icon samples, filter bar); the list has no empty entries;
+ * - labels <tag: label | tag: label>: the source's aria-labels, each on a wrapper of that tag
+ *   (section, nav, div, dl, or a role word: separator, group) around the story's content;
  * - band words on a section: a topic or project accent (aem-ai, aem, agents, work, cyan, amber,
  *   leaf, bronze, mint, rose), dots, milestone, flagship, feature (the inverse panel), and
  *   cols-2 on a story (its blocks side by side);
@@ -246,8 +249,17 @@ const DEMOS = {
   /* Chips: each paragraph is one chip; its kind comes from the site's words (the topics,
      formats and statuses), and a bold chip is the pressed one. */
   chips(section) {
+    // link chips leave the text-link slot: a chip is its own look
+    section.querySelectorAll('.default-content-wrapper .cta-slot').forEach((slot) => {
+      slot.querySelectorAll('p').forEach((p) => p.classList.remove('text-link-wrapper'));
+      slot.querySelectorAll('a').forEach((a) => a.classList.remove('text-link'));
+      slot.replaceWith(...slot.children);
+    });
     storyParagraphs(section).forEach((p) => {
+      const item = p.closest('.ds-item');
+      if (item && !item.matches('.ds-item-chip, .ds-item-pressed')) return;
       const chip = wrap(p, 'ds-chip');
+      if (item && item.classList.contains('ds-item-pressed')) chip.dataset.pressed = 'true';
       const word = text(p);
       const kind = TOPICS[word] ? 'topic' : (FORMATS.includes(word.toLowerCase()) && 'format')
         || (STATUS.test(word) && 'status') || (word === 'All' ? 'default' : 'plain');
@@ -322,8 +334,73 @@ function decorateItems(section) {
       p.classList.remove('text-link-wrapper');
       p.querySelectorAll('a').forEach((a) => a.classList.remove('text-link'));
     }
-    wrap(p, `ds-item ds-item-${look}`);
+    const item = wrap(p, `ds-item ds-item-${look}`);
+    // a row label after the first starts a new line of the row (the v3 filter bar's rows)
+    if (look === 'row-label' && i > 0) {
+      const br = document.createElement('div');
+      br.className = 'ds-row-break';
+      br.setAttribute('aria-hidden', 'true');
+      item.before(br);
+    }
   });
+}
+
+const LABEL_ROLES = { separator: 'div', group: 'div' };
+
+/**
+ * Section metadata "labels" (`tag: label | tag: label`): the source's aria-labels on the
+ * story's own elements. Each becomes a wrapper of that tag (a role word is a div with that
+ * role) around the story's content, which is moved in, never rebuilt: one per block when
+ * the counts match, else nested around all of it. A band section labels its own content.
+ */
+function decorateLabels(section) {
+  const entries = section.dataset.labels.split(' | ').map((e) => {
+    const at = e.indexOf(':');
+    return { tag: e.slice(0, at).trim().toLowerCase(), label: e.slice(at + 1).trim() };
+  }).filter(({ tag, label }) => label && /^(section|nav|div|dl|separator|group)$/.test(tag));
+  if (!entries.length) return;
+  const make = ({ tag, label }) => {
+    const el = document.createElement(LABEL_ROLES[tag] || tag);
+    if (LABEL_ROLES[tag]) el.setAttribute('role', tag);
+    el.setAttribute('aria-label', label);
+    el.className = 'ds-labelled';
+    return el;
+  };
+  let targets;
+  if (section.classList.contains('ds-story-part')) {
+    const inner = section.querySelector(':scope > div');
+    targets = inner ? [...inner.childNodes] : [];
+    if (!targets.length) return;
+    const el = make(entries[0]);
+    inner.append(el);
+    el.append(...targets);
+    return;
+  }
+  const wrappers = [...section.querySelectorAll(':scope > div:not(.default-content-wrapper)')];
+  if (wrappers.length) targets = wrappers;
+  else {
+    const content = section.querySelector(':scope > .default-content-wrapper');
+    targets = content ? [...content.children].filter((c) => !c.classList.contains('ds-story-label')) : [];
+  }
+  if (!targets.length) return;
+  if (entries.length === targets.length) {
+    targets.forEach((t, i) => {
+      const el = make(entries[i]);
+      t.before(el);
+      el.append(t);
+    });
+    return;
+  }
+  let outer = null;
+  let host = null;
+  entries.forEach((entry) => {
+    const el = make(entry);
+    if (host) host.append(el);
+    else outer = el;
+    host = el;
+  });
+  targets[0].before(outer);
+  host.append(...targets);
 }
 
 /** Icons (icons/<name>.svg) paint in the text color: the image becomes the icon's mask. */
@@ -466,10 +543,11 @@ export default function decorate(main) {
 
     section.querySelectorAll('.default-content-wrapper').forEach(decorateDoDont);
     decorateCaptions(section);
+    if (section.dataset.items) decorateItems(section);
     const demo = section.dataset.demo && DEMOS[section.dataset.demo];
     if (demo) demo(section);
-    if (section.dataset.items) decorateItems(section);
     if (section.dataset.check === 'contrast') checkContrast(section);
+    if (section.dataset.labels) decorateLabels(section);
   });
 
   main.style.setProperty('--ds-rows', String(row));

@@ -806,6 +806,44 @@ body.design-docs main.ds-layout > .section.feature h3 a:any-link {
   }
 }
 
+/* filter bar story (v3 filter-bar): a row label, then its pill chips; a row break per row */
+body.design-docs main.ds-layout .ds-row-break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+body.design-docs main.ds-layout .ds-item-row-label {
+  flex: 0 0 70px;
+}
+
+body.design-docs main.ds-layout .ds-item-row-label p {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+body.design-docs main.ds-layout > [data-items*="row-label"] .ds-chip p,
+body.design-docs main.ds-layout > [data-items*="row-label"] .ds-item-chip-plain p {
+  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  border-color: var(--color-line-strong);
+}
+
+body.design-docs main.ds-layout .ds-chip a:any-link {
+  color: inherit;
+}
+
+@media (width <= 479px) {
+  body.design-docs main.ds-layout .ds-item-row-label {
+    flex-basis: 100%;
+  }
+}
+
 /* contrast results (v3 .table .pass / .fail) */
 body.design-docs .ds-result p {
   font-family: var(--font-mono);
