@@ -96,8 +96,9 @@
   font-size: 12px;
 }
 
-/* The source's rank table sits in a plain scroll wrapper: the column's 16px step, not 24px. */
-.data-table.rank {
+/* The source's cheat and rank tables sit in a plain scroll wrapper: the column's 16px step,
+   not the table wrapper's 24px. */
+.data-table:is(.cheat, .rank) {
   margin-top: var(--space-4);
 }
 
