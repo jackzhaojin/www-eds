@@ -434,7 +434,8 @@ body.design-docs main.ds-layout > .section[data-demo] .default-content-wrapper :
   max-width: none;
 }
 
-body.design-docs main.ds-layout > .section[data-demo] .default-content-wrapper li + li {
+/* demo lists are grids and rows of tiles; the example chrome keeps the docs li rule (v3) */
+body.design-docs main.ds-layout > .section[data-demo]:not([data-demo="site-header"], [data-demo="site-footer"]) .default-content-wrapper li + li {
   margin-top: 0;
 }
 
@@ -1251,6 +1252,12 @@ body.design-docs main.ds-layout :is(.ds-card-counts, .ds-card-facts) p {
   line-height: 1.5;
 }
 
+/* the source's text link is the flex item itself: a flex paragraph gives it the same box */
+body.design-docs main.ds-layout .ds-card-link p {
+  display: flex;
+  align-self: flex-start;
+}
+
 body.design-docs main.ds-layout .ds-card-period p {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -1427,12 +1434,38 @@ body.design-docs main.ds-layout .ds-in-component .stat-chips :is(ul, ol) {
   max-width: none;
 }
 
-body.design-docs main.ds-layout > .ds-story > .stat-chips-wrapper:first-of-type .stat-chips-row ul {
+body.design-docs main.ds-layout > .ds-story > .default-content-wrapper + .stat-chips-wrapper .stat-chips-row ul {
   margin-top: 0;
 }
 
 body.design-docs main.ds-layout > .ds-story > .stat-chips-wrapper + .stat-chips-wrapper {
   margin-top: 0;
+}
+
+/* v3's chips are spans: no list-item spacing between them */
+body.design-docs main.ds-layout .ds-in-component .stat-chips li + li {
+  margin-top: 0;
+}
+
+/* an accented value (bold and italic) is v3's .stat--block.stat--accent counter */
+body.design-docs main.ds-layout .ds-in-component .stat-chips li:has(strong em) {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 14px;
+  color: var(--color-text-faint);
+}
+
+body.design-docs main.ds-layout .ds-in-component .stat-chips li:has(strong em) strong {
+  font-size: 21px;
+  line-height: 1.1;
+  margin-right: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--band-accent, var(--color-accent));
+}
+
+body.design-docs main.ds-layout .ds-in-component .stat-chips li strong em {
+  font-style: normal;
 }
 
 body.design-docs main.ds-layout > .ds-story > .stat-chips-wrapper + .stat-chips-wrapper li {
@@ -1486,7 +1519,7 @@ body.design-docs main.ds-layout .ds-in-component .proof-links a:is([href*="youtu
 }
 
 /* the band story's row opens flush (v3's inline margin-top 0 there) */
-body.design-docs main.ds-layout .ds-story-part .proof-links-wrapper .proof-links-row {
+body.design-docs main.ds-layout .ds-story-part > .proof-links-wrapper:first-child .proof-links-row {
   margin-top: 0;
 }
 
@@ -1615,6 +1648,12 @@ body.design-docs main.ds-layout > [data-items*="row-label"] .ds-item-chip-plain 
 
 body.design-docs main.ds-layout .ds-chip a:any-link {
   color: inherit;
+}
+
+/* the sort choice stands for v3's select (min-height 36px) */
+body.design-docs main.ds-layout > [data-items*="row-label"] .ds-item-chip-plain p {
+  min-height: 36px;
+  border-radius: var(--button-radius);
 }
 
 @media (width <= 479px) {
