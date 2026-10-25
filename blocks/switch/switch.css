@@ -75,7 +75,6 @@
 .switch .switch-code pre {
   background: var(--color-code-ground, var(--palette-night-850));
   color: var(--palette-bone-400);
-  border: 0;
   border-radius: 12px;
   padding: 14px 16px;
   margin: 0;

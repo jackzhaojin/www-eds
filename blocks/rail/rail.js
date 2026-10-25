@@ -40,6 +40,8 @@ function entry(row) {
   a.href = link.getAttribute('href');
   plainLink(linkP);
   link.replaceWith(...link.childNodes);
+  // Thumbnails load even while the rail starts closed on phones, as on the source.
+  if (media) (media.matches('img') ? media : media.querySelector('img')).loading = 'eager';
   if (mediaNode) a.append(slot('rail-thumb', [mediaNode]));
   else a.classList.add('rail-plain');
   a.append(slot('rail-text', paras.map((p) => slot(p === linkP ? 'rail-title' : 'rail-num', [p]))));
