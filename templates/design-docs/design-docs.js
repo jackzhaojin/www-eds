@@ -364,6 +364,11 @@ function checkContrast(section) {
   const run = () => {
     const rows = [...table.querySelectorAll('tbody tr')];
     if (!rows.length) return;
+    // the result words read in the v3 .pass / .fail look (mono, uppercase, colored)
+    table.querySelectorAll('td p').forEach((p) => {
+      const word = text(p).toLowerCase();
+      if (word === 'pass' || word === 'fail') wrap(p, `ds-result ${word}`);
+    });
     const probe = (theme) => {
       const el = document.createElement('div');
       el.dataset.theme = theme;

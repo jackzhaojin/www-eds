@@ -806,6 +806,19 @@ body.design-docs main.ds-layout > .section.feature h3 a:any-link {
   }
 }
 
+/* contrast results (v3 .table .pass / .fail) */
+body.design-docs .ds-result p {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-topic-work);
+}
+
+body.design-docs .ds-result.fail p {
+  color: var(--color-topic-agents);
+}
+
 /* narrow: the story's block capped at 640px (the source story's inline max-width) */
 body.design-docs main.ds-layout > .ds-story.narrow > div:not(.default-content-wrapper) {
   max-width: 640px;
