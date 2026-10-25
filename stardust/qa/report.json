@@ -1,0 +1,5067 @@
+{
+  "provenance": {
+    "writtenBy": "stardust:qa/qa",
+    "stardustVersion": "0.36.0",
+    "writtenAt": "2026-10-25T19:55:00.310Z",
+    "againstInput": "https://main--www-eds--jackzhaojin.aem.live"
+  },
+  "base": "https://main--www-eds--jackzhaojin.aem.live",
+  "checksRun": [
+    "routing",
+    "content",
+    "templates",
+    "metadata",
+    "links",
+    "browse",
+    "perf",
+    "editability",
+    "dynamics",
+    "chrome",
+    "ai-readability"
+  ],
+  "inventory": {
+    "pages": 34,
+    "sitemapEntries": 36
+  },
+  "durationSeconds": 193,
+  "summary": {
+    "error": 45,
+    "warn": 127,
+    "info": 111,
+    "allowlisted": 0,
+    "byCheck": {
+      "routing": 36,
+      "content": 14,
+      "templates": 4,
+      "metadata": 100,
+      "links": 44,
+      "browse": 9,
+      "perf": 7,
+      "editability": 34,
+      "dynamics": 1,
+      "chrome": 1,
+      "ai-readability": 33
+    }
+  },
+  "findings": [
+    {
+      "check": "a11y",
+      "id": "axe-link-in-text-block",
+      "severity": "error",
+      "path": "/",
+      "message": "Links must be distinguishable without relying on color (serious) — 1 page(s) affected",
+      "evidence": {
+        "rule": "link-in-text-block",
+        "pages": [
+          "/"
+        ],
+        "sampleTargets": [
+          ".columns-text > p > a"
+        ],
+        "nodesOnFirstPage": 1
+      }
+    },
+    {
+      "check": "a11y",
+      "id": "axe-scrollable-region-focusable",
+      "severity": "error",
+      "path": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents",
+      "message": "Scrollable region must have keyboard access (serious) — 10 page(s) affected",
+      "evidence": {
+        "rule": "scrollable-region-focusable",
+        "pages": [
+          "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents",
+          "/writing/2025-07-06-ai-coded-nextjs-agent-release-1",
+          "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+          "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+          "/writing/2026-01-05-from-prompts-to-harness",
+          "/writing/2026-01-29-playwright-stakeholder-demos",
+          "/writing/2026-03-23-eds-hlx-admin-agentic-config",
+          "/writing/2026-04-05-continuous-executive-agent-v2-1",
+          "/writing/2026-05-17-adobe-eds-skills-hands-on",
+          "/writing/2026-09-20-aem-edge-functions-google-sign-in"
+        ],
+        "sampleTargets": [
+          "#local > .code-wrapper > .code.stack[data-block-name=\"code\"] > .code-frame > pre"
+        ],
+        "nodesOnFirstPage": 1
+      }
+    },
+    {
+      "check": "a11y",
+      "id": "axe-color-contrast",
+      "severity": "error",
+      "path": "/writing/2025-09-01-aem-caching-production-architectures",
+      "message": "Elements must meet minimum color contrast ratio thresholds (serious) — 3 page(s) affected",
+      "evidence": {
+        "rule": "color-contrast",
+        "pages": [
+          "/writing/2025-09-01-aem-caching-production-architectures",
+          "/writing/2026-05-31-continuous-agent-second-brain",
+          "/writing/2026-09-20-aem-edge-functions-google-sign-in"
+        ],
+        "sampleTargets": [
+          ".swr__cases > ol > li:nth-child(1)",
+          "li:nth-child(1) > strong",
+          ".swr__cases > ol > li:nth-child(3)"
+        ],
+        "nodesOnFirstPage": 4
+      }
+    },
+    {
+      "check": "content",
+      "id": "placeholder-copy",
+      "severity": "error",
+      "path": "/writing/2026-01-29-playwright-stakeholder-demos",
+      "message": "placeholder strings in delivered copy: todo",
+      "evidence": {
+        "count": 1,
+        "samples": [
+          "todo"
+        ]
+      }
+    },
+    {
+      "check": "links",
+      "id": "broken-internal-link",
+      "severity": "error",
+      "path": "/ai-content",
+      "message": "internal link target /ai-content returns 404",
+      "evidence": {
+        "referrers": [
+          "/writing/2026-06-28-patterns-of-work"
+        ]
+      }
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/certifications",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/portfolio",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/privacy",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/talks",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-04-13-vibe-coding-star-story-generator",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-06-08-edge-cms-shift-adobe-eds",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-07-12-aem-headless-omnichannel-architecture",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-07-13-three-eds-offerings",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-09-01-aem-caching-production-architectures",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-10-05-mcp-server-for-eds-da-live",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-01-05-from-prompts-to-harness",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-01-29-playwright-stakeholder-demos",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-02-05-reusable-ai-development-modules",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-03-23-eds-hlx-admin-agentic-config",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-04-05-continuous-executive-agent-v2-1",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-04-12-two-ai-skills-team-enablement",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-05-17-adobe-eds-skills-hands-on",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-05-24-theming-eds-with-google-stitch",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-05-31-continuous-agent-second-brain",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-06-28-patterns-of-work",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-07-21-four-frontier-models-one-prompt",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-08-09-adobe-stardust-explained",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-08-15-anima-mesh-company-of-zero",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-09-20-aem-edge-functions-google-sign-in",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "metadata",
+      "id": "noindex-on-live",
+      "severity": "error",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "page is noindex on the live host (x-robots-tag header)"
+    },
+    {
+      "check": "routing",
+      "id": "sitemap-lists-fragment",
+      "severity": "error",
+      "path": "/footer",
+      "message": "sitemap.xml lists chrome fragment /footer as a page"
+    },
+    {
+      "check": "routing",
+      "id": "sitemap-lists-fragment",
+      "severity": "error",
+      "path": "/nav",
+      "message": "sitemap.xml lists chrome fragment /nav as a page"
+    },
+    {
+      "check": "templates",
+      "id": "missing-template-blocks",
+      "severity": "error",
+      "path": "/writing/2025-06-08-edge-cms-shift-adobe-eds",
+      "message": "template \"writing#1\": missing expected block(s) figure (fleet consensus (>70% of 28 sibling pages))",
+      "evidence": {
+        "template": "writing#1",
+        "missing": [
+          "figure"
+        ],
+        "has": [
+          "rail",
+          "fine-print",
+          "explainer",
+          "row-list",
+          "author-box"
+        ]
+      }
+    },
+    {
+      "check": "templates",
+      "id": "missing-template-blocks",
+      "severity": "error",
+      "path": "/writing/2025-07-13-three-eds-offerings",
+      "message": "template \"writing#1\": missing expected block(s) figure (fleet consensus (>70% of 28 sibling pages))",
+      "evidence": {
+        "template": "writing#1",
+        "missing": [
+          "figure"
+        ],
+        "has": [
+          "rail",
+          "fine-print",
+          "explainer",
+          "row-list",
+          "author-box"
+        ]
+      }
+    },
+    {
+      "check": "templates",
+      "id": "missing-template-blocks",
+      "severity": "error",
+      "path": "/writing/2026-09-20-aem-edge-functions-google-sign-in",
+      "message": "template \"writing#1\": missing expected block(s) explainer (fleet consensus (>70% of 28 sibling pages))",
+      "evidence": {
+        "template": "writing#1",
+        "missing": [
+          "explainer"
+        ],
+        "has": [
+          "rail",
+          "figure",
+          "fine-print",
+          "compare",
+          "code",
+          "lab",
+          "switch",
+          "row-list",
+          "author-box"
+        ]
+      }
+    },
+    {
+      "check": "templates",
+      "id": "missing-template-blocks",
+      "severity": "error",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "template \"writing#1\": missing expected block(s) explainer (fleet consensus (>70% of 28 sibling pages))",
+      "evidence": {
+        "template": "writing#1",
+        "missing": [
+          "explainer"
+        ],
+        "has": [
+          "rail",
+          "figure",
+          "fine-print",
+          "talk-list",
+          "row-list",
+          "author-box"
+        ]
+      }
+    },
+    {
+      "check": "content",
+      "id": "duplicate-text",
+      "severity": "warn",
+      "path": "/certifications",
+      "message": "a 12-word sequence repeats within 400 words — content pasted twice?",
+      "evidence": {
+        "excerpt": "earned may 15 2023 expires jul 25 2027 verify credential adobe adobe"
+      }
+    },
+    {
+      "check": "content",
+      "id": "duplicate-text",
+      "severity": "warn",
+      "path": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1",
+      "message": "a 12-word sequence repeats within 400 words — content pasted twice?",
+      "evidence": {
+        "excerpt": "console warn api agent evaluate figma specs skipping invalid spec at index"
+      }
+    },
+    {
+      "check": "content",
+      "id": "duplicate-text",
+      "severity": "warn",
+      "path": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology",
+      "message": "a 12-word sequence repeats within 400 words — content pasted twice?",
+      "evidence": {
+        "excerpt": "read in order prd 1 0 md release 1 0 mdc agents"
+      }
+    },
+    {
+      "check": "content",
+      "id": "duplicate-text",
+      "severity": "warn",
+      "path": "/writing/2025-07-12-aem-headless-omnichannel-architecture",
+      "message": "a 12-word sequence repeats within 400 words — content pasted twice?",
+      "evidence": {
+        "excerpt": "m1 m2 s1 s2 m1 pcf m2 pcf m2 pxf s1 ppg"
+      }
+    },
+    {
+      "check": "content",
+      "id": "micro-paragraph-run",
+      "severity": "warn",
+      "path": "/writing/2025-09-01-aem-caching-production-architectures",
+      "message": "2 run(s) of >=4 consecutive micro-paragraphs (<=3 words) — likely a flattened component",
+      "evidence": {
+        "runLengths": [
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "check": "content",
+      "id": "duplicate-text",
+      "severity": "warn",
+      "path": "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+      "message": "a 12-word sequence repeats within 400 words — content pasted twice?",
+      "evidence": {
+        "excerpt": "toolinput path source jackzhaojin da live postal 2025 07 index copy html"
+      }
+    },
+    {
+      "check": "content",
+      "id": "duplicate-text",
+      "severity": "warn",
+      "path": "/writing/2026-03-23-eds-hlx-admin-agentic-config",
+      "message": "a 12-word sequence repeats within 400 words — content pasted twice?",
+      "evidence": {
+        "excerpt": "https admin hlx page config my org sites my site robots txt"
+      }
+    },
+    {
+      "check": "content",
+      "id": "duplicate-text",
+      "severity": "warn",
+      "path": "/writing/2026-04-05-continuous-executive-agent-v2-1",
+      "message": "a 12-word sequence repeats within 400 words — content pasted twice?",
+      "evidence": {
+        "excerpt": "10 failed phase 7 agentic diagnosis investigate failure decision continue normal retry"
+      }
+    },
+    {
+      "check": "content",
+      "id": "flattened-collection",
+      "severity": "warn",
+      "path": "/writing/2026-04-05-continuous-executive-agent-v2-1",
+      "message": "default content repeats the pattern [h3+p] 5× (section 13) — a structured collection rendered as plain prose; it needs a block",
+      "evidence": {
+        "section": 13,
+        "cycle": [
+          "h3",
+          "p"
+        ],
+        "repeats": 5,
+        "runLength": 11,
+        "words": 437,
+        "unblockedRatio": 0.78
+      }
+    },
+    {
+      "check": "content",
+      "id": "duplicate-text",
+      "severity": "warn",
+      "path": "/writing/2026-05-31-continuous-agent-second-brain",
+      "message": "a 12-word sequence repeats within 400 words — content pasted twice?",
+      "evidence": {
+        "excerpt": "an agent without memory runs every task like it's the first time"
+      }
+    },
+    {
+      "check": "content",
+      "id": "flattened-collection",
+      "severity": "warn",
+      "path": "/writing/2026-06-28-patterns-of-work",
+      "message": "default content repeats the pattern [h3+…] 5× (section 9) — a structured collection rendered as plain prose; it needs a block",
+      "evidence": {
+        "section": 9,
+        "cycle": [
+          "h3",
+          "…"
+        ],
+        "repeats": 5,
+        "runLength": 18,
+        "words": 957,
+        "unblockedRatio": 0.86
+      }
+    },
+    {
+      "check": "content",
+      "id": "duplicate-text",
+      "severity": "warn",
+      "path": "/writing/2026-08-09-adobe-stardust-explained",
+      "message": "a 12-word sequence repeats within 400 words — content pasted twice?",
+      "evidence": {
+        "excerpt": "proposed html migratedpath null history event approved by jack at 2026 08"
+      }
+    },
+    {
+      "check": "content",
+      "id": "duplicate-text",
+      "severity": "warn",
+      "path": "/writing/2026-08-15-anima-mesh-company-of-zero",
+      "message": "a 12-word sequence repeats within 400 words — content pasted twice?",
+      "evidence": {
+        "excerpt": "defect report title external web fetch tool returns no usable content across"
+      }
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/",
+      "message": "anchor #aem-rockstar-2024 on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing",
+      "message": "anchor #ai-tinkerers-2026-animamesh on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing",
+      "message": "anchor #ai-tinkerers-2026 on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2025-10-05-mcp-server-for-eds-da-live",
+      "message": "anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2025-10-05-mcp-server-for-eds-da-live",
+      "message": "anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+      "message": "anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+      "message": "anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-01-29-playwright-stakeholder-demos",
+      "message": "anchor #p-kit-video on /portfolio has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-01-29-playwright-stakeholder-demos",
+      "message": "anchor #p-kit-video on /portfolio has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-04-05-continuous-executive-agent-v2-1",
+      "message": "anchor #ai-tinkerers-2026 on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-04-05-continuous-executive-agent-v2-1",
+      "message": "anchor #ai-tinkerers-2026 on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-06-28-patterns-of-work",
+      "message": "anchor #ai-tinkerers-2026 on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-08-09-adobe-stardust-explained",
+      "message": "anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-08-15-anima-mesh-company-of-zero",
+      "message": "anchor #ai-tinkerers-2026-animamesh on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-09-20-aem-edge-functions-google-sign-in",
+      "message": "anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-01-agents-dont-browse on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-02-one-aem-mcp-server on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-03-rolling-out-mcp-on-aem on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-04-aem-elasticity on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-05-securing-aem-customer-code on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-06-aem-content-requests on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-07-develop-faster-aem-ai-tooling on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-08-migrate-to-aem-cloud-service-faster on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-09-comparador on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-10-ai-agent-driven-content-migration on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-11-hybrid-aem-architecture on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-12-tales-from-migration-trenches on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-13-spiritually-succeeding-aem on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-14-spellforge-to-experience-workspace on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-15-brand-visibility-in-llms on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-16-content-supply-chain on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-17-shifting-the-search-paradigm on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-18-continuous-materialization on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-19-aem-forms-rule-authoring on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-20-tracking-through-the-transition on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-21-index-optimizer on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-22-project-asset-hub on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-23-editorial-ai-in-aem on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-24-15-years-of-women on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #talk-25-dam-breakfast on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "links",
+      "id": "broken-anchor",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "anchor #adaptto-2026-lightning on /talks has no matching id (verified in rendered DOM)"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/certifications",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/portfolio",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/privacy",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/talks",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-04-13-vibe-coding-star-story-generator",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-06-08-edge-cms-shift-adobe-eds",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-07-12-aem-headless-omnichannel-architecture",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-07-13-three-eds-offerings",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-09-01-aem-caching-production-architectures",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-10-05-mcp-server-for-eds-da-live",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-01-05-from-prompts-to-harness",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-01-29-playwright-stakeholder-demos",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-02-05-reusable-ai-development-modules",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-03-23-eds-hlx-admin-agentic-config",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-04-05-continuous-executive-agent-v2-1",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-04-12-two-ai-skills-team-enablement",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-05-17-adobe-eds-skills-hands-on",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-05-24-theming-eds-with-google-stitch",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-05-31-continuous-agent-second-brain",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-06-28-patterns-of-work",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-07-21-four-frontier-models-one-prompt",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-08-09-adobe-stardust-explained",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-08-15-anima-mesh-company-of-zero",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-09-20-aem-edge-functions-google-sign-in",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-type",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "page has no og:type"
+    },
+    {
+      "check": "rendered",
+      "id": "upscaled-image",
+      "severity": "warn",
+      "path": "/",
+      "message": "image rendered 600px wide from a 192px source (blurry) on 1 page(s)",
+      "evidence": {
+        "src": "https://main--www-eds--jackzhaojin.aem.live/media_14d1ac0ad972a1c6f26b89203d3287054e1dcc6d6.svg?width=2000&format=webply&optimize=medium",
+        "pages": [
+          "/"
+        ]
+      }
+    },
+    {
+      "check": "rendered",
+      "id": "upscaled-image",
+      "severity": "warn",
+      "path": "/portfolio",
+      "message": "image rendered 1038px wide from a 192px source (blurry) on 1 page(s)",
+      "evidence": {
+        "src": "https://main--www-eds--jackzhaojin.aem.live/portfolio/media_14d1ac0ad972a1c6f26b89203d3287054e1dcc6d6.svg?width=2000&format=webply&optimize=medium",
+        "pages": [
+          "/portfolio"
+        ]
+      }
+    },
+    {
+      "check": "rendered",
+      "id": "upscaled-image",
+      "severity": "warn",
+      "path": "/portfolio",
+      "message": "image rendered 1098px wide from a 190px source (blurry) on 1 page(s)",
+      "evidence": {
+        "src": "https://main--www-eds--jackzhaojin.aem.live/portfolio/media_1c6fb199d61ab20c5cee4193bfc9059e82a8f88e8.svg?width=2000&format=webply&optimize=medium",
+        "pages": [
+          "/portfolio"
+        ]
+      }
+    },
+    {
+      "check": "rendered",
+      "id": "upscaled-image",
+      "severity": "warn",
+      "path": "/writing/2026-08-15-anima-mesh-company-of-zero",
+      "message": "image rendered 760px wide from a 196px source (blurry) on 1 page(s)",
+      "evidence": {
+        "src": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-08-15-anima-mesh-company-of-zero/media_128fd5493d98b2a8e4bf1900816410977b3166df3.svg?width=2000&format=webply&optimize=medium",
+        "pages": [
+          "/writing/2026-08-15-anima-mesh-company-of-zero"
+        ]
+      }
+    },
+    {
+      "check": "rendered",
+      "id": "upscaled-image",
+      "severity": "warn",
+      "path": "/writing/2026-08-15-anima-mesh-company-of-zero",
+      "message": "image rendered 760px wide from a 190px source (blurry) on 1 page(s)",
+      "evidence": {
+        "src": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-08-15-anima-mesh-company-of-zero/media_144a6924eba90d90d0138ec2d00866c98a6cda10b.svg?width=2000&format=webply&optimize=medium",
+        "pages": [
+          "/writing/2026-08-15-anima-mesh-company-of-zero"
+        ]
+      }
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/certifications",
+      "message": "/certifications (a folder index without its slash) returned 404: add the /certifications → /certifications/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/portfolio",
+      "message": "/portfolio (a folder index without its slash) returned 404: add the /portfolio → /portfolio/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/privacy",
+      "message": "/privacy (a folder index without its slash) returned 404: add the /privacy → /privacy/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/talks",
+      "message": "/talks (a folder index without its slash) returned 404: add the /talks → /talks/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing",
+      "message": "/writing (a folder index without its slash) returned 404: add the /writing → /writing/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-04-13-vibe-coding-star-story-generator",
+      "message": "/writing/2025-04-13-vibe-coding-star-story-generator (a folder index without its slash) returned 404: add the /writing/2025-04-13-vibe-coding-star-story-generator → /writing/2025-04-13-vibe-coding-star-story-generator/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead",
+      "message": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead (a folder index without its slash) returned 404: add the /writing/2025-05-28-aem-headless-when-frontend-teams-lead → /writing/2025-05-28-aem-headless-when-frontend-teams-lead/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs",
+      "message": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs (a folder index without its slash) returned 404: add the /writing/2025-06-04-seven-aem-capabilities-tradeoffs → /writing/2025-06-04-seven-aem-capabilities-tradeoffs/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-06-08-edge-cms-shift-adobe-eds",
+      "message": "/writing/2025-06-08-edge-cms-shift-adobe-eds (a folder index without its slash) returned 404: add the /writing/2025-06-08-edge-cms-shift-adobe-eds → /writing/2025-06-08-edge-cms-shift-adobe-eds/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents",
+      "message": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents (a folder index without its slash) returned 404: add the /writing/2025-06-12-azure-rbac-cicd-for-ai-agents → /writing/2025-06-12-azure-rbac-cicd-for-ai-agents/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1",
+      "message": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1 (a folder index without its slash) returned 404: add the /writing/2025-07-06-ai-coded-nextjs-agent-release-1 → /writing/2025-07-06-ai-coded-nextjs-agent-release-1/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+      "message": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure (a folder index without its slash) returned 404: add the /writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure → /writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology",
+      "message": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology (a folder index without its slash) returned 404: add the /writing/2025-07-11-scaling-ai-coding-delivery-methodology → /writing/2025-07-11-scaling-ai-coding-delivery-methodology/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-07-12-aem-headless-omnichannel-architecture",
+      "message": "/writing/2025-07-12-aem-headless-omnichannel-architecture (a folder index without its slash) returned 404: add the /writing/2025-07-12-aem-headless-omnichannel-architecture → /writing/2025-07-12-aem-headless-omnichannel-architecture/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-07-13-three-eds-offerings",
+      "message": "/writing/2025-07-13-three-eds-offerings (a folder index without its slash) returned 404: add the /writing/2025-07-13-three-eds-offerings → /writing/2025-07-13-three-eds-offerings/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-09-01-aem-caching-production-architectures",
+      "message": "/writing/2025-09-01-aem-caching-production-architectures (a folder index without its slash) returned 404: add the /writing/2025-09-01-aem-caching-production-architectures → /writing/2025-09-01-aem-caching-production-architectures/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-10-05-mcp-server-for-eds-da-live",
+      "message": "/writing/2025-10-05-mcp-server-for-eds-da-live (a folder index without its slash) returned 404: add the /writing/2025-10-05-mcp-server-for-eds-da-live → /writing/2025-10-05-mcp-server-for-eds-da-live/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+      "message": "/writing/2025-10-12-da-live-mcp-across-ai-platforms (a folder index without its slash) returned 404: add the /writing/2025-10-12-da-live-mcp-across-ai-platforms → /writing/2025-10-12-da-live-mcp-across-ai-platforms/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-01-05-from-prompts-to-harness",
+      "message": "/writing/2026-01-05-from-prompts-to-harness (a folder index without its slash) returned 404: add the /writing/2026-01-05-from-prompts-to-harness → /writing/2026-01-05-from-prompts-to-harness/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-01-29-playwright-stakeholder-demos",
+      "message": "/writing/2026-01-29-playwright-stakeholder-demos (a folder index without its slash) returned 404: add the /writing/2026-01-29-playwright-stakeholder-demos → /writing/2026-01-29-playwright-stakeholder-demos/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-02-05-reusable-ai-development-modules",
+      "message": "/writing/2026-02-05-reusable-ai-development-modules (a folder index without its slash) returned 404: add the /writing/2026-02-05-reusable-ai-development-modules → /writing/2026-02-05-reusable-ai-development-modules/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-03-23-eds-hlx-admin-agentic-config",
+      "message": "/writing/2026-03-23-eds-hlx-admin-agentic-config (a folder index without its slash) returned 404: add the /writing/2026-03-23-eds-hlx-admin-agentic-config → /writing/2026-03-23-eds-hlx-admin-agentic-config/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-04-05-continuous-executive-agent-v2-1",
+      "message": "/writing/2026-04-05-continuous-executive-agent-v2-1 (a folder index without its slash) returned 404: add the /writing/2026-04-05-continuous-executive-agent-v2-1 → /writing/2026-04-05-continuous-executive-agent-v2-1/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-04-12-two-ai-skills-team-enablement",
+      "message": "/writing/2026-04-12-two-ai-skills-team-enablement (a folder index without its slash) returned 404: add the /writing/2026-04-12-two-ai-skills-team-enablement → /writing/2026-04-12-two-ai-skills-team-enablement/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-05-17-adobe-eds-skills-hands-on",
+      "message": "/writing/2026-05-17-adobe-eds-skills-hands-on (a folder index without its slash) returned 404: add the /writing/2026-05-17-adobe-eds-skills-hands-on → /writing/2026-05-17-adobe-eds-skills-hands-on/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-05-24-theming-eds-with-google-stitch",
+      "message": "/writing/2026-05-24-theming-eds-with-google-stitch (a folder index without its slash) returned 404: add the /writing/2026-05-24-theming-eds-with-google-stitch → /writing/2026-05-24-theming-eds-with-google-stitch/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-05-31-continuous-agent-second-brain",
+      "message": "/writing/2026-05-31-continuous-agent-second-brain (a folder index without its slash) returned 404: add the /writing/2026-05-31-continuous-agent-second-brain → /writing/2026-05-31-continuous-agent-second-brain/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-06-28-patterns-of-work",
+      "message": "/writing/2026-06-28-patterns-of-work (a folder index without its slash) returned 404: add the /writing/2026-06-28-patterns-of-work → /writing/2026-06-28-patterns-of-work/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-07-21-four-frontier-models-one-prompt",
+      "message": "/writing/2026-07-21-four-frontier-models-one-prompt (a folder index without its slash) returned 404: add the /writing/2026-07-21-four-frontier-models-one-prompt → /writing/2026-07-21-four-frontier-models-one-prompt/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-08-09-adobe-stardust-explained",
+      "message": "/writing/2026-08-09-adobe-stardust-explained (a folder index without its slash) returned 404: add the /writing/2026-08-09-adobe-stardust-explained → /writing/2026-08-09-adobe-stardust-explained/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-08-15-anima-mesh-company-of-zero",
+      "message": "/writing/2026-08-15-anima-mesh-company-of-zero (a folder index without its slash) returned 404: add the /writing/2026-08-15-anima-mesh-company-of-zero → /writing/2026-08-15-anima-mesh-company-of-zero/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-09-20-aem-edge-functions-google-sign-in",
+      "message": "/writing/2026-09-20-aem-edge-functions-google-sign-in (a folder index without its slash) returned 404: add the /writing/2026-09-20-aem-edge-functions-google-sign-in → /writing/2026-09-20-aem-edge-functions-google-sign-in/ redirect"
+    },
+    {
+      "check": "routing",
+      "id": "trailing-slash-broken",
+      "severity": "warn",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "/writing/2026-10-10-adaptto-2026-25-talks (a folder index without its slash) returned 404: add the /writing/2026-10-10-adaptto-2026-25-talks → /writing/2026-10-10-adaptto-2026-25-talks/ redirect"
+    },
+    {
+      "check": "a11y",
+      "id": "axe-aria-allowed-role",
+      "severity": "info",
+      "path": "/writing/2026-05-24-theming-eds-with-google-stitch",
+      "message": "ARIA role should be appropriate for the element (minor) — 3 page(s) affected",
+      "evidence": {
+        "rule": "aria-allowed-role",
+        "pages": [
+          "/writing/2026-05-24-theming-eds-with-google-stitch",
+          "/writing/2026-06-28-patterns-of-work",
+          "/writing/2026-08-09-adobe-stardust-explained"
+        ],
+        "sampleTargets": [
+          "li[data-group=\"colors\"]",
+          "li[data-group=\"fonts\"]",
+          "li[data-group=\"buttons\"]"
+        ],
+        "nodesOnFirstPage": 3
+      }
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/certifications",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/portfolio",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/privacy",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/talks",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-04-13-vibe-coding-star-story-generator",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-06-08-edge-cms-shift-adobe-eds",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-07-12-aem-headless-omnichannel-architecture",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-07-13-three-eds-offerings",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-09-01-aem-caching-production-architectures",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-10-05-mcp-server-for-eds-da-live",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-01-05-from-prompts-to-harness",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-01-29-playwright-stakeholder-demos",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-02-05-reusable-ai-development-modules",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-03-23-eds-hlx-admin-agentic-config",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-04-05-continuous-executive-agent-v2-1",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-04-12-two-ai-skills-team-enablement",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-05-17-adobe-eds-skills-hands-on",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-05-24-theming-eds-with-google-stitch",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-05-31-continuous-agent-second-brain",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-06-28-patterns-of-work",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-07-21-four-frontier-models-one-prompt",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-08-09-adobe-stardust-explained",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-08-15-anima-mesh-company-of-zero",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-09-20-aem-edge-functions-google-sign-in",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "ai-readability",
+      "id": "ai-readability-unmeasured",
+      "severity": "info",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "not measured: served fetch HTTP 404"
+    },
+    {
+      "check": "chrome",
+      "id": "header-contract-missing",
+      "severity": "info",
+      "path": "/",
+      "message": "no header contract at stardust/chrome/header-contract.json — the header's behaviour is not checked (extract --prep records it)"
+    },
+    {
+      "check": "dynamics",
+      "id": "parity-missing",
+      "severity": "info",
+      "path": "",
+      "message": "no dynamic parity file at stardust/dynamics/parity.json — run stardust:dynamics (Phases 1–5) if this site was migrated with dynamic features"
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/",
+      "message": "authored 28 · editable 28 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 28,
+          "editable": 28,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "hero",
+            "authored": 8,
+            "editable": 8,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "default",
+            "authored": 5,
+            "editable": 5,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "showcase",
+            "authored": 5,
+            "editable": 5,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "the id and label rows are config (an anchor and an aria-label), not displayed text"
+            ]
+          },
+          {
+            "block": "cards",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "columns",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/certifications",
+      "message": "authored 140 · editable 140 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 140,
+          "editable": 140,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "hero",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "default",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "credentials",
+            "authored": 130,
+            "editable": 130,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/portfolio",
+      "message": "authored 508 · editable 508 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 508,
+          "editable": 508,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 14,
+            "editable": 14,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "jump-links",
+            "authored": 3,
+            "editable": 3,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "the label row is the navigation's aria-label, not displayed text"
+            ]
+          },
+          {
+            "block": "timeline",
+            "authored": 111,
+            "editable": 111,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "gantt config cells (range, now, ids, dates, ongoing, rail, legend) are chart data"
+            ]
+          },
+          {
+            "block": "divider",
+            "authored": 22,
+            "editable": 22,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "chapter-head",
+            "authored": 53,
+            "editable": 53,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "the numeral is derived from the chapter order, not authored text"
+            ]
+          },
+          {
+            "block": "showcase",
+            "authored": 123,
+            "editable": 123,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "the id and label rows are config (an anchor and an aria-label), not displayed text"
+            ]
+          },
+          {
+            "block": "tabs",
+            "authored": 27,
+            "editable": 27,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "the label row is the tab list's aria-label; the numbers and the position are derived"
+            ]
+          },
+          {
+            "block": "panel",
+            "authored": 86,
+            "editable": 86,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "config rows (label, replay, max) are aria-labels and a scale, not displayed text"
+            ]
+          },
+          {
+            "block": "proof-links",
+            "authored": 15,
+            "editable": 15,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "the title row is the tag's tooltip (a title attribute), not displayed text"
+            ]
+          },
+          {
+            "block": "stat-chips",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "cards",
+            "authored": 26,
+            "editable": 26,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "stats",
+            "authored": 5,
+            "editable": 5,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "the label row is the panel's aria-label, not displayed text"
+            ]
+          },
+          {
+            "block": "frame",
+            "authored": 8,
+            "editable": 8,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "the label row is the image link's aria-label, not displayed text"
+            ]
+          },
+          {
+            "block": "carousel",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "config rows (label, previous, next) are aria-labels; arrows and count are drawn"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/privacy",
+      "message": "authored 19 · editable 19 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 19,
+          "editable": 19,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "hero",
+            "authored": 3,
+            "editable": 3,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "default",
+            "authored": 16,
+            "editable": 16,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/talks",
+      "message": "authored 77 · editable 77 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 77,
+          "editable": 77,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "hero",
+            "authored": 3,
+            "editable": 3,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 74,
+            "editable": 74,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing",
+      "message": "authored 198 · editable 197 · dead 0 · duplicated 0 · exempt 1",
+      "evidence": {
+        "totals": {
+          "authored": 198,
+          "editable": 197,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 1
+        },
+        "blocks": [
+          {
+            "block": "hero",
+            "authored": 3,
+            "editable": 3,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "widget",
+            "authored": 1,
+            "editable": 0,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 1,
+            "exemptReasons": [
+              "widget: rendered by code, nothing authored"
+            ]
+          },
+          {
+            "block": "writing-list",
+            "authored": 192,
+            "editable": 192,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "keywords: search terms and keep-together runs, hidden (.writing-list-keywords)"
+            ]
+          },
+          {
+            "block": "default",
+            "authored": 2,
+            "editable": 2,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-04-13-vibe-coding-star-story-generator",
+      "message": "authored 143 · editable 143 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 143,
+          "editable": 143,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 25,
+            "editable": 25,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "figure",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "explainer",
+            "authored": 68,
+            "editable": 68,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "code",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "data-table",
+            "authored": 23,
+            "editable": 23,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "sr-caption: the caption is read by screen readers only (.sr-only)"
+            ]
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead",
+      "message": "authored 109 · editable 109 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 109,
+          "editable": 109,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 32,
+            "editable": 32,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 7,
+            "editable": 7,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "figure",
+            "authored": 2,
+            "editable": 2,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "explainer",
+            "authored": 54,
+            "editable": 54,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs",
+      "message": "authored 251 · editable 251 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 251,
+          "editable": 251,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 38,
+            "editable": 38,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 8,
+            "editable": 8,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "figure",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "explainer",
+            "authored": 190,
+            "editable": 190,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-06-08-edge-cms-shift-adobe-eds",
+      "message": "authored 115 · editable 115 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 115,
+          "editable": 115,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 34,
+            "editable": 34,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 61,
+            "editable": 61,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents",
+      "message": "authored 159 · editable 159 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 159,
+          "editable": 159,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 50,
+            "editable": 50,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 2,
+            "editable": 2,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "figure",
+            "authored": 5,
+            "editable": 5,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "code",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 47,
+            "editable": 47,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "data-table",
+            "authored": 30,
+            "editable": 30,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "sr-caption: the caption is read by screen readers only (.sr-only)"
+            ]
+          },
+          {
+            "block": "row-list",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1",
+      "message": "authored 114 · editable 114 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 114,
+          "editable": 114,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 53,
+            "editable": 53,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "series",
+            "authored": 5,
+            "editable": 5,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "name: the nav's accessible name, hidden through .series-name"
+            ]
+          },
+          {
+            "block": "rail",
+            "authored": 12,
+            "editable": 12,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 7,
+            "editable": 7,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "compare",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 14,
+            "editable": 14,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "code",
+            "authored": 3,
+            "editable": 3,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+      "message": "authored 154 · editable 154 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 154,
+          "editable": 154,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 39,
+            "editable": 39,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "series",
+            "authored": 5,
+            "editable": 5,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "name: the nav's accessible name, hidden through .series-name"
+            ]
+          },
+          {
+            "block": "rail",
+            "authored": 10,
+            "editable": 10,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 32,
+            "editable": 32,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "code",
+            "authored": 21,
+            "editable": 21,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "figure",
+            "authored": 3,
+            "editable": 3,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "data-table",
+            "authored": 33,
+            "editable": 33,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "sr-caption: the caption is read by screen readers only (.sr-only)"
+            ]
+          },
+          {
+            "block": "row-list",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology",
+      "message": "authored 105 · editable 105 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 105,
+          "editable": 105,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 35,
+            "editable": 35,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "series",
+            "authored": 5,
+            "editable": 5,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "name: the nav's accessible name, hidden through .series-name"
+            ]
+          },
+          {
+            "block": "rail",
+            "authored": 10,
+            "editable": 10,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "figure",
+            "authored": 5,
+            "editable": 5,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "code",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 33,
+            "editable": 33,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-07-12-aem-headless-omnichannel-architecture",
+      "message": "authored 128 · editable 128 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 128,
+          "editable": 128,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 46,
+            "editable": 46,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 10,
+            "editable": 10,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 52,
+            "editable": 52,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-07-13-three-eds-offerings",
+      "message": "authored 61 · editable 61 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 61,
+          "editable": 61,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 24,
+            "editable": 24,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 7,
+            "editable": 7,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 16,
+            "editable": 16,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-09-01-aem-caching-production-architectures",
+      "message": "authored 158 · editable 158 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 158,
+          "editable": 158,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 49,
+            "editable": 49,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 11,
+            "editable": 11,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "figure",
+            "authored": 3,
+            "editable": 3,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "code",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 64,
+            "editable": 64,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "data-table",
+            "authored": 11,
+            "editable": 11,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "sr-caption: the caption is read by screen readers only (.sr-only)"
+            ]
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-10-05-mcp-server-for-eds-da-live",
+      "message": "authored 130 · editable 130 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 130,
+          "editable": 130,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 44,
+            "editable": 44,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 10,
+            "editable": 10,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "data-table",
+            "authored": 8,
+            "editable": 8,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "sr-caption: the caption is read by screen readers only (.sr-only)"
+            ]
+          },
+          {
+            "block": "code",
+            "authored": 12,
+            "editable": 12,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 35,
+            "editable": 35,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 12,
+            "editable": 12,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+      "message": "authored 138 · editable 138 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 138,
+          "editable": 138,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 38,
+            "editable": 38,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 10,
+            "editable": 10,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 45,
+            "editable": 45,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "code",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "data-table",
+            "authored": 16,
+            "editable": 16,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "sr-caption: the caption is read by screen readers only (.sr-only)"
+            ]
+          },
+          {
+            "block": "row-list",
+            "authored": 12,
+            "editable": 12,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-01-05-from-prompts-to-harness",
+      "message": "authored 122 · editable 122 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 122,
+          "editable": 122,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 51,
+            "editable": 51,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 10,
+            "editable": 10,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "figure",
+            "authored": 7,
+            "editable": 7,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "code",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 34,
+            "editable": 34,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-01-29-playwright-stakeholder-demos",
+      "message": "authored 156 · editable 156 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 156,
+          "editable": 156,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 34,
+            "editable": 34,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 5,
+            "editable": 5,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "data-table",
+            "authored": 12,
+            "editable": 12,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "sr-caption: the caption is read by screen readers only (.sr-only)"
+            ]
+          },
+          {
+            "block": "code",
+            "authored": 12,
+            "editable": 12,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 73,
+            "editable": 73,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-02-05-reusable-ai-development-modules",
+      "message": "authored 73 · editable 73 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 73,
+          "editable": 73,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 39,
+            "editable": 39,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 8,
+            "editable": 8,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 5,
+            "editable": 5,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 7,
+            "editable": 7,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-03-23-eds-hlx-admin-agentic-config",
+      "message": "authored 109 · editable 109 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 109,
+          "editable": 109,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 46,
+            "editable": 46,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 11,
+            "editable": 11,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 8,
+            "editable": 8,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "code",
+            "authored": 12,
+            "editable": 12,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 21,
+            "editable": 21,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-04-05-continuous-executive-agent-v2-1",
+      "message": "authored 153 · editable 153 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 153,
+          "editable": 153,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 79,
+            "editable": 79,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 13,
+            "editable": 13,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 11,
+            "editable": 11,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "code",
+            "authored": 3,
+            "editable": 3,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 27,
+            "editable": 27,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "compare",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-04-12-two-ai-skills-team-enablement",
+      "message": "authored 105 · editable 105 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 105,
+          "editable": 105,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 40,
+            "editable": 40,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 3,
+            "editable": 3,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "code",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 33,
+            "editable": 33,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-05-17-adobe-eds-skills-hands-on",
+      "message": "authored 123 · editable 123 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 123,
+          "editable": 123,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 40,
+            "editable": 40,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "code",
+            "authored": 3,
+            "editable": 3,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 56,
+            "editable": 56,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-05-24-theming-eds-with-google-stitch",
+      "message": "authored 134 · editable 134 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 134,
+          "editable": 134,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 40,
+            "editable": 40,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 8,
+            "editable": 8,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "code",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 54,
+            "editable": 54,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "compare",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-05-31-continuous-agent-second-brain",
+      "message": "authored 152 · editable 152 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 152,
+          "editable": 152,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 38,
+            "editable": 38,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "figure",
+            "authored": 5,
+            "editable": 5,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "data-table",
+            "authored": 36,
+            "editable": 36,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "sr-caption: the caption is read by screen readers only (.sr-only)"
+            ]
+          },
+          {
+            "block": "code",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 47,
+            "editable": 47,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-06-28-patterns-of-work",
+      "message": "authored 221 · editable 221 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 221,
+          "editable": 221,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 125,
+            "editable": 125,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 14,
+            "editable": 14,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "figure",
+            "authored": 13,
+            "editable": 13,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "explainer",
+            "authored": 52,
+            "editable": 52,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 12,
+            "editable": 12,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-07-21-four-frontier-models-one-prompt",
+      "message": "authored 130 · editable 130 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 130,
+          "editable": 130,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 42,
+            "editable": 42,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 8,
+            "editable": 8,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 7,
+            "editable": 7,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "compare",
+            "authored": 10,
+            "editable": 10,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 49,
+            "editable": 49,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-08-09-adobe-stardust-explained",
+      "message": "authored 99 · editable 99 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 99,
+          "editable": 99,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 42,
+            "editable": 42,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 3,
+            "editable": 3,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 31,
+            "editable": 31,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-08-15-anima-mesh-company-of-zero",
+      "message": "authored 250 · editable 250 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 250,
+          "editable": 250,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 65,
+            "editable": 65,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 12,
+            "editable": 12,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 8,
+            "editable": 8,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "code",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "explainer",
+            "authored": 142,
+            "editable": 142,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-09-20-aem-edge-functions-google-sign-in",
+      "message": "authored 110 · editable 110 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 110,
+          "editable": 110,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 44,
+            "editable": 44,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 5,
+            "editable": 5,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "compare",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "code",
+            "authored": 6,
+            "editable": 6,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "lab",
+            "authored": 12,
+            "editable": 12,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> token, <pre> decoded JSON, the modulus code - derived, rewritten by the engine"
+            ]
+          },
+          {
+            "block": "switch",
+            "authored": 14,
+            "editable": 14,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<ul> code marks, <p> switch name - text-as-metadata, never displayed"
+            ]
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "editability",
+      "id": "summary",
+      "severity": "info",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "authored 332 · editable 332 · dead 0 · duplicated 0 · exempt 0",
+      "evidence": {
+        "totals": {
+          "authored": 332,
+          "editable": 332,
+          "dead": 0,
+          "duplicated": 0,
+          "exempt": 0
+        },
+        "blocks": [
+          {
+            "block": "default",
+            "authored": 17,
+            "editable": 17,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "rail",
+            "authored": 29,
+            "editable": 29,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "summary \"On this page\" - interface chrome, not authored"
+            ]
+          },
+          {
+            "block": "figure",
+            "authored": 2,
+            "editable": 2,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "<p> video link - the embed's source link, never displayed"
+            ]
+          },
+          {
+            "block": "fine-print",
+            "authored": 1,
+            "editable": 1,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          },
+          {
+            "block": "talk-list",
+            "authored": 270,
+            "editable": 270,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchor paragraph - the heading's id, never displayed"
+            ]
+          },
+          {
+            "block": "row-list",
+            "authored": 9,
+            "editable": 9,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0,
+            "exemptReasons": [
+              "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+            ]
+          },
+          {
+            "block": "author-box",
+            "authored": 4,
+            "editable": 4,
+            "dead": 0,
+            "duplicated": 0,
+            "exempt": 0
+          }
+        ]
+      }
+    },
+    {
+      "check": "links",
+      "id": "externals-skipped",
+      "severity": "info",
+      "path": "",
+      "message": "637 unique external link(s) not probed — pass --probe-externals to check them"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/certifications",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/privacy",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/talks",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-04-13-vibe-coding-star-story-generator",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-06-08-edge-cms-shift-adobe-eds",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-07-12-aem-headless-omnichannel-architecture",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-07-13-three-eds-offerings",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-09-01-aem-caching-production-architectures",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-10-05-mcp-server-for-eds-da-live",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-01-05-from-prompts-to-harness",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-01-29-playwright-stakeholder-demos",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-02-05-reusable-ai-development-modules",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-03-23-eds-hlx-admin-agentic-config",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-04-05-continuous-executive-agent-v2-1",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-04-12-two-ai-skills-team-enablement",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-05-17-adobe-eds-skills-hands-on",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-05-24-theming-eds-with-google-stitch",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-05-31-continuous-agent-second-brain",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-06-28-patterns-of-work",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-07-21-four-frontier-models-one-prompt",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-08-09-adobe-stardust-explained",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-08-15-anima-mesh-company-of-zero",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-09-20-aem-edge-functions-google-sign-in",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "metadata",
+      "id": "missing-og-image-alt",
+      "severity": "info",
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "message": "og:image has no og:image:alt"
+    },
+    {
+      "check": "perf",
+      "id": "measurement",
+      "severity": "info",
+      "path": "/",
+      "message": "transfer 222KB (js 30KB), LCP 252ms, CLS 0",
+      "evidence": {
+        "kb": 222,
+        "jsKb": 30,
+        "lcp": 252,
+        "cls": 0,
+        "template": "(root)#1"
+      }
+    },
+    {
+      "check": "perf",
+      "id": "measurement",
+      "severity": "info",
+      "path": "/certifications",
+      "message": "transfer 335KB (js 26KB), LCP 232ms, CLS 0.001",
+      "evidence": {
+        "kb": 335,
+        "jsKb": 26,
+        "lcp": 232,
+        "cls": 0.001,
+        "template": "certifications#1"
+      }
+    },
+    {
+      "check": "perf",
+      "id": "measurement",
+      "severity": "info",
+      "path": "/portfolio",
+      "message": "transfer 260KB (js 48KB), LCP 324ms, CLS 0",
+      "evidence": {
+        "kb": 260,
+        "jsKb": 48,
+        "lcp": 324,
+        "cls": 0,
+        "template": "portfolio#1"
+      }
+    },
+    {
+      "check": "perf",
+      "id": "measurement",
+      "severity": "info",
+      "path": "/privacy",
+      "message": "transfer 153KB (js 20KB), LCP 216ms, CLS 0.003",
+      "evidence": {
+        "kb": 153,
+        "jsKb": 20,
+        "lcp": 216,
+        "cls": 0.003,
+        "template": "privacy#1"
+      }
+    },
+    {
+      "check": "perf",
+      "id": "measurement",
+      "severity": "info",
+      "path": "/talks",
+      "message": "transfer 161KB (js 26KB), LCP 212ms, CLS 0.001",
+      "evidence": {
+        "kb": 161,
+        "jsKb": 26,
+        "lcp": 212,
+        "cls": 0.001,
+        "template": "talks#1"
+      }
+    },
+    {
+      "check": "perf",
+      "id": "measurement",
+      "severity": "info",
+      "path": "/writing",
+      "message": "transfer 641KB (js 31KB), LCP 204ms, CLS 0",
+      "evidence": {
+        "kb": 641,
+        "jsKb": 31,
+        "lcp": 204,
+        "cls": 0,
+        "template": "writing#2"
+      }
+    },
+    {
+      "check": "perf",
+      "id": "measurement",
+      "severity": "info",
+      "path": "/writing/2025-04-13-vibe-coding-star-story-generator",
+      "message": "transfer 257KB (js 40KB), LCP 176ms, CLS 0.059",
+      "evidence": {
+        "kb": 257,
+        "jsKb": 40,
+        "lcp": 176,
+        "cls": 0.059,
+        "template": "writing#1"
+      }
+    },
+    {
+      "check": "routing",
+      "id": "no-redirects-sheet",
+      "severity": "info",
+      "path": "",
+      "message": "no /redirects.json sheet (404) — skipping redirect verification"
+    }
+  ]
+}

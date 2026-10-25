@@ -13,3 +13,4 @@ edge/
 DESIGN.json
 .playwright-cli/
 .playwright-mcp/
+ai-docs/

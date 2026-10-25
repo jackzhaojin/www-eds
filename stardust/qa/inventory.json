@@ -1,0 +1,358 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:qa/inventory",
+    "stardustVersion": "0.36.0",
+    "writtenAt": "2026-10-25T19:51:47.658Z",
+    "againstInput": "https://main--www-eds--jackzhaojin.aem.live"
+  },
+  "pages": [
+    {
+      "path": "/",
+      "url": "/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "(root)#1"
+    },
+    {
+      "path": "/certifications",
+      "url": "/certifications/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "certifications#1"
+    },
+    {
+      "path": "/portfolio",
+      "url": "/portfolio/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "portfolio#1"
+    },
+    {
+      "path": "/privacy",
+      "url": "/privacy/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "privacy#1"
+    },
+    {
+      "path": "/talks",
+      "url": "/talks/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "talks#1"
+    },
+    {
+      "path": "/writing",
+      "url": "/writing/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#2"
+    },
+    {
+      "path": "/writing/2025-04-13-vibe-coding-star-story-generator",
+      "url": "/writing/2025-04-13-vibe-coding-star-story-generator/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead",
+      "url": "/writing/2025-05-28-aem-headless-when-frontend-teams-lead/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs",
+      "url": "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2025-06-08-edge-cms-shift-adobe-eds",
+      "url": "/writing/2025-06-08-edge-cms-shift-adobe-eds/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents",
+      "url": "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1",
+      "url": "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+      "url": "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology",
+      "url": "/writing/2025-07-11-scaling-ai-coding-delivery-methodology/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2025-07-12-aem-headless-omnichannel-architecture",
+      "url": "/writing/2025-07-12-aem-headless-omnichannel-architecture/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2025-07-13-three-eds-offerings",
+      "url": "/writing/2025-07-13-three-eds-offerings/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2025-09-01-aem-caching-production-architectures",
+      "url": "/writing/2025-09-01-aem-caching-production-architectures/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2025-10-05-mcp-server-for-eds-da-live",
+      "url": "/writing/2025-10-05-mcp-server-for-eds-da-live/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+      "url": "/writing/2025-10-12-da-live-mcp-across-ai-platforms/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-01-05-from-prompts-to-harness",
+      "url": "/writing/2026-01-05-from-prompts-to-harness/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-01-29-playwright-stakeholder-demos",
+      "url": "/writing/2026-01-29-playwright-stakeholder-demos/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-02-05-reusable-ai-development-modules",
+      "url": "/writing/2026-02-05-reusable-ai-development-modules/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-03-23-eds-hlx-admin-agentic-config",
+      "url": "/writing/2026-03-23-eds-hlx-admin-agentic-config/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-04-05-continuous-executive-agent-v2-1",
+      "url": "/writing/2026-04-05-continuous-executive-agent-v2-1/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-04-12-two-ai-skills-team-enablement",
+      "url": "/writing/2026-04-12-two-ai-skills-team-enablement/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-05-17-adobe-eds-skills-hands-on",
+      "url": "/writing/2026-05-17-adobe-eds-skills-hands-on/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-05-24-theming-eds-with-google-stitch",
+      "url": "/writing/2026-05-24-theming-eds-with-google-stitch/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-05-31-continuous-agent-second-brain",
+      "url": "/writing/2026-05-31-continuous-agent-second-brain/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-06-28-patterns-of-work",
+      "url": "/writing/2026-06-28-patterns-of-work/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-07-21-four-frontier-models-one-prompt",
+      "url": "/writing/2026-07-21-four-frontier-models-one-prompt/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-08-09-adobe-stardust-explained",
+      "url": "/writing/2026-08-09-adobe-stardust-explained/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-08-15-anima-mesh-company-of-zero",
+      "url": "/writing/2026-08-15-anima-mesh-company-of-zero/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-09-20-aem-edge-functions-google-sign-in",
+      "url": "/writing/2026-09-20-aem-edge-functions-google-sign-in/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    },
+    {
+      "path": "/writing/2026-10-10-adaptto-2026-25-talks",
+      "url": "/writing/2026-10-10-adaptto-2026-25-talks/",
+      "sources": [
+        "template-map",
+        "sitemap"
+      ],
+      "template": "writing#1"
+    }
+  ],
+  "sitemapPaths": [
+    "/",
+    "/nav",
+    "/footer",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in",
+    "/writing/2026-08-09-adobe-stardust-explained",
+    "/writing/2026-08-15-anima-mesh-company-of-zero",
+    "/writing/2026-05-31-continuous-agent-second-brain",
+    "/writing/2026-07-21-four-frontier-models-one-prompt",
+    "/writing/2026-06-28-patterns-of-work",
+    "/writing/2026-02-05-reusable-ai-development-modules",
+    "/talks",
+    "/privacy",
+    "/certifications",
+    "/writing",
+    "/writing/2026-03-23-eds-hlx-admin-agentic-config",
+    "/writing/2026-01-29-playwright-stakeholder-demos",
+    "/writing/2026-04-12-two-ai-skills-team-enablement",
+    "/writing/2026-04-05-continuous-executive-agent-v2-1",
+    "/writing/2025-06-04-seven-aem-capabilities-tradeoffs",
+    "/writing/2025-06-08-edge-cms-shift-adobe-eds",
+    "/writing/2025-04-13-vibe-coding-star-story-generator",
+    "/writing/2025-05-28-aem-headless-when-frontend-teams-lead",
+    "/writing/2025-07-06-ai-coded-nextjs-agent-release-1",
+    "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents",
+    "/writing/2026-10-10-adaptto-2026-25-talks",
+    "/writing/2025-07-13-three-eds-offerings",
+    "/writing/2025-07-11-scaling-ai-coding-delivery-methodology",
+    "/writing/2025-07-12-aem-headless-omnichannel-architecture",
+    "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+    "/writing/2025-09-01-aem-caching-production-architectures",
+    "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+    "/writing/2025-10-05-mcp-server-for-eds-da-live",
+    "/writing/2026-01-05-from-prompts-to-harness",
+    "/writing/2026-05-17-adobe-eds-skills-hands-on",
+    "/writing/2026-05-24-theming-eds-with-google-stitch",
+    "/portfolio"
+  ],
+  "fragments": [
+    "/nav",
+    "/footer"
+  ]
+}

@@ -1,0 +1,5039 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>stardust:qa — https://main--www-eds--jackzhaojin.aem.live</title>
+<style>
+ :root{--ink:#0a1024;--ink-deep:#060a14;--ink-soft:#141b3a;--dust:#f5f0e6;--dust-50:rgba(245,240,230,0.5);
+   --dust-30:rgba(245,240,230,0.3);--dust-08:rgba(245,240,230,0.08);--amber:#e8b95e;--amber-light:#ffd98a;--red:#ff6b6b}
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--ink-deep);color:var(--dust);font:14px/1.55 -apple-system,"SF Pro Text",system-ui,sans-serif}
+ .container{max-width:1200px;margin:0 auto;padding:56px 48px 80px}
+ .eyebrow{font:500 11px/1 "SF Mono",ui-monospace,monospace;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:12px}
+ header{display:flex;gap:22px;align-items:center;margin-bottom:8px}
+ h1{font-family:"SF Pro Display",system-ui,sans-serif;font-weight:600;letter-spacing:-0.02em;font-size:34px;line-height:1.05;margin:0}
+ .prov{font:500 12px/1.7 "SF Mono",ui-monospace,monospace;letter-spacing:0.04em;color:var(--dust-50);margin:16px 0 0}
+ .prov b{color:var(--dust);font-weight:500}
+ .fgroup{margin-top:26px}
+ .fgroup .eyebrow{margin-bottom:0}
+ .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+ .chip{cursor:pointer;user-select:none;background:var(--ink-soft);border:1px solid var(--dust-08);border-radius:999px;
+   padding:4px 12px;font:500 11px/1.6 "SF Mono",ui-monospace,monospace;letter-spacing:0.06em;color:var(--dust-50)}
+ .chip.sev{text-transform:uppercase;letter-spacing:0.1em}
+ .chip .n{opacity:.55}
+ .chip:hover{border-color:var(--dust-30);color:var(--dust)}
+ .chip.on{border-color:var(--amber);color:var(--amber)}
+ .chip.on[data-bucket="error"]{border-color:var(--red);color:var(--red)}
+ .chip.on[data-bucket="warn"]{border-color:var(--amber);color:var(--amber)}
+ .chip.on[data-bucket="info"]{border-color:var(--dust-30);color:var(--dust)}
+ .chip.on[data-bucket="allow"]{border-color:var(--dust-30);color:var(--dust-50)}
+ .showing{font:500 11px/1 "SF Mono",ui-monospace,monospace;letter-spacing:0.06em;color:var(--dust-30);margin:22px 0 0}
+ .showing .clear{cursor:pointer;color:var(--amber);display:none}
+ .showing.filtered .clear{display:inline}
+ table{border-collapse:collapse;width:100%;margin-top:28px}
+ th{font:500 10px/1 "SF Mono",ui-monospace,monospace;letter-spacing:0.14em;text-transform:uppercase;color:var(--dust-50);text-align:left;padding:0 10px 10px;border-bottom:1px solid var(--dust-30)}
+ td{border-bottom:1px solid var(--dust-08);padding:10px;text-align:left;vertical-align:top;font-size:13px;color:rgba(245,240,230,0.85)}
+ .pill{border-radius:4px;padding:2px 8px;font:500 10px/1.6 "SF Mono",ui-monospace,monospace;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap}
+ .mono{font-family:"SF Mono",ui-monospace,monospace;font-size:12px;color:var(--dust)}
+ tr.allow{opacity:.4}
+ .reason{font:500 11px/1.5 "SF Mono",ui-monospace,monospace;color:var(--dust-50);margin-top:4px}
+ details{margin-top:6px}
+ summary{cursor:pointer;font:500 11px/1 "SF Mono",ui-monospace,monospace;letter-spacing:0.08em;color:var(--amber);text-transform:uppercase}
+ pre{background:var(--ink);border:1px solid var(--dust-08);border-radius:8px;padding:12px;overflow:auto;max-height:240px;font:12px/1.5 "SF Mono",ui-monospace,monospace;color:#c6d0e4}
+ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--dust-08);font:500 11px/1.7 "SF Mono",ui-monospace,monospace;letter-spacing:0.06em;color:var(--dust-50)}
+ footer .tag{color:var(--amber)}
+ ::selection{background:var(--amber);color:var(--ink)}
+</style></head><body>
+<div class="container">
+<span class="eyebrow">stardust · qa sweep · read-only</span>
+<header><svg viewBox="0 0 64 64" width="44" height="44" style="border-radius:8px;flex:none"><rect width="64" height="64" fill="#0a1024"/>
+<g fill="#e8b95e"><rect x="28" y="8" width="8" height="8"/><rect x="28" y="18" width="8" height="8" opacity="0.7"/><rect x="28" y="38" width="8" height="8" opacity="0.7"/><rect x="28" y="48" width="8" height="8"/><rect x="8" y="28" width="8" height="8"/><rect x="18" y="28" width="8" height="8" opacity="0.7"/><rect x="38" y="28" width="8" height="8" opacity="0.7"/><rect x="48" y="28" width="8" height="8"/></g>
+<rect x="26" y="26" width="12" height="12" fill="#ffd98a"/>
+<g fill="#e8b95e" opacity="0.6"><rect x="18" y="18" width="6" height="6"/><rect x="40" y="18" width="6" height="6"/><rect x="18" y="40" width="6" height="6"/><rect x="40" y="40" width="6" height="6"/></g></svg><h1>main--www-eds--jackzhaojin.aem.live</h1></header>
+<p class="prov">2026-10-25T19:55:00.310Z · <b>34</b> pages · 193s · checks: routing · content · templates · metadata · links · browse · perf · editability · dynamics · chrome · ai-readability</p>
+<div class="fgroup"><span class="eyebrow">filter · severity</span><div class="chips" id="sev-chips"><span class="chip sev" data-bucket="error">errors <span class="n">(45)</span></span><span class="chip sev" data-bucket="warn">warnings <span class="n">(127)</span></span><span class="chip sev" data-bucket="info">info <span class="n">(111)</span></span><span class="chip sev" data-bucket="allow">allowlisted <span class="n">(0)</span></span></div></div>
+<div class="fgroup"><span class="eyebrow">filter · finding</span><div class="chips" id="fid-chips"><span class="chip fid" data-fid="links/broken-anchor">links/broken-anchor <span class="n">(42)</span></span><span class="chip fid" data-fid="editability/summary">editability/summary <span class="n">(34)</span></span><span class="chip fid" data-fid="metadata/missing-og-type">metadata/missing-og-type <span class="n">(34)</span></span><span class="chip fid" data-fid="metadata/noindex-on-live">metadata/noindex-on-live <span class="n">(34)</span></span><span class="chip fid" data-fid="ai-readability/ai-readability-unmeasured">ai-readability/ai-readability-unmeasured <span class="n">(33)</span></span><span class="chip fid" data-fid="routing/trailing-slash-broken">routing/trailing-slash-broken <span class="n">(33)</span></span><span class="chip fid" data-fid="metadata/missing-og-image-alt">metadata/missing-og-image-alt <span class="n">(32)</span></span><span class="chip fid" data-fid="content/duplicate-text">content/duplicate-text <span class="n">(10)</span></span><span class="chip fid" data-fid="perf/measurement">perf/measurement <span class="n">(7)</span></span><span class="chip fid" data-fid="rendered/upscaled-image">rendered/upscaled-image <span class="n">(5)</span></span><span class="chip fid" data-fid="templates/missing-template-blocks">templates/missing-template-blocks <span class="n">(4)</span></span><span class="chip fid" data-fid="content/flattened-collection">content/flattened-collection <span class="n">(2)</span></span><span class="chip fid" data-fid="routing/sitemap-lists-fragment">routing/sitemap-lists-fragment <span class="n">(2)</span></span><span class="chip fid" data-fid="a11y/axe-aria-allowed-role">a11y/axe-aria-allowed-role <span class="n">(1)</span></span><span class="chip fid" data-fid="a11y/axe-color-contrast">a11y/axe-color-contrast <span class="n">(1)</span></span><span class="chip fid" data-fid="a11y/axe-link-in-text-block">a11y/axe-link-in-text-block <span class="n">(1)</span></span><span class="chip fid" data-fid="a11y/axe-scrollable-region-focusable">a11y/axe-scrollable-region-focusable <span class="n">(1)</span></span><span class="chip fid" data-fid="chrome/header-contract-missing">chrome/header-contract-missing <span class="n">(1)</span></span><span class="chip fid" data-fid="content/micro-paragraph-run">content/micro-paragraph-run <span class="n">(1)</span></span><span class="chip fid" data-fid="content/placeholder-copy">content/placeholder-copy <span class="n">(1)</span></span><span class="chip fid" data-fid="dynamics/parity-missing">dynamics/parity-missing <span class="n">(1)</span></span><span class="chip fid" data-fid="links/broken-internal-link">links/broken-internal-link <span class="n">(1)</span></span><span class="chip fid" data-fid="links/externals-skipped">links/externals-skipped <span class="n">(1)</span></span><span class="chip fid" data-fid="routing/no-redirects-sheet">routing/no-redirects-sheet <span class="n">(1)</span></span></div></div>
+<p class="showing"><span id="shown">283</span> of 283 findings <span class="clear" id="clear">· clear filters</span></p>
+<table><thead><tr><th>sev</th><th>check</th><th>id</th><th>path</th><th>finding</th></tr></thead><tbody>
+    <tr class="error" data-bucket="error" data-fid="a11y/axe-link-in-text-block">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>a11y</td><td class="mono">axe-link-in-text-block</td>
+      <td class="mono">/</td>
+      <td>Links must be distinguishable without relying on color (serious) — 1 page(s) affected
+      <details><summary>evidence</summary><pre>{
+  "rule": "link-in-text-block",
+  "pages": [
+    "/"
+  ],
+  "sampleTargets": [
+    ".columns-text &gt; p &gt; a"
+  ],
+  "nodesOnFirstPage": 1
+}</pre></details></td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="a11y/axe-scrollable-region-focusable">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>a11y</td><td class="mono">axe-scrollable-region-focusable</td>
+      <td class="mono">/writing/2025-06-12-azure-rbac-cicd-for-ai-agents</td>
+      <td>Scrollable region must have keyboard access (serious) — 10 page(s) affected
+      <details><summary>evidence</summary><pre>{
+  "rule": "scrollable-region-focusable",
+  "pages": [
+    "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents",
+    "/writing/2025-07-06-ai-coded-nextjs-agent-release-1",
+    "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure",
+    "/writing/2025-10-12-da-live-mcp-across-ai-platforms",
+    "/writing/2026-01-05-from-prompts-to-harness",
+    "/writing/2026-01-29-playwright-stakeholder-demos",
+    "/writing/2026-03-23-eds-hlx-admin-agentic-config",
+    "/writing/2026-04-05-continuous-executive-agent-v2-1",
+    "/writing/2026-05-17-adobe-eds-skills-hands-on",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in"
+  ],
+  "sampleTargets": [
+    "#local &gt; .code-wrapper &gt; .code.stack[data-block-name=\"code\"] &gt; .code-frame &gt; pre"
+  ],
+  "nodesOnFirstPage": 1
+}</pre></details></td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="a11y/axe-color-contrast">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>a11y</td><td class="mono">axe-color-contrast</td>
+      <td class="mono">/writing/2025-09-01-aem-caching-production-architectures</td>
+      <td>Elements must meet minimum color contrast ratio thresholds (serious) — 3 page(s) affected
+      <details><summary>evidence</summary><pre>{
+  "rule": "color-contrast",
+  "pages": [
+    "/writing/2025-09-01-aem-caching-production-architectures",
+    "/writing/2026-05-31-continuous-agent-second-brain",
+    "/writing/2026-09-20-aem-edge-functions-google-sign-in"
+  ],
+  "sampleTargets": [
+    ".swr__cases &gt; ol &gt; li:nth-child(1)",
+    "li:nth-child(1) &gt; strong",
+    ".swr__cases &gt; ol &gt; li:nth-child(3)"
+  ],
+  "nodesOnFirstPage": 4
+}</pre></details></td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="content/placeholder-copy">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>content</td><td class="mono">placeholder-copy</td>
+      <td class="mono">/writing/2026-01-29-playwright-stakeholder-demos</td>
+      <td>placeholder strings in delivered copy: todo
+      <details><summary>evidence</summary><pre>{
+  "count": 1,
+  "samples": [
+    "todo"
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="links/broken-internal-link">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>links</td><td class="mono">broken-internal-link</td>
+      <td class="mono">/ai-content</td>
+      <td>internal link target /ai-content returns 404
+      <details><summary>evidence</summary><pre>{
+  "referrers": [
+    "/writing/2026-06-28-patterns-of-work"
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/certifications</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/portfolio</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/privacy</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/talks</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-04-13-vibe-coding-star-story-generator</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-05-28-aem-headless-when-frontend-teams-lead</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-06-04-seven-aem-capabilities-tradeoffs</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-06-08-edge-cms-shift-adobe-eds</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-06-12-azure-rbac-cicd-for-ai-agents</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-07-06-ai-coded-nextjs-agent-release-1</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-07-11-scaling-ai-coding-delivery-methodology</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-07-12-aem-headless-omnichannel-architecture</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-07-13-three-eds-offerings</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-09-01-aem-caching-production-architectures</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-10-05-mcp-server-for-eds-da-live</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2025-10-12-da-live-mcp-across-ai-platforms</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-01-05-from-prompts-to-harness</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-01-29-playwright-stakeholder-demos</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-02-05-reusable-ai-development-modules</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-03-23-eds-hlx-admin-agentic-config</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-04-05-continuous-executive-agent-v2-1</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-04-12-two-ai-skills-team-enablement</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-05-17-adobe-eds-skills-hands-on</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-05-24-theming-eds-with-google-stitch</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-05-31-continuous-agent-second-brain</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-06-28-patterns-of-work</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-07-21-four-frontier-models-one-prompt</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-08-09-adobe-stardust-explained</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-08-15-anima-mesh-company-of-zero</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-09-20-aem-edge-functions-google-sign-in</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="metadata/noindex-on-live">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>metadata</td><td class="mono">noindex-on-live</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>page is noindex on the live host (x-robots-tag header)
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="routing/sitemap-lists-fragment">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>routing</td><td class="mono">sitemap-lists-fragment</td>
+      <td class="mono">/footer</td>
+      <td>sitemap.xml lists chrome fragment /footer as a page
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="routing/sitemap-lists-fragment">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>routing</td><td class="mono">sitemap-lists-fragment</td>
+      <td class="mono">/nav</td>
+      <td>sitemap.xml lists chrome fragment /nav as a page
+      </td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="templates/missing-template-blocks">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>templates</td><td class="mono">missing-template-blocks</td>
+      <td class="mono">/writing/2025-06-08-edge-cms-shift-adobe-eds</td>
+      <td>template "writing#1": missing expected block(s) figure (fleet consensus (&gt;70% of 28 sibling pages))
+      <details><summary>evidence</summary><pre>{
+  "template": "writing#1",
+  "missing": [
+    "figure"
+  ],
+  "has": [
+    "rail",
+    "fine-print",
+    "explainer",
+    "row-list",
+    "author-box"
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="templates/missing-template-blocks">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>templates</td><td class="mono">missing-template-blocks</td>
+      <td class="mono">/writing/2025-07-13-three-eds-offerings</td>
+      <td>template "writing#1": missing expected block(s) figure (fleet consensus (&gt;70% of 28 sibling pages))
+      <details><summary>evidence</summary><pre>{
+  "template": "writing#1",
+  "missing": [
+    "figure"
+  ],
+  "has": [
+    "rail",
+    "fine-print",
+    "explainer",
+    "row-list",
+    "author-box"
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="templates/missing-template-blocks">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>templates</td><td class="mono">missing-template-blocks</td>
+      <td class="mono">/writing/2026-09-20-aem-edge-functions-google-sign-in</td>
+      <td>template "writing#1": missing expected block(s) explainer (fleet consensus (&gt;70% of 28 sibling pages))
+      <details><summary>evidence</summary><pre>{
+  "template": "writing#1",
+  "missing": [
+    "explainer"
+  ],
+  "has": [
+    "rail",
+    "figure",
+    "fine-print",
+    "compare",
+    "code",
+    "lab",
+    "switch",
+    "row-list",
+    "author-box"
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="error" data-bucket="error" data-fid="templates/missing-template-blocks">
+      <td><span class="pill" style="background:#ff6b6b;color:#060a14">error</span></td>
+      <td>templates</td><td class="mono">missing-template-blocks</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>template "writing#1": missing expected block(s) explainer (fleet consensus (&gt;70% of 28 sibling pages))
+      <details><summary>evidence</summary><pre>{
+  "template": "writing#1",
+  "missing": [
+    "explainer"
+  ],
+  "has": [
+    "rail",
+    "figure",
+    "fine-print",
+    "talk-list",
+    "row-list",
+    "author-box"
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/duplicate-text">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">duplicate-text</td>
+      <td class="mono">/certifications</td>
+      <td>a 12-word sequence repeats within 400 words — content pasted twice?
+      <details><summary>evidence</summary><pre>{
+  "excerpt": "earned may 15 2023 expires jul 25 2027 verify credential adobe adobe"
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/duplicate-text">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">duplicate-text</td>
+      <td class="mono">/writing/2025-07-06-ai-coded-nextjs-agent-release-1</td>
+      <td>a 12-word sequence repeats within 400 words — content pasted twice?
+      <details><summary>evidence</summary><pre>{
+  "excerpt": "console warn api agent evaluate figma specs skipping invalid spec at index"
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/duplicate-text">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">duplicate-text</td>
+      <td class="mono">/writing/2025-07-11-scaling-ai-coding-delivery-methodology</td>
+      <td>a 12-word sequence repeats within 400 words — content pasted twice?
+      <details><summary>evidence</summary><pre>{
+  "excerpt": "read in order prd 1 0 md release 1 0 mdc agents"
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/duplicate-text">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">duplicate-text</td>
+      <td class="mono">/writing/2025-07-12-aem-headless-omnichannel-architecture</td>
+      <td>a 12-word sequence repeats within 400 words — content pasted twice?
+      <details><summary>evidence</summary><pre>{
+  "excerpt": "m1 m2 s1 s2 m1 pcf m2 pcf m2 pxf s1 ppg"
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/micro-paragraph-run">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">micro-paragraph-run</td>
+      <td class="mono">/writing/2025-09-01-aem-caching-production-architectures</td>
+      <td>2 run(s) of &gt;=4 consecutive micro-paragraphs (&lt;=3 words) — likely a flattened component
+      <details><summary>evidence</summary><pre>{
+  "runLengths": [
+    4,
+    4
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/duplicate-text">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">duplicate-text</td>
+      <td class="mono">/writing/2025-10-12-da-live-mcp-across-ai-platforms</td>
+      <td>a 12-word sequence repeats within 400 words — content pasted twice?
+      <details><summary>evidence</summary><pre>{
+  "excerpt": "toolinput path source jackzhaojin da live postal 2025 07 index copy html"
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/duplicate-text">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">duplicate-text</td>
+      <td class="mono">/writing/2026-03-23-eds-hlx-admin-agentic-config</td>
+      <td>a 12-word sequence repeats within 400 words — content pasted twice?
+      <details><summary>evidence</summary><pre>{
+  "excerpt": "https admin hlx page config my org sites my site robots txt"
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/duplicate-text">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">duplicate-text</td>
+      <td class="mono">/writing/2026-04-05-continuous-executive-agent-v2-1</td>
+      <td>a 12-word sequence repeats within 400 words — content pasted twice?
+      <details><summary>evidence</summary><pre>{
+  "excerpt": "10 failed phase 7 agentic diagnosis investigate failure decision continue normal retry"
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/flattened-collection">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">flattened-collection</td>
+      <td class="mono">/writing/2026-04-05-continuous-executive-agent-v2-1</td>
+      <td>default content repeats the pattern [h3+p] 5× (section 13) — a structured collection rendered as plain prose; it needs a block
+      <details><summary>evidence</summary><pre>{
+  "section": 13,
+  "cycle": [
+    "h3",
+    "p"
+  ],
+  "repeats": 5,
+  "runLength": 11,
+  "words": 437,
+  "unblockedRatio": 0.78
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/duplicate-text">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">duplicate-text</td>
+      <td class="mono">/writing/2026-05-31-continuous-agent-second-brain</td>
+      <td>a 12-word sequence repeats within 400 words — content pasted twice?
+      <details><summary>evidence</summary><pre>{
+  "excerpt": "an agent without memory runs every task like it's the first time"
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/flattened-collection">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">flattened-collection</td>
+      <td class="mono">/writing/2026-06-28-patterns-of-work</td>
+      <td>default content repeats the pattern [h3+…] 5× (section 9) — a structured collection rendered as plain prose; it needs a block
+      <details><summary>evidence</summary><pre>{
+  "section": 9,
+  "cycle": [
+    "h3",
+    "…"
+  ],
+  "repeats": 5,
+  "runLength": 18,
+  "words": 957,
+  "unblockedRatio": 0.86
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/duplicate-text">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">duplicate-text</td>
+      <td class="mono">/writing/2026-08-09-adobe-stardust-explained</td>
+      <td>a 12-word sequence repeats within 400 words — content pasted twice?
+      <details><summary>evidence</summary><pre>{
+  "excerpt": "proposed html migratedpath null history event approved by jack at 2026 08"
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="content/duplicate-text">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>content</td><td class="mono">duplicate-text</td>
+      <td class="mono">/writing/2026-08-15-anima-mesh-company-of-zero</td>
+      <td>a 12-word sequence repeats within 400 words — content pasted twice?
+      <details><summary>evidence</summary><pre>{
+  "excerpt": "defect report title external web fetch tool returns no usable content across"
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/</td>
+      <td>anchor #aem-rockstar-2024 on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing</td>
+      <td>anchor #ai-tinkerers-2026-animamesh on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing</td>
+      <td>anchor #ai-tinkerers-2026 on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2025-10-05-mcp-server-for-eds-da-live</td>
+      <td>anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2025-10-05-mcp-server-for-eds-da-live</td>
+      <td>anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2025-10-12-da-live-mcp-across-ai-platforms</td>
+      <td>anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2025-10-12-da-live-mcp-across-ai-platforms</td>
+      <td>anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-01-29-playwright-stakeholder-demos</td>
+      <td>anchor #p-kit-video on /portfolio has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-01-29-playwright-stakeholder-demos</td>
+      <td>anchor #p-kit-video on /portfolio has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-04-05-continuous-executive-agent-v2-1</td>
+      <td>anchor #ai-tinkerers-2026 on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-04-05-continuous-executive-agent-v2-1</td>
+      <td>anchor #ai-tinkerers-2026 on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-06-28-patterns-of-work</td>
+      <td>anchor #ai-tinkerers-2026 on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-08-09-adobe-stardust-explained</td>
+      <td>anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-08-15-anima-mesh-company-of-zero</td>
+      <td>anchor #ai-tinkerers-2026-animamesh on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-09-20-aem-edge-functions-google-sign-in</td>
+      <td>anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-01-agents-dont-browse on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-02-one-aem-mcp-server on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-03-rolling-out-mcp-on-aem on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-04-aem-elasticity on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-05-securing-aem-customer-code on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-06-aem-content-requests on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-07-develop-faster-aem-ai-tooling on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-08-migrate-to-aem-cloud-service-faster on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-09-comparador on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-10-ai-agent-driven-content-migration on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-11-hybrid-aem-architecture on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-12-tales-from-migration-trenches on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-13-spiritually-succeeding-aem on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-14-spellforge-to-experience-workspace on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-15-brand-visibility-in-llms on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-16-content-supply-chain on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-17-shifting-the-search-paradigm on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-18-continuous-materialization on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-19-aem-forms-rule-authoring on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-20-tracking-through-the-transition on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-21-index-optimizer on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-22-project-asset-hub on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-23-editorial-ai-in-aem on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-24-15-years-of-women on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #talk-25-dam-breakfast on /writing/2026-10-10-adaptto-2026-25-talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #adaptto-2026 on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="links/broken-anchor">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>links</td><td class="mono">broken-anchor</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>anchor #adaptto-2026-lightning on /talks has no matching id (verified in rendered DOM)
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/certifications</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/portfolio</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/privacy</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/talks</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-04-13-vibe-coding-star-story-generator</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-05-28-aem-headless-when-frontend-teams-lead</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-06-04-seven-aem-capabilities-tradeoffs</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-06-08-edge-cms-shift-adobe-eds</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-06-12-azure-rbac-cicd-for-ai-agents</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-07-06-ai-coded-nextjs-agent-release-1</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-07-11-scaling-ai-coding-delivery-methodology</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-07-12-aem-headless-omnichannel-architecture</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-07-13-three-eds-offerings</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-09-01-aem-caching-production-architectures</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-10-05-mcp-server-for-eds-da-live</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2025-10-12-da-live-mcp-across-ai-platforms</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-01-05-from-prompts-to-harness</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-01-29-playwright-stakeholder-demos</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-02-05-reusable-ai-development-modules</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-03-23-eds-hlx-admin-agentic-config</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-04-05-continuous-executive-agent-v2-1</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-04-12-two-ai-skills-team-enablement</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-05-17-adobe-eds-skills-hands-on</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-05-24-theming-eds-with-google-stitch</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-05-31-continuous-agent-second-brain</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-06-28-patterns-of-work</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-07-21-four-frontier-models-one-prompt</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-08-09-adobe-stardust-explained</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-08-15-anima-mesh-company-of-zero</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-09-20-aem-edge-functions-google-sign-in</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="metadata/missing-og-type">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>metadata</td><td class="mono">missing-og-type</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>page has no og:type
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="rendered/upscaled-image">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>rendered</td><td class="mono">upscaled-image</td>
+      <td class="mono">/</td>
+      <td>image rendered 600px wide from a 192px source (blurry) on 1 page(s)
+      <details><summary>evidence</summary><pre>{
+  "src": "https://main--www-eds--jackzhaojin.aem.live/media_14d1ac0ad972a1c6f26b89203d3287054e1dcc6d6.svg?width=2000&amp;format=webply&amp;optimize=medium",
+  "pages": [
+    "/"
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="rendered/upscaled-image">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>rendered</td><td class="mono">upscaled-image</td>
+      <td class="mono">/portfolio</td>
+      <td>image rendered 1038px wide from a 192px source (blurry) on 1 page(s)
+      <details><summary>evidence</summary><pre>{
+  "src": "https://main--www-eds--jackzhaojin.aem.live/portfolio/media_14d1ac0ad972a1c6f26b89203d3287054e1dcc6d6.svg?width=2000&amp;format=webply&amp;optimize=medium",
+  "pages": [
+    "/portfolio"
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="rendered/upscaled-image">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>rendered</td><td class="mono">upscaled-image</td>
+      <td class="mono">/portfolio</td>
+      <td>image rendered 1098px wide from a 190px source (blurry) on 1 page(s)
+      <details><summary>evidence</summary><pre>{
+  "src": "https://main--www-eds--jackzhaojin.aem.live/portfolio/media_1c6fb199d61ab20c5cee4193bfc9059e82a8f88e8.svg?width=2000&amp;format=webply&amp;optimize=medium",
+  "pages": [
+    "/portfolio"
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="rendered/upscaled-image">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>rendered</td><td class="mono">upscaled-image</td>
+      <td class="mono">/writing/2026-08-15-anima-mesh-company-of-zero</td>
+      <td>image rendered 760px wide from a 196px source (blurry) on 1 page(s)
+      <details><summary>evidence</summary><pre>{
+  "src": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-08-15-anima-mesh-company-of-zero/media_128fd5493d98b2a8e4bf1900816410977b3166df3.svg?width=2000&amp;format=webply&amp;optimize=medium",
+  "pages": [
+    "/writing/2026-08-15-anima-mesh-company-of-zero"
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="rendered/upscaled-image">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>rendered</td><td class="mono">upscaled-image</td>
+      <td class="mono">/writing/2026-08-15-anima-mesh-company-of-zero</td>
+      <td>image rendered 760px wide from a 190px source (blurry) on 1 page(s)
+      <details><summary>evidence</summary><pre>{
+  "src": "https://main--www-eds--jackzhaojin.aem.live/writing/2026-08-15-anima-mesh-company-of-zero/media_144a6924eba90d90d0138ec2d00866c98a6cda10b.svg?width=2000&amp;format=webply&amp;optimize=medium",
+  "pages": [
+    "/writing/2026-08-15-anima-mesh-company-of-zero"
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/certifications</td>
+      <td>/certifications (a folder index without its slash) returned 404: add the /certifications → /certifications/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/portfolio</td>
+      <td>/portfolio (a folder index without its slash) returned 404: add the /portfolio → /portfolio/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/privacy</td>
+      <td>/privacy (a folder index without its slash) returned 404: add the /privacy → /privacy/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/talks</td>
+      <td>/talks (a folder index without its slash) returned 404: add the /talks → /talks/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing</td>
+      <td>/writing (a folder index without its slash) returned 404: add the /writing → /writing/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-04-13-vibe-coding-star-story-generator</td>
+      <td>/writing/2025-04-13-vibe-coding-star-story-generator (a folder index without its slash) returned 404: add the /writing/2025-04-13-vibe-coding-star-story-generator → /writing/2025-04-13-vibe-coding-star-story-generator/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-05-28-aem-headless-when-frontend-teams-lead</td>
+      <td>/writing/2025-05-28-aem-headless-when-frontend-teams-lead (a folder index without its slash) returned 404: add the /writing/2025-05-28-aem-headless-when-frontend-teams-lead → /writing/2025-05-28-aem-headless-when-frontend-teams-lead/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-06-04-seven-aem-capabilities-tradeoffs</td>
+      <td>/writing/2025-06-04-seven-aem-capabilities-tradeoffs (a folder index without its slash) returned 404: add the /writing/2025-06-04-seven-aem-capabilities-tradeoffs → /writing/2025-06-04-seven-aem-capabilities-tradeoffs/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-06-08-edge-cms-shift-adobe-eds</td>
+      <td>/writing/2025-06-08-edge-cms-shift-adobe-eds (a folder index without its slash) returned 404: add the /writing/2025-06-08-edge-cms-shift-adobe-eds → /writing/2025-06-08-edge-cms-shift-adobe-eds/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-06-12-azure-rbac-cicd-for-ai-agents</td>
+      <td>/writing/2025-06-12-azure-rbac-cicd-for-ai-agents (a folder index without its slash) returned 404: add the /writing/2025-06-12-azure-rbac-cicd-for-ai-agents → /writing/2025-06-12-azure-rbac-cicd-for-ai-agents/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-07-06-ai-coded-nextjs-agent-release-1</td>
+      <td>/writing/2025-07-06-ai-coded-nextjs-agent-release-1 (a folder index without its slash) returned 404: add the /writing/2025-07-06-ai-coded-nextjs-agent-release-1 → /writing/2025-07-06-ai-coded-nextjs-agent-release-1/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure</td>
+      <td>/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure (a folder index without its slash) returned 404: add the /writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure → /writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-07-11-scaling-ai-coding-delivery-methodology</td>
+      <td>/writing/2025-07-11-scaling-ai-coding-delivery-methodology (a folder index without its slash) returned 404: add the /writing/2025-07-11-scaling-ai-coding-delivery-methodology → /writing/2025-07-11-scaling-ai-coding-delivery-methodology/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-07-12-aem-headless-omnichannel-architecture</td>
+      <td>/writing/2025-07-12-aem-headless-omnichannel-architecture (a folder index without its slash) returned 404: add the /writing/2025-07-12-aem-headless-omnichannel-architecture → /writing/2025-07-12-aem-headless-omnichannel-architecture/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-07-13-three-eds-offerings</td>
+      <td>/writing/2025-07-13-three-eds-offerings (a folder index without its slash) returned 404: add the /writing/2025-07-13-three-eds-offerings → /writing/2025-07-13-three-eds-offerings/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-09-01-aem-caching-production-architectures</td>
+      <td>/writing/2025-09-01-aem-caching-production-architectures (a folder index without its slash) returned 404: add the /writing/2025-09-01-aem-caching-production-architectures → /writing/2025-09-01-aem-caching-production-architectures/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-10-05-mcp-server-for-eds-da-live</td>
+      <td>/writing/2025-10-05-mcp-server-for-eds-da-live (a folder index without its slash) returned 404: add the /writing/2025-10-05-mcp-server-for-eds-da-live → /writing/2025-10-05-mcp-server-for-eds-da-live/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2025-10-12-da-live-mcp-across-ai-platforms</td>
+      <td>/writing/2025-10-12-da-live-mcp-across-ai-platforms (a folder index without its slash) returned 404: add the /writing/2025-10-12-da-live-mcp-across-ai-platforms → /writing/2025-10-12-da-live-mcp-across-ai-platforms/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-01-05-from-prompts-to-harness</td>
+      <td>/writing/2026-01-05-from-prompts-to-harness (a folder index without its slash) returned 404: add the /writing/2026-01-05-from-prompts-to-harness → /writing/2026-01-05-from-prompts-to-harness/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-01-29-playwright-stakeholder-demos</td>
+      <td>/writing/2026-01-29-playwright-stakeholder-demos (a folder index without its slash) returned 404: add the /writing/2026-01-29-playwright-stakeholder-demos → /writing/2026-01-29-playwright-stakeholder-demos/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-02-05-reusable-ai-development-modules</td>
+      <td>/writing/2026-02-05-reusable-ai-development-modules (a folder index without its slash) returned 404: add the /writing/2026-02-05-reusable-ai-development-modules → /writing/2026-02-05-reusable-ai-development-modules/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-03-23-eds-hlx-admin-agentic-config</td>
+      <td>/writing/2026-03-23-eds-hlx-admin-agentic-config (a folder index without its slash) returned 404: add the /writing/2026-03-23-eds-hlx-admin-agentic-config → /writing/2026-03-23-eds-hlx-admin-agentic-config/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-04-05-continuous-executive-agent-v2-1</td>
+      <td>/writing/2026-04-05-continuous-executive-agent-v2-1 (a folder index without its slash) returned 404: add the /writing/2026-04-05-continuous-executive-agent-v2-1 → /writing/2026-04-05-continuous-executive-agent-v2-1/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-04-12-two-ai-skills-team-enablement</td>
+      <td>/writing/2026-04-12-two-ai-skills-team-enablement (a folder index without its slash) returned 404: add the /writing/2026-04-12-two-ai-skills-team-enablement → /writing/2026-04-12-two-ai-skills-team-enablement/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-05-17-adobe-eds-skills-hands-on</td>
+      <td>/writing/2026-05-17-adobe-eds-skills-hands-on (a folder index without its slash) returned 404: add the /writing/2026-05-17-adobe-eds-skills-hands-on → /writing/2026-05-17-adobe-eds-skills-hands-on/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-05-24-theming-eds-with-google-stitch</td>
+      <td>/writing/2026-05-24-theming-eds-with-google-stitch (a folder index without its slash) returned 404: add the /writing/2026-05-24-theming-eds-with-google-stitch → /writing/2026-05-24-theming-eds-with-google-stitch/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-05-31-continuous-agent-second-brain</td>
+      <td>/writing/2026-05-31-continuous-agent-second-brain (a folder index without its slash) returned 404: add the /writing/2026-05-31-continuous-agent-second-brain → /writing/2026-05-31-continuous-agent-second-brain/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-06-28-patterns-of-work</td>
+      <td>/writing/2026-06-28-patterns-of-work (a folder index without its slash) returned 404: add the /writing/2026-06-28-patterns-of-work → /writing/2026-06-28-patterns-of-work/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-07-21-four-frontier-models-one-prompt</td>
+      <td>/writing/2026-07-21-four-frontier-models-one-prompt (a folder index without its slash) returned 404: add the /writing/2026-07-21-four-frontier-models-one-prompt → /writing/2026-07-21-four-frontier-models-one-prompt/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-08-09-adobe-stardust-explained</td>
+      <td>/writing/2026-08-09-adobe-stardust-explained (a folder index without its slash) returned 404: add the /writing/2026-08-09-adobe-stardust-explained → /writing/2026-08-09-adobe-stardust-explained/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-08-15-anima-mesh-company-of-zero</td>
+      <td>/writing/2026-08-15-anima-mesh-company-of-zero (a folder index without its slash) returned 404: add the /writing/2026-08-15-anima-mesh-company-of-zero → /writing/2026-08-15-anima-mesh-company-of-zero/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-09-20-aem-edge-functions-google-sign-in</td>
+      <td>/writing/2026-09-20-aem-edge-functions-google-sign-in (a folder index without its slash) returned 404: add the /writing/2026-09-20-aem-edge-functions-google-sign-in → /writing/2026-09-20-aem-edge-functions-google-sign-in/ redirect
+      </td>
+    </tr>
+    <tr class="warn" data-bucket="warn" data-fid="routing/trailing-slash-broken">
+      <td><span class="pill" style="background:#e8b95e;color:#0a1024">warn</span></td>
+      <td>routing</td><td class="mono">trailing-slash-broken</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>/writing/2026-10-10-adaptto-2026-25-talks (a folder index without its slash) returned 404: add the /writing/2026-10-10-adaptto-2026-25-talks → /writing/2026-10-10-adaptto-2026-25-talks/ redirect
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="a11y/axe-aria-allowed-role">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>a11y</td><td class="mono">axe-aria-allowed-role</td>
+      <td class="mono">/writing/2026-05-24-theming-eds-with-google-stitch</td>
+      <td>ARIA role should be appropriate for the element (minor) — 3 page(s) affected
+      <details><summary>evidence</summary><pre>{
+  "rule": "aria-allowed-role",
+  "pages": [
+    "/writing/2026-05-24-theming-eds-with-google-stitch",
+    "/writing/2026-06-28-patterns-of-work",
+    "/writing/2026-08-09-adobe-stardust-explained"
+  ],
+  "sampleTargets": [
+    "li[data-group=\"colors\"]",
+    "li[data-group=\"fonts\"]",
+    "li[data-group=\"buttons\"]"
+  ],
+  "nodesOnFirstPage": 3
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/certifications</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/portfolio</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/privacy</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/talks</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-04-13-vibe-coding-star-story-generator</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-05-28-aem-headless-when-frontend-teams-lead</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-06-04-seven-aem-capabilities-tradeoffs</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-06-08-edge-cms-shift-adobe-eds</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-06-12-azure-rbac-cicd-for-ai-agents</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-07-06-ai-coded-nextjs-agent-release-1</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-07-11-scaling-ai-coding-delivery-methodology</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-07-12-aem-headless-omnichannel-architecture</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-07-13-three-eds-offerings</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-09-01-aem-caching-production-architectures</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-10-05-mcp-server-for-eds-da-live</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2025-10-12-da-live-mcp-across-ai-platforms</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-01-05-from-prompts-to-harness</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-01-29-playwright-stakeholder-demos</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-02-05-reusable-ai-development-modules</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-03-23-eds-hlx-admin-agentic-config</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-04-05-continuous-executive-agent-v2-1</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-04-12-two-ai-skills-team-enablement</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-05-17-adobe-eds-skills-hands-on</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-05-24-theming-eds-with-google-stitch</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-05-31-continuous-agent-second-brain</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-06-28-patterns-of-work</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-07-21-four-frontier-models-one-prompt</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-08-09-adobe-stardust-explained</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-08-15-anima-mesh-company-of-zero</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-09-20-aem-edge-functions-google-sign-in</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="ai-readability/ai-readability-unmeasured">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>ai-readability</td><td class="mono">ai-readability-unmeasured</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>not measured: served fetch HTTP 404
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="chrome/header-contract-missing">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>chrome</td><td class="mono">header-contract-missing</td>
+      <td class="mono">/</td>
+      <td>no header contract at stardust/chrome/header-contract.json — the header's behaviour is not checked (extract --prep records it)
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="dynamics/parity-missing">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>dynamics</td><td class="mono">parity-missing</td>
+      <td class="mono">(fleet)</td>
+      <td>no dynamic parity file at stardust/dynamics/parity.json — run stardust:dynamics (Phases 1–5) if this site was migrated with dynamic features
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/</td>
+      <td>authored 28 · editable 28 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 28,
+    "editable": 28,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "hero",
+      "authored": 8,
+      "editable": 8,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "default",
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "showcase",
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "the id and label rows are config (an anchor and an aria-label), not displayed text"
+      ]
+    },
+    {
+      "block": "cards",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "columns",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/certifications</td>
+      <td>authored 140 · editable 140 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 140,
+    "editable": 140,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "hero",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "default",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "credentials",
+      "authored": 130,
+      "editable": 130,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/portfolio</td>
+      <td>authored 508 · editable 508 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 508,
+    "editable": 508,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 14,
+      "editable": 14,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "jump-links",
+      "authored": 3,
+      "editable": 3,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "the label row is the navigation's aria-label, not displayed text"
+      ]
+    },
+    {
+      "block": "timeline",
+      "authored": 111,
+      "editable": 111,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "gantt config cells (range, now, ids, dates, ongoing, rail, legend) are chart data"
+      ]
+    },
+    {
+      "block": "divider",
+      "authored": 22,
+      "editable": 22,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "chapter-head",
+      "authored": 53,
+      "editable": 53,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "the numeral is derived from the chapter order, not authored text"
+      ]
+    },
+    {
+      "block": "showcase",
+      "authored": 123,
+      "editable": 123,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "the id and label rows are config (an anchor and an aria-label), not displayed text"
+      ]
+    },
+    {
+      "block": "tabs",
+      "authored": 27,
+      "editable": 27,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "the label row is the tab list's aria-label; the numbers and the position are derived"
+      ]
+    },
+    {
+      "block": "panel",
+      "authored": 86,
+      "editable": 86,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "config rows (label, replay, max) are aria-labels and a scale, not displayed text"
+      ]
+    },
+    {
+      "block": "proof-links",
+      "authored": 15,
+      "editable": 15,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "the title row is the tag's tooltip (a title attribute), not displayed text"
+      ]
+    },
+    {
+      "block": "stat-chips",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "cards",
+      "authored": 26,
+      "editable": 26,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "stats",
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "the label row is the panel's aria-label, not displayed text"
+      ]
+    },
+    {
+      "block": "frame",
+      "authored": 8,
+      "editable": 8,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "the label row is the image link's aria-label, not displayed </pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/privacy</td>
+      <td>authored 19 · editable 19 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 19,
+    "editable": 19,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "hero",
+      "authored": 3,
+      "editable": 3,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "default",
+      "authored": 16,
+      "editable": 16,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/talks</td>
+      <td>authored 77 · editable 77 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 77,
+    "editable": 77,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "hero",
+      "authored": 3,
+      "editable": 3,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 74,
+      "editable": 74,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing</td>
+      <td>authored 198 · editable 197 · dead 0 · duplicated 0 · exempt 1
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 198,
+    "editable": 197,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 1
+  },
+  "blocks": [
+    {
+      "block": "hero",
+      "authored": 3,
+      "editable": 3,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "widget",
+      "authored": 1,
+      "editable": 0,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 1,
+      "exemptReasons": [
+        "widget: rendered by code, nothing authored"
+      ]
+    },
+    {
+      "block": "writing-list",
+      "authored": 192,
+      "editable": 192,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "keywords: search terms and keep-together runs, hidden (.writing-list-keywords)"
+      ]
+    },
+    {
+      "block": "default",
+      "authored": 2,
+      "editable": 2,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-04-13-vibe-coding-star-story-generator</td>
+      <td>authored 143 · editable 143 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 143,
+    "editable": 143,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 25,
+      "editable": 25,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "figure",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "explainer",
+      "authored": 68,
+      "editable": 68,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "code",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "data-table",
+      "authored": 23,
+      "editable": 23,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "sr-caption: the caption is read by screen readers only (.sr-only)"
+      ]
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-05-28-aem-headless-when-frontend-teams-lead</td>
+      <td>authored 109 · editable 109 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 109,
+    "editable": 109,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 32,
+      "editable": 32,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 7,
+      "editable": 7,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "figure",
+      "authored": 2,
+      "editable": 2,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "explainer",
+      "authored": 54,
+      "editable": 54,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-06-04-seven-aem-capabilities-tradeoffs</td>
+      <td>authored 251 · editable 251 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 251,
+    "editable": 251,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 38,
+      "editable": 38,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 8,
+      "editable": 8,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "figure",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "explainer",
+      "authored": 190,
+      "editable": 190,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-06-08-edge-cms-shift-adobe-eds</td>
+      <td>authored 115 · editable 115 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 115,
+    "editable": 115,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 34,
+      "editable": 34,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 61,
+      "editable": 61,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-06-12-azure-rbac-cicd-for-ai-agents</td>
+      <td>authored 159 · editable 159 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 159,
+    "editable": 159,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 50,
+      "editable": 50,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 2,
+      "editable": 2,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "figure",
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "code",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 47,
+      "editable": 47,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "data-table",
+      "authored": 30,
+      "editable": 30,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "sr-caption: the caption is read by screen readers only (.sr-only)"
+      ]
+    },
+    {
+      "block": "row-list",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-07-06-ai-coded-nextjs-agent-release-1</td>
+      <td>authored 114 · editable 114 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 114,
+    "editable": 114,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 53,
+      "editable": 53,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "series",
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "name: the nav's accessible name, hidden through .series-name"
+      ]
+    },
+    {
+      "block": "rail",
+      "authored": 12,
+      "editable": 12,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 7,
+      "editable": 7,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "compare",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 14,
+      "editable": 14,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "code",
+      "authored": 3,
+      "editable": 3,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure</td>
+      <td>authored 154 · editable 154 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 154,
+    "editable": 154,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 39,
+      "editable": 39,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "series",
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "name: the nav's accessible name, hidden through .series-name"
+      ]
+    },
+    {
+      "block": "rail",
+      "authored": 10,
+      "editable": 10,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 32,
+      "editable": 32,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "code",
+      "authored": 21,
+      "editable": 21,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "figure",
+      "authored": 3,
+      "editable": 3,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "data-table",
+      "authored": 33,
+      "editable": 33,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "sr-caption: the caption is read by screen readers only (.sr-only)"
+      ]
+    },
+    {
+      "block": "row-list",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-07-11-scaling-ai-coding-delivery-methodology</td>
+      <td>authored 105 · editable 105 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 105,
+    "editable": 105,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 35,
+      "editable": 35,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "series",
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "name: the nav's accessible name, hidden through .series-name"
+      ]
+    },
+    {
+      "block": "rail",
+      "authored": 10,
+      "editable": 10,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "figure",
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "code",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 33,
+      "editable": 33,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-07-12-aem-headless-omnichannel-architecture</td>
+      <td>authored 128 · editable 128 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 128,
+    "editable": 128,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 46,
+      "editable": 46,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 10,
+      "editable": 10,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 52,
+      "editable": 52,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-07-13-three-eds-offerings</td>
+      <td>authored 61 · editable 61 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 61,
+    "editable": 61,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 24,
+      "editable": 24,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 7,
+      "editable": 7,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 16,
+      "editable": 16,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-09-01-aem-caching-production-architectures</td>
+      <td>authored 158 · editable 158 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 158,
+    "editable": 158,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 49,
+      "editable": 49,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 11,
+      "editable": 11,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "figure",
+      "authored": 3,
+      "editable": 3,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "code",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 64,
+      "editable": 64,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "data-table",
+      "authored": 11,
+      "editable": 11,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "sr-caption: the caption is read by screen readers only (.sr-only)"
+      ]
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-10-05-mcp-server-for-eds-da-live</td>
+      <td>authored 130 · editable 130 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 130,
+    "editable": 130,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 44,
+      "editable": 44,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 10,
+      "editable": 10,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "data-table",
+      "authored": 8,
+      "editable": 8,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "sr-caption: the caption is read by screen readers only (.sr-only)"
+      ]
+    },
+    {
+      "block": "code",
+      "authored": 12,
+      "editable": 12,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 35,
+      "editable": 35,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 12,
+      "editable": 12,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2025-10-12-da-live-mcp-across-ai-platforms</td>
+      <td>authored 138 · editable 138 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 138,
+    "editable": 138,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 38,
+      "editable": 38,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 10,
+      "editable": 10,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 45,
+      "editable": 45,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "code",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "data-table",
+      "authored": 16,
+      "editable": 16,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "sr-caption: the caption is read by screen readers only (.sr-only)"
+      ]
+    },
+    {
+      "block": "row-list",
+      "authored": 12,
+      "editable": 12,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-01-05-from-prompts-to-harness</td>
+      <td>authored 122 · editable 122 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 122,
+    "editable": 122,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 51,
+      "editable": 51,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 10,
+      "editable": 10,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "figure",
+      "authored": 7,
+      "editable": 7,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "code",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 34,
+      "editable": 34,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-01-29-playwright-stakeholder-demos</td>
+      <td>authored 156 · editable 156 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 156,
+    "editable": 156,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 34,
+      "editable": 34,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "data-table",
+      "authored": 12,
+      "editable": 12,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "sr-caption: the caption is read by screen readers only (.sr-only)"
+      ]
+    },
+    {
+      "block": "code",
+      "authored": 12,
+      "editable": 12,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 73,
+      "editable": 73,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-02-05-reusable-ai-development-modules</td>
+      <td>authored 73 · editable 73 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 73,
+    "editable": 73,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 39,
+      "editable": 39,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 8,
+      "editable": 8,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 7,
+      "editable": 7,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-03-23-eds-hlx-admin-agentic-config</td>
+      <td>authored 109 · editable 109 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 109,
+    "editable": 109,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 46,
+      "editable": 46,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 11,
+      "editable": 11,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 8,
+      "editable": 8,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "code",
+      "authored": 12,
+      "editable": 12,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 21,
+      "editable": 21,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-04-05-continuous-executive-agent-v2-1</td>
+      <td>authored 153 · editable 153 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 153,
+    "editable": 153,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 79,
+      "editable": 79,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 13,
+      "editable": 13,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 11,
+      "editable": 11,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "code",
+      "authored": 3,
+      "editable": 3,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 27,
+      "editable": 27,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "compare",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-04-12-two-ai-skills-team-enablement</td>
+      <td>authored 105 · editable 105 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 105,
+    "editable": 105,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 40,
+      "editable": 40,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 3,
+      "editable": 3,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "code",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 33,
+      "editable": 33,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-05-17-adobe-eds-skills-hands-on</td>
+      <td>authored 123 · editable 123 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 123,
+    "editable": 123,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 40,
+      "editable": 40,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "code",
+      "authored": 3,
+      "editable": 3,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 56,
+      "editable": 56,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-05-24-theming-eds-with-google-stitch</td>
+      <td>authored 134 · editable 134 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 134,
+    "editable": 134,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 40,
+      "editable": 40,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 8,
+      "editable": 8,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "code",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 54,
+      "editable": 54,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "compare",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-05-31-continuous-agent-second-brain</td>
+      <td>authored 152 · editable 152 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 152,
+    "editable": 152,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 38,
+      "editable": 38,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "figure",
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "data-table",
+      "authored": 36,
+      "editable": 36,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "sr-caption: the caption is read by screen readers only (.sr-only)"
+      ]
+    },
+    {
+      "block": "code",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 47,
+      "editable": 47,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-06-28-patterns-of-work</td>
+      <td>authored 221 · editable 221 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 221,
+    "editable": 221,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 125,
+      "editable": 125,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 14,
+      "editable": 14,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "figure",
+      "authored": 13,
+      "editable": 13,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "explainer",
+      "authored": 52,
+      "editable": 52,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 12,
+      "editable": 12,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-07-21-four-frontier-models-one-prompt</td>
+      <td>authored 130 · editable 130 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 130,
+    "editable": 130,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 42,
+      "editable": 42,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 8,
+      "editable": 8,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 7,
+      "editable": 7,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "compare",
+      "authored": 10,
+      "editable": 10,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 49,
+      "editable": 49,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-08-09-adobe-stardust-explained</td>
+      <td>authored 99 · editable 99 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 99,
+    "editable": 99,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 42,
+      "editable": 42,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 3,
+      "editable": 3,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 31,
+      "editable": 31,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-08-15-anima-mesh-company-of-zero</td>
+      <td>authored 250 · editable 250 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 250,
+    "editable": 250,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 65,
+      "editable": 65,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 12,
+      "editable": 12,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 8,
+      "editable": 8,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "code",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "explainer",
+      "authored": 142,
+      "editable": 142,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-09-20-aem-edge-functions-google-sign-in</td>
+      <td>authored 110 · editable 110 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 110,
+    "editable": 110,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 44,
+      "editable": 44,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "compare",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "code",
+      "authored": 6,
+      "editable": 6,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "lab",
+      "authored": 12,
+      "editable": 12,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; token, &lt;pre&gt; decoded JSON, the modulus code - derived, rewritten by the engine"
+      ]
+    },
+    {
+      "block": "switch",
+      "authored": 14,
+      "editable": 14,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;ul&gt; code marks, &lt;p&gt; switch name - text-as-metadata, never displayed"
+      ]
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="editability/summary">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>editability</td><td class="mono">summary</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>authored 332 · editable 332 · dead 0 · duplicated 0 · exempt 0
+      <details><summary>evidence</summary><pre>{
+  "totals": {
+    "authored": 332,
+    "editable": 332,
+    "dead": 0,
+    "duplicated": 0,
+    "exempt": 0
+  },
+  "blocks": [
+    {
+      "block": "default",
+      "authored": 17,
+      "editable": 17,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "rail",
+      "authored": 29,
+      "editable": 29,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "summary \"On this page\" - interface chrome, not authored"
+      ]
+    },
+    {
+      "block": "figure",
+      "authored": 2,
+      "editable": 2,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "&lt;p&gt; video link - the embed's source link, never displayed"
+      ]
+    },
+    {
+      "block": "fine-print",
+      "authored": 1,
+      "editable": 1,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    {
+      "block": "talk-list",
+      "authored": 270,
+      "editable": 270,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchor paragraph - the heading's id, never displayed"
+      ]
+    },
+    {
+      "block": "row-list",
+      "authored": 9,
+      "editable": 9,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0,
+      "exemptReasons": [
+        "anchors: link targets for the talk rows, hidden through .row-list-anchors"
+      ]
+    },
+    {
+      "block": "author-box",
+      "authored": 4,
+      "editable": 4,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    }
+  ]
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="links/externals-skipped">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>links</td><td class="mono">externals-skipped</td>
+      <td class="mono">(fleet)</td>
+      <td>637 unique external link(s) not probed — pass --probe-externals to check them
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/certifications</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/privacy</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/talks</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-04-13-vibe-coding-star-story-generator</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-05-28-aem-headless-when-frontend-teams-lead</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-06-04-seven-aem-capabilities-tradeoffs</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-06-08-edge-cms-shift-adobe-eds</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-06-12-azure-rbac-cicd-for-ai-agents</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-07-06-ai-coded-nextjs-agent-release-1</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-07-11-scaling-ai-coding-delivery-methodology</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-07-12-aem-headless-omnichannel-architecture</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-07-13-three-eds-offerings</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-09-01-aem-caching-production-architectures</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-10-05-mcp-server-for-eds-da-live</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2025-10-12-da-live-mcp-across-ai-platforms</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-01-05-from-prompts-to-harness</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-01-29-playwright-stakeholder-demos</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-02-05-reusable-ai-development-modules</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-03-23-eds-hlx-admin-agentic-config</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-04-05-continuous-executive-agent-v2-1</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-04-12-two-ai-skills-team-enablement</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-05-17-adobe-eds-skills-hands-on</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-05-24-theming-eds-with-google-stitch</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-05-31-continuous-agent-second-brain</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-06-28-patterns-of-work</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-07-21-four-frontier-models-one-prompt</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-08-09-adobe-stardust-explained</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-08-15-anima-mesh-company-of-zero</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-09-20-aem-edge-functions-google-sign-in</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="metadata/missing-og-image-alt">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>metadata</td><td class="mono">missing-og-image-alt</td>
+      <td class="mono">/writing/2026-10-10-adaptto-2026-25-talks</td>
+      <td>og:image has no og:image:alt
+      </td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="perf/measurement">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>perf</td><td class="mono">measurement</td>
+      <td class="mono">/</td>
+      <td>transfer 222KB (js 30KB), LCP 252ms, CLS 0
+      <details><summary>evidence</summary><pre>{
+  "kb": 222,
+  "jsKb": 30,
+  "lcp": 252,
+  "cls": 0,
+  "template": "(root)#1"
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="perf/measurement">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>perf</td><td class="mono">measurement</td>
+      <td class="mono">/certifications</td>
+      <td>transfer 335KB (js 26KB), LCP 232ms, CLS 0.001
+      <details><summary>evidence</summary><pre>{
+  "kb": 335,
+  "jsKb": 26,
+  "lcp": 232,
+  "cls": 0.001,
+  "template": "certifications#1"
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="perf/measurement">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>perf</td><td class="mono">measurement</td>
+      <td class="mono">/portfolio</td>
+      <td>transfer 260KB (js 48KB), LCP 324ms, CLS 0
+      <details><summary>evidence</summary><pre>{
+  "kb": 260,
+  "jsKb": 48,
+  "lcp": 324,
+  "cls": 0,
+  "template": "portfolio#1"
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="perf/measurement">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>perf</td><td class="mono">measurement</td>
+      <td class="mono">/privacy</td>
+      <td>transfer 153KB (js 20KB), LCP 216ms, CLS 0.003
+      <details><summary>evidence</summary><pre>{
+  "kb": 153,
+  "jsKb": 20,
+  "lcp": 216,
+  "cls": 0.003,
+  "template": "privacy#1"
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="perf/measurement">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>perf</td><td class="mono">measurement</td>
+      <td class="mono">/talks</td>
+      <td>transfer 161KB (js 26KB), LCP 212ms, CLS 0.001
+      <details><summary>evidence</summary><pre>{
+  "kb": 161,
+  "jsKb": 26,
+  "lcp": 212,
+  "cls": 0.001,
+  "template": "talks#1"
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="perf/measurement">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>perf</td><td class="mono">measurement</td>
+      <td class="mono">/writing</td>
+      <td>transfer 641KB (js 31KB), LCP 204ms, CLS 0
+      <details><summary>evidence</summary><pre>{
+  "kb": 641,
+  "jsKb": 31,
+  "lcp": 204,
+  "cls": 0,
+  "template": "writing#2"
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="perf/measurement">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>perf</td><td class="mono">measurement</td>
+      <td class="mono">/writing/2025-04-13-vibe-coding-star-story-generator</td>
+      <td>transfer 257KB (js 40KB), LCP 176ms, CLS 0.059
+      <details><summary>evidence</summary><pre>{
+  "kb": 257,
+  "jsKb": 40,
+  "lcp": 176,
+  "cls": 0.059,
+  "template": "writing#1"
+}</pre></details></td>
+    </tr>
+    <tr class="info" data-bucket="info" data-fid="routing/no-redirects-sheet">
+      <td><span class="pill" style="background:rgba(245,240,230,0.15);color:#f5f0e6">info</span></td>
+      <td>routing</td><td class="mono">no-redirects-sheet</td>
+      <td class="mono">(fleet)</td>
+      <td>no /redirects.json sheet (404) — skipping redirect verification
+      </td>
+    </tr></tbody></table>
+<footer><span class="tag">STARDUST</span> · qa report · 0.36.0 — findings only; this sweep never edits the site.</footer>
+</div>
+<script>
+(function () {
+  var on = { bucket: {}, fid: {} };
+  var rows = Array.prototype.slice.call(document.querySelectorAll('tbody tr'));
+  function any(set) { for (var k in set) if (set[k]) return true; return false; }
+  function apply() {
+    var sevActive = any(on.bucket);
+    // level 2 depends on level 1: recount each finding chip against the
+    // severity selection; chips with no matching rows hide and deselect
+    document.querySelectorAll('.chip.fid').forEach(function (chip) {
+      var n = rows.filter(function (tr) {
+        return tr.dataset.fid === chip.dataset.fid
+          && (!sevActive || on.bucket[tr.dataset.bucket]);
+      }).length;
+      chip.querySelector('.n').textContent = '(' + n + ')';
+      chip.style.display = n ? '' : 'none';
+      if (!n && on.fid[chip.dataset.fid]) { on.fid[chip.dataset.fid] = false; chip.classList.remove('on'); }
+    });
+    var fidActive = any(on.fid);
+    var shown = 0;
+    rows.forEach(function (tr) {
+      var ok = (!sevActive || on.bucket[tr.dataset.bucket])
+            && (!fidActive || on.fid[tr.dataset.fid]);
+      tr.style.display = ok ? '' : 'none';
+      if (ok) shown += 1;
+    });
+    document.getElementById('shown').textContent = shown;
+    document.querySelector('.showing').classList.toggle('filtered', sevActive || fidActive);
+  }
+  function wire(sel, key, attr) {
+    document.querySelectorAll(sel).forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var v = chip.dataset[attr];
+        on[key][v] = !on[key][v];
+        chip.classList.toggle('on', on[key][v]);
+        apply();
+      });
+    });
+  }
+  wire('.chip.sev', 'bucket', 'bucket');
+  wire('.chip.fid', 'fid', 'fid');
+  document.getElementById('clear').addEventListener('click', function () {
+    on = { bucket: {}, fid: {} };
+    document.querySelectorAll('.chip.on').forEach(function (c) { c.classList.remove('on'); });
+    apply();
+  });
+})();
+</script>
+</body></html>
