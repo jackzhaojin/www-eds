@@ -23,3 +23,5 @@ helix-importer-ui
 
 # agent worktrees
 .claude/worktrees/
+.impeccable/hook.cache.json
+.impeccable/config.local.json
