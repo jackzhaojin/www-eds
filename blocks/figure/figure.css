@@ -47,6 +47,10 @@
   margin-inline: auto;
 }
 
+.figure.board.compact {
+  max-width: 560px;
+}
+
 .figure.native img {
   width: auto;
   max-width: min(100%, 690px);

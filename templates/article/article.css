@@ -216,37 +216,7 @@
 }
 
 @media (hover: none) {
-  /* A question heading (an h3 that ends with "?", marked by the template): the Q&A voice. */
-.article .article-body .default-content-wrapper .question h3 {
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--color-text);
-  margin: var(--space-6) 0 var(--space-2);
-}
-
-.article .article-body .default-content-wrapper > .question + * {
-  margin-top: 0;
-}
-
-.article .article-body .default-content-wrapper blockquote {
-  max-width: var(--measure);
-  margin-left: 0;
-  padding: 14px 18px;
-  border: 1px solid var(--color-line);
-  border-radius: 10px;
-  background: var(--color-surface);
-}
-
-.article .article-body .default-content-wrapper blockquote p {
-  margin: 0;
-  color: var(--color-text);
-  font-size: 1.0625rem;
-  line-height: 1.7;
-}
-
-.article .heading-link {
+  .article .heading-link {
     opacity: 0.55;
   }
 }
@@ -281,6 +251,20 @@
 .article .article-body .section.code-wrap .default-content-wrapper pre {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+/* Section style code-wrap-wide: the same, from tablet width up; phones scroll (one article). */
+@media (width >= 641px) {
+  .article .article-body .section.code-wrap-wide .default-content-wrapper pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Section style roomy-h3: h3 headings get a step more room above and keep to 40ch (one article). */
+.article .article-body .section.roomy-h3 .default-content-wrapper h3 {
+  margin-top: var(--space-7);
+  max-width: 40ch;
 }
 
 .article .article-body pre,

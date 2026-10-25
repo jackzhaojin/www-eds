@@ -11,7 +11,7 @@
  * becomes the delivered image, since the authored media URL is not public.
  *
  * @ew-exempt <p> video link - the embed's source link, never displayed
- * @variants board | shot | page | narrow | slim | native | open (default board)
+ * @variants board | shot | page | narrow | slim | compact | native | open (default board)
  *   board - a diagram on a white ground with a hairline, as the source's boards
  *   shot - a product screenshot, the same frame, opens full size
  *   page - a photographed notebook page, at most 420px wide, opens full size
@@ -19,6 +19,8 @@
  *   its caption kept at most 520px wide, centered
  *   slim - with shot: a portrait screenshot kept at most 460px wide (one article's narrower
  *   setting; register R8 proposes one width)
+ *   compact - with board: the whole figure kept at most 560px wide, left-aligned (one
+ *   article's board--narrow)
  *   native - the image at its own size, never upscaled, left-aligned
  *   open - with board: the diagram opens full size on click
  */

@@ -74,6 +74,11 @@ const tableNowrap = /td:last-child[^{]*\{[^}]*white-space:\s*nowrap/.test(srcCss
 const codePlainWraps = /\.code-plain\s*\{[^}]*white-space:\s*pre-wrap/.test(srcCss);
 const compareTouch = /\.cmp__tabs button\s*\{[^}]*min-height:\s*44px/.test(srcCss);
 const shotSlim = /\.shot--narrow\s*\{\s*max-width:\s*460px/.test(srcCss);
+const codeBarsStack = /\.code \.bar,[^{]*\.lab__bar\s*\{[^}]*flex-direction:\s*column/.test(srcCss);
+const codePlainWrapsWide = /min-width:\s*641px\)\s*\{[^{}]*\.code-plain[^{]*\{[^}]*pre-wrap/.test(srcCss);
+const roomyH3 = /\.article-body > h3\s*\{[^}]*margin-top:\s*var\(--space-7\)/.test(srcCss);
+const boardCompact = /\.board--narrow\s*\{\s*max-width:\s*560px/.test(srcCss);
+const tableStacks = (cls) => new RegExp(`max-width:\\s*560px\\)\\s*\\{\\s*\\.${cls} thead\\s*\\{\\s*display:\\s*none`).test(srcCss);
 
 function codeText($pre) {
   const lines = $pre.find('.ln');
@@ -87,7 +92,9 @@ function codeText($pre) {
 function dataTable(el) {
   const $t = $(el).is('table') ? $(el) : $(el).find('table').first();
   const rows = $t.find('tr').map((_, tr) => [$(tr).children('th, td').map((__, c) => `<p>${inline(c)}</p>`).get()]).get();
-  return block(tableNowrap ? 'data-table nowrap' : 'data-table', rows);
+  const look = ['cheat', 'rank'].find((cls) => $t.hasClass(cls));
+  const words = ['data-table', tableNowrap && 'nowrap', look, look && tableStacks(look) && 'stack'];
+  return block(words.filter(Boolean).join(' '), rows);
 }
 
 function figure(el) {
@@ -111,7 +118,9 @@ function figure(el) {
     const label = bar.find('span').first();
     const link = bar.find('a').first();
     const prose = $el.find('.ln').length && $el.find('.ln').length === $el.find('.ln.md').length;
-    return block(['code', codeWraps && 'wrap', prose && 'prose'].filter(Boolean).join(' '), [
+    const plain = $el.hasClass('code--prose');
+    const words = ['code', codeWraps && 'wrap', prose && !plain && 'prose', plain && 'plain', codeBarsStack && 'stack'];
+    return block(words.filter(Boolean).join(' '), [
       [`<p>${inline(label)}</p><p><a href="${esc(absHref(link.attr('href')))}">${inline(link)}</a></p>`],
       [`<pre><code>${esc(codeText($el.find('pre')))}</code></pre>`],
     ]);
@@ -119,7 +128,8 @@ function figure(el) {
   if ($el.hasClass('board')) {
     const cap = $el.find('figcaption');
     const link = $el.find('img').first().parent('a');
-    const words = ['figure board', $el.hasClass('fig--native') && 'native', link.length && 'open'].filter(Boolean).join(' ');
+    const compact = boardCompact && $el.hasClass('board--narrow');
+    const words = ['figure board', compact && 'compact', $el.hasClass('fig--native') && 'native', link.length && 'open'].filter(Boolean).join(' ');
     const title = link.attr('title') ? ` title="${esc(link.attr('title'))}"` : '';
     const image = img($el.find('img'));
     const media = link.length ? `<a href="${/src="([^"]+)"/.exec(image)[1]}"${title}>${image}</a>` : image;
@@ -238,7 +248,18 @@ function viaEngine(el) {
 const head = $('.article-head');
 const crumbs = head.find('.breadcrumb li').map((_, li) => `<li>${inline(li)}</li>`).get().join('');
 const sections = [];
-sections.push(`<ol>${crumbs}</ol><h1>${esc(text(head.find('h1')))}</h1><p>${inline(head.find('.byline'))}</p><p>${inline(head.find('.summary'))}</p>`);
+// A series nav ends the head: its label and accessible name, then one link per part.
+const series = head.find('nav.series');
+const seriesRows = series.find('li a').map((_, a) => {
+  const $a = $(a);
+  const part = $a.children('b').first().text();
+  const title = $a.clone().children('b').remove().end().text();
+  return [[`<p><a href="${esc(absHref($a.attr('href')))}"><strong>${esc(part)}</strong>${esc(title)}</a></p>`]];
+}).get();
+const seriesBlock = series.length
+  ? block('series', [[`<p>${esc(series.find('.series__label').text())}</p>`, `<p>${esc(series.attr('aria-label') || '')}</p>`], ...seriesRows])
+  : '';
+sections.push(`<ol>${crumbs}</ol><h1>${esc(text(head.find('h1')))}</h1><p>${inline(head.find('.byline'))}</p><p>${inline(head.find('.summary'))}</p>${seriesBlock}`);
 
 // ---- rail
 const railRows = $('.rail__list li').map((_, li) => {
@@ -254,6 +275,11 @@ sections.push(block('rail', railRows));
 // ---- body: a new section at each h2 with an id, at the video, and before related
 let current = [];
 let currentMeta = [];
+const addStyle = (word) => {
+  const style = currentMeta.find(([k]) => k === 'style');
+  if (!style) currentMeta.push(['style', word]);
+  else if (!style[1].split(', ').includes(word)) style[1] += `, ${word}`;
+};
 const flush = () => {
   if (current.length) sections.push(current.join('') + (currentMeta.length ? sectionMeta(currentMeta) : ''));
   current = [];
@@ -303,7 +329,9 @@ $('.article-body').children().each((_, el) => {
     flush();
     current.push(related(el));
   } else {
-    if (tag === 'pre' && codePlainWraps && !currentMeta.some(([k]) => k === 'style')) currentMeta.push(['style', 'code-wrap']);
+    if (tag === 'pre' && codePlainWraps) addStyle('code-wrap');
+    if (tag === 'pre' && codePlainWrapsWide) addStyle('code-wrap-wide');
+    if (tag === 'h3' && roomyH3) addStyle('roomy-h3');
     current.push(convert(el));
   }
 });

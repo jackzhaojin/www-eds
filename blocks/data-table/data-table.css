@@ -54,3 +54,61 @@
   text-underline-offset: 2px;
   text-decoration-thickness: 1px;
 }
+
+/* cheat and rank: the source's .cheat and .rank tables (each one article's explainer.css). */
+.data-table.cheat table {
+  font-size: 13.5px;
+}
+
+.data-table.cheat :is(th, td) {
+  padding: 8px 10px 8px 0;
+  vertical-align: top;
+}
+
+.data-table.cheat td:first-child {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.data-table.cheat code {
+  font-size: 12px;
+}
+
+.data-table.rank table {
+  font-size: 14.5px;
+}
+
+.data-table.rank :is(th, td) {
+  padding: 10px 12px 10px 0;
+  vertical-align: top;
+}
+
+.data-table.rank td:first-child {
+  font: 500 13px var(--font-mono);
+  color: var(--color-text-faint);
+  white-space: nowrap;
+}
+
+.data-table.rank td b,
+.data-table.rank td strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+@media (width <= 560px) {
+  .data-table.stack thead {
+    display: none;
+  }
+
+  .data-table.stack tr {
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .data-table.stack td {
+    display: block;
+    border: 0;
+    padding: 2px 0;
+  }
+}

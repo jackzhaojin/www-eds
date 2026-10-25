@@ -1,0 +1,82 @@
+/* Series: the source's .series nav (the series articles' explainer.css). */
+.series {
+  margin-top: var(--space-5);
+}
+
+.series .series-label p {
+  font: 500 var(--text-label) / 1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  margin: 0 0 8px;
+}
+
+.series .series-name {
+  display: none;
+}
+
+.series .series-parts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 760px;
+}
+
+.series .series-parts li {
+  min-width: 0;
+}
+
+.series .series-parts p {
+  margin: 0;
+  height: 100%;
+}
+
+.series .series-parts a:any-link {
+  display: block;
+  height: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.35;
+  transition: border-color var(--duration-base) var(--ease-standard), background var(--duration-base) var(--ease-standard);
+}
+
+.series .series-parts a strong {
+  display: block;
+  font: 500 12px / 1.2 var(--font-mono);
+  color: var(--color-text-faint);
+  margin-bottom: 3px;
+}
+
+.series .series-parts a:hover {
+  border-color: var(--color-line-strong);
+  color: var(--color-text);
+}
+
+.series .series-parts a[aria-current="page"] {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+}
+
+.series .series-parts a[aria-current="page"] strong {
+  color: var(--color-accent);
+}
+
+.series .series-parts a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+@media (width <= 560px) {
+  .series .series-parts {
+    grid-template-columns: 1fr;
+  }
+}

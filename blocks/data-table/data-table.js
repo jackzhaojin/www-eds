@@ -3,8 +3,12 @@
  * row per table row; the first row is the header. Cell content is moved into the cells, so
  * every authored paragraph stays editable.
  *
- * @variants nowrap
+ * @variants nowrap | cheat | rank | stack
  *   nowrap - the last column stays on one line (a short value such as "16 min")
+ *   cheat - a cheat sheet: smaller type, the first column in strong ink (one article)
+ *   rank - a ranked list: the first column a faint mono rank, bold words in strong ink (one
+ *   article)
+ *   stack - on phones the header hides and each row stacks its cells
  */
 export default function decorate(block) {
   const rows = [...block.querySelectorAll(':scope > div')];
