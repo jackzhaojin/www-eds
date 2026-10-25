@@ -238,6 +238,10 @@
 }
 
 @media (width <= 640px) {
+  .explainer.score-blend .blend__formula {
+    font-size: 11.5px;
+  }
+
   .explainer.score-blend .blend__fail {
     min-height: 44px;
   }
