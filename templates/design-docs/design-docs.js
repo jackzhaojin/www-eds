@@ -274,6 +274,29 @@ const DEMOS = {
       if (kind === 'status') chip.dataset.status = word.toLowerCase();
       if (p.querySelector('strong')) chip.dataset.pressed = 'true';
     });
+    // with row labels the chips are v3's filter bar: one bordered panel of rows
+    const wrapper = section.querySelector('.default-content-wrapper');
+    if (wrapper && wrapper.querySelector('.ds-item-row-label')) {
+      const items = [...wrapper.children].filter((el) => !el.classList.contains('ds-story-label'));
+      const bar = document.createElement('div');
+      bar.className = 'ds-filter-bar';
+      items[0].before(bar);
+      let row = null;
+      items.forEach((el) => {
+        if (el.classList.contains('ds-row-break')) {
+          el.remove();
+          return;
+        }
+        if (!row || el.classList.contains('ds-item-row-label')) {
+          row = document.createElement('div');
+          row.className = 'ds-filter-row';
+          bar.append(row);
+        }
+        row.append(el);
+      });
+      // the bar's All chips are plain (v3 chip--plain), without the dot
+      bar.querySelectorAll('.ds-chip[data-kind="default"]').forEach((c) => { c.dataset.kind = 'plain'; });
+    }
   },
   /* Proof list: per item, the bold label, the value (a link or text), a line break, the note. */
   proof(section) {
