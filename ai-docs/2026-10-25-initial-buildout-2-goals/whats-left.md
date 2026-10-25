@@ -30,6 +30,7 @@ Jack's host plan (19:25): GitHub Pages moves to gh.jackzhaojin.com without SEO, 
 - DNS records `eds` and `gh`, AAAA `100::`, proxied (Claude filled the forms in Jack's Chrome, Jack saved them).
 - Workers deployed from `edge/` with the existing wrangler sign-in: `www-eds-edge-staging` on `eds.jackzhaojin.com/*` (EDS and the project sites) and `www-eds-edge-gh` on `gh.jackzhaojin.com/*` (the whole GitHub Pages site, read through www for now). Every host but www answers `X-Robots-Tag: noindex, nofollow`; canonicals point at www; robots.txt allows crawling, so crawlers see the noindex.
 - `check-host.mjs` passes on both live hosts; www is unchanged (its home page is byte-identical to the source repo).
+- Off www, robots.txt and the sitemaps are 404s from the Worker. The zone's managed robots.txt (AI Crawl Control) fills the robots.txt 404 with its content-signals comments, no rules and no sitemap; Jack chose to leave that setting on (19:45).
 
 **The cutover, in this order:**
 1. Push invalidation: Jack creates a Cache Purge token; the EDS CDN config (`hlx-config/cdn-prod.json`) gains `type: cloudflare`, the zone ID and the token (Jack enters the token).
