@@ -356,7 +356,9 @@ const LABEL_ROLES = { separator: 'div', group: 'div' };
 function decorateLabels(section) {
   const entries = section.dataset.labels.split(' | ').map((e) => {
     const at = e.indexOf(':');
-    return { tag: e.slice(0, at).trim().toLowerCase(), label: e.slice(at + 1).trim() };
+    // the pipeline writes comma lists without the space after the comma; labels keep theirs
+    const label = e.slice(at + 1).trim().replace(/,(?=\S)/g, ', ');
+    return { tag: e.slice(0, at).trim().toLowerCase(), label };
   }).filter(({ tag, label }) => label && /^(section|nav|div|dl|separator|group)$/.test(tag));
   if (!entries.length) return;
   const make = ({ tag, label }) => {
