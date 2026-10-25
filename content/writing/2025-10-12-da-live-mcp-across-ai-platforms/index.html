@@ -38,42 +38,24 @@ toolInput = {"path":"/source/jackzhaojin/da-live-postal-2025-07/index-copy.html"
   tool_call_id: "call_...",
   content: JSON.stringify(toolResult) }</code></pre><ul><li>key: role</li><li>val: "tool"</li></ul></div></div><div><div><p>Taken from the three client files in the repo; each step links to its lines. The biggest difference is Azure OpenAI's step 2: the arguments arrive as a JSON string, not an object. IDs are shortened, and only the fields the clients read are shown.</p></div></div></div><p>Each client is its own file of 400 to 460 lines, where a week earlier one client covered Claude. And the hand-written copies had already drifted from the server: the clients describe the path with an example like <code>/products/enterprise</code>, while the server's own schema asks for <code>/source/{owner}/{site}/...</code>. There are definitely opportunities to move that logic back into the server once I understand all of this better.</p><p>Watch this part <a href="https://youtu.be/6O2x97lVitM?t=47">0:47 One MCP server, three model families</a> <a href="https://youtu.be/6O2x97lVitM?t=86">1:26 The architecture isn't as clean as I imagined</a> <a href="https://youtu.be/6O2x97lVitM?t=117">1:57 Testing each provider: haiku first, then MCP</a></p><div class="section-metadata"><div><div><p>id</p></div><div><p>dialects</p></div></div></div></div>
     <div><h2>Deploying to Azure Functions with GitHub Actions and OIDC</h2><p>The second piece was getting it all running in the cloud. This was fairly straightforward, and lower effort than I was expecting. Azure did quite a few improvements since the last time I did this.</p><p>The one I noticed most was the OpenID Connect connection between GitHub Actions and Azure Functions. Azure set it up with proper permissions: the app registration that GitHub signs in as is mapped to OpenID Connect and holds a Website Contributor role on the function app. The workflow it generated has no publish profile and no password. The deploy job asks GitHub for a short-lived token and signs in to Azure with three IDs:</p><div class="code"><div><div><p>.github/workflows/main_jack-mcp-azure-ai-function.yml, the deploy job</p><p><a href="https://github.com/jackzhaojin/azure-da-mcp/blob/5c7549b/.github/workflows/main_jack-mcp-azure-ai-function.yml#L56-L85">5c7549b on GitHub</a></p></div></div><div><div><pre><code>    needs: build
-
     permissions:
-
       id-token: write #This is required for requesting the JWT
-
       contents: read #This is required for actions/checkout
-
   # &hellip; download and unzip steps trimmed
       - name: Login to Azure
-
         uses: azure/login@v2
-
         with:
-
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_19A7A8F3C18E431E85F0975B90EE3DAE }}
-
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_78D8217C65894F8D9EEAAE181F051DDE }}
-
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_53A39FBF23AD43FD912DB77E47CC3693 }}
 
-
-
       - name: 'Run Azure Functions Action'
-
         uses: Azure/functions-action@v1
-
         id: fa
-
         with:
-
           app-name: 'jack-mcp-azure-ai-function'
-
           slot-name: 'Production'
-
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-</code></pre></div></div></div><p>One gap in that file: the test step is commented out, because the end-to-end tests need a da.live bearer token and an Anthropic key, and I hadn't added them as repo secrets. So the cloud deploy builds and ships, and I ran the tests by hand.</p><p>Watch this part <a href="https://youtu.be/6O2x97lVitM?t=187">3:07 Deploying to Azure Functions with OpenID Connect</a></p><div class="section-metadata"><div><div><p>id</p></div><div><p>part-2</p></div></div></div></div>
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}</code></pre></div></div></div><p>One gap in that file: the test step is commented out, because the end-to-end tests need a da.live bearer token and an Anthropic key, and I hadn't added them as repo secrets. So the cloud deploy builds and ships, and I ran the tests by hand.</p><p>Watch this part <a href="https://youtu.be/6O2x97lVitM?t=187">3:07 Deploying to Azure Functions with OpenID Connect</a></p><div class="section-metadata"><div><div><p>id</p></div><div><p>part-2</p></div></div></div></div>
     <div><h2>Plugging the server into n8n over Streamable HTTP</h2><p>With everything on Azure, the third step was to make the diagram bigger on the left side. The MCP server already had Claude Desktop and Claude Code talking to it. Next: can n8n drive it? It worked fairly well. It took me a few tries.</p><div class="figure board"><div><div><p><img src="https://content.da.live/jackzhaojin/www-eds/media/writing/2025-10-12-da-live-mcp-across-ai-platforms/n8n-executions.jpg" alt="The n8n executions list for My workflow on October 12: five errors between 9:52 and 10:28 in the morning, then nine successful runs from 13:38 to 15:06, with run times from 500 milliseconds to 26 seconds."></p><p>"It took me a few tries": five failed runs in the morning, then nine that worked.</p></div></div></div><p>Part of the learning is that MCP comes in different transport flavors. There's the older one, HTTP with server-sent events (SSE), and the newer one, Streamable HTTP; the <a href="https://modelcontextprotocol.io/specification/2025-03-26/basic/transports">2025-03-26 version of the spec</a> made Streamable HTTP the replacement. Those who mess with serverless functions enough will know serverless functions definitely prefer the non-SSE version. You want to be able to drop your connection. So I added a second endpoint, <code>/api/mcp-streamable</code>, for n8n and the MCP Inspector, next to the original <code>/api/mcp</code> that Claude Desktop uses through its bridge.</p><p>Two details from that day are in the repo. n8n ran in Docker on my laptop, and inside a container <code>localhost</code> means the container, so n8n has to reach the function at <code>host.docker.internal:7071</code>; the README calls that out in capital letters. The other is sessions. The new endpoint keeps sessions in memory, so it falls back to the bearer token when it can't find the session:</p><div class="code"><div><div><p>functions/src/functions/McpStreamableFunction.js, handleToolsCall</p><p><a href="https://github.com/jackzhaojin/azure-da-mcp/blob/5c7549b/functions/src/functions/McpStreamableFunction.js#L238-L269">5c7549b on GitHub</a></p></div></div><div><div><pre><code>async function handleToolsCall(sessionId, params, id, bearerToken, context) {
   // Try to get session, but allow Bearer token fallback
   let session = null;
