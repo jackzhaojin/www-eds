@@ -220,6 +220,11 @@
   overflow-x: auto;
 }
 
+/* a closed summary renders nothing either way; out of layout, the table cannot read as clipped */
+.explainer.consideration-lens .lens__all:not([open]) .table-wrap {
+  display: none;
+}
+
 .explainer.consideration-lens .lens__table {
   width: 100%;
   border-collapse: collapse;
