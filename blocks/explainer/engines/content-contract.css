@@ -1,0 +1,320 @@
+/* Explainer (content-contract): the teaser's content contract lab (writing/2026-05-17
+   explainer.css, .ccl, on the kit's .lab, .chips and .json). The preview draws the decorated
+   block small, with rules modeled on teaser.css. */
+.explainer.content-contract .ccl-controls {
+  display: grid;
+  gap: 4px;
+  padding: 6px 18px 0;
+}
+
+@container (min-width: 720px) {
+  .explainer.content-contract .ccl-controls {
+    padding: 10px 28px 0;
+  }
+}
+
+.explainer.content-contract .ccl-picks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.explainer.content-contract .ccl-chip {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 7px 13px;
+  font-size: 13.5px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.explainer.content-contract .ccl-chip:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.explainer.content-contract .ccl-chip[aria-checked="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.explainer.content-contract .ccl-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* the DA document */
+.explainer.content-contract .ccl-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  background: var(--bg);
+}
+
+.explainer.content-contract .ccl-table th {
+  text-align: left;
+  padding: 8px 10px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--line-strong);
+  font: 600 13px var(--font-body);
+  color: var(--ink);
+}
+
+.explainer.content-contract .ccl-table td {
+  vertical-align: top;
+  padding: 8px 10px;
+  border: 1px solid var(--line-strong);
+  color: var(--ink-2);
+}
+
+.explainer.content-contract .ccl-table td p {
+  margin: 0 0 4px;
+  line-height: 1.45;
+}
+
+.explainer.content-contract .ccl-table td p:last-child {
+  margin-bottom: 0;
+}
+
+.explainer.content-contract .ccl-table td .h {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.explainer.content-contract .ccl-table td u {
+  color: var(--accent);
+  text-underline-offset: 2px;
+}
+
+.explainer.content-contract .ccl-table .ccl-img {
+  width: 64px;
+  font: 500 11px var(--font-mono);
+  color: var(--muted);
+  text-align: center;
+  vertical-align: middle;
+  background: repeating-linear-gradient(135deg, var(--accent-tint) 0 6px, transparent 6px 12px);
+}
+
+.explainer.content-contract .ccl-why {
+  margin: 12px 0 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.explainer.content-contract .ccl-why strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.explainer.content-contract :is(.ccl-why, .ccl-caption) code {
+  font: 500 0.86em var(--font-mono);
+  background: var(--accent-tint);
+  color: var(--color-text);
+  padding: 1px 5px;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: 4px;
+}
+
+/* the markup decorate() makes */
+.explainer.content-contract .ccl-tree {
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font: 400 12px/1.55 var(--font-mono);
+  color: var(--ink-2);
+  background: var(--bg);
+  white-space: pre;
+  overflow: auto hidden;
+  max-height: 26em;
+  overflow-y: auto;
+}
+
+.explainer.content-contract .ccl-tree .hot {
+  color: var(--ink);
+  background: var(--accent-tint);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+.explainer.content-contract .ccl-tree .dim {
+  color: var(--muted);
+}
+
+/* the decorated block, rendered small */
+.explainer.content-contract .ccl-prevwrap {
+  padding: 0 18px 24px;
+}
+
+@container (min-width: 720px) {
+  .explainer.content-contract .ccl-prevwrap {
+    padding: 0 28px 28px;
+  }
+}
+
+.explainer.content-contract .ccl-prevwrap .lab__label {
+  margin-top: 0;
+}
+
+.explainer.content-contract .ccl-preview {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: #131313;
+  container-type: inline-size;
+}
+
+.explainer.content-contract .ccl-preview .teaser ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.explainer.content-contract .ccl-preview .teaser-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  min-width: 0;
+}
+
+.explainer.content-contract .ccl-preview .teaser-visual {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #9db8e8, #2f6bb3);
+}
+
+.explainer.content-contract .ccl-preview .teaser-text {
+  padding: 8px 10px 10px;
+  font-size: 11px;
+  line-height: 1.4;
+  min-width: 0;
+}
+
+.explainer.content-contract .ccl-preview .teaser-text p {
+  margin: 0 0 4px;
+}
+
+.explainer.content-contract .ccl-preview .teaser-text h3 {
+  margin: 0 0 4px;
+  font: 700 13px/1.2 var(--font-body);
+  color: #131313;
+}
+
+.explainer.content-contract .ccl-preview .teaser-text .teaser-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 9px;
+  color: #505050;
+}
+
+.explainer.content-contract .ccl-preview .teaser-text .teaser-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.explainer.content-contract .ccl-preview a {
+  color: #3b63fb;
+  font-size: 10.5px;
+}
+
+/* the site's own .button look is reset: the preview draws the boilerplate's */
+.explainer.content-contract .ccl-preview a.button {
+  display: inline-block;
+  gap: 0;
+  border: 1.5px solid #131313;
+  border-radius: 2.4em;
+  padding: 3px 9px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: normal;
+  line-height: inherit;
+  white-space: normal;
+  transform: none;
+  opacity: 1;
+}
+
+.explainer.content-contract .ccl-preview a.button.primary {
+  background: #131313;
+  color: #fff;
+}
+
+.explainer.content-contract .ccl-preview a.button.secondary {
+  background: #fff;
+  color: #131313;
+}
+
+@container (min-width: 360px) {
+  .explainer.content-contract .ccl-preview :is(.teaser.cards-2, .teaser.cards-3, .teaser.cards-4) ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .explainer.content-contract .ccl-preview .teaser.banner .teaser-item {
+    flex-direction: row;
+  }
+
+  .explainer.content-contract .ccl-preview .teaser.banner .teaser-visual {
+    flex: 1.2;
+    aspect-ratio: auto;
+    min-height: 110px;
+  }
+
+  .explainer.content-contract .ccl-preview .teaser.banner .teaser-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@container (min-width: 560px) {
+  .explainer.content-contract .ccl-preview .teaser.cards-3 ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .explainer.content-contract .ccl-preview .teaser.cards-4 ul {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.explainer.content-contract.is-live .ccl-static,
+.explainer.content-contract .ccl-data {
+  display: none;
+}
+
+.explainer.content-contract .ccl-caption {
+  padding: 0 18px 18px;
+}
+
+@container (min-width: 720px) {
+  .explainer.content-contract .ccl-caption {
+    padding: 0 28px 22px;
+  }
+}
+
+.explainer.content-contract .ccl-caption p {
+  margin: 0;
+}
+
+@media (width <= 640px) {
+  .explainer.content-contract .ccl-chip {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
