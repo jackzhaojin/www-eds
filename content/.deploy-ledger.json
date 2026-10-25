@@ -164,7 +164,7 @@
   "/writing/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-25T19:40:19.895Z",
+    "ts": "2026-10-25T22:38:06.770Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -192,6 +192,15 @@
     "status": "live",
     "attempts": 1,
     "ts": "2026-10-25T19:40:19.895Z",
+    "put": 200,
+    "preview": 200,
+    "live": 200,
+    "verify": "ok"
+  },
+  "/writing/2026-10-25-eds-migration-two-goal-prompts/index": {
+    "status": "live",
+    "attempts": 1,
+    "ts": "2026-10-25T22:37:33.118Z",
     "put": 200,
     "preview": 200,
     "live": 200,

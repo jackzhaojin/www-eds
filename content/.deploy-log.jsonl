@@ -33,3 +33,7 @@
 {"t":"2026-10-25T19:40:25.877Z","path":"/index","step":"verify","ok":true}
 {"t":"2026-10-25T19:40:27.000Z","path":"/writing/index","step":"verify","ok":true}
 {"t":"2026-10-25T19:48:19.043Z","path":"/writing/2026-03-23-eds-hlx-admin-agentic-config/index","step":"verify","ok":true}
+{"t":"2026-10-25T22:30:41.514Z","path":"/writing/2026-10-25-eds-migration-two-goal-prompts/index","step":"verify","ok":true}
+{"t":"2026-10-25T22:37:41.659Z","path":"/writing/index","step":"verify","ok":false,"why":"about:error in delivered html"}
+{"t":"2026-10-25T22:37:42.369Z","path":"/writing/2026-10-25-eds-migration-two-goal-prompts/index","step":"verify","ok":true}
+{"t":"2026-10-25T22:38:13.238Z","path":"/writing/index","step":"verify","ok":true}

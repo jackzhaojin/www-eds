@@ -671,6 +671,62 @@
    "root": "main",
    "probe": "content-diff",
    "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (content-diff-pub1, anima-1440: 0 ICON DIFF). Local A4 entry, not committed."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 1 what two prompts moved",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (2026-10-25-eds-migration-two-goal-prompts, content-diff-n1 at 1440: 0 red). Register R7."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 2 the planning",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (2026-10-25-eds-migration-two-goal-prompts, content-diff-n1 at 1440: 0 red). Register R7."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 3 prompt 1, one agent",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (2026-10-25-eds-migration-two-goal-prompts, content-diff-n1 at 1440: 0 red). Register R7."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 4 prompt 2, go wide",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (2026-10-25-eds-migration-two-goal-prompts, content-diff-n1 at 1440: 0 red). Register R7."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 5 how the agents proved it",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (2026-10-25-eds-migration-two-goal-prompts, content-diff-n1 at 1440: 0 red). Register R7."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 6 what two prompts built",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (2026-10-25-eds-migration-two-goal-prompts, content-diff-n1 at 1440: 0 red). Register R7."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 7 what's left",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (2026-10-25-eds-migration-two-goal-prompts, content-diff-n1 at 1440: 0 red). Register R7."
+  },
+  {
+   "kind": "ICON DIFF",
+   "text": "part 8 it compounds",
+   "root": "main",
+   "probe": "content-diff",
+   "reason": "Rail thumbnail inside the article rail, which starts closed below 1081px on both sides, so neither side can be pixel-signed and the probe falls back to file names (DA rehosts as media_<hash>). The same images raise no ICON DIFF at 1440, where the rail is open and the probe compares their pixels (2026-10-25-eds-migration-two-goal-prompts, content-diff-n1 at 1440: 0 red). Register R7."
   }
  ]
 }

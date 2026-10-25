@@ -481,7 +481,7 @@
           "rationale": "A details disclosure inside an explainer (azure-rbac article); not a FAQ."
         }
       },
-      "reconcile": "RECONCILE 2026-10-25 (rollout): built as one core block with 40 engines, one word each: beat-sim, branch-push, capability-pivot, consideration-lens, content-contract, credential-chain, defect-lab, empty-cohort, era-steps, freezeframe, harvest-sorter, header-relay, hook-guard, hook-switchboard, line-map, model-merge, offering-path, option-matrix, option-pair, parser-lab, persisted-query, request-pipe, retry-ladder, reuse-stacks, role-assignments, score-blend, scripted-flow, skill-tracker, spec-filter, stale-timeline, stardust-lifecycle, stardust-versions, step-checklist, task-loop, task-protocol, theme-swap, tool-dialects, tool-loop, trail, work-patterns. Each engine has an import engine in stardust/scripts/import-engines/."
+      "reconcile": "RECONCILE 2026-10-25 (rollout): built as one core block with 41 engines, one word each: beat-sim, branch-push, capability-pivot, commit-day, consideration-lens, content-contract, credential-chain, defect-lab, empty-cohort, era-steps, freezeframe, harvest-sorter, header-relay, hook-guard, hook-switchboard, line-map, model-merge, offering-path, option-matrix, option-pair, parser-lab, persisted-query, request-pipe, retry-ladder, reuse-stacks, role-assignments, score-blend, scripted-flow, skill-tracker, spec-filter, stale-timeline, stardust-lifecycle, stardust-versions, step-checklist, task-loop, task-protocol, theme-swap, tool-dialects, tool-loop, trail, work-patterns. Each engine has an import engine in stardust/scripts/import-engines/."
     },
     "jump-links": {
       "kind": "block",
