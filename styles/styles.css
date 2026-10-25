@@ -793,8 +793,14 @@ main .default-content-wrapper p {
   margin: 20px 0 28px;
 }
 
-main .default-content-wrapper p.text-link-wrapper,
-main .default-content-wrapper p.button-wrapper {
+main .default-content-wrapper .cta-slot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+main .default-content-wrapper .cta-slot p {
   margin: 0;
 }
 
@@ -813,7 +819,7 @@ main .section-head :is(h2, h3, p) {
 }
 
 /* The source's link is the flex item itself; a flex paragraph gives it the same box. */
-main .section-head p {
+main .section-head .cta-slot p {
   display: flex;
 }
 

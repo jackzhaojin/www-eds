@@ -172,6 +172,26 @@ function decorateButtons(main) {
 }
 
 /**
+ * Moves link paragraphs in default content (buttons and text links) into a .cta-slot wrapper,
+ * consecutive ones sharing one, so their look keys off the wrapper and holds in quick edit
+ * (the same slot the blocks use).
+ * @param {Element} main The container element
+ */
+function decorateDefaultCtas(main) {
+  main.querySelectorAll('.default-content-wrapper p:is(.button-wrapper, .text-link-wrapper)').forEach((p) => {
+    const prev = p.previousElementSibling;
+    if (prev && prev.classList.contains('cta-slot')) {
+      prev.append(p);
+      return;
+    }
+    const slot = document.createElement('div');
+    slot.className = 'cta-slot';
+    p.before(slot);
+    slot.append(p);
+  });
+}
+
+/**
  * Marks a default-content wrapper that holds only a heading and one text link, ahead of a
  * block, as a v3 section head (heading left, link right).
  * @param {Element} main The container element
@@ -179,9 +199,9 @@ function decorateButtons(main) {
 function decorateSectionHeads(main) {
   main.querySelectorAll('.section > .default-content-wrapper').forEach((wrapper) => {
     if (!wrapper.nextElementSibling) return;
-    const [heading, para, ...rest] = [...wrapper.children];
-    if (rest.length || !heading || !para || !/^H[2-4]$/.test(heading.tagName)) return;
-    if (para.tagName !== 'P' || !para.classList.contains('text-link-wrapper')) return;
+    const [heading, slot, ...rest] = [...wrapper.children];
+    if (rest.length || !heading || !slot || !/^H[2-4]$/.test(heading.tagName)) return;
+    if (!slot.classList.contains('cta-slot') || !slot.querySelector('.text-link-wrapper')) return;
     wrapper.classList.add('section-head');
   });
 }
@@ -197,6 +217,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
+  decorateDefaultCtas(main);
   decorateSectionHeads(main);
 }
 
