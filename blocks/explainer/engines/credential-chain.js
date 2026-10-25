@@ -25,7 +25,7 @@
  * state, message and the result line are derived (the SDK's messages and the model's notes).
  *
  * @variants credential-chain
- * @ew-exempt the mode options list - read by the engine into a select
+ * @ew-exempt the mode options list, the switches name - read by the engine into the select and the legend
  */
 const CHAIN = [
   { id: 'env', group: 'prod' },
@@ -168,7 +168,8 @@ export default async function engine(block, { slot, rows, plainLinks }) {
   fieldset.className = 'cc__controls';
   const legend = document.createElement('legend');
   legend.className = 'sr-only';
-  if (legendP) legend.append(legendP);
+  // the legend is assistive text only: its words are read from the authored paragraph, kept hidden
+  if (legendP) legend.textContent = legendP.textContent.trim();
   fieldset.append(legend);
   const inputs = {};
   if (switchList) {
@@ -208,7 +209,7 @@ export default async function engine(block, { slot, rows, plainLinks }) {
   if (modeP) select.setAttribute('aria-label', modeP.textContent.trim());
   modeBox.append(modeLabel);
   fieldset.append(modeBox);
-  if (modeList) fieldset.append(slot('cc__source', [modeList]));
+  fieldset.append(slot('cc__source', [legendP, modeList].filter(Boolean)));
   more.append(summary, fieldset);
   left.append(more);
 

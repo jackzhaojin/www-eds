@@ -129,15 +129,20 @@
   gap: 8px;
 }
 
+/* The box is on the item; the grid needs the engine's state and message spans, so in quick edit
+   (spans gone) the item's text flows in the same box instead of squeezing into a column. */
 .explainer.parser-lab .psteps li {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 4px 10px;
   padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--bg);
   transition: border-color 0.25s var(--ease), opacity 0.25s var(--ease);
+}
+
+.explainer.parser-lab .psteps li:has(> .ps__state) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 10px;
 }
 
 .explainer.parser-lab .psteps strong {
