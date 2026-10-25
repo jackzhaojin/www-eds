@@ -14,3 +14,4 @@ DESIGN.json
 .playwright-cli/
 .playwright-mcp/
 ai-docs/
+hlx-config/

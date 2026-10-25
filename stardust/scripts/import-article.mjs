@@ -372,7 +372,8 @@ flush();
 const meta = (n) => $(`meta[name="${n}"], meta[property="${n}"]`).attr('content') || '';
 const ogImage = meta('og:image');
 const metaRows = [
-  ['title', esc($('title').text())],
+  // head > title: an inline SVG's <title> in the body is not the page title.
+  ['title', esc($('head > title').first().text())],
   ['description', esc(meta('description'))],
   ['template', 'article'],
 ];
