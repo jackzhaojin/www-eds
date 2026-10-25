@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "extraKnownMarketplaces": {
+    "adobe-skills": {
+      "source": { "source": "github", "repo": "adobe/skills" }
+    },
+    "impeccable": {
+      "source": { "source": "github", "repo": "pbakaus/impeccable" }
+    }
+  },
+  "enabledPlugins": {
+    "stardust@adobe-skills": true,
+    "impeccable@impeccable": true,
+    "aem-edge-delivery-services@adobe-skills": true
+  }
+}
