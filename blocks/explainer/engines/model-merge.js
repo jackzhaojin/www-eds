@@ -67,10 +67,11 @@ export default async function engine(block, { slot, rows }) {
   const body = slot('mg__body');
   const picker = slot('mg__picker');
   const [modelLabel, keptHead, linesHead] = labels || [];
+  const groupName = modelLabel ? modelLabel.textContent.trim() : '';
   if (modelLabel) picker.append(slot('mg__label', [...modelLabel.children]));
   const chips = slot('chips');
   chips.setAttribute('role', 'radiogroup');
-  chips.setAttribute('aria-label', modelLabel ? modelLabel.textContent.trim() : 'Model');
+  if (groupName) chips.setAttribute('aria-label', groupName);
   picker.append(chips);
 
   const keptH = slot('mg__h', keptHead ? [...keptHead.children] : []);
