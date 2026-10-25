@@ -915,6 +915,8 @@ const pageMeta = block('metadata', [
   [p('title'), p(esc($('title').text().trim()))],
   [p('description'), p(esc(meta('description')))],
   [p('template'), p('design-docs')],
+  [p('nav'), p('/design-systems/v3/nav')],
+  [p('footer'), p('/design-systems/v3/footer')],
   [p('robots'), p(esc(meta('robots') || 'noindex'))],
 ]);
 

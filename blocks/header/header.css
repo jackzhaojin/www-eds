@@ -244,3 +244,18 @@
     content: none;
   }
 }
+
+/* The design system v3 page (template design-docs) shows v3's own nav: its last item, Book a
+   talk, is the small primary button. Scoped to that page; the default header is unchanged. */
+body.design-docs .header .site-nav ul li:last-child a {
+  padding: var(--button-pad-sm);
+  border-radius: var(--button-radius);
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+  font-size: 12px;
+  min-height: 0;
+}
+
+body.design-docs .header .site-nav ul li:last-child a::after {
+  content: none;
+}
