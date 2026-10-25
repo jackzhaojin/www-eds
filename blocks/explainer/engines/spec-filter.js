@@ -141,7 +141,7 @@ export default async function engine(block, { slot, rows, plainLinks }) {
       const o = document.createElement('option');
       o.value = k;
       o.textContent = choiceLabels[ci] || k;
-      if (choiceLabels[ci] === start) o.selected = true;
+      if (choiceLabels[ci] === start) o.defaultSelected = true;
       select.append(o);
     });
     card.append(lab2, select);
