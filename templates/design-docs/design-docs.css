@@ -1423,6 +1423,75 @@ body.design-docs main.ds-layout .ds-in-component .timeline.ladder .ladder-era-ti
   color: var(--color-text-faint);
 }
 
+/* stat chips in their story: v3's .stat-chips is not a list, so no measure cap; the first row
+   opens flush (its inline margin-top 0), the second is the counter row (.stat--block) */
+body.design-docs main.ds-layout .ds-in-component .stat-chips :is(ul, ol) {
+  max-width: none;
+}
+
+body.design-docs main.ds-layout > .ds-story > .stat-chips-wrapper:first-of-type .stat-chips-row ul {
+  margin-top: 0;
+}
+
+body.design-docs main.ds-layout > .ds-story > .stat-chips-wrapper + .stat-chips-wrapper {
+  margin-top: 0;
+}
+
+body.design-docs main.ds-layout > .ds-story > .stat-chips-wrapper + .stat-chips-wrapper li {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 14px;
+  color: var(--color-text-faint);
+}
+
+body.design-docs main.ds-layout > .ds-story > .stat-chips-wrapper + .stat-chips-wrapper strong {
+  font-size: 21px;
+  line-height: 1.1;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  margin-right: 0;
+}
+
+/* proof links in their stories: v3's row (13px links, 10px row gap, no 44px boxes), with the
+   line icon by destination (the site types links by destination: repo, video, else live) */
+body.design-docs main.ds-layout .ds-in-component .proof-links .proof-links-row p {
+  gap: 10px 20px;
+}
+
+body.design-docs main.ds-layout .ds-in-component .proof-links .proof-links-row a:any-link {
+  display: inline-block;
+  min-height: 0;
+  padding: 10px 0 0;
+  margin: -10px 0 0;
+  font-size: var(--text-mono);
+  line-height: 1.4;
+}
+
+body.design-docs main.ds-layout .ds-in-component .proof-links .proof-links-row a:any-link::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 7px;
+  vertical-align: -1.5px;
+  background: currentcolor;
+  mask: var(--ds-licon, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.3' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.6' ry='6.3' fill='none' stroke='black' stroke-width='1.3'/%3E%3Cpath d='M1.7 8h12.6M2.8 4.8h10.4M2.8 11.2h10.4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E")) center / contain no-repeat;
+}
+
+body.design-docs main.ds-layout .ds-in-component .proof-links a[href*="github.com"]::before {
+  --ds-licon: url("../../icons/repo.svg");
+}
+
+body.design-docs main.ds-layout .ds-in-component .proof-links a:is([href*="youtube.com"], [href*="youtu.be"])::before {
+  --ds-licon: url("../../icons/video.svg");
+}
+
+/* the band story's row opens flush (v3's inline margin-top 0 there) */
+body.design-docs main.ds-layout .ds-story-part .proof-links-wrapper .proof-links-row {
+  margin-top: 0;
+}
+
 /* the rung title is an h4, which the docs' h4 rule sets as a label on the source */
 body.design-docs main.ds-layout .ds-in-component .timeline.ladder .ladder-title h4 {
   margin: var(--space-5) 0 var(--space-2);
