@@ -864,7 +864,13 @@ body.design-docs main.ds-layout [class*="ds-item-btn-"] .icon {
   height: 14px;
 }
 
-/* ------------------------------------------------------------ v3 example header (site-header) */
+/* ------------------------------------------------------------ v3 example header (site-header)
+   v3 .site-header: the page ground and the hairline under it */
+body.design-docs .ds-site-header {
+  background: var(--color-bg);
+  border-bottom: var(--border-width) solid var(--color-line);
+}
+
 body.design-docs .ds-site-header-inner {
   display: flex;
   align-items: center;
@@ -933,10 +939,6 @@ body.design-docs main.ds-layout .ds-nav-links ul {
   align-items: center;
   flex-wrap: wrap;
   max-width: none;
-}
-
-body.design-docs main.ds-layout .ds-nav-links li {
-  margin: 0;
 }
 
 body.design-docs main.ds-layout .ds-nav-links a:any-link {
@@ -1070,10 +1072,6 @@ body.design-docs main.ds-layout .ds-footer-col ul {
   display: flex;
   flex-direction: column;
   max-width: none;
-}
-
-body.design-docs main.ds-layout .ds-footer-col li {
-  margin: 0;
 }
 
 body.design-docs main.ds-layout .ds-footer-col a:any-link {
@@ -1648,9 +1646,24 @@ body.design-docs .ds-result.fail p {
   color: var(--color-topic-agents);
 }
 
-/* narrow: the story's block capped at 640px (the source story's inline max-width) */
+/* narrow: the story's block capped at 640px (the source story's inline max-width), centered
+   as v3's frame--diagram is */
 body.design-docs main.ds-layout > .ds-story.narrow > div:not(.default-content-wrapper) {
   max-width: 640px;
+  margin-inline: auto;
+}
+
+/* frames in their stories: v3's caption (10px 14px, 12px mono); in the side-by-side story the
+   diagram frame shrinks to its image and centers, and the pair centers vertically */
+body.design-docs main.ds-layout .ds-in-component .frame figcaption {
+  padding: 10px 14px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+body.design-docs main.ds-layout > .ds-story.cols-2 .frame.diagram .frame-figure {
+  width: fit-content;
+  margin-inline: auto;
 }
 
 /* cols-2: a story's blocks side by side (v3 grid--2 inside a story) */
@@ -1659,7 +1672,7 @@ body.design-docs main.ds-layout > .ds-story.narrow > div:not(.default-content-wr
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: var(--space-4);
-    align-items: start;
+    align-items: center;
   }
 
   body.design-docs main.ds-layout > .ds-story.cols-2 > .default-content-wrapper {

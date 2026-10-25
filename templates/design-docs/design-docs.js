@@ -559,12 +559,25 @@ function decorateLabels(section) {
   };
   let targets;
   if (section.classList.contains('ds-story-part')) {
-    const inner = section.querySelector(':scope > div');
-    targets = inner ? [...inner.childNodes] : [];
-    if (!targets.length) return;
-    const el = make(entries[0]);
-    inner.append(el);
-    el.append(...targets);
+    // a band labels its own content once its blocks have run (a showcase moves the blocks
+    // that follow it into itself first)
+    const label = () => {
+      const inner = section.querySelector(':scope > div');
+      const nodes = inner ? [...inner.childNodes] : [];
+      if (!nodes.length) return;
+      const el = make(entries[0]);
+      inner.append(el);
+      el.append(...nodes);
+    };
+    if (section.dataset.sectionStatus === 'loaded') label();
+    else {
+      const watch = new MutationObserver(() => {
+        if (section.dataset.sectionStatus !== 'loaded') return;
+        watch.disconnect();
+        label();
+      });
+      watch.observe(section, { attributes: true, attributeFilter: ['data-section-status'] });
+    }
     return;
   }
   const wrappers = [...section.querySelectorAll(':scope > div:not(.default-content-wrapper)')];
