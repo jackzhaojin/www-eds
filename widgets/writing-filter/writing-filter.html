@@ -1,0 +1,14 @@
+<form class="writing-filter-bar" role="search" aria-label="Search and filter articles">
+  <div class="writing-filter-search">
+    <div class="writing-filter-field">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+      <label class="sr-only" for="writing-search">Search articles</label>
+      <input id="writing-search" type="search" name="q" placeholder="Search titles, topics, tools" autocomplete="off" spellcheck="false">
+      <kbd class="writing-filter-key" aria-hidden="true">/</kbd>
+    </div>
+    <p class="writing-filter-count" data-count aria-live="polite"></p>
+  </div>
+  <div class="writing-filter-row"><span class="writing-filter-label" id="wf-topic">Topic</span><div class="writing-filter-chips" role="group" aria-labelledby="wf-topic" data-filter="topic"></div></div>
+  <div class="writing-filter-row"><span class="writing-filter-label" id="wf-year">Year</span><div class="writing-filter-chips" role="group" aria-labelledby="wf-year" data-filter="year"></div></div>
+</form>
+<div class="writing-filter-empty" data-empty hidden><p>Nothing matches that search and those filters.</p><button type="button" class="writing-filter-reset" data-reset>Clear search and filters</button></div>
