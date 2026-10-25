@@ -1,4 +1,3 @@
-/* stylelint-disable no-descending-specificity -- brand and nav links are separate scopes */
 
 /* v3 site header (design-system/v3/components.css "site header", "theme control"; css/site.css).
    One row at every width: wordmark, links, then the theme control at the right end of the nav.

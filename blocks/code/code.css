@@ -1,0 +1,104 @@
+/* Code: css/explainers.css .code, .code--static, .bar, .ln and the token colors. */
+.code {
+  margin-block: var(--space-6);
+}
+
+.code .code-frame {
+  margin: 0;
+  background: var(--color-code-ground, var(--palette-night-850));
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .code .code-frame {
+  --color-code-ground: var(--palette-night-950);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .code .code-frame {
+    --color-code-ground: var(--palette-night-950);
+  }
+}
+
+.code .code-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--palette-line-night);
+  font: 500 12px/1 var(--font-mono);
+  color: var(--palette-bone-400);
+  letter-spacing: 0.02em;
+}
+
+.code .code-bar p {
+  margin: 0;
+}
+
+.code .code-bar a:any-link {
+  color: var(--palette-lavender-300);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  border-bottom: 1px solid var(--palette-line-night);
+}
+
+.code .code-bar a:hover {
+  color: var(--palette-bone-100);
+}
+
+.code pre {
+  position: relative;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  overflow: auto;
+  padding: 12px 0;
+  font: 400 13px/1.7 var(--font-mono);
+  color: var(--palette-bone-100);
+  font-variant-ligatures: none;
+}
+
+.code pre code {
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+
+.code .ln {
+  display: block;
+  padding: 0 20px 0 0;
+  border-left: 2px solid transparent;
+  white-space: pre;
+}
+
+.code .ln::before {
+  content: attr(data-n);
+  display: inline-block;
+  width: 3.2em;
+  padding-right: 1.2em;
+  text-align: right;
+  color: #5c5955;
+  user-select: none;
+}
+
+.code .tk-c {
+  color: #9a958f;
+  font-style: italic;
+}
+
+.code .tk-s {
+  color: var(--palette-mint-300);
+}
+
+.code .tk-k {
+  color: var(--palette-lavender-300);
+}
+
+.code .tk-n {
+  color: var(--palette-gold-300);
+}

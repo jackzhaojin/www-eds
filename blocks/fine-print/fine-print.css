@@ -1,0 +1,26 @@
+/* Fine print: css/article.css .article-facts. */
+.fine-print p {
+  max-width: var(--measure);
+  font-size: var(--text-small);
+  line-height: 1.6;
+  color: var(--color-text-faint);
+}
+
+.fine-print p + p {
+  margin-top: var(--space-4);
+}
+
+.fine-print a:any-link {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.fine-print code {
+  font: 500 0.86em var(--font-mono);
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+}

@@ -1,0 +1,89 @@
+/* Compare: css/explainers.css .cmp. */
+.compare {
+  container-type: inline-size;
+  margin-block: var(--space-6);
+}
+
+.compare .compare-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.compare .compare-tab {
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.compare .compare-tab p {
+  margin: 0;
+}
+
+.compare .compare-tab[aria-selected="true"] {
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-color: var(--color-text);
+}
+
+.compare .compare-tab:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.compare .compare-stage {
+  display: grid;
+  gap: 20px;
+}
+
+.compare .compare-pane {
+  margin: 0;
+}
+
+.compare .compare-pane p {
+  margin: 0;
+}
+
+.compare .compare-pane img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--color-line);
+  box-shadow: 0 20px 40px -30px rgb(0 0 0 / 35%);
+}
+
+.compare .compare-pane figcaption p {
+  font-size: 14px;
+  color: var(--color-text-faint);
+  margin-top: 10px;
+}
+
+.compare.is-live .compare-stage {
+  grid-template-areas: "stack";
+}
+
+.compare.is-live .compare-pane {
+  grid-area: stack;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0.35s;
+}
+
+.compare.is-live .compare-pane.on {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .compare.is-live .compare-pane {
+    transition: none;
+  }
+}

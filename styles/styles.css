@@ -823,7 +823,6 @@ main .section-head .cta-slot p {
   display: flex;
 }
 
-/* stylelint-disable no-descending-specificity -- edit-mode repaints must follow what they repaint */
 
 /* ------------------------------------------------------------ edit-mode foundation
    Experience Workspace quick edit re-renders authored elements without the classes decoration
