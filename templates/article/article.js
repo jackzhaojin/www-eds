@@ -58,14 +58,15 @@ function decorateByline(p) {
 }
 
 /**
- * Title words kept on one line: the page metadata "title-keep-together" lists them, comma
- * separated (Sign-in, Members-Only), as the source marks them title by title. Each first
- * match in the h1 gets a nowrap span: a presentation refinement, the text is unchanged.
+ * Words kept on one line: the page metadata "title-keep-together" lists them for the h1 and
+ * "heading-keep-together" for the h2s, comma separated (Sign-in, Members-Only), as the source
+ * marks them heading by heading. Each first match in a heading gets a nowrap span: a
+ * presentation refinement, the text is unchanged.
  */
-function keepTogether(h1) {
-  const runs = (getMetadata('title-keep-together') || '').split(',').map((r) => r.trim()).filter(Boolean);
+function keepTogether(heading, key) {
+  const runs = (getMetadata(key) || '').split(',').map((r) => r.trim()).filter(Boolean);
   runs.forEach((run) => {
-    const walker = document.createTreeWalker(h1, NodeFilter.SHOW_TEXT);
+    const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
     while (walker.nextNode()) {
       const node = walker.currentNode;
       const at = node.textContent.indexOf(run);
@@ -98,7 +99,7 @@ function decorateHead(section) {
   }
   const h1 = content.querySelector('h1');
   if (h1) {
-    keepTogether(h1);
+    keepTogether(h1, 'title-keep-together');
     wrap(h1, 'article-title');
   }
   [...content.querySelectorAll('p')].forEach((p) => {
@@ -190,6 +191,7 @@ export default function decorate(main) {
   head.after(layout);
 
   decorateWatch(body);
+  body.querySelectorAll('h2').forEach((h2) => keepTogether(h2, 'heading-keep-together'));
   decorateQuestions(body);
   decorateHeadingLinks(body);
 }

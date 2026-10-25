@@ -93,7 +93,15 @@ function dataTable(el) {
   const $t = $(el).is('table') ? $(el) : $(el).find('table').first();
   const rows = $t.find('tr').map((_, tr) => [$(tr).children('th, td').map((__, c) => `<p>${inline(c)}</p>`).get()]).get();
   const look = ['cheat', 'rank'].find((cls) => $t.hasClass(cls));
-  const words = ['data-table', tableNowrap && 'nowrap', look, look && tableStacks(look) && 'stack'];
+  // The caption is the block's last row; a merged last cell is a short row (the block spans it).
+  const caption = $t.children('caption').first();
+  let captionWord = '';
+  if (caption.length) {
+    captionWord = caption.hasClass('sr-only') ? 'sr-caption' : 'caption';
+    rows.push([`<p>${inline(caption)}</p>`]);
+  }
+  const rowHeads = $t.find('tbody th[scope="row"]').length > 0;
+  const words = ['data-table', tableNowrap && 'nowrap', look, look && tableStacks(look) && 'stack', captionWord, rowHeads && 'row-heads'];
   return block(words.filter(Boolean).join(' '), rows);
 }
 
@@ -118,8 +126,7 @@ function figure(el) {
     const label = bar.find('span').first();
     const link = bar.find('a').first();
     const prose = $el.find('.ln').length && $el.find('.ln').length === $el.find('.ln.md').length;
-    const plain = $el.hasClass('code--prose');
-    const words = ['code', codeWraps && 'wrap', prose && !plain && 'prose', plain && 'plain', codeBarsStack && 'stack'];
+    const words = ['code', codeWraps && 'wrap', (prose || $el.hasClass('code--wrap')) && 'prose', $el.hasClass('code--prose') && 'plain', codeBarsStack && 'stack'];
     return block(words.filter(Boolean).join(' '), [
       [`<p>${inline(label)}</p><p><a href="${esc(absHref(link.attr('href')))}">${inline(link)}</a></p>`],
       [`<pre><code>${esc(codeText($el.find('pre')))}</code></pre>`],
@@ -129,11 +136,14 @@ function figure(el) {
     const cap = $el.find('figcaption');
     const link = $el.find('img').first().parent('a');
     const compact = boardCompact && $el.hasClass('board--narrow');
-    const words = ['figure board', compact && 'compact', $el.hasClass('fig--native') && 'native', link.length && 'open'].filter(Boolean).join(' ');
+    const tall = $el.hasClass('fig--tall') && /\.fig--tall img\s*\{[^}]*560px/.test(srcCss);
+    const words = ['figure board', compact && 'compact', tall && 'tall', $el.hasClass('fig--native') && 'native', link.length && 'open'].filter(Boolean).join(' ');
     const title = link.attr('title') ? ` title="${esc(link.attr('title'))}"` : '';
-    const image = img($el.find('img'));
+    const image = img($el.find('img').not('.board__next').first());
     const media = link.length ? `<a href="${/src="([^"]+)"/.exec(image)[1]}"${title}>${image}</a>` : image;
-    return block(words, [[`<p>${media}</p>${cap.length ? `<p>${inline(cap)}</p>` : ''}`]]);
+    // A board split in two: the second half is its own image paragraph, before the caption.
+    const next = $el.find('img.board__next').map((_, i) => `<p>${img($(i))}</p>`).get().join('');
+    return block(words, [[`<p>${media}</p>${next}${cap.length ? `<p>${inline(cap)}</p>` : ''}`]]);
   }
   if ($el.hasClass('bp')) return switchBlock($el);
   unsupported.push(`figure.${($el.attr('class') || '').replace(/ /g, '.')}`);
@@ -304,6 +314,14 @@ function convert(el) {
   return '';
 }
 
+// A figure's id, also when a div.wide wraps the figure.
+function targetId(el) {
+  const $el = $(el);
+  if ($el.attr('id')) return $el.attr('id');
+  const only = $el.is('div.wide') && $el.children().length === 1 ? $el.children().first() : null;
+  return only ? only.attr('id') : undefined;
+}
+
 $('.article-body').children().each((_, el) => {
   const $el = $(el);
   const tag = el.name;
@@ -315,10 +333,10 @@ $('.article-body').children().each((_, el) => {
     flush();
     if ($el.attr('id')) currentMeta.push(['id', $el.attr('id')]);
     current.push(figure(el));
-  } else if ((tag === 'figure' || tag === 'div') && $el.attr('id')) {
+  } else if ((tag === 'figure' || tag === 'div') && targetId(el)) {
     // A link target in the column (#video, #explore) starts its own section, which keeps the id.
     flush();
-    currentMeta.push(['id', $el.attr('id')]);
+    currentMeta.push(['id', targetId(el)]);
     current.push(tag === 'figure' && $el.hasClass('video') ? figure(el) : convert(el));
   } else if (tag === 'p' && $el.hasClass('article-facts')) {
     current.push(block('fine-print', [[`<p>${inline(el)}</p>`]]));
@@ -347,6 +365,8 @@ const metaRows = [
 ];
 const keep = $('.article-head h1 .nowrap').map((_, e) => $(e).text()).get();
 if (keep.length) metaRows.push(['title-keep-together', esc(keep.join(', '))]);
+const keepHeads = [...new Set($('.article-body > h2 .nowrap').map((_, e) => $(e).text()).get())];
+if (keepHeads.length) metaRows.push(['heading-keep-together', esc(keepHeads.join(', '))]);
 if (ogImage) metaRows.push(['image', `${img($(`<img src="${ogImage}" alt="${esc(meta('og:image:alt'))}">`)[0])}`]);
 if (meta('og:image:alt')) metaRows.push(['image:alt', esc(meta('og:image:alt'))]);
 if (meta('article:published_time')) metaRows.push(['published-time', meta('article:published_time')]);

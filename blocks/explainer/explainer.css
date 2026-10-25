@@ -219,6 +219,12 @@
   }
 }
 
+@media (width <= 640px) {
+  .explainer .json {
+    font-size: 11.5px;
+  }
+}
+
 /* json, verdict */
 .explainer .json {
   margin: 0;

@@ -55,6 +55,28 @@
   text-decoration-thickness: 1px;
 }
 
+/* caption and row-heads: the source's one captioned table with row heads (.sess-table). */
+.data-table caption {
+  caption-side: bottom;
+  text-align: left;
+  font-size: 13px;
+  color: var(--color-text-faint);
+  padding-top: 8px;
+}
+
+.data-table caption p {
+  margin: 0;
+}
+
+.data-table.row-heads :is(th, td) {
+  vertical-align: top;
+}
+
+.data-table.row-heads tbody th {
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
 /* cheat and rank: the source's .cheat and .rank tables (each one article's explainer.css). */
 .data-table.cheat table {
   font-size: 13.5px;
@@ -72,6 +94,11 @@
 
 .data-table.cheat code {
   font-size: 12px;
+}
+
+/* The source's rank table sits in a plain scroll wrapper: the column's 16px step, not 24px. */
+.data-table.rank {
+  margin-top: var(--space-4);
 }
 
 .data-table.rank table {

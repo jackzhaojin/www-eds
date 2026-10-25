@@ -56,6 +56,15 @@
   max-width: min(100%, 690px);
 }
 
+.figure.tall img {
+  width: auto;
+  max-width: min(100%, 560px);
+}
+
+.figure .figure-media p + p {
+  margin-top: 12px;
+}
+
 .figure .figure-open {
   display: block;
   border-radius: 12px;
