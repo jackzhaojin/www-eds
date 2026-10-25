@@ -4,7 +4,6 @@ import { loadFragment } from '../fragment/fragment.js';
 const THEME_KEY = 'jj-theme';
 const THEMES = [['light', 'Light'], ['dark', 'Dark'], ['system', 'System']];
 const SVG_NS = 'http://www.w3.org/2000/svg';
-const DESKTOP = window.matchMedia('(width >= 1024px)');
 const DARK_OS = window.matchMedia('(prefers-color-scheme: dark)');
 
 function menuIcon() {
@@ -150,7 +149,6 @@ export default async function decorate(block) {
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && nav.classList.contains('is-open')) closeMenu(true);
   });
-  DESKTOP.addEventListener('change', () => closeMenu(false));
 
   const inner = document.createElement('div');
   inner.className = 'site-header';
