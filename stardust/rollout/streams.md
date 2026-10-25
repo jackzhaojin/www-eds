@@ -30,6 +30,19 @@ Built: showcase story / flip / wide / tall; cards tool / project / repo; chapter
 
 Register candidates: v3 components.css rules that hit portfolio class names on the source (.story box, .thesis 18px, .cred-strip padding, .proof-links a 10px) copied as is; two empty proof-links paragraphs keep 18px (minimal change: drop them). Residual advisories: 135 EXTRA (hidden config rows, glossary, no-JS fallback); content-presence 2 MISSING LINK (postal repo cards: whole-card link would break quick edit) and 6 MISSING BUTTON (deck tabs are role=tab hosts, EW7). Follow-ups: 10 diagram links point at www.jackzhaojin.com/portfolio/assets/ (404 after cutover unless served); JSON-LD not carried (G2).
 
+## Article batch A1 (stream-articles-a1, done)
+
+| Page | 1440 | 360 | Editability |
+|---|---|---|---|
+| 2025-04-13-vibe-coding-star-story-generator | 0/0, 0.01%, 0 | 0/0, 0.60%, 0 | 143/143/0/0 |
+| 2025-05-28-aem-headless-when-frontend-teams-lead | 0/0, 0.06%, 0 | 0/0, 0.17%, 0 | 109/109/0/0 |
+| 2025-06-04-seven-aem-capabilities-tradeoffs | 0/0, 0.03%, 0 | 0/0, 0.07%, 0 | 251/251/0/0 |
+| 2025-06-08-edge-cms-shift-adobe-eds | 0/0, 0.00%, 0 | 0/0, 0.00%, 0 | 115/115/0/0 |
+| 2025-06-12-azure-rbac-cicd-for-ai-agents | 0/0, 0.05%, 0 | 0/0, 0.35%, 0 | 159/159/0/0 |
+| 2025-07-06-ai-coded-nextjs-agent-release-1 | 0/0, 2.49%, -10 (R13) | 0/0, 4.80%, 0 | 114/114/0/0 |
+
+Engines: era-steps, request-pipe, role-assignments, capability-pivot, spec-filter, persisted-query, credential-chain, parser-lab, option-pair, option-matrix. Residuals: quick-edit drift in three live-state lists (parser-lab steps 317 to 290px; credential-chain chain 404 to 486px, switches 162 to 251px inside a closed disclosure); content-presence "buttons missing" (role hosts, EW7). Rail thumbnails owner-accepted at 360 (local only, 20 entries). D15 false positives on 04-13, 05-28, 06-12, 07-06.
+
 ## Article batch A3 (stream-articles-a3, done)
 
 | Page | 1440 | 360 | Editability |
