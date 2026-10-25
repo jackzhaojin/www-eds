@@ -1,7 +1,8 @@
 // Copies the per-page SEO head of each source page into its Experience Workspace document's
 // metadata block, so EDS renders the same tags as www: the HTML title (head > title, never an
-// inline SVG's title), the JSON-LD graph (metadata json-ld, rendered server-side), og:image:alt
-// and the article tags (article:published_time, article:modified_time, article:author). Other
+// inline SVG's title), the JSON-LD graph (metadata json-ld, rendered server-side), og:image:alt,
+// a share title of its own (og:title, twitter:title) and the article tags
+// (article:published_time, article:modified_time, article:author). Other
 // metadata rows are kept as they are; a row this script owns is replaced in place.
 //
 // Usage: node stardust/scripts/sync-head-metadata.mjs <source-root> <content-dir> [--dry-run]
@@ -31,6 +32,9 @@ function headRows(html) {
   if (ld) rows.push(['json-ld', JSON.stringify(JSON.parse(ld))]);
   ['og:image:alt', 'article:published_time', 'article:modified_time', 'article:author']
     .forEach((n) => { if (meta(n)) rows.push([n, meta(n)]); });
+  // A share title of its own (og:title and twitter:title differ from the HTML title).
+  if (meta('og:title') && meta('og:title') !== rows[0][1]) rows.push(['og:title', meta('og:title')]);
+  if (meta('twitter:title') && meta('twitter:title') !== rows[0][1]) rows.push(['twitter:title', meta('twitter:title')]);
   return rows.filter(([, v]) => v);
 }
 

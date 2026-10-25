@@ -13,11 +13,13 @@ Everything below is a stop point from the plan (Jack's call, his credentials or 
 
 ## 2. Config (stop point: any Experience Workspace or site config change)
 
+**Done 2026-10-25 evening, at Jack's request (SEO parity with www):** the production host (`cdn.prod.host`), robots.txt, the query index, the sitemap (the same 35 URLs as www), the redirects sheet (trailing slashes, `index.html`, `/blogs.html`, `/certifications.html`), bulk metadata (`og:type`, `og:site_name`, `og:locale`) and per-page JSON-LD, titles, share titles and article tags. Files and the step-by-step log: `hlx-config/`. Still open below: the Experience Workspace items, the library sheet, GA4 and push invalidation.
+
+
 - Experience Workspace enablement: `ew.enabled` in the DA config `flags` tab and the Sidekick `editUrlPattern`.
 - The block library sheet (rows listed in `stardust/rollout/streams.md`, design system section).
 - The query index, so the writing listing reads `/query-index.json`, with the article metadata it needs.
-- Redirects: `/blogs.html` to `/writing/`, `/certifications.html` to `/certifications/`, and every folder page without its trailing slash (qa: 33 of them).
-- The sitemap (today it also lists `/nav` and `/footer`), robots, headers, bulk metadata (`og:type` on every page), JSON-LD, GA4 in `consented.js` (decision 9).
+- ~~Redirects~~, ~~the sitemap~~, ~~robots~~, ~~bulk metadata~~, ~~JSON-LD~~: done (above). Headers: none needed (www sets none). GA4 in `consented.js` (decision 9) is still open.
 - Push invalidation: the zone ID and a Cache Purge token in the EDS site config (Jack creates the token).
 
 ## 3. Cloudflare and the cutover
@@ -44,6 +46,7 @@ Every page published on GitHub Pages before the cutover also has to land here. T
 3. `node stardust/scripts/deploy/localize-links.mjs --source-host www.jackzhaojin.com --content content`.
 4. `da-media-upload.mjs` for the article's images (`--scope writing/<slug> --dir <source images>`) and for the listing thumbnail (`--scope writing --manifest` with the one new entry of the listing importer's `media-writing.json`; without it the listing shows `about:error`).
 5. `deploy-batch.mjs` for the two paths (`--force` for the listing), then gate both at 1440 and 360; rail thumbnails at 360 go to `accepted.json` (R7). Add the page to `stardust/rollout/gate-state.json` and the line to `llms.txt`.
+6. The SEO steps in `hlx-config/README.md`: sync the head metadata (JSON-LD, titles), republish, rebuild the redirects sheet, check the sitemap.
 
 ## 6. Follow-ups worth doing
 
