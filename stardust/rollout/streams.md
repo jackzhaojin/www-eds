@@ -43,6 +43,21 @@ Register candidates: v3 components.css rules that hit portfolio class names on t
 
 Engines: era-steps, request-pipe, role-assignments, capability-pivot, spec-filter, persisted-query, credential-chain, parser-lab, option-pair, option-matrix. Residuals: quick-edit drift in three live-state lists (parser-lab steps 317 to 290px; credential-chain chain 404 to 486px, switches 162 to 251px inside a closed disclosure); content-presence "buttons missing" (role hosts, EW7). Rail thumbnails owner-accepted at 360 (local only, 20 entries). D15 false positives on 04-13, 05-28, 06-12, 07-06.
 
+## Article batch A2 (stream-articles-a2, done)
+
+| Page | 1440 | 360 | Editability |
+|---|---|---|---|
+| 2025-07-07 | 0/0, 0.07%, 0 | 0/0, 0.86%, 0 | 154/154/0/0 |
+| 2025-07-11 | 0/0, 0.03%, 0 | 0/0, 0.38%, 0 | 105/105/0/0 |
+| 2025-07-12 | 0/0, 0.01%, 0 | 0/0, 0.42%, 0 | 128/128/0/0 |
+| 2025-07-13 | 0/0, 0.01%, 0 | 0/0, 0.33%, 0 | 61/61/0/0 |
+| 2025-09-01 | 0/0, 0.04%, 0 | 0/0, 9.74%, -27 (summary nowrap; fixed in fc8724f, re-checked in the sweep) | 158/158/0/0 |
+| 2025-10-05 | 0/0, 0.02%, 0 | 0/0, 0.34%, 0 | 130/130/0/0 |
+| 2025-10-12 | 0/0, 0.05%, 0 | 0/0, 0.72%, -1 | 138/138/0/0 |
+| 2026-01-05 | 0/0, 0.01%, 0 | 0/0, 0.75%, 0 | 122/122/0/0 |
+
+Engines: branch-push, task-protocol, consideration-lens, offering-path, stale-timeline, header-relay, scripted-flow, tool-loop, tool-dialects, score-blend, task-loop, trail; 8 SVGs uploaded to media. Residual: task-loop quick-edit (generated finding switches hide, authored text shows). Register R19 to R23. Rail thumbnails owner-accepted at 360 (local only, 34 entries). D15 false positives on 5 pages.
+
 ## Article batch A3 (stream-articles-a3, done)
 
 | Page | 1440 | 360 | Editability |

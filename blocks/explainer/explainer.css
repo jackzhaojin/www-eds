@@ -219,12 +219,6 @@
   }
 }
 
-@media (width <= 640px) {
-  .explainer .json {
-    font-size: 11.5px;
-  }
-}
-
 /* json, verdict */
 .explainer .json {
   margin: 0;
@@ -236,6 +230,12 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   background: var(--bg);
+}
+
+@media (width <= 640px) {
+  .explainer .json {
+    font-size: 11.5px;
+  }
 }
 
 .explainer .verdict {
