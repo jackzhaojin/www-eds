@@ -1,0 +1,386 @@
+/* Panel: portfolio/styles.css .panel, .panel-wide, .panel-label, .panel-note, .replay and the
+   kinds: .edge, .pulse-panel, .glossary, .beforeafter, .request-flow, .ciam-flow, .bakeoff.
+   The accent comes from the chapter section. */
+.panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 22px;
+}
+
+.panel:is(.edge, .flow) {
+  max-width: var(--max);
+  margin: 0 auto clamp(60px, 8vw, 100px);
+  background: var(--color-surface);
+  padding: clamp(22px, 3vw, 40px);
+}
+
+.panel:not(.edge) .panel-label p {
+  margin-bottom: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.panel .panel-note p {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.panel .panel-replay {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  cursor: pointer;
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.panel .panel-replay:hover {
+  color: var(--ink);
+  border-color: var(--ink-faint);
+}
+
+/* counters (pulse) */
+.panel .panel-counters :is(ul, ol) {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panel .panel-counters li {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.panel .panel-counters strong {
+  display: block;
+  font-size: 21px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.panel .panel-counters strong em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+/* edge */
+.panel.edge .panel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 48px);
+  margin-top: 18px;
+}
+
+.panel.edge .panel-col :is(h3, h4) {
+  font-family: var(--font-display);
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.panel.edge .panel-col p {
+  color: var(--ink-soft);
+  font-size: 14.5px;
+}
+
+.panel.edge .panel-close p {
+  margin-top: 22px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+/* pulse */
+.panel.pulse .panel-pulse {
+  display: block;
+  width: 100%;
+  height: 90px;
+}
+
+.panel.pulse .panel-pulse polyline {
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+/* glossary */
+.panel.glossary .panel-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.panel.glossary .panel-chip {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+
+.panel.glossary .panel-chip:hover {
+  color: var(--ink);
+  border-color: var(--ink-faint);
+}
+
+.panel.glossary .panel-chip.lit {
+  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.panel.glossary .panel-readout {
+  margin-top: 16px;
+  min-height: 64px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-soft);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* compare */
+.panel.compare .panel-stages {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel.compare .panel-stage {
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  gap: 14px;
+  padding: 13px 0;
+  border-top: 1px solid var(--line-soft);
+  align-items: baseline;
+}
+
+.panel.compare .panel-stage:first-child {
+  border-top: 0;
+}
+
+.panel.compare .panel-tag p {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.panel.compare .panel-stage.mid .panel-tag p {
+  color: var(--accent);
+}
+
+.panel.compare .panel-text p {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+/* wire */
+.panel.wire {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+}
+
+.panel.wire .panel-node {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 20px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--surface-2);
+}
+
+.panel.wire .panel-wire {
+  position: relative;
+  height: 2px;
+  background: var(--line);
+  border-radius: 1px;
+}
+
+.panel.wire .panel-dot {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+}
+
+.panel.wire.run .panel-dot {
+  animation: panel-go 2.4s ease-in-out 2;
+}
+
+.panel.wire.run .panel-dot.back {
+  animation: panel-back 2.4s ease-in-out 2;
+}
+
+@keyframes panel-go {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  46% {
+    left: calc(100% - 8px);
+    opacity: 1;
+  }
+
+  55%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes panel-back {
+  0%,
+  48% {
+    left: calc(100% - 8px);
+    opacity: 0;
+  }
+
+  58% {
+    opacity: 1;
+  }
+
+  92% {
+    left: 0;
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.panel.wire .panel-note {
+  grid-column: 1 / -1;
+}
+
+/* flow */
+.panel.flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2.5vw, 26px);
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.panel.flow .panel-node {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 20px 26px;
+  min-width: 190px;
+}
+
+/* the name sits on the node's 16px line, as the source's inline mono name does */
+.panel.flow .panel-name p {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: calc(var(--text-body) * var(--leading-body));
+  color: var(--accent);
+}
+
+.panel.flow .panel-sub p {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.panel.flow .panel-arrow {
+  color: var(--ink-faint);
+  font-size: 20px;
+}
+
+/* bakeoff */
+.panel.bakeoff .panel-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.panel.bakeoff .panel-entry {
+  display: grid;
+  grid-template-columns: 110px 1fr 40px;
+  align-items: center;
+  gap: 12px;
+}
+
+.panel.bakeoff .panel-name p {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+}
+
+.panel.bakeoff .panel-bar {
+  display: block;
+  height: 12px;
+  width: 0;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--accent) 32%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.panel.bakeoff.run .panel-bar {
+  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.panel.bakeoff .panel-score p {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: var(--weight-bold);
+  color: var(--accent);
+  text-align: right;
+}
+
+@media (width <= 700px) {
+  .panel.edge .panel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel.flow {
+    flex-direction: column;
+  }
+
+  .panel.flow .panel-node {
+    width: 100%;
+  }
+
+  .panel.flow .panel-arrow {
+    transform: rotate(90deg);
+  }
+}

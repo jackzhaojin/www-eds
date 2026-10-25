@@ -1,0 +1,377 @@
+/* Timeline: portfolio/styles.css .gantt (and .method-legend, the year rail), .ladder, .era,
+   .rung, .milestone-list and .cred-strip. */
+
+/* ---------- gantt ---------- */
+.timeline.gantt .gantt-chart {
+  margin-top: 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 22px 22px 16px;
+  overflow-x: auto;
+}
+
+.timeline.gantt .gantt-scale {
+  display: flex;
+  justify-content: space-between;
+  min-width: 660px;
+  padding: 0 0 12px 172px;
+}
+
+.timeline.gantt .gantt-scale p {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+
+/* Flex, not grid: a sticky grid item is confined to its own track, so the name column would
+   run out of travel and scroll away on narrow screens. */
+.timeline.gantt .gantt-row {
+  display: flex;
+  align-items: center;
+  min-width: 660px;
+  padding: 5px 0;
+}
+
+.timeline.gantt .gantt-label {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  flex: 0 0 172px;
+  min-width: 0;
+  background: var(--surface);
+  box-shadow: -24px 0 0 0 var(--surface);
+  padding-right: 14px;
+}
+
+.timeline.gantt .gantt-label p {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.timeline.gantt .gantt-track {
+  position: relative;
+  flex: 1 1 auto;
+  height: 18px;
+}
+
+.timeline.gantt .gantt-track::before {
+  content: "";
+  position: absolute;
+  inset: 8px 0;
+  height: 1px;
+  background: var(--line-soft);
+}
+
+.timeline.gantt .gantt-bar {
+  position: absolute;
+  top: 2px;
+  height: 14px;
+  min-width: 10px;
+  padding: 0;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--bar) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bar) 75%, transparent);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+/* the visible bar stays 14px; the hit area is widened to 24px through a transparent overlay */
+.timeline.gantt .gantt-bar::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  left: 50%;
+  width: max(100%, 24px);
+  transform: translateX(-50%);
+}
+
+.timeline.gantt .gantt-bar:hover,
+.timeline.gantt .gantt-bar:focus-visible {
+  background: color-mix(in srgb, var(--bar) 55%, transparent);
+  transform: scaleY(1.15);
+}
+
+.timeline.gantt .gantt-bar:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.timeline.gantt .gantt-bar::after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 5;
+}
+
+.timeline.gantt .gantt-bar:hover::after,
+.timeline.gantt .gantt-bar:focus-visible::after {
+  opacity: 1;
+}
+
+.timeline.gantt .gantt-now {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-line);
+}
+
+.timeline.gantt .gantt-note p {
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+}
+
+.timeline.gantt .gantt-legend {
+  margin-top: 34px;
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+}
+
+.timeline.gantt .gantt-legend :is(ul, ol) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px 28px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline.gantt .gantt-legend li {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.timeline.gantt .gantt-legend strong {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+/* the year rail: a fixed dot per chapter, outside main */
+.year-rail {
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.year-rail a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.year-rail a i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line);
+  border: 1px solid var(--color-line);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.year-rail a span {
+  opacity: 0;
+  transform: translateX(4px);
+  transition: opacity 0.25s, transform 0.25s;
+  background: var(--color-surface);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--line-soft);
+  white-space: nowrap;
+}
+
+.year-rail a:hover span {
+  opacity: 1;
+  transform: none;
+}
+
+.year-rail a.active i {
+  background: var(--dot, var(--accent));
+  transform: scale(1.35);
+}
+
+@media (width <= 1100px) {
+  .year-rail {
+    display: none;
+  }
+}
+
+/* Below the desktop breakpoint the chart scrolls sideways; the tooltips would push the
+   scrollable width past the pinned name column's travel. */
+@media (width <= 1023px) {
+  .timeline.gantt .gantt-bar::after {
+    content: none;
+  }
+}
+
+/* ---------- ladder ---------- */
+.timeline.ladder {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.timeline.ladder .ladder-era {
+  position: relative;
+  padding-left: clamp(18px, 3vw, 34px);
+  margin-bottom: 42px;
+}
+
+.timeline.ladder .ladder-era::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: -34px;
+  width: 1px;
+  background: linear-gradient(color-mix(in srgb, var(--accent) 55%, transparent), var(--line));
+}
+
+.timeline.ladder .ladder-era:last-child::before {
+  bottom: 8px;
+}
+
+.timeline.ladder .ladder-era-title p {
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.timeline.ladder .ladder-rung {
+  position: relative;
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: clamp(14px, 2.5vw, 28px);
+  padding: 16px 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+.timeline.ladder .ladder-rung::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * clamp(18px, 3vw, 34px) - 3.5px);
+  top: 26px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--accent);
+}
+
+.timeline.ladder .ladder-version p {
+  padding-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.timeline.ladder .ladder-date p {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.timeline.ladder .ladder-title :is(h3, h4) {
+  font-family: var(--font-display);
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+
+.timeline.ladder .ladder-text p {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+@media (width <= 600px) {
+  .timeline.ladder .ladder-rung {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+/* ---------- milestones ---------- */
+.timeline.milestones .milestones-list {
+  margin-top: 26px;
+  padding-left: 1.25em;
+}
+
+.timeline.milestones .milestone {
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+.timeline.milestones .milestone-date {
+  flex-shrink: 0;
+  width: 76px;
+}
+
+.timeline.milestones .milestone-date p {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.timeline.milestones .milestone-text p {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.timeline.milestones .milestones-close p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  padding: 20px 26px;
+  margin-top: 22px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.03em;
+  line-height: 1.9;
+  color: var(--ink-faint);
+}

@@ -1,0 +1,82 @@
+/* Proof links: portfolio/styles.css .proof-links, .center-links, .private-tag, .link-caveat and
+   the link-type colors (the icons are the template's .link-types). An empty row keeps its
+   18px, as the source's empty proof-links paragraphs do. */
+.proof-links .proof-links-row {
+  margin-top: 18px;
+  display: flex;
+  min-height: 0;
+}
+
+.proof-links .proof-links-row p {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+}
+
+.showcase.wide .proof-links .proof-links-row,
+.carousel .proof-links .proof-links-row,
+.showcase.wide .proof-links .proof-links-row p,
+.carousel .proof-links .proof-links-row p {
+  justify-content: center;
+}
+
+.proof-links .proof-links-row a:any-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 0 2px;
+  margin: -10px 0 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  transition: border-color 0.25s;
+}
+
+.proof-links .proof-links-row a:hover {
+  border-color: var(--accent);
+}
+
+.proof-links .proof-links-row a[href*="github.com"] {
+  color: var(--ink);
+  border-bottom-color: var(--color-line);
+}
+
+.proof-links .proof-links-row a[href*="github.com"]:hover {
+  border-bottom-color: var(--ink);
+}
+
+.proof-links .proof-links-row a:is([href*="youtube.com"], [href*="youtu.be"]) {
+  color: var(--ink-soft);
+  border-bottom-color: var(--color-line);
+}
+
+.proof-links .proof-links-row a[href*="linkedin.com"] {
+  color: var(--ink-soft);
+  border-bottom-color: var(--color-line);
+}
+
+.proof-links .proof-links-row code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  background: none;
+  border: 1px dashed var(--line);
+  border-radius: 5px;
+  padding: 4px 10px;
+  cursor: help;
+}
+
+.proof-links .proof-links-row em {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+}

@@ -1,0 +1,54 @@
+/* Frame: portfolio/styles.css .frame, .diagram-frame, .frame.sub, .frame.portrait, with the
+   v3 frame caption and the css/site.css caption padding. */
+.frame .frame-figure {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.frame .frame-media p {
+  margin: 0;
+}
+
+.frame .frame-media :is(a, picture) {
+  display: block;
+}
+
+.frame .frame-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.frame .frame-figure figcaption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  padding: 16px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.frame .frame-figure figcaption p {
+  margin: 0;
+}
+
+.frame.diagram .frame-figure {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.frame.diagram .frame-media a {
+  background: var(--color-diagram-ground);
+}
+
+.frame.sub .frame-figure {
+  margin-top: 18px;
+}
+
+.frame.sub.portrait .frame-figure {
+  max-width: 340px;
+}

@@ -1,0 +1,83 @@
+/* Carousel: portfolio/styles.css .carousel, .slide, .carousel-controls, .carousel-count. */
+.carousel .carousel-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+  scrollbar-width: thin;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.carousel .carousel-slide {
+  flex: 0 0 min(78%, 680px);
+  margin: 0;
+  scroll-snap-align: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.carousel .carousel-media p {
+  margin: 0;
+}
+
+.carousel .carousel-media picture {
+  display: block;
+}
+
+.carousel .carousel-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.carousel .carousel-slide figcaption {
+  padding: 12px 16px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.carousel .carousel-slide figcaption p {
+  margin: 0;
+}
+
+.carousel .carousel-slide figcaption strong {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+}
+
+.carousel .carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.carousel .carousel-controls button {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: none;
+  color: var(--ink-soft);
+  font-size: 15px;
+  cursor: pointer;
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.carousel .carousel-controls button:hover {
+  color: var(--ink);
+  border-color: var(--ink-faint);
+}
+
+.carousel .carousel-count {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
