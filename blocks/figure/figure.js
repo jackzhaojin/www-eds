@@ -14,7 +14,8 @@
  *   board - a diagram on a white ground with a hairline, as the source's boards
  *   shot - a product screenshot, the same frame, opens full size
  *   page - a photographed notebook page, at most 420px wide, opens full size
- *   narrow - with shot: a portrait screenshot kept at most 560px wide
+ *   narrow - with shot: a portrait screenshot kept at most 560px wide; with board: a photo and
+ *   its caption kept at most 520px wide, centered
  */
 
 const VARIANTS = ['board', 'shot', 'page'];

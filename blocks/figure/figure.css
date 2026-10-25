@@ -38,6 +38,11 @@
   max-width: 560px;
 }
 
+.figure.board.narrow :is(img, figcaption) {
+  max-width: 520px;
+  margin-inline: auto;
+}
+
 .figure .figure-open {
   display: block;
   border-radius: 12px;
