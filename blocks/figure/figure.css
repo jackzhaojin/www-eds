@@ -97,3 +97,31 @@
   text-underline-offset: 2px;
   text-decoration-thickness: 1px;
 }
+
+/* Page theme board-mat (two articles): in the dark theme the white whiteboard images sit on a
+   dark mat with a hairline frame, slightly dimmed, so they don't glare. */
+:root[data-theme="dark"] .board-mat .figure.board .figure-frame {
+  padding: 12px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 16px;
+  background: var(--color-surface);
+}
+
+:root[data-theme="dark"] .board-mat .figure.board img {
+  filter: brightness(0.88);
+  border-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .board-mat .figure.board .figure-frame {
+    padding: 12px;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 16px;
+    background: var(--color-surface);
+  }
+
+  :root:not([data-theme="light"], [data-theme="dark"]) .board-mat .figure.board img {
+    filter: brightness(0.88);
+    border-color: transparent;
+  }
+}

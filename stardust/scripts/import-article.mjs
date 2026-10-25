@@ -373,7 +373,10 @@ if (keep.length) metaRows.push(['title-keep-together', esc(keep.join(', '))]);
 const keepHeads = [...new Set($('.article-body > h2 .nowrap').map((_, e) => $(e).text()).get())];
 if (keepHeads.length) metaRows.push(['heading-keep-together', esc(keepHeads.join(', '))]);
 // Page look words (body classes through the theme metadata).
-const themeWords = [/\.article-body > p code[^{]*\{[^}]*white-space:\s*nowrap/.test(srcCss) && 'code-nowrap'].filter(Boolean);
+const themeWords = [
+  /\.article-body > p code[^{]*\{[^}]*white-space:\s*nowrap/.test(srcCss) && 'code-nowrap',
+  /data-theme="dark"\] \.article-body \.board \{/.test(srcCss) && 'board-mat',
+].filter(Boolean);
 if (themeWords.length) metaRows.push(['theme', themeWords.join(', ')]);
 if (ogImage) metaRows.push(['image', `${img($(`<img src="${ogImage}" alt="${esc(meta('og:image:alt'))}">`)[0])}`]);
 if (meta('og:image:alt')) metaRows.push(['image:alt', esc(meta('og:image:alt'))]);

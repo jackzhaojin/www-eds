@@ -24,6 +24,7 @@
  *   article's board--narrow)
  *   native - the image at its own size, never upscaled, left-aligned
  *   open - with board: the diagram opens full size on click
+ * Page theme board-mat (metadata theme): in the dark theme boards sit on a framed dark mat.
  */
 
 const VARIANTS = ['board', 'shot', 'page'];
