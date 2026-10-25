@@ -53,6 +53,7 @@
   color: var(--palette-bone-100);
 }
 
+/* Inline line spans keep their own newlines when edited. */
 .code pre {
   position: relative;
   margin: 0;
@@ -64,6 +65,7 @@
   font: 400 13px/1.7 var(--font-mono);
   color: var(--palette-bone-100);
   font-variant-ligatures: none;
+  white-space: pre;
 }
 
 .code pre code {
@@ -72,12 +74,6 @@
   border: 0;
   padding: 0;
   color: inherit;
-}
-
-/* Lines stay inline: their own newline breaks them, so the code reads the same while it is
-   edited (the editor shows the plain text with the same newlines). */
-.code pre {
-  white-space: pre;
 }
 
 .code .ln {
