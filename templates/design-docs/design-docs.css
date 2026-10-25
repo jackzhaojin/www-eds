@@ -517,17 +517,22 @@ body.design-docs main.ds-layout .ds-specimen-sample.display p {
 
 body.design-docs main.ds-layout .ds-specimen-sample.mono p {
   font-family: var(--font-mono);
+  line-height: var(--leading-body);
 }
 
 body.design-docs main.ds-layout .ds-specimen-sample.muted p {
   color: var(--color-text-muted);
 }
 
+/* v3's label and mono samples sit in a body-size line (a kicker span, a .mono div): the line
+   box is the body's 26.4px and the mono text keeps the body's 1.65, as the source renders */
 body.design-docs main.ds-layout .ds-specimen-sample.label p {
   font-family: var(--font-mono);
+  font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--color-text-faint);
+  line-height: calc(var(--text-body) * 1.65);
 }
 
 @media (width >= 768px) {
