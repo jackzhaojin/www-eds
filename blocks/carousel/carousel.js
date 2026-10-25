@@ -14,6 +14,15 @@
 
 const CONFIG = ['label', 'previous', 'next'];
 
+/** Config rows stay in the block, hidden through a wrapper, so they stay editable. */
+function hiddenBox(className, nodes) {
+  const box = document.createElement('div');
+  box.className = className;
+  box.hidden = true;
+  box.append(...nodes);
+  return box;
+}
+
 function slot(className, nodes, tag = 'div') {
   const el = document.createElement(tag);
   el.className = className;
@@ -23,6 +32,7 @@ function slot(className, nodes, tag = 'div') {
 
 export default function decorate(block) {
   const config = {};
+  const meta = [];
   const track = slot('carousel-track', []);
   track.tabIndex = 0;
   [...block.querySelectorAll(':scope > div')].forEach((row) => {
@@ -30,6 +40,7 @@ export default function decorate(block) {
     const key = cells.length === 2 ? cells[0].textContent.trim().toLowerCase() : '';
     if (CONFIG.includes(key) && !cells[0].querySelector('img')) {
       config[key] = cells[1].textContent.trim();
+      cells.forEach((c) => meta.push(...c.children));
       return;
     }
     const slide = document.createElement('figure');
@@ -70,5 +81,6 @@ export default function decorate(block) {
   }, { passive: true });
   const next = block.parentElement?.nextElementSibling;
   const links = next?.firstElementChild?.dataset.blockName === 'proof-links' ? next : null;
+  if (meta.length) controls.append(hiddenBox('carousel-meta', meta));
   block.replaceChildren(track, controls, ...(links ? [links] : []));
 }

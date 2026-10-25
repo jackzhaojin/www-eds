@@ -11,6 +11,15 @@
 
 const VARIANTS = ['lifetime'];
 
+/** Config rows stay in the block, hidden through a wrapper, so they stay editable. */
+function hiddenBox(className, nodes) {
+  const box = document.createElement('div');
+  box.className = className;
+  box.hidden = true;
+  box.append(...nodes);
+  return box;
+}
+
 function slot(className, nodes) {
   const div = document.createElement('div');
   div.className = className;
@@ -39,11 +48,13 @@ function countUp(list) {
 export default function decorate(block) {
   if (!VARIANTS.some((v) => block.classList.contains(v))) block.classList.add('lifetime');
   const parts = [];
+  const meta = [];
   let list = null;
   [...block.querySelectorAll(':scope > div')].forEach((row) => {
     const cells = [...row.children];
     if (cells.length === 2 && cells[0].textContent.trim().toLowerCase() === 'label') {
       block.setAttribute('aria-label', cells[1].textContent.trim());
+      cells.forEach((c) => meta.push(...c.children));
       return;
     }
     cells.forEach((cell) => {
@@ -54,6 +65,7 @@ export default function decorate(block) {
       } else parts.push(slot(list ? 'stats-note' : 'stats-label', [...cell.children]));
     });
   });
+  if (meta.length) parts.push(hiddenBox('stats-meta', meta));
   block.replaceChildren(...parts);
   if (list) {
     new IntersectionObserver((entries, obs) => {

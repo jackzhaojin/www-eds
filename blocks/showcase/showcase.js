@@ -41,6 +41,15 @@ const ADOPT = {
 };
 const YOUTUBE = /(?:youtube(?:-nocookie)?\.com\/(?:embed\/|watch\?v=|shorts\/)|youtu\.be\/)([\w-]{11})/;
 
+/** Config rows stay in the block, hidden through a wrapper, so they stay editable. */
+function hiddenBox(className, nodes) {
+  const box = document.createElement('div');
+  box.className = className;
+  box.hidden = true;
+  box.append(...nodes);
+  return box;
+}
+
 function slot(name, nodes) {
   const div = document.createElement('div');
   div.className = name;
@@ -192,6 +201,7 @@ function decorateStory(block, rows) {
   if (!block.classList.contains('story')) block.classList.add('story');
   let textCell = null;
   let mediaCell = null;
+  const meta = [];
   rows.forEach((row) => {
     const cells = [...row.children];
     const key = cells.length === 2 ? cells[0].textContent.trim().toLowerCase() : '';
@@ -199,6 +209,7 @@ function decorateStory(block, rows) {
       const value = cells[1].textContent.trim();
       if (key === 'id' && value) block.id = value;
       if (key === 'label' && value) block.dataset.mediaLabel = value;
+      cells.forEach((c) => meta.push(...c.children));
       return;
     }
     cells.forEach((cell) => {
@@ -224,6 +235,7 @@ function decorateStory(block, rows) {
   });
   let parts = [media, text];
   if (wide) parts = flip ? [media, text] : [text, media, after];
+  if (meta.length) parts.push(hiddenBox('showcase-meta-rows', meta));
   block.replaceChildren(...parts.filter((p) => p && (p !== after || after.children.length)));
 }
 

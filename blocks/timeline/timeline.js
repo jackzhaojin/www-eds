@@ -22,6 +22,15 @@
 const VARIANTS = ['gantt', 'ladder', 'milestones'];
 const GANTT_CONFIG = ['range', 'now', 'rail', 'fallback', 'legend'];
 
+/** Config rows stay in the block, hidden through a wrapper, so they stay editable. */
+function hiddenBox(className, nodes) {
+  const box = document.createElement('div');
+  box.className = className;
+  box.hidden = true;
+  box.append(...nodes);
+  return box;
+}
+
 function slot(className, nodes) {
   const div = document.createElement('div');
   div.className = className;
@@ -65,6 +74,7 @@ function gantt(block) {
   const config = {};
   const projects = [];
   const notes = [];
+  const meta = [];
   let scale = null;
   let legend = null;
   [...block.querySelectorAll(':scope > div')].forEach((row) => {
@@ -72,7 +82,10 @@ function gantt(block) {
     const key = cellText(cells[0]).toLowerCase();
     if (cells.length === 2 && GANTT_CONFIG.includes(key)) {
       config[key] = key === 'fallback' ? cells[1] : cellText(cells[1]);
+      meta.push(...cells[0].children);
+      if (key !== 'fallback') meta.push(...cells[1].children);
     } else if (key === 'scale') {
+      meta.push(...cells[0].children);
       scale = slot('gantt-scale', cells.slice(1).flatMap((c) => [...c.children]));
     } else if (cells.length >= 4) {
       const [name, id, start, end, flag] = cells;
@@ -84,6 +97,7 @@ function gantt(block) {
         end: cellText(end),
         ongoing: /ongoing/i.test(cellText(flag)),
       });
+      [id, start, end, flag].forEach((c) => { if (c) meta.push(...c.children); });
     } else if (cells.length === 1 && cells[0].querySelector('ul, ol')) [legend] = cells;
     else if (cells.length === 1 && cells[0].children.length) notes.push(cells[0]);
   });
@@ -140,6 +154,7 @@ function gantt(block) {
     if (config.legend) box.setAttribute('aria-label', config.legend);
     parts.push(box);
   }
+  if (meta.length) parts.push(hiddenBox('gantt-meta', meta));
   block.replaceChildren(...parts);
   // on narrow screens the recent end of the chart sits off to the right
   requestAnimationFrame(() => {

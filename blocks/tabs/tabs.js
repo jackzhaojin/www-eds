@@ -15,6 +15,15 @@
 const VARIANTS = ['diagram-deck'];
 let deckCount = 0;
 
+/** Config rows stay in the block, hidden through a wrapper, so they stay editable. */
+function hiddenBox(className, nodes) {
+  const box = document.createElement('div');
+  box.className = className;
+  box.hidden = true;
+  box.append(...nodes);
+  return box;
+}
+
 function slot(className, nodes, tag = 'div') {
   const el = document.createElement(tag);
   el.className = className;
@@ -29,10 +38,12 @@ export default function decorate(block) {
   let label = '';
   let toolbarLabel = [];
   const panes = [];
+  const meta = [];
   [...block.querySelectorAll(':scope > div')].forEach((row) => {
     const cells = [...row.children].filter((c) => c.children.length || c.textContent.trim());
     if (cells.length === 2 && cells[0].textContent.trim().toLowerCase() === 'label') {
       label = cells[1].textContent.trim();
+      cells.forEach((c) => meta.push(...c.children));
     } else if (cells.length === 1) toolbarLabel = [...cells[0].children];
     else if (cells.length >= 2) panes.push(cells);
   });
@@ -123,5 +134,5 @@ export default function decorate(block) {
     });
   });
   if (tabs.length) activate(tabs[0], false, false);
-  block.replaceChildren(toolbar, list, stack);
+  block.replaceChildren(toolbar, list, stack, ...(meta.length ? [hiddenBox('tabs-meta', meta)] : []));
 }

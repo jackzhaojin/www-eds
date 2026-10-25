@@ -26,6 +26,15 @@ const VARIANTS = ['edge', 'pulse', 'glossary', 'compare', 'wire', 'flow', 'bakeo
 const CONFIG = ['label', 'replay', 'max'];
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/** Config rows stay in the block, hidden through a wrapper, so they stay editable. */
+function hiddenBox(className, nodes) {
+  const box = document.createElement('div');
+  box.className = className;
+  box.hidden = true;
+  box.append(...nodes);
+  return box;
+}
+
 function slot(className, nodes, tag = 'div') {
   const el = document.createElement(tag);
   el.className = className;
@@ -36,13 +45,18 @@ function slot(className, nodes, tag = 'div') {
 function readRows(block) {
   const config = {};
   const rows = [];
+  const meta = [];
   [...block.querySelectorAll(':scope > div')].forEach((row) => {
     const cells = [...row.children];
     const key = cells.length === 2 ? cells[0].textContent.trim().toLowerCase() : '';
-    if (CONFIG.includes(key)) config[key] = cells[1].textContent.trim();
-    else if (row.textContent.trim() || row.querySelector('img')) rows.push(cells.filter((c) => c.children.length || c.textContent.trim()));
+    if (CONFIG.includes(key)) {
+      config[key] = cells[1].textContent.trim();
+      cells.forEach((c) => meta.push(...c.children));
+    } else if (row.textContent.trim() || row.querySelector('img')) {
+      rows.push(cells.filter((c) => c.children.length || c.textContent.trim()));
+    }
   });
-  return { config, rows };
+  return { config, rows, meta };
 }
 
 function onceVisible(el, threshold, fn) {
@@ -268,7 +282,7 @@ function bakeoff(block, rows, config) {
 export default function decorate(block) {
   if (!VARIANTS.some((v) => block.classList.contains(v))) block.classList.add('edge');
   const variant = VARIANTS.find((v) => block.classList.contains(v));
-  const { config, rows } = readRows(block);
+  const { config, rows, meta } = readRows(block);
   if (config.label) block.setAttribute('aria-label', config.label);
   let parts;
   if (variant === 'pulse') parts = pulse(block, rows, config);
@@ -278,5 +292,6 @@ export default function decorate(block) {
   else if (variant === 'flow') parts = flow(rows);
   else if (variant === 'bakeoff') parts = bakeoff(block, rows, config);
   else parts = edge(rows);
+  if (meta.length) parts.push(hiddenBox('panel-meta', meta));
   block.replaceChildren(...parts);
 }

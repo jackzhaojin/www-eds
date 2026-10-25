@@ -14,6 +14,15 @@
 
 const VARIANTS = ['diagram', 'sub'];
 
+/** Config rows stay in the block, hidden through a wrapper, so they stay editable. */
+function hiddenBox(className, nodes) {
+  const box = document.createElement('div');
+  box.className = className;
+  box.hidden = true;
+  box.append(...nodes);
+  return box;
+}
+
 function slot(name, nodes) {
   const div = document.createElement('div');
   div.className = name;
@@ -28,10 +37,12 @@ export default function decorate(block) {
   if (block.classList.contains('diagram')) figure.classList.add('diagram');
   let label = '';
   let caption = null;
+  const meta = [];
   [...block.querySelectorAll(':scope > div')].forEach((row) => {
     const cells = [...row.children];
     if (cells.length === 2 && cells[0].textContent.trim().toLowerCase() === 'label') {
       label = cells[1].textContent.trim();
+      cells.forEach((c) => meta.push(...c.children));
       return;
     }
     cells.forEach((cell) => [...cell.children].forEach((el) => {
@@ -46,5 +57,5 @@ export default function decorate(block) {
     }));
   });
   if (label) figure.querySelector('.frame-media a')?.setAttribute('aria-label', label);
-  block.replaceChildren(figure);
+  block.replaceChildren(figure, ...(meta.length ? [hiddenBox('frame-meta', meta)] : []));
 }
