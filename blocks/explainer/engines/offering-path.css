@@ -1,0 +1,223 @@
+/* Explainer engine "offering-path": an offering's path on the diagram (writing/2025-07-13 explainer.css). */
+.explainer.offering-path .eds-map-meta,
+.explainer.offering-path .eds-map.is-live .eds-map-note:not(.is-on) {
+  display: none;
+}
+
+.explainer.offering-path .eds-map {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.explainer.offering-path .eds-map__chips {
+  flex-wrap: wrap;
+  overflow: visible;
+  margin: 0 0 14px;
+  padding: 0;
+}
+
+.explainer.offering-path .eds-map__chips > .eds-map-option {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+
+.explainer.offering-path .eds-map__chips strong {
+  font-weight: inherit;
+  color: inherit;
+}
+
+.explainer.offering-path .eds-map__img {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.explainer.offering-path .eds-map__img picture {
+  display: block;
+}
+
+.explainer.offering-path .eds-map__img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.explainer.offering-path .eds-map__hl {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--w);
+  height: var(--h);
+  border-radius: 8px;
+  border: 3px solid var(--palette-lavender-600);
+  background: rgb(91 75 196 / 12%);
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  pointer-events: none;
+}
+
+.explainer.offering-path .eds-map__hl.on {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+/* steps */
+.explainer.offering-path .eds-map__steps ol {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: st;
+  display: grid;
+  gap: 8px;
+}
+
+.explainer.offering-path .eds-map__steps ol > li {
+  counter-increment: st;
+  position: relative;
+  margin: 0;
+  padding: 10px 12px 10px 44px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  transition: opacity 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+.explainer.offering-path .eds-map__steps ol > li::before {
+  content: counter(st);
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  font: 500 12px/20px var(--font-mono);
+  text-align: center;
+  color: var(--muted);
+}
+
+.explainer.offering-path .eds-map__steps strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.explainer.offering-path .eds-map__steps li ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.explainer.offering-path .eds-map__steps li li {
+  display: block;
+  margin-top: 2px;
+}
+
+.explainer.offering-path .eds-map__steps li li em {
+  font: 500 12px var(--font-mono);
+  color: var(--muted);
+}
+
+.explainer.offering-path .eds-map.is-live .eds-map__steps li ul,
+.explainer.offering-path .eds-map.is-live .eds-map__steps li p {
+  display: inline;
+}
+
+.explainer.offering-path .eds-map.is-live .eds-map__steps li ul::before {
+  content: " ";
+}
+
+.explainer.offering-path .eds-map.is-live .eds-map__steps li li,
+.explainer.offering-path .eds-map.is-live .eds-map__steps li li em:first-child {
+  display: none;
+}
+
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-pick="1"] li li:nth-child(1),
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-pick="2"] li li:nth-child(2),
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-pick="3"] li li:nth-child(3),
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-pick="4"] li li:nth-child(4),
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-pick="5"] li li:nth-child(5) {
+  display: inline;
+  margin: 0;
+}
+
+.explainer.offering-path .eds-map.is-live .eds-map__steps ol > li {
+  opacity: 0.45;
+}
+
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="1"] ol > li:nth-child(1),
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="2"] ol > li:nth-child(2),
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="3"] ol > li:nth-child(3),
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="4"] ol > li:nth-child(4),
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="5"] ol > li:nth-child(5),
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="6"] ol > li:nth-child(6),
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="7"] ol > li:nth-child(7) {
+  opacity: 1;
+  border-color: var(--accent);
+}
+
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="1"] ol > li:nth-child(1)::before,
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="2"] ol > li:nth-child(2)::before,
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="3"] ol > li:nth-child(3)::before,
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="4"] ol > li:nth-child(4)::before,
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="5"] ol > li:nth-child(5)::before,
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="6"] ol > li:nth-child(6)::before,
+.explainer.offering-path .eds-map.is-live .eds-map__steps[data-on~="7"] ol > li:nth-child(7)::before {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.explainer.offering-path .eds-map__say p {
+  margin: 12px 0 0;
+  font-size: 14.5px;
+  color: var(--ink-2);
+}
+
+.explainer.offering-path .eds-map figcaption {
+  margin-top: 12px;
+}
+
+.explainer.offering-path .eds-map figcaption a:any-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+@media (width <= 640px) {
+  .explainer.offering-path .eds-map__chips > .eds-map-option {
+    min-height: 44px;
+  }
+}
+
+[data-theme="dark"] .explainer.offering-path .eds-map__img {
+  border-color: var(--line-strong);
+}
+
+[data-theme="dark"] .explainer.offering-path .eds-map__img img {
+  filter: brightness(0.88);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.offering-path .eds-map__img {
+    border-color: var(--line-strong);
+  }
+
+  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.offering-path .eds-map__img img {
+    filter: brightness(0.88);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explainer.offering-path :is(.eds-map__hl, .eds-map__steps li) {
+    transition: none;
+  }
+}

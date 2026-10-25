@@ -1,0 +1,130 @@
+/* Explainer engine "scripted-flow": the redrawn scripted-flow board (writing/2025-10-05 explainer.css). */
+.explainer.scripted-flow {
+  --dg-fn: var(--palette-blue-600);
+  --dg-api: var(--palette-rose-700);
+  --dg-llm: var(--palette-lavender-600);
+  --dg-ink: var(--color-text);
+  --dg-line: var(--color-text-muted);
+}
+
+[data-theme="dark"] .explainer.scripted-flow {
+  --dg-fn: var(--palette-blue-300);
+  --dg-api: var(--palette-rose-300);
+  --dg-llm: var(--palette-lavender-300);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.scripted-flow {
+    --dg-fn: var(--palette-blue-300);
+    --dg-api: var(--palette-rose-300);
+    --dg-llm: var(--palette-lavender-300);
+  }
+}
+
+.explainer.scripted-flow .dg {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  padding: 18px 16px 14px;
+}
+
+.explainer.scripted-flow .dg-img.is-drawn {
+  display: none;
+}
+
+.explainer.scripted-flow .dg-img img,
+.explainer.scripted-flow .dg svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.explainer.scripted-flow .dg .svg-tall {
+  display: none;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+@container (max-width: 560px) {
+  .explainer.scripted-flow .dg .svg-wide {
+    display: none;
+  }
+
+  .explainer.scripted-flow .dg .svg-tall {
+    display: block;
+  }
+}
+
+.explainer.scripted-flow .dg .n rect {
+  stroke-width: 1.5;
+}
+
+.explainer.scripted-flow .dg .n text {
+  font: 500 13px var(--font-body);
+  fill: var(--dg-ink);
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.explainer.scripted-flow .dg .n--fn rect {
+  fill: color-mix(in srgb, var(--dg-fn) 14%, var(--color-surface));
+  stroke: var(--dg-fn);
+}
+
+.explainer.scripted-flow .dg .n--api rect {
+  fill: color-mix(in srgb, var(--dg-api) 14%, var(--color-surface));
+  stroke: var(--dg-api);
+}
+
+.explainer.scripted-flow .dg .n--llm rect {
+  fill: color-mix(in srgb, var(--dg-llm) 16%, var(--color-surface));
+  stroke: var(--dg-llm);
+}
+
+.explainer.scripted-flow .dg .e {
+  stroke: var(--dg-line);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.explainer.scripted-flow .dg .head {
+  fill: var(--dg-line);
+}
+
+.explainer.scripted-flow .dg__legend :is(ul, ol) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  font: 500 12px var(--font-mono);
+  color: var(--color-text-faint);
+}
+
+.explainer.scripted-flow .dg__legend li {
+  margin: 0;
+}
+
+.explainer.scripted-flow .dg__legend li::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  margin-right: 6px;
+  vertical-align: -1px;
+  border: 1.5px solid currentcolor;
+}
+
+.explainer.scripted-flow .dg__legend li:nth-child(1)::before {
+  color: var(--dg-fn);
+}
+
+.explainer.scripted-flow .dg__legend li:nth-child(2)::before {
+  color: var(--dg-api);
+}
+
+.explainer.scripted-flow .dg__legend li:nth-child(3)::before {
+  color: var(--dg-llm);
+}
