@@ -1625,6 +1625,16 @@ body.design-docs main.ds-layout .ds-chip a:any-link {
   }
 }
 
+/* a row list in a docs section reads at the measure, as the source's list (.docs-section > ol) */
+body.design-docs main.ds-layout > .ds-flow:not(.ds-in-component) .row-list :is(ul, ol) {
+  max-width: var(--measure);
+}
+
+/* status words in a docs table are v3 status chips */
+body.design-docs main.ds-layout .data-table .ds-status {
+  display: inline-flex;
+}
+
 /* contrast results (v3 .table .pass / .fail) */
 body.design-docs .ds-result p {
   font-family: var(--font-mono);

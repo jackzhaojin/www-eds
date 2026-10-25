@@ -155,6 +155,33 @@ const SPLIT = (li) => {
   li.append(value);
 };
 
+/**
+ * A docs table cell that holds only a status word (stable, beta) shows it as the v3 status
+ * chip, once the table block has built its cells.
+ */
+function decorateStatusCells(section) {
+  const tables = [...section.querySelectorAll('.data-table')];
+  if (!tables.length) return;
+  const run = (table) => table.querySelectorAll('td > p').forEach((p) => {
+    const word = text(p);
+    if (!STATUS.test(word) || p.parentElement.classList.contains('ds-status')) return;
+    const chip = wrap(p, 'ds-status');
+    chip.dataset.status = word.toLowerCase();
+  });
+  tables.forEach((table) => {
+    if (table.dataset.blockStatus === 'loaded') {
+      run(table);
+      return;
+    }
+    const watch = new MutationObserver(() => {
+      if (table.dataset.blockStatus !== 'loaded') return;
+      watch.disconnect();
+      run(table);
+    });
+    watch.observe(table, { attributes: true, attributeFilter: ['data-block-status'] });
+  });
+}
+
 /** Link paragraphs leave their .cta-slot wrapper (a demo lays them out itself). */
 function unslot(wrapper) {
   wrapper.querySelectorAll('.cta-slot').forEach((slot) => slot.replaceWith(...slot.children));
@@ -707,6 +734,7 @@ export default function decorate(main) {
     const demo = section.dataset.demo && DEMOS[section.dataset.demo];
     if (demo) demo(section);
     if (section.dataset.check === 'contrast') checkContrast(section);
+    decorateStatusCells(section);
     if (section.dataset.labels) decorateLabels(section);
   });
 
