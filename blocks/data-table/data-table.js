@@ -8,6 +8,7 @@
  *
  * @ew-exempt sr-caption: the caption is read by screen readers only (.sr-only)
  * @variants nowrap | cheat | rank | stack | caption | sr-caption | row-heads | fill-in | span-first
+ *   | mono-head | compact
  *   nowrap - the last column stays on one line (a short value such as "16 min")
  *   cheat - a cheat sheet: smaller type, the first column in strong ink (one article)
  *   rank - a ranked list: the first column a faint mono rank, bold words in strong ink (one
@@ -20,6 +21,9 @@
  *   rows keep their height (one article)
  *   span-first - a row one cell short continues the first-column cell above it (a merged
  *   cell spanning rows), instead of spanning its last cell
+ *   mono-head - the design system's own table (v3 .table): mono uppercase headers, the first
+ *   column in ink, at least 36rem wide so phones scroll it
+ *   compact - with mono-head: no minimum width
  */
 export default function decorate(block) {
   const rows = [...block.querySelectorAll(':scope > div')];

@@ -261,9 +261,10 @@
   }
 }
 
-/* Page theme code-nowrap: inline code in prose and lists never breaks (header names such as
-   Cache-Control keep their hyphen; one article). */
-.article.code-nowrap :is(.article-body .default-content-wrapper :is(p, li), .article-head .summary) code {
+/* Page theme code-nowrap: inline code in the column's prose and lists never breaks (header names
+   such as Cache-Control keep their hyphen; one article). The source's summary rule never
+   matched (its summary sits outside .article-body), so the head summary is left out. */
+.article.code-nowrap .article-body .default-content-wrapper :is(p, li) code {
   white-space: nowrap;
 }
 

@@ -157,7 +157,8 @@ function decorateButtons(main) {
     const text = a.textContent.trim();
 
     // quick structural checks
-    if (a.querySelector('img') || p.textContent.trim() !== text) return;
+    // an icon (span.icon > img) still lets a link be a button; any other image does not
+    if (a.querySelector('img:not(span.icon > img)') || p.textContent.trim() !== text) return;
 
     // skip URL display links
     try {
