@@ -53,7 +53,7 @@ You are one of several agents migrating www.jackzhaojin.com (GitHub Pages, desig
 ## Never
 
 - No site config, DA config, Experience Workspace settings, redirects sheet, query index, library or Cloudflare changes. If a page needs one, report it.
-- No edits to `jackzhaojin.github.io`. No content invented, reworded or dropped. Plain hyphens only in anything you write (no em or en dashes). Never send readers to LinkedIn in new copy.
+- No edits to `jackzhaojin.github.io`: read it by its real path only, never create a symlink to it, and before any copy or write check that the destination does not resolve into it. Scratch files go inside your own worktree under `stardust/.work/`, never in a shared scratch folder. No content invented, reworded or dropped. Plain hyphens only in anything you write (no em or en dashes). Never send readers to LinkedIn in new copy.
 
 ## Report (your final message, under 600 words)
 
