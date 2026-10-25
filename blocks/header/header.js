@@ -3,7 +3,6 @@ import { loadFragment } from '../fragment/fragment.js';
 import buildThemeControl from '../../scripts/theme-control.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
-const DESKTOP = window.matchMedia('(width >= 1024px)');
 
 function menuIcon() {
   const svg = document.createElementNS(SVG_NS, 'svg');
@@ -149,7 +148,6 @@ export default async function decorate(block) {
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && nav.classList.contains('is-open')) closeMenu(true);
   });
-  DESKTOP.addEventListener('change', () => closeMenu(false));
 
   const inner = document.createElement('div');
   inner.className = 'site-header';
