@@ -277,6 +277,12 @@
   margin-top: var(--space-5);
 }
 
+/* Section style code-wrap: plain code wraps instead of scrolling (one article's setting). */
+.article .article-body .section.code-wrap .default-content-wrapper pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 .article .article-body pre,
 .article .article-body code {
   font-variant-ligatures: none;

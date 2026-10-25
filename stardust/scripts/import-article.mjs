@@ -71,6 +71,7 @@ const srcCss = (() => {
 })();
 const codeWraps = /\.code \.bar > a\s*\{[^}]*white-space:\s*nowrap/.test(srcCss);
 const tableNowrap = /td:last-child[^{]*\{[^}]*white-space:\s*nowrap/.test(srcCss);
+const codePlainWraps = /\.code-plain\s*\{[^}]*white-space:\s*pre-wrap/.test(srcCss);
 const compareTouch = /\.cmp__tabs button\s*\{[^}]*min-height:\s*44px/.test(srcCss);
 const shotSlim = /\.shot--narrow\s*\{\s*max-width:\s*460px/.test(srcCss);
 
@@ -293,7 +294,10 @@ $('.article-body').children().each((_, el) => {
   } else if (tag === 'section' && $el.hasClass('article-related')) {
     flush();
     current.push(related(el));
-  } else current.push(convert(el));
+  } else {
+    if (tag === 'pre' && codePlainWraps && !currentMeta.some(([k]) => k === 'style')) currentMeta.push(['style', 'code-wrap']);
+    current.push(convert(el));
+  }
 });
 flush();
 
