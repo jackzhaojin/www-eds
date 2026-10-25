@@ -25,8 +25,10 @@ footer .footer {
   display: none;
 }
 
+/* The source's place follows a word space and an 18px margin; the line break that separates
+   it here is hidden, so the space's width (0.28em in Inter) joins the margin. */
 .footer .footer-place {
-  margin-left: 18px;
+  margin-left: calc(18px + 0.28em);
   color: var(--color-text-muted);
 }
 
