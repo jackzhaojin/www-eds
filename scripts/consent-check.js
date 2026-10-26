@@ -5,7 +5,10 @@ let consentedLoaded = false;
  * GitHub Pages, unless the browser sends a Global Privacy Control signal, which counts as a
  * decline. A real CMP (OneTrust, etc.) could replace this later.
  *
- * The default can be overridden with a query parameter for testing:
+ * Only the production host gets that default. Previews, branch hosts, eds and the gate sweeps
+ * would otherwise fill the GA4 property with test traffic, so they default to declined.
+ *
+ * The default can be overridden with a query parameter for testing, on any host:
  *   ?consent=accept   grant consent (loads consented.js)
  *   ?consent=decline  decline consent
  *
@@ -18,8 +21,8 @@ function hasConsent() {
   }
   // Global Privacy Control counts as a decline
   if (navigator.globalPrivacyControl === true) return false;
-  // default: granted
-  return true;
+  // default: granted on the production host only
+  return window.location.hostname === 'www.jackzhaojin.com';
 }
 
 /**
