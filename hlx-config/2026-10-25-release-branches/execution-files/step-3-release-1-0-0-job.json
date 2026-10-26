@@ -1,0 +1,1500 @@
+{
+  "topic": "code",
+  "user": "jackzhaojin@gmail.com",
+  "name": "job-2026-10-26-20-11-34-c52ebdc1",
+  "state": "stopped",
+  "createTime": "2026-10-26T20:11:34.202Z",
+  "data": {
+    "branch": "release/1-0-0",
+    "changes": [],
+    "owner": "jackzhaojin",
+    "repo": "www-eds",
+    "ref": "release-1-0-0",
+    "codeOwner": "jackzhaojin",
+    "codeRepo": "www-eds",
+    "codeRef": "release-1-0-0",
+    "codePrefix": "/jackzhaojin/www-eds/release-1-0-0/",
+    "installationId": 74851771,
+    "phase": "completed",
+    "resources": [
+      {
+        "status": 200,
+        "resourcePath": "/BingSiteAuth.xml",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "application/xml",
+        "contentLength": 85
+      },
+      {
+        "status": 200,
+        "resourcePath": "/404.html",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/html; charset=utf-8",
+        "contentLength": 1877
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/author-box/author-box.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2015
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/author-box/author-box.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1912
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/callout/callout.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1004
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/cards/cards.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 6697
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/callout/callout.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 930
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/cards/cards.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 4481
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/carousel/carousel.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1633
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/carousel/carousel.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 3587
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/chapter-head/chapter-head.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 4414
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/chapter-head/chapter-head.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 4271
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/chapters/chapters.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 766
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/chapters/chapters.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1469
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/code/code.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 3013
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/code/code.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2691
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/columns/columns.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1093
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/columns/columns.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 573
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/compare/compare.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 3284
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/compare/compare.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1924
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/credentials/credentials.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2017
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/cta-band/cta-band.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2593
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/credentials/credentials.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 3318
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/cta-band/cta-band.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 3202
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/data-table/data-table.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 3509
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/data-table/data-table.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 4667
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/divider/divider.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1440
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/divider/divider.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1463
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/beat-sim.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 7476
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/beat-sim.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 14633
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/branch-push.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 5629
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/branch-push.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 5728
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/capability-pivot.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2807
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/capability-pivot.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 5781
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/commit-day.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 5474
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/commit-day.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 11185
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/consideration-lens.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 6571
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/consideration-lens.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 7921
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/content-contract.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 7156
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/credential-chain.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 10718
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/content-contract.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 11836
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/credential-chain.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 13035
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/defect-lab.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 13548
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/defect-lab.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 4327
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/empty-cohort.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 9634
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/empty-cohort.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2876
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/era-steps.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1729
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/era-steps.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1465
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/freezeframe.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 5141
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/freezeframe.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 9228
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/harvest-sorter.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 3334
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/harvest-sorter.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 9303
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/header-relay.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 5473
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/header-relay.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 9057
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/hook-guard.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 5170
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/hook-switchboard.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 4561
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/hook-guard.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 8029
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/hook-switchboard.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 8915
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/line-map.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2122
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/line-map.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2766
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/model-merge.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 5004
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/offering-path.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 6364
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/model-merge.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 6406
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/offering-path.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 5080
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/option-matrix.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1917
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/option-matrix.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1683
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/option-pair.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 4050
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/option-pair.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 8946
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/parser-lab.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 7341
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/parser-lab.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 13658
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/persisted-query.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 5543
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/persisted-query.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 11730
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/request-pipe.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1541
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/request-pipe.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1269
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/retry-ladder.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 4941
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/reuse-stacks.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 4352
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/reuse-stacks.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 5376
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/retry-ladder.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 7903
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/role-assignments.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2103
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/role-assignments.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1836
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/score-blend.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 7738
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/score-blend.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 5750
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/scripted-flow.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2928
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/scripted-flow.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2437
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/skill-tracker.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 3704
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/skill-tracker.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 8948
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/spec-filter.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 4950
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/spec-filter.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 9624
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/stale-timeline.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 6885
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/stale-timeline.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 7360
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/stardust-lifecycle.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 10811
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/stardust-versions.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2483
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/stardust-lifecycle.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 7329
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/stardust-versions.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 4178
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/step-checklist.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1801
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/step-checklist.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1609
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/task-protocol.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 4267
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/task-loop.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 8294
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/task-loop.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 4606
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/task-protocol.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 4948
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/theme-swap.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 6907
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/theme-swap.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 8383
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/tool-dialects.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 3444
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/tool-dialects.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 5433
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/tool-loop.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 5938
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/tool-loop.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 8501
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/trail.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1172
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/trail.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 732
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/work-patterns.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 8417
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/engines/work-patterns.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 9874
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/explainer.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 7591
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/explainer/explainer.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2567
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/facts/facts.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1955
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/facts/facts.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1860
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/faq/faq.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1546
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/faq/faq.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2060
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/figure/figure.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 4828
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/figure/figure.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2422
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/fine-print/fine-print.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 570
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/fine-print/fine-print.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 477
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/footer/footer.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 3187
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/footer/footer.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 3685
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/fragment/fragment.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1983
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/fragment/fragment.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 40
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/frame/frame.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1017
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/frame/frame.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2365
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/header/header.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 7028
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/hero/page-art.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 9476
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/hero/hero.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 6598
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/hero/hero.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 5198
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/header/header.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 6445
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/jump-links/jump-links.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 606
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/jump-links/jump-links.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1406
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/lab/lab.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 8617
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/lab/lab.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 16745
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/pagination/pagination.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1048
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/pagination/pagination.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 842
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/panel/panel.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 7075
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/proof-links/proof-links.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2072
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/panel/panel.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 11449
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/rail/rail.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 3644
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/proof-links/proof-links.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1815
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/rail/rail.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 5449
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/row-list/row-list.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 3757
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/row-list/row-list.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 5019
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/series/series.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1753
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/showcase/showcase.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 6470
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/series/series.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2168
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/showcase/showcase.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 10896
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/stat-chips/stat-chips.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 742
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/stat-chips/stat-chips.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 547
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/stats/stats.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1074
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/switch/switch.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 3696
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/stats/stats.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2788
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/tabs/tabs.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 5543
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/switch/switch.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 6173
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/talk-list/talk-list.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 5068
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/talk-list/talk-list.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 4187
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/tabs/tabs.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:28 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 4373
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/timeline/timeline.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 8654
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/timeline/timeline.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 7867
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/transcript/transcript.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1841
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/transcript/transcript.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2145
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/widget/widget.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 30
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/widget/widget.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2941
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/writing-list/writing-list.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 11065
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/writing-list/writing-list.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 8776
+      },
+      {
+        "status": 200,
+        "resourcePath": "/default-meta-image.png",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/png",
+        "contentLength": 46964
+      },
+      {
+        "status": 200,
+        "resourcePath": "/fonts/inter-latin.woff2",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "font/woff2",
+        "contentLength": 48432
+      },
+      {
+        "status": 200,
+        "resourcePath": "/fonts/jetbrains-mono-latin.woff2",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "font/woff2",
+        "contentLength": 31340
+      },
+      {
+        "status": 200,
+        "resourcePath": "/fonts/playfair-display-italic-latin.woff2",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "font/woff2",
+        "contentLength": 38888
+      },
+      {
+        "status": 200,
+        "resourcePath": "/fonts/playfair-display-latin.woff2",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "font/woff2",
+        "contentLength": 38460
+      },
+      {
+        "status": 200,
+        "resourcePath": "/favicon.ico",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/vnd.microsoft.icon",
+        "contentLength": 1150
+      },
+      {
+        "status": 200,
+        "resourcePath": "/google57906613577fdd42.html",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/html; charset=utf-8",
+        "contentLength": 53
+      },
+      {
+        "status": 200,
+        "resourcePath": "/icons/arrow.svg",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/svg+xml",
+        "contentLength": 200
+      },
+      {
+        "status": 200,
+        "resourcePath": "/head.html",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/html; charset=utf-8",
+        "contentLength": 552
+      },
+      {
+        "status": 200,
+        "resourcePath": "/icons/article.svg",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/svg+xml",
+        "contentLength": 252
+      },
+      {
+        "status": 200,
+        "resourcePath": "/icons/check.svg",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/svg+xml",
+        "contentLength": 201
+      },
+      {
+        "status": 200,
+        "resourcePath": "/icons/close.svg",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/svg+xml",
+        "contentLength": 199
+      },
+      {
+        "status": 200,
+        "resourcePath": "/icons/external.svg",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/svg+xml",
+        "contentLength": 212
+      },
+      {
+        "status": 200,
+        "resourcePath": "/icons/menu.svg",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/svg+xml",
+        "contentLength": 202
+      },
+      {
+        "status": 200,
+        "resourcePath": "/icons/play.svg",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/svg+xml",
+        "contentLength": 230
+      },
+      {
+        "status": 200,
+        "resourcePath": "/icons/repo.svg",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/svg+xml",
+        "contentLength": 307
+      },
+      {
+        "status": 200,
+        "resourcePath": "/icons/post.svg",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/svg+xml",
+        "contentLength": 273
+      },
+      {
+        "status": 200,
+        "resourcePath": "/icons/video.svg",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/svg+xml",
+        "contentLength": 276
+      },
+      {
+        "status": 200,
+        "resourcePath": "/icons/search.svg",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "image/svg+xml",
+        "contentLength": 447
+      },
+      {
+        "status": 200,
+        "resourcePath": "/scripts/aem.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 22310
+      },
+      {
+        "status": 200,
+        "resourcePath": "/scripts/consent-check.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1259
+      },
+      {
+        "status": 200,
+        "resourcePath": "/llms.txt",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/plain; charset=utf-8",
+        "contentLength": 12663
+      },
+      {
+        "status": 200,
+        "resourcePath": "/scripts/scripts.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 11389
+      },
+      {
+        "status": 200,
+        "resourcePath": "/scripts/consented.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 80
+      },
+      {
+        "status": 200,
+        "resourcePath": "/styles/lazy-styles.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 181
+      },
+      {
+        "status": 200,
+        "resourcePath": "/templates/article/article.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 10402
+      },
+      {
+        "status": 200,
+        "resourcePath": "/styles/fonts.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1623
+      },
+      {
+        "status": 200,
+        "resourcePath": "/styles/styles.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 25679
+      },
+      {
+        "status": 200,
+        "resourcePath": "/scripts/theme-control.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2325
+      },
+      {
+        "status": 200,
+        "resourcePath": "/templates/design-docs/design-docs.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 63403
+      },
+      {
+        "status": 200,
+        "resourcePath": "/templates/article/article.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 8196
+      },
+      {
+        "status": 200,
+        "resourcePath": "/templates/design-docs/design-docs.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 32838
+      },
+      {
+        "status": 200,
+        "resourcePath": "/templates/listing/listing.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 551
+      },
+      {
+        "status": 200,
+        "resourcePath": "/templates/listing/listing.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 370
+      },
+      {
+        "status": 200,
+        "resourcePath": "/templates/portfolio/portfolio.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 12742
+      },
+      {
+        "status": 200,
+        "resourcePath": "/templates/portfolio/portfolio.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 14269
+      },
+      {
+        "status": 200,
+        "resourcePath": "/templates/static/static.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2157
+      },
+      {
+        "status": 200,
+        "resourcePath": "/templates/static/static.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 214
+      },
+      {
+        "status": 200,
+        "resourcePath": "/widgets/writing-filter/writing-filter.css",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 6272
+      },
+      {
+        "status": 200,
+        "resourcePath": "/widgets/writing-filter/writing-filter.html",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/html; charset=utf-8",
+        "contentLength": 1264
+      },
+      {
+        "status": 200,
+        "resourcePath": "/widgets/writing-filter/writing-filter.js",
+        "lastModified": "Mon, 26 Oct 2026 20:11:29 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 6864
+      }
+    ],
+    "githubRateLimit": {
+      "limit": 5000,
+      "used": 184,
+      "remaining": 4816,
+      "reset": 1793049098
+    },
+    "sha": "a3c21015c73f46dcec875a1bbe28b24837575be4",
+    "treeSyncReason": "no base ref"
+  },
+  "startTime": "2026-10-26T20:11:34.743Z",
+  "stopTime": "2026-10-26T20:11:52.397Z",
+  "invocationId": "022fbe84-5a4a-52bd-bf53-ddddec68e4be",
+  "progress": {
+    "total": 673,
+    "processed": 208,
+    "failed": 0,
+    "ignored": 465
+  },
+  "links": {
+    "list": "https://admin.hlx.page/job/jackzhaojin/www-eds/release-1-0-0/code?branch=release%2F1-0-0",
+    "job": "https://admin.hlx.page/job/jackzhaojin/www-eds/release-1-0-0/code/job-2026-10-26-20-11-34-c52ebdc1?branch=release%2F1-0-0",
+    "self": "https://admin.hlx.page/job/jackzhaojin/www-eds/release-1-0-0/code/job-2026-10-26-20-11-34-c52ebdc1/details?branch=release%2F1-0-0"
+  }
+}

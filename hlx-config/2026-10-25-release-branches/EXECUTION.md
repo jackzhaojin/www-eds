@@ -43,3 +43,7 @@ Pushed at main's head, after the day's last docs commit (the one that adds this 
 ## For the next release branch
 
 Push the branch, then run Step 3 if the branch's commit isn't main's head. Content is shared by every branch: an environment changes the code only, so a page added after its commit shows its blocks undecorated.
+
+## release/1-0-0 and v1.0.0 (2026-10-26)
+
+The tag `v1.0.0` and the branch `release/1-0-0` were pushed at `a3c2101` (main's head, the commit that records the cutover). A first check right after the push found the `release-1-0-0` host serving pages but 404s for the code: Code Sync hadn't written the branch yet. Its code status showed it populated seconds later (20:11:28 UTC). A full sync from the git name, `POST /code/jackzhaojin/www-eds/release-1-0-0/*?branch=release%2F1-0-0` (job `job-2026-10-26-20-11-34-c52ebdc1`: 673 files, 208 processed, 465 ignored, 0 failed), confirmed it. After that, all the checked files matched the commit, including `foldSplitLinks`: `step-*-release-1-0-0-*.json`. For a branch at main's head, wait a minute before treating 404s as a problem.
