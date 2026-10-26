@@ -1,15 +1,13 @@
 let consentedLoaded = false;
 
 /**
- * Dummy consent implementation.
- *
- * By default consent is declined, so consented scripts (analytics, martech, etc.)
- * are not loaded. This stands in for a real CMP (OneTrust, etc.) and can be
- * swapped out later.
+ * Consent, as decision 9 sets it: granted by default with no banner, as the site worked on
+ * GitHub Pages, unless the browser sends a Global Privacy Control signal, which counts as a
+ * decline. A real CMP (OneTrust, etc.) could replace this later.
  *
  * The default can be overridden with a query parameter for testing:
  *   ?consent=accept   grant consent (loads consented.js)
- *   ?consent=decline  decline consent (default behavior)
+ *   ?consent=decline  decline consent
  *
  * @returns {boolean} true if the user has consented
  */
@@ -18,8 +16,10 @@ function hasConsent() {
   if (consent !== null) {
     return ['accept', 'true', '1', 'yes'].includes(consent.toLowerCase());
   }
-  // default: decline
-  return false;
+  // Global Privacy Control counts as a decline
+  if (navigator.globalPrivacyControl === true) return false;
+  // default: granted
+  return true;
 }
 
 /**

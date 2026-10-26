@@ -332,7 +332,8 @@ async function loadLazy(doc) {
  * without impacting the user experience.
  */
 function loadDelayed() {
-  import('./consent-check.js');
+  // consented scripts (GA4) start 3 seconds after the page has loaded (decision 9)
+  window.setTimeout(() => import('./consent-check.js'), 3000);
   // load anything that can be postponed to the latest here
 }
 
