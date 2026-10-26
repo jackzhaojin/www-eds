@@ -76,7 +76,9 @@ Jack: "Yes: publish the 29 fixed pages, rerun seo-check on www, then resubmit th
 - **Published:** 29 of 29 (`deploy-batch.mjs`). One page, the two-prompts article, still served its old head on www afterwards. aem.live had the new version, but Cloudflare had cached the old one from a moment when aem.live was still updating, just after the last purge, and would have kept it for two days. Republishing that page purged it again. Lesson in `content/README.md`, step 5.
 - **`seo-check.mjs` on www:** 46 problems before, **14 after**, all of them the portfolio's diagram files (finding 3, the passthrough proposal). None of the 29 pages has an old image URL left.
 - **Bing Webmaster Tools:** `https://www.jackzhaojin.com/sitemap.xml` resubmitted ("successfully submitted for processing", 35 URLs). URL Submission for home, the two-prompts article, `/privacy/` and the three discovered-not-indexed articles: "6 URLs submitted", 94 left of the day's 100.
-- **Google Search Console:** Google had signed the browser session out by the time of the submission; it waits for Jack to sign in again.
+- **Google Search Console** (after Jack signed in again; Google had signed the browser session out): `/sitemap.xml` resubmitted (submitted Oct 26, 2026, 35 pages). URL Inspection, then "Request indexing", for the same six pages; each answered "Indexing requested: URL was added to a priority crawl queue". Before the request, home and the two-prompts article were "URL is on Google" (home with a valid profile page; the article with valid breadcrumbs and video markup from the earlier crawl). `/privacy/` and the three 2025 articles were "Discovered - currently not indexed", found through the sitemap and never crawled.
+
+**To check in a few days:** Page indexing (the four discovered pages indexed?), the Videos enhancement (the thumbnails now resolve), and Bing's AI Performance.
 
 ## Tools
 
