@@ -131,3 +131,41 @@ test('robots.txt and the sitemaps are 404s on eds and gh, never fetched; www ser
   assert.equal(calls.length, 1);
 });
 
+const respond = (headers, status = 200) => {
+  globalThis.fetch = async (input) => {
+    calls.push(input instanceof Request ? input : new Request(input));
+    return new Response(status === 304 ? null : 'x', { status, headers });
+  };
+};
+const ORIGIN_CACHE = 'max-age=7200, must-revalidate';
+
+test('www: browsers keep an EDS page, and a fragment, for 10 minutes', async () => {
+  respond({ 'content-type': 'text/html; charset=utf-8', 'cache-control': ORIGIN_CACHE, 'cdn-cache-control': 'max-age=172800' });
+  for (const path of ['/', '/privacy/', '/footer.plain.html']) {
+    // eslint-disable-next-line no-await-in-loop
+    const res = await worker.fetch(get(`https://www.jackzhaojin.com${path}`), WWW, {});
+    assert.equal(res.headers.get('cache-control'), 'max-age=600, must-revalidate', path);
+    assert.equal(res.headers.get('cdn-cache-control'), 'max-age=172800', path);
+  }
+});
+
+test('www: a 304 for a page keeps the 10 minutes; code and media keep the origin cache-control', async () => {
+  respond({ 'cache-control': ORIGIN_CACHE }, 304);
+  const revalidated = await worker.fetch(get('https://www.jackzhaojin.com/writing/'), WWW, {});
+  assert.equal(revalidated.status, 304);
+  assert.equal(revalidated.headers.get('cache-control'), 'max-age=600, must-revalidate');
+  const script = await worker.fetch(get('https://www.jackzhaojin.com/scripts/scripts.js'), WWW, {});
+  assert.equal(script.headers.get('cache-control'), ORIGIN_CACHE);
+  respond({ 'content-type': 'image/png', 'cache-control': ORIGIN_CACHE });
+  const media = await worker.fetch(get('https://www.jackzhaojin.com/writing/media_abc.png'), WWW, {});
+  assert.equal(media.headers.get('cache-control'), ORIGIN_CACHE);
+});
+
+test('project sites and gh keep their own cache-control', async () => {
+  respond({ 'content-type': 'text/html', 'cache-control': 'max-age=600' });
+  const project = await worker.fetch(get('https://www.jackzhaojin.com/bruce-lava-dash/'), WWW, {});
+  assert.equal(project.headers.get('cache-control'), 'max-age=600');
+  respond({ 'content-type': 'text/html', 'cache-control': 'max-age=900' });
+  const gh = await worker.fetch(get('https://gh.jackzhaojin.com/writing/'), GH, {});
+  assert.equal(gh.headers.get('cache-control'), 'max-age=900');
+});

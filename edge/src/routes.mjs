@@ -76,6 +76,28 @@ export async function githubFetch(request, env) {
   return out;
 }
 
+/** How long a browser may keep an EDS page: 10 minutes, as GitHub Pages sent. Cloudflare keeps
+ * pages longer (cdn-cache-control) and push invalidation purges it on publish, but nothing can
+ * purge a browser, and aem.live tells browsers two hours. */
+export const PAGE_BROWSER_TTL = 600;
+const PAGE_PATH = /(\/|\/[^./]+|\.html)$/;
+
+/**
+ * Sets the browser cache time of an EDS page (an HTML response, so the .plain.html fragments
+ * too) to PAGE_BROWSER_TTL. A 304 carries no body, so it is judged by its path: a browser takes
+ * its new freshness from the 304. Code, media and JSON keep the origin's cache-control.
+ * @param {Response} res The EDS response
+ * @param {string} pathname The request path
+ */
+export function pageCache(res, pathname) {
+  const type = res.headers.get('content-type') || '';
+  const page = res.status === 304 ? PAGE_PATH.test(pathname) : type.startsWith('text/html');
+  if (!page) return res;
+  const out = new Response(res.body, res);
+  out.headers.set('cache-control', `max-age=${PAGE_BROWSER_TTL}, must-revalidate`);
+  return out;
+}
+
 /**
  * The robots header for this host: production (INDEXABLE "true") sends none, every other host
  * sends noindex, whatever its origin said.
