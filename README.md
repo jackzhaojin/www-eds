@@ -147,6 +147,7 @@ Claude Code (Opus 5.5) in the Claude desktop app did the work, in auto mode. Jac
 | aem-edge-delivery-services | 1.0.0 | [adobe/skills](https://github.com/adobe/skills) | the DA sign-in (`da-auth`), boilerplate conventions, docs search |
 | impeccable | 4.7.1 | [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | its design hook reviewed every UI file as it was written |
 | hlx-admin-api-executor | commit `46e689e` | [jackzhaojin/ai-builder-kit](https://github.com/jackzhaojin/ai-builder-kit) | Jack's own Admin API skill: GET before, SET, GET after, every response kept. It ran the SEO config and the release branches' code sync ([the article about it](https://www.jackzhaojin.com/writing/2026-03-23-eds-hlx-admin-agentic-config/)) |
+| marketing-skills | 2.13.5 | [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) (MIT) | added 2026-10-26 for SEO and GEO: `seo-audit`, `ai-seo`, `schema` and `site-architecture` framed the [SEO and GEO audit](ai-docs/2026-10-26-seo-geo-audit/README.md). jackzhaojin.github.io had copies from September (ai-seo 2.5.0); the plugin keeps them current |
 
 stardust's scripts are the exception to "no copies": its setup copies them into `stardust/scripts/`, so the gates can be re-run without the plugin.
 
@@ -162,6 +163,7 @@ Used on the day but not checked in:
 ## Documentation
 
 - [ai-docs/2026-10-25-initial-buildout-2-goals/](ai-docs/2026-10-25-initial-buildout-2-goals/): the build record and [what's left](ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md)
+- [ai-docs/2026-10-26-seo-geo-audit/](ai-docs/2026-10-26-seo-geo-audit/README.md): the first SEO and GEO audit of www after the cutover, the SEO skills it used, Search Console and Bing
 - [content/README.md](content/README.md): how content changes are made, and what the DA editor does to HTML (a must-read before editing); [ai-docs/2026-10-26-content-in-git/](ai-docs/2026-10-26-content-in-git/README.md): the decision to keep content in git, and the first full run
 - [The plan](https://github.com/jackzhaojin/jackzhaojin.github.io/blob/main/ai-docs/2026-10-24-eds-migration/start-here.md) (in jackzhaojin.github.io): analysis, the 20 planning decisions, best practices, routing
 - [stardust/README.md](stardust/README.md): the migration records and instruments

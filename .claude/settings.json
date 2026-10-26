@@ -4,7 +4,8 @@
     "stardust@adobe-skills": true,
     "impeccable@impeccable": true,
     "aem-edge-delivery-services@adobe-skills": true,
-    "hlx-admin-api-executor@ai-builder-kit": true
+    "hlx-admin-api-executor@ai-builder-kit": true,
+    "marketing-skills@marketingskills": true
   },
   "extraKnownMarketplaces": {
     "adobe-skills": {
@@ -23,6 +24,12 @@
       "source": {
         "source": "git",
         "url": "https://github.com/jackzhaojin/ai-builder-kit.git"
+      }
+    },
+    "marketingskills": {
+      "source": {
+        "source": "github",
+        "repo": "coreyhaines31/marketingskills"
       }
     }
   }
