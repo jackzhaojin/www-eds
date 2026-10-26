@@ -1,0 +1,20 @@
+
+Content diff @ 360px (profile "eds", roots: main, header, footer)
+root "main"
+  proto: 389 text nodes — 11 headings, 1 eyebrows, 38 CTAs, 339 body; 3 img
+  EDS: 389 text nodes — 11 headings, 1 eyebrows, 38 CTAs, 339 body; 3 img
+  editable texts (outermost h*/p/ul/ol): proto 238 / EDS 238
+  attributes (placeholder/aria-label/title): proto 9 / EDS 9; icons: proto 2 / EDS 2
+root "header"
+  proto: 10 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 5 body; 0 img
+  EDS: 10 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 5 body; 0 img
+  editable texts (outermost h*/p/ul/ol): proto 2 / EDS 2
+  attributes (placeholder/aria-label/title): proto 2 / EDS 2; icons: proto 1 / EDS 1
+root "footer"
+  proto: 7 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 2 body; 0 img
+  EDS: 7 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 2 body; 0 img
+  editable texts (outermost h*/p/ul/ol): proto 2 / EDS 2
+  attributes (placeholder/aria-label/title): proto 1 / EDS 1; icons: proto 0 / EDS 0
+
+Findings: none — content + roles match
+Tiers: looks-same 🔴 0 · nothing-lost 🟡 0 · accepted 🟢 0 (owner 0, auto 0) · advisory 0

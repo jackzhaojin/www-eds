@@ -1,0 +1,7 @@
+{
+  "method": "PUT",
+  "url": "https://admin.da.live/source/jackzhaojin/www-eds/talks/records/ai-tinkerers-2026.html",
+  "bodyFile": "content/talks/records/ai-tinkerers-2026.html",
+  "multipart": true,
+  "contentType": "text/html"
+}

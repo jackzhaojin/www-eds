@@ -73,10 +73,21 @@ value was checked against `execution-files/talks-expected.json`. The existing ge
 and sitemap return 200 and contain no source-record paths. Captures: `execution-files/step-7-*`.
 New records indexed through normal publication; no separate reindex mutation was needed.
 
-### Step 8: PR review - pending
+### Step 8: PR review - waiting for Jack and Claude
 
 Build and test the dynamic block on the feature branch preview, open a PR, and wait for Jack
 and Claude. Do not merge, deploy a release, or change production `/talks/` before that review.
+
+PR: https://github.com/jackzhaojin/www-eds/pull/2. Browser and editability checks pass; the
+six full fidelity gate reports and inherited failures are in `../validation/`.
+
+### Step 9: Verify automatic updates and another legacy anchor - completed
+
+The original delivered heading for OpenClaw 24/7 used `openclaw-247-development-agent`.
+After GET verified its source still matched git, that heading URL was added to the record's
+aliases. Upload, preview and publish each returned 200 (`execution-files/step-9-*`). The
+native API picked up the new alias without a code deployment or a separate reindex. Browser
+tests now exercise both the old Columbus alias and the old OpenClaw heading URL.
 
 ## Future configuration changes
 

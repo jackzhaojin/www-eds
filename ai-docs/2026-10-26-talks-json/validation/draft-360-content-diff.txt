@@ -1,0 +1,24 @@
+
+Content diff @ 360px (profile "generic", roots: main, header, footer)
+root "main"
+  source: 69 text nodes — 10 headings, 0 eyebrows, 17 CTAs, 42 body; 0 img
+  build: 71 text nodes — 10 headings, 0 eyebrows, 18 CTAs, 43 body; 0 img
+  editable texts (outermost h*/p/ul/ol): source 39 / build 6
+  attributes (placeholder/aria-label/title): source 1 / build 1; icons: source 0 / build 0
+root "header"
+  source: 10 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 5 body; 0 img
+  build: 10 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 5 body; 0 img
+  editable texts (outermost h*/p/ul/ol): source 1 / build 2
+  attributes (placeholder/aria-label/title): source 2 / build 2; icons: source 1 / build 1
+root "footer"
+  source: 6 text nodes — 0 headings, 0 eyebrows, 4 CTAs, 2 body; 0 img
+  build: 7 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 2 body; 0 img
+  editable texts (outermost h*/p/ul/ol): source 1 / build 2
+  attributes (placeholder/aria-label/title): source 1 / build 1; icons: source 0 / build 0
+
+Findings: 4 (0 structural 🔴)
+Tiers: looks-same 🔴 0 · nothing-lost 🟡 0 · accepted 🟢 0 (owner 0, auto 0) · advisory 4
+  🟠 EXTRA [main]: build cta "/talks-index.json" has no source source — Unexpected node with no source.
+  🟠 EXTRA [footer]: build cta "Privacy" has no source source — Unexpected node with no source.
+  🟡 EXTRA [main]: build body "Source" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EDITABLE COUNT [main]: build has 6 outermost editable element(s) vs 39 in the source — fewer outermost editable elements after decoration usually means authored elements were rebuilt/merged — see deploy SKILL.md § Experience Workspace editability contract (run ew-editability-probe.mjs on the build URL for the per-block verdict).

@@ -121,7 +121,9 @@
   },
   {
     "id": "ai-tinkerers-2026",
-    "aliases": [],
+    "aliases": [
+      "openclaw-247-development-agent"
+    ],
     "order": 7,
     "date": "April 6, 2026",
     "kind": "Community demo",

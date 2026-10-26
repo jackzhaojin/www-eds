@@ -1,0 +1,4 @@
+clip-probe https://codex-list-seo-research--www-eds--jackzhaojin.aem.page/drafts/talks-index/ @ 360px — docH 5250, 79 text nodes, 25 controls (HTTP 200, chrome)
+  (none)
+Clipped: 0 (text clipped 0, text hidden 0, controls hidden 0, controls clipped 0; advisory: clamped 0, collapsed 0, scroll-hidden 0, horizontal 1)
+json → stardust/replica/gates/talks-api-draft-360/clip-preview.json

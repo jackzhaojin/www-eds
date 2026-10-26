@@ -1,0 +1,21 @@
+
+Content diff @ 360px (profile "generic", roots: main, header, footer)
+root "main"
+  source: 35 text nodes — 5 headings, 0 eyebrows, 17 CTAs, 13 body; 2 img
+  build: 35 text nodes — 5 headings, 0 eyebrows, 17 CTAs, 13 body; 2 img
+  editable texts (outermost h*/p/ul/ol): source 16 / build 28
+  attributes (placeholder/aria-label/title): source 1 / build 1; icons: source 0 / build 0
+root "header"
+  source: 10 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 5 body; 0 img
+  build: 10 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 5 body; 0 img
+  editable texts (outermost h*/p/ul/ol): source 1 / build 2
+  attributes (placeholder/aria-label/title): source 2 / build 2; icons: source 1 / build 1
+root "footer"
+  source: 6 text nodes — 0 headings, 0 eyebrows, 4 CTAs, 2 body; 0 img
+  build: 7 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 2 body; 0 img
+  editable texts (outermost h*/p/ul/ol): source 1 / build 2
+  attributes (placeholder/aria-label/title): source 1 / build 1; icons: source 0 / build 0
+
+Findings: 1 (0 structural 🔴)
+Tiers: looks-same 🔴 0 · nothing-lost 🟡 0 · accepted 🟢 0 (owner 0, auto 0) · advisory 1
+  🟠 EXTRA [footer]: build cta "Privacy" has no source source — Unexpected node with no source.

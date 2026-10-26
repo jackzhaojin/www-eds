@@ -126,6 +126,9 @@ source is a separate content operation. The dynamic draft's ItemList is generate
 API, so it stays aligned with its visible rows. Publishing records updates the index; no
 committed JSON export or code deployment is needed for subsequent record edits.
 
+Pass an explicit `--paths` file when publishing records or the hub. Keep the preview-only
+draft out of production publish batches.
+
 The implementation and Admin API trail are in
 [the talks index record](../ai-docs/2026-10-26-talks-json/README.md).
 

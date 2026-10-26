@@ -1,0 +1,14 @@
+[
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-9-upload-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-9-upload-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-9-preview-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-9-preview-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-9-publish-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-9-publish-response.json"
+  }
+]

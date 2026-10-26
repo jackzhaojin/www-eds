@@ -13,7 +13,12 @@ const page = await browser.newPage({
   viewport: { width: 1440, height: 900 }, colorScheme: 'light', reducedMotion: 'reduce',
 });
 const errors = [];
+const consoleErrors = [];
+let expectedFailure = false;
 page.on('pageerror', (error) => errors.push(error.message));
+page.on('console', (message) => {
+  if (message.type() === 'error' && !expectedFailure) consoleErrors.push(message.text());
+});
 const draft = `${base}/drafts/talks-index/`;
 const schema = () => page.locator('script[type="application/ld+json"]').evaluateAll((scripts) => scripts
   .flatMap((script) => { const parsed = JSON.parse(script.textContent); return parsed['@graph'] || [parsed]; })
@@ -53,15 +58,17 @@ try {
     });
     await baseline.close();
   }
-  await page.goto(`${draft}#columbus-ai-2026`);
-  await page.waitForSelector('.row-list[data-talks-state="ready"]');
-  await page.waitForFunction(() => {
-    const target = document.getElementById('columbus-ai-2026');
-    return target && target.getBoundingClientRect().top >= -1
-      && target.getBoundingClientRect().top < 150;
-  });
-  const anchor = await page.locator('#columbus-ai-2026').boundingBox();
-  assert(anchor && anchor.y >= -1 && anchor.y < 150, 'Legacy anchor should scroll after the API loads');
+  for (const id of ['columbus-ai-2026', 'openclaw-247-development-agent']) {
+    await page.goto(`${draft}#${id}`);
+    await page.waitForSelector('.row-list[data-talks-state="ready"]');
+    await page.waitForFunction((anchorId) => {
+      const target = document.getElementById(anchorId);
+      return target && target.getBoundingClientRect().top >= -1
+        && target.getBoundingClientRect().top < 150;
+    }, id);
+    const anchor = await page.locator(`#${id}`).boundingBox();
+    assert(anchor && anchor.y >= -1 && anchor.y < 150, 'Legacy anchor should scroll after the API loads');
+  }
   const changed = structuredClone(data);
   changed.total = 1;
   changed.limit = 1;
@@ -86,12 +93,14 @@ try {
   assert(await page.getByText('No talks are published yet.').isVisible());
 
   await page.unroute('**/talks-index.json*');
+  expectedFailure = true;
   await page.route('**/talks-index.json*', (route) => route.fulfill({ status: 503, body: 'Unavailable' }));
   await page.goto(draft);
   await page.waitForSelector('.row-list[data-talks-state="error"]');
   assert(await page.getByRole('alert').isVisible());
   assert.equal(await page.locator('.row-list-items > li').count(), 0);
   assert.deepEqual(errors, []);
+  assert.deepEqual(consoleErrors, []);
   const summary = {
     base,
     records: data.total,
@@ -104,6 +113,7 @@ try {
     emptyState: 'pass',
     unavailableState: 'pass',
     pageErrors: errors,
+    consoleErrors,
   };
   fs.writeFileSync(path.join(out, 'browser.json'), `${JSON.stringify(summary, null, 2)}\n`);
   // eslint-disable-next-line no-console
