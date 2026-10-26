@@ -110,6 +110,25 @@ node stardust/scripts/replica/run-bg.mjs start --name <slug>-1440 -- stardust/sc
 - **Commit:** `content/`, `content/.deploy-ledger.json`, and anything the gates recorded. Push to main after `git pull --rebase`, never force-push. **A content change is never a release:** no version, tag or release branch (AGENTS.md, "Releases are for code only").
 - **New pages:** since the cutover (2026-10-26) new writing is published here, to EDS; a page added to GitHub Pages no longer shows on www. An article drafted as HTML converts with the recipe in [whats-left.md, section 5](../ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md). Then sync its SEO ([hlx-config/README.md](../hlx-config/README.md)): its head metadata, the redirects sheet, the sitemap.
 
+## Talks index and dynamic draft
+
+The talks API is the native `/talks-index.json`, populated by publishing the records in
+`talks/records/`. Each record's h1 supplies its title; its link list supplies API links.
+Metadata carries `talk-id`, optional space-separated `talk-aliases`, `talk-order` (ascending),
+the authored display `talk-date`, `talk-kind`, `talk-event`, `talk-status`, and description.
+Keep partial dates as authored; do not invent a day. Records remain `noindex, follow` and
+are excluded from the general index and sitemap by `hlx-config/query.yaml`.
+
+During PR review the nine records are copies of the current talks page. The production
+`talks/index.html` is still static; `drafts/talks-index/index.html` demonstrates the dynamic
+variant. After approval, switching the production hub and making the records its editorial
+source is a separate content operation. The dynamic draft's ItemList is generated from the
+API, so it stays aligned with its visible rows. Publishing records updates the index; no
+committed JSON export or code deployment is needed for subsequent record edits.
+
+The implementation and Admin API trail are in
+[the talks index record](../ai-docs/2026-10-26-talks-json/README.md).
+
 ## Stop points
 
 Ask Jack first for: an expired DA token, deleting anything in DA, any site config or Experience Workspace config change, any Cloudflare change, and the cutover.

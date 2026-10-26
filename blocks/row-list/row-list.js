@@ -10,7 +10,8 @@
  * - anchors: the row's id, then any older ids that should still land on it, space separated.
  *
  * @ew-exempt anchors: link targets for the talk rows, hidden through .row-list-anchors
- * @variants talks (default none)
+ * @ew-exempt dynamic Source row: API configuration; talk copy is edited in source records
+ * @variants talks, dynamic (default none)
  */
 
 const ROLES = ['row-list-kind', 'row-list-title', 'row-list-note'];
@@ -96,8 +97,42 @@ function decorateTalks(block) {
   block.replaceChildren(list);
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
   if (block.classList.contains('talks')) {
+    if (block.classList.contains('dynamic')) {
+      const source = block.querySelector('a[href]');
+      const config = slot('row-list-source', [...block.childNodes]);
+      config.hidden = true;
+      block.replaceChildren(config);
+      block.setAttribute('aria-busy', 'true');
+      try {
+        if (!source) throw new Error('The dynamic talks list needs an index URL');
+        const { loadTalksIndex, renderTalks, syncTalkSchema } = await import('../../scripts/talks-index.js');
+        const talks = await loadTalksIndex(source.href);
+        const list = renderTalks(talks);
+        syncTalkSchema(talks);
+        block.prepend(list);
+        const target = document.getElementById(window.location.hash.slice(1));
+        if (target && block.contains(target)) target.scrollIntoView();
+        if (!talks.length) {
+          const empty = document.createElement('p');
+          empty.textContent = 'No talks are published yet.';
+          block.prepend(empty);
+        }
+        block.dataset.talksState = 'ready';
+      } catch (error) {
+        const message = document.createElement('p');
+        message.setAttribute('role', 'alert');
+        message.textContent = 'Talks are temporarily unavailable. Please try again later.';
+        block.prepend(message);
+        block.dataset.talksState = 'error';
+        // eslint-disable-next-line no-console
+        console.warn('Unable to load talks:', error.message);
+      } finally {
+        block.removeAttribute('aria-busy');
+      }
+      return;
+    }
     decorateTalks(block);
     return;
   }

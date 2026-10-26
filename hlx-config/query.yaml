@@ -1,17 +1,16 @@
+# Query indexes managed through the EDS configuration service.
 version: 1
-# The query index (Admin API: /config/jackzhaojin/sites/www-eds/content/query.yaml). Every
-# published page except the nav and footer fragments. The sitemap reads it, and skips pages
-# whose robots metadata says noindex (the design system page).
 indices:
   default:
     include:
-      - '/**'
+      - /**
     exclude:
-      - '/nav'
-      - '/footer'
-      - '/**/nav'
-      - '/**/footer'
-      - '/drafts/**'
+      - /nav
+      - /footer
+      - /**/nav
+      - /**/footer
+      - /drafts/**
+      - /talks/records/**
     target: /query-index.json
     properties:
       title:
@@ -35,3 +34,44 @@ indices:
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, 'content')
+  talks:
+    include:
+      - /talks/records/**
+    exclude:
+      - /talks/records
+      - /talks/records/
+    target: /talks-index.json
+    properties:
+      id:
+        select: head > meta[name="talk-id"]
+        value: attribute(el, 'content')
+      aliases:
+        select: head > meta[name="talk-aliases"]
+        value: attribute(el, 'content')
+      order:
+        select: head > meta[name="talk-order"]
+        value: attribute(el, 'content')
+      date:
+        select: head > meta[name="talk-date"]
+        value: attribute(el, 'content')
+      kind:
+        select: head > meta[name="talk-kind"]
+        value: attribute(el, 'content')
+      title:
+        select: main h1
+        value: textContent(el)
+      event:
+        select: head > meta[name="talk-event"]
+        value: attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, 'content')
+      status:
+        select: head > meta[name="talk-status"]
+        value: attribute(el, 'content')
+      linkLabels:
+        select: main ul li a
+        values: textContent(el)
+      linkUrls:
+        select: main ul li a
+        values: attribute(el, 'href')

@@ -1,0 +1,7 @@
+{
+  "method": "PUT",
+  "url": "https://admin.da.live/source/jackzhaojin/www-eds/talks/records/aem-rockstar-2024.html",
+  "bodyFile": "content/talks/records/aem-rockstar-2024.html",
+  "multipart": true,
+  "contentType": "text/html"
+}

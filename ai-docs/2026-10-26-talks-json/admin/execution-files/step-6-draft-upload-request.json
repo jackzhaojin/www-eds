@@ -1,0 +1,7 @@
+{
+  "method": "PUT",
+  "url": "https://admin.da.live/source/jackzhaojin/www-eds/drafts/talks-index/index.html",
+  "bodyFile": "content/drafts/talks-index/index.html",
+  "multipart": true,
+  "contentType": "text/html"
+}
