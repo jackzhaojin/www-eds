@@ -29,7 +29,7 @@
   "/writing/2026-09-20-aem-edge-functions-google-sign-in/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:24:08.374Z",
+    "ts": "2026-10-26T22:36:11.837Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -47,7 +47,7 @@
   "/writing/2026-01-29-playwright-stakeholder-demos/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:51.603Z",
+    "ts": "2026-10-26T22:35:53.483Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -56,7 +56,7 @@
   "/writing/2026-02-05-reusable-ai-development-modules/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:51.944Z",
+    "ts": "2026-10-26T22:35:53.529Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -65,7 +65,7 @@
   "/writing/2026-03-23-eds-hlx-admin-agentic-config/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:52.434Z",
+    "ts": "2026-10-26T22:35:58.838Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -74,7 +74,7 @@
   "/writing/2026-04-05-continuous-executive-agent-v2-1/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:56.117Z",
+    "ts": "2026-10-26T22:35:58.883Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -83,7 +83,7 @@
   "/writing/2026-04-12-two-ai-skills-team-enablement/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:57.787Z",
+    "ts": "2026-10-26T22:35:59.002Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -92,7 +92,7 @@
   "/writing/2026-05-17-adobe-eds-skills-hands-on/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:57.891Z",
+    "ts": "2026-10-26T22:35:59.500Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -101,7 +101,7 @@
   "/writing/2026-05-24-theming-eds-with-google-stitch/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:58.404Z",
+    "ts": "2026-10-26T22:36:04.756Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -110,7 +110,7 @@
   "/writing/2026-05-31-continuous-agent-second-brain/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:24:01.841Z",
+    "ts": "2026-10-26T22:36:05.007Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -119,7 +119,7 @@
   "/writing/2026-06-28-patterns-of-work/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:24:02.696Z",
+    "ts": "2026-10-26T22:36:05.163Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -128,7 +128,7 @@
   "/writing/2026-07-21-four-frontier-models-one-prompt/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:24:03.016Z",
+    "ts": "2026-10-26T22:36:05.390Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -137,7 +137,7 @@
   "/writing/2026-08-09-adobe-stardust-explained/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:24:04.028Z",
+    "ts": "2026-10-26T22:36:11.097Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -146,7 +146,7 @@
   "/writing/2026-08-15-anima-mesh-company-of-zero/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:24:07.136Z",
+    "ts": "2026-10-26T22:36:11.372Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -155,7 +155,7 @@
   "/writing/2026-10-10-adaptto-2026-25-talks/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:24:09.208Z",
+    "ts": "2026-10-26T22:36:12.018Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -173,7 +173,7 @@
   "/writing/2025-07-12-aem-headless-omnichannel-architecture/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:42.362Z",
+    "ts": "2026-10-26T22:35:47.345Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -182,7 +182,7 @@
   "/writing/2025-09-01-aem-caching-production-architectures/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:46.729Z",
+    "ts": "2026-10-26T22:35:47.516Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -200,7 +200,7 @@
   "/writing/2026-10-25-eds-migration-two-goal-prompts/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:24:09.705Z",
+    "ts": "2026-10-26T22:37:30.781Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -209,7 +209,7 @@
   "/writing/2025-04-13-vibe-coding-star-story-generator/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:31.904Z",
+    "ts": "2026-10-26T22:35:35.363Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -236,7 +236,7 @@
   "/writing/2025-05-28-aem-headless-when-frontend-teams-lead/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:35.208Z",
+    "ts": "2026-10-26T22:35:35.363Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -245,7 +245,7 @@
   "/writing/2025-06-04-seven-aem-capabilities-tradeoffs/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:36.341Z",
+    "ts": "2026-10-26T22:35:35.363Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -254,7 +254,7 @@
   "/writing/2025-06-08-edge-cms-shift-adobe-eds/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:36.820Z",
+    "ts": "2026-10-26T22:35:35.363Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -263,7 +263,7 @@
   "/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:37.049Z",
+    "ts": "2026-10-26T22:35:41.238Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -272,7 +272,7 @@
   "/writing/2025-07-06-ai-coded-nextjs-agent-release-1/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:41.500Z",
+    "ts": "2026-10-26T22:35:41.472Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -281,7 +281,7 @@
   "/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:41.707Z",
+    "ts": "2026-10-26T22:35:41.523Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -290,7 +290,7 @@
   "/writing/2025-07-11-scaling-ai-coding-delivery-methodology/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:41.807Z",
+    "ts": "2026-10-26T22:35:41.631Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -299,7 +299,7 @@
   "/writing/2025-07-13-three-eds-offerings/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:46.316Z",
+    "ts": "2026-10-26T22:35:47.422Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -308,7 +308,7 @@
   "/writing/2025-10-05-mcp-server-for-eds-da-live/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:46.764Z",
+    "ts": "2026-10-26T22:35:47.701Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -317,7 +317,7 @@
   "/writing/2025-10-12-da-live-mcp-across-ai-platforms/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:47.175Z",
+    "ts": "2026-10-26T22:35:52.971Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -326,7 +326,7 @@
   "/writing/2026-01-05-from-prompts-to-harness/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T19:23:50.557Z",
+    "ts": "2026-10-26T22:35:53.211Z",
     "put": 200,
     "preview": 200,
     "live": 200,
