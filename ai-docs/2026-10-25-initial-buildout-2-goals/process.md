@@ -97,6 +97,10 @@ No Adobe skill covers the Admin API beyond preview and publish, so Jack's own `h
 
 Jack's plan for the hosts (19:25): GitHub Pages at gh.jackzhaojin.com and EDS at eds.jackzhaojin.com, both out of search, www keeping its SEO after the cutover. The Worker in `edge/` gained a gh mode (the whole GitHub Pages site, read through www until GitHub Pages moves, with its redirects kept on gh) and a noindex header on every host but www, tested in-process first. Then, in Jack's Chrome with Claude in Chrome, Claude filled the two DNS record forms (AAAA `100::`, proxied) and Jack clicked Save on each; the Workers went out with the wrangler sign-in already on the laptop. The host check passes on both live hosts, and www is byte-for-byte unchanged.
 
+## Then: Codex's pull request
+
+Codex's code-only comparison pass (requested at 11:33) became pull request 1, merged in the evening as b8baf5c: two lines out of `blocks/header/header.js`, so an open menu stays open when the window crosses 1024px, as on www (its `site.js` has no resize listener). Review: the open state only toggles a class and `aria-expanded`, `.is-open` styles apply below 1024px only, nothing locks scrolling; a live check on both sites (open at 360, then 1440, 1024, 390, 360) gives the same states and a normal desktop nav. Home and the article archetype re-gated unchanged (0.25% / 0px and 1.11% / 0px; 0.05% / 0px and 0.84% / 0px, 0 red). Codex's open findings did not hold: home is the same height as www at every width from 1440 to 360 (within 1px), the article matches www heading for heading once both are fully loaded (www's page grows as its lazy content loads, EDS reserves the space), and mobile Lighthouse on aem.live is 100 on both pages (its 69 and 88 were PageSpeed Insights on the uncached branch preview). No fix forward needed.
+
 ## Numbers
 
 153 commits on `main` between 09:05 and 19:00; 41 blocks; 5 templates; 41 explainer engines and 43 importer engines; 40 content documents; 9 subagents; register R1 to R24; 96 owner-accepted content-diff entries (rail thumbnails at phone width, where the probe can only compare file names).
