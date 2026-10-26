@@ -19,7 +19,7 @@ Done route-first from another session, not in the order whats-left.md had planne
 
 **Rollback:** remove the www route in the dashboard. www then goes straight to GitHub Pages again, which never stopped serving it.
 
-**Push invalidation has been on since 2026-10-26** (version `9cf85aef`). The Cache Purge token is in the site's CDN config, so every publish purges this zone. The zone is on the free plan, so that's a full purge. Cloudflare keeps pages for two days between publishes (`cdn-cache-control: max-age=172800`); browsers keep them for two hours (`max-age=7200`, as aem.live sends it). Record: `hlx-config/2026-10-26-push-invalidation/EXECUTION.md`.
+**Push invalidation has been on since 2026-10-26** (version `9cf85aef`). The Cache Purge token is in the site's CDN config, so every publish purges this zone. The zone is on the free plan, so that's a full purge. Cloudflare keeps pages for two days between publishes (`cdn-cache-control: max-age=172800`). Browsers keep them for 10 minutes, as on GitHub Pages: `pageCache` replaces aem.live's two hours (since `v1.0.2`, Worker version `d329cd01`). Record: `hlx-config/2026-10-26-push-invalidation/EXECUTION.md`.
 
 ## A request, in order (`src/index.mjs`)
 
@@ -27,23 +27,24 @@ Done route-first from another session, not in the order whats-left.md had planne
 2. **gh mode** (`MODE = "github"`): every path goes to `GITHUB_ORIGIN`, with the path and query string kept.
 3. **Project sites** (`PROJECT_SITES` in `src/routes.mjs`: `/adapt-to-2026-demo/`, `/bruce-lava-dash/` and five more): `PROJECT_ORIGIN = "passthrough"` hands the request to the zone's own origin untouched. A URL sends it to that origin instead.
 4. **Everything else** goes to Edge Delivery through `src/aem.mjs`. That's Adobe's Cloudflare worker (`adobe/aem-cloudflare-prod-worker` at `ec7387c`), vendored with only its handler renamed to a named export.
-5. **The robots header.** Every host but www answers `X-Robots-Tag: noindex, nofollow`, whatever the origin said. Adobe's worker drops Edge Delivery's own header, so this one is added back here.
+5. **The browser cache** (`pageCache`, EDS responses only). HTML, meaning the pages and the `.plain.html` fragments such as the footer, gets `cache-control: max-age=600, must-revalidate`. So does a `304` for a page path, since browsers take their new freshness from it. aem.live would tell browsers two hours, and nothing purges a browser. Code, media and JSON keep the origin's header, and the edge cache (`cdn-cache-control`) is untouched.
+6. **The robots header.** Every host but www answers `X-Robots-Tag: noindex, nofollow`, whatever the origin said. Adobe's worker drops Edge Delivery's own header, so this one is added back here.
 
 ## Files
 
 | File | What it does |
 |---|---|
 | `src/index.mjs` | the request order above |
-| `src/routes.mjs` | the project-site list, `projectFetch`, `githubFetch`, `hiddenFromCrawlers`, `robots` |
+| `src/routes.mjs` | the project-site list, `projectFetch`, `githubFetch`, `hiddenFromCrawlers`, `pageCache`, `robots` |
 | `src/aem.mjs` | Adobe's worker, vendored |
 | `wrangler.toml` | the three environments and their vars (vars aren't inherited by an env: only the top level sets `INDEXABLE`, and only staging sets `PUSH_INVALIDATION = "disabled"`) |
-| `test/worker.test.mjs` | 12 tests: routing, the noindex header, gh redirects, the crawler 404s |
+| `test/worker.test.mjs` | 15 tests: routing, the noindex header, gh redirects, the crawler 404s, the browser cache |
 | `scripts/check-host.mjs` | the routing check for a host: every sitemap page, the project sites, the root files, the 404s, the legacy redirects, the robots header |
 
 ## Commands
 
 ```bash
-npm test                                                   # the 12 tests
+npm test                                                   # the 15 tests
 node scripts/check-host.mjs --local www                    # the Worker in-process, against the real origins (also staging, gh)
 node scripts/check-host.mjs --base https://www.jackzhaojin.com   # and https://eds… , https://gh…
 npx wrangler deploy --env="" --dry-run --outdir <scratch>  # shows the vars a deploy would carry, deploys nothing

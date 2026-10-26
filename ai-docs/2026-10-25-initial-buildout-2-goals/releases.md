@@ -11,6 +11,7 @@ Jack's idea at 21:51, as he was calling it a night: "EDS does prompt1 and prompt
 | `release/0.3` | the commit that adds this page (`git rev-parse release/0.3`) | from `f02e0e7` to the end of the day | The design system page, the 35th article, SEO parity, the eds and gh hosts, Codex's PR, these docs |
 | `v1.0.0` (tag) and `release/1-0-0` (branch) | the same commit, made after the cutover (2026-10-26) | from `release/0.3` to the cutover | Content in git (every document in the editor's form, the DA-only media pulled in), the split-link fix, and the repo matching production after the cutover, validated against gh. www has served the site since 15:12 ET (21:54 the night before: "since we're not live live yet, let's do release/0.3") |
 | `v1.0.1` (tag) and `release/1-0-1` (branch) | the commit after GA4 shipped (2026-10-26) | from `v1.0.0` | GA4 per decision 9: consent granted by default on www, no banner, Global Privacy Control declines, it starts 3 seconds after the page loads, and it's off on every other host |
+| `v1.0.2` (tag) and `release/1-0-2` (branch) | the commit after the Worker change shipped (2026-10-26) | from `v1.0.1` | The edge Worker gives browsers 10 minutes for EDS pages (`pageCache`), as GitHub Pages did, instead of aem.live's two hours. Worker version `d329cd01`. Push invalidation itself, set up just before, is config, not part of a release |
 
 Each boundary is the one Jack's article about the build gives: "Prompt 1: 6820e00 to 4575a93, 17 commits. Prompt 2: from 4595513, 112 more by the time all 34 pages passed at 16:05 ET". `f02e0e7` ("R24 resolved, the sweep is 34 of 34") is that 112th commit. Goal 2 itself was cleared at about 17:00, while the design system stream was still working. The stream's later commits are in 0.3.
 
@@ -25,6 +26,7 @@ Edge Delivery names a branch's host by lowercasing it and turning every characte
 | 0.3 | https://release-0-3--www-eds--jackzhaojin.aem.live/ | https://release-0-3--www-eds--jackzhaojin.aem.page/ | https://github.com/jackzhaojin/www-eds/tree/release/0.3 |
 | 1.0.0 | https://release-1-0-0--www-eds--jackzhaojin.aem.live/ (and www.jackzhaojin.com) | https://release-1-0-0--www-eds--jackzhaojin.aem.page/ | https://github.com/jackzhaojin/www-eds/tree/v1.0.0 |
 | 1.0.1 | https://release-1-0-1--www-eds--jackzhaojin.aem.live/ (and www.jackzhaojin.com) | https://release-1-0-1--www-eds--jackzhaojin.aem.page/ | https://github.com/jackzhaojin/www-eds/tree/v1.0.1 |
+| 1.0.2 | https://release-1-0-2--www-eds--jackzhaojin.aem.live/ (the EDS code is 1.0.1's; the change is in the Worker, live on www) | https://release-1-0-2--www-eds--jackzhaojin.aem.page/ | https://github.com/jackzhaojin/www-eds/tree/v1.0.2 |
 
 What each prompt changed, as GitHub diffs:
 - Prompt 1: https://github.com/jackzhaojin/www-eds/compare/d63e522b95954ea55aa54a15b8f507b0ab6d602b...4575a936f7d7175dcf8403079f4eecf7bc5cca30

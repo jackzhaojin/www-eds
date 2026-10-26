@@ -61,3 +61,5 @@ Publish a page, then check that www serves the new version right away (Cloudflar
 - From about 12 seconds on it was a HIT again, cached for two days until the next publish.
 
 **What it doesn't change:** a browser that loaded a page in the last two hours keeps its copy (`max-age=7200`), so the author sees an update after a hard reload. Shortening that would take the Worker setting its own `cache-control` for pages. That's a code change in `edge/src` (a release) and Jack's call.
+
+**Followed up the same day (Jack: "ship it as 1.0.2"):** the Worker's `pageCache` gives browsers 10 minutes for pages, as GitHub Pages did. That's release `v1.0.2`, Worker version `d329cd01`, deployed to staging first (`e5fe231f`).

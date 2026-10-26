@@ -39,7 +39,7 @@ Route-first, not in the order [whats-left.md, section 3](../2026-10-25-initial-b
    - the override came out, and the Worker was redeployed (`9cf85aef`);
    - a publish purged the zone within 3 seconds.
 
-   Browsers still keep pages for two hours. See [hlx-config/2026-10-26-push-invalidation/EXECUTION.md](../../hlx-config/2026-10-26-push-invalidation/EXECUTION.md).
+   Browsers then still kept pages for two hours, as aem.live tells them. **`v1.0.2`** has the Worker give them 10 minutes, as GitHub Pages did: pages and fragments get `max-age=600`, and code, media, JSON and the project sites keep their own headers. It was deployed to staging first, then production (`d329cd01`). See [hlx-config/2026-10-26-push-invalidation/EXECUTION.md](../../hlx-config/2026-10-26-push-invalidation/EXECUTION.md) and `edge/README.md`.
 2. **GA4: done in 1.0.1 (Jack, 2026-10-26: "implement GA4 per decision 9").** What changed:
    - `consent-check.js` grants consent by default with no banner. A Global Privacy Control signal declines, and `?consent=accept|decline` still overrides, for testing.
    - `consented.js` carries the old site's gtag calls for `G-ZVENE6BXTJ`.
