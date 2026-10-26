@@ -34,7 +34,26 @@ Route-first, not in the order [whats-left.md, section 3](../2026-10-25-initial-b
 ## Left
 
 1. **Push invalidation:** Jack creates the Cloudflare Cache Purge token and enters it. Then `hlx-config/cdn-prod.json` gets type `cloudflare` and the zone ID, the `PUSH_INVALIDATION` override comes out of `wrangler.toml`, and the top level is redeployed.
-2. **GA4 is off on www:** `scripts/consented.js` is empty, and `consent-check.js` defaults to declined. The old site loaded gtag (`G-ZVENE6BXTJ`) in the head of every page, with no banner. Planning decision 9 already says what EDS should do: "GA4 loads in `consented.js` with consent granted by default and no banner, as the site works today. A browser's Global Privacy Control signal counts as a decline, and GA4 starts 3 seconds after LCP." It waits on Jack's confirmation, then becomes a 1.0.1.
+2. **GA4: done in 1.0.1 (Jack, 2026-10-26: "implement GA4 per decision 9").** What changed:
+   - `consent-check.js` grants consent by default with no banner. A Global Privacy Control signal declines, and `?consent=accept|decline` still overrides, for testing.
+   - `consented.js` carries the old site's gtag calls for `G-ZVENE6BXTJ`.
+   - `loadDelayed` starts the consent check 3 seconds into the delayed phase.
+
+   Checked on the `ga4` preview branch:
+   - by default, gtag.js loads about 3.2 s after LCP, and GA answers the `page_view` hit with 204;
+   - with GPC on, and with `?consent=decline`, nothing loads and nothing is sent;
+   - no console errors (the CSP and Trusted Types allow it);
+   - mobile Lighthouse 100 on home and the article, with and without GA4 (0 ms blocking time);
+   - home and the article archetype gate unchanged against gh at both widths.
+
+   Then one refinement before shipping: the default applies on **www.jackzhaojin.com only**. Otherwise eds, the aem.page previews, branch hosts and every stardust sweep (about 70 headless page loads each) would fill the property with test traffic. The old site only ever ran on www. `?consent=accept` still turns GA4 on anywhere, for testing.
+
+   On production, once Cloudflare's cached copy of `consented.js` expired (it holds scripts for up to two hours, and nothing purges it until push invalidation is set up):
+   - gtag.js loads about 3.5 s after LCP, and the `page_view` hit is answered 204;
+   - with GPC, and with `?consent=decline`, nothing loads;
+   - eds stays off.
+
+   The validation sent a handful of test `page_view`s: from `ga4--…aem.page` before the guard, and two from www. Left for Jack: a look at GA4's real-time report, and dropping the "gtag first in `<head>`" rule from jackzhaojin.github.io's `docs/site-operations.md` (decision 9).
 3. **Old URLs that 404 on www.** 24 URLs, linked 74 times from the content, are still served on gh:
 
    | Prefix | URLs | Proposal |

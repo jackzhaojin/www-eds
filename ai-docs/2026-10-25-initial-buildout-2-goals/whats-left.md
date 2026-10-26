@@ -47,7 +47,7 @@ Validated after it, on 2026-10-26:
 
 **Left after the cutover:**
 1. **Push invalidation:** Jack creates the Cloudflare Cache Purge token and enters it. Then `hlx-config/cdn-prod.json` gets type `cloudflare` and the zone ID, the `PUSH_INVALIDATION` override comes out, and the top level is redeployed.
-2. **GA4 is off on www:** `scripts/consented.js` is empty and `consent-check.js` defaults to declined. Decision 9 already says how: consent granted by default, no banner, a Global Privacy Control signal counts as a decline, GA4 starts 3 seconds after LCP. It waits on Jack's confirmation.
+2. ~~GA4 is off on www~~: done in 1.0.1, per decision 9 (granted by default, no banner, Global Privacy Control declines, starts 3 seconds after the page loads). See the cutover record. Left: a look at GA4's real-time report.
 3. **24 URLs (74 links) that 404 on www but are still served on gh:** the 15 portfolio diagram files, the 5 v3 prototype template URLs, the older `/design-systems/2026-09-13/` round and an ai-docs file. The proposal is to pass their prefixes through to GitHub Pages the way the project sites are, plus one content fix for a full-size image link. See the cutover record.
 4. **Search Console:** submit the sitemap and inspect the home page URL.
 5. **jackzhaojin.github.io:**

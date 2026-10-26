@@ -2,7 +2,7 @@
 
 Jack Jin's site, [www.jackzhaojin.com](https://www.jackzhaojin.com), rebuilt on **AEM Edge Delivery Services** with **Experience Workspace (da.live)** authoring. It's the same site with the same design and the same URLs, on a new platform.
 
-The whole site moved from GitHub Pages on 2026-10-25, and every page was checked against the live original with measured gates (pixels, height, content, editability, performance). **www has served it since the cutover on 2026-10-26** (about 15:12 ET). The old GitHub Pages site stays up at gh.jackzhaojin.com for comparison. Release **v1.0.0** marks that state.
+The whole site moved from GitHub Pages on 2026-10-25, and every page was checked against the live original with measured gates (pixels, height, content, editability, performance). **www has served it since the cutover on 2026-10-26** (about 15:12 ET). The old GitHub Pages site stays up at gh.jackzhaojin.com for comparison. Release **v1.0.0** marks that state; **v1.0.1** brought GA4 back. Releases are for code only: content changes are pushed without a version (AGENTS.md).
 
 ## Where it runs
 
@@ -64,6 +64,7 @@ Each prompt of the build is an Edge Delivery environment, on the commit it ended
 | [`release/0.2`](https://github.com/jackzhaojin/www-eds/tree/release/0.2) | [`f02e0e7`](https://github.com/jackzhaojin/www-eds/commit/f02e0e785461302492bca9474d97e5b93cabbfe5) | prompt 2: all 34 sitemap pages passing, 16:05 ET | [release-0-2--www-eds--jackzhaojin.aem.live](https://release-0-2--www-eds--jackzhaojin.aem.live/) |
 | [`release/0.3`](https://github.com/jackzhaojin/www-eds/tree/release/0.3) | the day's last commit | the end of the day: 35 pages, SEO config, the eds and gh hosts, these docs | [release-0-3--www-eds--jackzhaojin.aem.live](https://release-0-3--www-eds--jackzhaojin.aem.live/) |
 | [`v1.0.0`](https://github.com/jackzhaojin/www-eds/releases/tag/v1.0.0), branch [`release/1-0-0`](https://github.com/jackzhaojin/www-eds/tree/release/1-0-0) | the tagged commit | the cutover: www served from here, content in git, validated against gh | [www.jackzhaojin.com](https://www.jackzhaojin.com), and [release-1-0-0--www-eds--jackzhaojin.aem.live](https://release-1-0-0--www-eds--jackzhaojin.aem.live/) |
+| [`v1.0.1`](https://github.com/jackzhaojin/www-eds/releases/tag/v1.0.1), branch [`release/1-0-1`](https://github.com/jackzhaojin/www-eds/tree/release/1-0-1) | the tagged commit | GA4 per decision 9 (on www only, Global Privacy Control declines) | [www.jackzhaojin.com](https://www.jackzhaojin.com), and [release-1-0-1--www-eds--jackzhaojin.aem.live](https://release-1-0-1--www-eds--jackzhaojin.aem.live/) |
 
 On 0.1, pages built in prompt 2 show their blocks undecorated, because their blocks came later. The release branches are frozen: never push to them. How they were made, and the permanent links: [ai-docs releases](ai-docs/2026-10-25-initial-buildout-2-goals/releases.md).
 
