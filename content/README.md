@@ -132,6 +132,25 @@ draft out of production publish batches.
 The implementation and Admin API trail are in
 [the talks index record](../ai-docs/2026-10-26-talks-json/README.md).
 
+## Writing index and dynamic draft
+
+The native `/writing-index.json` indexes the existing article documents. Titles and dates
+come from the h1 and `published-time`; optional `listing-*` metadata owns the card-specific
+summary, image, pipe-separated topics, reading/video times, related talk link/note, watch
+link, search keywords and comma-separated keep-together title runs. Keep card images on
+public www media URLs. The article's normal description and social image are safe defaults
+when optional card overrides are omitted.
+
+Publishing an article updates its index entry. No duplicate article record or generated JSON
+file is needed. During review `writing/index.html` remains static, while
+`drafts/writing-index/index.html` uses the new Writing index block and the existing filters.
+Its Source row points to `/writing-index.json`; all rows and its ItemList come from the API.
+Keep draft paths out of production publish batches. After approval, switch the production
+hub in a separate content operation.
+
+The source comparison, metadata-only proof and Admin API trail are in
+[the writing index record](../ai-docs/2026-10-26-writing-index/README.md).
+
 ## Stop points
 
 Ask Jack first for: an expired DA token, deleting anything in DA, any site config or Experience Workspace config change, any Cloudflare change, and the cutover.
