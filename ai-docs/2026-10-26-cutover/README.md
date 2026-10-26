@@ -84,7 +84,7 @@ Route-first, not in the order [whats-left.md, section 3](../2026-10-25-initial-b
    - **`jack-technical-writing` (user skill):** it writes to `jackzhaojin.github.io/writing/<slug>/` and hands off to `publishing-writing.md` (its section 7). Either it keeps drafting HTML there as the source and adds the import step into www-eds, or it writes EDS content directly. The listing, sitemap and `check-site.sh` steps go away.
    - **career-blogs `video-release` skill:** its outputs table points the article at `jackzhaojin.github.io/writing/<slug>/`. Its step that follows `publishing-writing.md`, and the release template's checklist line ("noindex off, listing, sitemap, commit and push on Jack's ask, Pages built, check-site"), describe the GitHub Pages flow. They become: publish to EDS, then `check-host` on www.
 5. **The runbook's remaining steps:**
-   - Search Console: submit the sitemap and inspect the home page URL;
+   - Search Console: submit the sitemap and inspect the home page URL. Taken up with Bing in the [SEO and GEO audit](../2026-10-26-seo-geo-audit/README.md), which also found the dead JSON-LD image URLs;
    - rewrite `docs/site-operations.md` in jackzhaojin.github.io for the new request path;
    - add a README there saying the main site moved and `CNAME` must stay.
 6. **Later, optional (Phase B):** move GitHub Pages to gh.jackzhaojin.com. First the three code fixes in `edge/README.md`; then the GitHub custom domain change and the www Worker's `PROJECT_ORIGIN = https://gh.jackzhaojin.com`, together.

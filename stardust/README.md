@@ -49,6 +49,8 @@ Written for this site:
 | `scripts/import-article.mjs` | one GitHub Pages article into an Experience Workspace document for the article template |
 | `scripts/import-engines/` | 43 importer engines, one per explainer kind (`match()` and `convert()`) |
 | `scripts/import-listing-pages.mjs`, `import-portfolio.mjs`, `import-design-system.mjs` | the listing pages, the portfolio and the design system site |
+| `scripts/seo-check.mjs` | the SEO check of every sitemap page on a host: head tags, JSON-LD, and every JSON-LD, social image and internal link URL answering 200 (`content/README.md`, step 5) |
+| `scripts/fix-dead-image-urls.mjs` | swaps the old site's `/writing/<slug>/images/…` URLs in content for the media copy www serves, after matching the bytes against gh |
 | `scripts/pull-media.mjs` | pulls media files from DA into `content/media/` and checks each is byte-identical to the copy the site delivers |
 | `scripts/roundtrip-compare.mjs`, `scripts/roundtrip-batch.mjs` | the editor round trip: compare two DA documents by content and by markup (the editor's known rewrites undone), and run uploads and collection for many pages (`content/README.md`, step 3) |
 | `scripts/sync-head-metadata.mjs` | copies each www page's SEO head (JSON-LD, titles, article tags) into its document's metadata |

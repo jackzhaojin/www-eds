@@ -52,6 +52,11 @@ Images: upload the file to DA first, under `/media/<section>/<slug>/` (`stardust
 
 **Keep every image here too,** in `content/media/` at the same path as in DA (`/media/certifications/x.png` is `content/media/certifications/x.png`). Then no image exists only in DA. On 2026-10-26 the 25 files that did (17 certification badges, 8 importer-drawn diagrams) were pulled in with `node stardust/scripts/pull-media.mjs <list> <report>`. It downloads each file from DA and checks it is byte-identical to the copy the site delivers. The other 408 images still have their originals only in jackzhaojin.github.io.
 
+**Links and URLs readers or search engines follow** (the SEO and GEO audit, 2026-10-26, [ai-docs/2026-10-26-seo-geo-audit/](../ai-docs/2026-10-26-seo-geo-audit/README.md)):
+- **Never link readers to `content.da.live`.** It's private (401) since the DA permissions sheet. An image's `src` there is fine, because delivery swaps it for the media copy, but an `<a href>` there stays as written. Link the copy www serves instead: `https://www.jackzhaojin.com/<path>/media_<hash>.<ext>`, which the page's own `<img>` shows on delivery.
+- **Links to another Edge Delivery site lose their host.** Delivery rewrites every `https://` link to any `*.aem.page` or `*.aem.live` host into a relative path, whichever site it points at. Write such a link with `http://` (delivery leaves it alone, and browsers upgrade `.page` to https themselves), or use that site's own domain.
+- **Every URL in metadata must be one www serves:** `json-ld` values, `image`, anything in the head. Old-site paths such as `/writing/<slug>/images/cover.jpg` 404 here; `node stardust/scripts/fix-dead-image-urls.mjs` swaps them for the byte-identical media copy.
+
 ## 2. Always check it in the browser
 
 Push the changed documents to DA and preview them, without publishing:
@@ -100,6 +105,8 @@ node stardust/scripts/replica/run-bg.mjs start --name <slug>-1440 -- stardust/sc
 ## 5. Publish and record
 
 - **Publish:** the same `deploy-batch.mjs` command, without `--no-publish`. Each publish purges Cloudflare (push invalidation), so www serves the new version within seconds. Browsers keep pages for 10 minutes (the Worker's `pageCache`), so a browser that loaded the page just before may need a hard reload.
+- **After a batch publish, check www itself,** not just aem.live. A request that reaches Cloudflare in the seconds after the last purge, while aem.live is still updating, caches the old page, and nothing purges it for two days (on 2026-10-26, one of 29 pages). `curl` the changed pages on www; for one that is stale, publish it again, which purges again.
+- **Check SEO** after a publish that touches metadata or links: `node stardust/scripts/seo-check.mjs` (www) prints every page with a dead JSON-LD, social image or internal link URL. On a preview host (`--base https://main--www-eds--jackzhaojin.aem.page`) the project sites also show as 404s, because only the www Worker serves them.
 - **Commit:** `content/`, `content/.deploy-ledger.json`, and anything the gates recorded. Push to main after `git pull --rebase`, never force-push. **A content change is never a release:** no version, tag or release branch (AGENTS.md, "Releases are for code only").
 - **New pages:** since the cutover (2026-10-26) new writing is published here, to EDS; a page added to GitHub Pages no longer shows on www. An article drafted as HTML converts with the recipe in [whats-left.md, section 5](../ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md). Then sync its SEO ([hlx-config/README.md](../hlx-config/README.md)): its head metadata, the redirects sheet, the sitemap.
 
