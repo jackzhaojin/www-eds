@@ -1,0 +1,27 @@
+{
+  "webPath": "/privacy/",
+  "resourcePath": "/privacy/index.md",
+  "live": {
+    "url": "https://main--www-eds--jackzhaojin.aem.live/privacy/",
+    "status": 200,
+    "contentBusId": "helix-content-bus/9068e1d410f9f526352e352eb6425a401d00e59a43a07c3f402e2cf7f25/live/privacy/index.md",
+    "contentType": "text/plain; charset=utf-8",
+    "lastModified": "Mon, 26 Oct 2026 21:51:22 GMT",
+    "sourceLocation": "markup:https://content.da.live/jackzhaojin/www-eds/privacy/",
+    "sourceLastModified": "Mon, 26 Oct 2026 20:43:05 GMT",
+    "lastModifiedBy": "jackzhaojin@gmail.com",
+    "permissions": [
+      "delete",
+      "delete-forced",
+      "list",
+      "read",
+      "write"
+    ]
+  },
+  "links": {
+    "status": "https://admin.hlx.page/status/jackzhaojin/www-eds/main/privacy/",
+    "preview": "https://admin.hlx.page/preview/jackzhaojin/www-eds/main/privacy/",
+    "live": "https://admin.hlx.page/live/jackzhaojin/www-eds/main/privacy/",
+    "code": "https://admin.hlx.page/code/jackzhaojin/www-eds/main/privacy/"
+  }
+}

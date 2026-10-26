@@ -1,0 +1,7 @@
+{
+  "host": "www.jackzhaojin.com",
+  "type": "cloudflare",
+  "plan": "free",
+  "zoneId": "fdf0c615f7429cee464f8f9ca834852c",
+  "apiToken": "(set, 53 characters)"
+}

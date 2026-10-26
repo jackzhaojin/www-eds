@@ -4,7 +4,7 @@ One Cloudflare Worker script in front of three hosts. It sends the GitHub Pages 
 
 | wrangler env | Worker | Route | Serves | Search |
 |---|---|---|---|---|
-| top level | `www-eds-edge` | `www.jackzhaojin.com/*`, added in the Cloudflare dashboard at the cutover, never in this file | Edge Delivery; the 7 project sites pass through to the zone's origin, GitHub Pages, untouched | indexed |
+| top level | `www-eds-edge` | `www.jackzhaojin.com/*`, added in the Cloudflare dashboard at the cutover, never in this file | Edge Delivery, with push invalidation on; the 7 project sites pass through to the zone's origin, GitHub Pages, untouched | indexed |
 | `staging` | `www-eds-edge-staging` | `eds.jackzhaojin.com/*` | Edge Delivery; project sites from www (they pass through there to GitHub Pages) | noindex |
 | `gh` | `www-eds-edge-gh` | `gh.jackzhaojin.com/*` | the whole old GitHub Pages site. It fetches `www.jackzhaojin.com`, and a same-zone fetch from a Worker reaches the zone's origin, GitHub Pages, not the www Worker. GitHub's folder redirects stay on gh | noindex |
 
@@ -13,13 +13,13 @@ All three are deployed, and `check-host.mjs` passes on all three (2026-10-26).
 ## The cutover (2026-10-26, about 15:12 ET)
 
 Done route-first from another session, not in the order whats-left.md had planned:
-1. The top-level Worker was deployed with `npx wrangler deploy --env="" --var PUSH_INVALIDATION:disabled` (version `fa323e37-fd2b-46f3-afea-a1b9d638a7cd`). The override is now in `wrangler.toml` too, so a plain redeploy keeps it.
+1. The top-level Worker was deployed with `npx wrangler deploy --env="" --var PUSH_INVALIDATION:disabled` (version `fa323e37-fd2b-46f3-afea-a1b9d638a7cd`). The override came out once push invalidation was set up, the same day (version `9cf85aef`).
 2. The route `www.jackzhaojin.com/*` was added to `www-eds-edge` in the dashboard (Workers & Pages > www-eds-edge > Domains; a Route, not a Custom Domain).
 3. GitHub Pages was **not** moved. jackzhaojin.github.io keeps its `CNAME` of `www.jackzhaojin.com`. GitHub still serves the project sites and the old main site at the zone origin; `PROJECT_ORIGIN = "passthrough"` hands the project sites to it, and gh mirrors the rest.
 
 **Rollback:** remove the www route in the dashboard. www then goes straight to GitHub Pages again, which never stopped serving it.
 
-**Push invalidation isn't set up yet.** Until the Cache Purge token is in the site config (`hlx-config/cdn-prod.json`, type `cloudflare` plus the zone ID), `PUSH_INVALIDATION = "disabled"` keeps aem.live from sending long cache TTLs that nothing would purge. Once it works, remove the line and redeploy the top level.
+**Push invalidation has been on since 2026-10-26** (version `9cf85aef`). The Cache Purge token is in the site's CDN config, so every publish purges this zone. The zone is on the free plan, so that's a full purge. Cloudflare keeps pages for two days between publishes (`cdn-cache-control: max-age=172800`); browsers keep them for two hours (`max-age=7200`, as aem.live sends it). Record: `hlx-config/2026-10-26-push-invalidation/EXECUTION.md`.
 
 ## A request, in order (`src/index.mjs`)
 
@@ -36,7 +36,7 @@ Done route-first from another session, not in the order whats-left.md had planne
 | `src/index.mjs` | the request order above |
 | `src/routes.mjs` | the project-site list, `projectFetch`, `githubFetch`, `hiddenFromCrawlers`, `robots` |
 | `src/aem.mjs` | Adobe's worker, vendored |
-| `wrangler.toml` | the three environments and their vars (vars aren't inherited by an env, so only the top level sets `INDEXABLE` and `PUSH_INVALIDATION`) |
+| `wrangler.toml` | the three environments and their vars (vars aren't inherited by an env: only the top level sets `INDEXABLE`, and only staging sets `PUSH_INVALIDATION = "disabled"`) |
 | `test/worker.test.mjs` | 12 tests: routing, the noindex header, gh redirects, the crawler 404s |
 | `scripts/check-host.mjs` | the routing check for a host: every sitemap page, the project sites, the root files, the 404s, the legacy redirects, the robots header |
 

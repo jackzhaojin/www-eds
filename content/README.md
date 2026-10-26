@@ -99,7 +99,7 @@ node stardust/scripts/replica/run-bg.mjs start --name <slug>-1440 -- stardust/sc
 
 ## 5. Publish and record
 
-- **Publish:** the same `deploy-batch.mjs` command, without `--no-publish`.
+- **Publish:** the same `deploy-batch.mjs` command, without `--no-publish`. Each publish purges Cloudflare (push invalidation), so www serves the new version within seconds. A browser that loaded the page in the last two hours still shows its own copy (`max-age=7200`): hard-reload to check.
 - **Commit:** `content/`, `content/.deploy-ledger.json`, and anything the gates recorded. Push to main after `git pull --rebase`, never force-push. **A content change is never a release:** no version, tag or release branch (AGENTS.md, "Releases are for code only").
 - **New pages:** since the cutover (2026-10-26) new writing is published here, to EDS; a page added to GitHub Pages no longer shows on www. An article drafted as HTML converts with the recipe in [whats-left.md, section 5](../ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md). Then sync its SEO ([hlx-config/README.md](../hlx-config/README.md)): its head metadata, the redirects sheet, the sitemap.
 

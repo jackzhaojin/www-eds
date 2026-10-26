@@ -4,7 +4,7 @@ The site's Edge Delivery configuration, kept as files so it can be read, diffed 
 
 | File | Where it goes | What it does |
 |---|---|---|
-| `cdn-prod.json` | Admin API `POST /config/jackzhaojin/sites/www-eds/cdn/prod.json` | The production host: canonical links, `og:url` and sitemap URLs point at www.jackzhaojin.com. No push invalidation yet (that needs the Cloudflare zone and a purge token at cutover). |
+| `cdn-prod.json` | Admin API `POST /config/jackzhaojin/sites/www-eds/cdn/prod.json` | The production host: canonical links, `og:url` and sitemap URLs point at www.jackzhaojin.com. Since 2026-10-26 also push invalidation: `type: cloudflare`, `plan: free`, the zone ID, plus the Cache Purge token, which is never stored here. It's sent from a hidden prompt by `2026-10-26-push-invalidation/set-cdn-token.sh`. |
 | `robots.txt` | `POST .../robots.txt` (text/plain) | The same robots.txt as www: allow everything, point at the sitemap. *.aem.page and *.aem.live keep serving "disallow all" by design; this one is served on the production host. |
 | `query.yaml` | `POST .../content/query.yaml` (text/yaml) | The query index: every published page except the nav and footer fragments, with title, description, image, template, published-time, lastModified and robots. |
 | `sitemap.yaml` | `POST .../content/sitemap.yaml` (text/yaml) | `/sitemap.xml` from the index, on www, with lastmod. Pages with `robots: noindex` (the design system page) are left out. |
@@ -16,6 +16,8 @@ The site's Edge Delivery configuration, kept as files so it can be read, diffed 
 The per-page tags come from the content, not from here: `stardust/scripts/sync-head-metadata.mjs` copies each www page's JSON-LD, title, `og:image:alt`, share title and article tags into its document's metadata block.
 
 How it was applied, step by step with every response (GET before, SET, GET after, the Admin API skill's pattern): [2026-10-25-seo-config/EXECUTION.md](2026-10-25-seo-config/EXECUTION.md).
+
+Push invalidation (the Cloudflare Cache Purge token, the Worker without its override, a publish proving the purge): [2026-10-26-push-invalidation/EXECUTION.md](2026-10-26-push-invalidation/EXECUTION.md).
 
 The release branches (`release/0.1` to `0.3`, one Edge Delivery environment per prompt of the build) and the code sync that made each one match its commit: [2026-10-25-release-branches/EXECUTION.md](2026-10-25-release-branches/EXECUTION.md).
 

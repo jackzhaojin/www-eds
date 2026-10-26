@@ -19,11 +19,9 @@ ORIGIN_HOSTNAME = "main--www-eds--jackzhaojin.aem.live"
 PROJECT_ORIGIN = "passthrough"
 # www is the one host search engines may index.
 INDEXABLE = "true"
-# Until push invalidation is set up (the Cache Purge token in hlx-config/cdn-prod.json), aem.live
-# would send long cache TTLs that nothing purges, so publishes wouldn't show. The cutover deployed
-# with this override (--var PUSH_INVALIDATION:disabled, version fa323e37); it's here so a plain
-# redeploy keeps it. Remove it once push invalidation works, then redeploy.
-PUSH_INVALIDATION = "disabled"
+# Push invalidation is on here, the default (no PUSH_INVALIDATION var): the Cache Purge token is in
+# the site's CDN config (2026-10-26, hlx-config/2026-10-26-push-invalidation/), so each publish
+# purges this zone. Lower environments set PUSH_INVALIDATION = "disabled" (staging below).
 
 [env.staging]
 name = "www-eds-edge-staging"
