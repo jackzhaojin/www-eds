@@ -9,7 +9,7 @@ Jack's idea at 21:51, as he was calling it a night: "EDS does prompt1 and prompt
 | `release/0.1` | `4575a936f7d7175dcf8403079f4eecf7bc5cca30` | `6820e00` to `4575a93`, 17 commits, 09:55 to 11:15 ET | Prompt 1: v3 foundation, header and footer, home, the article archetype, the site scope |
 | `release/0.2` | `f02e0e785461302492bca9474d97e5b93cabbfe5` | `4595513` to `f02e0e7`, 112 commits, 12:41 to 16:05 ET | Prompt 2: blocks first, then seven streams, until all 34 sitemap pages passed the final sweep |
 | `release/0.3` | the commit that adds this page (`git rev-parse release/0.3`) | from `f02e0e7` to the end of the day | The design system page, the 35th article, SEO parity, the eds and gh hosts, Codex's PR, these docs |
-| 1.0 | at the cutover | | www served from here (21:54: "since we're not live live yet, let's do release/0.3") |
+| `v1.0.0` (tag) and `release/1-0-0` (branch) | the same commit, made after the cutover (2026-10-26) | from `release/0.3` to the cutover | Content in git (every document in the editor's form, the DA-only media pulled in), the split-link fix, and the repo matching production after the cutover, validated against gh. www has served the site since 15:12 ET (21:54 the night before: "since we're not live live yet, let's do release/0.3") |
 
 Each boundary is the one Jack's article about the build gives: "Prompt 1: 6820e00 to 4575a93, 17 commits. Prompt 2: from 4595513, 112 more by the time all 34 pages passed at 16:05 ET". `f02e0e7` ("R24 resolved, the sweep is 34 of 34") is that 112th commit. Goal 2 itself was cleared at about 17:00, while the design system stream was still working. The stream's later commits are in 0.3.
 
@@ -22,6 +22,7 @@ Edge Delivery names a branch's host by lowercasing it and turning every characte
 | 0.1 | https://release-0-1--www-eds--jackzhaojin.aem.live/ | https://release-0-1--www-eds--jackzhaojin.aem.page/ | https://github.com/jackzhaojin/www-eds/tree/4575a936f7d7175dcf8403079f4eecf7bc5cca30 |
 | 0.2 | https://release-0-2--www-eds--jackzhaojin.aem.live/ | https://release-0-2--www-eds--jackzhaojin.aem.page/ | https://github.com/jackzhaojin/www-eds/tree/f02e0e785461302492bca9474d97e5b93cabbfe5 |
 | 0.3 | https://release-0-3--www-eds--jackzhaojin.aem.live/ | https://release-0-3--www-eds--jackzhaojin.aem.page/ | https://github.com/jackzhaojin/www-eds/tree/release/0.3 |
+| 1.0.0 | https://release-1-0-0--www-eds--jackzhaojin.aem.live/ (and www.jackzhaojin.com) | https://release-1-0-0--www-eds--jackzhaojin.aem.page/ | https://github.com/jackzhaojin/www-eds/tree/v1.0.0 |
 
 What each prompt changed, as GitHub diffs:
 - Prompt 1: https://github.com/jackzhaojin/www-eds/compare/d63e522b95954ea55aa54a15b8f507b0ab6d602b...4575a936f7d7175dcf8403079f4eecf7bc5cca30
@@ -41,4 +42,4 @@ A branch environment pairs that commit's code with today's content. The pages th
 
 Pushing a branch at an older commit isn't enough. Code Sync starts a new branch as a copy of main and applies the push's changes, and a push of commits already on main has none. Both branches first served main's code. A full code sync from the real branch name fixed it: `POST /code/jackzhaojin/www-eds/release-0-1/*?branch=release%2F0.1`. Afterwards every file checked matched its commit, and the files a commit doesn't have are 404s. The steps and every response are in [hlx-config/2026-10-25-release-branches/EXECUTION.md](../../hlx-config/2026-10-25-release-branches/EXECUTION.md).
 
-For the next release (1.0 at the cutover): push `release/1.0` at the commit, and run the code sync if that commit isn't main's head.
+**1.0 was named by Jack (2026-10-26): the tag `v1.0.0` and the branch `release/1-0-0`.** The hyphens mean the branch name and its host match (`release-1-0-0--www-eds--jackzhaojin.aem.live`). Both point at the commit that records the cutover; the tag is the permanent reference. For the next release, push the tag and the branch at the commit, and run the code sync if that commit isn't main's head.

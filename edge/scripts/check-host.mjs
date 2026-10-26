@@ -23,7 +23,7 @@ const local = opt('--local');
 const ENVS = {
   staging: { host: 'eds.jackzhaojin.com', vars: { ORIGIN_HOSTNAME: 'main--www-eds--jackzhaojin.aem.live', PROJECT_ORIGIN: 'https://www.jackzhaojin.com', PUSH_INVALIDATION: 'disabled' } },
   gh: { host: 'gh.jackzhaojin.com', vars: { MODE: 'github', GITHUB_ORIGIN: 'https://www.jackzhaojin.com' } },
-  www: { host: 'www.jackzhaojin.com', vars: { ORIGIN_HOSTNAME: 'main--www-eds--jackzhaojin.aem.live', PROJECT_ORIGIN: 'passthrough', INDEXABLE: 'true' } },
+  www: { host: 'www.jackzhaojin.com', vars: { ORIGIN_HOSTNAME: 'main--www-eds--jackzhaojin.aem.live', PROJECT_ORIGIN: 'passthrough', INDEXABLE: 'true', PUSH_INVALIDATION: 'disabled' } },
 };
 const base = local ? `https://${ENVS[local].host}` : (opt('--base') || 'https://eds.jackzhaojin.com');
 const host = new URL(base).host;

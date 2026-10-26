@@ -4,11 +4,22 @@ One Cloudflare Worker script in front of three hosts. It sends the GitHub Pages 
 
 | wrangler env | Worker | Route | Serves | Search |
 |---|---|---|---|---|
-| `staging` | `www-eds-edge-staging` | `eds.jackzhaojin.com/*` | Edge Delivery; project sites from www (GitHub Pages today) | noindex |
-| `gh` | `www-eds-edge-gh` | `gh.jackzhaojin.com/*` | the whole GitHub Pages site, read through www until GitHub Pages moves to gh; GitHub's folder redirects stay on gh | noindex |
-| top level | `www-eds-edge` | none in this file: the www route is added in the Cloudflare dashboard at the cutover | Edge Delivery; project sites pass through to the zone's origin, GitHub Pages | indexed |
+| top level | `www-eds-edge` | `www.jackzhaojin.com/*`, added in the Cloudflare dashboard at the cutover, never in this file | Edge Delivery; the 7 project sites pass through to the zone's origin, GitHub Pages, untouched | indexed |
+| `staging` | `www-eds-edge-staging` | `eds.jackzhaojin.com/*` | Edge Delivery; project sites from www (they pass through there to GitHub Pages) | noindex |
+| `gh` | `www-eds-edge-gh` | `gh.jackzhaojin.com/*` | the whole old GitHub Pages site. It fetches `www.jackzhaojin.com`, and a same-zone fetch from a Worker reaches the zone's origin, GitHub Pages, not the www Worker. GitHub's folder redirects stay on gh | noindex |
 
-Both non-production Workers are deployed (2026-10-25). Their DNS records are AAAA `100::`, proxied, and `check-host.mjs` passes on both.
+All three are deployed, and `check-host.mjs` passes on all three (2026-10-26).
+
+## The cutover (2026-10-26, about 15:12 ET)
+
+Done route-first from another session, not in the order whats-left.md had planned:
+1. The top-level Worker was deployed with `npx wrangler deploy --env="" --var PUSH_INVALIDATION:disabled` (version `fa323e37-fd2b-46f3-afea-a1b9d638a7cd`). The override is now in `wrangler.toml` too, so a plain redeploy keeps it.
+2. The route `www.jackzhaojin.com/*` was added to `www-eds-edge` in the dashboard (Workers & Pages > www-eds-edge > Domains; a Route, not a Custom Domain).
+3. GitHub Pages was **not** moved. jackzhaojin.github.io keeps its `CNAME` of `www.jackzhaojin.com`. GitHub still serves the project sites and the old main site at the zone origin; `PROJECT_ORIGIN = "passthrough"` hands the project sites to it, and gh mirrors the rest.
+
+**Rollback:** remove the www route in the dashboard. www then goes straight to GitHub Pages again, which never stopped serving it.
+
+**Push invalidation isn't set up yet.** Until the Cache Purge token is in the site config (`hlx-config/cdn-prod.json`, type `cloudflare` plus the zone ID), `PUSH_INVALIDATION = "disabled"` keeps aem.live from sending long cache TTLs that nothing would purge. Once it works, remove the line and redeploy the top level.
 
 ## A request, in order (`src/index.mjs`)
 
@@ -25,7 +36,7 @@ Both non-production Workers are deployed (2026-10-25). Their DNS records are AAA
 | `src/index.mjs` | the request order above |
 | `src/routes.mjs` | the project-site list, `projectFetch`, `githubFetch`, `hiddenFromCrawlers`, `robots` |
 | `src/aem.mjs` | Adobe's worker, vendored |
-| `wrangler.toml` | the three environments and their vars (vars aren't inherited by an env, so only the top level sets `INDEXABLE`) |
+| `wrangler.toml` | the three environments and their vars (vars aren't inherited by an env, so only the top level sets `INDEXABLE` and `PUSH_INVALIDATION`) |
 | `test/worker.test.mjs` | 12 tests: routing, the noindex header, gh redirects, the crawler 404s |
 | `scripts/check-host.mjs` | the routing check for a host: every sitemap page, the project sites, the root files, the 404s, the legacy redirects, the robots header |
 
@@ -33,16 +44,19 @@ Both non-production Workers are deployed (2026-10-25). Their DNS records are AAA
 
 ```bash
 npm test                                                   # the 12 tests
-node scripts/check-host.mjs --local staging                # the Worker in-process, against the real origins (also gh, www)
-node scripts/check-host.mjs --base https://eds.jackzhaojin.com
-node scripts/check-host.mjs --base https://gh.jackzhaojin.com
-npx wrangler deploy --env staging                          # after wrangler login; every Cloudflare change is Jack's call
+node scripts/check-host.mjs --local www                    # the Worker in-process, against the real origins (also staging, gh)
+node scripts/check-host.mjs --base https://www.jackzhaojin.com   # and https://eds… , https://gh…
+npx wrangler deploy --env="" --dry-run --outdir <scratch>  # shows the vars a deploy would carry, deploys nothing
+npx wrangler deploy --env=""                               # production; every Cloudflare change is Jack's call
+npx wrangler deploy --env staging
 npx wrangler deploy --env gh
 ```
 
-Never deploy the top level with a www route before the cutover. The order is in [whats-left.md, section 3](../ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md):
-1. Push invalidation.
-2. GitHub Pages moves to gh, and the gh Worker switches to passthrough.
-3. The www Worker's `PROJECT_ORIGIN` becomes `https://gh.jackzhaojin.com`, then the www route is added.
+## Later, optional: moving GitHub Pages to gh (Phase B)
 
-Setting `PROJECT_ORIGIN` to gh before GitHub Pages has moved makes the two hosts read each other in a loop.
+Today gh only mirrors GitHub Pages through www's origin. To give GitHub Pages its own domain (gh), the code needs three fixes first:
+1. `githubFetch` needs a `"passthrough"` branch, because `new URL("passthrough")` throws.
+2. `projectFetch` must rewrite GitHub's `Location` header back to the request host.
+3. Staging's `PROJECT_ORIGIN` must move from www to gh.
+
+Then the GitHub custom domain change and the www Worker's `PROJECT_ORIGIN = "https://gh.jackzhaojin.com"` go out together. One without the other loops or breaks the project sites.

@@ -2,33 +2,35 @@
 
 Jack Jin's site, [www.jackzhaojin.com](https://www.jackzhaojin.com), rebuilt on **AEM Edge Delivery Services** with **Experience Workspace (da.live)** authoring. It's the same site with the same design and the same URLs, on a new platform.
 
-The whole site moved from GitHub Pages on 2026-10-25, and every page was checked against the live original with measured gates (pixels, height, content, editability, performance). www still serves GitHub Pages until the cutover. Until then the new site is live at eds.jackzhaojin.com.
+The whole site moved from GitHub Pages on 2026-10-25, and every page was checked against the live original with measured gates (pixels, height, content, editability, performance). **www has served it since the cutover on 2026-10-26** (about 15:12 ET). The old GitHub Pages site stays up at gh.jackzhaojin.com for comparison. Release **v1.0.0** marks that state.
 
 ## Where it runs
 
 | Host | What it serves | Search |
 |---|---|---|
-| [www.jackzhaojin.com](https://www.jackzhaojin.com) | GitHub Pages today; this site after the cutover | indexed |
+| [www.jackzhaojin.com](https://www.jackzhaojin.com) | this site, through the `edge/` Worker (`www-eds-edge`); the 7 project sites under it pass through to GitHub Pages | indexed |
 | [eds.jackzhaojin.com](https://eds.jackzhaojin.com) | this site, through the `edge/` Worker (project sites under it still come from GitHub Pages) | noindex |
-| [gh.jackzhaojin.com](https://gh.jackzhaojin.com) | the GitHub Pages site, through the `edge/` Worker, kept for comparison after the cutover | noindex |
+| [gh.jackzhaojin.com](https://gh.jackzhaojin.com) | the old GitHub Pages site, through the `edge/` Worker, kept for comparison | noindex |
 | [main--www-eds--jackzhaojin.aem.live](https://main--www-eds--jackzhaojin.aem.live/) | the Edge Delivery origin (`.aem.page` for preview) | noindex |
 | [da.live/#/jackzhaojin/www-eds](https://da.live/#/jackzhaojin/www-eds) | the authoring side: Experience Workspace documents | |
 
 ```mermaid
 flowchart LR
   reader([Reader]) --> zone[Cloudflare zone jackzhaojin.com]
-  zone -->|www, until the cutover| pages[GitHub Pages]
+  zone -->|www| wWww[Worker www-eds-edge]
   zone -->|eds| wEds[Worker www-eds-edge-staging]
   zone -->|gh| wGh[Worker www-eds-edge-gh]
-  wEds -->|pages| eds[Edge Delivery aem.live]
-  wEds -->|project sites| pages
-  wGh -->|whole site| pages
+  wWww -->|pages| eds[Edge Delivery aem.live]
+  wWww -->|7 project sites| pages[GitHub Pages, still on the www origin]
+  wEds -->|pages| eds
+  wEds -->|project sites, via www| wWww
+  wGh -->|whole old site| pages
   author([Author]) -->|edit, preview, publish| da[Experience Workspace]
   da --> eds
   repo[GitHub branches] -->|AEM Code Sync| eds
 ```
 
-At the cutover, the www route gets the same Worker with search allowed. GitHub Pages moves to gh, and the project sites keep working under www. The order matters, so it's written down step by step in [whats-left.md, section 3](ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md).
+GitHub Pages wasn't moved at the cutover: jackzhaojin.github.io keeps its `CNAME` of www, so GitHub still answers at the zone's origin. The www Worker passes the project sites through to it, and gh mirrors the old site from it. Rollback is one dashboard step: remove the www route. What's left (push invalidation, GA4, a few old URLs that now 404): [ai-docs/2026-10-26-cutover/](ai-docs/2026-10-26-cutover/README.md).
 
 ## What was done on 2026-10-25
 
@@ -61,7 +63,7 @@ Each prompt of the build is an Edge Delivery environment, on the commit it ended
 | [`release/0.1`](https://github.com/jackzhaojin/www-eds/tree/release/0.1) | [`4575a93`](https://github.com/jackzhaojin/www-eds/commit/4575a936f7d7175dcf8403079f4eecf7bc5cca30) | prompt 1: the foundation, home and the article archetype, 11:15 ET | [release-0-1--www-eds--jackzhaojin.aem.live](https://release-0-1--www-eds--jackzhaojin.aem.live/) |
 | [`release/0.2`](https://github.com/jackzhaojin/www-eds/tree/release/0.2) | [`f02e0e7`](https://github.com/jackzhaojin/www-eds/commit/f02e0e785461302492bca9474d97e5b93cabbfe5) | prompt 2: all 34 sitemap pages passing, 16:05 ET | [release-0-2--www-eds--jackzhaojin.aem.live](https://release-0-2--www-eds--jackzhaojin.aem.live/) |
 | [`release/0.3`](https://github.com/jackzhaojin/www-eds/tree/release/0.3) | the day's last commit | the end of the day: 35 pages, SEO config, the eds and gh hosts, these docs | [release-0-3--www-eds--jackzhaojin.aem.live](https://release-0-3--www-eds--jackzhaojin.aem.live/) |
-| 1.0 | | the cutover: www served from here | [www.jackzhaojin.com](https://www.jackzhaojin.com) |
+| [`v1.0.0`](https://github.com/jackzhaojin/www-eds/releases/tag/v1.0.0), branch [`release/1-0-0`](https://github.com/jackzhaojin/www-eds/tree/release/1-0-0) | the tagged commit | the cutover: www served from here, content in git, validated against gh | [www.jackzhaojin.com](https://www.jackzhaojin.com), and [release-1-0-0--www-eds--jackzhaojin.aem.live](https://release-1-0-0--www-eds--jackzhaojin.aem.live/) |
 
 On 0.1, pages built in prompt 2 show their blocks undecorated, because their blocks came later. The release branches are frozen: never push to them. How they were made, and the permanent links: [ai-docs releases](ai-docs/2026-10-25-initial-buildout-2-goals/releases.md).
 
@@ -131,7 +133,7 @@ stardust/scripts/replica/gate.sh home https://www.jackzhaojin.com/ \
   https://main--www-eds--jackzhaojin.aem.live/ 1440 check --full --main main --marker "Jack Jin"
 ```
 
-**A new page on www** also lands here until the cutover. Import it, publish it, gate it and sync its SEO, following the recipe in [whats-left.md, section 5](ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md).
+**A new page** is published here, to EDS; since the cutover, a page added to GitHub Pages no longer shows on www. Write it, or import an HTML draft with the recipe in [whats-left.md, section 5](ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md), then follow [content/README.md](content/README.md) and sync its SEO ([hlx-config/README.md](hlx-config/README.md)).
 
 ## Built with
 

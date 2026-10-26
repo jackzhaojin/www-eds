@@ -1,0 +1,72 @@
+# The cutover (2026-10-26)
+
+www.jackzhaojin.com has been served from Edge Delivery since about 15:12 ET on 2026-10-26. A separate Claude session made the switch; this record holds what it reported, the validation done afterwards from the www-eds session, and what's left. The release that marks it is `v1.0.0`, with the branch `release/1-0-0` ([releases.md](../2026-10-25-initial-buildout-2-goals/releases.md)).
+
+## What was done (reported by the cutover session)
+
+Route-first, not in the order [whats-left.md, section 3](../2026-10-25-initial-buildout-2-goals/whats-left.md) had planned:
+1. **The Worker:** deployed the top-level Worker from `edge/` with `npx wrangler deploy --env="" --var PUSH_INVALIDATION:disabled` (version `fa323e37-fd2b-46f3-afea-a1b9d638a7cd`). Without the override, aem.live sends long cache TTLs that nothing purges yet.
+2. **The route:** added `www.jackzhaojin.com/*` to `www-eds-edge` in the Cloudflare dashboard, as a Route, not a Custom Domain.
+3. **GitHub Pages was not moved.** jackzhaojin.github.io keeps its `CNAME` of `www.jackzhaojin.com`. The www Worker's `PROJECT_ORIGIN = "passthrough"` sends the 7 project sites to GitHub with Host www. gh.jackzhaojin.com still mirrors the old site, because its Worker's same-zone fetch to www reaches www's origin, not the www Worker.
+4. **Its checks:** `check-host.mjs` passed on www, gh and eds; all 7 project sites returned 200 on www; slashless project URLs redirected on www; the apex and jackzhaojin.github.io redirected to www.
+
+**Rollback:** remove the www route in the dashboard (Workers & Pages > www-eds-edge > Domains).
+
+## Repo brought in line with production
+
+- `edge/wrangler.toml` carries `PUSH_INVALIDATION = "disabled"` in the top-level vars, with a comment, so a plain `wrangler deploy --env=""` keeps it. A dry run shows the production build with all four vars. `check-host.mjs --local www` carries it too, and the 12 tests pass.
+- Updated: `edge/README.md` (the cutover, rollback, push invalidation, Phase B), whats-left.md sections 3 and 5, `README.md`, `AGENTS.md`, `content/README.md` (new writing is published to EDS), and releases.md (`v1.0.0`).
+- In jackzhaojin.github.io, as local edits for Jack to commit: `routing-cloudflare.md` ("Cutover, as done") and `start-here.md` (K done, run log).
+
+## Validation after the cutover
+
+| Check | Result |
+|---|---|
+| `check-host.mjs` on www, gh and eds | PASS on all three |
+| Project sites on www | all 7 answer 200; slashless URLs 301 to the slash |
+| Redirects | apex and jackzhaojin.github.io go to www; `/blogs.html` goes to `/writing/`; an unknown path is a real 404 |
+| SEO on www against the original (gh), all 35 sitemap pages | every tag identical: title, description, canonical, Open Graph, Twitter, article tags, JSON-LD |
+| Crawler files | `robots.txt` on www byte-identical to `hlx-config/robots.txt`; `sitemap.xml` lists 35 URLs, all on www; www sends no `X-Robots-Tag` |
+| Editability on www (`ew-editability-probe`, 36 pages) | 7,350 of 7,351 authored texts editable, 0 dead, 0 duplicated, 1 exempt: the same as on aem.live |
+| Mobile Lighthouse on www | home 99 and 98, the article archetype 97 and 94 (the old site's home: 97 in the same run). Measured while two gate sweeps ran on the same laptop, so lower than the build's 100s on aem.live; worth a clean rerun |
+| Full stardust sweep (`gate-all`: pixel, height, clip, content presence), www against gh, 36 pages | **36 of 36 at 1440 and 36 of 36 at 360.** Every page within 0.5% and 3 px of the 2026-10-25 sweep against www; the highest is `2026-08-15` (4.15% and 8.4%, register R11). The adaptTo article's 7.89% on the afternoon preview sweep is back to 3.34% / -1 px: that was the source capture, not EDS |
+
+## Left
+
+1. **Push invalidation:** Jack creates the Cloudflare Cache Purge token and enters it. Then `hlx-config/cdn-prod.json` gets type `cloudflare` and the zone ID, the `PUSH_INVALIDATION` override comes out of `wrangler.toml`, and the top level is redeployed.
+2. **GA4 is off on www:** `scripts/consented.js` is empty, and `consent-check.js` defaults to declined. The old site loaded gtag (`G-ZVENE6BXTJ`) in the head of every page, with no banner. Planning decision 9 already says what EDS should do: "GA4 loads in `consented.js` with consent granted by default and no banner, as the site works today. A browser's Global Privacy Control signal counts as a decline, and GA4 starts 3 seconds after LCP." It waits on Jack's confirmation, then becomes a 1.0.1.
+3. **Old URLs that 404 on www.** 24 URLs, linked 74 times from the content, are still served on gh:
+
+   | Prefix | URLs | Proposal |
+   |---|---|---|
+   | `/portfolio/assets/` | 15 diagram files (`anima/agent-roster.svg` and others) | pass through to GitHub Pages |
+   | `/design-systems/v3/templates/` | 5 (the v3 prototype templates `blog.html` with four topics, `home.html`, `post.html`) | pass through |
+   | `/design-systems/2026-09-13/` | the older design round, not linked but public before | pass through |
+   | `/ai-docs/` | 1 (`2026-09-13-seo-geo-redesign/seo-page-blueprint.md`) | pass through |
+   | `/writing/2025-07-13-three-eds-offerings/images/` | 1 full-size image link | point the link at the DA media copy (a content fix, like R18) |
+
+   **The proposal:** a second allowlist in `edge/src/routes.mjs`, path prefixes handled exactly like `PROJECT_SITES` (`projectFetch`, so GitHub still serves them on www). It needs a test per prefix, a check in `check-host.mjs`, and a Worker deploy (Jack's call). `/design-systems/v3/` itself stays EDS, so the prefix is `/design-systems/v3/templates/`, not `/design-systems/`. Moving them into EDS instead isn't worth it: they're files, not pages.
+4. **Publishing has to move to EDS** (the double migration is over). What has to change:
+   - **`docs/publishing-writing.md` in jackzhaojin.github.io:** "Add an article" steps 1 to 9 build the page on GitHub Pages: the listing in `writing/index.html` and `blogs.html`, `sitemap.xml`, `scripts/check-site.sh`, the Pages build. Under the new flow:
+     - the article is written, or imported with `import-article.mjs`, into www-eds `content/writing/<slug>/index.html`;
+     - images go to DA and `content/media/`;
+     - the listing row goes into `content/writing/index.html`;
+     - the head metadata syncs (`sync-head-metadata.mjs`), and the redirects sheet is rebuilt;
+     - publishing follows `content/README.md`;
+     - the sitemap updates itself from the query index;
+     - `llms.txt` is in www-eds.
+     - "Retiring or replacing an article" can now use a real 301 (the redirects sheet), which GitHub Pages couldn't.
+   - **`jack-technical-writing` (user skill):** it writes to `jackzhaojin.github.io/writing/<slug>/` and hands off to `publishing-writing.md` (its section 7). Either it keeps drafting HTML there as the source and adds the import step into www-eds, or it writes EDS content directly. The listing, sitemap and `check-site.sh` steps go away.
+   - **career-blogs `video-release` skill:** its outputs table points the article at `jackzhaojin.github.io/writing/<slug>/`. Its step that follows `publishing-writing.md`, and the release template's checklist line ("noindex off, listing, sitemap, commit and push on Jack's ask, Pages built, check-site"), describe the GitHub Pages flow. They become: publish to EDS, then `check-host` on www.
+5. **The runbook's remaining steps:**
+   - Search Console: submit the sitemap and inspect the home page URL;
+   - rewrite `docs/site-operations.md` in jackzhaojin.github.io for the new request path;
+   - add a README there saying the main site moved and `CNAME` must stay.
+6. **Later, optional (Phase B):** move GitHub Pages to gh.jackzhaojin.com. First the three code fixes in `edge/README.md`; then the GitHub custom domain change and the www Worker's `PROJECT_ORIGIN = https://gh.jackzhaojin.com`, together.
+
+## Prompts
+
+Jack's words in this session, word for word (US Eastern, 2026-10-26):
+- 15:26, picked from the next-step box: "Pull the 25 media files that exist only in DA (17 badges, 8 importer diagrams) into the repo, following content/README.md, and commit." (Done: `content/media/`, each file byte-identical to the delivered copy; see [../2026-10-26-content-in-git/](../2026-10-26-content-in-git/README.md).)
+- 15:27: "also when you're done, a different claude session finished the cutover, this is the promtp from that session, it doesn't know about EDS as well as you but cutover is done, and after you do your final checks above task, let's tag with v1.0.0 and create a release branch of release/1-0-0 do as much updating and documetnation and validation before tagging"
+- 15:29: "from the other session -", followed by the cutover session's report and its to-do list. The report is summarized above under "What was done". Its to-do items are in "Repo brought in line with production" (item 1) and "Left" (items 2 to 7).

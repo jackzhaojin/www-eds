@@ -1,9 +1,11 @@
 # The www.jackzhaojin.com Worker (routing-cloudflare.md in jackzhaojin.github.io/ai-docs).
-# Before the cutover, deploy only the two non-production hosts, after `wrangler login`:
+# Three Workers from this one script, after `wrangler login` (every deploy is Jack's call):
+#   npx wrangler deploy --env=""        www-eds-edge, production: www.jackzhaojin.com, indexable
 #   npx wrangler deploy --env staging   eds.jackzhaojin.com, the EDS site, noindex
 #   npx wrangler deploy --env gh        gh.jackzhaojin.com, the GitHub Pages site, noindex
-# The production route www.jackzhaojin.com/* is NOT in this file on purpose: it is added in the
-# Cloudflare dashboard at cutover (its own approval), so no deploy can switch production.
+# The production route www.jackzhaojin.com/* is NOT in this file on purpose: it was added in the
+# Cloudflare dashboard at the cutover (2026-10-26, about 15:12 ET; Workers & Pages > www-eds-edge >
+# Domains, a Route, not a Custom Domain), so no deploy can add or move it. Rollback: remove it there.
 # Vars are not inherited by an env: only the top level (www) sets INDEXABLE, so a host that is
 # not www answers noindex.
 name = "www-eds-edge"
@@ -17,6 +19,11 @@ ORIGIN_HOSTNAME = "main--www-eds--jackzhaojin.aem.live"
 PROJECT_ORIGIN = "passthrough"
 # www is the one host search engines may index.
 INDEXABLE = "true"
+# Until push invalidation is set up (the Cache Purge token in hlx-config/cdn-prod.json), aem.live
+# would send long cache TTLs that nothing purges, so publishes wouldn't show. The cutover deployed
+# with this override (--var PUSH_INVALIDATION:disabled, version fa323e37); it's here so a plain
+# redeploy keeps it. Remove it once push invalidation works, then redeploy.
+PUSH_INVALIDATION = "disabled"
 
 [env.staging]
 name = "www-eds-edge-staging"

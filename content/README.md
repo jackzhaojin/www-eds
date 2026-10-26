@@ -4,7 +4,7 @@
 
 The record of the decision and the first full run over all 40 documents: [ai-docs/2026-10-26-content-in-git/](../ai-docs/2026-10-26-content-in-git/README.md).
 
-**The process, briefly:** write the change here in the editor's own form, push it to preview, compare it in the browser with gh.jackzhaojin.com, gate it, publish it, commit it.
+**The process, briefly:** write the change here in the editor's own form, push it to preview, compare it in the browser with gh.jackzhaojin.com, gate it, publish it, commit it. Since the cutover, publishing goes straight to www.jackzhaojin.com.
 
 **Why it takes this much care:** a page goes from DA's HTML to Markdown on preview, then back to HTML on delivery. On top of that, the editor rewrites HTML its own way whenever someone opens a document, and opening is enough to trigger it. Anything Markdown can't carry is lost on preview. Anything the editor writes differently can change how a block renders.
 
@@ -101,7 +101,7 @@ node stardust/scripts/replica/run-bg.mjs start --name <slug>-1440 -- stardust/sc
 
 - **Publish:** the same `deploy-batch.mjs` command, without `--no-publish`.
 - **Commit:** `content/`, `content/.deploy-ledger.json`, and anything the gates recorded. Push to main after `git pull --rebase`, never force-push.
-- **New pages:** a page published on GitHub Pages before the cutover also needs the double-migration steps in [whats-left.md, section 5](../ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md).
+- **New pages:** since the cutover (2026-10-26) new writing is published here, to EDS; a page added to GitHub Pages no longer shows on www. An article drafted as HTML converts with the recipe in [whats-left.md, section 5](../ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md). Then sync its SEO ([hlx-config/README.md](../hlx-config/README.md)): its head metadata, the redirects sheet, the sitemap.
 
 ## Stop points
 

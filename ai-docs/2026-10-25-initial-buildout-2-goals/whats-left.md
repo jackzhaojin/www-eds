@@ -32,12 +32,29 @@ Jack's host plan (19:25): GitHub Pages moves to gh.jackzhaojin.com without SEO, 
 - `check-host.mjs` passes on both live hosts; www is unchanged (its home page is byte-identical to the source repo).
 - Off www, robots.txt and the sitemaps are 404s from the Worker. The zone's managed robots.txt (AI Crawl Control) fills the robots.txt 404 with its content-signals comments, no rules and no sitemap; Jack chose to leave that setting on (19:45).
 
-**The cutover, in this order:**
-1. Push invalidation: Jack creates a Cache Purge token; the EDS CDN config (`hlx-config/cdn-prod.json`) gains `type: cloudflare`, the zone ID and the token (Jack enters the token).
-2. GitHub Pages moves to gh: the `CNAME` file in jackzhaojin.github.io says `gh.jackzhaojin.com` (Jack commits it) and Pages settings follow; the gh DNS record becomes a CNAME to `jackzhaojin.github.io`, DNS-only until GitHub shows its certificate, then proxied; the gh env's `GITHUB_ORIGIN` becomes `passthrough` (the zone origin, GitHub). From here www shows GitHub's 404 until step 3, so do 2 and 3 together.
-3. The www Worker: `PROJECT_ORIGIN` becomes `https://gh.jackzhaojin.com` (never before step 2: gh would read www, and www would read gh, a loop), deploy, then the www route in the dashboard (its own approval).
-4. `node edge/scripts/check-host.mjs --base https://www.jackzhaojin.com`, the sitemap in Search Console, `docs/site-operations.md`, the README in jackzhaojin.github.io. Later comparisons with the old site use gh.
-5. `release/1.0` at the cutover commit, as in [releases.md](releases.md).
+**The cutover: done 2026-10-26, about 15:12 ET, route-first, from another session.** The details are in [../2026-10-26-cutover/](../2026-10-26-cutover/README.md) and `edge/README.md`. In short:
+- the top-level Worker was deployed with `PUSH_INVALIDATION = "disabled"` (now in `edge/wrangler.toml`);
+- the route `www.jackzhaojin.com/*` was added in the dashboard;
+- GitHub Pages stayed on www, and its `CNAME` must stay.
+
+Rollback: remove the www route in the dashboard.
+
+Validated after it, on 2026-10-26:
+- `check-host.mjs` passes on www, gh and eds;
+- all 7 project sites answer 200 on www;
+- every SEO tag on all 35 pages matches gh;
+- the full stardust sweep compared www with gh.
+
+**Left after the cutover:**
+1. **Push invalidation:** Jack creates the Cloudflare Cache Purge token and enters it. Then `hlx-config/cdn-prod.json` gets type `cloudflare` and the zone ID, the `PUSH_INVALIDATION` override comes out, and the top level is redeployed.
+2. **GA4 is off on www:** `scripts/consented.js` is empty and `consent-check.js` defaults to declined. Decision 9 already says how: consent granted by default, no banner, a Global Privacy Control signal counts as a decline, GA4 starts 3 seconds after LCP. It waits on Jack's confirmation.
+3. **24 URLs (74 links) that 404 on www but are still served on gh:** the 15 portfolio diagram files, the 5 v3 prototype template URLs, the older `/design-systems/2026-09-13/` round and an ai-docs file. The proposal is to pass their prefixes through to GitHub Pages the way the project sites are, plus one content fix for a full-size image link. See the cutover record.
+4. **Search Console:** submit the sitemap and inspect the home page URL.
+5. **jackzhaojin.github.io:**
+   - rewrite `docs/site-operations.md` for the new request path;
+   - add a README saying the main site moved and `CNAME` must stay;
+   - update the publishing docs (item 5 in the cutover record).
+6. **Later, optional (Phase B):** move GitHub Pages to gh after the three code fixes in `edge/README.md`.
 
 ## 4. Known residuals
 
@@ -48,9 +65,9 @@ Jack's host plan (19:25): GitHub Pages moves to gh.jackzhaojin.com without SEO, 
 - **Quick-edit drift** in a few explainers whose derived state lines hide while editing (hook-guard, hook-switchboard, parser-lab, credential-chain, task-loop); authored text stays editable everywhere.
 - **Links that stay on www**: 35 links to the v3 prototype templates and 10 portfolio diagram files are not migrated and will 404 after cutover unless those files stay served.
 
-## 5. Double migration until the cutover
+## 5. Double migration (ended at the cutover)
 
-Every page published on GitHub Pages before the cutover also has to land here. The recipe, as used for the article about this build on the evening of 2026-10-25:
+Until the cutover, every page published on GitHub Pages also had to land here. Since 2026-10-26 GitHub Pages main-site pages no longer show on www, so **new writing has to be published to EDS**, following [content/README.md](../../content/README.md). The recipe below still converts an article drafted as GitHub Pages HTML into EDS content. As used for the article about this build on the evening of 2026-10-25:
 1. `node stardust/scripts/import-article.mjs <source index.html> <slug> content/writing/<slug>/index.html`; an `UNSUPPORTED` line means an explainer needs an engine (`blocks/explainer/engines/<word>.js` and `.css`, plus `stardust/scripts/import-engines/<word>.mjs`).
 2. `node stardust/scripts/import-listing-pages.mjs <source root> content <work dir>` for the listing row. It also rewrites talks and privacy and drops the hand-added social image metadata on writing: restore those (`git diff content/`).
 3. `node stardust/scripts/deploy/localize-links.mjs --source-host www.jackzhaojin.com --content content`.
