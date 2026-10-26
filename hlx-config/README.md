@@ -17,6 +17,8 @@ The per-page tags come from the content, not from here: `stardust/scripts/sync-h
 
 How it was applied, step by step with every response (GET before, SET, GET after, the Admin API skill's pattern): [2026-10-25-seo-config/EXECUTION.md](2026-10-25-seo-config/EXECUTION.md).
 
+The release branches (`release/0.1` to `0.3`, one Edge Delivery environment per prompt of the build) and the code sync that made each one match its commit: [2026-10-25-release-branches/EXECUTION.md](2026-10-25-release-branches/EXECUTION.md).
+
 ## When a page is added (double migration until the cutover)
 
 1. Import and publish it (`ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md`, section 5).

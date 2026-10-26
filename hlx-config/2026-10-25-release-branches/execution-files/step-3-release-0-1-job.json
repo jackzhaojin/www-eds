@@ -1,0 +1,1188 @@
+{
+  "topic": "code",
+  "user": "jackzhaojin@gmail.com",
+  "name": "job-2026-10-26-01-59-22-cb696146",
+  "state": "stopped",
+  "createTime": "2026-10-26T01:59:22.670Z",
+  "data": {
+    "branch": "release/0.1",
+    "changes": [],
+    "owner": "jackzhaojin",
+    "repo": "www-eds",
+    "ref": "release-0-1",
+    "codeOwner": "jackzhaojin",
+    "codeRepo": "www-eds",
+    "codeRef": "release-0-1",
+    "codePrefix": "/jackzhaojin/www-eds/release-0-1/",
+    "installationId": 74851771,
+    "phase": "completed",
+    "resources": [
+      {
+        "status": 200,
+        "resourcePath": "/blocks/author-box/author-box.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:05 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1500
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/author-box/author-box.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:05 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2015
+      },
+      {
+        "status": 200,
+        "resourcePath": "/404.html",
+        "lastModified": "Mon, 26 Oct 2026 01:53:05 GMT",
+        "contentType": "text/html; charset=utf-8",
+        "contentLength": 2150
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/cards/cards.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:05 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1194
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/cards/cards.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:05 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1472
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/code/code.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:05 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 2289
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/code/code.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:05 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2438
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/columns/columns.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:05 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 573
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/columns/columns.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:05 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1093
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/compare/compare.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:05 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1708
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/compare/compare.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:05 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2429
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/figure/figure.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 804
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/figure/figure.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2543
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/fine-print/fine-print.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 570
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/footer/footer.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1450
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/fine-print/fine-print.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 477
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/footer/footer.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1790
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/fragment/fragment.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 40
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/fragment/fragment.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1983
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/header/header.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 5304
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/hero/hero.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 3289
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/header/header.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 6199
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/hero/page-art.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 9476
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/hero/hero.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 3962
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/lab/lab.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 16695
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/lab/lab.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 8617
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/rail/rail.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 3644
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/row-list/row-list.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1324
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/rail/rail.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 4750
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/row-list/row-list.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1181
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/showcase/showcase.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1503
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/showcase/showcase.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2658
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/switch/switch.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 3696
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/switch/switch.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 6173
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/widget/widget.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 30
+      },
+      {
+        "status": 200,
+        "resourcePath": "/blocks/widget/widget.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 2941
+      },
+      {
+        "status": 200,
+        "resourcePath": "/favicon.ico",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "image/vnd.microsoft.icon",
+        "contentLength": 66062
+      },
+      {
+        "status": 200,
+        "resourcePath": "/fonts/inter-latin.woff2",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "font/woff2",
+        "contentLength": 48432
+      },
+      {
+        "status": 200,
+        "resourcePath": "/fonts/jetbrains-mono-latin.woff2",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "font/woff2",
+        "contentLength": 31340
+      },
+      {
+        "status": 200,
+        "resourcePath": "/fonts/playfair-display-italic-latin.woff2",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "font/woff2",
+        "contentLength": 38888
+      },
+      {
+        "status": 200,
+        "resourcePath": "/fonts/playfair-display-latin.woff2",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "font/woff2",
+        "contentLength": 38460
+      },
+      {
+        "status": 200,
+        "resourcePath": "/head.html",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/html; charset=utf-8",
+        "contentLength": 513
+      },
+      {
+        "status": 200,
+        "resourcePath": "/icons/search.svg",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "image/svg+xml",
+        "contentLength": 447
+      },
+      {
+        "status": 200,
+        "resourcePath": "/scripts/consent-check.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 1259
+      },
+      {
+        "status": 200,
+        "resourcePath": "/scripts/aem.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 22310
+      },
+      {
+        "status": 204,
+        "resourcePath": "/BingSiteAuth.xml",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/callout/callout.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/carousel/carousel.js",
+        "deleted": true
+      },
+      {
+        "status": 200,
+        "resourcePath": "/styles/fonts.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 1623
+      },
+      {
+        "status": 200,
+        "resourcePath": "/scripts/scripts.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 10166
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/callout/callout.css",
+        "deleted": true
+      },
+      {
+        "status": 200,
+        "resourcePath": "/scripts/consented.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 80
+      },
+      {
+        "status": 200,
+        "resourcePath": "/styles/lazy-styles.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 181
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/carousel/carousel.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/chapter-head/chapter-head.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/chapter-head/chapter-head.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/chapters/chapters.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/chapters/chapters.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/credentials/credentials.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/credentials/credentials.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/cta-band/cta-band.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/data-table/data-table.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/data-table/data-table.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/divider/divider.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/cta-band/cta-band.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/beat-sim.js",
+        "deleted": true
+      },
+      {
+        "status": 200,
+        "resourcePath": "/templates/article/article.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 7433
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/divider/divider.js",
+        "deleted": true
+      },
+      {
+        "status": 200,
+        "resourcePath": "/styles/styles.css",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/css; charset=utf-8",
+        "contentLength": 25401
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/beat-sim.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/branch-push.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/branch-push.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/capability-pivot.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/capability-pivot.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/commit-day.css",
+        "deleted": true
+      },
+      {
+        "status": 200,
+        "resourcePath": "/templates/article/article.js",
+        "lastModified": "Mon, 26 Oct 2026 01:53:06 GMT",
+        "contentType": "text/javascript; charset=utf-8",
+        "contentLength": 7058
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/consideration-lens.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/commit-day.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/content-contract.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/credential-chain.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/consideration-lens.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/content-contract.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/credential-chain.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/defect-lab.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/empty-cohort.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/defect-lab.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/empty-cohort.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/era-steps.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/freezeframe.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/harvest-sorter.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/harvest-sorter.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/header-relay.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/header-relay.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/hook-guard.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/freezeframe.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/hook-guard.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/hook-switchboard.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/hook-switchboard.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/line-map.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/line-map.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/offering-path.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/model-merge.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/option-pair.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/option-matrix.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/option-matrix.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/offering-path.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/parser-lab.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/model-merge.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/era-steps.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/parser-lab.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/option-pair.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/persisted-query.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/retry-ladder.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/persisted-query.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/request-pipe.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/request-pipe.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/reuse-stacks.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/role-assignments.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/role-assignments.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/retry-ladder.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/score-blend.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/score-blend.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/reuse-stacks.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/scripted-flow.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/skill-tracker.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/scripted-flow.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/skill-tracker.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/spec-filter.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/stale-timeline.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/spec-filter.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/stale-timeline.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/stardust-lifecycle.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/stardust-lifecycle.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/stardust-versions.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/stardust-versions.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/task-protocol.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/task-protocol.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/theme-swap.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/step-checklist.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/theme-swap.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/task-loop.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/task-loop.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/tool-dialects.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/tool-dialects.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/step-checklist.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/tool-loop.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/trail.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/trail.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/tool-loop.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/work-patterns.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/engines/work-patterns.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/explainer.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/explainer/explainer.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/facts/facts.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/facts/facts.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/faq/faq.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/faq/faq.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/frame/frame.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/frame/frame.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/jump-links/jump-links.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/pagination/pagination.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/jump-links/jump-links.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/proof-links/proof-links.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/pagination/pagination.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/panel/panel.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/proof-links/proof-links.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/series/series.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/series/series.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/panel/panel.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/stat-chips/stat-chips.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/stat-chips/stat-chips.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/tabs/tabs.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/tabs/tabs.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/stats/stats.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/talk-list/talk-list.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/timeline/timeline.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/transcript/transcript.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/talk-list/talk-list.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/transcript/transcript.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/timeline/timeline.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/writing-list/writing-list.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/stats/stats.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/blocks/writing-list/writing-list.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/google57906613577fdd42.html",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/default-meta-image.png",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/icons/arrow.svg",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/icons/close.svg",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/icons/play.svg",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/icons/check.svg",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/icons/post.svg",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/icons/external.svg",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/icons/repo.svg",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/icons/article.svg",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/icons/video.svg",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/scripts/theme-control.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/icons/menu.svg",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/templates/design-docs/design-docs.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/llms.txt",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/templates/listing/listing.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/templates/portfolio/portfolio.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/templates/design-docs/design-docs.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/templates/listing/listing.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/templates/portfolio/portfolio.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/templates/static/static.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/templates/static/static.js",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/widgets/writing-filter/writing-filter.html",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/widgets/writing-filter/writing-filter.css",
+        "deleted": true
+      },
+      {
+        "status": 204,
+        "resourcePath": "/widgets/writing-filter/writing-filter.js",
+        "deleted": true
+      }
+    ],
+    "githubRateLimit": {
+      "limit": 5000,
+      "used": 23,
+      "remaining": 4977,
+      "reset": 1792983566
+    },
+    "sha": "4575a936f7d7175dcf8403079f4eecf7bc5cca30",
+    "treeSyncReason": "no base ref"
+  },
+  "startTime": "2026-10-26T01:59:23.069Z",
+  "stopTime": "2026-10-26T01:59:30.897Z",
+  "invocationId": "b1618293-428c-5eb6-b745-e1cbf4ab7215",
+  "progress": {
+    "total": 493,
+    "processed": 208,
+    "failed": 0,
+    "ignored": 285
+  },
+  "links": {
+    "list": "https://admin.hlx.page/job/jackzhaojin/www-eds/release-0-1/code?branch=release%2F0.1",
+    "job": "https://admin.hlx.page/job/jackzhaojin/www-eds/release-0-1/code/job-2026-10-26-01-59-22-cb696146?branch=release%2F0.1",
+    "self": "https://admin.hlx.page/job/jackzhaojin/www-eds/release-0-1/code/job-2026-10-26-01-59-22-cb696146/details?branch=release%2F0.1"
+  }
+}

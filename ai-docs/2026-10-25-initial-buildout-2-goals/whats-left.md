@@ -7,7 +7,7 @@ Everything below is a stop point from the plan (Jack's call, his credentials or 
 `stardust/replica/inconsistency-register.md`, 24 entries:
 - **Needs a decision:** R3 (one frame of the light canvas before a stored Dark choice applies).
 - **Applied, needs review:** R6 (lab verdict box reserves its height), R11 (2026-08-15 ships working explainers), R16 (theme-swap's extra Google Fonts), R18 (a caption link moved to the media copy), R20 (explainer pickers are one tab stop with arrow keys).
-- **Needs review:** R7 (owner-accepted rail thumbnail diffs at 360, now 96 entries in `accepted.json`), R22 (inline-drawn SVG diagrams), R23 (sentence templates with `{placeholders}` in explainer rows).
+- **Needs review:** R7 (owner-accepted rail thumbnail diffs at 360, now 104 entries in `accepted.json`), R22 (inline-drawn SVG diagrams), R23 (sentence templates with `{placeholders}` in explainer rows).
 - **Proposed changes:** R1, R2, R4, R5, R8, R9, R10, R12, R13, R14, R15, R17, R19, R21.
 - **Resolved:** R24.
 
@@ -37,6 +37,7 @@ Jack's host plan (19:25): GitHub Pages moves to gh.jackzhaojin.com without SEO, 
 2. GitHub Pages moves to gh: the `CNAME` file in jackzhaojin.github.io says `gh.jackzhaojin.com` (Jack commits it) and Pages settings follow; the gh DNS record becomes a CNAME to `jackzhaojin.github.io`, DNS-only until GitHub shows its certificate, then proxied; the gh env's `GITHUB_ORIGIN` becomes `passthrough` (the zone origin, GitHub). From here www shows GitHub's 404 until step 3, so do 2 and 3 together.
 3. The www Worker: `PROJECT_ORIGIN` becomes `https://gh.jackzhaojin.com` (never before step 2: gh would read www, and www would read gh, a loop), deploy, then the www route in the dashboard (its own approval).
 4. `node edge/scripts/check-host.mjs --base https://www.jackzhaojin.com`, the sitemap in Search Console, `docs/site-operations.md`, the README in jackzhaojin.github.io. Later comparisons with the old site use gh.
+5. `release/1.0` at the cutover commit, as in [releases.md](releases.md).
 
 ## 4. Known residuals
 
@@ -63,3 +64,6 @@ Every page published on GitHub Pages before the cutover also has to land here. T
 - Fold the one-article variants into defaults at the next design round (R12) once the register is reviewed.
 - `localize-links.mjs` rewrites every file in `content/`; a per-file option would have saved the streams some reverting.
 - `import-listing-pages.mjs` could keep page metadata it does not own (the social image rows) and write one listing at a time.
+- **The Admin API skill's CDN section (Jack, 20:26):** when step 1 of the cutover sets push invalidation, keep its EXECUTION.md. Then add a `cdn/prod.json` section to `hlx-admin-api-executor` in ai-builder-kit, written from that run.
+- **A version for the skills-only plugin:** it has none, so every commit to ai-builder-kit looks like a new version of it. A `version` on its marketplace entry would make updates mean something (ai-builder-kit, Jack's call).
+- **Protect the release branches** on GitHub, so `release/*` can't be pushed to or deleted (a repository setting, Jack's call).

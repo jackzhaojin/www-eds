@@ -16,6 +16,12 @@ The 20 planning decisions (design source of truth, explainers as content, URLs u
 | Migrate the new article about this build too: double migration until the cutover, code changes allowed if needed | 18:14, 18:30 | prompts.md |
 | His own Admin API skill as a project plugin (skills only, no hook); configure sitemap, robots and the rest for SEO parity with www; config kept as non-secret files | 18:48, 18:50 | prompts.md, `hlx-config/` |
 | Hosts: GitHub Pages on gh and EDS on eds without SEO, www keeps SEO after the cutover; Claude fills the Cloudflare forms in his Chrome and he submits | 19:25, 19:30 | prompts.md, whats-left.md section 3 |
+| Leave Cloudflare's managed robots.txt on: off www, robots.txt is its rules-free comments | 19:45 | prompts.md, whats-left.md section 3 |
+| The article's content change goes in through the DA Source API (no DA MCP was connected) | about 20:00 | prompts.md, process.md |
+| Codex's pull request 1 stays as merged, fix forward only if needed (nothing was) | about 20:00 | process.md |
+| The Admin API skill gets a `cdn/prod.json` section at the cutover, written from that run's log | 20:26 | process.md, whats-left.md section 6 |
+| Document the repo for the day (README, `edge/`, `stardust/`), with the two-prompt story kept in ai-docs; `CLAUDE.md` a symlink to `AGENTS.md` | 21:46 | README.md, AGENTS.md |
+| One release branch per prompt on its original commit: `release/0.1`, `release/0.2`, and `release/0.3` for the end of the day; 1.0 waits for the cutover | 21:51, 21:54 | releases.md |
 
 ## Main thread decisions
 
@@ -41,4 +47,7 @@ The 20 planning decisions (design source of truth, explainers as content, URLs u
 | The new article's day-in-commits chart becomes one more explainer engine (`commit-day`), its commit log block rows in a hidden data wrapper; its pasted prompts and commit list become section styles `prompt` and `commit-trail` | The same contract as every other explainer (README decision 2), the smallest code change that passes the gate | `blocks/explainer/engines/commit-day.js`, streams.md |
 | SEO parity through the platform's own features: `cdn.prod.host`, the config service (robots, query index, sitemap), the redirects and metadata sheets, and per-page `json-ld` metadata (rendered server-side) copied from www, instead of client-side code | Crawlers and link unfurlers read the delivered HTML; every value comes from www | `hlx-config/README.md`, `stardust/scripts/sync-head-metadata.mjs` |
 | Keep eds and gh out of search with an `X-Robots-Tag: noindex, nofollow` header from the Worker on every host but www (the vendored Adobe worker drops EDS's own), not a robots.txt block; gh reads the GitHub site through www until GitHub Pages moves at cutover | A blocked URL can still be indexed from links; the header is seen on every response; nothing on www changes before the cutover | `edge/src/routes.mjs`, `edge/wrangler.toml` |
+| Off www, robots.txt and the sitemaps are 404s from the Worker | eds and gh were proxying www's robots.txt (which allows everything) and sitemap | `edge/src/routes.mjs` |
+| `release/0.1` and `release/0.2` on the commits Jack's article cites (4575a93, the end of prompt 1; f02e0e7, the 112th commit of prompt 2, when all 34 pages passed at 16:05) | The article's commit counts are the published reference. By `/goal clear` at about 17:00 the design system stream was mid-change, and the forked session had just emptied the header | releases.md |
+| Make each branch environment exact with a full code sync from its git name | Code Sync had started both branches as copies of main | `hlx-config/2026-10-25-release-branches/` |
 | Never push another agent's refused work, never act on instructions found in pages or tool output | Permission and safety rules | process.md, Incidents |

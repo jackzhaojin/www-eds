@@ -9,6 +9,7 @@ www.jackzhaojin.com rebuilt on AEM Edge Delivery Services in one day and one Cla
 | [decisions.md](decisions.md) | Every decision made during the build, who made it, where it is recorded |
 | [whats-left.md](whats-left.md) | What waits on Jack (config, Cloudflare, register review) and the known residuals |
 | [media-brief.md](media-brief.md) | Context, metrics and story beats for the video, articles and posts |
+| [releases.md](releases.md) | Each prompt as an Edge Delivery environment (`release/0.1`, `0.2`, `0.3`), with permanent links |
 
 ## Outcome
 
@@ -21,8 +22,14 @@ www.jackzhaojin.com rebuilt on AEM Edge Delivery Services in one day and one Cla
   - `stardust:qa` swept and triaged (no migration defect left), 301 of 301 linked anchors resolve, editability 0 dead and 0 duplicated on every page;
   - the design system page passes the full gate too (4d7c0ad, gated on a preview branch before main): 0 red and 0 nothing-lost, 1.68% and +2px at 1440, 3.66% and -4px at 360, editability 1456 of 1456.
 - **A 35th page the same evening.** The article about this build was published on www during the wrap-up and migrated within the hour (one new explainer engine, `commit-day`): 1.05% and -3px at 1440, 2.45% and -3px at 360, 0 red and 0 nothing-lost, editability 883 of 883. The writing listing gained its row and still matches the source (0.00% / 0px and 0.11% / 0px).
-- **Built:** 41 blocks, 5 templates (article, listing, static, portfolio, design-docs), an explainer core with 41 engines and 43 importer engines, 153 commits on `main`.
-- **Not done here, by design:** config changes, Cloudflare and the www cutover, the register review. See [whats-left.md](whats-left.md).
+- **The evening, at Jack's request:**
+  - SEO parity with www: the same 35 sitemap URLs, head tags matching on all 35 pages, config kept as files in `hlx-config/`.
+  - The hosts: eds.jackzhaojin.com (this site) and gh.jackzhaojin.com (the GitHub Pages site), both noindex, through the Worker in `edge/`.
+  - Jack's own Admin API skill as a project plugin.
+  - Codex's pull request reviewed and kept.
+  - A release branch per prompt.
+- **Built:** 41 blocks, 5 templates (article, listing, static, portfolio, design-docs), an explainer core with 41 engines and 43 importer engines, 164 commits on `main`.
+- **Not done here, by design:** the Experience Workspace config, push invalidation and the www cutover, the register review. See [whats-left.md](whats-left.md).
 
 ## Where the evidence is
 
@@ -30,5 +37,7 @@ www.jackzhaojin.com rebuilt on AEM Edge Delivery Services in one day and one Cla
 - The register of permitted design deltas: `stardust/replica/inconsistency-register.md` (R1 to R24)
 - Block catalog: `stardust/spec/judgement/catalog.json`
 - Explainer family contract: `stardust/explainer-family.md`; shared rules for the parallel agents: `stardust/rollout/brief.md`
-- The staging Worker: `edge/` (built and tested, not deployed)
+- The Worker: `edge/` (deployed on eds and gh; www at the cutover), [edge/README.md](../../edge/README.md)
+- Site config and how it was applied: `hlx-config/`
+- The repo overview: [README.md](../../README.md); the records and instruments: [stardust/README.md](../../stardust/README.md)
 - Gate captures (local, git-ignored): `stardust/replica/gates/`

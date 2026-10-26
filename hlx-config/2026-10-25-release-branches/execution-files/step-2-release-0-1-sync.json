@@ -1,0 +1,32 @@
+{
+  "messageId": "5c1dd1c3-5cb6-410c-9882-29a03a7bb164",
+  "job": {
+    "topic": "code",
+    "user": "jackzhaojin@gmail.com",
+    "name": "job-2026-10-26-01-59-22-cb696146",
+    "state": "created",
+    "createTime": "2026-10-26T01:59:22.670Z",
+    "data": {
+      "branch": "release/0.1",
+      "changes": [
+        {
+          "type": "modified",
+          "path": "*",
+          "contentType": null
+        }
+      ],
+      "owner": "jackzhaojin",
+      "repo": "www-eds",
+      "ref": "release-0-1",
+      "codeOwner": "jackzhaojin",
+      "codeRepo": "www-eds",
+      "codeRef": "release-0-1",
+      "codePrefix": "/jackzhaojin/www-eds/release-0-1/",
+      "installationId": 74851771
+    }
+  },
+  "links": {
+    "list": "https://admin.hlx.page/job/jackzhaojin/www-eds/release-0-1/code?branch=release%2F0.1",
+    "self": "https://admin.hlx.page/job/jackzhaojin/www-eds/release-0-1/code/job-2026-10-26-01-59-22-cb696146?branch=release%2F0.1"
+  }
+}

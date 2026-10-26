@@ -23,6 +23,10 @@ Prompt 3: cleanup and these docs
 - **impeccable:** its design hook reviewed every UI file written; one confirmed false positive (a CSS border triangle) is a file-scoped ignore in `.impeccable/config.json`.
 - **Playwright and axe-core** for the extra checks written during the run (dark sweep, axe comparison against the source, anchor check).
 - **Lighthouse 12.8.2** (mobile) for performance.
+- **hlx-admin-api-executor (jackzhaojin/ai-builder-kit, commit 46e689e), from the evening on:** Jack's own Admin API skill, a project plugin with skills only. It ran the SEO config and the release branches' code sync, GET before, SET, GET after, with every response kept under `hlx-config/`.
+- **Claude in Chrome** for the Cloudflare DNS forms in Jack's own browser; Jack clicked Save. **The desktop app's built-in browser** for the release environment checks, at Jack's request (21:54).
+- **ChatGPT Codex** for the code-only comparison pass that became pull request 1.
+- **Jack's `jack-git-commit` skill** for commit messages, and Claude's `dataviz` and `artifact-diagramming` skills for the walkthrough artifact.
 
 ## Goal 1: prep and first page
 
@@ -95,12 +99,29 @@ No Adobe skill covers the Admin API beyond preview and publish, so Jack's own `h
 
 ## Then: eds and gh
 
-Jack's plan for the hosts (19:25): GitHub Pages at gh.jackzhaojin.com and EDS at eds.jackzhaojin.com, both out of search, www keeping its SEO after the cutover. The Worker in `edge/` gained a gh mode (the whole GitHub Pages site, read through www until GitHub Pages moves, with its redirects kept on gh) and a noindex header on every host but www, tested in-process first. Then, in Jack's Chrome with Claude in Chrome, Claude filled the two DNS record forms (AAAA `100::`, proxied) and Jack clicked Save on each; the Workers went out with the wrangler sign-in already on the laptop. The host check passes on both live hosts, and www is byte-for-byte unchanged.
+Jack's plan for the hosts (19:25): GitHub Pages at gh.jackzhaojin.com and EDS at eds.jackzhaojin.com, both out of search, www keeping its SEO after the cutover. The Worker in `edge/` gained a gh mode (the whole GitHub Pages site, read through www until GitHub Pages moves, with its redirects kept on gh) and a noindex header on every host but www, tested in-process first. Then, in Jack's Chrome with Claude in Chrome, Claude filled the two DNS record forms (AAAA `100::`, proxied) and Jack clicked Save on each; the Workers went out with the wrangler sign-in already on the laptop. The host check passes on both live hosts, and www is byte-for-byte unchanged. Screenshots then showed both hosts serving www's robots.txt, so the Worker now answers 404 for robots.txt and the sitemaps on every host but www. Cloudflare's managed robots.txt fills the robots.txt 404 with its comments, which have no rules, and Jack kept it on.
+
+## Then: a content change through the DA Source API
+
+Jack's latest commit in jackzhaojin.github.io (bccb947) changed the article about the build: it now links the gh and eds hosts and the build record. No DA MCP was connected, so the same change went into the article's Experience Workspace document through the DA Source API (1b5d4df), then was previewed and published. The first gate compared against a capture of the source cached before Jack's edit, so it read -407px. With the source recaptured it read -3px, as before.
 
 ## Then: Codex's pull request
 
 Codex's code-only comparison pass (requested at 11:33) became pull request 1, merged in the evening as b8baf5c: two lines out of `blocks/header/header.js`, so an open menu stays open when the window crosses 1024px, as on www (its `site.js` has no resize listener). Review: the open state only toggles a class and `aria-expanded`, `.is-open` styles apply below 1024px only, nothing locks scrolling; a live check on both sites (open at 360, then 1440, 1024, 390, 360) gives the same states and a normal desktop nav. Home and the article archetype re-gated unchanged (0.25% / 0px and 1.11% / 0px; 0.05% / 0px and 0.84% / 0px, 0 red). Codex's open findings did not hold: home is the same height as www at every width from 1440 to 360 (within 1px), the article matches www heading for heading once both are fully loaded (www's page grows as its lazy content loads, EDS reserves the space), and mobile Lighthouse on aem.live is 100 on both pages (its 69 and 88 were PageSpeed Insights on the uncached branch preview). No fix forward needed.
 
+## Then: which version of the skill
+
+Jack asked which version of his skill the site runs, to understand it before building more. The skills-only plugin has no version number, so Claude Code records the commit it installed: `46e689e`. Nothing pins it. The project settings name the marketplace and the plugin, and the installed copy in `~/.claude/plugins/cache/` stays until someone updates it. ai-builder-kit's main had moved 4 commits on, from another session, but none touched this skill. The lesson: with commit-based versions, any commit to the repo looks like a new version of every unversioned plugin in it. The skill's reference has nothing yet on `cdn/prod.json`, which is what the cutover's push invalidation needs. Jack's call (20:26): add that section at the cutover, written from that run's EXECUTION.md. ai-builder-kit was confirmed clean, pushed and green.
+
+## Last: the docs and a release per prompt
+
+For the night (21:46), the repo got its own documentation:
+- a README with the hosts, the results, the architecture, the layout, the commands, and the skills and tools used, including the ones not checked in;
+- `edge/README.md` and `stardust/README.md`;
+- `CLAUDE.md` as a symlink to `AGENTS.md`, which gained the project's rules.
+
+Then Jack's idea (21:51): every branch is an Edge Delivery environment, so each prompt can be one. `release/0.1` and `release/0.2` sit on the commits his article cites (4575a93 and f02e0e7), and `release/0.3` on the last commit of the day. 1.0 is kept for the cutover. Pushing an old commit as a branch left both serving main's code: Code Sync copies main and applies a push that, here, changed nothing. A full code sync from the real branch name made each one exactly its commit. Details and permanent links: [releases.md](releases.md).
+
 ## Numbers
 
-153 commits on `main` between 09:05 and 19:00; 41 blocks; 5 templates; 41 explainer engines and 43 importer engines; 40 content documents; 9 subagents; register R1 to R24; 96 owner-accepted content-diff entries (rail thumbnails at phone width, where the probe can only compare file names).
+164 commits on `main` between 09:05 and 22:15, 3 release branches; 41 blocks; 5 templates; 41 explainer engines and 43 importer engines; 40 content documents; 9 subagents; register R1 to R24; 104 owner-accepted content-diff entries (rail thumbnails at phone width, where the probe can only compare file names).
