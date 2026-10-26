@@ -66,4 +66,5 @@ Every page published on GitHub Pages before the cutover also has to land here. T
 - `import-listing-pages.mjs` could keep page metadata it does not own (the social image rows) and write one listing at a time.
 - **The Admin API skill's CDN section (Jack, 20:26):** when step 1 of the cutover sets push invalidation, keep its EXECUTION.md. Then add a `cdn/prod.json` section to `hlx-admin-api-executor` in ai-builder-kit, written from that run.
 - **A version for the skills-only plugin:** it has none, so every commit to ai-builder-kit looks like a new version of it. A `version` on its marketplace entry would make updates mean something (ai-builder-kit, Jack's call).
+- **Content in git (2026-10-26):** decided and done, see [../2026-10-26-content-in-git/](../2026-10-26-content-in-git/README.md). Left from it: the 42 scratch documents in DA's `/drafts/roundtrip/` (Jack's call), and the 25 media files that exist only in DA.
 - **Protect the release branches** on GitHub, so `release/*` can't be pushed to or deleted (a repository setting, Jack's call).

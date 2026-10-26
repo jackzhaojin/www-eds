@@ -30,7 +30,7 @@ Edge Delivery Services. Read a block first. Omissions are in the repo or known.
 - The design is v3's (`DESIGN.md`). Only entries in `stardust/replica/inconsistency-register.md` may change it; any other "improvement" is a fidelity bug.
 - Explainers are content: `explainer (<word>)` loads `blocks/explainer/engines/<word>.js` and `.css`, its text and data are block rows (`stardust/explainer-family.md`). Metadata `template` loads `templates/<name>/`.
 - Blocks move authored elements into role wrappers and never rebuild them, so every text stays editable in Experience Workspace (the editability probe checks it).
-- `content/` holds the Experience Workspace documents as pushed by `stardust/scripts/deploy/deploy-batch.mjs`. Site config lives in `hlx-config/` as files.
+- **Before changing any content, read `content/README.md` (a must-read).** `content/` in git is the source of truth for the content; DA is where it's published from (Jack's decision, 2026-10-26, `ai-docs/2026-10-26-content-in-git/`). That file holds the process (editor's form, preview, compare with gh.jackzhaojin.com in the built-in browser, gate, publish, commit) and the lessons learned; add new ones there. Site config lives in `hlx-config/` as files.
 - A change to a shared block, style or template re-gates home and an article at 1440 and 360 (`stardust/scripts/replica/gate.sh`) before it counts.
 - Until the cutover, every page published on GitHub Pages also lands here (`whats-left.md` section 5).
 - Copy: plain hyphens only (no em or en dashes), content carried verbatim.

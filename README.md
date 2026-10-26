@@ -88,7 +88,7 @@ On 0.1, pages built in prompt 2 show their blocks undecorated, because their blo
 | `styles/`, `fonts/`, `icons/` | v3 tokens and base styles, self-hosted fonts, the v3 icon set |
 | `scripts/` | `aem.js` (vendored, never edited), `scripts.js`, the theme control, consent |
 | `widgets/` | the writing listing's filter |
-| `content/` | the Experience Workspace documents, as pushed by the deploy scripts (not served from git) |
+| `content/` | the content's source of truth: every Experience Workspace document, in the editor's own form, plus [its rules](content/README.md) (not served from git) |
 | `edge/` | the Cloudflare Worker for eds, gh and, at the cutover, www |
 | `hlx-config/` | the site config as files, with the log of how it was applied |
 | `stardust/` | the migration's records, instruments and importers; see [stardust/README.md](stardust/README.md) |
@@ -117,7 +117,7 @@ node scripts/check-host.mjs --local staging              # the Worker in-process
 node scripts/check-host.mjs --base https://eds.jackzhaojin.com   # a deployed host
 ```
 
-**Content** lives in Experience Workspace. Changes made from the repo go through the DA Source API with stardust's deploy driver, which keeps a ledger and checks the delivered page before marking it live. The token is the da-auth cache, never printed:
+**Content** is managed in git: `content/` is the source of truth, and Experience Workspace (DA) is where it's published from. Every change follows [content/README.md](content/README.md), a must-read before editing: write it in the form the DA editor keeps, preview it, compare it with gh.jackzhaojin.com in the browser, gate it, publish, commit. Pushing goes through the DA Source API with stardust's deploy driver, which keeps a ledger and checks the delivered page before marking it live. The token is the da-auth cache, never printed:
 
 ```bash
 DA_TOKEN=$(node -e "const t=require(process.env.HOME+'/.aem/da-token.json');if(t.expires_at>Date.now()+60000)process.stdout.write(t.access_token)") \
@@ -158,6 +158,7 @@ Used on the day but not checked in:
 ## Documentation
 
 - [ai-docs/2026-10-25-initial-buildout-2-goals/](ai-docs/2026-10-25-initial-buildout-2-goals/): the build record and [what's left](ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md)
+- [content/README.md](content/README.md): how content changes are made, and what the DA editor does to HTML (a must-read before editing); [ai-docs/2026-10-26-content-in-git/](ai-docs/2026-10-26-content-in-git/README.md): the decision to keep content in git, and the first full run
 - [The plan](https://github.com/jackzhaojin/jackzhaojin.github.io/blob/main/ai-docs/2026-10-24-eds-migration/start-here.md) (in jackzhaojin.github.io): analysis, the 20 planning decisions, best practices, routing
 - [stardust/README.md](stardust/README.md): the migration records and instruments
 - [edge/README.md](edge/README.md): the Worker and its hosts
