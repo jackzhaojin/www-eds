@@ -10,7 +10,7 @@ The record of the decision and the first full run over all 40 documents: [ai-doc
 
 ## What's in this folder
 
-Each `.html` file is one DA document, at the same path (`writing/<slug>/index.html` is `/writing/<slug>/`): a body fragment with sections, block tables and a metadata block. `nav.html` and `footer.html` are the fragments every page loads. `.deploy-ledger.json` and `.deploy-log.jsonl` record every push. EDS never serves this folder (`.hlxignore`).
+Each `.html` file is one DA document, at the same path (`writing/<slug>/index.html` is `/writing/<slug>/`): a body fragment with sections, block tables and a metadata block. `nav.html` and `footer.html` are the fragments every page loads. `media/` holds image files, at the same paths as in DA. `.deploy-ledger.json` and `.deploy-log.jsonl` record every push. EDS never serves this folder (`.hlxignore`).
 
 ## 0. Start from what DA has
 
@@ -49,6 +49,8 @@ Then write the markup the way the editor saves it, so opening the page in Experi
 Never write what preview's Markdown can't carry: `data-` attributes, `style`, your own `id`s (anchors come from section metadata `id`), spans, classes outside block divs, inline SVG, iframes, buttons or forms. Data and settings go into block rows; looks go into section styles and block variants ([stardust/explainer-family.md](../stardust/explainer-family.md)).
 
 Images: upload the file to DA first, under `/media/<section>/<slug>/` (`stardust/scripts/deploy/da-media-upload.mjs`), then reference it by its full `https://content.da.live/jackzhaojin/www-eds/media/…` URL. A page that points at an image DA doesn't have serves `about:error`.
+
+**Keep every image here too,** in `content/media/` at the same path as in DA (`/media/certifications/x.png` is `content/media/certifications/x.png`). Then no image exists only in DA. On 2026-10-26 the 25 files that did (17 certification badges, 8 importer-drawn diagrams) were pulled in with `node stardust/scripts/pull-media.mjs <list> <report>`. It downloads each file from DA and checks it is byte-identical to the copy the site delivers. The other 408 images still have their originals only in jackzhaojin.github.io.
 
 ## 2. Always check it in the browser
 

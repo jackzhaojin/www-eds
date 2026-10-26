@@ -1,0 +1,52 @@
+<svg viewBox="0 0 364 450" role="img" aria-labelledby="s3-tall-t" xmlns="http://www.w3.org/2000/svg" width="364" height="450"><style>.lens__node rect{fill:#fff;stroke:#a39e94;stroke-width:1.2}.lens__node text{fill:#1c1a17;font-family:Inter,system-ui,sans-serif;font-weight:500}.lens__edge{fill:none;stroke:#a39e94;stroke-width:1.4;marker-end:var(--m)}.lens__head{fill:#a39e94}.lens__elabel{fill:#6b665e;font:500 11px ui-monospace,monospace;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.lens__note{fill:#6b665e;font:400 11.5px ui-monospace,monospace}</style>
+<title id="s3-tall-t">Solution 3: content fragments, experience fragments and pages are each authored and published. Mobile App 1 reads published content fragments, Mobile App 2 reads content fragments and experience fragments as Markdown, and Site 1 and Site 2 read published pages.</title>
+<defs><marker id="s3-tall-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head"></path></marker><marker id="s3-tall-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="lens__head lens__head--on"></path></marker></defs>
+<path class="lens__edge" data-e="acf-pcf" d="M112 124 L128 124" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge" data-e="axf-pxf" d="M112 210 L128 210" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge" data-e="apg-ppg" d="M112 382 L128 382" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge" data-e="m1-pcf" d="M252 38 L182 38 L182 96" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge" data-e="m2-pcf" d="M252 116 L236 116" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge" data-e="m2-pxf" d="M252 136 L244 136 L244 210 L236 210" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge" data-e="s1-ppg" d="M252 296 L244 296 L244 374 L236 374" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<path class="lens__edge" data-e="s2-ppg" d="M252 392 L236 392" style="--m:url(#s3-tall-a);--m-on:url(#s3-tall-b)"></path>
+<text class="lens__elabel" data-e="m2-pxf" x="300" y="172" text-anchor="middle">Markdown</text>
+<g class="lens__node" data-n="acf"><rect x="4" y="96" width="108" height="56" rx="10"></rect>
+<text x="58.0" y="121.0" text-anchor="middle" style="font-size:11.5px">AEM Author</text>
+<text x="58.0" y="135.3" text-anchor="middle" style="font-size:11.5px">CFs</text>
+</g>
+<g class="lens__node" data-n="pcf"><rect x="128" y="96" width="108" height="56" rx="10"></rect>
+<text x="182.0" y="121.0" text-anchor="middle" style="font-size:11.5px">AEM Publish</text>
+<text x="182.0" y="135.3" text-anchor="middle" style="font-size:11.5px">CFs</text>
+</g>
+<g class="lens__node" data-n="axf"><rect x="4" y="182" width="108" height="56" rx="10"></rect>
+<text x="58.0" y="207.0" text-anchor="middle" style="font-size:11.5px">AEM Author</text>
+<text x="58.0" y="221.3" text-anchor="middle" style="font-size:11.5px">XFs</text>
+</g>
+<g class="lens__node" data-n="pxf"><rect x="128" y="182" width="108" height="56" rx="10"></rect>
+<text x="182.0" y="207.0" text-anchor="middle" style="font-size:11.5px">AEM Publish</text>
+<text x="182.0" y="221.3" text-anchor="middle" style="font-size:11.5px">XFs</text>
+</g>
+<g class="lens__node" data-n="apg"><rect x="4" y="354" width="108" height="56" rx="10"></rect>
+<text x="58.0" y="379.0" text-anchor="middle" style="font-size:11.5px">AEM Author</text>
+<text x="58.0" y="393.3" text-anchor="middle" style="font-size:11.5px">Pages</text>
+</g>
+<g class="lens__node" data-n="ppg"><rect x="128" y="354" width="108" height="56" rx="10"></rect>
+<text x="182.0" y="379.0" text-anchor="middle" style="font-size:11.5px">AEM Publish</text>
+<text x="182.0" y="393.3" text-anchor="middle" style="font-size:11.5px">Pages</text>
+</g>
+<g class="lens__node" data-n="m1"><rect x="252" y="10" width="108" height="56" rx="10"></rect>
+<text x="306.0" y="35.0" text-anchor="middle" style="font-size:11.5px">Mobile</text>
+<text x="306.0" y="49.3" text-anchor="middle" style="font-size:11.5px">App 1</text>
+</g>
+<g class="lens__node" data-n="m2"><rect x="252" y="96" width="108" height="56" rx="10"></rect>
+<text x="306.0" y="121.0" text-anchor="middle" style="font-size:11.5px">Mobile</text>
+<text x="306.0" y="135.3" text-anchor="middle" style="font-size:11.5px">App 2</text>
+</g>
+<g class="lens__node" data-n="s1"><rect x="252" y="268" width="108" height="56" rx="10"></rect>
+<text x="306.0" y="300.1" text-anchor="middle" style="font-size:11.5px">Site 1</text>
+</g>
+<g class="lens__node" data-n="s2"><rect x="252" y="354" width="108" height="56" rx="10"></rect>
+<text x="306.0" y="386.1" text-anchor="middle" style="font-size:11.5px">Site 2</text>
+</g>
+<text class="lens__note" x="182" y="444" text-anchor="middle">Pages have XFs and CFs. XFs have CFs.</text>
+</svg>

@@ -53,4 +53,4 @@ So the site looks like-for-like with gh, and `content/` now holds every document
 ## Left
 
 - `/drafts/roundtrip/` in DA holds the 42 scratch documents from this run. Deleting them is Jack's call, or the folder stays as the test area.
-- Media isn't all in git yet. 25 of the 433 media files exist only in DA: 17 certification badges (the GitHub Pages site links them from Credly and Microsoft) and 8 diagrams drawn by the importers. Another 30 sit uncommitted in jackzhaojin.github.io. A media pull into the repo would finish "content in git".
+- **Media pulled in (Jack, 2026-10-26):** the 25 media files that existed only in DA are now in `content/media/`, each byte-identical to the copy the site delivers. That's the 17 certification badges (the GitHub Pages site links them from Credly and Microsoft) and 8 importer-drawn diagrams. The other 408 images still have their originals only in jackzhaojin.github.io, 30 of them uncommitted there.
