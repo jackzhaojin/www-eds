@@ -227,11 +227,31 @@ function decorateSectionHeads(main) {
 }
 
 /**
+ * Folds a link the editor split back into one. Experience Workspace cannot hold a link whose
+ * text is partly bold or italic, so it saves
+ * <strong><a href=x>Part 1</a></strong><a href=x>Title</a>; this moves the bold part back inside
+ * the link (<a href=x><strong>Part 1</strong>Title</a>), the form every block was built for. The
+ * authored nodes move; only the inner link element goes.
+ * @param {Element} main The main element
+ */
+function foldSplitLinks(main) {
+  main.querySelectorAll('strong > a:only-child, em > a:only-child').forEach((inner) => {
+    const mark = inner.parentElement;
+    const next = mark.nextSibling;
+    if (mark.textContent !== inner.textContent || next?.nodeName !== 'A') return;
+    if (next.getAttribute('href') !== inner.getAttribute('href')) return;
+    mark.replaceChildren(...inner.childNodes);
+    next.prepend(mark);
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  foldSplitLinks(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
