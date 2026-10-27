@@ -32,8 +32,8 @@ http.createServer(async (req, res) => {
     let filled = null;
     if (type.startsWith('text/html')) {
       const html = body.toString('utf8');
-      filled = await renderListingHTML(html, (path) => fetch(new URL(path, INDEX)))
-        ?? renderPageSchemaHTML(html);
+      const listed = await renderListingHTML(html, (path) => fetch(new URL(path, INDEX)));
+      filled = renderPageSchemaHTML(listed ?? html) ?? listed;
       if (filled) body = Buffer.from(filled);
     }
     res.writeHead(upstream.status, { 'content-type': type, 'x-listing': filled ? 'filled' : 'untouched' });

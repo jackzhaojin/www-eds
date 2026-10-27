@@ -10,12 +10,14 @@
  * - anchors: the row's id, then any older ids that should still land on it, space separated.
  * projects: the portfolio's project list, in the talks shape and look (when: dates and kind;
  * body: the linked heading, the tagline, the summary; anchors: the old chapter anchors).
- * dynamic (with talks or projects): the block is one Source row naming its index, and the
- * rows are generated from it (DYNAMIC below).
+ * related: on a talk or project page, the site's articles that link to the page, as plain
+ * rows (date, linked title, summary).
+ * dynamic (with talks, projects or related): the block is one Source row naming its index,
+ * and the rows are generated from it (DYNAMIC below).
  *
  * @ew-exempt anchors: link targets for the talk rows, hidden through .row-list-anchors
  * @ew-exempt dynamic Source row: API configuration; the copy is edited on the source pages
- * @variants talks, projects, dynamic (default none)
+ * @variants talks, projects, related, dynamic (default none)
  */
 
 const ROLES = ['row-list-kind', 'row-list-title', 'row-list-note'];
@@ -101,6 +103,27 @@ function decorateTalks(block) {
   block.replaceChildren(list);
 }
 
+/** The plain rows: kind | title | note, any cell may be left out. */
+function decorateRows(block) {
+  const list = document.createElement('ol');
+  list.className = 'row-list-items';
+  [...block.querySelectorAll(':scope > div')].forEach((row) => {
+    const cells = [...row.children];
+    const li = document.createElement('li');
+    const roles = cells.length >= 3 ? ROLES : ROLES.slice(1);
+    cells.forEach((cell, i) => {
+      if (!cell.children.length) return;
+      plainLinks(cell);
+      const div = document.createElement('div');
+      div.className = roles[i] || 'row-list-note';
+      div.append(...cell.children);
+      li.append(div);
+    });
+    list.append(li);
+  });
+  block.replaceChildren(list);
+}
+
 /** The dynamic listings: the module that reads each index and builds its rows. */
 const DYNAMIC = {
   talks: {
@@ -121,7 +144,19 @@ const DYNAMIC = {
     empty: 'No projects are published yet.',
     error: 'Projects are temporarily unavailable. Please try again later.',
   },
+  // No ItemList: the page's own JSON-LD describes it. With no article linking, the section hides.
+  related: {
+    module: '../../scripts/writing-index.js',
+    load: 'loadWritingIndex',
+    rows: 'relatedRows',
+    select: 'linkingTo',
+    plain: true,
+  },
 };
+
+/** This page's path, as its canonical URL names it (the www path on every host). */
+const pagePath = () => new URL(document.querySelector('link[rel="canonical"]')?.href
+  || window.location.href).pathname;
 
 /**
  * talks or projects, dynamic: Source | /talks-index.json (or /portfolio-index.json), and
@@ -139,11 +174,19 @@ async function decorateDynamic(block, listing) {
     import('../../scripts/collection-schema.js'),
   ]);
   const render = (records) => {
-    block.replaceChildren(...rowsToDOM(index[listing.rows](records)));
-    syncCollectionSchema((canonical) => index[listing.items](records, canonical), listing.path);
+    const shown = listing.select ? index[listing.select](records, pagePath()) : records;
+    block.replaceChildren(...rowsToDOM(index[listing.rows](shown)));
+    if (listing.items) {
+      syncCollectionSchema((canonical) => index[listing.items](shown, canonical), listing.path);
+    }
   };
   const { state, rendered, sourceRow } = await fillFromIndex(block, index[listing.load], render);
-  decorateTalks(block);
+  if (listing.plain) decorateRows(block);
+  else decorateTalks(block);
+  if (listing.plain && !block.querySelector('.row-list-items > li')) {
+    const section = block.closest('.section');
+    if (section) section.hidden = true;
+  }
   if (sourceRow) {
     sourceRow.hidden = true;
     block.append(sourceRow);
@@ -162,30 +205,14 @@ async function decorateDynamic(block, listing) {
 }
 
 export default async function decorate(block) {
-  const kind = ['talks', 'projects'].find((name) => block.classList.contains(name));
-  if (kind) {
-    if (block.classList.contains('dynamic')) {
-      await decorateDynamic(block, DYNAMIC[kind]);
-      return;
-    }
+  const kind = ['talks', 'projects', 'related'].find((name) => block.classList.contains(name));
+  if (kind && block.classList.contains('dynamic')) {
+    await decorateDynamic(block, DYNAMIC[kind]);
+    return;
+  }
+  if (kind === 'talks' || kind === 'projects') {
     decorateTalks(block);
     return;
   }
-  const list = document.createElement('ol');
-  list.className = 'row-list-items';
-  [...block.querySelectorAll(':scope > div')].forEach((row) => {
-    const cells = [...row.children];
-    const li = document.createElement('li');
-    const roles = cells.length >= 3 ? ROLES : ROLES.slice(1);
-    cells.forEach((cell, i) => {
-      if (!cell.children.length) return;
-      plainLinks(cell);
-      const div = document.createElement('div');
-      div.className = roles[i] || 'row-list-note';
-      div.append(...cell.children);
-      li.append(div);
-    });
-    list.append(li);
-  });
-  block.replaceChildren(list);
+  decorateRows(block);
 }

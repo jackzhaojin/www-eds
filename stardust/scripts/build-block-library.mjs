@@ -793,6 +793,13 @@ const BLOCKS = {
         description: 'The portfolio project list, generated from the project pages: author only its Source row, never the rows.',
         tags: 'projects, portfolio, listing, index, generated, dynamic',
       },
+      {
+        name: 'Row list (related, dynamic)',
+        from: 'portfolio/shadow-pivot/index.html',
+        cls: 'row-list related dynamic',
+        description: 'On a talk or project page, under a Related heading: the articles that link to this page, generated from the writing index. Author only its Source row.',
+        tags: 'related, articles, writing, backlinks, generated, dynamic',
+      },
     ],
   },
   series: {

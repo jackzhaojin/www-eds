@@ -242,3 +242,32 @@ test('www: a talk page gets its generated JSON-LD; a page with authored JSON-LD 
   globalThis.fetch = async () => new Response(authored, { headers: { 'content-type': 'text/html; charset=utf-8' } });
   assert.equal(await (await worker.fetch(get('https://www.jackzhaojin.com/talks/ai-tinkerers-2026/'), WWW, {})).text(), authored);
 });
+
+test('www: a talk page fills its Related list and still gets its own graph', async () => {
+  const PAGE = `<html><head><title>A talk | Jack Jin</title>
+<link rel="canonical" href="https://www.jackzhaojin.com/talks/adaptto-2026/">
+<meta name="talk-id" content="adaptto-2026"><meta name="talk-date" content="September 29, 2026">
+</head><body><main><div><h1>A talk</h1></div><div><h2>Related</h2><div class="row-list related dynamic">
+  <div><div>Source</div><div><a href="/writing-index.json">/writing-index.json</a></div></div>
+</div></div></main></body></html>`;
+  const ARTICLES = [
+    { path: '/writing/2026-10-10-recap/', title: 'Recap', date: '2026-10-10', summary: 'S', pages: ['/talks/adaptto-2026/'] },
+    { path: '/writing/2026-01-01-other/', title: 'Other', date: '2026-01-01', pages: ['/talks/denison-2026/'] },
+  ];
+  globalThis.fetch = async (input) => {
+    const req = input instanceof Request ? input : new Request(input);
+    calls.push(req);
+    if (new URL(req.url).pathname === '/writing-index.json') {
+      return Response.json({
+        total: 2, offset: 0, limit: 200, data: ARTICLES,
+      });
+    }
+    return new Response(PAGE, { headers: { 'content-type': 'text/html; charset=utf-8' } });
+  };
+  const html = await (await worker.fetch(get('https://www.jackzhaojin.com/talks/adaptto-2026/'), WWW, {})).text();
+  assert.match(html, /<a href="\/writing\/2026-10-10-recap\/">Recap<\/a>/);
+  assert.doesNotMatch(html, /Other/);
+  const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+  assert.equal(ld.length, 1);
+  assert.deepEqual(ld[0]['@graph'].map((n) => n['@type']), ['Person', 'WebSite', 'WebPage', 'BreadcrumbList', 'Event']);
+});

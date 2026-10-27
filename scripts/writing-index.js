@@ -12,6 +12,19 @@ function publicURL(value) {
   return url.href;
 }
 
+/** The talk and project pages an article links to (the index's pages property), as site paths. */
+const PAGE_PATH = /^\/(talks|portfolio)\/[a-z0-9-]+\/$/;
+function linkedPages(value) {
+  return [...new Set((Array.isArray(value) ? value : []).map((href) => {
+    try {
+      const url = new URL(href, SITE);
+      return url.origin === SITE ? url.pathname : '';
+    } catch {
+      return '';
+    }
+  }).filter((path) => PAGE_PATH.test(path)))];
+}
+
 export function readWriting(record) {
   const url = new URL(record.path, SITE);
   if (url.origin !== SITE || !/^\/writing\/[^/]+\/$/.test(url.pathname)
@@ -44,7 +57,24 @@ export function readWriting(record) {
     watchLabel: text(record.watchLabel) || 'Watch on YouTube',
     keywords: text(record.keywords),
     nowrap: text(record.nowrap),
+    pages: linkedPages(record.pages),
   };
+}
+
+/** The articles that link to a page (a site path), newest first as loadWritingIndex sorts. */
+export const linkingTo = (articles, path) => articles
+  .filter((article) => article.pages.includes(path));
+
+/**
+ * A Related list's rows (row-list's plain rows, scripts/listing-cells.js): the date, the linked
+ * title and the card summary of each article that links to the page.
+ */
+export function relatedRows(articles) {
+  return articles.map((article) => [
+    [el('p', {}, article.date)],
+    [el('p', {}, el('a', { href: article.path }, article.title))],
+    article.summary && [el('p', {}, article.summary)],
+  ].filter(Boolean));
 }
 
 export async function loadWritingIndex(source, fetchData = fetch) {
