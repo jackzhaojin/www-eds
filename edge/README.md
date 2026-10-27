@@ -5,10 +5,10 @@ One Cloudflare Worker script in front of three hosts. It sends the GitHub Pages 
 | wrangler env | Worker | Route | Serves | Search |
 |---|---|---|---|---|
 | top level | `www-eds-edge` | `www.jackzhaojin.com/*`, added in the Cloudflare dashboard at the cutover, never in this file | Edge Delivery, with push invalidation on; the 7 project sites pass through to the zone's origin, GitHub Pages, untouched | indexed |
-| `staging` | `www-eds-edge-staging` | `eds.jackzhaojin.com/*` | Edge Delivery; project sites from www (they pass through there to GitHub Pages) | noindex |
+| `staging` | `www-eds-edge-staging` | `eds.jackzhaojin.com/*`, which gets no traffic since 2026-10-27: a Cloudflare Redirect Rule 302s all of eds to www first | Edge Delivery; project sites from www (they pass through there to GitHub Pages) | noindex |
 | `gh` | `www-eds-edge-gh` | `gh.jackzhaojin.com/*` | the whole old GitHub Pages site. It fetches `www.jackzhaojin.com`, and a same-zone fetch from a Worker reaches the zone's origin, GitHub Pages, not the www Worker. GitHub's folder redirects stay on gh | noindex |
 
-All three are deployed, and `check-host.mjs` passes on all three (2026-10-26).
+All three are deployed, and `check-host.mjs` passed on all three (2026-10-26). Since 2026-10-27 eds redirects to www (redirect rule 3 in the zone, `jack-dev-server-configs/server/cloudflare/zones.md`), and Redirect Rules run before Workers, so check a Worker change with `check-host.mjs --local staging` before the www deploy, not on eds.
 
 ## The cutover (2026-10-26, about 15:12 ET)
 
@@ -49,7 +49,7 @@ Done route-first from another session, not in the order whats-left.md had planne
 ```bash
 npm test                                                   # the 21 tests
 node scripts/check-host.mjs --local www                    # the Worker in-process, against the real origins (also staging, gh)
-node scripts/check-host.mjs --base https://www.jackzhaojin.com   # and https://eds… , https://gh…
+node scripts/check-host.mjs --base https://www.jackzhaojin.com   # and https://gh…
 npx wrangler deploy --env="" --dry-run --outdir <scratch>  # shows the vars a deploy would carry, deploys nothing
 npx wrangler deploy --env=""                               # production; every Cloudflare change is Jack's call
 npx wrangler deploy --env staging

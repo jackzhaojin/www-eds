@@ -1,7 +1,8 @@
 # The www.jackzhaojin.com Worker (routing-cloudflare.md in jackzhaojin.github.io/ai-docs).
 # Three Workers from this one script, after `wrangler login` (every deploy is Jack's call):
 #   npx wrangler deploy --env=""        www-eds-edge, production: www.jackzhaojin.com, indexable
-#   npx wrangler deploy --env staging   eds.jackzhaojin.com, the EDS site, noindex
+#   npx wrangler deploy --env staging   eds.jackzhaojin.com, the EDS site, noindex (unreachable since
+#                                       2026-10-27: a zone Redirect Rule 302s all of eds to www first)
 #   npx wrangler deploy --env gh        gh.jackzhaojin.com, the GitHub Pages site, noindex
 # The production route www.jackzhaojin.com/* is NOT in this file on purpose: it was added in the
 # Cloudflare dashboard at the cutover (2026-10-26, about 15:12 ET; Workers & Pages > www-eds-edge >

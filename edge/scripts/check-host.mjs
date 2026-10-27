@@ -6,12 +6,13 @@
  * redirect. On gh (the GitHub Pages site) every sitemap page comes from GitHub Pages instead
  * and a folder redirect stays on gh. Every host but www answers noindex.
  *
- *   node scripts/check-host.mjs --base https://eds.jackzhaojin.com    after a staging deploy
+ *   node scripts/check-host.mjs --base https://www.jackzhaojin.com    after a www deploy
  *   node scripts/check-host.mjs --base https://gh.jackzhaojin.com     after a gh deploy
  *   node scripts/check-host.mjs --local staging|gh|www                 the Worker in-process
  *
  * --local runs src/index.mjs in this process with that environment's vars from wrangler.toml,
- * fetching the real origins (aem.live and www): the same code path without Cloudflare.
+ * fetching the real origins (aem.live and www): the same code path without Cloudflare. Since
+ * 2026-10-27 eds 302s to www (a zone Redirect Rule), so --local staging is the staging check.
  * Exit 1 when any check fails.
  */
 import worker from '../src/index.mjs';
@@ -25,7 +26,7 @@ const ENVS = {
   gh: { host: 'gh.jackzhaojin.com', vars: { MODE: 'github', GITHUB_ORIGIN: 'https://www.jackzhaojin.com' } },
   www: { host: 'www.jackzhaojin.com', vars: { ORIGIN_HOSTNAME: 'main--www-eds--jackzhaojin.aem.live', PROJECT_ORIGIN: 'passthrough', INDEXABLE: 'true' } },
 };
-const base = local ? `https://${ENVS[local].host}` : (opt('--base') || 'https://eds.jackzhaojin.com');
+const base = local ? `https://${ENVS[local].host}` : (opt('--base') || 'https://www.jackzhaojin.com');
 const host = new URL(base).host;
 const github = local ? ENVS[local].vars.MODE === 'github' : host.startsWith('gh.');
 const indexable = local ? ENVS[local].vars.INDEXABLE === 'true' : host === 'www.jackzhaojin.com';
