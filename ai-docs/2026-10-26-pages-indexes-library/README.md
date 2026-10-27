@@ -49,3 +49,42 @@ The edge Worker writes them into the served HTML on www; the browser builds the 
 ## Process change
 
 Pixel-perfect gating against gh ended: AGENTS.md and `content/README.md` section 4 now ask for the built-in browser at 1440 and 360, lint, unit and Worker tests, the editability probe and the SEO check. `stardust/` stays as the migration's record.
+
+## Built in parallel
+
+Four background agents and the main thread, on one branch (`v1-1-1`) in its own worktree, each on its own files:
+- research: the DA block library and Experience Workspace; best-in-class talk and project pages;
+- `talk-pages` (`content/talks/**`): the nine pages and the hub;
+- `portfolio-pages` (`content/portfolio/**`): the eleven pages and the hub;
+- `block-library` (`content/docs/library/**`, `stardust/scripts/build-block-library.mjs`): 35 block documents (91 variants, examples copied from real pages, the design system page's first) and 5 templates;
+- the main thread: the code, the index config, the cross-site links, the docs, the release, the Worker, the publishing.
+
+## Shipped (2026-10-26, about 21:00 to 22:00 ET)
+
+- **Release `v1.1.1`** (PR 3, squash `9504361`, tag and `release/1-1-1`). PR checks: build and PageSpeed pass.
+- **Index config** live (`hlx-config/2026-10-26-listing-indexes/`): talks at `/talks/**`, portfolio new, `/docs/**` out of the general index.
+- **Published:** the 9 talk pages, the 11 project pages, home, the design system page and 22 articles (their links), the redirects sheet (126 rows), then the three hubs once the Worker was live. The nine records unpublished and their index rows cleared.
+- **Worker** v1.1.1 on staging (`63c0f8a3`) and www (`bedb628f`), recorded in `jack-dev-server-configs/server/cloudflare/history.md`.
+- **Block library** previewed (never published) and enabled in the site's DA config (`hlx-config/2026-10-26-block-library/`).
+
+## Verified
+
+- Unit tests 21/21, Worker tests 19/19, lint clean (one existing warning).
+- `check-host.mjs` passes on eds and www.
+- www's raw HTML: `/writing/` 29 rows, `/talks/` 9, `/portfolio/` 11, one generated graph each; a talk page's Event (with the VideoObject on the two recorded talks), a project page's SoftwareSourceCode.
+- `/talks-index.json` 9 rows, `/portfolio-index.json` 11, `/writing-index.json` 29; the sitemap 54 URLs (the 19 indexable new pages in).
+- `seo-check.mjs` on www: 56 pages and fragments, 327 JSON-LD and social image URLs, **0 problems** (14 before: the `/portfolio/assets/` links now point at media copies).
+- In the built-in browser: talk and project pages at 1440 and 360 (no overflow; the footer wraps), the portfolio hub (gantt bars open the pages, no year rail, 11 rows, old anchors land), and the library in Experience Workspace (blocks list, variant preview, insert, the five templates).
+
+## Gaps Jack would fill (no copy was invented)
+
+- **columbus-ai-2025:** one sentence, no links (noindex until it has more).
+- **denison-2026:** one sentence; no event page or recording.
+- **adaptto-2026:** one sentence; the adaptTo recap article has the talk's slides PDF and a recap video worth linking.
+- **adaptto-2026-lightning:** one sentence; no event link or slides.
+- **aem-rockstar-2024:** its "View event source" link now redirects to the Adobe Summit 2026 home page (dead in effect; the hub had it too).
+- **columbus-ai-2026-talk and -panel:** no recording or slides; the talk still says "Write-up in progress".
+- **Projects:** STAR (103 words), Shadow (146) and CIAM (161) are the thinnest; Bruce, CIAM and STAR have no image of their own for social cards; Anima, Postal and Rockstar's first images are SVGs, which most social cards don't show.
+- **Portfolio hub copy:** the gantt's fallback still says "written up in full below" (shown only when the chart can't draw).
+- **The Markdown copy** of a generated hub (`index.md`) shows only the Source row.
+- **DA:** the nine record documents under `/talks/records/` and the scratch `/drafts/library-check` remain in DA; deleting them is Jack's call.

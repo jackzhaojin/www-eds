@@ -17,7 +17,7 @@ Everything below is a stop point from the plan (Jack's call, his credentials or 
 
 
 - Experience Workspace enablement: `ew.enabled` in the DA config `flags` tab and the Sidekick `editUrlPattern`.
-- The block library sheet (rows listed in `stardust/rollout/streams.md`, design system section).
+- ~~The block library sheet~~: done in v1.1.1 (2026-10-26): 35 blocks, 91 variants and 5 templates under `/docs/library/`, enabled in the site's DA config (`hlx-config/2026-10-26-block-library/`).
 - The query index, so the writing listing reads `/query-index.json`, with the article metadata it needs.
 - ~~Redirects~~, ~~the sitemap~~, ~~robots~~, ~~bulk metadata~~, ~~JSON-LD~~: done (above). Headers: none needed (www sets none). GA4 in `consented.js` (decision 9) is still open.
 - Push invalidation: the zone ID and a Cache Purge token in the EDS site config (Jack creates the token).

@@ -1,0 +1,28 @@
+{
+  "total": 5,
+  "limit": 5,
+  "offset": 0,
+  "data": [
+    {
+      "key": "Article",
+      "value": "https://content.da.live/jackzhaojin/www-eds/docs/library/templates/article"
+    },
+    {
+      "key": "Static page",
+      "value": "https://content.da.live/jackzhaojin/www-eds/docs/library/templates/static"
+    },
+    {
+      "key": "Listing hub",
+      "value": "https://content.da.live/jackzhaojin/www-eds/docs/library/templates/listing"
+    },
+    {
+      "key": "Talk page",
+      "value": "https://content.da.live/jackzhaojin/www-eds/docs/library/templates/talk"
+    },
+    {
+      "key": "Project page",
+      "value": "https://content.da.live/jackzhaojin/www-eds/docs/library/templates/project"
+    }
+  ],
+  ":type": "sheet"
+}

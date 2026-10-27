@@ -107,46 +107,30 @@ The replica gates (`stardust/scripts/replica/`) still run if a pixel comparison 
 
 ## Listing pages: authored once, generated from the index
 
-A listing page (the writing and talks hubs) is authored as a hero, one listing block and the
-page metadata. The block has a single row, `Source | /writing-index.json` (block **Writing
-index**) or `Source | /talks-index.json` (block **Row list (talks, dynamic)**). Never author
-its rows or a `json-ld` metadata row: both are generated from the index.
+Writing, talks and the portfolio each have one page per item and a hub that lists them (since v1.1.1). A hub is authored as a hero, one listing block and the page metadata. The block has a single row: `Source | /writing-index.json` (block **Writing index**), `Source | /talks-index.json` (block **Row list (talks, dynamic)**) or `Source | /portfolio-index.json` (block **Row list (projects, dynamic)**). Never author its rows or a `json-ld` metadata row: both are generated from the index. The portfolio hub also keeps its gantt, career notes and smaller repos as authored blocks.
 
-- **On www** the edge Worker serves the page with the rows inside the block and one JSON-LD
-  graph in the head (Person, WebSite, CollectionPage, BreadcrumbList, and an ItemList of the
-  visible rows), so crawlers that don't run JavaScript get the whole list
-  ([edge/README.md](../edge/README.md), `src/listings.mjs`). The Markdown copy
-  (`<path>index.md`) isn't rewritten: it shows the Source row.
-- **On preview hosts** (aem.page, no Worker) the browser builds the same rows and graph from
-  the same code (`scripts/listing-cells.js`, `writing-index.js`, `talks-index.js`,
-  `collection-schema.js`).
-- **Publishing a source updates the list.** An article (its `listing-*` metadata) or a talk
-  record goes into its index when published; www serves the new list within 5 minutes (the
-  Worker's cache of the index, purged sooner by the publish). The hub itself isn't republished.
+- **On www** the edge Worker serves the hub with the rows inside the block and one JSON-LD graph in the head (Person, WebSite, CollectionPage, BreadcrumbList, and an ItemList of the visible rows), so crawlers that don't run JavaScript get the whole list ([edge/README.md](../edge/README.md), `src/listings.mjs`). The Markdown copy (`<path>index.md`) isn't rewritten: it shows the Source row.
+- **On preview hosts** (aem.page, no Worker) the browser builds the same rows and graph from the same code (`scripts/listing-cells.js`, `writing-index.js`, `talks-index.js`, `portfolio-index.js`, `collection-schema.js`).
+- **Publishing a page updates its list.** An article, talk page or project page goes into its index when published; www serves the new list within 5 minutes (the Worker's cache of the index, purged sooner by the publish). The hub itself isn't republished. Unpublishing removes a page from its index, but only while the index's definition still matches that path (`hlx-config/2026-10-26-listing-indexes/`, step 5).
+- **Check a hub before it publishes:** `node edge/scripts/preview-listing.mjs` serves a preview host through the Worker's render, so view-source shows what crawlers will get.
 
-**Writing:** `/writing-index.json` indexes the article documents. The title and date come from
-the h1 and `published-time`; optional `listing-*` metadata owns the card: summary, image
-(a public www media URL), pipe-separated topics, reading and video times, the related talk
-link and note, the watch link, search keywords and comma-separated keep-together title runs.
-Without them the article's description and social image are the card's.
+**Writing:** `/writing-index.json` indexes the article documents. The title and date come from the h1 and `published-time`; optional `listing-*` metadata owns the card: summary, image (a public www media URL), pipe-separated topics, reading and video times, the related talk link and note, the watch link, search keywords and comma-separated keep-together title runs. Without them the article's description and social image are the card's.
 
-**Talks:** `/talks-index.json` indexes the records in `talks/records/`. A record's h1 is the
-title and its link list the talk's links. Metadata carries `talk-id`, optional
-space-separated `talk-aliases` (older anchors that still land on the row), `talk-order`
-(ascending), the display `talk-date` as authored (keep a partial date partial), `talk-kind`,
-`talk-event`, `talk-status` and the description. Records stay `noindex, follow`, out of the
-general index and the sitemap (`hlx-config/query.yaml`).
+**Talks:** `/talks-index.json` indexes the talk pages, `talks/<id>/index.html` (web path `/talks/<id>/`). A page is a `hero page` (breadcrumb, the h1 title, the event line), then the date and kind line, the description, the recording as a lone YouTube link paragraph (it embeds), the status line, a `proof-links` block with the talk's links (the index reads them there), and a link back to `/talks/`; template `static`. Metadata carries `talk-id`, optional space-separated `talk-aliases` (older anchors that still land on the hub row), `talk-order` (ascending), the display `talk-date` as authored (keep a partial date partial), `talk-kind`, `talk-event` ("Event · Place · with co-speakers"), `talk-status`, the description (the hub row shows it in full), and for a recorded talk `video-uploaded` and `video-duration` (from the YouTube video; they make the page's VideoObject). A thin talk (one sentence) is `robots: noindex, follow`: it still lists on the hub. The first records, under `/talks/records/`, are unpublished and redirect to the pages.
 
-**During review** `writing/index.html` and `talks/index.html` stay as they are (static rows);
-`drafts/writing-index/` and `drafts/talks-index/` are the generated versions, preview only.
-The switch, after the release that carries the Worker is deployed: replace each hub's rows
-with the Source row, drop its `json-ld` row, keep its other metadata (and its indexability:
-never carry over the drafts' `noindex` or `canonical`). Switch a hub before the Worker is
-live and crawlers get an empty list. Keep draft paths out of production publish batches.
+**Portfolio:** `/portfolio-index.json` indexes the project pages, `portfolio/<slug>/index.html`. A page is the project's chapter section (style `chapter, <accent>`), its chapter head's title the page's h1 with the italic subtitle as the tagline, then a link back to `/portfolio/`; template `portfolio`. Metadata carries the title (`<name> | Jack Jin`, the list shows the name), the description, `image`, `project-order` (also the chapter numeral), `project-dates` (`2026` or `2025 to 2026`), `project-kind` (the build method) and `project-anchors` (the old `/portfolio/#ch-*` and `#p-*` ids, so old links land on the hub row). A GitHub link on the page makes its JSON-LD SoftwareSourceCode. On the hub's gantt, a project's label links to its page.
 
-The records, the Admin API trail and the validation are in
-[the talks index record](../ai-docs/2026-10-26-talks-json/README.md) and
-[the writing index record](../ai-docs/2026-10-26-writing-index/README.md).
+**A talk or project page's JSON-LD** is generated too, from its own metadata and links (`scripts/page-schema.js`): the WebPage, its BreadcrumbList and an Event (talks) or SoftwareSourceCode or CreativeWork (projects). Don't add a `json-ld` row: a page with its own JSON-LD keeps it and gets nothing generated.
+
+The records, the Admin API trail and the validation are in [the v1.1.1 record](../ai-docs/2026-10-26-pages-indexes-library/README.md), [the talks index record](../ai-docs/2026-10-26-talks-json/README.md) and [the writing index record](../ai-docs/2026-10-26-writing-index/README.md).
+
+## The block library (Experience Workspace)
+
+The editor's Library (Blocks and Templates) reads `/docs/library/`: one document per block at `docs/library/blocks/<block>.html`, each variant a section with an `h2` naming it, the block table copied from a real page, and a `library-metadata` block (`description`, `searchtags`); the `blocks` sheet (`docs/library/blocks.json`); the page templates at `docs/library/templates/<name>.html` (placeholder text, no `json-ld`); and the `templates` sheet. The site's DA config points at the two sheets ([hlx-config/2026-10-26-block-library/](../hlx-config/2026-10-26-block-library/EXECUTION.md)).
+
+- **Rebuild it** after a block or variant changes: `node stardust/scripts/build-block-library.mjs --paths-out <scratch>/library-paths.txt --upload --preview`, then push the documents with `deploy-batch.mjs ... --paths <scratch>/library-paths.txt --no-publish`. Every example is pinned to a page in this folder, so a run fails loudly when that page no longer holds it.
+- **Preview only, never publish:** www would serve them. The query index leaves `/docs/**` out, but a `deploy-batch.mjs` run without `--paths` (or with these paths and no `--no-publish`) would publish them. Keep `/docs/**` out of every publish batch.
+- **In the editor:** Experience Workspace's tools panel menu > Library > Blocks (the Insert block dialog: expand a block, preview a variant, + inserts it) or Templates (preview, insert).
 
 ## Stop points
 

@@ -1,0 +1,55 @@
+<body>
+  <header></header>
+  <main><div><h2>Code</h2><div class="code"><div><div><p>docs/sample-brain/animamesh.config.json, lines 7 to 11</p><p><a href="https://github.com/jackzhaojin/anima-mesh/blob/0874733/docs/sample-brain/animamesh.config.json#L7-L11">0874733 on GitHub</a></p></div></div><div><div><pre><code>  "engine": {
+    "repo": "github.com/jackzhaojin/anima-mesh",
+    "ref": "v0.12.0",
+    "localPath": "../.."
+  },</code></pre></div></div></div><div class="library-metadata"><div><div><p>description</p></div><div><p>A code excerpt on the night ground with a bar naming the file and lines and linking to the source, its lines numbered and colored.</p></div></div><div><div><p>searchtags</p></div><div><p>code, snippet, source, github, syntax, excerpt</p></div></div></div></div><div><h2>Code (wrap)</h2><div class="code wrap"><div><div><p>skills/conversation-logger/SKILL.md, lines 24 to 26</p><p><a href="https://github.com/jackzhaojin/ai-builder-kit/blob/93cfafd/skills/conversation-logger/SKILL.md#L24-L26">93cfafd on GitHub</a></p></div></div><div><div><pre><code>if [ "$CLAUDECODE" = "1" ]; then echo "claude-code"
+elif [ -d "$HOME/.codex" ]; then echo "codex"
+else echo "unknown"; fi</code></pre></div></div></div><div class="library-metadata"><div><div><p>description</p></div><div><p>A code excerpt whose bar label wraps while the source link stays on one line, for a long file path.</p></div></div><div><div><p>searchtags</p></div><div><p>code, snippet, long path, wrap, bar</p></div></div></div></div><div><h2>Code (stack)</h2><div class="code stack"><div><div><p>lib/daos/aiClient.ts, lines 5 to 17</p><p><a href="https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/lib/daos/aiClient.ts#L5-L17">75de1c3 on GitHub</a></p></div></div><div><div><pre><code>export function getAIClient() {
+  const endpoint = process.env.AZURE_OPENAI_ENDPOINT || 'https://story-generation-v1.openai.azure.com/';
+  const credential = new DefaultAzureCredential();
+
+  return new AzureOpenAI({
+    endpoint: endpoint,
+    apiVersion: '2024-02-01',
+    azureADTokenProvider: async () =&gt; {
+      const token = await credential.getToken('https://cognitiveservices.azure.com/.default');
+      return token?.token || '';
+    }
+  });
+}</code></pre></div></div></div><div class="library-metadata"><div><div><p>description</p></div><div><p>A code excerpt whose bar stacks the file label over the source link on phones.</p></div></div><div><div><p>searchtags</p></div><div><p>code, snippet, phone, mobile, stack</p></div></div></div></div><div><h2>Code (prose, stack)</h2><div class="code prose stack"><div><div><p>deploy-with-azure.sh, from the June 19 session notes, lines 88 to 110</p><p><a href="https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/75de1c3/docs/ai-log/2025-06-19-ec2-azure-credentials-setup/README.md#L88-L110">75de1c3 on GitHub</a></p></div></div><div><div><pre><code>#!/bin/bash
+
+# Load Azure credentials from Parameter Store
+source ~/get-azure-secrets.sh
+
+# Update container
+sudo docker stop shadow-pivot-ai 2&gt;/dev/null || true
+sudo docker rm shadow-pivot-ai 2&gt;/dev/null || true
+docker pull ghcr.io/jackzhaojin/shadow-pivot-ai-agentv2:release-latest
+
+sudo docker run -d \
+  --name shadow-pivot-ai \
+  -p 80:3000 \
+  --restart unless-stopped \
+  -e AZURE_CLIENT_ID="$AZURE_CLIENT_ID" \
+  -e AZURE_CLIENT_SECRET="$AZURE_CLIENT_SECRET" \
+  -e AZURE_TENANT_ID="$AZURE_TENANT_ID" \
+  -e AZURE_SUBSCRIPTION_ID="$AZURE_SUBSCRIPTION_ID" \
+  ghcr.io/jackzhaojin/shadow-pivot-ai-agentv2:release-latest
+
+echo "&#128640; Deployment complete with Azure authentication!"
+docker ps | grep shadow-pivot-ai
+```</code></pre></div></div></div><div class="library-metadata"><div><div><p>description</p></div><div><p>A code excerpt whose long lines wrap under their text with a hanging indent instead of scrolling, with the stacked bar on phones.</p></div></div><div><div><p>searchtags</p></div><div><p>code, wrap, log, notes, script, prose</p></div></div></div></div><div><h2>Code (prose, plain, stack)</h2><div class="code prose plain stack"><div><div><p>AGENTS.md on June 13, lines 5 to 7</p><p><a href="https://github.com/jackzhaojin/shadow-pivot-ai-agentv2/blob/98f058b/AGENTS.md#L5-L7">98f058b on GitHub</a></p></div></div><div><div><pre><code>We're on 1.0 at the moment, do not do 1.1 yet.
+
+Also I will only ask you take on a bite size, if you finish the 1.2.3 (example) you're on, do not move onto 1.2.4 or 1.3.1.</code></pre></div></div></div><div class="library-metadata"><div><div><p>description</p></div><div><p>Wrapping lines without syntax colors, for a prompt or other plain text kept in a source file, with the stacked bar on phones.</p></div></div><div><div><p>searchtags</p></div><div><p>code, prompt, plain, no colors, wrap, text</p></div></div></div></div><div><h2>Code (wrap, prose)</h2><div class="code wrap prose"><div><div><p>ai-docs/prompt-logs/2026-02-22-01-v1-3-pre-plan.md, lines 60 to 68</p><p><a href="https://github.com/jackzhaojin/ciam-demo/blob/a5195f9/ai-docs/prompt-logs/2026-02-22-01-v1-3-pre-plan.md#L60-L68">a5195f9 on GitHub</a></p></div></div><div><div><pre><code>### Prompt 4: Four Architecture Decisions (10:25 AM)
+
+&gt; (Answered refined 4 questions:)
+&gt; - Auth code flow: Headless OIDC + updated the design markdown
+&gt; - Java 8 compat: Portable utility classes (Recommended)
+&gt; - Session mgmt: Focus spec on auth only
+&gt; - Login page arch: Next.js client component (Recommended)
+
+&rarr; Response: Read updated `input-design-pkce.md` (now with sequence diagram showing React&rarr;Keycloak&rarr;Spring flow), wrote full v1.3 incremental PRD.</code></pre></div></div></div><div class="library-metadata"><div><div><p>description</p></div><div><p>Wrapping lines and a wrapping bar label, for a prompt log or notes file with a long path.</p></div></div><div><div><p>searchtags</p></div><div><p>code, prompt log, markdown, wrap, prose</p></div></div></div></div></main>
+  <footer></footer>
+</body>

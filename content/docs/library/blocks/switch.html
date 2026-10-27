@@ -1,0 +1,20 @@
+<body>
+  <header></header>
+  <main><div><h2>Switch</h2><div class="switch"><div><div><p>Where the edge puts the bar</p></div></div><div><div><p>Before &lt;main&gt;, what ships</p></div><div><p>The DOM after aem.js runs</p><pre><code>&lt;body&gt;
+  &lt;header&gt;&hellip;&lt;/header&gt;
+  &lt;aside class="edge-greeting"&gt;   added by the edge
+  &lt;main&gt;
+    &lt;div class="section"&gt;
+      &lt;div class="default-content-wrapper"&gt;
+        &lt;p&gt; &lt;h1&gt; &lt;p&gt; &hellip;
+    &lt;div class="section"&gt;
+      &hellip;</code></pre><ul><li>mark: &lt;aside class="edge-greeting"&gt;</li><li>note: added by the edge</li></ul></div><div><p>The page</p><picture><source srcset="https://content.da.live/jackzhaojin/www-eds/media/writing/2026-09-20-aem-edge-functions-google-sign-in/bar-before-main.png"><source srcset="https://content.da.live/jackzhaojin/www-eds/media/writing/2026-09-20-aem-edge-functions-google-sign-in/bar-before-main.png" media="(min-width: 600px)"><img src="https://content.da.live/jackzhaojin/www-eds/media/writing/2026-09-20-aem-edge-functions-google-sign-in/bar-before-main.png" alt="The Block Library page with the green guest bar under the navigation and the page content in its normal place" loading="lazy"></picture><p>console: no errors</p></div></div><div><div><p>Inside &lt;main&gt;, as a &lt;div&gt;</p></div><div><p>The DOM after aem.js runs</p><pre><code>&lt;main&gt;
+  &lt;div class="edge-greeting section edge-greeting__inner-container"&gt;
+    &lt;div class="edge-greeting__inner-wrapper"&gt;
+      &lt;div class="edge-greeting__inner block"&gt;
+        &lt;div class="edge-greeting__row"&gt;
+  &lt;div class="section"&gt;
+    &lt;div class="default-content-wrapper"&gt;
+      &lt;p&gt; &lt;h1&gt; &lt;p&gt; &hellip;</code></pre><ul><li>mark: &lt;div class="edge-greeting</li><li>add: section edge-greeting__inner-container</li><li>mark: "&gt;</li><li>add: &lt;div class="edge-greeting__inner-wrapper"&gt;</li><li>mark: &lt;div class="edge-greeting__inner</li><li>add: block</li><li>mark: "&gt;</li></ul></div><div><p>The page</p><picture><source srcset="https://content.da.live/jackzhaojin/www-eds/media/writing/2026-09-20-aem-edge-functions-google-sign-in/bar-inside-main-div.png"><source srcset="https://content.da.live/jackzhaojin/www-eds/media/writing/2026-09-20-aem-edge-functions-google-sign-in/bar-inside-main-div.png" media="(min-width: 600px)"><img src="https://content.da.live/jackzhaojin/www-eds/media/writing/2026-09-20-aem-edge-functions-google-sign-in/bar-inside-main-div.png" alt="The same page with the bar treated as a section: the page content below it is pushed down" loading="lazy"></picture><p>404 /blocks/edge-greeting__inner/edge-greeting__inner.css<br>failed to load block edge-greeting__inner<br>404 /blocks/edge-greeting__inner/edge-greeting__inner.js<br>failed to load module for edge-greeting__inner</p></div></div><div><div><p>Reproduced on September 27 on the live aem.page, with the real bar from <code>src/lib/personalize.js</code> injected as a <code>&lt;div&gt;</code> inside <code>&lt;main&gt;</code>. Highlighted: what aem.js added. An <code>&lt;aside&gt;</code> inside <code>&lt;main&gt;</code> is left alone, because aem.js only decorates <code>&lt;div&gt;</code>s. Outside <code>&lt;main&gt;</code>, it doesn't matter.</p></div></div></div><div class="library-metadata"><div><div><p>description</p></div><div><p>Two or more modes of one explainer behind a radio switch, one row per mode with its label and columns of code, images and console lines.</p></div></div><div><div><p>searchtags</p></div><div><p>switch, toggle, modes, explainer, code, compare</p></div></div></div></div></main>
+  <footer></footer>
+</body>
