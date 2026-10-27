@@ -96,6 +96,11 @@ EDS content and site configuration are shared across code branches. A worktree i
 code, not an overlay experiment. Site/Experience Workspace configuration and Cloudflare
 changes remain Jack's stop points in AGENTS.md.
 
+**Since Claude's review (2026-10-26)** the rows and the whole JSON-LD graph are generated:
+by the edge Worker on www, in the served HTML, and by the browser on preview hosts. The hub
+documents carry no rows and no `json-ld`. See
+[the writing index record](../2026-10-26-writing-index/README.md#edge-rendering-and-generated-json-ld-claudes-review-2026-10-26).
+
 ## Verification so far
 
 - The live talks HTTP response contains nine talk headings and an ItemList with nine items.

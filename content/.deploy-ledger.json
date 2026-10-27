@@ -358,5 +358,21 @@
     "preview": 200,
     "live": 200,
     "verify": "ok"
+  },
+  "/drafts/talks-index/index": {
+    "status": "previewed",
+    "attempts": 1,
+    "ts": "2026-10-27T00:30:06.729Z",
+    "put": 200,
+    "preview": 200,
+    "verify": "ok"
+  },
+  "/drafts/writing-index/index": {
+    "status": "previewed",
+    "attempts": 1,
+    "ts": "2026-10-27T00:30:06.730Z",
+    "put": 200,
+    "preview": 200,
+    "verify": "ok"
   }
 }

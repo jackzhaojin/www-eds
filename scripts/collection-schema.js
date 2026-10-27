@@ -1,52 +1,121 @@
-/** Keep the collection's single ItemList aligned with its API-derived entities. */
+/**
+ * The structured data of a listing page, generated from its records and never authored: the
+ * site's Person and WebSite, the CollectionPage, its BreadcrumbList and the ItemList of the
+ * visible rows. The edge Worker writes it into the served HTML (edge/src/listings.mjs); on
+ * preview hosts the browser adds it (syncCollectionSchema), from the same records either way.
+ */
+const SITE = 'https://www.jackzhaojin.com/';
+
+export const PERSON = {
+  '@type': 'Person',
+  '@id': `${SITE}#person`,
+  name: 'Jack Jin',
+  url: SITE,
+  jobTitle: 'Associate Director',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Accenture',
+    department: { '@type': 'Organization', name: 'Adobe Business Group' },
+  },
+  homeLocation: { '@type': 'Place', name: 'Columbus, Ohio' },
+  sameAs: ['https://www.linkedin.com/in/jackjin', 'https://github.com/jackzhaojin'],
+  knowsAbout: [
+    'Adobe Experience Manager',
+    'Edge Delivery Services',
+    'DA.live',
+    'AI agents',
+    'Model Context Protocol',
+    'Cloud architecture',
+  ],
+  award: [
+    'Adobe Experience Manager Champion, class of 2026-2027',
+    'AEM Rockstar winner, Adobe Summit 2024',
+  ],
+};
+
+export const WEBSITE = {
+  '@type': 'WebSite',
+  '@id': `${SITE}#website`,
+  url: SITE,
+  name: 'Jack Jin',
+  publisher: { '@id': PERSON['@id'] },
+};
+
+/**
+ * The page's whole graph. title is the page title ("Technical Writing | Jack Jin"); the
+ * breadcrumb names the page without the site suffix.
+ * @param {{canonical: string, title: string, description?: string, items: object[]}} page
+ */
+export function collectionGraph({
+  canonical, title, description, items,
+}) {
+  const name = title.replace(/\s*\|\s*Jack Jin\s*$/, '');
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      PERSON,
+      WEBSITE,
+      {
+        '@type': 'CollectionPage',
+        '@id': `${canonical}#webpage`,
+        url: canonical,
+        name: title,
+        ...(description ? { description } : {}),
+        isPartOf: { '@id': WEBSITE['@id'] },
+        about: { '@id': PERSON['@id'] },
+        mainEntity: { '@id': `${canonical}#collection` },
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem', position: 1, name: 'Home', item: SITE,
+          },
+          {
+            '@type': 'ListItem', position: 2, name, item: canonical,
+          },
+        ],
+      },
+      {
+        '@type': 'ItemList',
+        '@id': `${canonical}#collection`,
+        numberOfItems: items.length,
+        itemListElement: items.map((item, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          item: { author: { '@id': PERSON['@id'] }, ...item },
+        })),
+      },
+    ],
+  };
+}
+
+/** The canonical URL of this page, or defaultPath on this host. */
 export function collectionURL(defaultPath) {
   return document.querySelector('link[rel="canonical"]')?.href
     || new URL(defaultPath, window.location.href).href;
 }
 
-export default function syncCollectionItems(items, defaultPath) {
+/**
+ * Browser side: writes the graph into the page's JSON-LD, replacing any CollectionPage graph
+ * already there. items is the item list, or a function of the canonical URL that returns it.
+ */
+export function syncCollectionSchema(items, defaultPath) {
   const canonical = collectionURL(defaultPath);
-  let script;
-  let graph;
-  let page;
-  [...document.querySelectorAll('script[type="application/ld+json"]')].some((candidate) => {
-    try {
-      const parsed = JSON.parse(candidate.textContent);
-      const nodes = parsed['@graph'] || [parsed];
-      const collection = nodes.find((node) => [node['@type']].flat().includes('CollectionPage'));
-      if (!collection) return false;
-      script = candidate;
-      graph = parsed['@graph'] ? parsed : { '@context': 'https://schema.org', '@graph': nodes };
-      page = collection;
-      return true;
-    } catch {
-      return false;
-    }
+  const graph = collectionGraph({
+    canonical,
+    title: document.title,
+    description: document.querySelector('meta[name="description"]')?.content,
+    items: typeof items === 'function' ? items(canonical) : items,
   });
-  if (!graph) {
-    page = {
-      '@type': 'CollectionPage', '@id': `${canonical}#webpage`, url: canonical, name: document.title,
-    };
-    graph = { '@context': 'https://schema.org', '@graph': [page] };
+  const scripts = [...document.querySelectorAll('script[type="application/ld+json"]')];
+  let script = scripts.find((candidate) => candidate.textContent.includes('"CollectionPage"'));
+  if (!script) {
     script = document.createElement('script');
     script.type = 'application/ld+json';
     document.head.append(script);
   }
-  const id = page.mainEntity?.['@id'] || `${canonical}#collection`;
-  const person = graph['@graph'].find((node) => [node['@type']].flat().includes('Person'));
-  const collection = {
-    '@type': 'ItemList',
-    '@id': id,
-    numberOfItems: items.length,
-    itemListElement: items.map((item, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      item: { ...(person ? { author: { '@id': person['@id'] } } : {}), ...item },
-    })),
-  };
-  page.mainEntity = { '@id': id };
-  const existing = graph['@graph'].findIndex((node) => node['@id'] === id);
-  if (existing >= 0) graph['@graph'][existing] = collection;
-  else graph['@graph'].push(collection);
   script.textContent = JSON.stringify(graph);
 }

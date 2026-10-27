@@ -1,4 +1,6 @@
+/** Native writing-index data, as the Writing index rows and the page's ItemList. */
 import loadQueryIndex from './query-index.js';
+import { el, headingId, sitePath } from './listing-cells.js';
 
 const SITE = 'https://www.jackzhaojin.com';
 const text = (value) => (typeof value === 'string' ? value.trim() : '');
@@ -58,63 +60,43 @@ export async function loadWritingIndex(source, fetchData = fetch) {
   return articles.sort((a, b) => b.date.localeCompare(a.date) || a.path.localeCompare(b.path));
 }
 
-const p = (value) => {
-  const el = document.createElement('p');
-  el.textContent = value;
-  return el;
-};
-const link = (href, label) => {
-  const a = document.createElement('a');
-  a.href = href;
-  a.textContent = label;
-  return a;
-};
-const list = (values) => {
-  const ul = document.createElement('ul');
-  values.forEach((value) => {
-    const li = document.createElement('li');
-    li.textContent = value;
-    ul.append(li);
-  });
-  return ul;
-};
+/**
+ * The articles as Writing index rows (scripts/listing-cells.js), the cells the writing-list
+ * decorator reads: meta (date, topics, facts), body (linked heading, summary, talk link and
+ * note, watch link), cover, and the hidden search keywords and keep-together title runs.
+ */
+export function writingRows(articles) {
+  return articles.map((article) => [
+    [
+      article.dateLabel && el('p', {}, article.dateLabel),
+      el('ul', {}, article.topics.map((topic) => el('li', {}, topic))),
+      el('ul', {}, article.facts.map((fact) => el('li', {}, fact))),
+    ],
+    [
+      el('h2', { id: article.headingId || headingId(article.title) }, el('a', { href: article.path }, article.title)),
+      article.summary && el('p', {}, article.summary),
+      article.talkUrl && el('p', {}, el('a', { href: sitePath(article.talkUrl) }, article.talkLabel)),
+      article.talkNote && el('p', {}, article.talkNote),
+      article.watchUrl && el('p', {}, el('a', { href: article.watchUrl }, article.watchLabel)),
+    ],
+    article.image && [el('img', { src: sitePath(article.image), alt: '' })],
+    (article.keywords || article.nowrap) && [
+      article.keywords && el('p', {}, article.keywords),
+      article.nowrap && el('p', {}, article.nowrap),
+    ],
+  ].filter(Boolean).map((cell) => cell.filter(Boolean)));
+}
 
-/** Build the same semantic cells consumed by the shared authored-row decorator. */
-export function writingRows(articles, picture) {
-  return articles.map((article) => {
-    const row = document.createElement('div');
-    const meta = document.createElement('div');
-    if (article.dateLabel) meta.append(p(article.dateLabel));
-    meta.append(list(article.topics), list(article.facts));
-    const body = document.createElement('div');
-    const heading = document.createElement('h2');
-    heading.append(link(article.path, article.title));
-    if (article.headingId) heading.id = article.headingId;
-    body.append(heading);
-    if (article.summary) body.append(p(article.summary));
-    if (article.talkUrl) {
-      const talk = p('');
-      talk.append(link(article.talkUrl, article.talkLabel));
-      body.append(talk);
-    }
-    if (article.talkNote) body.append(p(article.talkNote));
-    if (article.watchUrl) {
-      const watch = p('');
-      watch.append(link(article.watchUrl, article.watchLabel));
-      body.append(watch);
-    }
-    row.append(meta, body);
-    if (article.image) {
-      const cover = document.createElement('div');
-      cover.append(picture(article.image, '', false));
-      row.append(cover);
-    }
-    if (article.keywords || article.nowrap) {
-      const extras = document.createElement('div');
-      if (article.keywords) extras.append(p(article.keywords));
-      if (article.nowrap) extras.append(p(article.nowrap));
-      row.append(extras);
-    }
-    return row;
-  });
+/** The ItemList entries, one per visible row. */
+export function writingSchemaItems(articles) {
+  return articles.map((article) => ({
+    '@type': 'BlogPosting',
+    '@id': `${article.url}#article`,
+    url: article.url,
+    headline: article.title,
+    name: article.title,
+    description: article.summary,
+    ...(article.date ? { datePublished: article.date } : {}),
+    ...(article.image ? { image: article.image.split('?')[0] } : {}),
+  }));
 }

@@ -34,6 +34,31 @@ keep their own normalizers, source models, blocks and draft pages. The existing 
 block and new API block share the same DOM decorator and v3 stylesheet rather than duplicating
 the presentation code.
 
+## Edge rendering and generated JSON-LD (Claude's review, 2026-10-26)
+
+Claude's review found that the drafts' served HTML had no rows and no ItemList: 0 article
+links on the writing draft against 29 on www, and the same for talks. Google renders
+JavaScript, but most AI crawlers (GPTBot, ClaudeBot, PerplexityBot) and agents don't, so the
+switch would have emptied both hubs for them. Jack, on the fix: no manual data entry, JSON-LD
+"code-generated, not authored", and an authoring experience he can demo; then, asked where
+the code should render, "Edge Worker".
+
+- **The hub is authored as one block with a Source row**, and no `json-ld` metadata. Both
+  drafts were cleaned and previewed that way.
+- **One generator, two places.** `scripts/listing-cells.js` holds the rows as data (the cells
+  an author would write); `writingRows`/`talkRows` build them from the index records, and
+  `collectionGraph` (`scripts/collection-schema.js`) builds the page's whole graph: Person,
+  WebSite, CollectionPage, BreadcrumbList and the ItemList of the visible rows. The edge
+  Worker serves them as HTML (`edge/src/listings.mjs`); on preview hosts the browser builds
+  them (`fillFromIndex`, `scripts/query-index.js`). The blocks then decorate them with the
+  existing row code, so a generated row and an authored row render the same.
+- **Checked against www:** run over the real drafts, the edge render gives the same 29
+  writing rows and 9 talk rows as www serves today (text, links, cover media, heading ids and
+  cell structure; only whitespace differs), and one graph per page.
+- **Not covered:** the Markdown copy (`index.md`) still shows only the Source row.
+- **Order of the switch:** the Worker ships with the release (a Cloudflare deploy, Jack's
+  call); only then does each production hub drop its rows and `json-ld` for the Source row.
+
 ## Acceptance and review
 
 - Preserve all 29 existing cards, text, links, covers, ordering and old anchors.

@@ -87,7 +87,7 @@ try {
     },
   }));
   await page.goto(draft);
-  await page.waitForSelector('.row-list[data-talks-state="ready"]');
+  await page.waitForSelector('.row-list[data-talks-state="empty"]');
   assert.equal(await page.locator('.row-list-items > li').count(), 0);
   assert.equal((await schema())[0].numberOfItems, 0);
   assert(await page.getByText('No talks are published yet.').isVisible());

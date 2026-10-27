@@ -1,6 +1,6 @@
-/** Native talks-index data, rendered with the existing row-list markup. */
+/** Native talks-index data, as the row-list talks rows and the page's ItemList. */
 import loadQueryIndex from './query-index.js';
-import syncCollectionItems, { collectionURL } from './collection-schema.js';
+import { el, headingId, sitePath } from './listing-cells.js';
 
 const ID = /^[a-z][a-z0-9-]*$/;
 const string = (value) => (typeof value === 'string' ? value.trim() : '');
@@ -52,72 +52,33 @@ export async function loadTalksIndex(source, fetchData = fetch) {
   return talks.sort((a, b) => a.order - b.order || a.id.localeCompare(b.id));
 }
 
-const paragraph = (text) => {
-  const p = document.createElement('p');
-  p.textContent = text;
-  return p;
-};
-const slot = (className, ...nodes) => {
-  const div = document.createElement('div');
-  div.className = className;
-  div.append(...nodes);
-  return div;
-};
-
-/** API copy is authored in the record documents; all inserted values remain text. */
-export function renderTalks(talks) {
-  const list = document.createElement('ol');
-  list.className = 'row-list-items';
-  talks.forEach((talk) => {
-    const li = document.createElement('li');
-    li.id = talk.id;
-    const when = slot('row-list-when');
-    if (talk.date) when.append(slot('row-list-date', paragraph(talk.date)));
-    if (talk.kind) when.append(slot('row-list-type', paragraph(talk.kind)));
-    if (when.children.length) li.append(when);
-    const heading = document.createElement('h2');
-    heading.textContent = talk.title;
-    heading.id = talk.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-    const body = slot('row-list-body', slot('row-list-title', heading));
-    if (talk.event) body.append(slot('row-list-event', paragraph(talk.event)));
-    if (talk.description) {
-      body.append(slot('row-list-description', ...talk.description.split(/\n\n/).map(paragraph)));
-    }
-    const links = slot('row-list-links cta-slot');
-    talk.links.forEach((link) => {
-      const p = paragraph('');
-      p.className = 'text-link-wrapper';
-      const a = document.createElement('a');
-      a.className = 'text-link';
-      a.href = link.url;
-      a.textContent = link.label;
-      p.append(a);
-      links.append(p);
-    });
-    const cluster = slot('row-list-cluster');
-    if (links.children.length) cluster.append(links);
-    if (talk.status) cluster.append(slot('row-list-status', paragraph(talk.status)));
-    body.append(cluster);
-    li.append(body);
-    talk.aliases.forEach((id) => {
-      const target = document.createElement('span');
-      target.id = id;
-      li.firstElementChild.prepend(target);
-    });
-    list.append(li);
-  });
-  return list;
+/**
+ * The talks as row-list talks rows (scripts/listing-cells.js), the three cells an author writes:
+ * when (date, kind), body (heading, event, description, links, status) and anchors (the id,
+ * then the older ids that still land on the row).
+ */
+export function talkRows(talks) {
+  return talks.map((talk) => [
+    [el('p', {}, talk.date), talk.kind && el('p', {}, talk.kind)],
+    [
+      el('h2', { id: headingId(talk.title) }, talk.title),
+      talk.event && el('p', {}, talk.event),
+      ...talk.description.split(/\n\n/).filter(Boolean).map((text) => el('p', {}, text)),
+      ...talk.links.map((link) => el('p', {}, el('a', { href: sitePath(link.url) }, link.label))),
+      talk.status && el('p', {}, talk.status),
+    ],
+    [el('p', {}, [talk.id, ...talk.aliases].join(' '))],
+  ].map((cell) => cell.filter(Boolean)));
 }
 
-/** Update the page graph from the same records as the visible list. */
-export function syncTalkSchema(talks) {
-  const canonical = collectionURL('/talks/');
-  syncCollectionItems(talks.map((talk) => ({
+/** The ItemList entries, one per visible row. */
+export function talkSchemaItems(talks, canonical) {
+  return talks.map((talk) => ({
     '@type': 'CreativeWork',
     '@id': `${canonical}#${talk.id}`,
     url: `${canonical}#${talk.id}`,
     name: talk.title,
     description: talk.description,
     ...(talk.kind ? { genre: talk.kind } : {}),
-  })), '/talks/');
+  }));
 }

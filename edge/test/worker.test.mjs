@@ -169,3 +169,61 @@ test('project sites and gh keep their own cache-control', async () => {
   const gh = await worker.fetch(get('https://gh.jackzhaojin.com/writing/'), GH, {});
   assert.equal(gh.headers.get('cache-control'), 'max-age=900');
 });
+
+/* Dynamic listings: the hub is authored as one block with a Source row; the edge fills it. */
+const HUB = `<html><head><title>Talks &amp; Presentations | Jack Jin</title>
+<link rel="canonical" href="https://www.jackzhaojin.com/talks/">
+<meta name="description" content="Talks.">
+<script type="application/ld+json">{"@graph":[{"@type":"CollectionPage"}]}</script>
+</head><body><main><div><div class="row-list talks dynamic">
+  <div><div>Source</div><div><a href="/talks-index.json">/talks-index.json</a></div></div>
+</div></div></main></body></html>`;
+const TALK = {
+  path: '/talks/records/example', id: 'example', aliases: 'older-example', order: '1', date: 'September 29, 2026',
+  kind: 'Conference session', title: 'OpenClaw: 24/7 <agents>', event: 'adaptTo() 2026', description: 'A talk.',
+  status: '', linkLabels: ['Explore the project'], linkUrls: ['https://www.jackzhaojin.com/portfolio/#ch-factory'],
+};
+const serveHub = (index) => {
+  globalThis.fetch = async (input) => {
+    const req = input instanceof Request ? input : new Request(input);
+    calls.push(req);
+    if (new URL(req.url).pathname === '/talks-index.json') return index();
+    return new Response(HUB, { headers: { 'content-type': 'text/html; charset=utf-8', etag: '"origin"', 'content-length': String(HUB.length) } });
+  };
+};
+
+test('www: a dynamic listing is served with its rows and one generated JSON-LD graph', async () => {
+  serveHub(() => Response.json({ total: 1, offset: 0, limit: 200, data: [TALK] }));
+  const res = await worker.fetch(get('https://www.jackzhaojin.com/talks/'), WWW, {});
+  const html = await res.text();
+  assert.equal(calls[1].url, 'https://main--www-eds--jackzhaojin.aem.live/talks-index.json?offset=0&limit=200');
+  assert.match(html, /<h2 id="openclaw-247-agents">OpenClaw: 24\/7 &lt;agents&gt;<\/h2>/);
+  assert.match(html, /<a href="\/portfolio\/#ch-factory">Explore the project<\/a>/);
+  assert.match(html, /<div><p>example older-example<\/p><\/div><\/div><\/div><\/div><\/main>/);
+  const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+  assert.equal(ld.length, 1, 'the authored CollectionPage graph is replaced');
+  const list = ld[0]['@graph'].find((node) => node['@type'] === 'ItemList');
+  assert.equal(list.itemListElement[0].position, 1);
+  assert.equal(list.itemListElement[0].item['@id'], 'https://www.jackzhaojin.com/talks/#example');
+  assert.equal(ld[0]['@graph'].find((node) => node['@type'] === 'BreadcrumbList').itemListElement[1].name, 'Talks & Presentations');
+  assert.equal(res.headers.get('etag'), null, 'the origin validators no longer describe the body');
+  assert.equal(res.headers.get('cache-control'), 'max-age=600, must-revalidate');
+});
+
+test('www: a listing whose index fails goes out as authored, for the browser to fill', async () => {
+  serveHub(() => new Response('Unavailable', { status: 503 }));
+  const res = await worker.fetch(get('https://www.jackzhaojin.com/talks/'), WWW, {});
+  assert.equal(await res.text(), HUB);
+  assert.equal(res.headers.get('etag'), '"origin"');
+});
+
+test('a page without a listing keeps its body and validators; a fragment is left alone', async () => {
+  respond({ 'content-type': 'text/html; charset=utf-8', etag: '"page"' });
+  const page = await worker.fetch(get('https://www.jackzhaojin.com/privacy/'), WWW, {});
+  assert.equal(await page.text(), 'x');
+  assert.equal(page.headers.get('etag'), '"page"');
+  assert.equal(calls.length, 1);
+  respond({ 'content-type': 'text/html; charset=utf-8' });
+  await worker.fetch(get('https://www.jackzhaojin.com/footer.plain.html'), WWW, {});
+  assert.equal(calls.length, 2, 'a fragment is not a page: no index request');
+});
