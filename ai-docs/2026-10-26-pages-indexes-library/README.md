@@ -46,6 +46,22 @@ The edge Worker writes them into the served HTML on www; the browser builds the 
 - Blocks: a `blocks` sheet at `/docs/library/blocks` (`name`, `path`) and one document per block, each variant in its own section under a heading, with a `library-metadata` block (`description`, `searchtags`). Templates: a `templates` sheet (`key`, `value`) of full pages.
 - Library documents are previewed, never published (www would serve them), and kept out of the index (`/docs/**`).
 
+## Top-notch pages: the bar, and what was applied
+
+The research's bar for a talk or project page, without inventing copy (Google's helpful-content guidance asks for "substantial value compared to other pages"; AI answer engines quote self-contained pages):
+
+| The bar | Applied |
+|---|---|
+| Its own indexable URL, in the sitemap and llms.txt, linked both ways | yes: 19 indexable pages, in the sitemap (54 URLs) and llms.txt; 60 links across the site point at them; each page links back to its hub |
+| Its text in the initial HTML | yes: the pages are authored content; the hubs' rows come in the HTML from the edge |
+| Structured data that says what it is | yes, generated: Event (date, conference, place, performer, write-up, project) and SoftwareSourceCode (repository) |
+| The one rich result in reach: the recording on a watch page | yes: the two recorded talks embed their video and carry a VideoObject (upload date and duration from their articles) |
+| Everything the site already has about the item, gathered on its page | yes: the event page, write-up, project, recognition, repository and, for the adaptTo session, its slides (PDF) and the recap article, all from existing pages |
+| A breadcrumb | yes: the talk pages' hero, and BreadcrumbList on both kinds |
+| No thin page in search | columbus-ai-2025 (one sentence) is `noindex, follow`; the rest are indexable |
+| No dead links | the 14 `/portfolio/assets/` links fixed; seo-check: 0 problems; one external link (Rockstar's Summit 2024 session) now redirects to Adobe's Summit home, kept as the official source |
+| More words where a page is thin | not done: that is Jack's writing (below) |
+
 ## Process change
 
 Pixel-perfect gating against gh ended: AGENTS.md and `content/README.md` section 4 now ask for the built-in browser at 1440 and 360, lint, unit and Worker tests, the editability probe and the SEO check. `stardust/` stays as the migration's record.
@@ -74,15 +90,15 @@ Four background agents and the main thread, on one branch (`v1-1-1`) in its own 
 - www's raw HTML: `/writing/` 29 rows, `/talks/` 9, `/portfolio/` 11, one generated graph each; a talk page's Event (with the VideoObject on the two recorded talks), a project page's SoftwareSourceCode.
 - `/talks-index.json` 9 rows, `/portfolio-index.json` 11, `/writing-index.json` 29; the sitemap 54 URLs (the 19 indexable new pages in).
 - `seo-check.mjs` on www: 56 pages and fragments, 327 JSON-LD and social image URLs, **0 problems** (14 before: the `/portfolio/assets/` links now point at media copies).
-- In the built-in browser: talk and project pages at 1440 and 360 (no overflow; the footer wraps), the portfolio hub (gantt bars open the pages, no year rail, 11 rows, old anchors land), and the library in Experience Workspace (blocks list, variant preview, insert, the five templates).
+- In the built-in browser: talk and project pages at 1440 and 360 (no overflow; the footer wraps), the portfolio hub (gantt bars open the pages, no year rail, 11 rows, old anchors land), and the library in Experience Workspace: the 35 blocks list and search ("row list" finds the three Row list variants), variants preview with the site's styles (Callout, Row list with the talks and projects lists rendering live from their indexes), a block inserts (Callout (warn)) and persists across a reload, the five templates list, Talk page previews, and Project page inserts as editable content.
 
 ## Gaps Jack would fill (no copy was invented)
 
 - **columbus-ai-2025:** one sentence, no links (noindex until it has more).
 - **denison-2026:** one sentence; no event page or recording.
-- **adaptto-2026:** one sentence; the adaptTo recap article has the talk's slides PDF and a recap video worth linking.
+- **adaptto-2026:** one sentence (its slides PDF and the recap article are now linked).
 - **adaptto-2026-lightning:** one sentence; no event link or slides.
-- **aem-rockstar-2024:** its "View event source" link now redirects to the Adobe Summit 2026 home page (dead in effect; the hub had it too).
+- **aem-rockstar-2024:** its "View event source" link now redirects to the Adobe Summit home page (the hub had it too); the competition's repository is now linked.
 - **columbus-ai-2026-talk and -panel:** no recording or slides; the talk still says "Write-up in progress".
 - **Projects:** STAR (103 words), Shadow (146) and CIAM (161) are the thinnest; Bruce, CIAM and STAR have no image of their own for social cards; Anima, Postal and Rockstar's first images are SVGs, which most social cards don't show.
 - **Portfolio hub copy:** the gantt's fallback still says "written up in full below" (shown only when the chart can't draw).
