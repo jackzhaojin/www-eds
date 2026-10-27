@@ -477,7 +477,7 @@
   "/talks/adaptto-2026/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T02:29:00.762Z",
+    "ts": "2026-10-27T03:23:23.540Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -486,7 +486,7 @@
   "/talks/adaptto-2026-lightning/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T02:29:00.763Z",
+    "ts": "2026-10-27T03:23:23.541Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -495,7 +495,7 @@
   "/talks/aem-rockstar-2024/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T02:50:55.389Z",
+    "ts": "2026-10-27T03:23:23.541Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -504,7 +504,7 @@
   "/talks/ai-tinkerers-2026/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T02:11:34.169Z",
+    "ts": "2026-10-27T03:23:23.541Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -513,7 +513,7 @@
   "/talks/ai-tinkerers-2026-animamesh/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T02:11:38.777Z",
+    "ts": "2026-10-27T03:23:29.226Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -522,7 +522,7 @@
   "/talks/columbus-ai-2025/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T01:55:09.411Z",
+    "ts": "2026-10-27T03:23:29.263Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -531,7 +531,7 @@
   "/talks/columbus-ai-2026-panel/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T01:31:53.173Z",
+    "ts": "2026-10-27T03:23:29.445Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -540,7 +540,7 @@
   "/talks/columbus-ai-2026-talk/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T01:31:53.282Z",
+    "ts": "2026-10-27T03:23:29.452Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -549,7 +549,7 @@
   "/talks/denison-2026/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T01:55:09.412Z",
+    "ts": "2026-10-27T03:23:33.995Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -569,6 +569,14 @@
     "attempts": 1,
     "ts": "2026-10-27T02:38:58.656Z",
     "put": 201,
+    "preview": 200,
+    "verify": "ok"
+  },
+  "/docs/library/templates/talk": {
+    "status": "previewed",
+    "attempts": 1,
+    "ts": "2026-10-27T03:17:27.283Z",
+    "put": 200,
     "preview": 200,
     "verify": "ok"
   }
