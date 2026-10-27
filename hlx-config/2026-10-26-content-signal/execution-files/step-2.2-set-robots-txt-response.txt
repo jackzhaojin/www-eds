@@ -1,0 +1,9 @@
+# Content signals (https://contentsignals.org/): search = building a search index and
+# showing links and excerpts; ai-input = using pages to answer questions (retrieval,
+# grounding); ai-train = training or fine-tuning models. The writing here is CC BY 4.0
+# (/terms/), so all three are yes.
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+Sitemap: https://www.jackzhaojin.com/sitemap.xml

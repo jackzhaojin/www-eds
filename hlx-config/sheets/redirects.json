@@ -1,6 +1,6 @@
 {
-  "total": 126,
-  "limit": 126,
+  "total": 129,
+  "limit": 129,
   "offset": 0,
   "data": [
     {
@@ -222,6 +222,14 @@
     {
       "Source": "/talks/denison-2026/index.html",
       "Destination": "/talks/denison-2026/"
+    },
+    {
+      "Source": "/terms",
+      "Destination": "/terms/"
+    },
+    {
+      "Source": "/terms/index.html",
+      "Destination": "/terms/"
     },
     {
       "Source": "/writing",
@@ -506,6 +514,10 @@
     {
       "Source": "/talks/records/aem-rockstar-2024",
       "Destination": "/talks/aem-rockstar-2024/"
+    },
+    {
+      "Source": "/assets/site-social.png",
+      "Destination": "/default-meta-image.png"
     }
   ],
   ":type": "sheet"
