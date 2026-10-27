@@ -64,3 +64,16 @@ test('the listing graph is generated whole: one CollectionPage, its breadcrumb a
     '@type': 'ListItem', position: 1, item: { author: { '@id': 'https://www.jackzhaojin.com/#person' }, '@type': 'BlogPosting', url: 'u' },
   });
 });
+
+test('a Related list keeps the articles that link to the page, as plain rows', async () => {
+  const { linkingTo, relatedRows } = await import('../scripts/writing-index.js');
+  const a = readWriting({
+    path: '/writing/2026-10-10-recap/', title: 'Recap', date: '2026-10-10', summary: 'S', pages: ['/talks/adaptto-2026/', 'https://www.jackzhaojin.com/portfolio/content-factory/', '/talks/', '/portfolio/content-factory/#p-x'],
+  });
+  assert.deepEqual(a.pages, ['/talks/adaptto-2026/', '/portfolio/content-factory/']);
+  const b = readWriting({ path: '/writing/2026-01-01-other/', title: 'Other', date: '2026-01-01' });
+  assert.deepEqual(linkingTo([a, b], '/portfolio/content-factory/').map((x) => x.title), ['Recap']);
+  const [row] = relatedRows([a]);
+  assert.deepEqual(row.map((cell) => cell[0].tag), ['p', 'p', 'p']);
+  assert.equal(row[1][0].children[0].attrs.href, '/writing/2026-10-10-recap/');
+});

@@ -1,7 +1,7 @@
 /*
  * Dynamic listings, rendered at the edge. An author writes a hub page with one listing block
  * and its Source row (Writing index, Row list (talks, dynamic) or Row list (projects,
- * dynamic)) and nothing else: no rows,
+ * dynamic); a talk or project page's Row list (related, dynamic)) and nothing else: no rows,
  * no JSON-LD. Here the Worker reads the index the Source row names and serves the page with the
  * rows inside that block and the page's JSON-LD in the head, so crawlers that don't run
  * JavaScript read the whole list. The rows and the graph come from the same code the browser
@@ -11,7 +11,9 @@
  */
 import { rowsToHTML } from '../../scripts/listing-cells.js';
 import { within } from '../../scripts/query-index.js';
-import { loadWritingIndex, writingRows, writingSchemaItems } from '../../scripts/writing-index.js';
+import {
+  linkingTo, loadWritingIndex, relatedRows, writingRows, writingSchemaItems,
+} from '../../scripts/writing-index.js';
 import { loadTalksIndex, talkRows, talkSchemaItems } from '../../scripts/talks-index.js';
 import { loadPortfolioIndex, projectRows, projectSchemaItems } from '../../scripts/portfolio-index.js';
 import { collectionGraph } from '../../scripts/collection-schema.js';
@@ -40,6 +42,12 @@ const LISTINGS = [
     load: loadPortfolioIndex,
     rows: projectRows,
     items: (records) => projectSchemaItems(records),
+  },
+  // A talk or project page's Related list: no ItemList, the page's own graph describes it.
+  {
+    block: '<div class="row-list related dynamic">',
+    load: loadWritingIndex,
+    rows: (records, canonical) => relatedRows(linkingTo(records, new URL(canonical).pathname)),
   },
 ];
 
@@ -94,6 +102,10 @@ export async function renderListingHTML(html, fetchIndex) {
   if (!records.length) return null;
   const canonical = headValue(html, /<link rel="canonical" href="([^"]*)"/)
     || `https://www.jackzhaojin.com${index.pathname.replace(/-index\.json$/, '/')}`;
+  const rows = listing.rows(records, canonical);
+  if (!rows.length) return null;
+  const filledBlock = `${html.slice(start, end)}${rowsToHTML(rows)}${html.slice(end)}`;
+  if (!listing.items) return `${html.slice(0, start)}${filledBlock}`;
   const graph = collectionGraph({
     canonical,
     title: headValue(html, /<title>([^<]*)<\/title>/),
@@ -104,7 +116,7 @@ export async function renderListingHTML(html, fetchIndex) {
   const withoutAuthored = (text) => text.replace(LD_JSON, (tag, json) => (json.includes('"CollectionPage"') ? '' : tag));
   const ldJSON = `<script type="application/ld+json">${JSON.stringify(graph).replace(/</g, '\\u003c')}</script>`;
   const head = withoutAuthored(html.slice(0, start)).replace('</head>', `${ldJSON}\n</head>`);
-  return `${head}${html.slice(start, end)}${rowsToHTML(listing.rows(records))}${html.slice(end)}`;
+  return `${head}${filledBlock}`;
 }
 
 /**
@@ -153,7 +165,8 @@ export async function renderListings(res, request, env) {
     // eslint-disable-next-line no-console
     console.warn(`listing on ${pathname} left to the browser: ${error.message}`);
   }
-  filled = filled ?? renderPageSchemaHTML(html);
+  // A talk or project page gets its own graph too, with or without a filled Related list.
+  filled = renderPageSchemaHTML(filled ?? html) ?? filled;
   const out = new Response(filled ?? html, res);
   out.headers.delete('content-length');
   if (filled) {

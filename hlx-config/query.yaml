@@ -156,6 +156,12 @@ indices:
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, 'content')
+      # The talk and project pages the article links to: their Related lists (v1.1.2).
+      pages:
+        select: main a[href^="/talks/"], main a[href^="/portfolio/"], main
+          a[href^="https://www.jackzhaojin.com/talks/"], main
+          a[href^="https://www.jackzhaojin.com/portfolio/"]
+        values: attribute(el, 'href')
   # One page per portfolio project at /portfolio/<slug>/ (since v1.1.1). The hub /portfolio/
   # lists them from this index (Row list (projects, dynamic)).
   portfolio:
