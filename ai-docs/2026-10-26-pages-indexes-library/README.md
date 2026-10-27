@@ -98,6 +98,8 @@ Four background agents and the main thread, on one branch (`v1-1-1`) in its own 
 
 ## Gaps Jack would fill (no copy was invented)
 
+Asked whether to finish these now or later, Jack chose "Call it done" (2026-10-26, evening): the bar is applied as far as the site's own material goes, and he adds writing, recordings or slides as he has them.
+
 - **columbus-ai-2025:** now carries Jack's own description from his LinkedIn preview of the talk (career-blogs), the sentence and two of its three points verbatim (the Accenture investment figure left out, his choice); indexable. No recording or links.
 - **denison-2026:** the portfolio's materials line and the deck's own agenda ("Three parts": Why Now, The Demand, Your Move, Your Turn), plus the live demo app link, from Jack's deck (his choice); no event page or recording.
 - **adaptto-2026:** now carries the recap's slide, "What it is" and "My take", the slides PDF and the recap link; a recording when it's out.
