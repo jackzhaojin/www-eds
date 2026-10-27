@@ -1,6 +1,7 @@
-/* Proof links: portfolio/styles.css .proof-links, .center-links, .private-tag, .link-caveat and
-   the link-type colors (the icons are the template's .link-types). An empty row keeps its
-   18px, as the source's empty proof-links paragraphs do. */
+/* Proof links: portfolio/styles.css .proof-links, .center-links, .private-tag, .link-caveat,
+   the link-type colors and icons. The portfolio template's colors (--accent, --ink) win where
+   they are set; elsewhere (a talk page) the site's own apply. An empty row keeps its 18px, as
+   the source's empty proof-links paragraphs do. */
 .proof-links .proof-links-row {
   margin-top: 18px;
   display: flex;
@@ -32,41 +33,41 @@
   font-size: 12px;
   letter-spacing: 0.02em;
   line-height: 1.4;
-  color: var(--accent);
+  color: var(--accent, var(--color-accent));
   text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent, var(--color-accent)) 35%, transparent);
   transition: border-color 0.25s;
 }
 
 .proof-links .proof-links-row a:hover {
-  border-color: var(--accent);
+  border-color: var(--accent, var(--color-accent));
 }
 
 .proof-links .proof-links-row a[href*="github.com"] {
-  color: var(--ink);
+  color: var(--ink, var(--color-text));
   border-bottom-color: var(--color-line);
 }
 
 .proof-links .proof-links-row a[href*="github.com"]:hover {
-  border-bottom-color: var(--ink);
+  border-bottom-color: var(--ink, var(--color-text));
 }
 
 .proof-links .proof-links-row a:is([href*="youtube.com"], [href*="youtu.be"]) {
-  color: var(--ink-soft);
+  color: var(--ink-soft, var(--color-text-muted));
   border-bottom-color: var(--color-line);
 }
 
 .proof-links .proof-links-row a[href*="linkedin.com"] {
-  color: var(--ink-soft);
+  color: var(--ink-soft, var(--color-text-muted));
   border-bottom-color: var(--color-line);
 }
 
 .proof-links .proof-links-row code {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--ink-faint);
+  color: var(--ink-faint, var(--color-text-faint));
   background: none;
-  border: 1px dashed var(--line);
+  border: 1px dashed var(--line, var(--color-line));
   border-radius: 5px;
   padding: 4px 10px;
   cursor: help;
@@ -77,6 +78,33 @@
   font-style: normal;
   font-size: 11px;
   line-height: 1.5;
-  color: var(--ink-faint);
+  color: var(--ink-faint, var(--color-text-faint));
   letter-spacing: 0.02em;
+}
+
+/* Typed links on any page: one icon per destination (repo, post, video, live), as the
+   portfolio template draws them on its own pages. */
+.proof-links .link-types a::before {
+  --licon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.2' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cellipse cx='8' cy='8' rx='2.7' ry='6.2' fill='none' stroke='black' stroke-width='1.2'/%3E%3Cpath d='M1.8 8h12.4' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E");
+
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 7px;
+  vertical-align: -1.5px;
+  background: currentcolor;
+  mask: var(--licon) center / contain no-repeat;
+}
+
+.proof-links .link-types a[href*="github.com"]::before {
+  --licon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='4' cy='12.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Ccircle cx='12' cy='3.5' r='1.7' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M4 5.2v5.6M12 5.2c0 3.4-4 3-6.5 4.6' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E");
+}
+
+.proof-links .link-types a[href*="linkedin.com"]::before {
+  --licon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='1.2' width='13.6' height='13.6' rx='2.6' fill='none' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='5.1' cy='5.3' r='1.15' fill='black'/%3E%3Crect x='4.2' y='7.4' width='1.8' height='4.4' fill='black'/%3E%3Cpath d='M8.2 11.8V9.2c0-2 3.4-2 3.4 0v2.6' fill='none' stroke='black' stroke-width='1.8'/%3E%3C/svg%3E");
+}
+
+.proof-links .link-types a:is([href*="youtube.com"], [href*="youtu.be"])::before {
+  --licon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.2' y='2.6' width='13.6' height='10.8' rx='2.8' fill='none' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M6.6 5.6l3.8 2.4-3.8 2.4z' fill='black'/%3E%3C/svg%3E");
 }

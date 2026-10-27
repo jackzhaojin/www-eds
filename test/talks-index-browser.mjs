@@ -31,7 +31,7 @@ try {
   const raw = await page.request.get(`${draft}index.plain.html`);
   assert(!(await raw.text()).includes(data.data[0].title), 'The draft must not contain static talk rows');
   await page.goto(draft);
-  await page.waitForSelector('.row-list[data-talks-state="ready"]');
+  await page.waitForSelector('.row-list[data-listing-state="ready"]');
   assert.equal(await page.locator('.row-list-items > li').count(), data.total);
   assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, follow');
   const lists = await schema();
@@ -60,7 +60,7 @@ try {
   }
   for (const id of ['columbus-ai-2026', 'openclaw-247-development-agent']) {
     await page.goto(`${draft}#${id}`);
-    await page.waitForSelector('.row-list[data-talks-state="ready"]');
+    await page.waitForSelector('.row-list[data-listing-state="ready"]');
     await page.waitForFunction((anchorId) => {
       const target = document.getElementById(anchorId);
       return target && target.getBoundingClientRect().top >= -1
@@ -75,7 +75,7 @@ try {
   changed.data[0].title = '<img src=x onerror=alert(1)> API change';
   await page.route('**/talks-index.json*', (route) => route.fulfill({ json: changed }));
   await page.goto(draft);
-  await page.waitForSelector('.row-list[data-talks-state="ready"]');
+  await page.waitForSelector('.row-list[data-listing-state="ready"]');
   assert.equal(await page.locator('.row-list-title h2').first().textContent(), changed.data[0].title);
   assert.equal(await page.locator('.row-list-title img').count(), 0);
   assert.equal((await schema())[0].itemListElement[0].item.name, changed.data[0].title);
@@ -87,7 +87,7 @@ try {
     },
   }));
   await page.goto(draft);
-  await page.waitForSelector('.row-list[data-talks-state="empty"]');
+  await page.waitForSelector('.row-list[data-listing-state="empty"]');
   assert.equal(await page.locator('.row-list-items > li').count(), 0);
   assert.equal((await schema())[0].numberOfItems, 0);
   assert(await page.getByText('No talks are published yet.').isVisible());
@@ -96,7 +96,7 @@ try {
   expectedFailure = true;
   await page.route('**/talks-index.json*', (route) => route.fulfill({ status: 503, body: 'Unavailable' }));
   await page.goto(draft);
-  await page.waitForSelector('.row-list[data-talks-state="error"]');
+  await page.waitForSelector('.row-list[data-listing-state="error"]');
   assert(await page.getByRole('alert').isVisible());
   assert.equal(await page.locator('.row-list-items > li').count(), 0);
   assert.deepEqual(errors, []);

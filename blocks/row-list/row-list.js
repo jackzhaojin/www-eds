@@ -8,10 +8,14 @@
  *   paragraph, then the link paragraphs and any status paragraph (Write-up in progress), which
  *   share one cluster;
  * - anchors: the row's id, then any older ids that should still land on it, space separated.
+ * projects: the portfolio's project list, in the talks shape and look (when: dates and kind;
+ * body: the linked heading, the tagline, the summary; anchors: the old chapter anchors).
+ * dynamic (with talks or projects): the block is one Source row naming its index, and the
+ * rows are generated from it (DYNAMIC below).
  *
  * @ew-exempt anchors: link targets for the talk rows, hidden through .row-list-anchors
- * @ew-exempt dynamic Source row: API configuration; talk copy is edited in source records
- * @variants talks, dynamic (default none)
+ * @ew-exempt dynamic Source row: API configuration; the copy is edited on the source pages
+ * @variants talks, projects, dynamic (default none)
  */
 
 const ROLES = ['row-list-kind', 'row-list-title', 'row-list-note'];
@@ -97,42 +101,60 @@ function decorateTalks(block) {
   block.replaceChildren(list);
 }
 
-const TALK_MESSAGES = {
-  empty: 'No talks are published yet.',
-  error: 'Talks are temporarily unavailable. Please try again later.',
+/** The dynamic listings: the module that reads each index and builds its rows. */
+const DYNAMIC = {
+  talks: {
+    module: '../../scripts/talks-index.js',
+    load: 'loadTalksIndex',
+    rows: 'talkRows',
+    items: 'talkSchemaItems',
+    path: '/talks/',
+    empty: 'No talks are published yet.',
+    error: 'Talks are temporarily unavailable. Please try again later.',
+  },
+  projects: {
+    module: '../../scripts/portfolio-index.js',
+    load: 'loadPortfolioIndex',
+    rows: 'projectRows',
+    items: 'projectSchemaItems',
+    path: '/portfolio/',
+    empty: 'No projects are published yet.',
+    error: 'Projects are temporarily unavailable. Please try again later.',
+  },
 };
 
 /**
- * talks, dynamic: Source | /talks-index.json, and nothing else to author. The talk records
- * (content/talks/records/) own the copy; the rows and the JSON-LD are generated, by the edge
- * Worker on www and by the browser on preview hosts (scripts/query-index.js fillFromIndex),
- * as the same rows an author would write, decorated by decorateTalks.
+ * talks or projects, dynamic: Source | /talks-index.json (or /portfolio-index.json), and
+ * nothing else to author. The talk and project pages own the copy; the rows and the JSON-LD
+ * are generated, by the edge Worker on www and by the browser on preview hosts
+ * (scripts/query-index.js fillFromIndex), as the rows an author would write, decorated by
+ * decorateTalks.
  */
-async function decorateDynamicTalks(block) {
+async function decorateDynamic(block, listing) {
   block.setAttribute('aria-busy', 'true');
-  const [{ fillFromIndex }, talks, { rowsToDOM }, { syncCollectionSchema }] = await Promise.all([
+  const [{ fillFromIndex }, index, { rowsToDOM }, { syncCollectionSchema }] = await Promise.all([
     import('../../scripts/query-index.js'),
-    import('../../scripts/talks-index.js'),
+    import(listing.module),
     import('../../scripts/listing-cells.js'),
     import('../../scripts/collection-schema.js'),
   ]);
   const render = (records) => {
-    block.replaceChildren(...rowsToDOM(talks.talkRows(records)));
-    syncCollectionSchema((canonical) => talks.talkSchemaItems(records, canonical), '/talks/');
+    block.replaceChildren(...rowsToDOM(index[listing.rows](records)));
+    syncCollectionSchema((canonical) => index[listing.items](records, canonical), listing.path);
   };
-  const { state, rendered, sourceRow } = await fillFromIndex(block, talks.loadTalksIndex, render);
+  const { state, rendered, sourceRow } = await fillFromIndex(block, index[listing.load], render);
   decorateTalks(block);
   if (sourceRow) {
     sourceRow.hidden = true;
     block.append(sourceRow);
   }
-  if (TALK_MESSAGES[state]) {
+  if (listing[state]) {
     const message = document.createElement('p');
     if (state === 'error') message.setAttribute('role', 'alert');
-    message.textContent = TALK_MESSAGES[state];
+    message.textContent = listing[state];
     block.prepend(message);
   }
-  block.dataset.talksState = state;
+  block.dataset.listingState = state;
   block.dataset.rendered = rendered;
   block.removeAttribute('aria-busy');
   const target = document.getElementById(window.location.hash.slice(1));
@@ -140,9 +162,10 @@ async function decorateDynamicTalks(block) {
 }
 
 export default async function decorate(block) {
-  if (block.classList.contains('talks')) {
+  const kind = ['talks', 'projects'].find((name) => block.classList.contains(name));
+  if (kind) {
     if (block.classList.contains('dynamic')) {
-      await decorateDynamicTalks(block);
+      await decorateDynamic(block, DYNAMIC[kind]);
       return;
     }
     decorateTalks(block);

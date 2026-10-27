@@ -7,8 +7,8 @@ The pages below contain readable HTML, with original project diagrams and source
 ## Main pages
 
 - [Jack Jin](https://www.jackzhaojin.com/): Introduction, Adobe recognition, and selected work.
-- [Portfolio](https://www.jackzhaojin.com/portfolio/): AI systems, content platforms, project histories, diagrams, and source repositories. Individual projects have stable chapter anchors.
-- [Talks](https://www.jackzhaojin.com/talks/): Conference sessions, community demos, and guest lectures with supporting event or project links.
+- [Portfolio](https://www.jackzhaojin.com/portfolio/): AI systems, content platforms, project histories, diagrams, and source repositories. Each project has its own page, listed below.
+- [Talks](https://www.jackzhaojin.com/talks/): Conference sessions, community demos, and guest lectures with supporting event or project links. Each talk has its own page, listed below.
 - [Certifications](https://www.jackzhaojin.com/certifications/): Credential records and direct verification links. Consult the issuer record for current status.
 - [Technical Writing](https://www.jackzhaojin.com/writing/): Complete on-site articles, newest first.
 - [Migrating My Site to AEM Edge Delivery Services in Two Prompts](https://www.jackzhaojin.com/writing/2026-10-25-eds-migration-two-goal-prompts/): I migrated my site from GitHub Pages to AEM Edge Delivery Services with two goal prompts: 34 pages, my design system and every image, checked page by page.
@@ -46,3 +46,28 @@ The pages below contain readable HTML, with original project diagrams and source
 - [Sitemap](https://www.jackzhaojin.com/sitemap.xml): Canonical indexable pages.
 
 The design-systems directory contains development references and historical demonstrations, not the current public content archive.
+
+## Talks
+
+- [AI Agent-Driven Content Migration for Edge Delivery Services](https://www.jackzhaojin.com/talks/adaptto-2026/): AI-assisted migration into DA.live and EDS, with orchestration, evaluation, and human review. (adaptTo() 2026 · Berlin · with Katie Phillips, September 29, 2026)
+- [Conversion Factory](https://www.jackzhaojin.com/talks/adaptto-2026-lightning/): An eight-minute talk on a work in progress: agents that propose and validate block variants for an Edge Delivery site, then ship them through an experiment framework so both versions run live. (adaptTo() 2026 · Berlin, September 2026)
+- [Knowledge Work as a Product: Professional Services in the AI Era](https://www.jackzhaojin.com/talks/columbus-ai-2026-talk/): A fifteen-minute main stage talk on why professional services is the industry most exposed to AI. The product is knowledge work, so what AI produces is what the industry sells. Four fundamental truths about what clients buy, and how each one changes when agents do the work. Views are Jack's own. (Columbus AI Week 2026, AI for Business Summit · Columbus, Ohio, September 11, 2026)
+- [Navigating AI Governance, Security, and Trust Across the Enterprise](https://www.jackzhaojin.com/talks/columbus-ai-2026-panel/): A featured fireside on governance that enables rather than blocks, moderated by Jim Ford with Eric Zielinski and Connie Matthews. Jack brought the view of someone who runs autonomous coding agents at night and works inside enterprise governance by day: security as layers, gates with teeth, and evals as governance. (Columbus AI Week 2026, AI Leadership Summit · Columbus, Ohio, September 10, 2026)
+- [AnimaMesh: An Engine for Running a Company with Agents](https://www.jackzhaojin.com/talks/ai-tinkerers-2026-animamesh/): The Company of Zero demo: one open source engine on Cloudflare Workers, a private markdown brain per company, and agents that bring me the day's work. It took second place in AI Tinkerers' global Top AI Demos that week. (AI Tinkerers Columbus · Columbus, Ohio, August 3, 2026)
+- [AI, agents, and careers](https://www.jackzhaojin.com/talks/denison-2026/): A guest lecture with a live demo and open-source materials for computer science students. (Denison University, CS 271 · Granville, Ohio, April 2026)
+- [OpenClaw 24/7 Development Agent](https://www.jackzhaojin.com/talks/ai-tinkerers-2026/): A demo of a continuous coding agent, its execution loop, and the boundaries around autonomous work. Featured in AI Tinkerers' global Community Spotlights, picked from hundreds of demos. (AI Tinkerers Columbus · Columbus, Ohio, April 6, 2026)
+- [AEM Rockstar](https://www.jackzhaojin.com/talks/aem-rockstar-2024/): A generative AI solution built into Adobe Experience Manager. Winner of the 2024 AEM Rockstar competition. (Adobe Summit 2024 · Las Vegas, March 28, 2024)
+
+## Projects
+
+- [Anima Mesh](https://www.jackzhaojin.com/portfolio/anima-mesh/): AnimaMesh runs recurring back-office work from a private repo: compliance checks, bookkeeping prep, document memory, governance, research, and inbound triage. (2026)
+- [Built with Bruce](https://www.jackzhaojin.com/portfolio/built-with-bruce/): Not every project is an agent mesh. Three of the repos are games designed with my son: he supplies the game design, I supply the AI, and an idea becomes something playable before bedtime. (2026)
+- [The Content Factory](https://www.jackzhaojin.com/portfolio/content-factory/): Talk material for adaptTo() 2026, built for real: a mesh of independently-addressable A2A agents that generate, migrate, and evaluate CMS content. (2025 to 2026)
+- [AI Builder Kit](https://www.jackzhaojin.com/portfolio/ai-builder-kit/): A Claude Code plugin marketplace: nine published skills, written so that people other than the author can install and use them. (2026)
+- [Conversion Factory](https://www.jackzhaojin.com/portfolio/conversion-factory/): An agent runtime for conversion-rate optimization on Edge Delivery Services. (2026)
+- [Continuous Executive Agent](https://www.jackzhaojin.com/portfolio/continuous-executive-agent/): A coding agent that runs around the clock under PM2. (2026)
+- [CIAM Demo](https://www.jackzhaojin.com/portfolio/ciam-demo/): No agents in this one. Customer identity and access management, built out fully: identity provider, session boundary, resource API, multi-tenant authorization. (2026)
+- [Postal Portal](https://www.jackzhaojin.com/portfolio/postal-portal/): A postal shipping product built across two weeks of July 2025, spec-first on both halves. (2025)
+- [Shadow Pivot](https://www.jackzhaojin.com/portfolio/shadow-pivot/): A public, production Next.js agent app where AI wrote all of the code. (2025)
+- [Azure STAR Generator](https://www.jackzhaojin.com/portfolio/azure-star-generator/): The first project: a Sunday spent trying AI coding tools by building the same app in each. (2025)
+- [AEM Rockstar 2024](https://www.jackzhaojin.com/portfolio/aem-rockstar-2024/): The pitch that won AEM Rockstar at Adobe Summit 2024: personalization at scale, inside AEM's own authoring UI. (2023 to 2024)

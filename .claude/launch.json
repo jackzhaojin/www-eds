@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "listing-preview",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["edge/scripts/preview-listing.mjs"],
+      "port": 8788
+    }
+  ]
+}

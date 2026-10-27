@@ -9,7 +9,8 @@
  *   paragraph) and the arc (any paragraph after the thesis);
  * - an optional second row is the repo callout: a label paragraph, the repository link
  *   paragraph, a meta paragraph and a paragraph of links.
- * The numeral is the chapter's position among the page's chapter heads (01, 02, ...).
+ * The numeral is the chapter's position among the page's chapter heads (01, 02, ...); on a
+ * project page (one chapter head, its title the page's h1) it is the page's project-order.
  * The chapter's accent and the flagship or lofi look come from its section style.
  *
  * @ew-exempt the numeral is derived from the chapter order, not authored text
@@ -89,7 +90,8 @@ export default function decorate(block) {
   const num = document.createElement('span');
   num.className = 'chapter-head-num';
   num.setAttribute('aria-hidden', 'true');
-  num.textContent = String(all.indexOf(block) + 1).padStart(2, '0');
+  const order = document.querySelector('meta[name="project-order"]')?.content.trim();
+  num.textContent = (all.length === 1 && /^\d+$/.test(order || '') ? order : String(all.indexOf(block) + 1)).padStart(2, '0');
   const title = titleCell ? decorateTitle(titleCell) : document.createElement('div');
   cells.filter((c) => c !== titleCell).forEach((c) => title.append(decorateCallout(c)));
   block.replaceChildren(num, title);

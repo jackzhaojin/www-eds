@@ -9,8 +9,10 @@
  *   label | chapter id | start | end | `ongoing` (optional: the bar runs to the now line).
  *   A one-cell paragraph row is the note under the chart; a one-cell row with a paragraph and
  *   a list is the method legend (each item opens with the bold method label).
- *   The bars jump to their chapter; the chapter id also picks the bar color (--c-<id>). The
- *   same rows draw the year rail: a fixed dot per chapter, the current chapter lit.
+ *   A bar opens its project: the label's link (the project page) when the label is a link,
+ *   otherwise the chapter on this page. The chapter id also picks the bar color (--c-<id>).
+ *   The same rows draw the year rail, a fixed dot per chapter with the current chapter lit,
+ *   but only on a page that holds the chapters.
  * ladder (release history): a one-cell row is an era title; a two-cell row is a rung:
  *   version | date paragraph, heading, summary.
  * milestones (career notes): date | note per row; a last one-cell row is the closing line.
@@ -44,6 +46,7 @@ const cellText = (cell) => (cell ? cell.textContent.trim() : '');
 
 function yearRail(projects, label) {
   if (document.querySelector('.year-rail')) return;
+  if (!projects.some((p) => document.querySelector(`main .section[id="${p.id}"]`))) return;
   const rail = document.createElement('nav');
   rail.className = 'year-rail';
   if (label) rail.setAttribute('aria-label', label);
@@ -92,6 +95,7 @@ function gantt(block) {
       projects.push({
         label: name,
         name: cellText(name),
+        href: name.querySelector('a[href]')?.getAttribute('href') || '',
         id: cellText(id).replace(/^#/, ''),
         start: cellText(start),
         end: cellText(end),
@@ -131,8 +135,12 @@ function gantt(block) {
     bar.style.setProperty('--bar', p.color);
     const range = `${p.start.slice(0, 7)} to ${p.end.slice(0, 7)}`;
     bar.dataset.title = `${p.name} · ${range}`;
-    bar.setAttribute('aria-label', `${p.name}, ${range}. Jump to project.`);
+    bar.setAttribute('aria-label', `${p.name}, ${range}. ${p.href ? 'Open' : 'Jump to'} project.`);
     bar.addEventListener('click', () => {
+      if (p.href) {
+        window.location.assign(p.href);
+        return;
+      }
       const target = document.getElementById(p.id);
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       target?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
