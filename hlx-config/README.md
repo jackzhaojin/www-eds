@@ -5,11 +5,11 @@ The site's Edge Delivery configuration, kept as files so it can be read, diffed 
 | File | Where it goes | What it does |
 |---|---|---|
 | `cdn-prod.json` | Admin API `POST /config/jackzhaojin/sites/www-eds/cdn/prod.json` | The production host: canonical links, `og:url` and sitemap URLs point at www.jackzhaojin.com. Since 2026-10-26 also push invalidation: `type: cloudflare`, `plan: free`, the zone ID, plus the Cache Purge token, which is never stored here. It's sent from a hidden prompt by `2026-10-26-push-invalidation/set-cdn-token.sh`. |
-| `robots.txt` | `POST .../robots.txt` (text/plain) | The same robots.txt as www: allow everything, point at the sitemap. *.aem.page and *.aem.live keep serving "disallow all" by design; this one is served on the production host. |
+| `robots.txt` | `POST .../robots.txt` (text/plain) | Allow everything, point at the sitemap, and since 2026-10-27 state `Content-Signal: search=yes, ai-input=yes, ai-train=yes` ([2026-10-26-content-signal/EXECUTION.md](2026-10-26-content-signal/EXECUTION.md)). *.aem.page and *.aem.live keep serving "disallow all" by design; this one is served on the production host. |
 | `query.yaml` | `POST .../content/query.yaml` (text/yaml) | The query index: every published page except the nav and footer fragments, with title, description, image, template, published-time, lastModified and robots. |
 | `sitemap.yaml` | `POST .../content/sitemap.yaml` (text/yaml) | `/sitemap.xml` from the index, on www, with lastmod. Pages with `robots: noindex` (the design system page) are left out. |
 | `metadata.tsv` | the `/metadata` sheet, through `sheets.mjs` | Bulk metadata: `og:type` (website, articles under /writing/), `og:site_name`, `og:locale`. |
-| `redirects-extra.tsv` | the `/redirects` sheet, through `sheets.mjs` | Legacy pages (`/blogs.html`, `/certifications.html`). `sheets.mjs` adds a 301 for every folder page without its trailing slash and as `.../index.html`, as GitHub Pages serves them. |
+| `redirects-extra.tsv` | the `/redirects` sheet, through `sheets.mjs` | Legacy pages (`/blogs.html`, `/certifications.html`), the first talk records, and the old home social image (`/assets/site-social.png`). `sheets.mjs` adds a 301 for every folder page without its trailing slash and as `.../index.html`, as GitHub Pages serves them. |
 | `sheets.mjs` | | Builds `sheets/redirects.json` and `sheets/metadata.json`; `--upload` sends them to DA, `--publish` previews and publishes them. |
 | `.env.example` | | The variables, for a temporary token in `hlx-config/.env` (git-ignored). Without one, the da-auth token cache is used: an Adobe IMS token the Admin API accepts as `Authorization: Bearer`. |
 

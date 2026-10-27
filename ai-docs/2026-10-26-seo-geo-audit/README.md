@@ -86,3 +86,64 @@ Jack: "Yes: publish the 29 fixed pages, rerun seo-check on www, then resubmit th
 - Scripts: `stardust/scripts/seo-check.mjs` and `stardust/scripts/fix-dead-image-urls.mjs` (new), `roundtrip-compare.mjs` (DA's copies matched git before editing), `deploy-batch.mjs --no-publish`.
 - Lighthouse 12; curl with crawler user agents; `gh api` for the upstream skills and helix-html-pipeline's `rewriteUrl`.
 - The desktop app's built-in browser for Search Console, Bing Webmaster Tools and the rendered link checks.
+
+## Second pass: what Edge Delivery and Cloudflare add (2026-10-26, night)
+
+Jack's words: "can you do a SEO/GEO best practice audit and see what's there that we can enhance with EDS? looks like we're doing edge workers in cloudflare which is great, anythign else i should consider?"
+
+Run on www after v1.1.3 and v1.1.4, with 56 pages in the sitemap (35 at the first pass). `seo-check.mjs`: 0 problems across 58 pages and fragments, 336 JSON-LD and social image URLs, and 186 URLs. Every crawler user agent from the first pass gets 200. Google read the new sitemap (56 pages); Bing shows it as processing. For what a production Edge Delivery host should send, www.aem.live and www.adobe.com (Adobe's own CDN) were the reference, along with Adobe's bring-your-own-CDN guides.
+
+**The first pass's open items:**
+- 3 is closed: the portfolio pages rebuilt in v1.1.1 have no `/portfolio/assets/` links.
+- 4 and 5 are open: there are 6 `content.da.live` URLs in the raw HTML of the 2025 Azure RBAC article.
+- 6 is open: `<html>` still has no `lang`.
+- 7 is open.
+- 8 is open: `/assets/site-social.png` still answers 404.
+- 9 is open.
+- 10 stays left as is.
+
+**Also right:**
+- The page has no Cloudflare HTML rewrites (Rocket Loader, email obfuscation).
+- 27 of the 29 articles have a `dateModified`.
+- `llms.txt` lists all 56 sitemap pages except `/privacy/` and `/terms/`.
+
+| # | Finding | Impact | Fix | Status |
+|---|---|---|---|---|
+| 12 | **Every page's `.plain.html` copy can be indexed on www.** Edge Delivery sends `x-robots-tag: noindex, nofollow` from aem.live, and the production CDN is meant to remove it from pages only. Adobe's Fastly guide keeps it on fragments (`if (req.url.path !~ "\.plain\.html$") { unset resp.http.X-Robots-Tag; }`), and www.aem.live and www.adobe.com still send it on `.plain.html`. Adobe's Cloudflare worker (`edge/src/aem.mjs`) removes it on every path, and `robots()` removes it again. Nothing links to the page copies, so the exposure is mostly `/nav.plain.html` and `/footer.plain.html`, which the browser fetches on every page | Low-medium | On www, `robots()` sends `noindex, nofollow` for `*.plain.html` | **Live** (v1.1.5, Worker `a9d52169`) |
+| 13 | **`/terms` answers 404.** Every other folder page 301s to its trailing slash; the redirects sheet is older than the page | Low-medium | `node hlx-config/sheets.mjs --upload --publish` | **Live** |
+| 14 | **The Markdown copies (`index.md`) have no canonical**, so a crawler that indexes one has a second copy of the page | Low | On `.md` responses, the Worker sends `Link: <page URL>; rel="canonical"`. On pages, it sends `Link: <...index.md>; rel="alternate"; type="text/markdown"` (finding 7). Optional: a request with `Accept: text/markdown` on a page path gets its `index.md`. Cloudflare's Markdown for Agents does this by converting the HTML, but only on Pro plans and up; Edge Delivery already has the Markdown. The copies render blocks as grid tables, so it's unproven that agents gain anything | Left (Jack: "i'm not sure about 6,14") |
+| 15 | **The YouTube player loads with the page on talk pages.** `loading="lazy"` does nothing in the first screen. In PR 6's check the lightning talk scored 84 on mobile PSI (TBT 554 ms); the other pages scored 96 to 100. The talk pages are now where the recordings live, so they're the pages that could pass Google's watch-page rule (first pass: "Video isn't on a watch page") | Medium | A click-to-play facade in `blocks/figure`: the YouTube thumbnail and a play button, with the player loading on click. The VideoObject stays in the JSON-LD | **Live** (v1.1.5), with the player also loading by itself, see below |
+| 16 | **Nothing tells Bing that a page changed.** Bing feeds Copilot (58 AI citations in October), and IndexNow also reaches Yandex, Naver, Seznam and Yep. Google doesn't use IndexNow | Low-medium | `deploy-batch.mjs` posts the URLs it published to `api.indexnow.org`, with the key file at the root (served like `BingSiteAuth.xml`, so not a release). Cloudflare's Crawler Hints is a dashboard toggle that does the same from cache changes, but every publish purges the whole zone | **Live** |
+| 17 | **robots.txt states no AI preference.** Content Signals (`Content-Signal: search=yes, ai-input=yes, ai-train=...`) are a stated preference, not a block. The managed robots.txt only fills the 404 on eds and gh | Info | Jack picks the three values, then they go into `hlx-config/robots.txt` and the Admin API | **Live**: all three `yes` |
+| 18 | **GEO data is collected but not read.** Edge Delivery's operational telemetry (`/.rum/1`, 201) and Cloudflare Web Analytics (`/cdn-cgi/rum`, 204) both run on www | Info | The OpTel explorer (`aem.live/tools/oversight/explorer.html?domain=www.jackzhaojin.com`) needs a domain key from Adobe; its `enter` facet shows referrers such as chatgpt.com. Cloudflare's AI Crawl Control shows which AI crawlers came and whether any is blocked. Bing's AI Performance shows citations | Jack: see below |
+| 19 | **1 of 29 public repos links back to the site.** Only `bruce-hackathon-2026-09-12` sets a homepage. GitHub is in the Person's `sameAs`, and repos are where assistants find the projects | Medium (GEO) | `gh repo edit --homepage` for each repo with a portfolio or article page (anima-mesh, ai-builder-kit, continuous-agent, ciam-demo and the others), plus www-eds itself | **Live**: 23 repos |
+
+One edge release can close 6, 12 and 14 together: an `HTMLRewriter` for `lang`, the robots header for fragments, and the `Link` headers.
+
+### Results (2026-10-26 night to 2026-10-27)
+
+Jack: "i like your suggestions, including modifying github repo on the websites, all of them! i do notice that my video is higher result than my pages and this is probably why. i'm not sure about 6,14 line, but everythign else try and achieve and test on prod". He also gave the two profiles for finding 9: "my youtube channel - https://www.youtube.com/@jackjin8467", "credly - https://www.credly.com/users/jack-jin/badges/credly" (`sameAs` takes the profile, `https://www.credly.com/users/jack-jin`).
+
+| # | What shipped | Checked on www |
+|---|---|---|
+| 19 | `gh repo edit --homepage` on 23 public repos: each points at its portfolio page, article or talk, the games at their playable sites, www-eds and jackzhaojin.github.io at home. Left without a page: eds-doc-authoring, a2a-demo, nextjs-azure-swa-2025-05, shadow-pivot-nextjs, plus the two that already had a homepage (slicc, adobe-champion-forum-2026-hype) | every target answers 200 |
+| 9 | Content commit `489f165`: the Person on the 33 pages with authored JSON-LD adds the YouTube channel and Credly; v1.1.5 does the same for the generated graphs (hubs, talk and project pages) | 33 of 33 after republishing the 7 Cloudflare cached in the purge window; `/writing/` and `/talks/adaptto-2026/` carry it |
+| 4, 5 | The same commit: the Azure RBAC article's 5 zoom links and its screenshot link point at the media copies www serves (byte-identical to DA's files); `storage-roles.png`, which existed only in DA, is in `content/media/` and previewed and published | 0 `content.da.live` links on the page |
+| 8, 13 | Config commit `ed495bf`: the redirects sheet (129 rows) adds `/terms`, `/terms/index.html` and `/assets/site-social.png` -> `/default-meta-image.png` | all three 301 |
+| 17 | The same commit: `Content-Signal: search=yes, ai-input=yes, ai-train=yes` ([hlx-config/2026-10-26-content-signal/](../../hlx-config/2026-10-26-content-signal/EXECUTION.md)) | served on `/robots.txt` |
+| 12 | v1.1.5 (PR 7, `f768cb0`), Worker `a9d52169` on www and `04c063e1` on staging | `.plain.html` fragments `noindex, nofollow`; pages, `index.md`, robots.txt and the sitemap without it; `check-host.mjs` PASS |
+| 15 | v1.1.5: the figure poster, with the player on a click or by itself in the delayed phase | Lighthouse 12 mobile on www, two runs each: lightning talk 97/97, adaptto-2026 98/99, aem-rockstar-2024 97/96, the two-prompts article 98/98; YouTube on load 7 to 17 KB (it was 955 to 1008 KB); TBT 0. The player starts at 3.4 s, CLS 0 |
+| 16 | v1.1.5: the key file and `indexnow.mjs`, called by `deploy-batch.mjs` after a publish | the 56 sitemap pages submitted (202 while the key was checked, then 200); a publish run ends with "IndexNow: 1 URLs, HTTP 200"; Bing's IndexNow report lists the submissions |
+| 18 | Not something to ship: see below | |
+
+**The player loads by itself, on purpose.** A click-only facade would have been the simplest fix, but Google's video guidance says "Don't rely on user actions (such as swiping, clicking, or typing) to load the video", and the talk pages are the pages that could show as the recordings' watch pages, where Jack wants his pages, not YouTube, to rank. So the poster holds the place while the page loads, and the player follows 3 seconds after load (the site's delayed phase) once the figure is near the screen. Waiting for the load event alone wasn't enough: on EDS it fires before the blocks and the template finish (66 ms against an LCP of 124 ms locally). On the lightning talk the poster is now the mobile LCP element.
+
+**The PR's `aem-psi-check` failed, and not on a page:** PSI scored every changed page 100 for performance on the branch (lightning talk mobile: LCP 1.7 s, TBT 40 ms), but it also tried the IndexNow key file ("NOT_HTML", scored 0), and SEO is always 66 to 69 on aem.page, which is noindex by design.
+
+**The 58 was an outlier.** The first Lighthouse run on www (the lightning talk at 58, LCP 10.9 s) didn't repeat: two more runs before the release scored 96 and 98. It was a cold run with the 1 MB player loading beside the page, which v1.1.5 removes.
+
+**Measurement (18):** Edge Delivery's OpTel explorer needs a domain key, and helix-rum-bundler only issues one to allowlisted Adobe accounts (`POST /domainkey/{domain}`), so Jack asks his Adobe contact for the key for `www.jackzhaojin.com`. Cloudflare's AI Crawl Control and Web Analytics need Jack signed in to the dashboard (the built-in browser wasn't). Bing AI Performance on 2026-10-27: still 58 citations (39 on October 11, 19 on October 14), no grounding queries listed yet; that is the baseline.
+
+**Not done:** 6 (`lang` in the raw HTML) and 14 (Markdown `Link` headers), per Jack. YouTube's own descriptions linking to the matching page are Jack's to edit in YouTube Studio; they're the other half of finding 19 for the videos.
+
+**Tools:** `seo-check.mjs`; curl with crawler user agents and `Accept: text/markdown`; the docs-search index of aem.live (the BYO CDN guides, network profile, OpTel); WebSearch and WebFetch for Cloudflare's Markdown for Agents, Content Signals and Crawler Hints docs; `gh repo list` and `gh repo edit`; the built-in browser for the RUM requests, the branch preview, Bing's IndexNow and AI Performance reports; `npx lighthouse@12`; `wrangler deploy`.
