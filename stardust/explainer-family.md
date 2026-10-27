@@ -33,7 +33,7 @@ Set by D1 (the article archetype, `writing/2026-09-20-aem-edge-functions-google-
 | author-box | (none) | | v3 author box. |
 | fine-print | (none) | | The article-facts line. |
 
-Section-metadata style words: `plain` (default), `alt`, `tint`, `inverse` for bands; `related` closes an article column. Section metadata `id` anchors a section (`#part-1`, `#video`); `note-label` names the hero's side note for assistive tech.
+Section-metadata style words: `plain` (default), `alt`, `tint`, `inverse` for bands; `related` closes an article column; `wide` runs a static page's section across the full content width instead of the reading column (the privacy and terms pages). Section metadata `id` anchors a section (`#part-1`, `#video`); `note-label` names the hero's side note for assistive tech.
 
 ## Authoring shapes
 

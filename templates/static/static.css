@@ -10,6 +10,13 @@
   max-width: var(--measure);
 }
 
+/* Section style `wide`: the column spans the content width, as the hero does, instead of the
+   measure. Authors choose it per section (section metadata `style | wide`). */
+.static main > .section.wide > div,
+.static main > .section.wide > .default-content-wrapper {
+  max-width: var(--container-max);
+}
+
 .static main > .section > div + div {
   margin-top: var(--space-6);
 }
