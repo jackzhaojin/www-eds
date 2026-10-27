@@ -20,6 +20,24 @@
         ],
         "createdAt": "2026-10-25T18:13:22.827Z",
         "reason": "main thread: the ::after draws the play triangle with transparent borders, copied as is from the source portfolio/styles.css:1226 (replica, no design change)"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "blocks/figure/figure.css"
+        ],
+        "createdAt": "2026-10-27T04:21:51.529Z",
+        "reason": "Agent: .figure-play::after draws the play triangle with borders (transparent top and bottom), the same play button as blocks/showcase/showcase.css, which has this exception; no card, no side tab"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "blocks/figure/figure.css"
+        ],
+        "createdAt": "2026-10-27T04:21:51.547Z",
+        "reason": "Agent: .figure-play::after draws the play triangle with borders (transparent top and bottom), the same play button as blocks/showcase/showcase.css, which has this exception; no card, no side tab"
       }
     ]
   }
