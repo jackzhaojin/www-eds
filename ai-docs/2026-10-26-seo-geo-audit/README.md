@@ -138,6 +138,20 @@ Jack: "i like your suggestions, including modifying github repo on the websites,
 
 **The player loads by itself, on purpose.** A click-only facade would have been the simplest fix, but Google's video guidance says "Don't rely on user actions (such as swiping, clicking, or typing) to load the video", and the talk pages are the pages that could show as the recordings' watch pages, where Jack wants his pages, not YouTube, to rank. So the poster holds the place while the page loads, and the player follows 3 seconds after load (the site's delayed phase) once the figure is near the screen. Waiting for the load event alone wasn't enough: on EDS it fires before the blocks and the template finish (66 ms against an LCP of 124 ms locally). On the lightning talk the poster is now the mobile LCP element.
 
+**Each item through dev, test, deploy and the prod test** (the last column is one consolidated check of www at the end, 2026-10-27, all PASS):
+
+| # | Dev | Test | Deploy | Prod test (www) |
+|---|---|---|---|---|
+| 19 | the page for each repo, every target checked 200 | `gh repo list`: 23 with a site homepage | `gh repo edit --homepage` x23 | 23 repos, every homepage 200 |
+| 9 | 33 files in `content/` (DA matched git first); `scripts/collection-schema.js` | preview: 32 pages no body change, the head carries the new `sameAs`; branch preview `/writing/` graph | publish 33 (7 republished after the purge window); v1.1.5 + Worker `a9d52169` | 56 of 56 sitemap pages carry YouTube and Credly |
+| 4, 5 | the article's 6 hrefs; `storage-roles.png` into `content/media/` | bytes of DA's files = www's media copies; preview diff only those 6 hrefs; built-in browser: 0 DA links | publish the article and the image path | 0 DA links, the 6 links answer 200 |
+| 8, 13 | `redirects-extra.tsv`, `sheets.mjs` build (129 rows) | the built sheet holds the 3 new rows | `sheets.mjs --upload --publish` | `/terms`, `/terms/index.html`, `/assets/site-social.png` 301 to their targets |
+| 17 | `hlx-config/robots.txt` | GET before matched the file; GET after identical to the file sent | Admin API POST (200) | `/robots.txt` has the Content-Signal and sitemap lines |
+| 12 | `robots()` in `edge/src/routes.mjs` | new Worker test, 21 of 21 pass; `wrangler deploy --dry-run` bundle has the rule | v1.1.5, Worker `a9d52169` (www), `04c063e1` (staging) | fragments `noindex, nofollow`; home, a talk page, its `index.md`, the sitemap without it; `check-host.mjs` PASS |
+| 15 | `blocks/figure/`, `templates/talk/talk.css`; `aem up` on localhost | localhost: poster, player at 3.06 s, CLS 0, Enter loads it with autoplay; branch preview at 1440 and 360, editability 0 dead and 0 duplicated, Lighthouse 100 with YouTube on load 983 to 17 KB; PSI 100 | v1.1.5 merged (PR 7) | www serves the poster code; built-in browser: poster, then the player at 3.36 s; Lighthouse mobile 96 to 99 |
+| 16 | `indexnow.mjs`, the `deploy-batch.mjs` hook, the key file | the URL mapping by hand (pages map, fragments, docs and sheets skip); branch preview serves the key | v1.1.5 merged; 56 pages submitted | key served; a publish run ends "IndexNow: 1 URLs, HTTP 200"; a live ping 200; Bing's IndexNow report lists the URLs |
+| 18 | | | | read on prod: AI Crawl Control (nothing blocked, 3 of 629 unsuccessful in 24 hours), Web Analytics (field CWV, referrers), Bing AI Performance (58 citations). The OpTel domain key is out of scope (Jack: "we're not going to get adobe done") |
+
 **The PR's `aem-psi-check` failed, and not on a page:** PSI scored every changed page 100 for performance on the branch (lightning talk mobile: LCP 1.7 s, TBT 40 ms), but it also tried the IndexNow key file ("NOT_HTML", scored 0), and SEO is always 66 to 69 on aem.page, which is noindex by design.
 
 **The 58 was an outlier.** The first Lighthouse run on www (the lightning talk at 58, LCP 10.9 s) didn't repeat: two more runs before the release scored 96 and 98. It was a cold run with the 1 MB player loading beside the page, which v1.1.5 removes.
