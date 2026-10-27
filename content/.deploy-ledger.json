@@ -2,7 +2,7 @@
   "/footer": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T20:43:02.829Z",
+    "ts": "2026-10-27T02:50:55.388Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -191,7 +191,7 @@
   "/privacy/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-26T20:43:02.829Z",
+    "ts": "2026-10-27T02:50:55.389Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -495,7 +495,7 @@
   "/talks/aem-rockstar-2024/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T01:45:16.692Z",
+    "ts": "2026-10-27T02:50:55.389Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -553,6 +553,23 @@
     "put": 200,
     "preview": 200,
     "live": 200,
+    "verify": "ok"
+  },
+  "/terms/index": {
+    "status": "live",
+    "attempts": 1,
+    "ts": "2026-10-27T02:50:55.389Z",
+    "put": 200,
+    "preview": 200,
+    "live": 200,
+    "verify": "ok"
+  },
+  "/docs/library/blocks/section-metadata": {
+    "status": "previewed",
+    "attempts": 1,
+    "ts": "2026-10-27T02:38:58.656Z",
+    "put": 201,
+    "preview": 200,
     "verify": "ok"
   }
 }
