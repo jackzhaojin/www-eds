@@ -1,0 +1,16 @@
+/portfolio/
+  link 404 /portfolio/assets/anima/cloud-architecture.svg?v=3
+  link 404 /portfolio/assets/anima/brain-anatomy.svg?v=3
+  link 404 /portfolio/assets/anima/resource-reach.svg?v=3
+  link 404 /portfolio/assets/anima/heartbeat-sequence.svg?v=3
+  link 404 /portfolio/assets/anima/defect-loop.svg?v=3
+  link 404 /portfolio/assets/anima/agent-roster.svg?v=3
+  link 404 /portfolio/assets/anima/engine-and-instance.svg?v=3
+  link 404 /portfolio/assets/factory/a2a-closed-loop-pipeline.png?v=2
+  link 404 /portfolio/assets/factory/v1-platform-plan.png
+  link 404 /portfolio/assets/kit/agent-sdk-harness.png?v=2
+  link 404 /portfolio/assets/conversion/conversion-factory.png?v=2
+  link 404 /portfolio/assets/cea/ingestion-and-retrieval.png?v=2
+  link 404 /portfolio/assets/postal/spec-to-two-stacks.svg
+  link 404 /portfolio/assets/rockstar/exfrag-genai-flow.svg
+37 pages and fragments, 191 JSON-LD and social image URLs, 119 URLs checked: 14 problems

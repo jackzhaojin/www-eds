@@ -1,0 +1,4 @@
+clip-probe https://codex-list-seo-research--www-eds--jackzhaojin.aem.page/drafts/writing-index/ @ 360px — docH 13316, 232 text nodes, 66 controls (HTTP 200, chrome)
+  (none)
+Clipped: 0 (text clipped 0, text hidden 0, controls hidden 0, controls clipped 0; advisory: clamped 28, collapsed 0, scroll-hidden 0, horizontal 4)
+json → stardust/replica/gates/writing-api-draft-360/clip-preview.json

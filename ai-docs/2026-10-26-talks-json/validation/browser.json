@@ -1,0 +1,30 @@
+{
+  "base": "https://codex-list-seo-research--www-eds--jackzhaojin.aem.page",
+  "records": 9,
+  "overflow": [
+    {
+      "width": 1440,
+      "productionBaseline": 0,
+      "draft": 0,
+      "listing": 0
+    },
+    {
+      "width": 360,
+      "productionBaseline": 41,
+      "draft": 41,
+      "listing": 0
+    }
+  ],
+  "widths": [
+    1440,
+    360
+  ],
+  "schema": "one matching ItemList",
+  "legacyAnchor": "pass",
+  "changedAPI": "pass",
+  "textEscaping": "pass",
+  "emptyState": "pass",
+  "unavailableState": "pass",
+  "pageErrors": [],
+  "consoleErrors": []
+}

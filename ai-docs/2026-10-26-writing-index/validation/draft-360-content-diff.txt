@@ -1,0 +1,53 @@
+
+Content diff @ 360px (profile "generic", roots: main, header, footer)
+root "main"
+  source: 221 text nodes — 2 headings, 3 eyebrows, 52 CTAs, 164 body; 29 img
+  build: 253 text nodes — 2 headings, 3 eyebrows, 53 CTAs, 195 body; 29 img
+  editable texts (outermost h*/p/ul/ol): source 8 / build 10
+  attributes (placeholder/aria-label/title): source 4 / build 4; icons: source 1 / build 1
+root "header"
+  source: 10 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 5 body; 0 img
+  build: 10 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 5 body; 0 img
+  editable texts (outermost h*/p/ul/ol): source 1 / build 2
+  attributes (placeholder/aria-label/title): source 2 / build 2; icons: source 1 / build 1
+root "footer"
+  source: 6 text nodes — 0 headings, 0 eyebrows, 4 CTAs, 2 body; 0 img
+  build: 7 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 2 body; 0 img
+  editable texts (outermost h*/p/ul/ol): source 1 / build 2
+  attributes (placeholder/aria-label/title): source 1 / build 1; icons: source 0 / build 0
+
+Findings: 33 (0 structural 🔴)
+Tiers: looks-same 🔴 0 · nothing-lost 🟡 0 · accepted 🟢 0 (owner 0, auto 0) · advisory 33
+  🟠 EXTRA [main]: build cta "/writing-index.json" has no source source — Unexpected node with no source.
+  🟠 EXTRA [footer]: build cta "Privacy" has no source source — Unexpected node with no source.
+  🟡 EXTRA [main]: build body "eds migration edge delivery services experience " has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "adaptto berlin conference recap talks speakers m" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "edge functions fastly viceroy caddy google ident" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "Sign-in, Members-Only" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "talk ai tinkerers columbus 2nd place, ai tinkere" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "adobe stardust adobe/skills impeccable edge deli" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "gpt 5.6 codex kimi k3 moonshot gemini 3.5 flash " has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "patterns of work future of work knowledge work a" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "agent memory mem0 second brain memory taxonomy e" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "google stitch stitch mcp model context protocol " has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "adobe agent skills adobe/skills create-site cont" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "agent skills claude code github copilot codex co" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "talk ai tinkerers columbus featured in ai tinker" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "aem admin api admin.hlx.page helix 5 edge delive" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "spec-driven development ai harness continuous ag" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "playwright playwright video recording demo autom" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "agent harness claude agent sdk claude code sub-a" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "model context protocol streamable http sse da.li" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "model context protocol mcp server da.live docume" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "aem caching cache-control surrogate-control stal" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "aem edge delivery services eds document authorin" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "aem headless omnichannel content fragments exper" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "prd product requirements document technical desi" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "github actions github container registry docker " has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "next.js vibe coding ai coding agents claude sonn" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "azure rbac defaultazurecredential az login manag" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "edge delivery services aem cq5 day software aem " has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "aem 6.5 aem as a cloud service core components s" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "aem headless content fragments graphql persisted" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "vibe coding star method azure functions azure op" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "Source" has no source source — Build copy with no source — invented/placeholder; confirm intended.

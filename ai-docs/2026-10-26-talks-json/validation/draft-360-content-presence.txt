@@ -1,0 +1,19 @@
+content-presence @ 360px (chrome) — origin https://gh.jackzhaojin.com/talks/ (docH 5250, 78 items, HTTP 200) vs served https://codex-list-seo-research--www-eds--jackzhaojin.aem.page/drafts/talks-index/ (docH 5250, 79 items, HTTP 200)
+scope: main#main vs main#main (header/footer left to the chrome crop gate; --chrome to include)
+| band | heading | links O/E (+hidden) | buttons O/E (+hidden) | text O/E | images O/E | findings |
+|---|---|---|---|---|---|---|
+| 0 | (top) | 1/1 | 0/0 | 1/1 | 0/0 | - |
+| 1 | talks & presentations | 0/0 | 0/0 | 3/3 | 0/0 | - |
+| 2 | ai agent-driven content migration for ed | 2/2 | 0/0 | 5/5 | 0/0 | - |
+| 3 | conversion factory | 1/1 | 0/0 | 5/5 | 0/0 | - |
+| 4 | knowledge work as a product: professiona | 1/1 | 0/0 | 5/5 | 0/0 | - |
+| 5 | navigating ai governance, security, and  | 1/1 | 0/0 | 4/4 | 0/0 | - |
+| 6 | animamesh: an engine for running a compa | 4/4 | 0/0 | 4/4 | 0/0 | - |
+| 7 | ai, agents, and careers | 1/1 | 0/0 | 4/4 | 0/0 | - |
+| 8 | openclaw 24/7 development agent | 4/4 | 0/0 | 4/4 | 0/0 | - |
+| 9 | ai in professional services | 0/0 | 0/0 | 4/4 | 0/0 | - |
+| 10 | aem rockstar | 2/2 | 0/0 | 3/3 | 0/0 | - |
+Content: MISSING 0 (headings 0, links 0) / HIDDEN 0 (headings 0, links 0) / control-state 0 / buttons missing 0 hidden 0 / moved 0 extra 0 / count deltas 0
+Findings: none — every visible origin heading and link is visible on the served page
+Clipped (served side): 0 — origin side 0
+json → stardust/replica/gates/talks-api-draft-360/content-presence-preview.json

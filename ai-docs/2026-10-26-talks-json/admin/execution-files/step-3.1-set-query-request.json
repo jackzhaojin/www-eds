@@ -1,0 +1,6 @@
+{
+  "method": "POST",
+  "url": "https://admin.hlx.page/config/jackzhaojin/sites/www-eds/content/query.yaml",
+  "bodyFile": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-3.1-set-query-request.yaml",
+  "contentType": "text/yaml"
+}

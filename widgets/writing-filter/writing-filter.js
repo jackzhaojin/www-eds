@@ -161,17 +161,29 @@ function bind(widget, block) {
 
 export default function decorate(widget) {
   const scope = widget.closest('.section') || document;
-  const block = scope.querySelector('.writing-list') || document.querySelector('.writing-list');
+  const selector = '.writing-list, .writing-index';
+  const block = scope.querySelector(selector) || document.querySelector(selector);
   if (!block) return;
+  const connect = () => {
+    if (['error', 'empty'].includes(block.dataset.writingState)) {
+      widget.querySelectorAll('input, button').forEach((control) => { control.disabled = true; });
+      const count = widget.querySelector('[data-count]');
+      if (count) count.textContent = block.dataset.writingState === 'error' ? 'Unavailable' : 'No published writing';
+      const empty = widget.querySelector('[data-empty]');
+      if (empty) empty.hidden = true;
+      return;
+    }
+    bind(widget, block);
+  };
   // The list block loads after this widget in the same section: bind once it is decorated.
   if (block.dataset.blockStatus === 'loaded') {
-    bind(widget, block);
+    connect();
     return;
   }
   const observer = new MutationObserver(() => {
     if (block.dataset.blockStatus !== 'loaded') return;
     observer.disconnect();
-    bind(widget, block);
+    connect();
   });
   observer.observe(block, { attributes: true, attributeFilter: ['data-block-status'] });
 }

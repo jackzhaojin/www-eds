@@ -1,0 +1,7 @@
+{
+  "method": "PUT",
+  "url": "https://admin.da.live/source/jackzhaojin/www-eds/talks/records/adaptto-2026-lightning.html",
+  "bodyFile": "content/talks/records/adaptto-2026-lightning.html",
+  "multipart": true,
+  "contentType": "text/html"
+}

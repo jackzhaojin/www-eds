@@ -1,0 +1,238 @@
+[
+  {
+    "url": "https://codex-list-seo-research--www-eds--jackzhaojin.aem.page/drafts/writing-index/",
+    "totals": {
+      "authored": 8,
+      "editable": 7,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 1
+    },
+    "blocks": [
+      {
+        "block": "hero",
+        "authored": 3,
+        "editable": 3,
+        "dead": 0,
+        "duplicated": 0,
+        "exempt": 0,
+        "textDrift": 0,
+        "deadItems": [],
+        "dupItems": [],
+        "exemptItems": [],
+        "exemptReasons": [],
+        "editDrift": 0,
+        "blockHeightDelta": 0
+      },
+      {
+        "block": "widget",
+        "authored": 1,
+        "editable": 0,
+        "dead": 0,
+        "duplicated": 0,
+        "exempt": 1,
+        "textDrift": 0,
+        "deadItems": [],
+        "dupItems": [],
+        "exemptItems": [
+          {
+            "tag": "p",
+            "text": "https://www.jackzhaojin.com/widgets/writing-filter/writing-filter.html",
+            "label": "<p> https://www.jackzhaojin.com/widgets/writing-filter/writing-filter.html"
+          }
+        ],
+        "exemptReasons": [
+          "widget: rendered by code, nothing authored"
+        ]
+      },
+      {
+        "block": "writing-index",
+        "authored": 2,
+        "editable": 2,
+        "dead": 0,
+        "duplicated": 0,
+        "exempt": 0,
+        "textDrift": 0,
+        "deadItems": [],
+        "dupItems": [],
+        "exemptItems": [],
+        "exemptReasons": [],
+        "editDrift": 0,
+        "blockHeightDelta": 0
+      },
+      {
+        "block": "default",
+        "authored": 2,
+        "editable": 2,
+        "dead": 0,
+        "duplicated": 0,
+        "exempt": 0,
+        "textDrift": 0,
+        "deadItems": [],
+        "dupItems": [],
+        "exemptItems": [],
+        "exemptReasons": [],
+        "editDrift": 0
+      }
+    ],
+    "rows": [
+      {
+        "index": 2,
+        "tag": "ol",
+        "block": "hero",
+        "unit": null,
+        "text": "Home\n                Technical Writing",
+        "hits": 1,
+        "visible": true,
+        "liveText": "Home\n                Technical Writing",
+        "sameText": true
+      },
+      {
+        "index": 74,
+        "tag": "h1",
+        "block": "hero",
+        "unit": null,
+        "text": "Technical Writing",
+        "hits": 1,
+        "visible": true,
+        "liveText": "Technical Writing",
+        "sameText": true
+      },
+      {
+        "index": 93,
+        "tag": "p",
+        "block": "hero",
+        "unit": null,
+        "text": "Practical notes on AI engineering, Adobe Experience Manager, and worki",
+        "hits": 1,
+        "visible": true,
+        "liveText": "Practical notes on AI engineering, Adobe Experience Manager, and worki",
+        "sameText": true
+      },
+      {
+        "index": 176,
+        "tag": "p",
+        "block": "widget",
+        "unit": null,
+        "text": "https://www.jackzhaojin.com/widgets/writing-filter/writing-filter.html",
+        "hits": 0,
+        "visible": false,
+        "liveText": null,
+        "sameText": false
+      },
+      {
+        "index": 248,
+        "tag": "p",
+        "block": "writing-index",
+        "unit": null,
+        "text": "Source",
+        "hits": 1,
+        "visible": false,
+        "liveText": "Source",
+        "sameText": true
+      },
+      {
+        "index": 256,
+        "tag": "p",
+        "block": "writing-index",
+        "unit": null,
+        "text": "/writing-index.json",
+        "hits": 1,
+        "visible": false,
+        "liveText": "/writing-index.json",
+        "sameText": true
+      },
+      {
+        "index": 277,
+        "tag": "h2",
+        "block": "default",
+        "unit": null,
+        "text": "Written up properly, under the original date.",
+        "hits": 1,
+        "visible": true,
+        "liveText": "Written up properly, under the original date.",
+        "sameText": true
+      },
+      {
+        "index": 324,
+        "tag": "p",
+        "block": "default",
+        "unit": null,
+        "text": "Most of these started on LinkedIn between April 2025 and September 202",
+        "hits": 1,
+        "visible": true,
+        "liveText": "Most of these started on LinkedIn between April 2025 and September 202",
+        "sameText": true
+      }
+    ],
+    "sim": {
+      "drift": [
+        {
+          "index": 2,
+          "block": "hero",
+          "tag": "ol",
+          "text": "Home\n                Technical Writing",
+          "drift": []
+        },
+        {
+          "index": 74,
+          "block": "hero",
+          "tag": "h1",
+          "text": "Technical Writing",
+          "drift": []
+        },
+        {
+          "index": 93,
+          "block": "hero",
+          "tag": "p",
+          "text": "Practical notes on AI engineering, Adobe Experience Manager, and worki",
+          "drift": []
+        },
+        {
+          "index": 248,
+          "block": "writing-index",
+          "tag": "p",
+          "text": "Source",
+          "drift": []
+        },
+        {
+          "index": 256,
+          "block": "writing-index",
+          "tag": "p",
+          "text": "/writing-index.json",
+          "drift": []
+        },
+        {
+          "index": 277,
+          "block": "default",
+          "tag": "h2",
+          "text": "Written up properly, under the original date.",
+          "drift": []
+        },
+        {
+          "index": 324,
+          "block": "default",
+          "tag": "p",
+          "text": "Most of these started on LinkedIn between April 2025 and September 202",
+          "drift": []
+        }
+      ],
+      "blockDelta": {
+        "hero": 0,
+        "writing-index": 0
+      }
+    },
+    "exemptions": {
+      "widget": {
+        "all": true,
+        "reasons": [
+          "widget: rendered by code, nothing authored"
+        ],
+        "categories": [
+          "all"
+        ],
+        "source": "widget"
+      }
+    }
+  }
+]

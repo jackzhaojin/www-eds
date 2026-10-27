@@ -1,0 +1,27 @@
+{
+  "webPath": "/talks/records/ai-tinkerers-2026",
+  "resourcePath": "/talks/records/ai-tinkerers-2026.md",
+  "live": {
+    "url": "https://main--www-eds--jackzhaojin.aem.live/talks/records/ai-tinkerers-2026",
+    "status": 200,
+    "contentBusId": "helix-content-bus/9068e1d410f9f526352e352eb6425a401d00e59a43a07c3f402e2cf7f25/live/talks/records/ai-tinkerers-2026.md",
+    "contentType": "text/plain; charset=utf-8",
+    "lastModified": "Mon, 26 Oct 2026 23:07:18 GMT",
+    "sourceLocation": "markup:https://content.da.live/jackzhaojin/www-eds/talks/records/ai-tinkerers-2026",
+    "sourceLastModified": "Mon, 26 Oct 2026 23:07:15 GMT",
+    "lastModifiedBy": "jackzhaojin@gmail.com",
+    "permissions": [
+      "delete",
+      "delete-forced",
+      "list",
+      "read",
+      "write"
+    ]
+  },
+  "links": {
+    "status": "https://admin.hlx.page/status/jackzhaojin/www-eds/main/talks/records/ai-tinkerers-2026",
+    "preview": "https://admin.hlx.page/preview/jackzhaojin/www-eds/main/talks/records/ai-tinkerers-2026",
+    "live": "https://admin.hlx.page/live/jackzhaojin/www-eds/main/talks/records/ai-tinkerers-2026",
+    "code": "https://admin.hlx.page/code/jackzhaojin/www-eds/main/talks/records/ai-tinkerers-2026"
+  }
+}

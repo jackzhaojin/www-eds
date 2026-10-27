@@ -1,0 +1,147 @@
+[
+  {
+    "file": "content/writing/2026-10-25-eds-migration-two-goal-prompts/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "9a2846b476d930883aed48d3cd3c9e09769c09ee81db211ad5ce6ae1d13238a0"
+  },
+  {
+    "file": "content/writing/2026-10-10-adaptto-2026-25-talks/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "4f42acb22e61b0cce18823c438dc7e846f454795572add66c5a61a3e7b1f9bf2"
+  },
+  {
+    "file": "content/writing/2026-09-20-aem-edge-functions-google-sign-in/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "b49f593739fc7bb0801d9a6f2672d865db29b369462b790e5de7070c5d6b8d64"
+  },
+  {
+    "file": "content/writing/2026-08-15-anima-mesh-company-of-zero/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "ce304a22aa48d01a02bb960bab6508236c8cac05ef9a203b7aefbf275d9ecd46"
+  },
+  {
+    "file": "content/writing/2026-08-09-adobe-stardust-explained/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "3e65833e52390773603bea7b3c1326a840432b2f1336494cd243dd15be6ad3d3"
+  },
+  {
+    "file": "content/writing/2026-07-21-four-frontier-models-one-prompt/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "8bc6cda01456112dcdca73f7c670e293aaa169e343a1f94263a29dc71e561b15"
+  },
+  {
+    "file": "content/writing/2026-06-28-patterns-of-work/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "30f8e9cf8838b5f712a0eaad09cbf95bbb8734ed944f7aa7efda54c194ddbbdc"
+  },
+  {
+    "file": "content/writing/2026-05-31-continuous-agent-second-brain/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "9fe0a0138ef34ecd8cda6f4204bdf7d3bb34e3dcf6a385e083bd1fe90134f5dc"
+  },
+  {
+    "file": "content/writing/2026-05-24-theming-eds-with-google-stitch/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "81000585f1311ead9ac19ac7079fed8c8bc5e5ad4f3cd78a07b30398e6c9b8df"
+  },
+  {
+    "file": "content/writing/2026-05-17-adobe-eds-skills-hands-on/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "08ca2708549472e73fcc29208c42befc343ca20dc6f16830cc969176ce7ac3db"
+  },
+  {
+    "file": "content/writing/2026-04-12-two-ai-skills-team-enablement/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "b7c09c2312eafaba3be903c68162eae5520b3bc44dff9f80b916f2f64ab2941a"
+  },
+  {
+    "file": "content/writing/2026-04-05-continuous-executive-agent-v2-1/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "4b26ddc09d083a624480bfc714146ae3a74819c3592adab907bca9331278d6e9"
+  },
+  {
+    "file": "content/writing/2026-03-23-eds-hlx-admin-agentic-config/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "aead19156da7cf7655f9bf0eeb5d2ea45dc38e3987115cdc0e2ba7296316af44"
+  },
+  {
+    "file": "content/writing/2026-02-05-reusable-ai-development-modules/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "ba47520e9c7af06c18a33dacab718c0eaf9cc2499fb8da6021aeb01358681b37"
+  },
+  {
+    "file": "content/writing/2026-01-29-playwright-stakeholder-demos/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "db6a93f2dd71a5037b9e862949fd9bddeef595fd2fc6357e4bcb7407ce8649ff"
+  },
+  {
+    "file": "content/writing/2026-01-05-from-prompts-to-harness/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "abe01ba0c2bcc1befb0305f40608d29fa1fd17265a4ea9ea9563f80d36af31eb"
+  },
+  {
+    "file": "content/writing/2025-10-12-da-live-mcp-across-ai-platforms/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "27ecd68afb5aa0d02746c06241a5111f1a8cf857cefbcf78908b08ddd1f57067"
+  },
+  {
+    "file": "content/writing/2025-10-05-mcp-server-for-eds-da-live/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "b0bb2d1635d003fadb24464195f7840e48d95c610b8e8d1c3cdc1a2ca6a35687"
+  },
+  {
+    "file": "content/writing/2025-09-01-aem-caching-production-architectures/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "2a3fb0f3a2681edc9002539c8707785e56c0e3da7e1f0ed6a261bcd3d84d1218"
+  },
+  {
+    "file": "content/writing/2025-07-13-three-eds-offerings/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "873a084108a3b56d07ea7e49bd26c34c7121c6fb9603c82cd843e5d6830b3ce4"
+  },
+  {
+    "file": "content/writing/2025-07-12-aem-headless-omnichannel-architecture/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "903a353044937b5a5117537e97aa051d90d09a5339558c8ad20a9b2e23021d0c"
+  },
+  {
+    "file": "content/writing/2025-07-11-scaling-ai-coding-delivery-methodology/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "067d741c3c47d4c05046093db1271b05b1f3d8240b1cf4beb108f05153e06364"
+  },
+  {
+    "file": "content/writing/2025-07-07-ai-coded-nextjs-agent-cicd-infrastructure/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "6783aca720775022cb6f6e9366512577c7d561cba20948d9048d9f67bdb60e78"
+  },
+  {
+    "file": "content/writing/2025-07-06-ai-coded-nextjs-agent-release-1/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "11007cd9fc536f608d533dca8407318a0edcf1057784eccf3a2abd0b3c1ed052"
+  },
+  {
+    "file": "content/writing/2025-06-12-azure-rbac-cicd-for-ai-agents/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "92e3ea46e744ed7b209ca0ce99900c9508618982daab4f90be60499e6527a845"
+  },
+  {
+    "file": "content/writing/2025-06-08-edge-cms-shift-adobe-eds/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "f91ef34c9cf2ec5b141041fb2d8db87788ec849c0ddda675990bcab324d81e54"
+  },
+  {
+    "file": "content/writing/2025-06-04-seven-aem-capabilities-tradeoffs/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "5fc7a9c531cc6d86cbb83f974c71f0a015e20d81aa90c1794306ebe22e87b289"
+  },
+  {
+    "file": "content/writing/2025-05-28-aem-headless-when-frontend-teams-lead/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "c57c5bc8f9f4d94f861821b1e0efbddc946867e2e9785ee13309df7dd1cb15da"
+  },
+  {
+    "file": "content/writing/2025-04-13-vibe-coding-star-story-generator/index.html",
+    "bodyAndExistingMetadataPreserved": true,
+    "beforeSha256": "c62f84577872258bf94f70c14e4126f3727d81f001c2a990ef5ab79c4b42ee25"
+  }
+]

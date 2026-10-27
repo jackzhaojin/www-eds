@@ -1,0 +1,9 @@
+measure: https://codex-list-seo-research--www-eds--jackzhaojin.aem.page/writing/2025-06-04-seven-aem-capabilities-tradeoffs/ @360: horizontal overflow +41px (scrollWidth 401 > viewport 360)
+measure  https://codex-list-seo-research--www-eds--jackzhaojin.aem.page/writing/2025-06-04-seven-aem-capabilities-tradeoffs/
+  widths 360 · 1 selector(s) · 1 props · first match
+
+@ 360px
+  root  scrollWidth   401  viewport 360  scrollHeight  16169  ◄◄ OVERFLOW +41px
+  html
+       x     0  y      0  w   360  h 16169  vis  "Skip to content Jack Jin Menu Home Tech…"
+      display: block

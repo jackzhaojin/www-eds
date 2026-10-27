@@ -1,0 +1,7 @@
+{
+  "method": "PUT",
+  "url": "https://admin.da.live/source/jackzhaojin/www-eds/talks/records/columbus-ai-2026-panel.html",
+  "bodyFile": "content/talks/records/columbus-ai-2026-panel.html",
+  "multipart": true,
+  "contentType": "text/html"
+}

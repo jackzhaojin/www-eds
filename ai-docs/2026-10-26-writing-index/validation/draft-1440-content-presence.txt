@@ -1,0 +1,40 @@
+content-presence @ 1440px (chrome) — origin https://gh.jackzhaojin.com/writing/ (docH 10307, 283 items, HTTP 200) vs served https://codex-list-seo-research--www-eds--jackzhaojin.aem.page/drafts/writing-index/ (docH 10307, 284 items, HTTP 200)
+scope: main#main vs main#main (header/footer left to the chrome crop gate; --chrome to include)
+| band | heading | links O/E (+hidden) | buttons O/E (+hidden) | text O/E | images O/E | findings |
+|---|---|---|---|---|---|---|
+| 0 | (top) | 1/1 | 0/0 | 1/1 | 0/0 | - |
+| 1 | technical writing | 1/1 | 6/6 | 4/4 | 0/0 | - |
+| 2 | migrating my site to aem edge delivery s | 2/2 | 0/0 | 6/6 | 1/1 | - |
+| 3 | adaptto() 2026 recap: 25 aem conference  | 2/2 | 0/0 | 5/5 | 1/1 | - |
+| 4 | aem edge functions on a laptop: google s | 2/2 | 0/0 | 5/5 | 1/1 | - |
+| 5 | company of zero: how animamesh runs a co | 3/3 | 0/0 | 6/6 | 1/1 | - |
+| 6 | adobe stardust explained: a design skill | 2/2 | 0/0 | 6/6 | 1/1 | - |
+| 7 | four frontier models, one 1,032-line pro | 2/2 | 0/0 | 5/5 | 1/1 | - |
+| 8 | patterns of work: five layers of working | 2/2 | 0/0 | 5/5 | 1/1 | - |
+| 9 | agent memory for a 24/7 coding agent: fi | 1/1 | 0/0 | 4/4 | 1/1 | - |
+| 10 | theming a brand-new eds site with google | 2/2 | 0/0 | 6/6 | 1/1 | - |
+| 11 | adobe's eds skills on a real build: crea | 2/2 | 0/0 | 6/6 | 1/1 | - |
+| 12 | two ai skills for team enablement: log t | 2/2 | 0/0 | 5/5 | 1/1 | - |
+| 13 | a 24/7 coding agent at v2.1: an executiv | 3/3 | 0/0 | 6/6 | 1/1 | - |
+| 14 | agentic admin api configuration for edge | 2/2 | 0/0 | 6/6 | 1/1 | - |
+| 15 | making ai-driven development modules reu | 2/2 | 0/0 | 5/5 | 1/1 | - |
+| 16 | playwright stakeholder demos: captions t | 2/2 | 0/0 | 5/5 | 1/1 | - |
+| 17 | from prompts to harness: how determinist | 2/2 | 0/0 | 5/5 | 1/1 | - |
+| 18 | one da.live mcp server across claude, ge | 2/2 | 0/0 | 6/6 | 1/1 | - |
+| 19 | building an mcp server for eds da.live:  | 2/2 | 0/0 | 6/6 | 1/1 | - |
+| 20 | aem caching in production: how cache-con | 2/2 | 0/0 | 5/5 | 1/1 | - |
+| 21 | three ways to author on aem edge deliver | 1/1 | 0/0 | 4/4 | 1/1 | - |
+| 22 | aem headless and omnichannel: three arch | 2/2 | 0/0 | 5/5 | 1/1 | - |
+| 23 | a 100% ai-coded next.js agent, part 3: s | 1/1 | 0/0 | 4/4 | 1/1 | - |
+| 24 | a 100% ai-coded next.js agent, part 2: c | 1/1 | 0/0 | 4/4 | 1/1 | - |
+| 25 | a 100% ai-coded next.js agent, part 1: t | 2/2 | 0/0 | 5/5 | 1/1 | - |
+| 26 | azure rbac and ci/cd for ai coding agent | 1/1 | 0/0 | 4/4 | 1/1 | - |
+| 27 | the edge cms shift: how adobe eds stacks | 1/1 | 0/0 | 4/4 | 1/1 | - |
+| 28 | making sense of 7 aem capabilities: trad | 1/1 | 0/0 | 4/4 | 1/1 | - |
+| 29 | why aem headless makes sense when fronte | 1/1 | 0/0 | 4/4 | 1/1 | - |
+| 30 | a star story generator on azure: prompti | 0/0 | 0/0 | 4/4 | 1/1 | - |
+| 31 | written up properly, under the original  | 0/0 | 0/0 | 1/1 | 0/0 | - |
+Content: MISSING 0 (headings 0, links 0) / HIDDEN 0 (headings 0, links 0) / control-state 0 / buttons missing 0 hidden 0 / moved 0 extra 0 / count deltas 0
+Findings: none — every visible origin heading and link is visible on the served page
+Clipped (served side): 0 — origin side 0
+json → stardust/replica/gates/writing-api-draft-1440/content-presence-preview.json

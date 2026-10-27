@@ -1,0 +1,27 @@
+{
+  "webPath": "/drafts/talks-index/",
+  "resourcePath": "/drafts/talks-index/index.md",
+  "preview": {
+    "url": "https://main--www-eds--jackzhaojin.aem.page/drafts/talks-index/",
+    "status": 200,
+    "contentBusId": "helix-content-bus/9068e1d410f9f526352e352eb6425a401d00e59a43a07c3f402e2cf7f25/preview/drafts/talks-index/index.md",
+    "contentType": "text/plain; charset=utf-8",
+    "lastModified": "Mon, 26 Oct 2026 23:07:29 GMT",
+    "sourceLocation": "markup:https://content.da.live/jackzhaojin/www-eds/drafts/talks-index/",
+    "sourceLastModified": "Mon, 26 Oct 2026 23:07:28 GMT",
+    "lastModifiedBy": "jackzhaojin@gmail.com",
+    "permissions": [
+      "delete",
+      "delete-forced",
+      "list",
+      "read",
+      "write"
+    ]
+  },
+  "links": {
+    "status": "https://admin.hlx.page/status/jackzhaojin/www-eds/main/drafts/talks-index/",
+    "preview": "https://admin.hlx.page/preview/jackzhaojin/www-eds/main/drafts/talks-index/",
+    "live": "https://admin.hlx.page/live/jackzhaojin/www-eds/main/drafts/talks-index/",
+    "code": "https://admin.hlx.page/code/jackzhaojin/www-eds/main/drafts/talks-index/"
+  }
+}

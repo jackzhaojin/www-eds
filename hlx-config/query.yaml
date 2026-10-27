@@ -12,6 +12,7 @@ indices:
       - '/**/nav'
       - '/**/footer'
       - '/drafts/**'
+      - '/talks/records/**'
     target: /query-index.json
     properties:
       title:
@@ -32,6 +33,114 @@ indices:
       lastModified:
         select: none
         value: parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, 'content')
+  talks:
+    include:
+      - /talks/records/**
+    exclude:
+      - /talks/records
+      - /talks/records/
+    target: /talks-index.json
+    properties:
+      id:
+        select: head > meta[name="talk-id"]
+        value: attribute(el, 'content')
+      aliases:
+        select: head > meta[name="talk-aliases"]
+        value: attribute(el, 'content')
+      order:
+        select: head > meta[name="talk-order"]
+        value: attribute(el, 'content')
+      date:
+        select: head > meta[name="talk-date"]
+        value: attribute(el, 'content')
+      kind:
+        select: head > meta[name="talk-kind"]
+        value: attribute(el, 'content')
+      title:
+        select: main h1
+        value: textContent(el)
+      event:
+        select: head > meta[name="talk-event"]
+        value: attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, 'content')
+      status:
+        select: head > meta[name="talk-status"]
+        value: attribute(el, 'content')
+      linkLabels:
+        select: main ul li a
+        values: textContent(el)
+      linkUrls:
+        select: main ul li a
+        values: attribute(el, 'href')
+  writing:
+    include:
+      - /writing/**
+    exclude:
+      - /writing
+      - /writing/
+      - /writing/**/nav
+      - /writing/**/footer
+    target: /writing-index.json
+    properties:
+      title:
+        select: main h1
+        value: textContent(el)
+      headingId:
+        select: main h1
+        value: attribute(el, 'id')
+      date:
+        select: head > meta[name="published-time"]
+        value: attribute(el, 'content')
+      summary:
+        select: head > meta[name="listing-summary"]
+        value: attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, 'content')
+      image:
+        select: head > meta[name="listing-image"]
+        value: attribute(el, 'content')
+      socialImage:
+        select: head > meta[property="og:image"]
+        value: attribute(el, 'content')
+      topics:
+        select: head > meta[name="listing-topics"]
+        value: attribute(el, 'content')
+      readTime:
+        select: head > meta[name="listing-reading-time"]
+        value: attribute(el, 'content')
+      videoTime:
+        select: head > meta[name="listing-video-time"]
+        value: attribute(el, 'content')
+      talkUrl:
+        select: head > meta[name="listing-talk-url"]
+        value: attribute(el, 'content')
+      talkLabel:
+        select: head > meta[name="listing-talk-label"]
+        value: attribute(el, 'content')
+      talkNote:
+        select: head > meta[name="listing-talk-note"]
+        value: attribute(el, 'content')
+      watchUrl:
+        select: head > meta[name="listing-watch-url"]
+        value: attribute(el, 'content')
+      watchLabel:
+        select: head > meta[name="listing-watch-label"]
+        value: attribute(el, 'content')
+      keywords:
+        select: head > meta[name="listing-keywords"]
+        value: attribute(el, 'content')
+      nowrap:
+        select: head > meta[name="listing-nowrap"]
+        value: attribute(el, 'content')
+      template:
+        select: head > meta[name="template"]
+        value: attribute(el, 'content')
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, 'content')

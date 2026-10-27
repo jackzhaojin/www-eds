@@ -1,0 +1,186 @@
+[
+  {
+    "id": "adaptto-2026",
+    "aliases": [],
+    "order": 1,
+    "date": "September 29, 2026",
+    "kind": "Conference session",
+    "title": "AI Agent-Driven Content Migration for Edge Delivery Services",
+    "event": "adaptTo() 2026 · Berlin · with Katie Phillips",
+    "description": "AI-assisted migration into DA.live and EDS, with orchestration, evaluation, and human review.",
+    "status": "Write-up in progress",
+    "links": [
+      {
+        "label": "View event source",
+        "url": "https://adapt.to/2026/schedule/ai-agent-driven-content-migration-for-edge-delivery-services"
+      },
+      {
+        "label": "Explore the project",
+        "url": "https://www.jackzhaojin.com/portfolio/#ch-factory"
+      }
+    ]
+  },
+  {
+    "id": "adaptto-2026-lightning",
+    "aliases": [],
+    "order": 2,
+    "date": "September 2026",
+    "kind": "Lightning talk",
+    "title": "Conversion Factory",
+    "event": "adaptTo() 2026 · Berlin",
+    "description": "An eight-minute talk on a work in progress: agents that propose and validate block variants for an Edge Delivery site, then ship them through an experiment framework so both versions run live.",
+    "status": "Write-up in progress",
+    "links": [
+      {
+        "label": "Explore the project",
+        "url": "https://www.jackzhaojin.com/portfolio/#ch-conv"
+      }
+    ]
+  },
+  {
+    "id": "columbus-ai-2026-talk",
+    "aliases": [
+      "columbus-ai-2026"
+    ],
+    "order": 3,
+    "date": "September 11, 2026",
+    "kind": "Featured presentation",
+    "title": "Knowledge Work as a Product: Professional Services in the AI Era",
+    "event": "Columbus AI Week 2026, AI for Business Summit · Columbus, Ohio",
+    "description": "A fifteen-minute main stage talk on why professional services is the industry most exposed to AI. The product is knowledge work, so what AI produces is what the industry sells. Four fundamental truths about what clients buy, and how each one changes when agents do the work. Views are Jack's own.",
+    "status": "Write-up in progress",
+    "links": [
+      {
+        "label": "View event source",
+        "url": "https://www.joineta.org/blog/preview-the-columbus-ai-week-agenda-september-10-11-2026"
+      }
+    ]
+  },
+  {
+    "id": "columbus-ai-2026-panel",
+    "aliases": [],
+    "order": 4,
+    "date": "September 10, 2026",
+    "kind": "Fireside panel",
+    "title": "Navigating AI Governance, Security, and Trust Across the Enterprise",
+    "event": "Columbus AI Week 2026, AI Leadership Summit · Columbus, Ohio",
+    "description": "A featured fireside on governance that enables rather than blocks, moderated by Jim Ford with Eric Zielinski and Connie Matthews. Jack brought the view of someone who runs autonomous coding agents at night and works inside enterprise governance by day: security as layers, gates with teeth, and evals as governance.",
+    "status": "",
+    "links": [
+      {
+        "label": "View event source",
+        "url": "https://www.joineta.org/blog/preview-the-columbus-ai-week-agenda-september-10-11-2026"
+      }
+    ]
+  },
+  {
+    "id": "ai-tinkerers-2026-animamesh",
+    "aliases": [],
+    "order": 5,
+    "date": "August 3, 2026",
+    "kind": "Community talk",
+    "title": "AnimaMesh: An Engine for Running a Company with Agents",
+    "event": "AI Tinkerers Columbus · Columbus, Ohio",
+    "description": "The Company of Zero demo: one open source engine on Cloudflare Workers, a private markdown brain per company, and agents that bring me the day's work. It took second place in AI Tinkerers' global Top AI Demos that week.",
+    "status": "",
+    "links": [
+      {
+        "label": "Read the write-up",
+        "url": "https://www.jackzhaojin.com/writing/2026-08-15-anima-mesh-company-of-zero/"
+      },
+      {
+        "label": "Watch the recorded talk",
+        "url": "https://youtu.be/zYytfy1PAkc"
+      },
+      {
+        "label": "Top AI Demos #40",
+        "url": "https://post-training.aitinkerers.org/p/top-ai-demos-40-zero-cost-companies-declarative-agents-and-llm-world-sims"
+      },
+      {
+        "label": "Explore the project",
+        "url": "https://www.jackzhaojin.com/portfolio/#ch-anima"
+      }
+    ]
+  },
+  {
+    "id": "denison-2026",
+    "aliases": [],
+    "order": 6,
+    "date": "April 2026",
+    "kind": "Guest lecture",
+    "title": "AI, agents, and careers",
+    "event": "Denison University, CS 271 · Granville, Ohio",
+    "description": "A guest lecture with a live demo and open-source materials for computer science students.",
+    "status": "",
+    "links": [
+      {
+        "label": "View materials",
+        "url": "https://github.com/jackzhaojin/denison-2026-04-24"
+      }
+    ]
+  },
+  {
+    "id": "ai-tinkerers-2026",
+    "aliases": [
+      "openclaw-247-development-agent"
+    ],
+    "order": 7,
+    "date": "April 6, 2026",
+    "kind": "Community demo",
+    "title": "OpenClaw 24/7 Development Agent",
+    "event": "AI Tinkerers Columbus · Columbus, Ohio",
+    "description": "A demo of a continuous coding agent, its execution loop, and the boundaries around autonomous work. Featured in AI Tinkerers' global Community Spotlights, picked from hundreds of demos.",
+    "status": "",
+    "links": [
+      {
+        "label": "Read the write-up",
+        "url": "https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/"
+      },
+      {
+        "label": "Watch the live talk",
+        "url": "https://youtu.be/l3wIHurjERk"
+      },
+      {
+        "label": "Community Spotlights",
+        "url": "https://post-training.aitinkerers.org/p/ai-tinkerers-23-community-spotlights"
+      },
+      {
+        "label": "Explore the project",
+        "url": "https://www.jackzhaojin.com/portfolio/#ch-cea"
+      }
+    ]
+  },
+  {
+    "id": "columbus-ai-2025",
+    "aliases": [],
+    "order": 8,
+    "date": "September 2025",
+    "kind": "Presentation",
+    "title": "AI in Professional Services",
+    "event": "Columbus AI Week 2025 · Columbus, Ohio",
+    "description": "AI delivery and multi-agent collaboration in professional services.",
+    "status": "",
+    "links": []
+  },
+  {
+    "id": "aem-rockstar-2024",
+    "aliases": [],
+    "order": 9,
+    "date": "March 28, 2024",
+    "kind": "Conference competition",
+    "title": "AEM Rockstar",
+    "event": "Adobe Summit 2024 · Las Vegas",
+    "description": "A generative AI solution built into Adobe Experience Manager. Winner of the 2024 AEM Rockstar competition.",
+    "status": "Write-up in progress",
+    "links": [
+      {
+        "label": "View event source",
+        "url": "https://business.adobe.com/summit/2024/sessions/adobe-experience-manager-rockstar-the-finalists-fa-s412.html"
+      },
+      {
+        "label": "Explore the project",
+        "url": "https://www.jackzhaojin.com/portfolio/#ch-rockstar"
+      }
+    ]
+  }
+]

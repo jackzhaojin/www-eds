@@ -110,6 +110,49 @@ node stardust/scripts/replica/run-bg.mjs start --name <slug>-1440 -- stardust/sc
 - **Commit:** `content/`, `content/.deploy-ledger.json`, and anything the gates recorded. Push to main after `git pull --rebase`, never force-push. **A content change is never a release:** no version, tag or release branch (AGENTS.md, "Releases are for code only").
 - **New pages:** since the cutover (2026-10-26) new writing is published here, to EDS; a page added to GitHub Pages no longer shows on www. An article drafted as HTML converts with the recipe in [whats-left.md, section 5](../ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md). Then sync its SEO ([hlx-config/README.md](../hlx-config/README.md)): its head metadata, the redirects sheet, the sitemap.
 
+## Listing pages: authored once, generated from the index
+
+A listing page (the writing and talks hubs) is authored as a hero, one listing block and the
+page metadata. The block has a single row, `Source | /writing-index.json` (block **Writing
+index**) or `Source | /talks-index.json` (block **Row list (talks, dynamic)**). Never author
+its rows or a `json-ld` metadata row: both are generated from the index.
+
+- **On www** the edge Worker serves the page with the rows inside the block and one JSON-LD
+  graph in the head (Person, WebSite, CollectionPage, BreadcrumbList, and an ItemList of the
+  visible rows), so crawlers that don't run JavaScript get the whole list
+  ([edge/README.md](../edge/README.md), `src/listings.mjs`). The Markdown copy
+  (`<path>index.md`) isn't rewritten: it shows the Source row.
+- **On preview hosts** (aem.page, no Worker) the browser builds the same rows and graph from
+  the same code (`scripts/listing-cells.js`, `writing-index.js`, `talks-index.js`,
+  `collection-schema.js`).
+- **Publishing a source updates the list.** An article (its `listing-*` metadata) or a talk
+  record goes into its index when published; www serves the new list within 5 minutes (the
+  Worker's cache of the index, purged sooner by the publish). The hub itself isn't republished.
+
+**Writing:** `/writing-index.json` indexes the article documents. The title and date come from
+the h1 and `published-time`; optional `listing-*` metadata owns the card: summary, image
+(a public www media URL), pipe-separated topics, reading and video times, the related talk
+link and note, the watch link, search keywords and comma-separated keep-together title runs.
+Without them the article's description and social image are the card's.
+
+**Talks:** `/talks-index.json` indexes the records in `talks/records/`. A record's h1 is the
+title and its link list the talk's links. Metadata carries `talk-id`, optional
+space-separated `talk-aliases` (older anchors that still land on the row), `talk-order`
+(ascending), the display `talk-date` as authored (keep a partial date partial), `talk-kind`,
+`talk-event`, `talk-status` and the description. Records stay `noindex, follow`, out of the
+general index and the sitemap (`hlx-config/query.yaml`).
+
+**During review** `writing/index.html` and `talks/index.html` stay as they are (static rows);
+`drafts/writing-index/` and `drafts/talks-index/` are the generated versions, preview only.
+The switch, after the release that carries the Worker is deployed: replace each hub's rows
+with the Source row, drop its `json-ld` row, keep its other metadata (and its indexability:
+never carry over the drafts' `noindex` or `canonical`). Switch a hub before the Worker is
+live and crawlers get an empty list. Keep draft paths out of production publish batches.
+
+The records, the Admin API trail and the validation are in
+[the talks index record](../ai-docs/2026-10-26-talks-json/README.md) and
+[the writing index record](../ai-docs/2026-10-26-writing-index/README.md).
+
 ## Stop points
 
 Ask Jack first for: an expired DA token, deleting anything in DA, any site config or Experience Workspace config change, any Cloudflare change, and the cutover.

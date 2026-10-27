@@ -1,0 +1,37 @@
+version: 1
+# The query index (Admin API: /config/jackzhaojin/sites/www-eds/content/query.yaml). Every
+# published page except the nav and footer fragments. The sitemap reads it, and skips pages
+# whose robots metadata says noindex (the design system page).
+indices:
+  default:
+    include:
+      - '/**'
+    exclude:
+      - '/nav'
+      - '/footer'
+      - '/**/nav'
+      - '/**/footer'
+      - '/drafts/**'
+    target: /query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, 'content')
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, 'content'), 'https:\/\/[^/]+(\/.*)')
+      template:
+        select: head > meta[name="template"]
+        value: attribute(el, 'content')
+      published-time:
+        select: head > meta[name="published-time"]
+        value: attribute(el, 'content')
+      lastModified:
+        select: none
+        value: parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, 'content')

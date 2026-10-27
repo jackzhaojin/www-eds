@@ -1,0 +1,15 @@
+content-presence @ 1440px (chrome) — origin https://gh.jackzhaojin.com/ (docH 2751, 52 items, HTTP 200) vs served https://codex-list-seo-research--www-eds--jackzhaojin.aem.page/ (docH 2751, 53 items, HTTP 200)
+scope: main#main vs main#main (header/footer left to the chrome crop gate; --chrome to include)
+| band | heading | links O/E (+hidden) | buttons O/E (+hidden) | text O/E | images O/E | findings |
+|---|---|---|---|---|---|---|
+| 0 | (top) | 0/0 | 0/0 | 1/1 | 0/0 | - |
+| 1 | jack jin | 7/7 | 0/0 | 5/5 | 1/1 | - |
+| 2 | selected work | 3/3 | 0/0 | 0/0 | 1/1 | - |
+| 3 | anima mesh | 5/5 | 0/0 | 3/3 | 0/0 | - |
+| 4 | talks & presentations | 0/0 | 0/0 | 0/0 | 0/0 | - |
+| 5 | technical writing | 3/3 | 0/0 | 2/2 | 0/0 | - |
+| 6 | certifications | 1/1 | 0/0 | 1/1 | 0/0 | - |
+Content: MISSING 0 (headings 0, links 0) / HIDDEN 0 (headings 0, links 0) / control-state 0 / buttons missing 0 hidden 0 / moved 0 extra 0 / count deltas 0
+Findings: none — every visible origin heading and link is visible on the served page
+Clipped (served side): 0 — origin side 0
+json → stardust/replica/gates/talks-api-home-1440/content-presence-preview.json

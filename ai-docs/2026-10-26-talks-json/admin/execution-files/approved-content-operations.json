@@ -1,0 +1,118 @@
+[
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-01-upload-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-01-upload-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-01-preview-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-01-preview-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-01-publish-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-01-publish-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-02-upload-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-02-upload-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-02-preview-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-02-preview-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-02-publish-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-02-publish-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-03-upload-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-03-upload-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-03-preview-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-03-preview-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-03-publish-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-03-publish-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-04-upload-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-04-upload-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-04-preview-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-04-preview-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-04-publish-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-04-publish-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-05-upload-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-05-upload-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-05-preview-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-05-preview-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-05-publish-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-05-publish-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-06-upload-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-06-upload-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-06-preview-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-06-preview-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-06-publish-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-06-publish-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-07-upload-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-07-upload-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-07-preview-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-07-preview-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-07-publish-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-07-publish-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-08-upload-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-08-upload-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-08-preview-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-08-preview-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-08-publish-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-08-publish-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-09-upload-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-09-upload-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-09-preview-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-09-preview-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-09-publish-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-5-09-publish-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-6-draft-upload-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-6-draft-upload-response.json"
+  },
+  {
+    "request": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-6-draft-preview-request.json",
+    "response": "ai-docs/2026-10-26-talks-json/admin/execution-files/step-6-draft-preview-response.json"
+  }
+]

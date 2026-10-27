@@ -1,0 +1,50 @@
+
+Content diff @ 1440px (profile "generic", roots: main, header, footer)
+root "main"
+  source: 360 text nodes — 11 headings, 1 eyebrows, 38 CTAs, 310 body; 3 img
+  build: 389 text nodes — 11 headings, 1 eyebrows, 38 CTAs, 339 body; 3 img
+  editable texts (outermost h*/p/ul/ol): source 45 / build 238
+  attributes (placeholder/aria-label/title): source 9 / build 9; icons: source 0 / build 0
+root "header"
+  source: 10 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 5 body; 0 img
+  build: 10 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 5 body; 0 img
+  editable texts (outermost h*/p/ul/ol): source 1 / build 2
+  attributes (placeholder/aria-label/title): source 2 / build 2; icons: source 1 / build 1
+root "footer"
+  source: 6 text nodes — 0 headings, 0 eyebrows, 4 CTAs, 2 body; 0 img
+  build: 7 text nodes — 0 headings, 0 eyebrows, 5 CTAs, 2 body; 0 img
+  editable texts (outermost h*/p/ul/ol): source 1 / build 2
+  attributes (placeholder/aria-label/title): source 1 / build 1; icons: source 0 / build 0
+
+Findings: 30 (0 structural 🔴)
+Tiers: looks-same 🔴 0 · nothing-lost 🟡 0 · accepted 🟢 0 (owner 0, auto 0) · advisory 30
+  🟠 EXTRA [footer]: build cta "Privacy" has no source source — Unexpected node with no source.
+  🟡 EXTRA [main]: build body "Classic AEM 6.5" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "AEM as a Cloud Service" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "SPA SDKs" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "Headless CF + UE" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "UE with Sites" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "UE + EDS" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "Docs + EDS" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "Classic AEM 6.5" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "AEM as a Cloud Service" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "Headless Content Fragments + UE" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "functional" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "Functional and authoring" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "technical" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "Technical and infrastructure" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "{differ} of {total} rows differ between {a} and " has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "Same option on both sides. Pick a different one " has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "differs" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "as Classic AEM 6.5: {value}" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "AEM with SPA SDKs" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "UE with AEM Sites" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "AEM UE + EDS" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "Docs with EDS" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "Classic AEM 6.5 (Core Components)" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "AEM as a Cloud Service (Core Components)" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "AEM with SPA SDKs" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "AEM headless Content Fragments + UE" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "UE with AEM Sites" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "AEM UE + EDS" has no source source — Build copy with no source — invented/placeholder; confirm intended.
+  🟡 EXTRA [main]: build body "Docs with EDS" has no source source — Build copy with no source — invented/placeholder; confirm intended.

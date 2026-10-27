@@ -10,7 +10,8 @@
  * - anchors: the row's id, then any older ids that should still land on it, space separated.
  *
  * @ew-exempt anchors: link targets for the talk rows, hidden through .row-list-anchors
- * @variants talks (default none)
+ * @ew-exempt dynamic Source row: API configuration; talk copy is edited in source records
+ * @variants talks, dynamic (default none)
  */
 
 const ROLES = ['row-list-kind', 'row-list-title', 'row-list-note'];
@@ -96,8 +97,54 @@ function decorateTalks(block) {
   block.replaceChildren(list);
 }
 
-export default function decorate(block) {
+const TALK_MESSAGES = {
+  empty: 'No talks are published yet.',
+  error: 'Talks are temporarily unavailable. Please try again later.',
+};
+
+/**
+ * talks, dynamic: Source | /talks-index.json, and nothing else to author. The talk records
+ * (content/talks/records/) own the copy; the rows and the JSON-LD are generated, by the edge
+ * Worker on www and by the browser on preview hosts (scripts/query-index.js fillFromIndex),
+ * as the same rows an author would write, decorated by decorateTalks.
+ */
+async function decorateDynamicTalks(block) {
+  block.setAttribute('aria-busy', 'true');
+  const [{ fillFromIndex }, talks, { rowsToDOM }, { syncCollectionSchema }] = await Promise.all([
+    import('../../scripts/query-index.js'),
+    import('../../scripts/talks-index.js'),
+    import('../../scripts/listing-cells.js'),
+    import('../../scripts/collection-schema.js'),
+  ]);
+  const render = (records) => {
+    block.replaceChildren(...rowsToDOM(talks.talkRows(records)));
+    syncCollectionSchema((canonical) => talks.talkSchemaItems(records, canonical), '/talks/');
+  };
+  const { state, rendered, sourceRow } = await fillFromIndex(block, talks.loadTalksIndex, render);
+  decorateTalks(block);
+  if (sourceRow) {
+    sourceRow.hidden = true;
+    block.append(sourceRow);
+  }
+  if (TALK_MESSAGES[state]) {
+    const message = document.createElement('p');
+    if (state === 'error') message.setAttribute('role', 'alert');
+    message.textContent = TALK_MESSAGES[state];
+    block.prepend(message);
+  }
+  block.dataset.talksState = state;
+  block.dataset.rendered = rendered;
+  block.removeAttribute('aria-busy');
+  const target = document.getElementById(window.location.hash.slice(1));
+  if (target && block.contains(target)) target.scrollIntoView();
+}
+
+export default async function decorate(block) {
   if (block.classList.contains('talks')) {
+    if (block.classList.contains('dynamic')) {
+      await decorateDynamicTalks(block);
+      return;
+    }
     decorateTalks(block);
     return;
   }

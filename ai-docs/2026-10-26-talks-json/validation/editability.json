@@ -1,0 +1,156 @@
+[
+  {
+    "url": "https://codex-list-seo-research--www-eds--jackzhaojin.aem.page/drafts/talks-index/",
+    "totals": {
+      "authored": 5,
+      "editable": 5,
+      "dead": 0,
+      "duplicated": 0,
+      "exempt": 0
+    },
+    "blocks": [
+      {
+        "block": "hero",
+        "authored": 3,
+        "editable": 3,
+        "dead": 0,
+        "duplicated": 0,
+        "exempt": 0,
+        "textDrift": 0,
+        "deadItems": [],
+        "dupItems": [],
+        "exemptItems": [],
+        "exemptReasons": [],
+        "editDrift": 0,
+        "blockHeightDelta": 0
+      },
+      {
+        "block": "row-list",
+        "authored": 2,
+        "editable": 2,
+        "dead": 0,
+        "duplicated": 0,
+        "exempt": 0,
+        "textDrift": 0,
+        "deadItems": [],
+        "dupItems": [],
+        "exemptItems": [],
+        "exemptReasons": [],
+        "editDrift": 0,
+        "blockHeightDelta": 0
+      }
+    ],
+    "rows": [
+      {
+        "index": 2,
+        "tag": "ol",
+        "block": "hero",
+        "unit": null,
+        "text": "Home\n                Talks & presentations",
+        "hits": 1,
+        "visible": true,
+        "liveText": "Home\n                Talks & presentations",
+        "sameText": true
+      },
+      {
+        "index": 78,
+        "tag": "h1",
+        "block": "hero",
+        "unit": null,
+        "text": "Talks & presentations",
+        "hits": 1,
+        "visible": true,
+        "liveText": "Talks & presentations",
+        "sameText": true
+      },
+      {
+        "index": 101,
+        "tag": "p",
+        "block": "hero",
+        "unit": null,
+        "text": "Live demos, conference sessions, and conversations about AI engineerin",
+        "hits": 1,
+        "visible": true,
+        "liveText": "Live demos, conference sessions, and conversations about AI engineerin",
+        "sameText": true
+      },
+      {
+        "index": 215,
+        "tag": "p",
+        "block": "row-list",
+        "unit": null,
+        "text": "Source",
+        "hits": 1,
+        "visible": false,
+        "liveText": "Source",
+        "sameText": true
+      },
+      {
+        "index": 223,
+        "tag": "p",
+        "block": "row-list",
+        "unit": null,
+        "text": "/talks-index.json",
+        "hits": 1,
+        "visible": false,
+        "liveText": "/talks-index.json",
+        "sameText": true
+      }
+    ],
+    "sim": {
+      "drift": [
+        {
+          "index": 2,
+          "block": "hero",
+          "tag": "ol",
+          "text": "Home\n                Talks & presentations",
+          "drift": []
+        },
+        {
+          "index": 78,
+          "block": "hero",
+          "tag": "h1",
+          "text": "Talks & presentations",
+          "drift": []
+        },
+        {
+          "index": 101,
+          "block": "hero",
+          "tag": "p",
+          "text": "Live demos, conference sessions, and conversations about AI engineerin",
+          "drift": []
+        },
+        {
+          "index": 215,
+          "block": "row-list",
+          "tag": "p",
+          "text": "Source",
+          "drift": []
+        },
+        {
+          "index": 223,
+          "block": "row-list",
+          "tag": "p",
+          "text": "/talks-index.json",
+          "drift": []
+        }
+      ],
+      "blockDelta": {
+        "hero": 0,
+        "row-list": 0
+      }
+    },
+    "exemptions": {
+      "widget": {
+        "all": true,
+        "reasons": [
+          "widget: rendered by code, nothing authored"
+        ],
+        "categories": [
+          "all"
+        ],
+        "source": "widget"
+      }
+    }
+  }
+]
