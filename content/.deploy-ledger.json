@@ -477,7 +477,7 @@
   "/talks/adaptto-2026/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T01:45:16.691Z",
+    "ts": "2026-10-27T01:50:39.971Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -486,7 +486,7 @@
   "/talks/adaptto-2026-lightning/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T01:31:45.813Z",
+    "ts": "2026-10-27T01:50:39.971Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -549,7 +549,7 @@
   "/talks/denison-2026/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T01:31:54.481Z",
+    "ts": "2026-10-27T01:50:39.971Z",
     "put": 200,
     "preview": 200,
     "live": 200,

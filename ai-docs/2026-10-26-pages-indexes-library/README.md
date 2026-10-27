@@ -60,7 +60,7 @@ The research's bar for a talk or project page, without inventing copy (Google's 
 | A breadcrumb | yes: the talk pages' hero, and BreadcrumbList on both kinds |
 | No thin page in search | columbus-ai-2025 (one sentence) is `noindex, follow`; the rest are indexable |
 | No dead links | the 14 `/portfolio/assets/` links fixed; seo-check: 0 problems; one external link (Rockstar's Summit 2024 session) now redirects to Adobe's Summit home, kept as the official source |
-| More words where a page is thin | not done: that is Jack's writing (below) |
+| More words where a page is thin | where the site already had them, carried verbatim: the adaptTo session gets the slide, "What it is" and "My take" from the recap article (231 words now); the lightning talk the Conversion Factory thesis (125); Denison its materials' line from the portfolio (58). Beyond that it is Jack's writing (below) |
 
 ## Process change
 
@@ -95,9 +95,9 @@ Four background agents and the main thread, on one branch (`v1-1-1`) in its own 
 ## Gaps Jack would fill (no copy was invented)
 
 - **columbus-ai-2025:** one sentence, no links (noindex until it has more).
-- **denison-2026:** one sentence; no event page or recording.
-- **adaptto-2026:** one sentence (its slides PDF and the recap article are now linked).
-- **adaptto-2026-lightning:** one sentence; no event link or slides.
+- **denison-2026:** two sentences (the second from the portfolio's repo card); no event page or recording.
+- **adaptto-2026:** now carries the recap's slide, "What it is" and "My take", the slides PDF and the recap link; a recording when it's out.
+- **adaptto-2026-lightning:** the talk's sentence plus the Conversion Factory thesis; no event link or slides.
 - **aem-rockstar-2024:** its "View event source" link now redirects to the Adobe Summit home page (the hub had it too); the competition's repository is now linked.
 - **columbus-ai-2026-talk and -panel:** no recording or slides; the talk still says "Write-up in progress".
 - **Projects:** STAR (103 words), Shadow (146) and CIAM (161) are the thinnest; Bruce, CIAM and STAR have no image of their own for social cards; Anima, Postal and Rockstar's first images are SVGs, which most social cards don't show.
