@@ -120,7 +120,7 @@
   margin-block: 0;
 }
 
-.talk main .talk-story .figure.video iframe {
+.talk main .talk-story .figure.video :is(iframe, .figure-poster) {
   border-radius: var(--radius-lg);
 }
 

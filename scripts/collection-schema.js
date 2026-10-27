@@ -18,7 +18,12 @@ export const PERSON = {
     department: { '@type': 'Organization', name: 'Adobe Business Group' },
   },
   homeLocation: { '@type': 'Place', name: 'Columbus, Ohio' },
-  sameAs: ['https://www.linkedin.com/in/jackjin', 'https://github.com/jackzhaojin'],
+  sameAs: [
+    'https://www.linkedin.com/in/jackjin',
+    'https://github.com/jackzhaojin',
+    'https://www.youtube.com/@jackjin8467',
+    'https://www.credly.com/users/jack-jin',
+  ],
   knowsAbout: [
     'Adobe Experience Manager',
     'Edge Delivery Services',
