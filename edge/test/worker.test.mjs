@@ -94,6 +94,17 @@ test('only www is indexable: eds answers noindex on pages and project sites', as
   assert.equal(www.headers.get('x-robots-tag'), null);
 });
 
+test('www: fragments (.plain.html) stay noindex, as on Adobe\'s CDN; pages and .md do not', async () => {
+  const frag = await worker.fetch(get('https://www.jackzhaojin.com/footer.plain.html'), WWW, {});
+  assert.equal(frag.headers.get('x-robots-tag'), 'noindex, nofollow');
+  const pageFrag = await worker.fetch(get('https://www.jackzhaojin.com/writing/x/index.plain.html'), WWW, {});
+  assert.equal(pageFrag.headers.get('x-robots-tag'), 'noindex, nofollow');
+  const page = await worker.fetch(get('https://www.jackzhaojin.com/writing/x/'), WWW, {});
+  assert.equal(page.headers.get('x-robots-tag'), null);
+  const md = await worker.fetch(get('https://www.jackzhaojin.com/writing/x/index.md'), WWW, {});
+  assert.equal(md.headers.get('x-robots-tag'), null);
+});
+
 test('gh: every path is the GitHub Pages site from www, path and query kept, noindex', async () => {
   const res = await worker.fetch(get('https://gh.jackzhaojin.com/writing/?q=1'), GH, {});
   assert.equal(calls[0].url, 'https://www.jackzhaojin.com/writing/?q=1');

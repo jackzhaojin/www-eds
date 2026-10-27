@@ -98,14 +98,20 @@ export function pageCache(res, pathname) {
   return out;
 }
 
+/** Fragments: a page's body without its head, for the scripts that load it (the nav, the
+ * footer). Adobe's own CDN keeps them noindex in production, as its Fastly guide does
+ * (`if (req.url.path !~ "\.plain\.html$") { unset resp.http.X-Robots-Tag; }`). */
+const FRAGMENT = /\.plain\.html$/;
+
 /**
- * The robots header for this host: production (INDEXABLE "true") sends none, every other host
- * sends noindex, whatever its origin said.
+ * The robots header for this host: production (INDEXABLE "true") sends none, except on
+ * fragments (.plain.html), every other host sends noindex, whatever its origin said.
  * @param {Response} res The response to send
  * @param {{INDEXABLE?: string}} env Worker vars
+ * @param {string} [pathname] The request path
  */
-export function robots(res, env) {
-  const indexable = env.INDEXABLE === 'true';
+export function robots(res, env, pathname = '') {
+  const indexable = env.INDEXABLE === 'true' && !FRAGMENT.test(pathname);
   const tag = res.headers.get('x-robots-tag');
   if (indexable ? !tag : tag === NOINDEX) return res;
   const out = new Response(res.body, res);

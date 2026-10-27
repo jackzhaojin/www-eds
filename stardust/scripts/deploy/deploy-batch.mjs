@@ -50,6 +50,9 @@
  *
  * Idempotent: PUT/preview/live are all safe to repeat. Safe to Ctrl-C and re-run.
  *
+ * This site (jackzhaojin/www-eds): after a run that publishes, the pages that went live are sent
+ * to IndexNow (indexnow.mjs), so Bing and the other IndexNow engines hear of them at once.
+ *
  * Usage:
  *   DA_TOKEN=… node deploy-batch.mjs --org <org> --repo <repo> --branch <branch> \
  *     --content content [--paths list.txt] [--concurrency 4] [--no-publish] \
@@ -85,6 +88,7 @@ import { readFileSync } from 'node:fs';
 import { mergeLedger } from './file-lock.mjs';
 // The sibling uploader guards its CLI behind a main-module check, so the import runs nothing.
 import { jwtExpiry } from './da-media-upload.mjs';
+import { submit as submitIndexNow } from './indexnow.mjs';
 
 // --help prints this file's usage header, so an agent never reads the source to learn the flags.
 if (process.argv.includes('--help') || process.argv.includes('-h')) {
@@ -358,6 +362,12 @@ async function main() {
 
   const fails = Object.entries(ledger).filter(([, r]) => !['live', 'previewed'].includes(r.status));
   console.error(`[deploy-batch] done. ${todo.length - fails.length} ok, ${fails.length} failed.`);
+  // This site: tell the IndexNow engines what went live (indexnow.mjs; a failed ping isn't fatal).
+  const published = results.filter((r) => r.rec.status === 'live').map((r) => r.path);
+  if (args.publish && published.length && args.org === 'jackzhaojin' && args.repo === 'www-eds') {
+    const ping = await submitIndexNow(published);
+    if (ping.count) console.error(`[deploy-batch] IndexNow: ${ping.count} URLs, HTTP ${ping.status}${ping.text ? ` ${ping.text}` : ''}`);
+  }
   if (fails.length) {
     console.error('FAILS (re-run the same command to re-drive — succeeded pages are skipped):');
     for (const [p, r] of fails) console.error(`  ${p}  ${r.status}  ${r.lastError || ''}`);
