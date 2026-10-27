@@ -1141,6 +1141,7 @@ const TEMPLATES = [
         '<p>Month D, YYYY &middot; Talk kind</p>',
         '<p>One or two sentences on what the talk covers.</p>',
         '<p><a href="https://youtu.be/VIDEO_ID">Watch the recorded talk</a></p>',
+        '<p>Write-up in progress</p>',
         block('proof-links', [row(
           '<p><a href="https://example.com/">Event page</a> <a href="/writing/">Read the write-up</a> <a href="/portfolio/">Explore the project</a></p>',
         )]),
@@ -1149,7 +1150,7 @@ const TEMPLATES = [
       section(metadata([
         ['title', 'Talk title | Jack Jin'],
         ['description', 'One or two sentences on what the talk covers.'],
-        ['template', 'static'],
+        ['template', 'talk'],
         ['talk-id', 'event-yyyy'],
         ['talk-order', 'N'],
         ['talk-date', 'Month D, YYYY'],
