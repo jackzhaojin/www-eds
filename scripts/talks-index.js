@@ -58,17 +58,22 @@ export async function loadTalksIndex(source, fetchData = fetch) {
  * then the older ids that still land on the row).
  */
 export function talkRows(talks) {
-  return talks.map((talk) => [
-    [el('p', {}, talk.date), talk.kind && el('p', {}, talk.kind)],
-    [
-      el('h2', { id: headingId(talk.title) }, talk.title),
-      talk.event && el('p', {}, talk.event),
-      ...talk.description.split(/\n\n/).filter(Boolean).map((text) => el('p', {}, text)),
-      ...talk.links.map((link) => el('p', {}, el('a', { href: sitePath(link.url) }, link.label))),
-      talk.status && el('p', {}, talk.status),
-    ],
-    [el('p', {}, [talk.id, ...talk.aliases].join(' '))],
-  ].map((cell) => cell.filter(Boolean)));
+  return talks.map((talk) => {
+    const id = headingId(talk.title);
+    // An alias the heading's own id already answers would be a duplicate id.
+    const aliases = talk.aliases.filter((alias) => alias !== id);
+    return [
+      [el('p', {}, talk.date), talk.kind && el('p', {}, talk.kind)],
+      [
+        el('h2', { id }, talk.title),
+        talk.event && el('p', {}, talk.event),
+        ...talk.description.split(/\n\n/).filter(Boolean).map((text) => el('p', {}, text)),
+        ...talk.links.map((link) => el('p', {}, el('a', { href: sitePath(link.url) }, link.label))),
+        talk.status && el('p', {}, talk.status),
+      ],
+      [el('p', {}, [talk.id, ...aliases].join(' '))],
+    ].map((cell) => cell.filter(Boolean));
+  });
 }
 
 /** The ItemList entries, one per visible row. */

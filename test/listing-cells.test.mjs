@@ -21,6 +21,13 @@ test('served rows escape every value and keep site links on the host', () => {
   assert.match(cover, /<img loading="lazy" alt="" src="\/writing\/media_1\.jpg\?width=750&amp;format=jpg&amp;optimize=medium"><\/picture>/);
 });
 
+test('a talk alias equal to its heading id is not repeated', () => {
+  const [row] = talkRows([{
+    id: 'b', aliases: ['openclaw-247-agent', 'old-b'], title: 'OpenClaw: 24/7 agent', date: '', kind: '', event: '', description: '', links: [], status: '',
+  }]);
+  assert.deepEqual(row[2][0].children, ['b old-b']);
+});
+
 test('talk rows are the three authored cells, with older anchors', () => {
   const [row] = talkRows([{
     id: 'a',
