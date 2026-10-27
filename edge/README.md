@@ -27,7 +27,7 @@ Done route-first from another session, not in the order whats-left.md had planne
 2. **gh mode** (`MODE = "github"`): every path goes to `GITHUB_ORIGIN`, with the path and query string kept.
 3. **Project sites** (`PROJECT_SITES` in `src/routes.mjs`: `/adapt-to-2026-demo/`, `/bruce-lava-dash/` and five more): `PROJECT_ORIGIN = "passthrough"` hands the request to the zone's own origin untouched. A URL sends it to that origin instead.
 4. **Everything else** goes to Edge Delivery through `src/aem.mjs`. That's Adobe's Cloudflare worker (`adobe/aem-cloudflare-prod-worker` at `ec7387c`), vendored with only its handler renamed to a named export.
-5. **Dynamic listings** (`renderListings`, `src/listings.mjs`, EDS page responses only). A page whose HTML has a Writing index or Row list (talks, dynamic) block, authored with just its Source row, is served with the rows inside that block and one generated JSON-LD graph in the head, built from the index the Source row names by the same code the browser runs on preview hosts (`scripts/listing-cells.js`, `writing-index.js`, `talks-index.js`, `collection-schema.js`). The index is read from the EDS origin (a fetch to www would reach GitHub Pages) and kept 5 minutes (`INDEX_TTL`); a publish purges it sooner. A filled page drops the origin's `etag` and `last-modified`, which no longer describe its body. If the index fails or takes over 3 seconds, the page goes out as authored and the browser fills it in.
+5. **Dynamic listings and page JSON-LD** (`renderListings`, `src/listings.mjs`, EDS page responses only). A page whose HTML has a Writing index, Row list (talks, dynamic) or Row list (projects, dynamic) block, authored with just its Source row, is served with the rows inside that block and one generated JSON-LD graph in the head, built from the index the Source row names by the same code the browser runs on preview hosts (`scripts/listing-cells.js`, `writing-index.js`, `talks-index.js`, `collection-schema.js`). The index is read from the EDS origin (a fetch to www would reach GitHub Pages) and kept 5 minutes (`INDEX_TTL`); a publish purges it sooner. A filled page drops the origin's `etag` and `last-modified`, which no longer describe its body. If the index fails or takes over 3 seconds, the page goes out as authored and the browser fills it in. A talk page (`talk-*` metadata) or a project page (`project-*` metadata) without JSON-LD of its own gets its generated graph instead: the WebPage, its BreadcrumbList and an Event or a CreativeWork, from the page's head (`scripts/page-schema.js`); the browser adds the same graph on preview hosts.
 6. **The browser cache** (`pageCache`, EDS responses only). HTML, meaning the pages and the `.plain.html` fragments such as the footer, gets `cache-control: max-age=600, must-revalidate`. So does a `304` for a page path, since browsers take their new freshness from it. aem.live would tell browsers two hours, and nothing purges a browser. Code, media and JSON keep the origin's header, and the edge cache (`cdn-cache-control`) is untouched.
 7. **The robots header.** Every host but www answers `X-Robots-Tag: noindex, nofollow`, whatever the origin said. Adobe's worker drops Edge Delivery's own header, so this one is added back here.
 
@@ -37,16 +37,17 @@ Done route-first from another session, not in the order whats-left.md had planne
 |---|---|
 | `src/index.mjs` | the request order above |
 | `src/routes.mjs` | the project-site list, `projectFetch`, `githubFetch`, `hiddenFromCrawlers`, `pageCache`, `robots` |
-| `src/listings.mjs` | `renderListings`: the dynamic listings' rows and JSON-LD, filled in at the edge |
+| `src/listings.mjs` | `renderListings`: the dynamic listings' rows and JSON-LD, and talk and project pages' JSON-LD, filled in at the edge |
 | `src/aem.mjs` | Adobe's worker, vendored |
 | `wrangler.toml` | the three environments and their vars (vars aren't inherited by an env: only the top level sets `INDEXABLE`, and only staging sets `PUSH_INVALIDATION = "disabled"`) |
-| `test/worker.test.mjs` | 18 tests: routing, the noindex header, gh redirects, the crawler 404s, the browser cache, the dynamic listings |
+| `test/worker.test.mjs` | 19 tests: routing, the noindex header, gh redirects, the crawler 404s, the browser cache, the dynamic listings, page JSON-LD |
+| `scripts/preview-listing.mjs` | the edge render on your machine: serves a preview host (or `aem up`) through `renderListingHTML`, so the drafts show as www will serve them |
 | `scripts/check-host.mjs` | the routing check for a host: every sitemap page, the project sites, the root files, the 404s, the legacy redirects, the robots header |
 
 ## Commands
 
 ```bash
-npm test                                                   # the 18 tests
+npm test                                                   # the 19 tests
 node scripts/check-host.mjs --local www                    # the Worker in-process, against the real origins (also staging, gh)
 node scripts/check-host.mjs --base https://www.jackzhaojin.com   # and https://eds… , https://gh…
 npx wrangler deploy --env="" --dry-run --outdir <scratch>  # shows the vars a deploy would carry, deploys nothing

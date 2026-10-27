@@ -42,3 +42,24 @@ test('a project page is a CreativeWork; other pages get nothing', () => {
   assert.equal(graph[4].temporalCoverage, '2026/2026');
   assert.equal(pageGraph({ canonical: 'https://www.jackzhaojin.com/privacy/', title: 'Privacy', meta: metaOf({}) }), null);
 });
+
+test('a recorded talk gets its VideoObject, write-up and project; a project with a repo is code', () => {
+  const talk = pageGraph({
+    canonical: 'https://www.jackzhaojin.com/talks/ai-tinkerers-2026/',
+    title: 'OpenClaw 24/7 Development Agent | Jack Jin',
+    meta: metaOf({ 'talk-id': 'ai-tinkerers-2026', 'video-uploaded': '2026-04-07', 'video-duration': 'PT12M' }),
+    links: ['https://youtu.be/l3wIHurjERk', '/writing/2026-04-05-continuous-executive-agent-v2-1/', '/portfolio/continuous-executive-agent/'],
+  })['@graph'][4];
+  assert.equal(talk.recordedIn.thumbnailUrl, 'https://i.ytimg.com/vi/l3wIHurjERk/maxresdefault.jpg');
+  assert.equal(talk.recordedIn.uploadDate, '2026-04-07');
+  assert.equal(talk.subjectOf.url, 'https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/');
+  assert.equal(talk.about['@id'], 'https://www.jackzhaojin.com/portfolio/continuous-executive-agent/#project');
+  const project = pageGraph({
+    canonical: 'https://www.jackzhaojin.com/portfolio/anima-mesh/',
+    title: 'Anima Mesh | Jack Jin',
+    meta: metaOf({ 'project-order': '1' }),
+    links: ['https://github.com/jackzhaojin/anima-mesh/tree/main/docs', 'https://github.com/jackzhaojin/anima-mesh'],
+  })['@graph'][4];
+  assert.equal(project['@type'], 'SoftwareSourceCode');
+  assert.equal(project.codeRepository, 'https://github.com/jackzhaojin/anima-mesh');
+});

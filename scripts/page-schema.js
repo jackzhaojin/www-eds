@@ -2,7 +2,10 @@
  * The structured data of a talk page (/talks/<id>/, metadata talk-*) and a project page
  * (/portfolio/<slug>/, metadata project-*), generated from the page's own head and never
  * authored: the site's Person and WebSite, the WebPage with its BreadcrumbList, and the page's
- * subject, an Event for a talk and a CreativeWork for a project. The edge Worker writes it into
+ * subject. A talk is an Event, with its recording as a VideoObject when the page links one and
+ * carries video-uploaded (Google's one rich result for a past talk), its write-up and its
+ * project. A project is SoftwareSourceCode when it links a GitHub repository, else a
+ * CreativeWork. The edge Worker writes it into
  * the served HTML (edge/src/listings.mjs); on preview hosts the browser adds it
  * (syncPageSchema), from the same values either way.
  */
@@ -34,6 +37,26 @@ export function isoDate(text) {
 /** "2025 to 2026" as an ISO interval (2025/2026); a single year stays as it is. */
 const coverage = (text) => (text || '').trim().replace(/\s+to\s+/i, '/');
 
+const youtubeId = (href) => {
+  const match = href.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([\w-]{11})/);
+  return match ? match[1] : '';
+};
+
+/** The page's links by kind: the first video, write-up and project page, and its repositories. */
+function linkKinds(links) {
+  const urls = links.map((href) => new URL(href, `${SITE}/`));
+  const site = urls.filter((url) => url.origin === SITE);
+  const repos = [...new Set(urls.filter((url) => url.hostname === 'github.com')
+    .map((url) => url.pathname.split('/').slice(1, 3).join('/'))
+    .filter((repo) => repo.includes('/')))].map((repo) => `https://github.com/${repo}`);
+  return {
+    video: urls.map((url) => youtubeId(url.href)).find(Boolean) || '',
+    writeup: site.find((url) => /^\/writing\/[^/]+\/$/.test(url.pathname))?.href || '',
+    project: site.find((url) => /^\/portfolio\/[^/]+\/$/.test(url.pathname))?.href.replace(/#.*$/, '') || '',
+    repos,
+  };
+}
+
 /** The talk-event line, "Event · Place · with co-speakers": the event and the place. */
 function eventParts(text) {
   const [event, place] = (text || '').split(/\s+·\s+/).map((part) => part.trim());
@@ -45,7 +68,7 @@ function eventParts(text) {
  * meta(name) returns a metadata value; tagline is the h1's italic subtitle (projects).
  */
 export function pageGraph({
-  canonical, title, description, image, tagline, meta,
+  canonical, title, description, image, tagline, meta, links = [],
 }) {
   let kind = '';
   if (meta('talk-id')) kind = 'talk';
@@ -54,9 +77,20 @@ export function pageGraph({
   const name = (title || '').replace(/\s*\|\s*Jack Jin\s*$/, '');
   const hub = HUBS[kind];
   let subject;
+  const found = linkKinds(links);
   if (kind === 'talk') {
     const { event, place } = eventParts(meta('talk-event'));
     const startDate = isoDate(meta('talk-date'));
+    const recording = found.video && meta('video-uploaded') ? {
+      '@type': 'VideoObject',
+      name,
+      ...(description ? { description } : {}),
+      thumbnailUrl: `https://i.ytimg.com/vi/${found.video}/maxresdefault.jpg`,
+      uploadDate: meta('video-uploaded'),
+      ...(meta('video-duration') ? { duration: meta('video-duration') } : {}),
+      embedUrl: `https://www.youtube.com/embed/${found.video}`,
+      url: `https://www.youtube.com/watch?v=${found.video}`,
+    } : null;
     subject = {
       '@type': 'Event',
       '@id': `${canonical}#talk`,
@@ -69,10 +103,13 @@ export function pageGraph({
       performer: { '@id': PERSON['@id'] },
       ...(event ? { superEvent: { '@type': 'Event', name: event } } : {}),
       ...(place ? { location: { '@type': 'Place', name: place } } : {}),
+      ...(recording ? { recordedIn: recording } : {}),
+      ...(found.writeup ? { subjectOf: { '@type': 'BlogPosting', url: found.writeup } } : {}),
+      ...(found.project ? { about: { '@id': `${found.project}#project` } } : {}),
     };
   } else {
     subject = {
-      '@type': 'CreativeWork',
+      '@type': found.repos.length ? 'SoftwareSourceCode' : 'CreativeWork',
       '@id': `${canonical}#project`,
       name,
       ...(tagline ? { alternativeHeadline: tagline } : {}),
@@ -81,6 +118,8 @@ export function pageGraph({
       ...(image ? { image } : {}),
       author: { '@id': PERSON['@id'] },
       ...(meta('project-dates') ? { temporalCoverage: coverage(meta('project-dates')) } : {}),
+      ...(found.repos.length
+        ? { codeRepository: found.repos.length > 1 ? found.repos : found.repos[0] } : {}),
     };
   }
   return {
@@ -130,6 +169,7 @@ export function syncPageSchema() {
     image: document.querySelector('meta[property="og:image"]')?.content || '',
     tagline: document.querySelector('main h1 em')?.textContent.trim() || '',
     meta,
+    links: [...document.querySelectorAll('main a[href]')].map((a) => a.getAttribute('href')),
   });
   if (!graph) return;
   const script = document.createElement('script');

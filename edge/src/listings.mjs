@@ -122,6 +122,8 @@ export function renderPageSchemaHTML(html) {
     image: headValue(head, /<meta property="og:image" content="([^"]*)"/),
     tagline: headValue(html, /<h1[^>]*>[\s\S]*?<em>([^<]*)<\/em>[\s\S]*?<\/h1>/),
     meta: (name) => headValue(head, new RegExp(`<meta name="${name}" content="([^"]*)"`)),
+    links: [...(html.match(/<main>[\s\S]*<\/main>/)?.[0] || '').matchAll(/<a href="([^"]+)"/g)]
+      .map((match) => unescape(match[1])),
   });
   if (!graph) return null;
   const ldJSON = `<script type="application/ld+json">${JSON.stringify(graph).replace(/</g, '\\u003c')}</script>`;
