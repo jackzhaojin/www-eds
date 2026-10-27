@@ -26,4 +26,6 @@ In the built-in browser, signed in as Jack: `https://da.live/edit#/jackzhaojin/w
 
 The scratch document `/drafts/library-check` stays in DA (never previewed); deleting it is Jack's call.
 
+Later the same evening, more of the library on the scratch document: search ("row list" finds the three Row list variants), variant previews with the site's styles (Row list, with the talks and projects lists rendering live from their indexes), the inserted block still there after a reload, and the Project page template inserted as editable content. Then on a real published page, `/talks/denison-2026/index`, opened without editing: Experience Workspace renders it with the site's code (hero, breadcrumb, prose, the typed links), the Outline lists its blocks as an author sees them (`hero (page)`, default content, `proof-links`), and the Insert block dialog opens there with every block. DA's copy afterwards was unchanged (last modified at the publish, markup identical to git after the known rewrites).
+
 **Rollback:** `DELETE /config/jackzhaojin/www-eds/` removes the site config, and with it the library (the org config is separate).
