@@ -25,3 +25,20 @@ The same GET as step 1: `execution-files/step-3.1-get-query-response.yaml`.
 **Result:** 200, byte-identical to `hlx-config/query.yaml`. Four indexes: `default`, `talks` (`/talks/**`), `writing`, `portfolio` (`/portfolio-index.json`). An index lists published pages only, so the talk and project pages enter their indexes as they are published.
 
 **Rollback:** POST `execution-files/step-1.1-get-query-response.yaml` back.
+
+## Step 4: unpublish the old talk records ✅ COMPLETED
+
+After the nine talk pages and the redirects sheet were published, `DELETE /live/jackzhaojin/www-eds/main/talks/records/<id>` and `DELETE /preview/...` for each record (Jack: "Old talk records get unpublished, not deleted"; DA keeps the documents). `execution-files/step-4-unpublish-records.tsv`.
+
+**Result:** 204 and 204 for all nine. `/talks/records/<id>` now answers the redirects sheet's 301 to `/talks/<id>/`.
+
+## Step 5: take the records out of the talks index ✅ COMPLETED
+
+The unpublish left the nine record rows in `/talks-index.json` (18 rows, the ids twice), because the new definition excludes `/talks/records/**` and the indexer ignores an excluded path: `DELETE /index/.../talks/records/adaptto-2026` answered "requested path does not match index configuration". So:
+1. POST a temporary definition without that exclusion (`execution-files/step-5.1-set-query-temporary-request.yaml`): 204.
+2. `DELETE /index/jackzhaojin/www-eds/main/talks/records/<id>` for the nine: 202 each on the talks index (`execution-files/step-5.2-remove-record-rows.tsv`).
+3. POST `hlx-config/query.yaml` back: 204; GET (`execution-files/step-5.3-get-query-response.yaml`) identical to git.
+
+**Result:** about 40 seconds later `/talks-index.json` has 9 rows, all `/talks/<id>/`. `/portfolio-index.json` has 11, `/writing-index.json` 29.
+
+**Lesson:** move a folder out of an index before unpublishing it only if you also clear its rows; the cheaper order is unpublish first, then change the definition.

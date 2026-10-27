@@ -1,6 +1,6 @@
 {
-  "total": 73,
-  "limit": 73,
+  "total": 126,
+  "limit": 126,
   "offset": 0,
   "data": [
     {
@@ -24,12 +24,116 @@
       "Destination": "/design-systems/v3/"
     },
     {
+      "Source": "/drafts/talks-index",
+      "Destination": "/drafts/talks-index/"
+    },
+    {
+      "Source": "/drafts/talks-index/index.html",
+      "Destination": "/drafts/talks-index/"
+    },
+    {
+      "Source": "/drafts/writing-index",
+      "Destination": "/drafts/writing-index/"
+    },
+    {
+      "Source": "/drafts/writing-index/index.html",
+      "Destination": "/drafts/writing-index/"
+    },
+    {
       "Source": "/portfolio",
       "Destination": "/portfolio/"
     },
     {
       "Source": "/portfolio/index.html",
       "Destination": "/portfolio/"
+    },
+    {
+      "Source": "/portfolio/aem-rockstar-2024",
+      "Destination": "/portfolio/aem-rockstar-2024/"
+    },
+    {
+      "Source": "/portfolio/aem-rockstar-2024/index.html",
+      "Destination": "/portfolio/aem-rockstar-2024/"
+    },
+    {
+      "Source": "/portfolio/ai-builder-kit",
+      "Destination": "/portfolio/ai-builder-kit/"
+    },
+    {
+      "Source": "/portfolio/ai-builder-kit/index.html",
+      "Destination": "/portfolio/ai-builder-kit/"
+    },
+    {
+      "Source": "/portfolio/anima-mesh",
+      "Destination": "/portfolio/anima-mesh/"
+    },
+    {
+      "Source": "/portfolio/anima-mesh/index.html",
+      "Destination": "/portfolio/anima-mesh/"
+    },
+    {
+      "Source": "/portfolio/azure-star-generator",
+      "Destination": "/portfolio/azure-star-generator/"
+    },
+    {
+      "Source": "/portfolio/azure-star-generator/index.html",
+      "Destination": "/portfolio/azure-star-generator/"
+    },
+    {
+      "Source": "/portfolio/built-with-bruce",
+      "Destination": "/portfolio/built-with-bruce/"
+    },
+    {
+      "Source": "/portfolio/built-with-bruce/index.html",
+      "Destination": "/portfolio/built-with-bruce/"
+    },
+    {
+      "Source": "/portfolio/ciam-demo",
+      "Destination": "/portfolio/ciam-demo/"
+    },
+    {
+      "Source": "/portfolio/ciam-demo/index.html",
+      "Destination": "/portfolio/ciam-demo/"
+    },
+    {
+      "Source": "/portfolio/content-factory",
+      "Destination": "/portfolio/content-factory/"
+    },
+    {
+      "Source": "/portfolio/content-factory/index.html",
+      "Destination": "/portfolio/content-factory/"
+    },
+    {
+      "Source": "/portfolio/continuous-executive-agent",
+      "Destination": "/portfolio/continuous-executive-agent/"
+    },
+    {
+      "Source": "/portfolio/continuous-executive-agent/index.html",
+      "Destination": "/portfolio/continuous-executive-agent/"
+    },
+    {
+      "Source": "/portfolio/conversion-factory",
+      "Destination": "/portfolio/conversion-factory/"
+    },
+    {
+      "Source": "/portfolio/conversion-factory/index.html",
+      "Destination": "/portfolio/conversion-factory/"
+    },
+    {
+      "Source": "/portfolio/postal-portal",
+      "Destination": "/portfolio/postal-portal/"
+    },
+    {
+      "Source": "/portfolio/postal-portal/index.html",
+      "Destination": "/portfolio/postal-portal/"
+    },
+    {
+      "Source": "/portfolio/shadow-pivot",
+      "Destination": "/portfolio/shadow-pivot/"
+    },
+    {
+      "Source": "/portfolio/shadow-pivot/index.html",
+      "Destination": "/portfolio/shadow-pivot/"
     },
     {
       "Source": "/privacy",
@@ -46,6 +150,78 @@
     {
       "Source": "/talks/index.html",
       "Destination": "/talks/"
+    },
+    {
+      "Source": "/talks/adaptto-2026-lightning",
+      "Destination": "/talks/adaptto-2026-lightning/"
+    },
+    {
+      "Source": "/talks/adaptto-2026-lightning/index.html",
+      "Destination": "/talks/adaptto-2026-lightning/"
+    },
+    {
+      "Source": "/talks/adaptto-2026",
+      "Destination": "/talks/adaptto-2026/"
+    },
+    {
+      "Source": "/talks/adaptto-2026/index.html",
+      "Destination": "/talks/adaptto-2026/"
+    },
+    {
+      "Source": "/talks/aem-rockstar-2024",
+      "Destination": "/talks/aem-rockstar-2024/"
+    },
+    {
+      "Source": "/talks/aem-rockstar-2024/index.html",
+      "Destination": "/talks/aem-rockstar-2024/"
+    },
+    {
+      "Source": "/talks/ai-tinkerers-2026-animamesh",
+      "Destination": "/talks/ai-tinkerers-2026-animamesh/"
+    },
+    {
+      "Source": "/talks/ai-tinkerers-2026-animamesh/index.html",
+      "Destination": "/talks/ai-tinkerers-2026-animamesh/"
+    },
+    {
+      "Source": "/talks/ai-tinkerers-2026",
+      "Destination": "/talks/ai-tinkerers-2026/"
+    },
+    {
+      "Source": "/talks/ai-tinkerers-2026/index.html",
+      "Destination": "/talks/ai-tinkerers-2026/"
+    },
+    {
+      "Source": "/talks/columbus-ai-2025",
+      "Destination": "/talks/columbus-ai-2025/"
+    },
+    {
+      "Source": "/talks/columbus-ai-2025/index.html",
+      "Destination": "/talks/columbus-ai-2025/"
+    },
+    {
+      "Source": "/talks/columbus-ai-2026-panel",
+      "Destination": "/talks/columbus-ai-2026-panel/"
+    },
+    {
+      "Source": "/talks/columbus-ai-2026-panel/index.html",
+      "Destination": "/talks/columbus-ai-2026-panel/"
+    },
+    {
+      "Source": "/talks/columbus-ai-2026-talk",
+      "Destination": "/talks/columbus-ai-2026-talk/"
+    },
+    {
+      "Source": "/talks/columbus-ai-2026-talk/index.html",
+      "Destination": "/talks/columbus-ai-2026-talk/"
+    },
+    {
+      "Source": "/talks/denison-2026",
+      "Destination": "/talks/denison-2026/"
+    },
+    {
+      "Source": "/talks/denison-2026/index.html",
+      "Destination": "/talks/denison-2026/"
     },
     {
       "Source": "/writing",
@@ -294,6 +470,42 @@
     {
       "Source": "/certifications.html",
       "Destination": "/certifications/"
+    },
+    {
+      "Source": "/talks/records/adaptto-2026",
+      "Destination": "/talks/adaptto-2026/"
+    },
+    {
+      "Source": "/talks/records/adaptto-2026-lightning",
+      "Destination": "/talks/adaptto-2026-lightning/"
+    },
+    {
+      "Source": "/talks/records/columbus-ai-2026-talk",
+      "Destination": "/talks/columbus-ai-2026-talk/"
+    },
+    {
+      "Source": "/talks/records/columbus-ai-2026-panel",
+      "Destination": "/talks/columbus-ai-2026-panel/"
+    },
+    {
+      "Source": "/talks/records/ai-tinkerers-2026-animamesh",
+      "Destination": "/talks/ai-tinkerers-2026-animamesh/"
+    },
+    {
+      "Source": "/talks/records/denison-2026",
+      "Destination": "/talks/denison-2026/"
+    },
+    {
+      "Source": "/talks/records/ai-tinkerers-2026",
+      "Destination": "/talks/ai-tinkerers-2026/"
+    },
+    {
+      "Source": "/talks/records/columbus-ai-2025",
+      "Destination": "/talks/columbus-ai-2025/"
+    },
+    {
+      "Source": "/talks/records/aem-rockstar-2024",
+      "Destination": "/talks/aem-rockstar-2024/"
     }
   ],
   ":type": "sheet"

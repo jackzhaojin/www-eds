@@ -2,7 +2,8 @@
 /*
  * What www serves for a listing page, before the Worker is deployed or a hub is switched. A
  * local server that fetches each path from an EDS preview host and runs the Worker's own
- * renderListingHTML (src/listings.mjs) over every HTML page, reading the index from www. The
+ * renderListingHTML and renderPageSchemaHTML (src/listings.mjs) over every HTML page, reading
+ * the index from www. The
  * drafts are 404s on the Worker hosts, so this is how to see them as crawlers will:
  *
  *   node edge/scripts/preview-listing.mjs [--origin https://main--www-eds--jackzhaojin.aem.page]
@@ -13,7 +14,7 @@
  * x-listing header says whether a page was filled.
  */
 import http from 'node:http';
-import { renderListingHTML } from '../src/listings.mjs';
+import { renderListingHTML, renderPageSchemaHTML } from '../src/listings.mjs';
 
 const arg = (name, fallback) => {
   const i = process.argv.indexOf(name);
@@ -30,7 +31,9 @@ http.createServer(async (req, res) => {
     let body = Buffer.from(await upstream.arrayBuffer());
     let filled = null;
     if (type.startsWith('text/html')) {
-      filled = await renderListingHTML(body.toString('utf8'), (path) => fetch(new URL(path, INDEX)));
+      const html = body.toString('utf8');
+      filled = await renderListingHTML(html, (path) => fetch(new URL(path, INDEX)))
+        ?? renderPageSchemaHTML(html);
       if (filled) body = Buffer.from(filled);
     }
     res.writeHead(upstream.status, { 'content-type': type, 'x-listing': filled ? 'filled' : 'untouched' });
