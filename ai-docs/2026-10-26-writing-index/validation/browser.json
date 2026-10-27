@@ -1,0 +1,27 @@
+{
+  "base": "https://codex-list-seo-research--www-eds--jackzhaojin.aem.page",
+  "articles": 29,
+  "cardFidelity": "all fields match",
+  "filters": "pass",
+  "hashState": "pass",
+  "reset": "pass",
+  "keyboardShortcut": "pass",
+  "dynamicSchema": "pass",
+  "textEscaping": "pass",
+  "emptyState": "pass",
+  "errorState": "pass",
+  "overflow": [
+    {
+      "width": 1440,
+      "original": 0,
+      "draft": 0
+    },
+    {
+      "width": 360,
+      "original": 41,
+      "draft": 41
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": []
+}

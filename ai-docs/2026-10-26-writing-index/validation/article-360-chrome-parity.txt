@@ -1,0 +1,10 @@
+chrome-parity @ 360px, tolerance 1px
+  live:  https://gh.jackzhaojin.com/writing/2025-06-04-seven-aem-capabilities-tradeoffs/
+  build: https://codex-list-seo-research--www-eds--jackzhaojin.aem.page/writing/2025-06-04-seven-aem-capabilities-tradeoffs/
+
+■ header: ✓ parity — 2 paired of 2/2 texts, 1/1 icons
+
+■ footer: 1 delta(s) — 6 paired of 6/7 texts, 0/0 icons
+  EXTRA        "Privacy"  build <a> "Privacy" has no live source
+
+✗ 1 delta(s) — fix these before any pixel iteration on chrome; re-run until quiet, then crop-compare confirms.

@@ -16,6 +16,24 @@ index populate the API without duplicate article records or a JSON export step.
 shares the existing writing-row renderer and styles through `/scripts/` and `/styles/`, and
 works with the existing search/topic/year filter. It contains no static article rows.
 
+| API field | Article source |
+|---|---|
+| title, headingId | h1 text and its server-generated id |
+| date | published-time metadata, as an ISO date |
+| summary | listing-summary; description is the fallback |
+| image | listing-image, a public www media URL; og:image is the fallback |
+| topics | listing-topics, with labels separated by a pipe |
+| readTime, videoTime | listing-reading-time and listing-video-time display strings |
+| talkUrl, talkLabel, talkNote | listing-talk-url, listing-talk-label, listing-talk-note |
+| watchUrl, watchLabel | listing-watch-url and listing-watch-label |
+| keywords, nowrap | listing-keywords and listing-nowrap; the latter is comma-separated |
+| template, robots | Existing metadata; ineligible or noindex records are omitted by the UI |
+
+Index pagination and CollectionPage/ItemList updates are shared utilities. Writing and talks
+keep their own normalizers, source models, blocks and draft pages. The existing static writing
+block and new API block share the same DOM decorator and v3 stylesheet rather than duplicating
+the presentation code.
+
 ## Acceptance and review
 
 - Preserve all 29 existing cards, text, links, covers, ordering and old anchors.

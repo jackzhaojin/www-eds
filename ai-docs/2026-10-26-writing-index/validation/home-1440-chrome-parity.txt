@@ -1,0 +1,14 @@
+chrome-parity @ 1440px, tolerance 1px
+  live:  https://gh.jackzhaojin.com/
+  build: https://codex-list-seo-research--www-eds--jackzhaojin.aem.page/
+
+■ header: ✓ parity — 8 paired of 8/8 texts, 0/0 icons
+
+■ footer: 5 delta(s) — 6 paired of 6/7 texts, 0/0 icons
+  PAIR         "Accenture"  Δx -69px (984→915)
+  PAIR         "LinkedIn"  Δx -70px (1072→1002)
+  PAIR         "GitHub"  Δx -69px (1147→1078)
+  PAIR         "Certifications"  Δx -70px (1214→1144)
+  EXTRA        "Privacy"  build <a> "Privacy" has no live source
+
+✗ 5 delta(s) — fix these before any pixel iteration on chrome; re-run until quiet, then crop-compare confirms.

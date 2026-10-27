@@ -13,3 +13,4 @@
   link 404 /portfolio/assets/cea/ingestion-and-retrieval.png?v=2
   link 404 /portfolio/assets/postal/spec-to-two-stacks.svg
   link 404 /portfolio/assets/rockstar/exfrag-genai-flow.svg
+37 pages and fragments, 191 JSON-LD and social image URLs, 119 URLs checked: 14 problems

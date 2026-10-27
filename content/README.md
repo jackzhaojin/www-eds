@@ -148,6 +148,9 @@ Its Source row points to `/writing-index.json`; all rows and its ItemList come f
 Keep draft paths out of production publish batches. After approval, switch the production
 hub in a separate content operation.
 
+When promoting either dynamic draft, retain the production hub's metadata and indexability;
+do not carry over the draft-only noindex setting.
+
 The source comparison, metadata-only proof and Admin API trail are in
 [the writing index record](../ai-docs/2026-10-26-writing-index/README.md).
 
