@@ -1,6 +1,6 @@
 {
-  "total": 35,
-  "limit": 35,
+  "total": 36,
+  "limit": 36,
   "offset": 0,
   "data": [
     {
@@ -102,6 +102,10 @@
     {
       "name": "Row list",
       "path": "https://content.da.live/jackzhaojin/www-eds/docs/library/blocks/row-list"
+    },
+    {
+      "name": "Section metadata",
+      "path": "https://content.da.live/jackzhaojin/www-eds/docs/library/blocks/section-metadata"
     },
     {
       "name": "Series",

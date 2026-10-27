@@ -46,7 +46,7 @@ Then write the markup the way the editor saves it, so opening the page in Experi
 | 10 | `<em>A<br>B</em>` | `<em>A</em><br><em>B</em>` | nothing |
 | 11 | entities such as `&middot;` | the character itself (`·`) | nothing in DA. **Here, keep non-ASCII as entities:** run `node stardust/scripts/deploy/sanitise.js <file>`, one file per run. Uploads carry no charset, so raw UTF-8 can turn into U+FFFD |
 
-Never write what preview's Markdown can't carry: `data-` attributes, `style`, your own `id`s (anchors come from section metadata `id`), spans, classes outside block divs, inline SVG, iframes, buttons or forms. Data and settings go into block rows; looks go into section styles and block variants ([stardust/explainer-family.md](../stardust/explainer-family.md)).
+Never write what preview's Markdown can't carry: `data-` attributes, `style`, your own `id`s (anchors come from section metadata `id`), spans, classes outside block divs, inline SVG, iframes, buttons or forms. Data and settings go into block rows; looks go into section styles and block variants ([stardust/explainer-family.md](../stardust/explainer-family.md)). Width is a section style too: a static page's sections keep the reading column unless their section metadata says `style | wide`, which runs them across the full content width, as the hero does (the privacy and terms pages; the library's Section metadata (wide)).
 
 Images: upload the file to DA first, under `/media/<section>/<slug>/` (`stardust/scripts/deploy/da-media-upload.mjs`), then reference it by its full `https://content.da.live/jackzhaojin/www-eds/media/…` URL. A page that points at an image DA doesn't have serves `about:error`.
 

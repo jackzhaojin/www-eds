@@ -802,6 +802,36 @@ const BLOCKS = {
       },
     ],
   },
+  'section-metadata': {
+    name: 'Section metadata',
+    variants: [
+      {
+        name: 'Section metadata (wide)',
+        from: 'privacy/index.html',
+        cls: 'section-metadata',
+        text: 'wide',
+        description: 'The last block of a section: its style row sets how the section looks. On a static page, wide runs the section across the full content width, as the hero does, instead of the reading column.',
+        tags: 'section, metadata, style, wide, full width, width, layout',
+      },
+      {
+        name: 'Section metadata (alt)',
+        from: 'certifications/index.html',
+        cls: 'section-metadata',
+        text: 'alt',
+        smallest: true,
+        description: 'The last block of a section: alt gives the section the alternate band background.',
+        tags: 'section, metadata, style, alt, band, background',
+      },
+      {
+        name: 'Section metadata (related)',
+        from: W('2026-07-21-four-frontier-models-one-prompt'),
+        cls: 'section-metadata',
+        text: 'related',
+        description: 'The last block of the section that closes an article (the author box and related reading): related styles it as the end of the article column.',
+        tags: 'section, metadata, style, related, article, end',
+      },
+    ],
+  },
   series: {
     name: 'Series',
     variants: [
