@@ -23,8 +23,11 @@ export function readTalk(record) {
     }
     return { label: string(labels[i]), url: url.href };
   });
+  const page = string(record.path);
+  const path = /^\/talks\/[a-z0-9-]+\/$/.test(page) ? page : '';
   return {
     id,
+    path,
     title,
     aliases,
     links,
@@ -54,8 +57,8 @@ export async function loadTalksIndex(source, fetchData = fetch) {
 
 /**
  * The talks as row-list talks rows (scripts/listing-cells.js), the three cells an author writes:
- * when (date, kind), body (heading, event, description, links, status) and anchors (the id,
- * then the older ids that still land on the row).
+ * when (date, kind), body (heading, linked to the talk's page, event, description, links,
+ * status) and anchors (the id, then the older ids that still land on the row).
  */
 export function talkRows(talks) {
   return talks.map((talk) => {
@@ -65,7 +68,7 @@ export function talkRows(talks) {
     return [
       [el('p', {}, talk.date), talk.kind && el('p', {}, talk.kind)],
       [
-        el('h2', { id }, talk.title),
+        el('h2', { id }, talk.path ? el('a', { href: talk.path }, talk.title) : talk.title),
         talk.event && el('p', {}, talk.event),
         ...talk.description.split(/\n\n/).filter(Boolean).map((text) => el('p', {}, text)),
         ...talk.links.map((link) => el('p', {}, el('a', { href: sitePath(link.url) }, link.label))),
@@ -80,8 +83,8 @@ export function talkRows(talks) {
 export function talkSchemaItems(talks, canonical) {
   return talks.map((talk) => ({
     '@type': 'CreativeWork',
-    '@id': `${canonical}#${talk.id}`,
-    url: `${canonical}#${talk.id}`,
+    '@id': talk.path ? `https://www.jackzhaojin.com${talk.path}#talk` : `${canonical}#${talk.id}`,
+    url: talk.path ? `https://www.jackzhaojin.com${talk.path}` : `${canonical}#${talk.id}`,
     name: talk.title,
     description: talk.description,
     ...(talk.kind ? { genre: talk.kind } : {}),

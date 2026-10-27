@@ -227,3 +227,18 @@ test('a page without a listing keeps its body and validators; a fragment is left
   await worker.fetch(get('https://www.jackzhaojin.com/footer.plain.html'), WWW, {});
   assert.equal(calls.length, 2, 'a fragment is not a page: no index request');
 });
+
+test('www: a talk page gets its generated JSON-LD; a page with authored JSON-LD keeps it', async () => {
+  const page = (head) => `<html><head><title>OpenClaw | Jack Jin</title>
+<link rel="canonical" href="https://www.jackzhaojin.com/talks/ai-tinkerers-2026/">
+<meta name="talk-id" content="ai-tinkerers-2026"><meta name="talk-date" content="April 6, 2026">${head}
+</head><body><main><h1>OpenClaw</h1></main></body></html>`;
+  respond({ 'content-type': 'text/html; charset=utf-8' });
+  globalThis.fetch = async () => new Response(page(''), { headers: { 'content-type': 'text/html; charset=utf-8' } });
+  const html = await (await worker.fetch(get('https://www.jackzhaojin.com/talks/ai-tinkerers-2026/'), WWW, {})).text();
+  const [ld] = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+  assert.equal(ld['@graph'].find((n) => n['@type'] === 'Event').startDate, '2026-04-06');
+  const authored = page('<script type="application/ld+json">{"@type":"Thing"}</script>');
+  globalThis.fetch = async () => new Response(authored, { headers: { 'content-type': 'text/html; charset=utf-8' } });
+  assert.equal(await (await worker.fetch(get('https://www.jackzhaojin.com/talks/ai-tinkerers-2026/'), WWW, {})).text(), authored);
+});

@@ -71,7 +71,7 @@
 
 /* talks: css/site.css .talk-list and .talk-row. Every paragraph keeps the row's rhythm
    (.talk-row p), the cluster holds the links and the write-up status. */
-.row-list.talks .row-list-items > li {
+.row-list:is(.talks, .projects) .row-list-items > li {
   display: grid;
   grid-template-columns: 210px minmax(0, 1fr);
   gap: 48px;
@@ -83,36 +83,46 @@
   color: var(--color-text);
 }
 
-.row-list.talks .row-list-when p,
-.row-list.talks .row-list-event p,
-.row-list.talks .row-list-description p {
+.row-list:is(.talks, .projects) .row-list-when p,
+.row-list:is(.talks, .projects) .row-list-event p,
+.row-list:is(.talks, .projects) .row-list-description p {
   max-width: 70ch;
   margin: 12px 0 20px;
 }
 
-.row-list.talks .row-list-date p {
+.row-list:is(.talks, .projects) .row-list-date p {
   font-family: var(--font-mono);
   font-size: 13px;
 }
 
 /* The kind is a line of small text in the column's own line box (the source's span). */
-.row-list.talks .row-list-type p {
+.row-list:is(.talks, .projects) .row-list-type p {
   display: inline;
   margin: 0;
   font-size: var(--text-small);
   color: var(--color-text-muted);
 }
 
-.row-list.talks .row-list-title :is(h1, h2, h3, h4, h5, h6) {
+.row-list:is(.talks, .projects) .row-list-title :is(h1, h2, h3, h4, h5, h6) {
   font-size: clamp(24px, 2.5vw, 32px);
   max-width: 40ch;
 }
 
-.row-list.talks .row-list-event p {
+/* A heading that links to its own page reads as the heading, the accent on hover. */
+.row-list:is(.talks, .projects) .row-list-title a:any-link {
+  color: inherit;
+  border-bottom: 0;
+}
+
+.row-list:is(.talks, .projects) .row-list-title a:hover {
   color: var(--color-accent);
 }
 
-.row-list.talks .row-list-cluster {
+.row-list:is(.talks, .projects) .row-list-event p {
+  color: var(--color-accent);
+}
+
+.row-list:is(.talks, .projects) .row-list-cluster {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -120,17 +130,17 @@
   margin-top: 24px;
 }
 
-.row-list.talks .row-list-links,
-.row-list.talks .row-list-status {
+.row-list:is(.talks, .projects) .row-list-links,
+.row-list:is(.talks, .projects) .row-list-status {
   display: contents;
 }
 
 /* In the source the links are the flex items; a flex paragraph gives each the same box. */
-.row-list.talks .row-list-links p {
+.row-list:is(.talks, .projects) .row-list-links p {
   display: flex;
 }
 
-.row-list.talks .row-list-status p {
+.row-list:is(.talks, .projects) .row-list-status p {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -145,7 +155,7 @@
   white-space: nowrap;
 }
 
-.row-list.talks .row-list-status p::before {
+.row-list:is(.talks, .projects) .row-list-status p::before {
   content: "";
   display: inline-block;
   width: var(--chip-dot);
@@ -155,22 +165,22 @@
   flex-shrink: 0;
 }
 
-.row-list.talks .row-list-anchors {
+.row-list:is(.talks, .projects) .row-list-anchors {
   display: none;
 }
 
 @media (width <= 760px) {
-  .row-list.talks .row-list-items > li {
+  .row-list:is(.talks, .projects) .row-list-items > li {
     grid-template-columns: minmax(0, 1fr);
     gap: 12px;
     padding: 32px 0;
   }
 
-  .row-list.talks .row-list-when p {
+  .row-list:is(.talks, .projects) .row-list-when p {
     margin: 0;
   }
 
-  .row-list.talks .row-list-type p {
+  .row-list:is(.talks, .projects) .row-list-type p {
     display: inline-block;
     margin-top: 4px;
   }

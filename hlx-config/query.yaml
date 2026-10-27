@@ -12,6 +12,7 @@ indices:
       - '/**/nav'
       - '/**/footer'
       - '/drafts/**'
+      - '/docs/**'
       - '/talks/records/**'
     target: /query-index.json
     properties:
@@ -36,12 +37,17 @@ indices:
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, 'content')
+  # One page per talk at /talks/<id>/ (since v1.1.1; the first records, under /talks/records/,
+  # are unpublished). The hub /talks/ is generated from this index.
   talks:
     include:
-      - /talks/records/**
+      - /talks/**
     exclude:
-      - /talks/records
-      - /talks/records/
+      - /talks
+      - /talks/
+      - /talks/records/**
+      - /talks/**/nav
+      - /talks/**/footer
     target: /talks-index.json
     properties:
       id:
@@ -72,11 +78,17 @@ indices:
         select: head > meta[name="talk-status"]
         value: attribute(el, 'content')
       linkLabels:
-        select: main ul li a
+        select: main .proof-links a
         values: textContent(el)
       linkUrls:
-        select: main ul li a
+        select: main .proof-links a
         values: attribute(el, 'href')
+      image:
+        select: head > meta[property="og:image"]
+        value: attribute(el, 'content')
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, 'content')
   writing:
     include:
       - /writing/**
@@ -140,6 +152,45 @@ indices:
         value: attribute(el, 'content')
       template:
         select: head > meta[name="template"]
+        value: attribute(el, 'content')
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, 'content')
+  # One page per portfolio project at /portfolio/<slug>/ (since v1.1.1). The hub /portfolio/
+  # lists them from this index (Row list (projects, dynamic)).
+  portfolio:
+    include:
+      - /portfolio/**
+    exclude:
+      - /portfolio
+      - /portfolio/
+      - /portfolio/**/nav
+      - /portfolio/**/footer
+    target: /portfolio-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, 'content')
+      tagline:
+        select: main h1 em
+        value: textContent(el)
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, 'content')
+      image:
+        select: head > meta[property="og:image"]
+        value: attribute(el, 'content')
+      dates:
+        select: head > meta[name="project-dates"]
+        value: attribute(el, 'content')
+      kind:
+        select: head > meta[name="project-kind"]
+        value: attribute(el, 'content')
+      order:
+        select: head > meta[name="project-order"]
+        value: attribute(el, 'content')
+      anchors:
+        select: head > meta[name="project-anchors"]
         value: attribute(el, 'content')
       robots:
         select: head > meta[name="robots"]

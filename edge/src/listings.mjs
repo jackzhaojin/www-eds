@@ -1,6 +1,7 @@
 /*
  * Dynamic listings, rendered at the edge. An author writes a hub page with one listing block
- * and its Source row (Writing index, or Row list (talks, dynamic)) and nothing else: no rows,
+ * and its Source row (Writing index, Row list (talks, dynamic) or Row list (projects,
+ * dynamic)) and nothing else: no rows,
  * no JSON-LD. Here the Worker reads the index the Source row names and serves the page with the
  * rows inside that block and the page's JSON-LD in the head, so crawlers that don't run
  * JavaScript read the whole list. The rows and the graph come from the same code the browser
@@ -12,7 +13,9 @@ import { rowsToHTML } from '../../scripts/listing-cells.js';
 import { within } from '../../scripts/query-index.js';
 import { loadWritingIndex, writingRows, writingSchemaItems } from '../../scripts/writing-index.js';
 import { loadTalksIndex, talkRows, talkSchemaItems } from '../../scripts/talks-index.js';
+import { loadPortfolioIndex, projectRows, projectSchemaItems } from '../../scripts/portfolio-index.js';
 import { collectionGraph } from '../../scripts/collection-schema.js';
+import { pageGraph } from '../../scripts/page-schema.js';
 
 /** How long the edge keeps an index between publishes at most (s). A publish purges it sooner. */
 export const INDEX_TTL = 300;
@@ -31,6 +34,12 @@ const LISTINGS = [
     load: loadTalksIndex,
     rows: talkRows,
     items: (records, canonical) => talkSchemaItems(records, canonical),
+  },
+  {
+    block: '<div class="row-list projects dynamic">',
+    load: loadPortfolioIndex,
+    rows: projectRows,
+    items: (records) => projectSchemaItems(records),
   },
 ];
 
@@ -99,9 +108,31 @@ export async function renderListingHTML(html, fetchIndex) {
 }
 
 /**
+ * A talk or project page with its generated JSON-LD graph in the head (scripts/page-schema.js,
+ * from the page's own title, description, image and talk-* or project-* metadata), or null for
+ * any other page and for a page that already has JSON-LD.
+ */
+export function renderPageSchemaHTML(html) {
+  const head = html.slice(0, html.indexOf('</head>') + 1 || html.length);
+  if (!/<meta name="(talk-id|project-order)"/.test(head) || head.includes('application/ld+json')) return null;
+  const graph = pageGraph({
+    canonical: headValue(head, /<link rel="canonical" href="([^"]*)"/),
+    title: headValue(head, /<title>([^<]*)<\/title>/),
+    description: headValue(head, /<meta name="description" content="([^"]*)"/),
+    image: headValue(head, /<meta property="og:image" content="([^"]*)"/),
+    tagline: headValue(html, /<h1[^>]*>[\s\S]*?<em>([^<]*)<\/em>[\s\S]*?<\/h1>/),
+    meta: (name) => headValue(head, new RegExp(`<meta name="${name}" content="([^"]*)"`)),
+  });
+  if (!graph) return null;
+  const ldJSON = `<script type="application/ld+json">${JSON.stringify(graph).replace(/</g, '\\u003c')}</script>`;
+  return html.replace('</head>', `${ldJSON}\n</head>`);
+}
+
+/**
  * Fills the dynamic listing of an EDS page response (www and staging), reading the index
  * straight from the EDS origin: a fetch to the www hostname would reach the zone's origin,
- * GitHub Pages. Every other response passes through untouched.
+ * GitHub Pages. A talk or project page gets its generated JSON-LD instead. Every other
+ * response passes through untouched.
  * @param {Response} res The EDS response
  * @param {Request} request The incoming request
  * @param {{ORIGIN_HOSTNAME: string}} env Worker vars
@@ -120,6 +151,7 @@ export async function renderListings(res, request, env) {
     // eslint-disable-next-line no-console
     console.warn(`listing on ${pathname} left to the browser: ${error.message}`);
   }
+  filled = filled ?? renderPageSchemaHTML(html);
   const out = new Response(filled ?? html, res);
   out.headers.delete('content-length');
   if (filled) {

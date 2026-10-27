@@ -4,7 +4,7 @@
 
 The record of the decision and the first full run over all 40 documents: [ai-docs/2026-10-26-content-in-git/](../ai-docs/2026-10-26-content-in-git/README.md).
 
-**The process, briefly:** write the change here in the editor's own form, push it to preview, compare it in the browser with gh.jackzhaojin.com, gate it, publish it, commit it. Since the cutover, publishing goes straight to www.jackzhaojin.com.
+**The process, briefly:** write the change here in the editor's own form, push it to preview, check it in the browser, publish it, commit it. Since the cutover, publishing goes straight to www.jackzhaojin.com.
 
 **Why it takes this much care:** a page goes from DA's HTML to Markdown on preview, then back to HTML on delivery. On top of that, the editor rewrites HTML its own way whenever someone opens a document, and opening is enough to trigger it. Anything Markdown can't carry is lost on preview. Anything the editor writes differently can change how a block renders.
 
@@ -68,7 +68,7 @@ DA_TOKEN=… node stardust/scripts/deploy/deploy-batch.mjs --org jackzhaojin --r
 ```
 
 Then look at it in a browser (for Claude, the desktop app's built-in browser, not Playwright or Chrome):
-- the page on `https://main--www-eds--jackzhaojin.aem.page/<path>` next to `https://gh.jackzhaojin.com/<path>`, the GitHub Pages original;
+- the page on `https://main--www-eds--jackzhaojin.aem.page/<path>`, at 1440 and 360;
 - what delivery made of it: diff `<path>index.plain.html` on aem.page against aem.live, the published version. An empty diff means the change rendered only what you meant.
 
 ## 3. For big edits: the editor round trip (optional)
@@ -85,29 +85,24 @@ Do this for a new block or explainer engine, an importer change, a page with unu
 4. **Adopt:** copy `<workdir>/editor/<path>` over `content/<path>` and run `sanitise.js` on it. Then check it's stable: upload it again, open it again, and confirm DA's `last-modified` doesn't move. A stable document is one the editor leaves alone.
 5. **Clean up:** deleting scratch documents in DA is Jack's call. Reusing `/drafts/roundtrip/` is fine.
 
-## 4. Test that it still looks like the original
+## 4. Test that it works
 
-Gate every changed page against gh at both widths, preview against the GitHub Pages original:
+Pixel-perfect gating against the GitHub Pages original ended on 2026-10-26 (Jack: "we don't need pixel perfect as much anymore"). The design is v3's and can evolve; a page has to work, read well and stay editable:
 
-```bash
-node stardust/scripts/replica/run-bg.mjs start --name <slug>-1440 -- stardust/scripts/replica/gate.sh <slug> \
-  https://gh.jackzhaojin.com/<path> https://main--www-eds--jackzhaojin.aem.page/<path> 1440 check --full --main main --marker "Jack Jin"
-# the same at 360, then: node stardust/scripts/replica/run-bg.mjs wait
-```
-
-- **Many pages:** `gate-all.mjs --state stardust/rollout/gate-state-gh-preview.json --out stardust/replica/gates/gh-preview-<w> --width <w>`, with `--only <slug,…>` to pick pages. The state file maps every page from gh to aem.page.
-- **A change to shared code** (a block, `styles/`, a template, `scripts/scripts.js`): also gate home and an article, on a preview branch first (`<branch>--www-eds--jackzhaojin.aem.page`; gate-all takes `--eds-host https://<that host>`, with the scheme), then main.
+- **Look at it** in the built-in browser at 1440 and 360: nothing cut off, no horizontal scroll, the blocks decorated, links working. For a change to shared code (a block, `styles/`, a template, `scripts/scripts.js`), also look at home and an article, on a preview branch first (`<branch>--www-eds--jackzhaojin.aem.page`), then main.
+- **Code checks:** `npm run lint` and `node --test test/*.test.mjs`; for the Worker, `cd edge && npm test`.
 - **Editability:** `node stardust/scripts/deploy/ew-editability-probe.mjs <aem.page url> --simulate-editor` should report 0 dead and 0 duplicated.
-- **The pass bar** is the replica gate's (`stardust:replica`, the source-fidelity gate). Rail thumbnails at 360 may need an entry in `stardust/replica/accepted.json` (register R7).
-- **A page moved but you changed nothing visible?** Compare our two captures of it, the earlier `eds.png` against the new one (`node stardust/scripts/replica/pixel-compare.mjs <old> <new>`). 0.00% means the source moved, not us (on 2026-10-26, gh rendered the adaptTo article 6 px taller than www had).
+- **SEO:** `node stardust/scripts/seo-check.mjs --base https://main--www-eds--jackzhaojin.aem.page` before publishing, and on www after.
 - **zsh:** a URL list in a variable doesn't split into arguments. Write `${=URLS}`, or the probe silently checks one long "URL" and reports 0 authored texts.
+
+The replica gates (`stardust/scripts/replica/`) still run if a pixel comparison is ever wanted, but nothing requires them.
 
 ## 5. Publish and record
 
 - **Publish:** the same `deploy-batch.mjs` command, without `--no-publish`. Each publish purges Cloudflare (push invalidation), so www serves the new version within seconds. Browsers keep pages for 10 minutes (the Worker's `pageCache`), so a browser that loaded the page just before may need a hard reload.
 - **After a batch publish, check www itself,** not just aem.live. A request that reaches Cloudflare in the seconds after the last purge, while aem.live is still updating, caches the old page, and nothing purges it for two days (on 2026-10-26, one of 29 pages). `curl` the changed pages on www; for one that is stale, publish it again, which purges again.
 - **Check SEO** after a publish that touches metadata or links: `node stardust/scripts/seo-check.mjs` (www) prints every page with a dead JSON-LD, social image or internal link URL. On a preview host (`--base https://main--www-eds--jackzhaojin.aem.page`) the project sites also show as 404s, because only the www Worker serves them.
-- **Commit:** `content/`, `content/.deploy-ledger.json`, and anything the gates recorded. Push to main after `git pull --rebase`, never force-push. **A content change is never a release:** no version, tag or release branch (AGENTS.md, "Releases are for code only").
+- **Commit:** `content/` and `content/.deploy-ledger.json`. Push to main after `git pull --rebase`, never force-push. **A content change is never a release:** no version, tag or release branch (AGENTS.md, "Releases are for code only").
 - **New pages:** since the cutover (2026-10-26) new writing is published here, to EDS; a page added to GitHub Pages no longer shows on www. An article drafted as HTML converts with the recipe in [whats-left.md, section 5](../ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md). Then sync its SEO ([hlx-config/README.md](../hlx-config/README.md)): its head metadata, the redirects sheet, the sitemap.
 
 ## Listing pages: authored once, generated from the index
