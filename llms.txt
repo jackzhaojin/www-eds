@@ -56,6 +56,7 @@ The design-systems directory contains development references and historical demo
 - [AnimaMesh: An Engine for Running a Company with Agents](https://www.jackzhaojin.com/talks/ai-tinkerers-2026-animamesh/): The Company of Zero demo: one open source engine on Cloudflare Workers, a private markdown brain per company, and agents that bring me the day's work. It took second place in AI Tinkerers' global Top AI Demos that week. (AI Tinkerers Columbus · Columbus, Ohio, August 3, 2026)
 - [AI, agents, and careers](https://www.jackzhaojin.com/talks/denison-2026/): A guest lecture with a live demo and open-source materials for computer science students. (Denison University, CS 271 · Granville, Ohio, April 2026)
 - [OpenClaw 24/7 Development Agent](https://www.jackzhaojin.com/talks/ai-tinkerers-2026/): A demo of a continuous coding agent, its execution loop, and the boundaries around autonomous work. Featured in AI Tinkerers' global Community Spotlights, picked from hundreds of demos. (AI Tinkerers Columbus · Columbus, Ohio, April 6, 2026)
+- [AI in Professional Services](https://www.jackzhaojin.com/talks/columbus-ai-2025/): AI delivery and multi-agent collaboration in professional services. (Columbus AI Week 2025 · Columbus, Ohio, September 2025)
 - [AEM Rockstar](https://www.jackzhaojin.com/talks/aem-rockstar-2024/): A generative AI solution built into Adobe Experience Manager. Winner of the 2024 AEM Rockstar competition. (Adobe Summit 2024 · Las Vegas, March 28, 2024)
 
 ## Projects

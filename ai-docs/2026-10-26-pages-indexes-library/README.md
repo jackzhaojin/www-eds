@@ -58,9 +58,9 @@ The research's bar for a talk or project page, without inventing copy (Google's 
 | The one rich result in reach: the recording on a watch page | yes: the two recorded talks embed their video and carry a VideoObject (upload date and duration from their articles) |
 | Everything the site already has about the item, gathered on its page | yes: the event page, write-up, project, recognition, repository and, for the adaptTo session, its slides (PDF) and the recap article, all from existing pages |
 | A breadcrumb | yes: the talk pages' hero, and BreadcrumbList on both kinds |
-| No thin page in search | columbus-ai-2025 (one sentence) is `noindex, follow`; the rest are indexable |
+| No thin page in search | all nine talks are indexable now; columbus-ai-2025 was `noindex, follow` until Jack approved carrying his own words to it |
 | No dead links | the 14 `/portfolio/assets/` links fixed; seo-check: 0 problems; one external link (Rockstar's Summit 2024 session) now redirects to Adobe's Summit home, kept as the official source |
-| More words where a page is thin | where the site already had them, carried verbatim: the adaptTo session gets the slide, "What it is" and "My take" from the recap article (231 words now); the lightning talk the Conversion Factory thesis (125); Denison its materials' line from the portfolio (58). Beyond that it is Jack's writing (below) |
+| More words where a page is thin | where the site already had them, carried verbatim: the adaptTo session gets the slide, "What it is" and "My take" from the recap article (231 words now); the lightning talk the Conversion Factory thesis (125); Denison its materials' line from the portfolio (58). Then, with Jack's go-ahead, his own words from other sources: columbus-ai-2025 from his LinkedIn preview (87 words, now indexable) and denison-2026 from his deck's agenda (91). Beyond that it is Jack's writing (below) |
 
 ## Process change
 
@@ -94,8 +94,8 @@ Four background agents and the main thread, on one branch (`v1-1-1`) in its own 
 
 ## Gaps Jack would fill (no copy was invented)
 
-- **columbus-ai-2025:** one sentence, no links (noindex until it has more).
-- **denison-2026:** two sentences (the second from the portfolio's repo card); no event page or recording.
+- **columbus-ai-2025:** now carries Jack's own description from his LinkedIn preview of the talk (career-blogs), the sentence and two of its three points verbatim (the Accenture investment figure left out, his choice); indexable. No recording or links.
+- **denison-2026:** the portfolio's materials line and the deck's own agenda ("Three parts": Why Now, The Demand, Your Move, Your Turn), plus the live demo app link, from Jack's deck (his choice); no event page or recording.
 - **adaptto-2026:** now carries the recap's slide, "What it is" and "My take", the slides PDF and the recap link; a recording when it's out.
 - **adaptto-2026-lightning:** the talk's sentence plus the Conversion Factory thesis; no event link or slides.
 - **aem-rockstar-2024:** its "View event source" link now redirects to the Adobe Summit home page (the hub had it too); the competition's repository is now linked.
