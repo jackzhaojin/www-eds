@@ -4,6 +4,16 @@
   max-width: var(--measure);
 }
 
+/* Blocks between the prose (a talk page's video and its links) keep the same column, with the
+   prose rhythm between them. */
+.static main > .section:not(.hero-container) > div {
+  max-width: var(--measure);
+}
+
+.static main > .section > div + div {
+  margin-top: var(--space-6);
+}
+
 .static main > .section > .default-content-wrapper > * + * {
   margin-top: var(--space-4);
 }
@@ -60,7 +70,7 @@
 }
 
 /* A row of buttons (the 404 page's sections) is a v3 cluster. */
-.static main > .section > .default-content-wrapper:has(.cta-slot) {
+.static main > .section > .default-content-wrapper:has(.cta-slot .button) {
   max-width: var(--container-max);
 }
 
