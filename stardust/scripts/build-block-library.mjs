@@ -56,6 +56,10 @@ const W = (slug) => `writing/${slug}/index.html`;
 const parsed = new Map();
 function load(file) {
   if (!parsed.has(file)) {
+    // content/ keeps example pages only since 2026-10-28 (DA is the source of truth)
+    if (!fs.existsSync(path.join(CONTENT, file))) {
+      throw new Error(`content/${file} isn't local: run node stardust/scripts/deploy/da-pull.mjs --library first`);
+    }
     const src = fs.readFileSync(path.join(CONTENT, file), 'utf8');
     parsed.set(file, { src, $: cheerio.load(src, { sourceCodeLocationInfo: true }) });
   }

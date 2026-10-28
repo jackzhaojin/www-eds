@@ -579,5 +579,13 @@
     "put": 200,
     "preview": 200,
     "verify": "ok"
+  },
+  "/docs/library/blocks/figure": {
+    "status": "previewed",
+    "attempts": 1,
+    "ts": "2026-10-28T04:25:17.634Z",
+    "put": 200,
+    "preview": 200,
+    "verify": "ok"
   }
 }

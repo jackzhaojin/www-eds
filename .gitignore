@@ -28,3 +28,9 @@ helix-importer-ui
 .impeccable/hook.cache.json
 .impeccable/config.local.json
 stardust/rollout/lighthouse/
+
+# content/: DA is the source of truth (content/README.md). Only the example pages are tracked, and
+# tracked files stay tracked; a page pulled from DA or written for it stays local. Add a new
+# example on purpose: git add -f content/<path>.
+content/**
+!content/README.md

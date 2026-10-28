@@ -11,6 +11,7 @@ The whole site moved from GitHub Pages on 2026-10-25, and every page was checked
 | [www.jackzhaojin.com](https://www.jackzhaojin.com) | this site, through the `edge/` Worker (`www-eds-edge`); the 7 project sites under it pass through to GitHub Pages | indexed |
 | eds.jackzhaojin.com | a 302 to www, path and query kept (a Cloudflare Redirect Rule since 2026-10-27; the staging Worker behind it gets no traffic) | |
 | [gh.jackzhaojin.com](https://gh.jackzhaojin.com) | the old GitHub Pages site, through the `edge/` Worker, kept for comparison | noindex |
+| [archive.jackzhaojin.com](https://archive.jackzhaojin.com) | the [www-archive](https://github.com/jackzhaojin/www-archive) snapshot of www as served (Worker `www-archive`), the record of what was published and the standby if Adobe can't serve the site | noindex |
 | [main--www-eds--jackzhaojin.aem.live](https://main--www-eds--jackzhaojin.aem.live/) | the Edge Delivery origin (`.aem.page` for preview) | noindex |
 | [da.live/#/jackzhaojin/www-eds](https://da.live/#/jackzhaojin/www-eds) | the authoring side: Experience Workspace documents | |
 
@@ -125,7 +126,7 @@ node scripts/check-host.mjs --local staging              # the Worker in-process
 node scripts/check-host.mjs --base https://www.jackzhaojin.com   # a deployed host
 ```
 
-**Content** is managed in git: `content/` is the source of truth, and Experience Workspace (DA) is where it's published from. Every change follows [content/README.md](content/README.md), a must-read before editing: write it in the form the DA editor keeps, preview it, compare it with gh.jackzhaojin.com in the browser, gate it, publish, commit. Pushing goes through the DA Source API with stardust's deploy driver, which keeps a ledger and checks the delivered page before marking it live. The token is the da-auth cache, never printed:
+**Content** lives in Experience Workspace (DA), the source of truth since 2026-10-28. `content/` keeps example pages that between them use every block, variant, section style and template on the site, for whoever writes the next page. Every change follows [content/README.md](content/README.md), a must-read before editing: pull the page from DA, write it in the form the DA editor keeps, preview it, check it in the browser, publish, then snapshot www into the [www-archive](https://github.com/jackzhaojin/www-archive) repo, the record of what was published (served at archive.jackzhaojin.com, noindex). Pushing goes through the DA Source API with stardust's deploy driver, which keeps a ledger and checks the delivered page before marking it live. The token is the da-auth cache, never printed:
 
 ```bash
 DA_TOKEN=$(node -e "const t=require(process.env.HOME+'/.aem/da-token.json');if(t.expires_at>Date.now()+60000)process.stdout.write(t.access_token)") \
