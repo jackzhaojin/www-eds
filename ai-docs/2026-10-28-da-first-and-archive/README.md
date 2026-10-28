@@ -56,4 +56,10 @@ Adobe's vendored worker refuses any origin that isn't `main--*--*.aem.live`, so 
 
 ## Wayback
 
-Pending at the time of writing.
+All 57 pages captured by the Wayback Machine (anonymous Save Page Now, one at a time, 10 seconds apart), between 00:06 and 00:52 ET on 2026-10-28, none needing a retry. Each capture's URL and timestamp is in www-archive's `wayback.json`. The Wayback availability API returns them (home `20261028042217`, `/writing/` `20261028043646`, `/talks/adaptto-2026/` `20261028043146`), and a capture URL answers 200. These captures are the outside, timestamped witness: neither Jack nor anyone else can edit them.
+
+## What's left
+
+- **No schedule:** a snapshot is taken by hand after publishing (content/README.md, step 5), as Jack asked for now. A GitHub Action or a Worker cron could take it later.
+- **Wayback keys (optional):** anonymous captures have lower limits; archive.org S3-style keys, which Jack would create, raise them. Not needed at this site's size.
+- **Staging:** `www-eds-edge-staging` wasn't redeployed with v1.1.6; eds 302s to www, so nothing reaches it.
