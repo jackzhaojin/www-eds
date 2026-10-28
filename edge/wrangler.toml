@@ -23,6 +23,9 @@ INDEXABLE = "true"
 # Push invalidation is on here, the default (no PUSH_INVALIDATION var): the Cache Purge token is in
 # the site's CDN config (2026-10-26, hlx-config/2026-10-26-push-invalidation/), so each publish
 # purges this zone. Lower environments set PUSH_INVALIDATION = "disabled" (staging below).
+# ARCHIVE_ORIGIN is unset: it serves www from the www-archive snapshot instead of Edge Delivery, only
+# if Adobe can't serve the site (edge/README.md, "If Adobe can't serve the site"). Set it with
+# --var ARCHIVE_ORIGIN:https://www-archive.jackzhaojin.workers.dev on that deploy.
 
 [env.staging]
 name = "www-eds-edge-staging"

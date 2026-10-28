@@ -127,6 +127,26 @@ test('gh: a redirect GitHub sends to www stays on gh; one elsewhere is left alon
   assert.equal(away.headers.get('location'), 'https://github.com/jackzhaojin');
 });
 
+test('www with ARCHIVE_ORIGIN: EDS paths come from the archive, indexable, its redirects kept on www', async () => {
+  const ARCHIVED = { ...WWW, ARCHIVE_ORIGIN: 'https://www-archive.jackzhaojin.workers.dev' };
+  globalThis.fetch = async (input) => {
+    const req = input instanceof Request ? input : new Request(input);
+    calls.push(req);
+    if (req.url.endsWith('/nav.plain.html')) return new Response('', { status: 307, headers: { location: '/nav.plain' } });
+    return new Response('<html>page</html>', { status: 200, headers: { 'content-type': 'text/html', 'x-robots-tag': 'noindex, nofollow' } });
+  };
+  const page = await worker.fetch(get('https://www.jackzhaojin.com/writing/?q=1'), ARCHIVED, {});
+  assert.equal(calls[0].url, 'https://www-archive.jackzhaojin.workers.dev/writing/?q=1');
+  assert.equal(page.headers.get('x-robots-tag'), null);
+  assert.equal(page.headers.get('cache-control'), 'max-age=600, must-revalidate');
+  const nav = await worker.fetch(get('https://www.jackzhaojin.com/nav.plain.html'), ARCHIVED, {});
+  assert.equal(nav.status, 307);
+  assert.equal(nav.headers.get('location'), 'https://www.jackzhaojin.com/nav.plain');
+  assert.equal(nav.headers.get('x-robots-tag'), 'noindex, nofollow');
+  await worker.fetch(get('https://www.jackzhaojin.com/bruce-lava-dash/'), ARCHIVED, {});
+  assert.equal(calls.at(-1).url, 'https://www.jackzhaojin.com/bruce-lava-dash/');
+});
+
 test('robots.txt and the sitemaps are 404s on eds and gh, never fetched; www serves them', async () => {
   for (const [host, env] of [['eds', STAGING], ['gh', GH]]) {
     for (const path of ['/robots.txt', '/sitemap.xml', '/sitemap.json']) {

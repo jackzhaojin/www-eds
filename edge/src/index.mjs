@@ -6,11 +6,13 @@
  * www the .plain.html fragments stay noindex.
  * Browsers keep EDS pages for 10 minutes (pageCache), however long the edge keeps them. A page
  * with a dynamic listing gets its rows and JSON-LD here (renderListings, src/listings.mjs).
+ * With ARCHIVE_ORIGIN set (only if Adobe can't serve the site), the EDS paths come from the
+ * www-archive snapshot instead (archiveFetch).
  */
 import { aemFetch } from './aem.mjs';
 import { renderListings } from './listings.mjs';
 import {
-  githubFetch, hiddenFromCrawlers, isProjectPath, pageCache, projectFetch, robots,
+  archiveFetch, githubFetch, hiddenFromCrawlers, isProjectPath, pageCache, projectFetch, robots,
 } from './routes.mjs';
 
 export default {
@@ -20,6 +22,7 @@ export default {
     if (hiddenFromCrawlers(pathname, env)) res = new Response('Not found', { status: 404 });
     else if (env.MODE === 'github') res = await githubFetch(request, env);
     else if (isProjectPath(pathname)) res = await projectFetch(request, env);
+    else if (env.ARCHIVE_ORIGIN) res = pageCache(await archiveFetch(request, env), pathname);
     else res = pageCache(await renderListings(await aemFetch(request, env, ctx), request, env), pathname);
     return robots(res, env, pathname);
   },

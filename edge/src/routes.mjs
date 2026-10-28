@@ -56,15 +56,15 @@ export function projectFetch(request, env) {
 }
 
 /**
- * The whole GitHub Pages site, for the gh host: the same path and query on GITHUB_ORIGIN
- * (https://www.jackzhaojin.com while GitHub Pages still answers there). A redirect GitHub sends
- * back to that origin (a folder without its slash) is pointed at this host, so it stays on gh.
+ * The same path and query on another origin, for a host that is a whole other site. A redirect
+ * the origin sends back to itself (a folder without its slash) is pointed at this host, so the
+ * visitor stays here.
  * @param {Request} request The incoming request
- * @param {{GITHUB_ORIGIN: string}} env Worker vars
+ * @param {string} originUrl The origin, e.g. https://www.jackzhaojin.com
  */
-export async function githubFetch(request, env) {
+export async function originFetch(request, originUrl) {
   const url = new URL(request.url);
-  const origin = new URL(env.GITHUB_ORIGIN);
+  const origin = new URL(originUrl);
   const target = new URL(`${url.pathname}${url.search}`, origin);
   const res = await fetch(new Request(target, request), { redirect: 'manual' });
   const location = res.headers.get('location');
@@ -75,6 +75,24 @@ export async function githubFetch(request, env) {
   out.headers.set('location', `${url.origin}${to.pathname}${to.search}${to.hash}`);
   return out;
 }
+
+/**
+ * The whole GitHub Pages site, for the gh host: GITHUB_ORIGIN (https://www.jackzhaojin.com
+ * while GitHub Pages still answers there), its folder redirects kept on gh.
+ * @param {Request} request The incoming request
+ * @param {{GITHUB_ORIGIN: string}} env Worker vars
+ */
+export const githubFetch = (request, env) => originFetch(request, env.GITHUB_ORIGIN);
+
+/**
+ * The site from the archive instead of Edge Delivery, for when Adobe can't serve it:
+ * ARCHIVE_ORIGIN is the www-archive Worker (https://www-archive.jackzhaojin.workers.dev, outside
+ * this zone). Its snapshot is www as served, listings filled in, so nothing is rendered here.
+ * Unset (the normal case), Edge Delivery serves the site.
+ * @param {Request} request The incoming request
+ * @param {{ARCHIVE_ORIGIN: string}} env Worker vars
+ */
+export const archiveFetch = (request, env) => originFetch(request, env.ARCHIVE_ORIGIN);
 
 /** How long a browser may keep an EDS page: 10 minutes, as GitHub Pages sent. Cloudflare keeps
  * pages longer (cdn-cache-control) and push invalidation purges it on publish, but nothing can
