@@ -317,11 +317,6 @@
   transform: scale(0.56);
 }
 
-/* a scene that arrives off screen takes its place without the morph */
-.row-list.projects .is-settling :is(.row-list-num, .row-list-plate) {
-  transition: none;
-}
-
 /* ---------- the body ---------- */
 .row-list.projects .row-list-body {
   grid-area: body;

@@ -57,6 +57,14 @@ The final frames, 1440 at 7.5 s: [light](scenes-light.jpg), [dark](scenes-dark.j
 
 Checks: lint (0 errors), unit tests 22/22, the editability probe on the hub (99/99) and a project page (116/116), the talks list pixel-identical to before at 1440 and 360, no horizontal overflow at 360 to 1440, a fresh visitor in a dark OS gets the night theme with System pressed.
 
+## v1.2.2: the reveal plays at any scroll speed (2026-10-29)
+
+**Jack:** "the portfolio page, the numbers and animations, if I scroll very slowly, doesn't actually show up. It's only when I scroll very fast ... Ideally, I want to see the animation when I scroll."
+
+**Why:** a card fetches its scene when it comes within 400px of the screen, and v1.2.1 skipped the reveal (the numeral setting back, the plate easing in) for a scene that was ready while its card was still off screen (`is-settling`). On a slow scroll every scene is ready before its card arrives, so every card came in already settled; only a scroll faster than the fetch showed the motion. **The fix:** a ready scene waits, and the card reveals it the first time its media is half on screen (an IntersectionObserver in `playScenes`), whenever the scene arrived. A scene plays on hover only once revealed.
+
+**The check:** `stardust/scripts/deploy/gallery-scroll.mjs <hub url>` scrolls the hub with the mouse wheel at steady speeds and counts the cards whose reveal ran on screen. On www before the fix, at 1440: 0 of 11 at 120 and 500 px/s, 4 of 11 at 3000 px/s. With it: 11 of 11 at all three speeds, at 1440 and 360. Lint 0 errors, unit tests 22/22, the editability probe on the hub 99/99.
+
 ## Shipped (2026-10-28)
 
 - **v1.2.0** ([PR 10](https://github.com/jackzhaojin/www-eds/pull/10), `541b269`): the 11 pages pushed to DA and previewed, checked on the branch preview (55 of 55 scene captures ok; each page's delivered body differs from live only by its scene block), merged, tagged. Adobe's PSI check on the PR failed on SEO (preview hosts are noindex) and on two runs that returned no result; performance was 99 to 100 on all 22 runs, and axe found no violation from the scenes (the only finding, heading order on some project pages, is on www already).

@@ -120,7 +120,8 @@ function plainURL(href) {
 /**
  * Copies the project page's Scene block into the card's plate as a thumbnail (scene.js thumbnail
  * mode: no pause control, held on the engine's still until the gallery plays it). Without a
- * scene, or if its engine fails, the card keeps its numeral plate.
+ * scene, or if its engine fails, the card keeps its numeral plate. A ready scene waits for the
+ * gallery to reveal it (playScenes).
  */
 async function loadScene(card, plate, href) {
   try {
@@ -143,14 +144,6 @@ async function loadScene(card, plate, href) {
         scene.remove();
       } else if (scene.classList.contains('is-ready')) {
         watch.disconnect();
-        // off screen, the plate takes its place without the morph; in view, it eases in
-        const { top, bottom } = card.getBoundingClientRect();
-        const settle = bottom < 0 || top > window.innerHeight;
-        card.classList.toggle('is-settling', settle);
-        card.classList.add('has-scene');
-        if (settle) {
-          requestAnimationFrame(() => requestAnimationFrame(() => card.classList.remove('is-settling')));
-        }
         card.dispatchEvent(new CustomEvent('row-list-scene'));
       }
     });
@@ -163,7 +156,10 @@ async function loadScene(card, plate, href) {
 }
 
 /**
- * Plays one card's scene at a time: the card under the pointer, else the one with focus in it,
+ * Reveals each card's scene (the numeral sets back, the plate eases in) the first time the card's
+ * media is half on screen with its scene ready, so the reader sees it at any scroll speed; scenes
+ * load 400px ahead, so on a slow scroll they are ready before their card arrives.
+ * Plays one revealed scene at a time: the card under the pointer, else the one with focus in it,
  * else (on touch screens) the card most in view. Under reduced motion every scene stays still.
  */
 function playScenes(cards) {
@@ -172,7 +168,7 @@ function playScenes(cards) {
   let viewed = null;
   let playing = null;
   const set = (card, play) => {
-    const scene = card.querySelector('.scene.is-ready');
+    const scene = card.classList.contains('has-scene') && card.querySelector('.scene.is-ready');
     if (!scene || scene.classList.contains('is-paused') !== play) return;
     scene.classList.toggle('is-paused', !play);
     scene.dispatchEvent(new CustomEvent('scene-pause'));
@@ -183,6 +179,22 @@ function playScenes(cards) {
     playing = next;
     if (playing) set(playing, true);
   };
+
+  const shown = new Set();
+  const reveal = (card) => {
+    if (card.classList.contains('has-scene') || !shown.has(card)
+      || !card.querySelector('.scene.is-ready')) return;
+    card.classList.add('has-scene');
+    sync();
+  };
+  const onScreen = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const card = entry.target.closest('li');
+      if (entry.intersectionRatio >= 0.5) shown.add(card);
+      else shown.delete(card);
+      reveal(card);
+    });
+  }, { threshold: [0, 0.5] });
 
   const ratios = new Map();
   const view = new IntersectionObserver((entries) => {
@@ -221,9 +233,11 @@ function playScenes(cards) {
       focused = null;
       sync();
     });
-    card.addEventListener('row-list-scene', sync);
+    card.addEventListener('row-list-scene', () => reveal(card));
     view.observe(card);
     lazy.observe(card);
+    const media = card.querySelector('.row-list-media');
+    if (media) onScreen.observe(media);
   });
   MOTION.addEventListener('change', sync);
   TOUCH.addEventListener('change', sync);
