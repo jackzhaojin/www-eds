@@ -214,5 +214,41 @@
     "httpStatus": 201,
     "attempts": 1,
     "ts": "2026-10-25T14:38:00.557Z"
+  },
+  "media/certifications/adobe-experience-manager-digital-librarian.png": {
+    "status": "uploaded",
+    "file": "/private/tmp/claude-501/-Users-jackjin-dev-jackzhaojin-www-eds/9884ea6e-ecac-4083-b03f-68c78ef64962/scratchpad/cert-badges/adobe-experience-manager-digital-librarian.png",
+    "size": 38918,
+    "sha256": "0bce58c9976b382f382183047f24512b3dd3a92033aa790b6847d561a7ce2f3f",
+    "contentType": "image/png",
+    "source": null,
+    "contentUrl": "https://content.da.live/jackzhaojin/www-eds/media/certifications/adobe-experience-manager-digital-librarian.png",
+    "httpStatus": 201,
+    "attempts": 1,
+    "ts": "2026-10-29T18:12:49.519Z"
+  },
+  "media/certifications/adobe-experience-manager-sites-technical-foundations.png": {
+    "status": "uploaded",
+    "file": "/private/tmp/claude-501/-Users-jackjin-dev-jackzhaojin-www-eds/9884ea6e-ecac-4083-b03f-68c78ef64962/scratchpad/cert-badges/adobe-experience-manager-sites-technical-foundations.png",
+    "size": 38918,
+    "sha256": "0bce58c9976b382f382183047f24512b3dd3a92033aa790b6847d561a7ce2f3f",
+    "contentType": "image/png",
+    "source": null,
+    "contentUrl": "https://content.da.live/jackzhaojin/www-eds/media/certifications/adobe-experience-manager-sites-technical-foundations.png",
+    "httpStatus": 201,
+    "attempts": 1,
+    "ts": "2026-10-29T18:12:50.038Z"
+  },
+  "media/certifications/adobe-experience-manager-sites-content-author.png": {
+    "status": "uploaded",
+    "file": "/private/tmp/claude-501/-Users-jackjin-dev-jackzhaojin-www-eds/9884ea6e-ecac-4083-b03f-68c78ef64962/scratchpad/cert-badges/adobe-experience-manager-sites-content-author.png",
+    "size": 38918,
+    "sha256": "0bce58c9976b382f382183047f24512b3dd3a92033aa790b6847d561a7ce2f3f",
+    "contentType": "image/png",
+    "source": null,
+    "contentUrl": "https://content.da.live/jackzhaojin/www-eds/media/certifications/adobe-experience-manager-sites-content-author.png",
+    "httpStatus": 201,
+    "attempts": 1,
+    "ts": "2026-10-29T18:12:50.120Z"
   }
 }

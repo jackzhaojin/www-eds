@@ -422,3 +422,7 @@
 {"t":"2026-10-29T02:49:52.384Z","path":"/portfolio/shadow-pivot/index","step":"verify","ok":true}
 {"t":"2026-10-29T02:54:14.658Z","path":"/portfolio/anima-mesh/index","step":"verify","ok":true}
 {"t":"2026-10-29T02:56:59.321Z","path":"/portfolio/anima-mesh/index","step":"verify","ok":true}
+{"t":"2026-10-29T18:13:31.114Z","path":"/certifications/index","step":"verify","ok":true}
+{"t":"2026-10-29T18:13:32.246Z","path":"/design-systems/v3/index","step":"verify","ok":true}
+{"t":"2026-10-29T18:15:05.215Z","path":"/certifications/index","step":"verify","ok":true}
+{"t":"2026-10-29T18:15:07.150Z","path":"/design-systems/v3/index","step":"verify","ok":true}
