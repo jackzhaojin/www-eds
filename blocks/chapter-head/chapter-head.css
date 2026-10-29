@@ -176,6 +176,11 @@
   border-bottom-color: var(--ink-soft);
 }
 
+/* a project page's head has no numeral (chapter-head.js) */
+.chapter-head:not(:has(> .chapter-head-num)) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 @media (width <= 700px) {
   .chapter-head {
     grid-template-columns: 1fr;
@@ -183,9 +188,9 @@
   }
 }
 
-/* a scene (blocks/scene, the project's hero art) joins the head after its heading: under the
-   heading on narrow screens; on wide ones the heading keeps the full width and the scene floats
-   right of everything after it, like a figure in a magazine column */
+/* a scene (blocks/scene, the project's hero art) joins the head: under the heading on narrow
+   screens; on wide ones (1180px, scene.js moves it before the heading) it floats right from the
+   top of the head, beside the title and everything after it, like a figure in a magazine column */
 .chapter-head.has-scene .scene-wrapper {
   max-width: 480px;
   margin: 4px 0 26px;

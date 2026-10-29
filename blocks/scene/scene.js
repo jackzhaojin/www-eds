@@ -13,14 +13,20 @@
  *   lists its parts; a label with a part the engine doesn't place joins the caption's list.
  * A label cell may hold more than one paragraph (a bold name, then a short line).
  *
- * Placement: authored right after a chapter head, the scene moves into the head after its
- * heading: the art column beside the title on wide screens, under the heading on narrow ones.
+ * Placement: authored right after a chapter head, the scene moves into the head: beside the title
+ * from the top of the head on wide screens, under the heading on narrow ones.
  * Anywhere else it stands alone. The stage is square in every engine, so its size is known
  * before the engine arrives (nothing shifts as it draws).
  *
  * Motion: an engine draws through kit.loop, which runs only while the scene is on screen, the tab
  * is visible and the reader hasn't paused it (the control in the stage's corner), and draws one
  * still frame under prefers-reduced-motion.
+ *
+ * Thumbnail mode (`data-mode="thumb"` on the block, set by a listing that copies a project
+ * page's scene, such as the portfolio hub's gallery): no pause control, the clock starts at the
+ * engine's still, and while paused the engine's reduceMotion() is true, so it shows its designed
+ * still; it plays on from there when the host removes `is-paused` and dispatches `scene-pause` on
+ * the block (and pauses the same way).
  *
  * @variants one engine per word in blocks/scene/engines/ (each engine's JSDoc lists its word)
  * @ew-exempt the first cell of each row is a key (config), not displayed text; the label, pause
@@ -133,7 +139,8 @@ export function canvas(stage, onResize = () => {}) {
  * function (for a theme or size change while paused).
  */
 export function loop(stage, draw, { still = 0 } = {}) {
-  let t = 0;
+  const scene = stage.closest('.scene');
+  let t = scene?.dataset.mode === 'thumb' ? still : 0;
   let last = 0;
   let raf = 0;
   let onScreen = false;
@@ -144,7 +151,6 @@ export function loop(stage, draw, { still = 0 } = {}) {
     draw(t, dt);
     raf = requestAnimationFrame(frame);
   };
-  const scene = stage.closest('.scene');
   const sync = () => {
     const run = onScreen && !document.hidden && !reduceMotion() && !scene?.classList.contains('is-paused');
     scene?.classList.toggle('is-playing', run);
@@ -229,13 +235,20 @@ function pauseControl(block, names) {
   return toggle;
 }
 
-/** Moves the scene into the chapter head it follows, after the head's heading. */
+/**
+ * Moves the scene into the chapter head it follows: before the head's heading on wide screens,
+ * where it floats right from the top of the head (beside the title), and after it on narrow
+ * ones, where it sits under the title. The breakpoint is chapter-head.css's.
+ */
 function joinChapterHead(block) {
   const wrapper = block.parentElement;
   const head = wrapper?.previousElementSibling?.querySelector(':scope > .chapter-head');
   const heading = head?.querySelector('.chapter-head-heading');
   if (!heading) return;
-  heading.after(wrapper);
+  const wide = window.matchMedia('(width >= 1180px)');
+  const put = () => (wide.matches ? heading.before(wrapper) : heading.after(wrapper));
+  wide.addEventListener('change', put);
+  put();
   head.classList.add('has-scene');
 }
 
@@ -275,7 +288,9 @@ export default async function decorate(block) {
   });
 
   figure.append(stage, labels);
-  if (engine) figure.append(pauseControl(block, names));
+  const thumb = block.dataset.mode === 'thumb';
+  if (thumb) block.classList.add('is-paused');
+  else if (engine) figure.append(pauseControl(block, names));
   if (caption.children.length) figure.append(caption);
   block.replaceChildren(figure, config);
   joinChapterHead(block);
@@ -312,7 +327,8 @@ export default async function decorate(block) {
       rgb,
       alpha,
       random,
-      reduceMotion,
+      // a paused thumbnail is drawn as the engine's designed still, and plays on from there
+      reduceMotion: () => reduceMotion() || (thumb && block.classList.contains('is-paused')),
     }))
     .then(() => {
       parts.forEach((label) => {
