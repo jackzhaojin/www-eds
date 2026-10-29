@@ -57,6 +57,13 @@ The final frames, 1440 at 7.5 s: [light](scenes-light.jpg), [dark](scenes-dark.j
 
 Checks: lint (0 errors), unit tests 22/22, the editability probe on the hub (99/99) and a project page (116/116), the talks list pixel-identical to before at 1440 and 360, no horizontal overflow at 360 to 1440, a fresh visitor in a dark OS gets the night theme with System pressed.
 
+## Shipped (2026-10-28)
+
+- **v1.2.0** ([PR 10](https://github.com/jackzhaojin/www-eds/pull/10), `541b269`): the 11 pages pushed to DA and previewed, checked on the branch preview (55 of 55 scene captures ok; each page's delivered body differs from live only by its scene block), merged, tagged. Adobe's PSI check on the PR failed on SEO (preview hosts are noindex) and on two runs that returned no result; performance was 99 to 100 on all 22 runs, and axe found no violation from the scenes (the only finding, heading order on some project pages, is on www already).
+- **v1.2.1** ([PR 11](https://github.com/jackzhaojin/www-eds/pull/11), `8361e29`): checked on the branch preview (11 cards, 11 scenes, one link per card, no overflow or errors at 1440 and 360), merged, tagged.
+- **Published** at 22:50 ET: the 11 project pages (`deploy-batch.mjs`, IndexNow HTTP 200). On www every page serves its scene, the gallery renders from the Worker's rows with all 11 thumbnails, and the clock tower's scene-shots pass at 1440 and 360 in both themes.
+- **Archived:** www-archive snapshot `5605d78` (1256 files; 24 added, 44 changed), deployed (version `23d8ff79`), check PASS on archive.jackzhaojin.com and workers.dev; the hub and the 11 pages sent to the Wayback Machine. `content-coverage.mjs --site`: 160 of 160 variations have an example.
+
 ## What's left
 
 - **AnimaMesh's page text** still describes v0.16 (Jul to Aug 2026, 38 tags); the engine is at v2.4 (brains anywhere, the mesh of brains, multi-player, Slack). The scene shows v2; the copy is a separate content edit.

@@ -376,91 +376,102 @@
     "verify": "ok"
   },
   "/portfolio/aem-rockstar-2024/index": {
-    "status": "previewed",
+    "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T01:56:38.572Z",
+    "ts": "2026-10-29T02:49:35.913Z",
     "put": 200,
     "preview": 200,
+    "live": 200,
     "verify": "ok"
   },
   "/portfolio/ai-builder-kit/index": {
-    "status": "previewed",
+    "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T01:56:38.573Z",
+    "ts": "2026-10-29T02:49:35.913Z",
     "put": 200,
     "preview": 200,
+    "live": 200,
     "verify": "ok"
   },
   "/portfolio/anima-mesh/index": {
-    "status": "previewed",
+    "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T01:56:38.573Z",
+    "ts": "2026-10-29T02:49:35.913Z",
     "put": 200,
     "preview": 200,
+    "live": 200,
     "verify": "ok"
   },
   "/portfolio/azure-star-generator/index": {
-    "status": "previewed",
+    "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T01:56:38.573Z",
+    "ts": "2026-10-29T02:49:35.913Z",
     "put": 200,
     "preview": 200,
+    "live": 200,
     "verify": "ok"
   },
   "/portfolio/built-with-bruce/index": {
-    "status": "previewed",
+    "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T01:56:42.290Z",
+    "ts": "2026-10-29T02:49:42.186Z",
     "put": 200,
     "preview": 200,
+    "live": 200,
     "verify": "ok"
   },
   "/portfolio/ciam-demo/index": {
-    "status": "previewed",
+    "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T01:56:42.314Z",
+    "ts": "2026-10-29T02:49:42.212Z",
     "put": 200,
     "preview": 200,
+    "live": 200,
     "verify": "ok"
   },
   "/portfolio/content-factory/index": {
-    "status": "previewed",
+    "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T01:56:42.331Z",
+    "ts": "2026-10-29T02:49:42.349Z",
     "put": 200,
     "preview": 200,
+    "live": 200,
     "verify": "ok"
   },
   "/portfolio/continuous-executive-agent/index": {
-    "status": "previewed",
+    "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T01:56:42.379Z",
+    "ts": "2026-10-29T02:49:42.394Z",
     "put": 200,
     "preview": 200,
+    "live": 200,
     "verify": "ok"
   },
   "/portfolio/conversion-factory/index": {
-    "status": "previewed",
+    "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T01:56:44.892Z",
+    "ts": "2026-10-29T02:49:46.971Z",
     "put": 200,
     "preview": 200,
+    "live": 200,
     "verify": "ok"
   },
   "/portfolio/postal-portal/index": {
-    "status": "previewed",
+    "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T01:56:44.913Z",
+    "ts": "2026-10-29T02:49:47.136Z",
     "put": 200,
     "preview": 200,
+    "live": 200,
     "verify": "ok"
   },
   "/portfolio/shadow-pivot/index": {
-    "status": "previewed",
+    "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T01:56:45.663Z",
+    "ts": "2026-10-29T02:49:47.173Z",
     "put": 200,
     "preview": 200,
+    "live": 200,
     "verify": "ok"
   },
   "/talks/adaptto-2026/index": {
