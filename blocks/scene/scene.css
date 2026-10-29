@@ -1,0 +1,185 @@
+/* Scene: a project's animated hero art (scene.js). The stage is a square the engine draws in;
+   the authored labels sit over it, placed by the engine (--x and --y as percentages of the
+   square, data-align for the anchor). Labels size with the stage (container units), so a scene
+   reads the same at 320px and at 500px. */
+.scene {
+  --scene-accent: var(--accent, var(--color-accent));
+
+  position: relative;
+}
+
+.scene .scene-figure {
+  position: relative;
+  margin: 0;
+  container-type: inline-size;
+}
+
+.scene .scene-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.scene .scene-stage > :is(svg, canvas) {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- labels over the art ---------- */
+.scene .scene-labels {
+  position: absolute;
+  inset: 0 0 auto;
+  aspect-ratio: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scene.is-ready .scene-labels {
+  opacity: 1;
+}
+
+.scene .scene-label {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  transition: opacity 0.5s, color 0.5s;
+}
+
+.scene .scene-label[data-align="left"] {
+  transform: translate(0, -50%);
+  text-align: left;
+}
+
+.scene .scene-label[data-align="right"] {
+  transform: translate(-100%, -50%);
+  text-align: right;
+}
+
+.scene .scene-label[data-align="top"] {
+  transform: translate(-50%, 0);
+}
+
+.scene .scene-label[data-align="bottom"] {
+  transform: translate(-50%, -100%);
+}
+
+.scene .scene-label p {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(10px, 2.3cqi, 11.5px);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-text-muted);
+}
+
+.scene .scene-label strong {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.scene .scene-label em {
+  font-style: normal;
+  color: var(--scene-accent);
+}
+
+/* ---------- the pause control, in the stage's lower right corner ---------- */
+.scene .scene-toggle {
+  position: absolute;
+  right: 8px;
+  top: calc(100cqi - 40px);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.scene .scene-toggle:hover,
+.scene .scene-toggle:focus-visible {
+  opacity: 1;
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
+}
+
+/* two bars while playing, a triangle while paused */
+.scene .scene-toggle::before {
+  content: "";
+  width: 8px;
+  height: 10px;
+  border-inline: 2.5px solid currentcolor;
+}
+
+.scene.is-paused .scene-toggle::before {
+  width: 0;
+  height: 0;
+  margin-left: 3px;
+  border-inline: 0;
+  border-block: 5px solid transparent;
+  border-left: 8px solid currentcolor;
+}
+
+.scene:not(.is-ready) .scene-toggle {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene .scene-toggle {
+    display: none;
+  }
+}
+
+/* ---------- caption ---------- */
+.scene .scene-caption {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-faint);
+}
+
+.scene .scene-caption p {
+  margin: 0;
+}
+
+/* a label the engine didn't place joins the caption as a plain line */
+.scene .scene-caption .scene-label {
+  position: static;
+  transform: none;
+  text-align: left;
+}
+
+/* ---------- without the engine: the labels as a list over an empty square ---------- */
+.scene.is-fallback .scene-stage {
+  aspect-ratio: auto;
+}
+
+.scene.is-fallback .scene-labels {
+  position: static;
+  aspect-ratio: auto;
+  opacity: 1;
+  display: grid;
+  gap: 6px;
+}
+
+.scene.is-fallback .scene-label {
+  position: static;
+  transform: none;
+  text-align: left;
+}

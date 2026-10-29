@@ -1,0 +1,95 @@
+/* Scene engine ripple (ripple.js): AEM Rockstar 2024's review table as a pencil plate. The page
+   is lofi, so the accent is the muted ink and the hierarchy is tone: construction at about a
+   third, the subject (prompt, ripple, rewrites, ticks, the click) at 90% and a little heavier,
+   a 6% wash behind the variation. Strokes are in viewBox units scaled by --k (units per CSS
+   pixel, set by the engine), so weights hold at every size and pathLength dashes still work. */
+.scene.ripple .ripple-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 48% 48%, #000 66%, transparent 92%);
+}
+
+.scene.ripple .ripple-svg [pathLength] {
+  stroke-dasharray: 1;
+}
+
+.scene.ripple :is(.ripple-c, .ripple-s, .ripple-text) {
+  stroke: var(--color-text);
+  stroke-opacity: 0.24;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.ripple .ripple-svg .ripple-slot {
+  stroke-dasharray: calc(3px * var(--k)) calc(4px * var(--k));
+}
+
+.scene.ripple .ripple-s {
+  stroke-opacity: 0.35;
+  stroke-width: calc(1.1px * var(--k));
+}
+
+.scene.ripple .ripple-s.ripple-thin {
+  stroke-width: calc(0.85px * var(--k));
+}
+
+.scene.ripple :is(.ripple-text, .ripple-hit, .ripple-new, .ripple-written) {
+  stroke-width: calc(var(--w, 1.25) * 1px * var(--k));
+}
+
+.scene.ripple .ripple-text {
+  stroke-opacity: 0.32;
+}
+
+.scene.ripple :is(.ripple-hit, .ripple-new, .ripple-written, .ripple-type, .ripple-caret,
+  .ripple-tick, .ripple-open, .ripple-ring, .ripple-press) {
+  stroke: var(--scene-accent);
+  stroke-opacity: 0.9;
+}
+
+.scene.ripple .ripple-hit {
+  stroke-width: calc((var(--w, 1.25) + 0.5) * 1px * var(--k));
+}
+
+.scene.ripple :is(.ripple-type, .ripple-tick, .ripple-open) {
+  stroke-width: calc(1.75px * var(--k));
+}
+
+.scene.ripple :is(.ripple-caret, .ripple-ring, .ripple-press) {
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.ripple .ripple-ring.ripple-echo {
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.ripple :is(.ripple-press-fill, .ripple-dot) {
+  fill: var(--scene-accent);
+  fill-opacity: 0.14;
+  stroke: none;
+}
+
+.scene.ripple .ripple-dot {
+  fill: var(--color-text);
+  fill-opacity: 0.55;
+}
+
+.scene.ripple .ripple-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: 0.06;
+}
+
+.scene.ripple .ripple-wash-end {
+  stop-opacity: 0;
+}
+
+/* labels: the step in play is lit; the others step back in tone (never below muted) */
+.scene.ripple .scene-label :is(p, strong) {
+  transition: color 0.5s;
+}
+
+.scene.ripple .scene-label:not(.is-active) strong {
+  color: var(--color-text-muted);
+}

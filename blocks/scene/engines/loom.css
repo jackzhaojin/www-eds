@@ -1,0 +1,140 @@
+/* Scene (loom): the Azure STAR Generator's tapestry loom (loom.js). Ink draws the loom; the
+   accent is only the shuttle, its yarn and the story being woven. Strokes hold their screen
+   weight through --loom-u (drawing units per CSS pixel); the weft keeps drawing units, so its
+   weave stays registered to the warp. */
+.scene.loom {
+  --loom-ground: color-mix(in srgb, var(--scene-accent) 5%, var(--color-bg));
+  --loom-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.loom .loom-svg {
+  overflow: visible;
+  fill: none;
+  stroke: var(--color-text);
+  stroke-opacity: 0.3;
+  stroke-width: calc(var(--loom-u, 1) * 0.75px);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(farthest-corner at 38% 48%, #000 64%, transparent 90%);
+}
+
+.scene.loom defs,
+.scene.loom ellipse {
+  stroke: none;
+}
+
+.scene.loom .loom-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: 0.08;
+}
+
+.scene.loom .loom-wash-stop[offset="1"] {
+  stop-opacity: 0;
+}
+
+.scene.loom .loom-layer {
+  transition: opacity 0.4s var(--loom-ease);
+}
+
+.scene.loom :is(.loom-layer, .scene-label).is-dim {
+  opacity: 0.45;
+}
+
+/* ---------- the loom, in ink ---------- */
+.scene.loom .loom-dents {
+  stroke-opacity: 0.16;
+}
+
+.scene.loom .loom-box {
+  stroke-opacity: 0.38;
+  stroke-width: calc(var(--loom-u, 1) * 1px);
+}
+
+.scene.loom :is(.loom-warp, .loom-over, .loom-hem) {
+  stroke-opacity: 0.36;
+  stroke-width: calc(var(--loom-u, 1) * 0.9px);
+}
+
+.scene.loom :is(.loom-over, .loom-hem) {
+  stroke-opacity: 0.5;
+  stroke-linecap: butt;
+}
+
+.scene.loom .loom-dot {
+  fill: var(--color-text);
+  fill-opacity: 0.68;
+  stroke: none;
+}
+
+/* each knot is a zero-length segment with a round cap */
+.scene.loom .loom-knot {
+  stroke-opacity: 0.68;
+  stroke-width: 3.4px;
+}
+
+.scene.loom .loom-race {
+  stroke-opacity: 0.35;
+}
+
+.scene.loom :is(.loom-beam, .loom-axle) {
+  fill: var(--loom-ground);
+  stroke-opacity: 0.72;
+  stroke-width: calc(var(--loom-u, 1) * 1.25px);
+}
+
+.scene.loom .loom-axle {
+  stroke-opacity: 0.5;
+  stroke-width: calc(var(--loom-u, 1) * 0.75px);
+}
+
+.scene.loom .loom-leader {
+  stroke-opacity: 0.4;
+}
+
+/* ---------- the subject: the shuttle and the story it lays ---------- */
+.scene.loom :is(.loom-weft, .loom-pirn, .loom-yarn, .loom-boat) {
+  stroke: var(--scene-accent);
+  stroke-opacity: 0.9;
+}
+
+.scene.loom .loom-weft {
+  stroke-width: max(1.8px, calc(var(--loom-u, 1) * 1.2px));
+  stroke-linecap: butt;
+}
+
+.scene.loom :is(.loom-bullet, .loom-mark) {
+  fill: var(--scene-accent);
+  fill-opacity: 0.9;
+  stroke: none;
+}
+
+.scene.loom .loom-boat {
+  fill: color-mix(in srgb, var(--scene-accent) 14%, var(--color-bg));
+  stroke-opacity: 1;
+  stroke-width: calc(var(--loom-u, 1) * 2px);
+}
+
+.scene.loom :is(.loom-pirn, .loom-yarn) {
+  stroke-width: calc(var(--loom-u, 1) * 1px);
+}
+
+.scene.loom .loom-yarn {
+  stroke-opacity: 0.75;
+}
+
+/* a finished story rolls on in ink */
+.scene.loom .loom-story.is-done .loom-weft {
+  stroke: var(--color-text);
+  stroke-opacity: 0.34;
+  transition: stroke 0.9s var(--loom-ease), stroke-opacity 0.9s var(--loom-ease);
+}
+
+.scene.loom .loom-story.is-done :is(.loom-bullet, .loom-mark) {
+  fill: var(--color-text);
+  fill-opacity: 0.34;
+  transition: fill 0.9s var(--loom-ease), fill-opacity 0.9s var(--loom-ease);
+}
+
+.scene.loom .loom-story.is-done .loom-over {
+  stroke-opacity: 0.3;
+}

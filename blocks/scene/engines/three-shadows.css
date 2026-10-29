@@ -1,0 +1,15 @@
+/* Scene engine three-shadows (three-shadows.js): Shadow Pivot's one object and its three
+   shadows. The canvas dissolves into the ground; in the key, the act on the wall is lit and
+   the others step back in tone (never below muted, and not by opacity, so they keep their
+   contrast). */
+.scene.three-shadows .three-shadows-canvas {
+  mask-image: radial-gradient(circle at 42% 46%, #000 66%, transparent 90%);
+}
+
+.scene.three-shadows .scene-label :is(p, strong) {
+  transition: color 0.5s;
+}
+
+.scene.three-shadows .scene-label:not(.is-active, .scene-label-app) strong {
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,144 @@
+/* Scene (arcade): ink the built level, pencil (muted ink) the sketch, the accent only the cubes.
+   Widths are px times --k (from the stage size): they hold at every size while dashes scale. */
+.scene.arcade .arcade-art {
+  mask-image: radial-gradient(ellipse 55% 54% at 50% 52%, #000 58%, transparent 92%);
+}
+
+.scene.arcade :where(.arcade-art, .arcade-marks) :where(path, rect, circle) {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-opacity: 0.35;
+  stroke-width: calc(var(--k) * 0.75px);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scene.arcade .arcade-ink {
+  stroke-opacity: 0.82;
+  stroke-width: calc(var(--k) * 1.25px);
+}
+
+.scene.arcade :is(.arcade-solid, .arcade-far) {
+  fill: var(--color-text);
+  fill-opacity: 0.06;
+}
+
+.scene.arcade .arcade-far {
+  stroke-opacity: 0.3;
+}
+
+.scene.arcade :is(.arcade-lava, .arcade-grid, .arcade-vgrid) {
+  stroke-opacity: 1;
+}
+
+.scene.arcade .arcade-lava {
+  stroke-width: calc(var(--k) * 1px);
+}
+
+.scene.arcade .arcade-grid {
+  stroke: var(--color-line);
+}
+
+.scene.arcade .arcade-plan {
+  stroke-dasharray: 1.5 4;
+}
+
+.scene.arcade :is(.arcade-pencil, .arcade-hatch, .arcade-faint) {
+  stroke: var(--color-text-muted);
+  stroke-opacity: 0.62;
+  stroke-width: calc(var(--k) * 0.9px);
+}
+
+.scene.arcade .arcade-hatch {
+  stroke-opacity: 0.36;
+  stroke-width: calc(var(--k) * 0.75px);
+}
+
+.scene.arcade .arcade-faint {
+  stroke-opacity: 0.4;
+}
+
+.scene.arcade .arcade-dash {
+  stroke-dasharray: 4 3.5;
+}
+
+.scene.arcade .arcade-nib {
+  fill: var(--color-bg);
+  stroke-opacity: 0.9;
+  stroke-width: calc(var(--k) * 1.25px);
+}
+
+.scene.arcade .arcade-dot {
+  fill: var(--color-text);
+  stroke: none;
+}
+
+.scene.arcade .arcade-marks .arcade-dot {
+  r: calc(var(--k) * 2px);
+}
+
+/* the cubes, over a ground-colored body */
+.scene.arcade .arcade-under {
+  fill: var(--color-bg);
+  stroke: none;
+}
+
+.scene.arcade :is(.arcade-cube, .arcade-eye) {
+  fill: var(--scene-accent);
+  fill-opacity: 0.2;
+  stroke: var(--scene-accent);
+  stroke-opacity: 1;
+  stroke-width: calc(var(--k) * 1.75px);
+}
+
+.scene.arcade .arcade-cube.is-two {
+  fill-opacity: 0.1;
+}
+
+/* a light eye with a dark pupil, as in the game, on either ground */
+.scene.arcade .arcade-eye {
+  fill: light-dark(var(--color-bg), var(--color-text));
+  fill-opacity: 1;
+  stroke-width: calc(var(--k) * 1px);
+}
+
+.scene.arcade .arcade-pupil {
+  fill: light-dark(var(--color-text), var(--color-bg));
+  stroke: none;
+}
+
+.scene.arcade .arcade-trail {
+  fill: var(--scene-accent);
+  stroke: none;
+}
+
+.scene.arcade .arcade-wash-stop {
+  stop-color: var(--scene-accent);
+}
+
+.scene.arcade .arcade-fade-stop {
+  stop-color: var(--color-line);
+}
+
+.scene.arcade .arcade-wash {
+  opacity: 0.08;
+}
+
+/* hovering a label lights its part (label and strokes share data-part) */
+.scene.arcade .scene-label {
+  pointer-events: auto;
+}
+
+.scene.arcade svg [data-part] {
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.arcade:has(.scene-label:hover) :is(svg, .scene-labels) [data-part] {
+  opacity: 0.45;
+}
+
+.scene.arcade:has(.scene-label-design:hover) :is(svg, .scene-labels) [data-part="design"],
+.scene.arcade:has(.scene-label-ai:hover) :is(svg, .scene-labels) [data-part="ai"],
+.scene.arcade:has(.scene-label-playable:hover) :is(svg, .scene-labels) [data-part="playable"] {
+  opacity: 1;
+}

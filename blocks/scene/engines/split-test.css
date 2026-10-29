@@ -1,0 +1,166 @@
+/* Scene engine split-test (split-test.js): Conversion Factory's cycle as a git graph carrying
+   traffic. Strokes are in viewBox units scaled by --k (units per CSS pixel, set by the engine),
+   so weights hold from 320px to 500px and dashes along pathLength still work. */
+.scene.split-test {
+  --split-test-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.split-test {
+  --split-test-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.split-test {
+    --split-test-wash: 0.12;
+  }
+}
+
+.scene.split-test .split-test-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, #000 72%, transparent 94%);
+}
+
+.scene.split-test .split-test-wash {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--split-test-wash);
+}
+
+.scene.split-test .split-test-wash + .split-test-wash {
+  stop-opacity: 0;
+}
+
+/* construction: where branches go, the dispatch line, the slow loop */
+.scene.split-test .split-test-c {
+  stroke: var(--color-text);
+  stroke-opacity: 0.3;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.split-test .split-test-dash {
+  stroke-dasharray: 1.5 5;
+}
+
+.scene.split-test .split-test-slow {
+  stroke-opacity: 0.4;
+}
+
+/* structure: main, the branch, the fork, the instructions page */
+.scene.split-test .split-test-s {
+  stroke: var(--color-text);
+  stroke-opacity: 0.55;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.split-test .split-test-card {
+  stroke-opacity: 0.5;
+}
+
+.scene.split-test .split-test-commit {
+  stroke-opacity: 0.8;
+}
+
+/* the branch while the spokes build it: the subject, at full weight */
+.scene.split-test .split-test-branch.is-building {
+  stroke: var(--scene-accent);
+  stroke-opacity: 1;
+  stroke-width: calc(1.75px * var(--k));
+}
+
+/* the blocks: ink, the variant's call to action in accent; accent while it is being built */
+.scene.split-test .split-test-block {
+  color: var(--color-text-muted);
+}
+
+.scene.split-test .split-test-block.is-building {
+  color: var(--scene-accent);
+}
+
+.scene.split-test .split-test-ink {
+  stroke: currentcolor;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.split-test .split-test-ink.is-bold {
+  stroke-width: calc(2px * var(--k));
+}
+
+.scene.split-test .split-test-line {
+  color: var(--color-text-muted);
+}
+
+.scene.split-test .split-test-cta {
+  stroke: currentcolor;
+  stroke-width: calc(1.25px * var(--k));
+  fill: var(--scene-accent);
+  fill-opacity: 0;
+}
+
+.scene.split-test .is-variant .split-test-cta {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.75px * var(--k));
+}
+
+/* the subject: visitors, the tally bars, the run up the slow loop, the rewritten line */
+.scene.split-test .split-test-visitor {
+  fill: var(--color-text);
+  fill-opacity: 0.5;
+}
+
+.scene.split-test .split-test-visitor.is-variant {
+  fill: var(--scene-accent);
+  fill-opacity: 1;
+}
+
+.scene.split-test .split-test-track,
+.scene.split-test .split-test-bar {
+  stroke-width: calc(4px * var(--k));
+}
+
+.scene.split-test .split-test-track {
+  stroke: var(--color-text);
+  stroke-opacity: 0.12;
+}
+
+/* the win (--split-test-won, 0..1, set by the engine): the variant's bar thickens, the
+   baseline's dims */
+.scene.split-test .split-test-bar {
+  stroke: var(--color-text-muted);
+  stroke-opacity: calc(1 - 0.5 * var(--split-test-won, 0));
+}
+
+.scene.split-test .split-test-bar.is-variant {
+  stroke: var(--scene-accent);
+  stroke-opacity: 1;
+  stroke-width: calc((4px + 2.5px * var(--split-test-won, 0)) * var(--k));
+}
+
+.scene.split-test .split-test-run,
+.scene.split-test .split-test-strike,
+.scene.split-test .split-test-fresh {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.split-test .split-test-strike {
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.split-test .split-test-dot {
+  fill: var(--scene-accent);
+}
+
+/* callouts */
+.scene.split-test .split-test-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.split-test .split-test-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}

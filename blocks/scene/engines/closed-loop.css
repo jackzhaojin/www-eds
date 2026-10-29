@@ -1,0 +1,170 @@
+/* Scene engine closed-loop (closed-loop.js): The Content Factory's trefoil through the
+   coordinator. Strokes are in viewBox units scaled by --k (units per CSS pixel, set by the
+   engine), so line weights hold from 320px to 500px and dashes along pathLength still work. */
+.scene.closed-loop {
+  --closed-loop-wash: 0.09;
+}
+
+:root[data-theme="dark"] .scene.closed-loop {
+  --closed-loop-wash: 0.13;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.closed-loop {
+    --closed-loop-wash: 0.13;
+  }
+}
+
+.scene.closed-loop .closed-loop-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, #000 70%, transparent 92%);
+}
+
+.scene.closed-loop .closed-loop-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--closed-loop-wash);
+}
+
+.scene.closed-loop .closed-loop-wash-stop + .closed-loop-wash-stop {
+  stop-opacity: 0;
+}
+
+/* construction: hairlines at a third */
+.scene.closed-loop .closed-loop-c {
+  stroke: var(--color-text);
+  stroke-opacity: 0.3;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.closed-loop .closed-loop-dash {
+  stroke-dasharray: 1.5 5;
+}
+
+/* structure: the frames, stems, nodes and the hub (open rings: the path is masked inside) */
+.scene.closed-loop .closed-loop-s {
+  stroke: var(--color-text);
+  stroke-opacity: 0.62;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.closed-loop .closed-loop-frame {
+  stroke-opacity: 0.5;
+}
+
+.scene.closed-loop .closed-loop-hub {
+  stroke-opacity: 0.8;
+}
+
+.scene.closed-loop .closed-loop-path {
+  stroke: var(--color-text);
+  stroke-opacity: 0.24;
+  stroke-width: calc(1px * var(--k));
+}
+
+/* the work on each page (drawn on a 64 x 80 grid scaled to the card, so its strokes divide
+   --k by the same factor): accent while the run is there, ink once it has gone back */
+.scene.closed-loop .closed-loop-work {
+  --kw: calc(var(--k) / 1.125);
+
+  color: var(--color-text-muted);
+  transition: color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.closed-loop .closed-loop-work.is-active {
+  color: var(--scene-accent);
+}
+
+.scene.closed-loop .closed-loop-work .closed-loop-c {
+  stroke-width: calc(0.75px * var(--kw));
+}
+
+.scene.closed-loop .closed-loop-ink {
+  stroke: currentcolor;
+  stroke-width: calc(1.25px * var(--kw));
+  fill: none;
+}
+
+.scene.closed-loop .closed-loop-ink.is-bold {
+  stroke-width: calc(2px * var(--kw));
+}
+
+.scene.closed-loop .closed-loop-ink.is-thin {
+  stroke-width: calc(0.75px * var(--kw));
+}
+
+.scene.closed-loop .closed-loop-ink.is-fill {
+  fill: color-mix(in srgb, currentcolor 16%, transparent);
+}
+
+/* eval's score bars: rounded 3px bars on 3px tracks, filling from the left */
+.scene.closed-loop .closed-loop-ink.is-bar,
+.scene.closed-loop .closed-loop-track {
+  stroke-width: calc(3px * var(--kw));
+}
+
+.scene.closed-loop .closed-loop-track {
+  stroke: var(--color-text);
+  stroke-opacity: 0.12;
+}
+
+.scene.closed-loop .closed-loop-pin-score {
+  fill: currentcolor;
+}
+
+/* the run and the coordinator's ring */
+.scene.closed-loop .closed-loop-trail {
+  stroke: var(--scene-accent);
+  stroke-opacity: 0.6;
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.closed-loop .closed-loop-head {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2px * var(--k));
+}
+
+.scene.closed-loop .closed-loop-arc {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2px * var(--k));
+}
+
+.scene.closed-loop .closed-loop-dot,
+.scene.closed-loop .closed-loop-core {
+  fill: var(--scene-accent);
+}
+
+.scene.closed-loop .closed-loop-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.14;
+}
+
+/* callouts */
+.scene.closed-loop .closed-loop-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.closed-loop .closed-loop-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}
+
+.scene.closed-loop .scene-label strong {
+  transition: color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.closed-loop .scene-label.is-active strong {
+  color: var(--scene-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.closed-loop .closed-loop-work,
+  .scene.closed-loop .scene-label strong {
+    transition: none;
+  }
+}

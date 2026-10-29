@@ -1,0 +1,144 @@
+/* Scene (multi-tool): the AI Builder Kit as a folding multi-tool (multi-tool.js). Ink draws the
+   handle, nicks and phantom outlines; the accent is only the task, the matching nick and the
+   blade at work. Strokes hold their screen weight through --mt-u (drawing units per CSS pixel). */
+.scene.multi-tool {
+  --mt-ground: color-mix(in srgb, var(--scene-accent) 6%, var(--color-bg));
+  --mt-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.multi-tool .multi-tool-svg {
+  overflow: visible;
+  fill: none;
+  stroke: var(--color-text);
+  stroke-opacity: 0.3;
+  stroke-width: calc(var(--mt-u, 1) * 0.75px);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(farthest-corner at 50% 50%, #000 62%, transparent 88%);
+}
+
+.scene.multi-tool defs,
+.scene.multi-tool ellipse {
+  stroke: none;
+}
+
+.scene.multi-tool .multi-tool-wash {
+  stop-color: var(--scene-accent);
+  stop-opacity: 0.08;
+}
+
+.scene.multi-tool .multi-tool-wash[offset="1"] {
+  stop-opacity: 0;
+}
+
+.scene.multi-tool :is(.multi-tool-blade, .multi-tool-nick, .multi-tool-arc, .multi-tool-phantom, .multi-tool-rivet, .multi-tool-pin) {
+  opacity: var(--mt-in, 1);
+}
+
+.scene.multi-tool .multi-tool-layer {
+  transition: opacity 0.4s var(--mt-ease);
+}
+
+.scene.multi-tool :is(.multi-tool-layer, .scene-label).is-dim {
+  opacity: 0.45;
+}
+
+/* ---------- construction: where the featured blades open ---------- */
+.scene.multi-tool .multi-tool-arc {
+  stroke-opacity: 0.2;
+  stroke-dasharray: 1.5 4;
+}
+
+.scene.multi-tool .multi-tool-phantom {
+  stroke-opacity: 0.42;
+  stroke-dasharray: 9 3 2 3;
+}
+
+/* ---------- the handle: the marketplace, nine nicks ---------- */
+.scene.multi-tool .multi-tool-body {
+  fill: var(--mt-ground);
+  stroke: none;
+}
+
+.scene.multi-tool .multi-tool-handle {
+  stroke-opacity: 0.75;
+  stroke-width: calc(var(--mt-u, 1) * 1.25px);
+}
+
+.scene.multi-tool .multi-tool-inset {
+  stroke-opacity: 0.22;
+}
+
+.scene.multi-tool .multi-tool-rivet {
+  fill: var(--mt-ground);
+  stroke-opacity: 0.6;
+}
+
+.scene.multi-tool :is(.multi-tool-pin, .multi-tool-dot) {
+  fill: var(--color-text);
+  fill-opacity: 0.68;
+  stroke: none;
+}
+
+.scene.multi-tool .multi-tool-nick {
+  stroke-width: calc(var(--mt-u, 1) * 1.1px);
+  transition: stroke 0.3s var(--mt-ease), stroke-width 0.3s var(--mt-ease);
+}
+
+.scene.multi-tool .multi-tool-nick.is-on {
+  stroke: var(--scene-accent);
+  stroke-width: calc(var(--mt-u, 1) * 1.75px);
+}
+
+.scene.multi-tool .multi-tool-leader {
+  stroke-opacity: 0.4;
+}
+
+/* ---------- the subject: the task and the blade at work ---------- */
+.scene.multi-tool :is(.multi-tool-task, .multi-tool-ring) {
+  fill: var(--scene-accent);
+  stroke: none;
+}
+
+.scene.multi-tool .multi-tool-link {
+  stroke: var(--scene-accent);
+  stroke-opacity: 0.8;
+  stroke-width: calc(var(--mt-u, 1) * 1px);
+  stroke-dasharray: 1 1;
+}
+
+.scene.multi-tool .multi-tool-steel {
+  fill: var(--mt-ground);
+  stroke: var(--scene-accent);
+  stroke-opacity: 1;
+  stroke-width: calc(var(--mt-u, 1) * 1.75px);
+}
+
+.scene.multi-tool .multi-tool-loop {
+  stroke-opacity: 0.35;
+  stroke-dasharray: 1.5 3;
+}
+
+.scene.multi-tool .multi-tool-box {
+  stroke-opacity: 0.7;
+  stroke-width: calc(var(--mt-u, 1) * 1px);
+}
+
+.scene.multi-tool .multi-tool-edge {
+  stroke-opacity: 0.55;
+}
+
+.scene.multi-tool .multi-tool-frames {
+  stroke: var(--scene-accent);
+  stroke-opacity: 0.32;
+  stroke-width: 7.4px;
+  stroke-linecap: butt;
+  stroke-dasharray: 11 3;
+}
+
+.scene.multi-tool .multi-tool-sprockets {
+  stroke-opacity: 0.5;
+  stroke-width: 2.2px;
+  stroke-linecap: butt;
+  stroke-dasharray: 2.2 3.8;
+}

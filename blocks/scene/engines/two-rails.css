@@ -1,0 +1,79 @@
+/* Scene engine two-rails (Postal Portal), two-rails.js. Weights (--w) and opacities sit on the
+   SVG; these rules give the colors (ink by default, the accent only for what moves) and keep each
+   weight in pixels at every stage size (--two-rails-u, set by the engine), so dashes stay in
+   user units. */
+.scene.two-rails .two-rails-art {
+  mask-image: radial-gradient(farthest-corner at 50% 50%, #000 80%, transparent 100%);
+}
+
+.scene.two-rails .two-rails-art :is(path, rect, circle) {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: calc(var(--w, 1) * var(--two-rails-u, 1));
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scene.two-rails .two-rails-art .two-rails-paper {
+  fill: var(--color-bg);
+}
+
+.scene.two-rails .two-rails-art :is(.two-rails-accent, .two-rails-tint, .two-rails-flash) {
+  stroke: var(--scene-accent);
+}
+
+.scene.two-rails .two-rails-art .two-rails-tint {
+  fill: color-mix(in srgb, var(--scene-accent) 20%, var(--color-bg));
+}
+
+.scene.two-rails .two-rails-art :is(.two-rails-fill, .two-rails-flash) {
+  fill: var(--scene-accent);
+}
+
+.scene.two-rails .two-rails-art :is(.two-rails-fill, .two-rails-dot, .two-rails-wash) {
+  stroke: none;
+}
+
+.scene.two-rails .two-rails-art .two-rails-dot {
+  fill: var(--color-text);
+}
+
+.scene.two-rails .two-rails-art .two-rails-block {
+  fill: var(--color-text);
+  fill-opacity: 0.08;
+}
+
+.scene.two-rails .two-rails-art .two-rails-flash {
+  fill-opacity: 0.3;
+}
+
+.scene.two-rails .two-rails-art .two-rails-slot {
+  stroke-dasharray: 1.5 2.5;
+}
+
+.scene.two-rails .two-rails-stop {
+  stop-color: var(--scene-accent);
+}
+
+.scene.two-rails .two-rails-art .two-rails-wash {
+  fill-opacity: 0.075;
+}
+
+.scene.two-rails:is([data-theme-effective="dark"] *) .two-rails-art .two-rails-wash {
+  fill-opacity: 0.08;
+}
+
+/* the task list: ticked tasks in ink, the one in progress in the accent */
+.scene.two-rails .two-rails-art .two-rails-task {
+  transition: stroke 0.25s, stroke-opacity 0.25s;
+}
+
+.scene.two-rails .two-rails-art .two-rails-task.is-done {
+  stroke-opacity: 0.8;
+}
+
+.scene.two-rails .two-rails-art .two-rails-task.is-lit {
+  stroke: var(--scene-accent);
+  stroke-opacity: 1;
+  stroke-width: calc(1.5 * var(--two-rails-u, 1));
+}

@@ -1,0 +1,64 @@
+/* Scene engine pin-tumbler (CIAM Demo), pin-tumbler.js. Weights (--w) and opacities sit on the
+   SVG; these rules give the colors (ink for the cutaway, the accent for the key and what it
+   clears) and keep each weight in pixels at every stage size (--pin-tumbler-u, set by the engine),
+   so dashes stay in user units. */
+.scene.pin-tumbler .pin-tumbler-art {
+  --pin-tumbler-ink: var(--color-text);
+
+  mask-image: radial-gradient(farthest-corner at 50% 50%, #000 80%, transparent 100%);
+}
+
+.scene.pin-tumbler .pin-tumbler-art :is(path, rect, circle) {
+  fill: none;
+  stroke: var(--pin-tumbler-ink);
+  stroke-width: calc(var(--w, 1) * var(--pin-tumbler-u, 1));
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* a spring stretches with its pin, so its stroke ignores the stretch instead */
+.scene.pin-tumbler .pin-tumbler-art .pin-tumbler-spring {
+  vector-effect: non-scaling-stroke;
+  stroke-width: var(--w, 1);
+}
+
+.scene.pin-tumbler .pin-tumbler-art .pin-tumbler-boundary {
+  stroke-dasharray: 7 3.5 1.5 3.5;
+}
+
+.scene.pin-tumbler .pin-tumbler-art :is(.pin-tumbler-paper, .pin-tumbler-hole) {
+  fill: var(--color-bg);
+}
+
+.scene.pin-tumbler .pin-tumbler-art :is(.pin-tumbler-hole, .pin-tumbler-fill, .pin-tumbler-dot, .pin-tumbler-wash) {
+  stroke: none;
+}
+
+.scene.pin-tumbler .pin-tumbler-art :is(.pin-tumbler-accent, .pin-tumbler-tint) {
+  stroke: var(--scene-accent);
+}
+
+.scene.pin-tumbler .pin-tumbler-art .pin-tumbler-tint {
+  fill: color-mix(in srgb, var(--scene-accent) 18%, var(--color-bg));
+}
+
+.scene.pin-tumbler .pin-tumbler-art .pin-tumbler-pin {
+  fill: color-mix(in srgb, var(--color-text) 16%, var(--color-bg));
+}
+
+.scene.pin-tumbler .pin-tumbler-art .pin-tumbler-dot {
+  fill: var(--color-text);
+}
+
+.scene.pin-tumbler .pin-tumbler-stop {
+  stop-color: var(--scene-accent);
+}
+
+.scene.pin-tumbler .pin-tumbler-art .pin-tumbler-wash {
+  fill-opacity: 0.08;
+}
+
+/* on night the ink steps back so the key leads */
+.scene.pin-tumbler:is([data-theme-effective="dark"] *) .pin-tumbler-art {
+  --pin-tumbler-ink: color-mix(in srgb, var(--color-text) 82%, var(--color-bg));
+}
