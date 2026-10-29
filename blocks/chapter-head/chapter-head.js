@@ -12,6 +12,8 @@
  * The numeral is the chapter's position among the page's chapter heads (01, 02, ...); on a
  * project page (one chapter head, its title the page's h1) it is the page's project-order.
  * The chapter's accent and the flagship or lofi look come from its section style.
+ * A Scene block authored right after the head (the project's hero art) moves itself in after the
+ * heading (blocks/scene; the layout is in chapter-head.css, `.has-scene`).
  *
  * @ew-exempt the numeral is derived from the chapter order, not authored text
  */

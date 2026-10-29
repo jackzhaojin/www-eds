@@ -1,0 +1,40 @@
+/* Scene (brain-mesh): the mesh of brains (brain-mesh.js). The canvas dissolves into the
+   ground at its corners; the leaders are SVG over it, drawn on once when the scene is ready.
+   --u (set by the engine) is viewBox units per pixel, so a leader stays 0.75px at any size. */
+.scene.brain-mesh .scene-canvas {
+  mask-image: radial-gradient(#000 66%, transparent 92%);
+}
+
+.scene.brain-mesh .brain-mesh-leads {
+  pointer-events: none;
+}
+
+.scene.brain-mesh .brain-mesh-leads path {
+  fill: none;
+  stroke: var(--color-text-faint);
+  stroke-width: calc(0.75 * var(--u, 1));
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  opacity: 0.75;
+}
+
+.scene.brain-mesh .brain-mesh-leads circle {
+  fill: var(--color-text-muted);
+}
+
+/* --i is the leader's place in the stagger, set by the engine */
+.scene.brain-mesh.is-ready .brain-mesh-leads path {
+  animation: brain-mesh-draw 0.8s cubic-bezier(0.16, 1, 0.3, 1) calc(0.3s + var(--i, 0) * 60ms) both;
+}
+
+@keyframes brain-mesh-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.brain-mesh.is-ready .brain-mesh-leads path {
+    animation: none;
+  }
+}

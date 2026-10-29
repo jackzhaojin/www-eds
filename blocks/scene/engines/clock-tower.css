@@ -1,0 +1,122 @@
+/* Scene (clock-tower): ink draws; the accent is the hand, the phase, the index teeth, the drop and
+   the newest stone. Widths and dashes are screen pixels times --u (user units per pixel, set by
+   the engine), so drawn-on strokes keep their pathLength dashes. */
+.scene.clock-tower .clock-tower-art {
+  --u: 1px;
+
+  overflow: visible;
+  mask-image: radial-gradient(ellipse 64% 72% at 43% 50%, #000 74%, transparent 100%);
+}
+
+.scene.clock-tower :where(.clock-tower-art path, .clock-tower-art circle) {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: calc(1.25 * var(--u));
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scene.clock-tower .clock-tower-art stop {
+  stop-color: var(--scene-accent);
+}
+
+.scene.clock-tower .clock-tower-wash {
+  opacity: 0.6;
+  stroke: none;
+}
+
+.scene.clock-tower .clock-tower-art.is-night .clock-tower-wash {
+  opacity: 1;
+}
+
+.scene.clock-tower .clock-tower-ink {
+  stroke-opacity: 0.62;
+}
+
+.scene.clock-tower :is(.clock-tower-faint, .clock-tower-line, .clock-tower-chain, .clock-tower-leader) {
+  stroke-width: calc(0.75 * var(--u));
+  stroke-opacity: 0.2;
+}
+
+.scene.clock-tower .clock-tower-line {
+  stroke-opacity: 0.35;
+}
+
+.scene.clock-tower .clock-tower-chain {
+  stroke-opacity: 0.28;
+  stroke-dasharray: calc(9 * var(--u)) calc(3 * var(--u)) calc(1.5 * var(--u)) calc(3 * var(--u));
+}
+
+.scene.clock-tower .clock-tower-leader {
+  stroke-opacity: 0.5;
+}
+
+.scene.clock-tower :is(.clock-tower-metal, .clock-tower-set) {
+  fill: var(--color-bg);
+  stroke-width: calc(1.15 * var(--u));
+  stroke-opacity: 0.8;
+}
+
+.scene.clock-tower .clock-tower-set {
+  fill: color-mix(in srgb, var(--color-text) 9%, var(--color-bg));
+}
+
+.scene.clock-tower .clock-tower-face {
+  fill-opacity: 0.94;
+}
+
+.scene.clock-tower .clock-tower-dot {
+  fill: var(--color-text);
+  fill-opacity: 0.8;
+  stroke: none;
+}
+
+.scene.clock-tower .clock-tower-mark {
+  stroke-width: calc(1.75 * var(--u));
+  stroke-opacity: 0.7;
+  stroke-linecap: butt;
+}
+
+.scene.clock-tower :is(.clock-tower-lit, .clock-tower-trail path, .clock-tower-stem, .clock-tower-drop) {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2.25 * var(--u));
+}
+
+.scene.clock-tower path.clock-tower-lit {
+  stroke-width: calc(2.5 * var(--u));
+  stroke-linecap: butt;
+}
+
+.scene.clock-tower .clock-tower-trail path {
+  stroke-width: calc(1.75 * var(--u));
+}
+
+.scene.clock-tower :is(.clock-tower-tip, .clock-tower-stone, .clock-tower-tooth) {
+  fill: var(--scene-accent);
+  stroke: var(--scene-accent);
+  stroke-width: var(--u);
+}
+
+.scene.clock-tower :is(.clock-tower-stone, .clock-tower-tooth) {
+  fill-opacity: 0.22;
+  stroke-width: calc(1.75 * var(--u));
+}
+
+.scene.clock-tower .clock-tower-pin {
+  fill: var(--color-bg);
+  stroke: none;
+}
+
+/* hovering a label dims the other parts and labels */
+.scene.clock-tower [data-part] {
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.clock-tower :is([data-part], .scene-label).is-dim {
+  opacity: 0.45;
+}
+
+/* the leader meets the label's first line (the name), not the middle of the block */
+.scene.clock-tower .scene-label[data-align="left"] {
+  transform: translate(0, calc(-0.725 * clamp(10px, 2.3cqi, 11.5px)));
+}

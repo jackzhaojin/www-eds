@@ -182,3 +182,34 @@
     gap: 8px;
   }
 }
+
+/* a scene (blocks/scene, the project's hero art) joins the head after its heading: under the
+   heading on narrow screens; on wide ones the heading keeps the full width and the scene floats
+   right of everything after it, like a figure in a magazine column */
+.chapter-head.has-scene .scene-wrapper {
+  max-width: 480px;
+  margin: 4px 0 26px;
+}
+
+@media (width >= 1180px) {
+  .chapter-head.has-scene .chapter-head-title {
+    display: flow-root;
+  }
+
+  .chapter-head.has-scene .scene-wrapper {
+    float: right;
+    width: clamp(380px, 32vw, 480px);
+    max-width: none;
+    margin: 0 0 24px clamp(40px, 4vw, 64px);
+  }
+
+  /* the callout box shrinks to the column left of the float instead of running under it (the
+     meta line, a flex box, already does) */
+  .chapter-head.has-scene .chapter-head-callout {
+    display: flow-root;
+  }
+
+  .chapter-head.has-scene .chapter-head-repo a:any-link {
+    font-size: clamp(14px, 1.5vw, 20px);
+  }
+}
