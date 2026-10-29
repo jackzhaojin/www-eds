@@ -34,3 +34,6 @@ stardust/rollout/lighthouse/
 # example on purpose: git add -f content/<path>.
 content/**
 !content/README.md
+
+# local previews of content/ pages (stardust/scripts/deploy/local-preview.mjs)
+.local-preview/

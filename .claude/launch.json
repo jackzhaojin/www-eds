@@ -19,6 +19,24 @@
         "--no-open"
       ],
       "port": 3000
+    },
+    {
+      "name": "aem-up-local",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y",
+        "@adobe/aem-cli",
+        "up",
+        "--no-livereload",
+        "--no-open",
+        "--port",
+        "3001",
+        "--html-folder",
+        ".local-preview",
+        "--html-mount",
+        "/"
+      ],
+      "port": 3001
     }
   ]
 }
