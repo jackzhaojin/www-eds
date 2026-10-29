@@ -6,7 +6,7 @@ const DARK_OS = window.matchMedia('(prefers-color-scheme: dark)');
 
 function syncTheme(control) {
   const root = document.documentElement;
-  const choice = root.dataset.themeChoice || 'light';
+  const choice = root.dataset.themeChoice || 'system';
   const dark = choice === 'dark' || (choice === 'system' && DARK_OS.matches);
   root.dataset.themeEffective = dark ? 'dark' : 'light';
   control.querySelectorAll('[data-set-theme]').forEach((button) => {
@@ -52,7 +52,7 @@ export default function buildThemeControl() {
   window.addEventListener('storage', (event) => {
     if (event.key !== THEME_KEY) return;
     const valid = THEMES.some(([value]) => value === event.newValue);
-    applyTheme(valid ? event.newValue : 'light', control);
+    applyTheme(valid ? event.newValue : 'system', control);
   });
   DARK_OS.addEventListener('change', () => syncTheme(control));
   syncTheme(control);

@@ -44,15 +44,16 @@ const THEMES = ['light', 'dark', 'system'];
 
 /**
  * Applies the stored Light, Dark or System choice before the body appears, so content never
- * paints in the wrong theme. No stored choice means Light, as on the source site. System is
+ * paints in the wrong theme. No stored choice means System (Jack, 2026-10-28: "system should
+ * almost always be the default of any visitor"; it was Light, as on the source site). System is
  * pure CSS: no data-theme attribute lets the OS preference decide (design-system/v3/tokens.css).
  * The jj-theme key and the data-theme / data-theme-choice attributes carry stored choices over.
  */
 function applyStoredTheme() {
   const root = document.documentElement;
   root.classList.add('js');
-  root.dataset.themeDefault = 'light';
-  let choice = 'light';
+  root.dataset.themeDefault = 'system';
+  let choice = 'system';
   try {
     const stored = localStorage.getItem(THEME_KEY);
     if (THEMES.includes(stored)) choice = stored;

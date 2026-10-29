@@ -9,8 +9,9 @@
  *   paragraph) and the arc (any paragraph after the thesis);
  * - an optional second row is the repo callout: a label paragraph, the repository link
  *   paragraph, a meta paragraph and a paragraph of links.
- * The numeral is the chapter's position among the page's chapter heads (01, 02, ...); on a
- * project page (one chapter head, its title the page's h1) it is the page's project-order.
+ * The numeral is the chapter's position among the page's chapter heads (01, 02, ...). A project
+ * page's head (its title the page's h1) has none: the number is the listing's (the portfolio
+ * hub's project gallery, since v1.2.1), not the page's.
  * The chapter's accent and the flagship or lofi look come from its section style.
  * A Scene block authored right after the head (the project's hero art) moves itself in after the
  * heading (blocks/scene; the layout is in chapter-head.css, `.has-scene`).
@@ -88,13 +89,16 @@ export default function decorate(block) {
   const rows = [...block.querySelectorAll(':scope > div')];
   const cells = rows.map((r) => [...r.children]).flat().filter((c) => c.children.length);
   const titleCell = cells.find((c) => c.querySelector('h1, h2, h3'));
+  const title = titleCell ? decorateTitle(titleCell) : document.createElement('div');
+  cells.filter((c) => c !== titleCell).forEach((c) => title.append(decorateCallout(c)));
+  if (title.querySelector('.chapter-head-heading h1')) {
+    block.replaceChildren(title);
+    return;
+  }
   const all = [...document.querySelectorAll('.chapter-head.block')];
   const num = document.createElement('span');
   num.className = 'chapter-head-num';
   num.setAttribute('aria-hidden', 'true');
-  const order = document.querySelector('meta[name="project-order"]')?.content.trim();
-  num.textContent = (all.length === 1 && /^\d+$/.test(order || '') ? order : String(all.indexOf(block) + 1)).padStart(2, '0');
-  const title = titleCell ? decorateTitle(titleCell) : document.createElement('div');
-  cells.filter((c) => c !== titleCell).forEach((c) => title.append(decorateCallout(c)));
+  num.textContent = String(all.indexOf(block) + 1).padStart(2, '0');
   block.replaceChildren(num, title);
 }

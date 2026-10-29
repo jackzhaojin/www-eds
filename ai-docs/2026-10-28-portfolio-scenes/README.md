@@ -46,8 +46,18 @@
 
 The final frames, 1440 at 7.5 s: [light](scenes-light.jpg), [dark](scenes-dark.jpg).
 
+## v1.2.1: the number and the tint move to the listing, and the hub becomes a gallery
+
+**Jack, after seeing v1.2.0:** "the 1, 2, 3 ... 10, the background difference and all that stuff only makes sense on the listing page ... that number thing cannot be part of the details page. It has to be part of the listing. I think that's why we liked it initially." Then: "the listing page has to pop as well ... sometimes I try to click on the whole line, doesn't click ... the user experience and the whole thing needs to be made a lot better." And: "the clock tower needs to shift up quite a bit", "'system' should almost always be the default of any visitor".
+
+- **Project pages:** the chapter head drops its numeral (a head whose title is the page's h1 has none), and the chapter no longer tints the ground; the accent stays on the subtitle, the callout and the scene. On wide screens the scene now floats from the top of the head, beside the title (scene.js moves it before the heading at 1180px and wider, after it below), so the tower sits level with the title.
+- **The hub's project gallery** (`blocks/row-list`, projects only, built by one designer subagent with the impeccable skill): each project is a card whose whole surface is one link, with its outlined numeral (01 to 11, the row's place), its accent-tinted ground (two tones: a deeper media panel, a lighter text panel) and its own scene as a thumbnail. 01 (the newest, the flagship) and 11 (the prologue) span the row; 02 to 10 are a 3x3 grid from 1024px, two columns from 768, one on phones. Hover or focus deepens the tint, fills the numeral and plays that card's scene, one at a time; on touch, the card most in view plays. A page without a scene shows the numeral large on the tinted panel. All of it is decoration in the browser, from the rows the Worker and the browser already generate (the accent from the row's first old chapter anchor, `ch-<word>`), so no Worker redeploy, index column or content change.
+- **Scene thumbnails** (`data-mode="thumb"` in the kit): the gallery copies each project page's scene from its `.plain.html`; a paused thumbnail draws the engine's designed still, and plays on from there.
+- **The theme default is System:** a visitor with no stored choice follows the OS (it was Light, as on the source site).
+
+Checks: lint (0 errors), unit tests 22/22, the editability probe on the hub (99/99) and a project page (116/116), the talks list pixel-identical to before at 1440 and 360, no horizontal overflow at 360 to 1440, a fresh visitor in a dark OS gets the night theme with System pressed.
+
 ## What's left
 
-- **Shipping** waits on Jack: commit and push the branch, open the PR, push the 11 pages to DA and preview them, check on the branch preview, merge, tag v1.2.0, publish, check www, snapshot the archive and capture the 11 pages in Wayback.
 - **AnimaMesh's page text** still describes v0.16 (Jul to Aug 2026, 38 tags); the engine is at v2.4 (brains anywhere, the mesh of brains, multi-player, Slack). The scene shows v2; the copy is a separate content edit.
 - **The hub** (`/portfolio/`) could show each project's still as a thumbnail; not done.
