@@ -78,6 +78,7 @@ npx eslint blocks/scene/engines/<word>.js && npx stylelint blocks/scene/engines/
 - The page is served at http://localhost:3001 by the AEM CLI (the `aem-up-local` launch config: local code, local page, everything else from preview). It is already running; never start, stop or restart it. Code edits show on reload.
 - `scene-shots.mjs` captures the scene at 1440 and 360, light and dark, at 1.5 s and 7 s (`--at` to change), and a still under reduced motion, into `.playwright-cli/scene-<word>-*.png`, and prints frame time, long tasks, errors and overflow. **Look at every image** (Read the PNGs), at the scene crops and at the `-screen` shots (the scene beside or under the head). For anything else, the `playwright-cli` skill; keep all output in `.playwright-cli/`.
 - Iterate until it passes the bar below. Then use the `impeccable` skill's critique or polish guidance for one fresh-eyes pass on the design, and fix what it finds.
+- The hub's gallery shows every scene as a thumbnail (`blocks/row-list`, since v1.2.1). After a change to `scene.js` or the gallery, `node stardust/scripts/deploy/gallery-scroll.mjs <hub url>` scrolls the hub at 120, 500 and 3000 px/s, at 1440 and 360, and fails if any card's reveal doesn't run on screen.
 
 ## Family rules (from the first review, 2026-10-28)
 
