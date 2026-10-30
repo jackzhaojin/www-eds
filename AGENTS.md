@@ -39,4 +39,5 @@ Edge Delivery Services. Read a block first. Omissions are in the repo or known.
 - Copy: plain hyphens only (no em or en dashes), content carried verbatim.
 - Node 22 (`.nvmrc`). Shell state does not persist, so prefix Node commands: `source ~/.nvm/nvm.sh && nvm use >/dev/null && <cmd>`.
 - Plugins (stardust, impeccable, aem-edge-delivery-services, Jack's hlx-admin-api-executor from jackzhaojin/ai-builder-kit for Admin API work, skills only, no hook, and marketing-skills from coreyhaines31/marketingskills for SEO and GEO: `seo-audit`, `ai-seo`, `schema`) come from `.claude/settings.json`. Never copy skill files into this repo.
+- `docs/` is for people: how the site works, with Mermaid diagrams (`docs/README.md`). `ai-docs/` stays the build record. A change to `edge/src/`, the listing scripts, the hosts or the caches updates the matching doc in the same commit.
 - `CLAUDE.md` is a symlink to this file. Edit `AGENTS.md`.
