@@ -66,9 +66,11 @@ function signalField(section, copy) {
 
   let cw = 0;
   let ch = 0;
+  let dpr = 1;
   let raf = 0;
   let visible = true;
   let boxes = [];
+  let mask = null; // the copy's soft knockout, blurred once per layout, not once per frame
   const PAD_X = 12;
   const PAD_Y = 8;
   const measureCopy = () => {
@@ -86,10 +88,24 @@ function signalField(section, copy) {
         });
       }
     });
+    // a canvas blur costs a frame's whole budget on a phone (about 110 ms at 4x CPU throttle),
+    // so the knockout is drawn once here and stamped each frame (clearBehindCopy)
+    mask = null;
+    if (!boxes.length || !canvas.width) return;
+    mask = document.createElement('canvas');
+    mask.width = canvas.width;
+    mask.height = canvas.height;
+    const m = mask.getContext('2d');
+    m.setTransform(dpr, 0, 0, dpr, 0, 0);
+    m.fillStyle = '#000';
+    m.filter = 'blur(16px)';
+    boxes.forEach((b) => m.fillRect(b.x, b.y, b.w, b.h));
+    m.filter = 'none';
+    boxes.forEach((b) => m.fillRect(b.x + PAD_X, b.y + PAD_Y, b.w - PAD_X * 2, b.h - PAD_Y * 2));
   };
   const resize = () => {
     const rect = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
     cw = rect.width;
     ch = rect.height;
     canvas.width = Math.round(cw * dpr);
@@ -98,14 +114,11 @@ function signalField(section, copy) {
     measureCopy();
   };
   const clearBehindCopy = () => {
-    if (!boxes.length) return;
+    if (!mask) return;
     ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.globalCompositeOperation = 'destination-out';
-    ctx.fillStyle = '#000';
-    ctx.filter = 'blur(16px)';
-    boxes.forEach((b) => ctx.fillRect(b.x, b.y, b.w, b.h));
-    ctx.filter = 'none';
-    boxes.forEach((b) => ctx.fillRect(b.x + PAD_X, b.y + PAD_Y, b.w - PAD_X * 2, b.h - PAD_Y * 2));
+    ctx.drawImage(mask, 0, 0);
     ctx.restore();
   };
   const yAt = (x, base, amp, phase) => base
