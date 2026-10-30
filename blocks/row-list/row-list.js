@@ -9,6 +9,9 @@
  *   (event, place, co-speakers), the description paragraph, then the link paragraphs and any
  *   status paragraph (Write-up in progress), which share one cluster;
  * - anchors: the row's id, then any older ids that should still land on it, space separated.
+ * Each row becomes a card, as in the portfolio's gallery (since v1.3.1, decorateGallery below):
+ * a talk whose links include its project page plays that project's scene in its accent; any
+ * other talk takes the site's topic colors in turn and a Scene (stage), laid out by its kind.
  * The page's JSON-LD (an Event per talk) is written from the rows (scripts/talks-list.js).
  * projects: the portfolio hub's project gallery (since v1.2.1). The rows have the talks shape
  * (when: dates and kind; body: the linked heading, the tagline, the summary; anchors: the old

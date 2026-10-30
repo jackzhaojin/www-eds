@@ -789,7 +789,7 @@ const BLOCKS = {
         from: 'talks/index.html',
         cls: 'row-list talks',
         rows: [0, 1],
-        description: 'The talks list, one row per talk (a talk has no page of its own): the date and kind; the title linked straight to the recording, else the event page, then the event line, the description, the links out and any status; the row anchors.',
+        description: 'The talks list, one row per talk (a talk has no page of its own), each shown as an animated card: the date and kind; the title linked straight to the recording, else the event page, then the event line, the description, the links out and any status; the row anchors. A talk linking its project page plays that project scene.',
         tags: 'talks, presentations, recordings, events, list, hub',
       },
       {
