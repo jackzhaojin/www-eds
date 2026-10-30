@@ -50,7 +50,7 @@ Done route-first from another session, not in the order whats-left.md had planne
 ## Commands
 
 ```bash
-npm test                                                   # the 22 tests
+npm test                                                   # the 23 tests
 node scripts/check-host.mjs --local www                    # the Worker in-process, against the real origins (also staging, gh)
 node scripts/check-host.mjs --base https://www.jackzhaojin.com   # and https://gh…
 npx wrangler deploy --env="" --dry-run --outdir <scratch>  # shows the vars a deploy would carry, deploys nothing
