@@ -2,6 +2,8 @@
 
 Jack Jin's site, [www.jackzhaojin.com](https://www.jackzhaojin.com), rebuilt on **AEM Edge Delivery Services** with **Experience Workspace (da.live)** authoring. It's the same site with the same design and the same URLs, on a new platform.
 
+**New here? Start with [docs/](docs/README.md)**: how the site works, for people, with diagrams. The highlight is [edge-side rendering](docs/edge-rendering.md): the Cloudflare Worker builds the listing pages and their structured data at the edge, so every reader and crawler gets the finished page.
+
 The whole site moved from GitHub Pages on 2026-10-25, and every page was checked against the live original with measured gates (pixels, height, content, editability, performance). **www has served it since the cutover on 2026-10-26** (about 15:12 ET). The old GitHub Pages site stays up at gh.jackzhaojin.com for comparison. Release **v1.0.0** marks that state; **v1.0.1** brought GA4 back, **v1.0.2** gives browsers a 10-minute page cache, **v1.1.0** adds listing pages generated from the writing and talks indexes, **v1.1.1** gives every talk and portfolio project its own page, with the three hubs generated from their indexes at the edge, **v1.1.2** adds each page's Related list, **v1.1.3** lets a static page's section run the full content width (section style `wide`), **v1.1.4** gives talk pages their own template, in the project pages' design, and **v1.1.5** loads the YouTube player after the page instead of with it, keeps the `.plain.html` fragments out of search, and adds YouTube and Credly to the generated Person, **v1.1.6** lets the edge Worker serve www from the [www-archive](https://github.com/jackzhaojin/www-archive) snapshot if Adobe can't (`ARCHIVE_ORIGIN`, unset), **v1.2.0** gives every portfolio project page an animated scene of how the project works (the Scene block, 11 engines), **v1.2.1** turns the portfolio hub's project list into a gallery of numbered cards with those scenes and makes System the default theme, and **v1.2.2** plays each card's reveal when the card scrolls into view, at any scroll speed, and **v1.3.0** retires the talk pages: `/talks/` is one authored list linking straight to each recording and event, and a talk about a project is a story on the project's page. Releases are for code only: content changes are pushed without a version (AGENTS.md).
 
 ## Where it runs
@@ -89,7 +91,7 @@ On 0.1, pages built in prompt 2 show their blocks undecorated, because their blo
 
 **Templates.** Metadata `template` loads `templates/<name>/`. There are five: `article`, `listing`, `static`, `portfolio`, `design-docs`.
 
-**The Worker.** `edge/` routes the GitHub Pages project sites (`/adapt-to-2026-demo/`, `/bruce-lava-dash/` and five more) to GitHub Pages. Everything else goes to Edge Delivery through Adobe's Cloudflare worker, vendored with only its handler renamed. Every host but www answers `X-Robots-Tag: noindex, nofollow`, and the Worker answers 404 there for robots.txt and the sitemaps. See [edge/README.md](edge/README.md).
+**The Worker.** `edge/` routes the GitHub Pages project sites (`/adapt-to-2026-demo/`, `/bruce-lava-dash/` and five more) to GitHub Pages. Everything else goes to Edge Delivery through Adobe's Cloudflare worker, vendored with only its handler renamed. Every host but www answers `X-Robots-Tag: noindex, nofollow`, and the Worker answers 404 there for robots.txt and the sitemaps. On www it also renders the listing pages at the edge: the writing, talks and portfolio hubs are authored as one block naming an index, and the Worker serves them with every row and their JSON-LD in the HTML. The explainers, with diagrams: [docs/cloudflare-worker.md](docs/cloudflare-worker.md) and [docs/edge-rendering.md](docs/edge-rendering.md). The operating manual: [edge/README.md](edge/README.md).
 
 **SEO through the platform.** The production host, robots.txt, query index and sitemap are in the Admin API config service. Redirects and bulk metadata are Experience Workspace sheets, and per-page JSON-LD is page metadata, rendered on the server. All of it is kept as files in [hlx-config/](hlx-config/README.md), with the step-by-step log of how it was applied.
 
@@ -104,6 +106,7 @@ On 0.1, pages built in prompt 2 show their blocks undecorated, because their blo
 | `widgets/` | the writing listing's filter |
 | `content/` | example pages in the editor's own form (DA is the content's source of truth since 2026-10-28), plus [its rules](content/README.md) (not served from git) |
 | `edge/` | the Cloudflare Worker for eds, gh and, at the cutover, www |
+| `docs/` | how the site works, for people: the architecture, the Worker, edge-side rendering, with diagrams |
 | `hlx-config/` | the site config as files, with the log of how it was applied |
 | `stardust/` | the migration's records, instruments and importers; see [stardust/README.md](stardust/README.md) |
 | `design-system/v3/` | the design system's own documentation, the source of `/design-systems/v3/` |
@@ -172,6 +175,7 @@ Used on the day but not checked in:
 
 ## Documentation
 
+- [docs/](docs/README.md): **start here.** How the site works, written for people, with diagrams: [the architecture](docs/architecture.md), [the Cloudflare Worker](docs/cloudflare-worker.md) and [edge-side rendering](docs/edge-rendering.md)
 - [ai-docs/2026-10-25-initial-buildout-2-goals/](ai-docs/2026-10-25-initial-buildout-2-goals/): the build record and [what's left](ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md)
 - [ai-docs/2026-10-26-seo-geo-audit/](ai-docs/2026-10-26-seo-geo-audit/README.md): the first SEO and GEO audit of www after the cutover, the SEO skills it used, Search Console and Bing
 - [content/README.md](content/README.md): how content changes are made, and what the DA editor does to HTML (a must-read before editing); [ai-docs/2026-10-26-content-in-git/](ai-docs/2026-10-26-content-in-git/README.md): the decision to keep content in git, and the first full run

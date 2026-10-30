@@ -2,6 +2,8 @@
 
 One Cloudflare Worker script in front of three hosts. It sends the GitHub Pages project sites to GitHub Pages and everything else to Edge Delivery. Only www may be indexed. The routing plan behind it is `routing-cloudflare.md` in [jackzhaojin.github.io/ai-docs/2026-10-24-eds-migration](https://github.com/jackzhaojin/jackzhaojin.github.io/tree/main/ai-docs/2026-10-24-eds-migration).
 
+This file is the operating manual. For the explainers, with diagrams, see [docs/cloudflare-worker.md](../docs/cloudflare-worker.md) and [docs/edge-rendering.md](../docs/edge-rendering.md).
+
 | wrangler env | Worker | Route | Serves | Search |
 |---|---|---|---|---|
 | top level | `www-eds-edge` | `www.jackzhaojin.com/*`, added in the Cloudflare dashboard at the cutover, never in this file | Edge Delivery, with push invalidation on; the 7 project sites pass through to the zone's origin, GitHub Pages, untouched | indexed |
