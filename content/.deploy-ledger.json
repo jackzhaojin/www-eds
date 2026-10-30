@@ -9,12 +9,11 @@
     "verify": "ok"
   },
   "/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-27T03:55:04.100Z",
+    "ts": "2026-10-30T16:55:50.076Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/nav": {
@@ -27,21 +26,19 @@
     "verify": "ok"
   },
   "/writing/2026-09-20-aem-edge-functions-google-sign-in/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-27T03:57:18.447Z",
+    "ts": "2026-10-30T16:56:01.040Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/talks/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-27T01:37:14.100Z",
+    "ts": "2026-10-30T16:55:53.906Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/writing/2026-01-29-playwright-stakeholder-demos/index": {
@@ -72,12 +69,11 @@
     "verify": "ok"
   },
   "/writing/2026-04-05-continuous-executive-agent-v2-1/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-27T03:55:31.151Z",
+    "ts": "2026-10-30T16:55:56.840Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/writing/2026-04-12-two-ai-skills-team-enablement/index": {
@@ -117,12 +113,11 @@
     "verify": "ok"
   },
   "/writing/2026-06-28-patterns-of-work/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-27T03:57:12.523Z",
+    "ts": "2026-10-30T16:55:57.081Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/writing/2026-07-21-four-frontier-models-one-prompt/index": {
@@ -135,30 +130,27 @@
     "verify": "ok"
   },
   "/writing/2026-08-09-adobe-stardust-explained/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-27T03:55:40.965Z",
+    "ts": "2026-10-30T16:55:57.544Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/writing/2026-08-15-anima-mesh-company-of-zero/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-27T03:57:12.523Z",
+    "ts": "2026-10-30T16:56:00.338Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/writing/2026-10-10-adaptto-2026-25-talks/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-27T03:57:18.678Z",
+    "ts": "2026-10-30T16:56:01.064Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/writing/index": {
@@ -198,12 +190,11 @@
     "verify": "ok"
   },
   "/writing/2026-10-25-eds-migration-two-goal-prompts/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-27T03:57:18.867Z",
+    "ts": "2026-10-30T16:56:01.570Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/writing/2025-04-13-vibe-coding-star-story-generator/index": {
@@ -306,21 +297,19 @@
     "verify": "ok"
   },
   "/writing/2025-10-05-mcp-server-for-eds-da-live/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-27T03:55:21.649Z",
+    "ts": "2026-10-30T16:55:53.941Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/writing/2025-10-12-da-live-mcp-across-ai-platforms/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-27T03:55:24.901Z",
+    "ts": "2026-10-30T16:55:56.814Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/writing/2026-01-05-from-prompts-to-harness/index": {
@@ -376,12 +365,11 @@
     "verify": "ok"
   },
   "/portfolio/aem-rockstar-2024/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-29T02:49:35.913Z",
+    "ts": "2026-10-30T16:55:50.076Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/portfolio/ai-builder-kit/index": {
@@ -394,12 +382,11 @@
     "verify": "ok"
   },
   "/portfolio/anima-mesh/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-29T02:56:53.357Z",
+    "ts": "2026-10-30T16:55:50.076Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/portfolio/azure-star-generator/index": {
@@ -430,30 +417,27 @@
     "verify": "ok"
   },
   "/portfolio/content-factory/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-29T02:49:42.349Z",
+    "ts": "2026-10-30T16:55:50.076Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/portfolio/continuous-executive-agent/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-29T02:49:42.394Z",
+    "ts": "2026-10-30T16:55:53.743Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/portfolio/conversion-factory/index": {
-    "status": "live",
+    "status": "previewed",
     "attempts": 1,
-    "ts": "2026-10-29T02:49:46.971Z",
+    "ts": "2026-10-30T16:55:53.842Z",
     "put": 200,
     "preview": 200,
-    "live": 200,
     "verify": "ok"
   },
   "/portfolio/postal-portal/index": {
@@ -584,6 +568,30 @@
     "status": "previewed",
     "attempts": 1,
     "ts": "2026-10-28T04:25:17.634Z",
+    "put": 200,
+    "preview": 200,
+    "verify": "ok"
+  },
+  "/docs/library/blocks/hero": {
+    "status": "previewed",
+    "attempts": 1,
+    "ts": "2026-10-30T17:02:25.841Z",
+    "put": 200,
+    "preview": 200,
+    "verify": "ok"
+  },
+  "/docs/library/blocks/row-list": {
+    "status": "previewed",
+    "attempts": 1,
+    "ts": "2026-10-30T17:02:25.841Z",
+    "put": 200,
+    "preview": 200,
+    "verify": "ok"
+  },
+  "/docs/library/blocks/showcase": {
+    "status": "previewed",
+    "attempts": 1,
+    "ts": "2026-10-30T17:02:25.841Z",
     "put": 200,
     "preview": 200,
     "verify": "ok"

@@ -12,8 +12,8 @@ function publicURL(value) {
   return url.href;
 }
 
-/** The talk and project pages an article links to (the index's pages property), as site paths. */
-const PAGE_PATH = /^\/(talks|portfolio)\/[a-z0-9-]+\/$/;
+/** The project pages an article links to (the index's pages property), as site paths. */
+const PAGE_PATH = /^\/portfolio\/[a-z0-9-]+\/$/;
 function linkedPages(value) {
   return [...new Set((Array.isArray(value) ? value : []).map((href) => {
     try {

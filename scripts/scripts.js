@@ -324,9 +324,9 @@ async function loadLazy(doc) {
 
   loadFooter(doc.querySelector('body > footer'));
 
-  // A talk or project page's JSON-LD is generated: the edge Worker serves it on www, and here
-  // the browser adds it where there is no Worker (preview hosts).
-  if (doc.querySelector('meta[name="talk-id"], meta[name="project-order"]')) {
+  // A project page's JSON-LD is generated: the edge Worker serves it on www, and here the
+  // browser adds it where there is no Worker (preview hosts).
+  if (doc.querySelector('meta[name="project-order"]')) {
     import('./page-schema.js').then(({ syncPageSchema }) => syncPageSchema());
   }
 

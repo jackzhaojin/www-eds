@@ -7,7 +7,7 @@
  * The key is the file at the site root, `<key>.txt`, whose content is the key itself (IndexNow's
  * proof that the site owns it). It's a code file, so it's served from main.
  *
- *   node stardust/scripts/deploy/indexnow.mjs /writing/<slug>/ /talks/<id>/ ...
+ *   node stardust/scripts/deploy/indexnow.mjs /writing/<slug>/ /portfolio/<slug>/ ...
  *   node stardust/scripts/deploy/indexnow.mjs --paths <file>   (web paths, one per line)
  *
  * Exit 0 when the engines accepted the list (200, or 202 while they check the key), 1 otherwise.

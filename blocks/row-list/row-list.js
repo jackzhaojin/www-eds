@@ -2,21 +2,23 @@
  * Row list: a ruled list of rows (design-system/v3 row list). One row per item: the kind
  * (a short mono label), the title (usually a link), the note. Cells may be left out.
  *
- * talks: the talk history (css/site.css .talk-row). One row per talk, three cells:
+ * talks: the talk history on /talks/, authored on the page (since v1.3.0 a talk has no page of
+ * its own). One row per talk, three cells:
  * - when: the date paragraph, then the kind paragraph (Conference session, Lightning talk);
- * - body: the heading, the event paragraph (event, place, co-speakers), the description
- *   paragraph, then the link paragraphs and any status paragraph (Write-up in progress), which
- *   share one cluster;
+ * - body: the heading (linked straight to the recording, else the event), the event paragraph
+ *   (event, place, co-speakers), the description paragraph, then the link paragraphs and any
+ *   status paragraph (Write-up in progress), which share one cluster;
  * - anchors: the row's id, then any older ids that should still land on it, space separated.
+ * The page's JSON-LD (an Event per talk) is written from the rows (scripts/talks-list.js).
  * projects: the portfolio hub's project gallery (since v1.2.1). The rows have the talks shape
  * (when: dates and kind; body: the linked heading, the tagline, the summary; anchors: the old
  * chapter anchors) and each becomes a card whose whole surface is its title link (decorateGallery
  * below): the project's number (its position), its accent as the card's ground, and the project
  * page's scene as a thumbnail.
- * related: on a talk or project page, the site's articles that link to the page, as plain
- * rows (date, linked title, summary).
- * dynamic (with talks, projects or related): the block is one Source row naming its index,
- * and the rows are generated from it (DYNAMIC below).
+ * related: on a project page, the site's articles that link to the page, as plain rows (date,
+ * linked title, summary).
+ * dynamic (with projects or related): the block is one Source row naming its index, and the
+ * rows are generated from it (DYNAMIC below).
  *
  * @ew-exempt anchors: link targets for the talk rows, hidden through .row-list-anchors
  * @ew-exempt dynamic Source row: API configuration; the copy is edited on the source pages
@@ -302,15 +304,6 @@ function decorateRows(block) {
 
 /** The dynamic listings: the module that reads each index and builds its rows. */
 const DYNAMIC = {
-  talks: {
-    module: '../../scripts/talks-index.js',
-    load: 'loadTalksIndex',
-    rows: 'talkRows',
-    items: 'talkSchemaItems',
-    path: '/talks/',
-    empty: 'No talks are published yet.',
-    error: 'Talks are temporarily unavailable. Please try again later.',
-  },
   projects: {
     module: '../../scripts/portfolio-index.js',
     load: 'loadPortfolioIndex',
@@ -336,11 +329,10 @@ const pagePath = () => new URL(document.querySelector('link[rel="canonical"]')?.
   || window.location.href).pathname;
 
 /**
- * talks or projects, dynamic: Source | /talks-index.json (or /portfolio-index.json), and
- * nothing else to author. The talk and project pages own the copy; the rows and the JSON-LD
- * are generated, by the edge Worker on www and by the browser on preview hosts
- * (scripts/query-index.js fillFromIndex), as the rows an author would write, decorated by
- * decorateTalks.
+ * projects, dynamic: Source | /portfolio-index.json, and nothing else to author. The project
+ * pages own the copy; the rows and the JSON-LD are generated, by the edge Worker on www and by
+ * the browser on preview hosts (scripts/query-index.js fillFromIndex), as the rows an author
+ * would write, decorated by decorateTalks.
  */
 async function decorateDynamic(block, listing) {
   block.setAttribute('aria-busy', 'true');
@@ -382,15 +374,26 @@ async function decorateDynamic(block, listing) {
   if (target && block.contains(target)) target.scrollIntoView();
 }
 
+/** talks: the hub's JSON-LD, an Event per authored row. */
+async function syncTalksSchema(block) {
+  const [{ readTalkRow, talkSchemaItems }, { syncCollectionSchema }] = await Promise.all([
+    import('../../scripts/talks-list.js'),
+    import('../../scripts/collection-schema.js'),
+  ]);
+  const talks = [...block.querySelectorAll('.row-list-items > li')].map(readTalkRow);
+  syncCollectionSchema((canonical) => talkSchemaItems(talks, canonical), '/talks/');
+}
+
 export default async function decorate(block) {
   const kind = ['talks', 'projects', 'related'].find((name) => block.classList.contains(name));
-  if (kind && block.classList.contains('dynamic')) {
+  if (kind && kind !== 'talks' && block.classList.contains('dynamic')) {
     await decorateDynamic(block, DYNAMIC[kind]);
     return;
   }
   if (kind === 'talks' || kind === 'projects') {
     decorateTalks(block);
     if (kind === 'projects') decorateGallery(block);
+    else await syncTalksSchema(block);
     return;
   }
   decorateRows(block);

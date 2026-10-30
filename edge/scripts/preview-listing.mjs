@@ -9,7 +9,7 @@
  *   node edge/scripts/preview-listing.mjs [--origin https://main--www-eds--jackzhaojin.aem.page]
  *       [--index https://www.jackzhaojin.com] [--port 8788]
  *
- * Then open http://localhost:8788/drafts/writing-index/ (or /drafts/talks-index/) and view its
+ * Then open http://localhost:8788/drafts/writing-index/ (or /portfolio/) and view its
  * source: the rows are inside the block and the generated JSON-LD is in the head. The
  * x-listing header says whether a page was filled.
  */
@@ -46,5 +46,5 @@ http.createServer(async (req, res) => {
   }
 }).listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log(`http://localhost:${PORT}/drafts/writing-index/ and /drafts/talks-index/, from ${ORIGIN}`);
+  console.log(`http://localhost:${PORT}/drafts/writing-index/ and /portfolio/, from ${ORIGIN}`);
 });

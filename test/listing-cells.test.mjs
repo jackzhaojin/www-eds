@@ -4,7 +4,6 @@ import {
   el, headingId, rowsToHTML, sitePath,
 } from '../scripts/listing-cells.js';
 import { collectionGraph } from '../scripts/collection-schema.js';
-import { talkRows } from '../scripts/talks-index.js';
 import { writingRows, readWriting } from '../scripts/writing-index.js';
 
 test('heading ids match the ids delivery gives authored headings', () => {
@@ -19,29 +18,6 @@ test('served rows escape every value and keep site links on the host', () => {
   assert.equal(sitePath('https://youtu.be/abc'), 'https://youtu.be/abc');
   const cover = rowsToHTML([[[el('img', { src: '/writing/media_1.jpg?width=750', alt: '' })]]]);
   assert.match(cover, /<img loading="lazy" alt="" src="\/writing\/media_1\.jpg\?width=750&amp;format=jpg&amp;optimize=medium"><\/picture>/);
-});
-
-test('a talk alias equal to its heading id is not repeated', () => {
-  const [row] = talkRows([{
-    id: 'b', aliases: ['openclaw-247-agent', 'old-b'], title: 'OpenClaw: 24/7 agent', date: '', kind: '', event: '', description: '', links: [], status: '',
-  }]);
-  assert.deepEqual(row[2][0].children, ['b old-b']);
-});
-
-test('talk rows are the three authored cells, with older anchors', () => {
-  const [row] = talkRows([{
-    id: 'a',
-    aliases: ['old-a'],
-    title: 'A talk',
-    date: 'September 2026',
-    kind: '',
-    event: 'Event',
-    description: 'One.\n\nTwo.',
-    links: [{ label: 'Source', url: 'https://example.com/' }],
-    status: 'Write-up in progress',
-  }]);
-  assert.deepEqual(row.map((cell) => cell.map((node) => node.tag)), [['p'], ['h2', 'p', 'p', 'p', 'p', 'p'], ['p']]);
-  assert.deepEqual(row[2][0].children, ['a old-a']);
 });
 
 test('writing rows drop empty cells and fall back to the title for the heading id', () => {
@@ -70,7 +46,8 @@ test('a Related list keeps the articles that link to the page, as plain rows', a
   const a = readWriting({
     path: '/writing/2026-10-10-recap/', title: 'Recap', date: '2026-10-10', summary: 'S', pages: ['/talks/adaptto-2026/', 'https://www.jackzhaojin.com/portfolio/content-factory/', '/talks/', '/portfolio/content-factory/#p-x'],
   });
-  assert.deepEqual(a.pages, ['/talks/adaptto-2026/', '/portfolio/content-factory/']);
+  // talk pages are gone (v1.3.0): an old link to one is no Related page
+  assert.deepEqual(a.pages, ['/portfolio/content-factory/']);
   const b = readWriting({ path: '/writing/2026-01-01-other/', title: 'Other', date: '2026-01-01' });
   assert.deepEqual(linkingTo([a, b], '/portfolio/content-factory/').map((x) => x.title), ['Recap']);
   const [row] = relatedRows([a]);

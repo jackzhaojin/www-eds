@@ -1,6 +1,6 @@
 {
-  "total": 5,
-  "limit": 5,
+  "total": 4,
+  "limit": 4,
   "offset": 0,
   "data": [
     {
@@ -14,10 +14,6 @@
     {
       "key": "Listing hub",
       "value": "https://content.da.live/jackzhaojin/www-eds/docs/library/templates/listing"
-    },
-    {
-      "key": "Talk page",
-      "value": "https://content.da.live/jackzhaojin/www-eds/docs/library/templates/talk"
     },
     {
       "key": "Project page",
