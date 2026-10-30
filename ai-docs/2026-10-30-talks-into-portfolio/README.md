@@ -36,3 +36,11 @@ Jack, setting the goal: "let's maybe never have talk pages and link out to other
 - Editability (`--simulate-editor`): `/talks/` 84/84, the five project pages 95, 39, 125, 126 and 37, all editable, home 28/28.
 - `seo-check.mjs` on the branch: no dead link, JSON-LD or social image URL beyond the expected (the talk pages answering 301, and the project sites only www serves).
 - `npm run lint` (0 errors), `node --test test/*.test.mjs` (19/19), `cd edge && npm test` (23/23).
+
+## Live (2026-10-30)
+
+- **Published** at 13:10 ET: `/talks/`, the five project pages, home and the nine articles (16 pages, IndexNow 200). Then the redirects sheet (preview and live), then the nine talk pages unpublished and unpreviewed (all 204), and the nine old URLs sent to IndexNow (200). v1.3.0 merged after that ([jackzhaojin/www-eds#14](https://github.com/jackzhaojin/www-eds/pull/14), checks passing), so www never served the new code with the old dynamic hub.
+- **On www:** every old talk URL answers 301 to its new home; `/talks-index.json` is empty, the query index and the sitemap have no talk pages. `/talks/` serves the nine authored rows (five titles linking to YouTube, no link to a talk page) and, once the browser runs, one graph with nine Events. Home, `/talks/`, both hubs, an article and the five project pages at 1440 and 360: no errors, no overflow, no link left to a talk page; the project pages' Related lists picked up the articles that now link to them (Content Factory 8). `seo-check.mjs` on www: 49 pages, 181 URLs, 0 problems.
+- **One quirk:** Edge Delivery adds a request's query string after the destination, so an old talk URL with one (`?utm_source=...`) lands on `/portfolio/content-factory/#adaptto-2026?utm_source=...`: the right page, at its top rather than at the story. Without a query string the anchor works.
+- **Archive:** snapshot `dfcd552` (the talk pages leave `site/` and become 301s in `_redirects`; check PASS locally: 1225 files, 48 pages, 134 redirects). Wayback: `/talks/` 20261030171748, the five project pages 20261030171815 to 20261030172056, home 20261030172125 (`wayback.json`, `7ed0c8a`). The archive's own deploy waits for Jack, with the Worker's.
+- `content-coverage.mjs --site ../www-archive/site`: the examples show all 159 variations the site uses (160 before: the talk template is gone).
