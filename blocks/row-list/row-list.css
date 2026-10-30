@@ -421,6 +421,21 @@
   margin: 0;
 }
 
+/* the links keep their tap height; a thin underline in the card's accent instead of the rule */
+.row-list.talks .row-list-links a:any-link {
+  border-bottom: 0;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.4em;
+  transition: color 0.2s var(--ease-standard), text-decoration-color 0.2s var(--ease-standard);
+}
+
+.row-list.talks .row-list-links a:any-link:hover {
+  color: var(--color-text);
+  text-decoration-color: var(--accent);
+}
+
 .row-list.talks .row-list-status p {
   display: inline-flex;
   align-items: center;
