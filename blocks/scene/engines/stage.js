@@ -120,7 +120,7 @@ export default function engine(block, kit) {
       svg('path', { d: shoulders, class: 'stage-shoulder' }, g);
       svg('circle', { r, class: 'stage-head' }, g);
       // a listener the voice reaches: head and shoulders in the accent
-      const lit = svg('g', { class: 'stage-lit' }, g);
+      const lit = svg('g', { class: 'stage-lit', opacity: 0 }, g);
       svg('path', { d: shoulders, class: 'stage-lit-s' }, lit);
       svg('circle', { r: r + 0.5 }, lit);
       seats.push({
@@ -208,8 +208,8 @@ export default function engine(block, kit) {
 
   // the voice: arcs from the speaking mouth toward the room
   const voice = layer('stage-voice');
-  const arcs = Array.from({ length: 6 }, () => svg('path', { class: 'stage-arc' }, voice));
-  const handoff = svg('circle', { r: 3, class: 'stage-handoff' }, voice);
+  const arcs = Array.from({ length: 6 }, () => svg('path', { class: 'stage-arc', opacity: 0 }, voice));
+  const handoff = svg('circle', { r: 3, class: 'stage-handoff', opacity: 0 }, voice);
   const arcPath = ([ox, oy], r, a0, a1) => {
     const p = (a) => `${(ox + r * Math.cos(a)).toFixed(1)} ${(oy + r * Math.sin(a)).toFixed(1)}`;
     return `M${p(a0)}A${r.toFixed(1)} ${r.toFixed(1)} 0 0 1 ${p(a1)}`;
@@ -219,12 +219,13 @@ export default function engine(block, kit) {
   const asks = (L.asks || []).map(([row, i, at]) => {
     const seat = seats.filter((st) => st.row === row)[i] || seats[seats.length - 1];
     const r = 2 + row * 0.38;
-    const hand = svg('path', { d: `M${r * 2} ${r * 1.5}L${r * 2.8} ${-r * 5.2}`, class: 'stage-hand' }, seat.g);
+    const hand = svg('path', { d: `M${r * 2} ${r * 1.5}L${r * 2.8} ${-r * 5.2}`, class: 'stage-hand', opacity: 0 }, seat.g);
     const [mx, my] = speakers[0].mouth;
     const answer = svg('path', {
       d: `M${mx} ${my}Q${(mx + seat.x) / 2} ${Math.min(my, seat.y) - 70} ${seat.x} ${seat.y - r * 2}`,
       class: 'stage-answer',
       pathLength: 1,
+      opacity: 0,
     }, voice);
     return {
       seat, hand, answer, at,

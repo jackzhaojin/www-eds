@@ -90,7 +90,6 @@
 
 .scene.stage .stage-lit {
   fill: var(--scene-accent);
-  opacity: 0;
 }
 
 .scene.stage .stage-lit .stage-lit-s {
@@ -106,16 +105,10 @@
 
 .scene.stage .stage-answer {
   stroke-width: calc(1.25px * var(--k));
-  opacity: 0;
-}
-
-.scene.stage .stage-hand {
-  opacity: 0;
 }
 
 .scene.stage .stage-handoff {
   fill: var(--scene-accent);
-  opacity: 0;
 }
 
 .scene.stage .stage-wash-stop {
