@@ -93,9 +93,15 @@
   opacity: 0;
 }
 
+.scene.stage .stage-lit .stage-lit-s {
+  fill: none;
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+}
+
 .scene.stage :is(.stage-arc, .stage-hand, .stage-answer) {
   stroke: var(--scene-accent);
-  stroke-width: calc(1.75px * var(--k));
+  stroke-width: calc(2px * var(--k));
 }
 
 .scene.stage .stage-answer {

@@ -116,9 +116,13 @@ export default function engine(block, kit) {
       + (2 * halves[row] * i) / (n - 1) + (rnd() - 0.5) * 3);
     xs.filter((x) => Math.abs(x - cx) >= 18 + row * 6).forEach((x, i) => { // clear of the aisle
       const g = svg('g', { transform: `translate(${x.toFixed(1)} ${y})` }, room);
-      svg('path', { d: `M${-r * 2.4} ${r * 3.2}Q0 ${r * 0.6} ${r * 2.4} ${r * 3.2}`, class: 'stage-shoulder' }, g);
+      const shoulders = `M${-r * 2.4} ${r * 3.2}Q0 ${r * 0.6} ${r * 2.4} ${r * 3.2}`;
+      svg('path', { d: shoulders, class: 'stage-shoulder' }, g);
       svg('circle', { r, class: 'stage-head' }, g);
-      const lit = svg('circle', { r: r + 0.6, class: 'stage-lit' }, g);
+      // a listener the voice reaches: head and shoulders in the accent
+      const lit = svg('g', { class: 'stage-lit' }, g);
+      svg('path', { d: shoulders, class: 'stage-lit-s' }, lit);
+      svg('circle', { r: r + 0.5 }, lit);
       seats.push({
         g, lit, x, y, row, i, resp: 0.35 + 0.65 * rnd(), k: 0,
       });
@@ -330,7 +334,7 @@ export default function engine(block, kit) {
     });
 
     seats.forEach((st) => {
-      set(st.lit, 'opacity', 0.92 * st.k);
+      set(st.lit, 'opacity', st.k);
       set(st.g, 'transform', `translate(${st.x.toFixed(1)} ${(st.y - 1.6 * st.k).toFixed(2)})`);
     });
   }
