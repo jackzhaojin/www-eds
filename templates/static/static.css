@@ -4,7 +4,7 @@
   max-width: var(--measure);
 }
 
-/* Blocks between the prose (a talk page's video and its links) keep the same column, with the
+/* Blocks between the prose (a video and its links) keep the same column, with the
    prose rhythm between them. */
 .static main > .section:not(.hero-container) > div {
   max-width: var(--measure);

@@ -1,7 +1,8 @@
 // Builds the site's two Experience Workspace sheets from files in this folder and the content
 // tree, and optionally sends them to DA and previews and publishes them:
 //   /redirects  every folder page without its trailing slash and as .../index.html -> the
-//               folder URL (as GitHub Pages serves them), plus redirects-extra.tsv;
+//               folder URL (as GitHub Pages serves them), plus redirects-extra.tsv, whose rows
+//               win over a folder page's (an unpublished page that now redirects elsewhere);
 //   /metadata   bulk metadata from metadata.tsv (first row is the header).
 //
 // Usage: node hlx-config/sheets.mjs [--upload] [--publish]
@@ -37,12 +38,20 @@ function folderPages(dir, base = '') {
   return out;
 }
 
-const pages = folderPages(path.join(root, 'content')).sort();
+// content/ keeps example pages only since 2026-10-28 (DA is the source of truth), so the folder
+// pages are the published ones (the query index) and any local page not published yet.
+const index = await fetch(`https://${REF}--${SITE}--${ORG}.aem.live/query-index.json?limit=2000`);
+if (!index.ok) throw new Error(`the query index answered ${index.status}`);
+const published = (await index.json()).data.map((page) => page.path).filter((p) => p.endsWith('/'));
+const pages = [...new Set([...published, ...folderPages(path.join(root, 'content'))])].sort();
+const extra = tsv(path.join(here, 'redirects-extra.tsv'));
+const overridden = new Set(extra.map((r) => r.Source));
 const redirects = [
   ...pages.flatMap((p) => (p === '/'
     ? [{ Source: '/index.html', Destination: '/' }]
-    : [{ Source: p.slice(0, -1), Destination: p }, { Source: `${p}index.html`, Destination: p }])),
-  ...tsv(path.join(here, 'redirects-extra.tsv')),
+    : [{ Source: p.slice(0, -1), Destination: p }, { Source: `${p}index.html`, Destination: p }]))
+    .filter((r) => !overridden.has(r.Source)),
+  ...extra,
 ];
 const metadata = tsv(path.join(here, 'metadata.tsv'));
 

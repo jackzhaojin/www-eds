@@ -10,7 +10,7 @@
  *        and what the site uses (every page in the www-archive snapshot) that no example shows
  *
  * A variation is a block (`block figure`), a variant (`variant figure.board`), a section style
- * (`style tint`) or a template (`template talk`). Explainer engines count as one (each article
+ * (`style tint`) or a template (`template portfolio`). Explainer engines count as one (each article
  * writes its own), and so do the portfolio's per-project chapter accents (templates/portfolio).
  * Examples are DA documents (section styles in section-metadata blocks); the snapshot's pages
  * are served HTML (section styles as section classes). Run from the www-eds root. Exit 1 when

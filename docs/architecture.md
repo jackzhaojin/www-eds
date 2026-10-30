@@ -78,7 +78,7 @@ A page on www is built in three places. Knowing which one owns a piece is most o
 | Where | When | What it produces | Whose code |
 |---|---|---|---|
 | **Edge Delivery** | when a page is previewed or published (then cached) | the HTML from the DA document: sections, each block as nested `<div>`s, the head from the page metadata (title, description, canonical, Open Graph, any authored JSON-LD) | Adobe's |
-| **The Worker** | on every request to www | the rows of a listing page, its JSON-LD graph, a talk or project page's JSON-LD, and the headers (browser cache, robots) | `edge/src/` |
+| **The Worker** | on every request to www | the rows of a listing page, its JSON-LD graph, a project page's JSON-LD, and the headers (browser cache, robots) | `edge/src/` |
 | **The browser** | after the HTML arrives | everything visual: block decoration, the nav and footer, the theme, filters, explainers and scenes, and analytics on www | `scripts/`, `blocks/`, `templates/` |
 
 Edge Delivery can't run site code on its servers: it renders documents, and the site's JavaScript runs in the browser. The Worker is the one place this site runs its own code before the reader gets the HTML. [edge-rendering.md](edge-rendering.md) is about what that buys.

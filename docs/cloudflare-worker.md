@@ -125,7 +125,7 @@ Fragments are the nav and footer, page bodies without a head that scripts load i
 |---|---|
 | [`src/index.mjs`](../edge/src/index.mjs) | the request order above, in about a dozen lines |
 | [`src/routes.mjs`](../edge/src/routes.mjs) | project sites, GitHub and archive fetches, the crawler 404s, the browser cache, the robots header |
-| [`src/listings.mjs`](../edge/src/listings.mjs) | edge rendering: listing rows, listing JSON-LD, talk and project JSON-LD |
+| [`src/listings.mjs`](../edge/src/listings.mjs) | edge rendering: listing rows, listing JSON-LD, project page JSON-LD |
 | [`src/aem.mjs`](../edge/src/aem.mjs) | Adobe's worker, vendored |
 | [`wrangler.toml`](../edge/wrangler.toml) | the three Workers and their variables |
 | [`test/worker.test.mjs`](../edge/test/worker.test.mjs) | 22 tests, run in plain Node with `fetch` stubbed |

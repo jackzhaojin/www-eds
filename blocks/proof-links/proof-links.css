@@ -1,6 +1,6 @@
 /* Proof links: portfolio/styles.css .proof-links, .center-links, .private-tag, .link-caveat,
    the link-type colors and icons. The portfolio template's colors (--accent, --ink) win where
-   they are set; elsewhere (a talk page) the site's own apply. An empty row keeps its 18px, as
+   they are set; elsewhere (an article) the site's own apply. An empty row keeps its 18px, as
    the source's empty proof-links paragraphs do. */
 .proof-links .proof-links-row {
   margin-top: 18px;

@@ -1,20 +1,19 @@
 /*
  * Dynamic listings, rendered at the edge. An author writes a hub page with one listing block
- * and its Source row (Writing index, Row list (talks, dynamic) or Row list (projects,
- * dynamic); a talk or project page's Row list (related, dynamic)) and nothing else: no rows,
- * no JSON-LD. Here the Worker reads the index the Source row names and serves the page with the
- * rows inside that block and the page's JSON-LD in the head, so crawlers that don't run
- * JavaScript read the whole list. The rows and the graph come from the same code the browser
- * runs on preview hosts (scripts/listing-cells.js, writing-index.js, talks-index.js,
- * collection-schema.js). If the index can't be read, the page goes out as authored and the
- * browser fills it in.
+ * and its Source row (Writing index or Row list (projects, dynamic); a project page's Row list
+ * (related, dynamic)) and nothing else: no rows, no JSON-LD. Here the Worker reads the index the
+ * Source row names and serves the page with the rows inside that block and the page's JSON-LD in
+ * the head, so crawlers that don't run JavaScript read the whole list. The rows and the graph
+ * come from the same code the browser runs on preview hosts (scripts/listing-cells.js,
+ * writing-index.js, portfolio-index.js, collection-schema.js). If the index can't be read, the
+ * page goes out as authored and the browser fills it in. The talks hub's rows are authored
+ * (since v1.3.0), so it passes through.
  */
 import { rowsToHTML } from '../../scripts/listing-cells.js';
 import { within } from '../../scripts/query-index.js';
 import {
   linkingTo, loadWritingIndex, relatedRows, writingRows, writingSchemaItems,
 } from '../../scripts/writing-index.js';
-import { loadTalksIndex, talkRows, talkSchemaItems } from '../../scripts/talks-index.js';
 import { loadPortfolioIndex, projectRows, projectSchemaItems } from '../../scripts/portfolio-index.js';
 import { collectionGraph } from '../../scripts/collection-schema.js';
 import { pageGraph } from '../../scripts/page-schema.js';
@@ -32,18 +31,12 @@ const LISTINGS = [
     items: (records) => writingSchemaItems(records),
   },
   {
-    block: '<div class="row-list talks dynamic">',
-    load: loadTalksIndex,
-    rows: talkRows,
-    items: (records, canonical) => talkSchemaItems(records, canonical),
-  },
-  {
     block: '<div class="row-list projects dynamic">',
     load: loadPortfolioIndex,
     rows: projectRows,
     items: (records) => projectSchemaItems(records),
   },
-  // A talk or project page's Related list: no ItemList, the page's own graph describes it.
+  // A project page's Related list: no ItemList, the page's own graph describes it.
   {
     block: '<div class="row-list related dynamic">',
     load: loadWritingIndex,
@@ -120,13 +113,13 @@ export async function renderListingHTML(html, fetchIndex) {
 }
 
 /**
- * A talk or project page with its generated JSON-LD graph in the head (scripts/page-schema.js,
- * from the page's own title, description, image and talk-* or project-* metadata), or null for
- * any other page and for a page that already has JSON-LD.
+ * A project page with its generated JSON-LD graph in the head (scripts/page-schema.js, from the
+ * page's own title, description, image and project-* metadata), or null for any other page and
+ * for a page that already has JSON-LD.
  */
 export function renderPageSchemaHTML(html) {
   const head = html.slice(0, html.indexOf('</head>') + 1 || html.length);
-  if (!/<meta name="(talk-id|project-order)"/.test(head) || head.includes('application/ld+json')) return null;
+  if (!/<meta name="project-order"/.test(head) || head.includes('application/ld+json')) return null;
   const graph = pageGraph({
     canonical: headValue(head, /<link rel="canonical" href="([^"]*)"/),
     title: headValue(head, /<title>([^<]*)<\/title>/),
@@ -145,7 +138,7 @@ export function renderPageSchemaHTML(html) {
 /**
  * Fills the dynamic listing of an EDS page response (www and staging), reading the index
  * straight from the EDS origin: a fetch to the www hostname would reach the zone's origin,
- * GitHub Pages. A talk or project page gets its generated JSON-LD instead. Every other
+ * GitHub Pages. A project page gets its generated JSON-LD instead. Every other
  * response passes through untouched.
  * @param {Response} res The EDS response
  * @param {Request} request The incoming request
@@ -165,7 +158,7 @@ export async function renderListings(res, request, env) {
     // eslint-disable-next-line no-console
     console.warn(`listing on ${pathname} left to the browser: ${error.message}`);
   }
-  // A talk or project page gets its own graph too, with or without a filled Related list.
+  // A project page gets its own graph too, with or without a filled Related list.
   filled = renderPageSchemaHTML(filled ?? html) ?? filled;
   const out = new Response(filled ?? html, res);
   out.headers.delete('content-length');

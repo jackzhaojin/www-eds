@@ -11,7 +11,7 @@
   "/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T03:55:04.100Z",
+    "ts": "2026-10-30T17:10:02.288Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -29,7 +29,7 @@
   "/writing/2026-09-20-aem-edge-functions-google-sign-in/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T03:57:18.447Z",
+    "ts": "2026-10-30T17:10:19.248Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -38,7 +38,7 @@
   "/talks/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T01:37:14.100Z",
+    "ts": "2026-10-30T17:10:08.206Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -74,7 +74,7 @@
   "/writing/2026-04-05-continuous-executive-agent-v2-1/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T03:55:31.151Z",
+    "ts": "2026-10-30T17:10:13.165Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -119,7 +119,7 @@
   "/writing/2026-06-28-patterns-of-work/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T03:57:12.523Z",
+    "ts": "2026-10-30T17:10:13.305Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -137,7 +137,7 @@
   "/writing/2026-08-09-adobe-stardust-explained/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T03:55:40.965Z",
+    "ts": "2026-10-30T17:10:14.093Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -146,7 +146,7 @@
   "/writing/2026-08-15-anima-mesh-company-of-zero/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T03:57:12.523Z",
+    "ts": "2026-10-30T17:10:19.011Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -155,7 +155,7 @@
   "/writing/2026-10-10-adaptto-2026-25-talks/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T03:57:18.678Z",
+    "ts": "2026-10-30T17:10:20.416Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -200,7 +200,7 @@
   "/writing/2026-10-25-eds-migration-two-goal-prompts/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T03:57:18.867Z",
+    "ts": "2026-10-30T17:10:20.438Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -308,7 +308,7 @@
   "/writing/2025-10-05-mcp-server-for-eds-da-live/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T03:55:21.649Z",
+    "ts": "2026-10-30T17:10:08.258Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -317,7 +317,7 @@
   "/writing/2025-10-12-da-live-mcp-across-ai-platforms/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T03:55:24.901Z",
+    "ts": "2026-10-30T17:10:13.162Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -378,7 +378,7 @@
   "/portfolio/aem-rockstar-2024/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T02:49:35.913Z",
+    "ts": "2026-10-30T17:10:02.288Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -396,7 +396,7 @@
   "/portfolio/anima-mesh/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T02:56:53.357Z",
+    "ts": "2026-10-30T17:10:02.288Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -432,7 +432,7 @@
   "/portfolio/content-factory/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T02:49:42.349Z",
+    "ts": "2026-10-30T17:10:02.288Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -441,7 +441,7 @@
   "/portfolio/continuous-executive-agent/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T02:49:42.394Z",
+    "ts": "2026-10-30T17:10:07.765Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -450,7 +450,7 @@
   "/portfolio/conversion-factory/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-29T02:49:46.971Z",
+    "ts": "2026-10-30T17:10:07.945Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -584,6 +584,30 @@
     "status": "previewed",
     "attempts": 1,
     "ts": "2026-10-28T04:25:17.634Z",
+    "put": 200,
+    "preview": 200,
+    "verify": "ok"
+  },
+  "/docs/library/blocks/hero": {
+    "status": "previewed",
+    "attempts": 1,
+    "ts": "2026-10-30T17:02:25.841Z",
+    "put": 200,
+    "preview": 200,
+    "verify": "ok"
+  },
+  "/docs/library/blocks/row-list": {
+    "status": "previewed",
+    "attempts": 1,
+    "ts": "2026-10-30T17:02:25.841Z",
+    "put": 200,
+    "preview": 200,
+    "verify": "ok"
+  },
+  "/docs/library/blocks/showcase": {
+    "status": "previewed",
+    "attempts": 1,
+    "ts": "2026-10-30T17:02:25.841Z",
     "put": 200,
     "preview": 200,
     "verify": "ok"

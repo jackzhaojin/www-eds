@@ -1,8 +1,10 @@
 /**
  * The structured data of a listing page, generated from its records and never authored: the
  * site's Person and WebSite, the CollectionPage, its BreadcrumbList and the ItemList of the
- * visible rows. The edge Worker writes it into the served HTML (edge/src/listings.mjs); on
- * preview hosts the browser adds it (syncCollectionSchema), from the same records either way.
+ * visible rows. For the generated lists the edge Worker writes it into the served HTML
+ * (edge/src/listings.mjs) and on preview hosts the browser adds it (syncCollectionSchema), from
+ * the same records either way. The talks hub's rows are authored, so the browser writes its
+ * graph from them on every host (scripts/talks-list.js).
  */
 const SITE = 'https://www.jackzhaojin.com/';
 
@@ -90,7 +92,8 @@ export function collectionGraph({
         itemListElement: items.map((item, i) => ({
           '@type': 'ListItem',
           position: i + 1,
-          item: { author: { '@id': PERSON['@id'] }, ...item },
+          // an Event names its performer instead
+          item: item['@type'] === 'Event' ? item : { author: { '@id': PERSON['@id'] }, ...item },
         })),
       },
     ],

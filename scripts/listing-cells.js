@@ -1,5 +1,5 @@
 /**
- * Listing rows as data, for the dynamic listings (Writing index, Row list (talks, dynamic)).
+ * Listing rows as data, for the dynamic listings (Writing index, Row list (projects, dynamic)).
  * A row is a list of cells, a cell a list of nodes made with el(): the block rows an author
  * would write. The edge Worker serves them as HTML (rowsToHTML, edge/src/listings.mjs) and the
  * browser builds them on preview hosts (rowsToDOM); either way the block decorates them with the

@@ -202,48 +202,59 @@ test('project sites and gh keep their own cache-control', async () => {
 });
 
 /* Dynamic listings: the hub is authored as one block with a Source row; the edge fills it. */
-const HUB = `<html><head><title>Talks &amp; Presentations | Jack Jin</title>
-<link rel="canonical" href="https://www.jackzhaojin.com/talks/">
-<meta name="description" content="Talks.">
+const HUB = `<html><head><title>Portfolio | Jack Jin</title>
+<link rel="canonical" href="https://www.jackzhaojin.com/portfolio/">
+<meta name="description" content="Projects.">
 <script type="application/ld+json">{"@graph":[{"@type":"CollectionPage"}]}</script>
-</head><body><main><div><div class="row-list talks dynamic">
-  <div><div>Source</div><div><a href="/talks-index.json">/talks-index.json</a></div></div>
+</head><body><main><div><div class="row-list projects dynamic">
+  <div><div>Source</div><div><a href="/portfolio-index.json">/portfolio-index.json</a></div></div>
 </div></div></main></body></html>`;
-const TALK = {
-  path: '/talks/records/example', id: 'example', aliases: 'older-example', order: '1', date: 'September 29, 2026',
-  kind: 'Conference session', title: 'OpenClaw: 24/7 <agents>', event: 'adaptTo() 2026', description: 'A talk.',
-  status: '', linkLabels: ['Explore the project'], linkUrls: ['https://www.jackzhaojin.com/portfolio/#ch-factory'],
+const PROJECT = {
+  path: '/portfolio/example/', title: 'OpenClaw: 24/7 <agents> | Jack Jin', tagline: 'A tagline', description: 'A project.',
+  dates: '2026', kind: 'ad hoc', order: '1', anchors: 'ch-example p-example', robots: '',
 };
 const serveHub = (index) => {
   globalThis.fetch = async (input) => {
     const req = input instanceof Request ? input : new Request(input);
     calls.push(req);
-    if (new URL(req.url).pathname === '/talks-index.json') return index();
+    if (new URL(req.url).pathname === '/portfolio-index.json') return index();
     return new Response(HUB, { headers: { 'content-type': 'text/html; charset=utf-8', etag: '"origin"', 'content-length': String(HUB.length) } });
   };
 };
 
 test('www: a dynamic listing is served with its rows and one generated JSON-LD graph', async () => {
-  serveHub(() => Response.json({ total: 1, offset: 0, limit: 200, data: [TALK] }));
-  const res = await worker.fetch(get('https://www.jackzhaojin.com/talks/'), WWW, {});
+  serveHub(() => Response.json({ total: 1, offset: 0, limit: 200, data: [PROJECT] }));
+  const res = await worker.fetch(get('https://www.jackzhaojin.com/portfolio/'), WWW, {});
   const html = await res.text();
-  assert.equal(calls[1].url, 'https://main--www-eds--jackzhaojin.aem.live/talks-index.json?offset=0&limit=200');
-  assert.match(html, /<h2 id="openclaw-247-agents">OpenClaw: 24\/7 &lt;agents&gt;<\/h2>/);
-  assert.match(html, /<a href="\/portfolio\/#ch-factory">Explore the project<\/a>/);
-  assert.match(html, /<div><p>example older-example<\/p><\/div><\/div><\/div><\/div><\/main>/);
+  assert.equal(calls[1].url, 'https://main--www-eds--jackzhaojin.aem.live/portfolio-index.json?offset=0&limit=200');
+  assert.match(html, /<h2 id="openclaw-247-agents"><a href="\/portfolio\/example\/">OpenClaw: 24\/7 &lt;agents&gt;<\/a><\/h2>/);
+  assert.match(html, /<div><p>ch-example p-example<\/p><\/div><\/div><\/div><\/div><\/main>/);
   const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
   assert.equal(ld.length, 1, 'the authored CollectionPage graph is replaced');
   const list = ld[0]['@graph'].find((node) => node['@type'] === 'ItemList');
   assert.equal(list.itemListElement[0].position, 1);
-  assert.equal(list.itemListElement[0].item['@id'], 'https://www.jackzhaojin.com/talks/#example');
-  assert.equal(ld[0]['@graph'].find((node) => node['@type'] === 'BreadcrumbList').itemListElement[1].name, 'Talks & Presentations');
+  assert.equal(list.itemListElement[0].item['@id'], 'https://www.jackzhaojin.com/portfolio/example/#project');
+  assert.equal(ld[0]['@graph'].find((node) => node['@type'] === 'BreadcrumbList').itemListElement[1].name, 'Portfolio');
   assert.equal(res.headers.get('etag'), null, 'the origin validators no longer describe the body');
   assert.equal(res.headers.get('cache-control'), 'max-age=600, must-revalidate');
 });
 
+test('www: the talks hub is authored and passes through untouched (v1.3.0)', async () => {
+  const TALKS = '<html><head><title>Talks</title></head><body><main><div><div class="row-list talks"><div><div><p>2026</p></div><div><h2>A talk</h2></div></div></div></div></main></body></html>';
+  respond({ 'content-type': 'text/html; charset=utf-8', etag: '"talks"' });
+  globalThis.fetch = async (input) => {
+    calls.push(input instanceof Request ? input : new Request(input));
+    return new Response(TALKS, { headers: { 'content-type': 'text/html; charset=utf-8', etag: '"talks"' } });
+  };
+  const res = await worker.fetch(get('https://www.jackzhaojin.com/talks/'), WWW, {});
+  assert.equal(await res.text(), TALKS);
+  assert.equal(res.headers.get('etag'), '"talks"');
+  assert.equal(calls.length, 1, 'no index request');
+});
+
 test('www: a listing whose index fails goes out as authored, for the browser to fill', async () => {
   serveHub(() => new Response('Unavailable', { status: 503 }));
-  const res = await worker.fetch(get('https://www.jackzhaojin.com/talks/'), WWW, {});
+  const res = await worker.fetch(get('https://www.jackzhaojin.com/portfolio/'), WWW, {});
   assert.equal(await res.text(), HUB);
   assert.equal(res.headers.get('etag'), '"origin"');
 });
@@ -259,31 +270,35 @@ test('a page without a listing keeps its body and validators; a fragment is left
   assert.equal(calls.length, 2, 'a fragment is not a page: no index request');
 });
 
-test('www: a talk page gets its generated JSON-LD; a page with authored JSON-LD keeps it', async () => {
-  const page = (head) => `<html><head><title>OpenClaw | Jack Jin</title>
-<link rel="canonical" href="https://www.jackzhaojin.com/talks/ai-tinkerers-2026/">
-<meta name="talk-id" content="ai-tinkerers-2026"><meta name="talk-date" content="April 6, 2026">${head}
-</head><body><main><h1>OpenClaw</h1></main></body></html>`;
+test('www: a project page gets its generated JSON-LD; a page with authored JSON-LD keeps it', async () => {
+  const page = (head) => `<html><head><title>Anima Mesh | Jack Jin</title>
+<link rel="canonical" href="https://www.jackzhaojin.com/portfolio/anima-mesh/">
+<meta name="project-order" content="1"><meta name="project-dates" content="2026">${head}
+</head><body><main><h1>Anima Mesh</h1><a href="https://github.com/jackzhaojin/anima-mesh">repo</a></main></body></html>`;
   respond({ 'content-type': 'text/html; charset=utf-8' });
   globalThis.fetch = async () => new Response(page(''), { headers: { 'content-type': 'text/html; charset=utf-8' } });
-  const html = await (await worker.fetch(get('https://www.jackzhaojin.com/talks/ai-tinkerers-2026/'), WWW, {})).text();
+  const html = await (await worker.fetch(get('https://www.jackzhaojin.com/portfolio/anima-mesh/'), WWW, {})).text();
   const [ld] = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
-  assert.equal(ld['@graph'].find((n) => n['@type'] === 'Event').startDate, '2026-04-06');
+  assert.equal(ld['@graph'].find((n) => n['@type'] === 'SoftwareSourceCode').codeRepository, 'https://github.com/jackzhaojin/anima-mesh');
   const authored = page('<script type="application/ld+json">{"@type":"Thing"}</script>');
   globalThis.fetch = async () => new Response(authored, { headers: { 'content-type': 'text/html; charset=utf-8' } });
-  assert.equal(await (await worker.fetch(get('https://www.jackzhaojin.com/talks/ai-tinkerers-2026/'), WWW, {})).text(), authored);
+  assert.equal(await (await worker.fetch(get('https://www.jackzhaojin.com/portfolio/anima-mesh/'), WWW, {})).text(), authored);
+  // an old talk page (talk-id, v1.1.1 to v1.2.2) gets no graph
+  const talk = page('').replace('<meta name="project-order" content="1">', '<meta name="talk-id" content="adaptto-2026">');
+  globalThis.fetch = async () => new Response(talk, { headers: { 'content-type': 'text/html; charset=utf-8' } });
+  assert.equal(await (await worker.fetch(get('https://www.jackzhaojin.com/portfolio/anima-mesh/'), WWW, {})).text(), talk);
 });
 
-test('www: a talk page fills its Related list and still gets its own graph', async () => {
-  const PAGE = `<html><head><title>A talk | Jack Jin</title>
-<link rel="canonical" href="https://www.jackzhaojin.com/talks/adaptto-2026/">
-<meta name="talk-id" content="adaptto-2026"><meta name="talk-date" content="September 29, 2026">
-</head><body><main><div><h1>A talk</h1></div><div><h2>Related</h2><div class="row-list related dynamic">
+test('www: a project page fills its Related list and still gets its own graph', async () => {
+  const PAGE = `<html><head><title>The Content Factory | Jack Jin</title>
+<link rel="canonical" href="https://www.jackzhaojin.com/portfolio/content-factory/">
+<meta name="project-order" content="3">
+</head><body><main><div><h1>The Content Factory</h1></div><div><h2>Related</h2><div class="row-list related dynamic">
   <div><div>Source</div><div><a href="/writing-index.json">/writing-index.json</a></div></div>
 </div></div></main></body></html>`;
   const ARTICLES = [
-    { path: '/writing/2026-10-10-recap/', title: 'Recap', date: '2026-10-10', summary: 'S', pages: ['/talks/adaptto-2026/'] },
-    { path: '/writing/2026-01-01-other/', title: 'Other', date: '2026-01-01', pages: ['/talks/denison-2026/'] },
+    { path: '/writing/2026-10-10-recap/', title: 'Recap', date: '2026-10-10', summary: 'S', pages: ['/portfolio/content-factory/'] },
+    { path: '/writing/2026-01-01-other/', title: 'Other', date: '2026-01-01', pages: ['/portfolio/ciam-demo/'] },
   ];
   globalThis.fetch = async (input) => {
     const req = input instanceof Request ? input : new Request(input);
@@ -295,10 +310,10 @@ test('www: a talk page fills its Related list and still gets its own graph', asy
     }
     return new Response(PAGE, { headers: { 'content-type': 'text/html; charset=utf-8' } });
   };
-  const html = await (await worker.fetch(get('https://www.jackzhaojin.com/talks/adaptto-2026/'), WWW, {})).text();
+  const html = await (await worker.fetch(get('https://www.jackzhaojin.com/portfolio/content-factory/'), WWW, {})).text();
   assert.match(html, /<a href="\/writing\/2026-10-10-recap\/">Recap<\/a>/);
   assert.doesNotMatch(html, /Other/);
   const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
   assert.equal(ld.length, 1);
-  assert.deepEqual(ld[0]['@graph'].map((n) => n['@type']), ['Person', 'WebSite', 'WebPage', 'BreadcrumbList', 'Event']);
+  assert.deepEqual(ld[0]['@graph'].map((n) => n['@type']), ['Person', 'WebSite', 'WebPage', 'BreadcrumbList', 'CreativeWork']);
 });
