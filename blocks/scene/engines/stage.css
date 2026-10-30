@@ -1,0 +1,121 @@
+/* Scene engine stage (stage.js): a talk as a plate, for the talks gallery. Ink draws the room,
+   the screen and the speakers; the accent is the voice, the slide's point, the seats it
+   reaches, the speaker whose turn it is and a 6% wash behind them. Strokes are in viewBox
+   units scaled by --k (units per CSS pixel, set by the engine), so weights hold at every size
+   and pathLength dashes still work. */
+.scene.stage .stage-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, #000 64%, transparent 92%);
+}
+
+.scene.stage .stage-svg [pathLength] {
+  stroke-dasharray: 1;
+}
+
+.scene.stage :is(.stage-c, .stage-s, .stage-ink, .stage-title, .stage-shoulder) {
+  stroke: var(--color-text);
+}
+
+.scene.stage .stage-c {
+  stroke-opacity: 0.26;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.stage .stage-s {
+  stroke-opacity: 0.55;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.stage .stage-title {
+  stroke-opacity: 0.6;
+  stroke-width: calc(2.4px * var(--k));
+}
+
+.scene.stage .stage-ink {
+  stroke-opacity: 0.42;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.stage .stage-ink.stage-quiet {
+  stroke-opacity: 0.2;
+}
+
+.scene.stage .stage-point {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2px * var(--k));
+}
+
+.scene.stage .stage-point.stage-bar {
+  fill: color-mix(in srgb, var(--scene-accent) 22%, transparent);
+}
+
+.scene.stage .stage-dot {
+  fill: var(--color-text);
+  fill-opacity: 0.25;
+}
+
+.scene.stage .stage-dot.is-on {
+  fill: var(--scene-accent);
+  fill-opacity: 1;
+}
+
+.scene.stage .stage-speaker {
+  stroke: var(--color-text);
+  stroke-opacity: 0.7;
+  stroke-width: calc(1.5px * var(--k));
+  fill: var(--color-bg);
+  transition: stroke 0.3s, fill 0.3s;
+}
+
+.scene.stage .stage-speaker.is-on {
+  stroke: var(--scene-accent);
+  stroke-opacity: 1;
+  stroke-width: calc(2px * var(--k));
+  fill: color-mix(in srgb, var(--scene-accent) 18%, var(--color-bg));
+}
+
+.scene.stage .stage-shoulder {
+  stroke-opacity: 0.3;
+  stroke-width: calc(1px * var(--k));
+}
+
+.scene.stage .stage-head {
+  fill: var(--color-text);
+  fill-opacity: 0.32;
+}
+
+.scene.stage .stage-lit {
+  fill: var(--scene-accent);
+}
+
+.scene.stage .stage-lit .stage-lit-s {
+  fill: none;
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.stage :is(.stage-arc, .stage-hand, .stage-answer) {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2px * var(--k));
+}
+
+.scene.stage .stage-answer {
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.stage .stage-handoff {
+  fill: var(--scene-accent);
+}
+
+.scene.stage .stage-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: 0.07;
+}
+
+.scene.stage .stage-wash-stop.stage-wash-end {
+  stop-opacity: 0;
+}

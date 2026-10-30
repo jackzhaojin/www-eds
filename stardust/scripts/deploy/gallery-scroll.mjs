@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /**
- * Scrolls the portfolio hub's project gallery (blocks/row-list, projects) top to bottom with the
- * mouse wheel at a few steady speeds, the way a reader does, and reports for each card whether
- * its reveal (the numeral setting back and the scene's plate easing in) ran while the card was
- * on screen. One line per width and speed, then the cards that missed it.
+ * Scrolls a gallery (blocks/row-list: projects on /portfolio/, talks on /talks/) top to bottom
+ * with the mouse wheel at a few steady speeds, the way a reader does, and reports for each card
+ * whether its reveal (the numeral setting back and the scene's plate easing in) ran while the
+ * card was on screen. One line per width and speed, then the cards that missed it.
  *
- *   node stardust/scripts/deploy/gallery-scroll.mjs https://www.jackzhaojin.com/portfolio/
+ *   node stardust/scripts/deploy/gallery-scroll.mjs https://www.jackzhaojin.com/portfolio/   (or /talks/)
  *     [--widths 1440,360] [--speeds 120,500,3000]
  *
  * --speeds: pixels per second (120 is a slow read, 3000 a flick). The pointer rests in the page's
@@ -57,7 +57,7 @@ for (const width of widths) {
     });
     await page.addInitScript(record);
     await page.goto(url, { waitUntil: 'load' });
-    await page.waitForSelector('.row-list.projects .row-list-items > li .row-list-num');
+    await page.waitForSelector('.row-list:is(.projects, .talks) .row-list-items > li .row-list-num');
     await page.mouse.move(2, 300);
     // each wheel step covers the time since the last, so the speed holds however long a step takes
     const start = Date.now();
@@ -70,7 +70,7 @@ for (const width of widths) {
       await page.mouse.wheel(0, Math.max(1, Math.round((speed * (now - tick)) / 1000)));
       tick = now;
       const { y, end } = await page.evaluate(() => {
-        const list = document.querySelector('.row-list.projects .row-list-items');
+        const list = document.querySelector('.row-list:is(.projects, .talks) .row-list-items');
         const past = list.getBoundingClientRect().bottom < window.innerHeight * 0.5;
         return { y: window.scrollY, end: past };
       });
@@ -80,7 +80,7 @@ for (const width of widths) {
     }
     await page.waitForTimeout(1500);
     const result = await page.evaluate(() => {
-      const cards = [...document.querySelectorAll('.row-list.projects .row-list-items > li')];
+      const cards = [...document.querySelectorAll('.row-list:is(.projects, .talks) .row-list-items > li')];
       return cards.map((card, i) => {
         const runs = window.revealLog.filter((r) => r.i === i);
         return {

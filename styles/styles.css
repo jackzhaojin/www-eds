@@ -134,6 +134,19 @@
 
   /* stacking */
   --z-header: 100;
+
+  /* each portfolio project's accent, by its chapter word (ch-<word>): its page, its card in
+     the portfolio gallery, and a talk about it in the talks gallery */
+  --c-anima: var(--color-accent);
+  --c-bruce: var(--color-topic-agents);
+  --c-factory: var(--color-project-cyan);
+  --c-kit: var(--color-topic-work);
+  --c-cea: var(--color-project-amber);
+  --c-conv: var(--color-project-leaf);
+  --c-ciam: var(--color-topic-aem);
+  --c-postal: var(--color-project-bronze);
+  --c-shadow: var(--color-project-mint);
+  --c-star: var(--color-project-rose);
 }
 
 /* ------------------------------------------------------------ light (default) */

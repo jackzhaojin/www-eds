@@ -9,6 +9,9 @@
  *   (event, place, co-speakers), the description paragraph, then the link paragraphs and any
  *   status paragraph (Write-up in progress), which share one cluster;
  * - anchors: the row's id, then any older ids that should still land on it, space separated.
+ * Each row becomes a card, as in the portfolio's gallery (since v1.3.1, decorateGallery below):
+ * a talk whose links include its project page plays that project's scene in its accent; any
+ * other talk takes the site's topic colors in turn and a Scene (stage), laid out by its kind.
  * The page's JSON-LD (an Event per talk) is written from the rows (scripts/talks-list.js).
  * projects: the portfolio hub's project gallery (since v1.2.1). The rows have the talks shape
  * (when: dates and kind; body: the linked heading, the tagline, the summary; anchors: the old
@@ -26,6 +29,7 @@
  */
 
 import { loadCSS } from '../../scripts/aem.js';
+import { within } from '../../scripts/query-index.js';
 
 const ROLES = ['row-list-kind', 'row-list-title', 'row-list-note'];
 
@@ -120,25 +124,17 @@ function plainURL(href) {
 }
 
 /**
- * Copies the project page's Scene block into the card's plate as a thumbnail (scene.js thumbnail
- * mode: no pause control, held on the engine's still until the gallery plays it). Without a
- * scene, or if its engine fails, the card keeps its numeral plate. A ready scene waits for the
- * gallery to reveal it (playScenes).
+ * Puts a Scene block into the card's plate as a thumbnail (scene.js thumbnail mode: no pause
+ * control, held on the engine's still until the gallery plays it). If its engine fails, the card
+ * keeps its numeral plate. A ready scene waits for the gallery to reveal it (playScenes).
  */
-async function loadScene(card, plate, href) {
+async function mountScene(card, plate, scene) {
   try {
-    const response = await fetch(plainURL(href));
-    if (!response.ok) return;
-    const page = document.createElement('template');
-    page.innerHTML = await response.text();
-    const source = page.content.querySelector('div.scene');
-    if (!source) return;
     const base = window.hlx?.codeBasePath || '';
     const [{ default: decorateScene }] = await Promise.all([
       import(`${base}/blocks/scene/scene.js`),
       loadCSS(`${base}/blocks/scene/scene.css`),
     ]);
-    const scene = document.importNode(source, true);
     scene.dataset.mode = 'thumb';
     const watch = new MutationObserver(() => {
       if (scene.classList.contains('is-fallback')) {
@@ -157,6 +153,44 @@ async function loadScene(card, plate, href) {
   }
 }
 
+/** A project page's Scene block, copied into the card (none: the numeral plate stays). */
+async function loadScene(card, plate, href) {
+  try {
+    const response = await fetch(plainURL(href));
+    if (!response.ok) return;
+    const page = document.createElement('template');
+    page.innerHTML = await response.text();
+    const source = page.content.querySelector('div.scene');
+    if (source) await mountScene(card, plate, document.importNode(source, true));
+  } catch {
+    // the numeral plate stays
+  }
+}
+
+/** The stage's layout for a talk's kind (blocks/scene/engines/stage.js). */
+function stageLayout(kind) {
+  if (/panel|fireside/i.test(kind)) return 'panel';
+  return /lecture|class/i.test(kind) ? 'lecture' : 'stage';
+}
+
+/**
+ * A talk with no project: a Scene (stage) built here, its layout from the talk's kind and its
+ * seed from the card's place, named by the talk's title (the card's media is decoration).
+ */
+function stageScene(card, plate, seed) {
+  const scene = document.createElement('div');
+  scene.className = 'scene stage';
+  scene.dataset.layout = stageLayout(card.querySelector('.row-list-type')?.textContent || '');
+  scene.dataset.seed = seed;
+  const row = document.createElement('div');
+  const [key, value] = [document.createElement('div'), document.createElement('div')];
+  key.textContent = 'label';
+  value.textContent = card.querySelector('.row-list-title')?.textContent.trim() || 'A talk';
+  row.append(key, value);
+  scene.append(row);
+  return mountScene(card, plate, scene);
+}
+
 /**
  * Reveals each card's scene (the numeral sets back, the plate eases in) the first time the card's
  * media is half on screen with its scene ready, so the reader sees it at any scroll speed; scenes
@@ -164,7 +198,7 @@ async function loadScene(card, plate, href) {
  * Plays one revealed scene at a time: the card under the pointer, else the one with focus in it,
  * else (on touch screens) the card most in view. Under reduced motion every scene stays still.
  */
-function playScenes(cards) {
+function playScenes(cards, loadFor) {
   let hovered = null;
   let focused = null;
   let viewed = null;
@@ -209,9 +243,8 @@ function playScenes(cards) {
   const lazy = new IntersectionObserver((entries) => {
     entries.filter((entry) => entry.isIntersecting).forEach(({ target }) => {
       lazy.unobserve(target);
-      const link = target.querySelector('.row-list-title a[href]');
       const plate = target.querySelector('.row-list-plate');
-      if (link && plate) loadScene(target, plate, link.href);
+      if (plate) loadFor(target, plate);
     });
   }, { rootMargin: '400px 0px' });
 
@@ -245,14 +278,67 @@ function playScenes(cards) {
   TOUCH.addEventListener('change', sync);
 }
 
+/** A project's accent, from its chapter anchor (ch-<word>): --c-<word> (styles.css), if any. */
+function projectAccent(li, anchor) {
+  const word = anchor?.match(/^ch-([a-z0-9-]+)$/)?.[1];
+  return word && getComputedStyle(li).getPropertyValue(`--c-${word}`).trim() ? `var(--c-${word})` : '';
+}
+
+/** projects: the card's accent is its own; its scene is its page's. */
+const PROJECTS = {
+  accentOf: (li) => projectAccent(li, li.id),
+  loadFor: (card, plate) => {
+    const link = card.querySelector('.row-list-title a[href]');
+    if (link) loadScene(card, plate, link.href);
+  },
+};
+
+/** The project page a talk's row links to (Explore the project), as a site path. */
+const talkProject = (li) => [...li.querySelectorAll('.row-list-links a[href]')]
+  .map((a) => new URL(a.href, window.location.href).pathname)
+  .find((path) => /^\/portfolio\/[^/]+\/$/.test(path));
+
 /**
- * projects: each decorated row (decorateTalks) becomes a card. The number is the row's position
- * (01 is the first, the newest project); the first anchor, ch-<word>, names the project's accent
- * (--c-<word>, defined by the portfolio template; a project without one draws in muted ink). The
- * media (the numeral and the scene's plate) is decoration, hidden from screen readers; the title
- * link stretches over the card, so the card is one link. Older anchor ids move to the card's top.
+ * talks: a talk about a project takes the project's accent (its chapter anchor, from the
+ * portfolio index) and plays its scene; any other talk takes the site's topic colors in turn
+ * (work, agents, aem) and a Scene (stage). If the index is slow, the cards go out quiet.
  */
-function decorateGallery(block) {
+async function talkGallery() {
+  const anchors = new Map();
+  try {
+    const { loadPortfolioIndex } = await import('../../scripts/portfolio-index.js');
+    const index = new URL('/portfolio-index.json', window.location.href).href;
+    (await within(loadPortfolioIndex(index), 2500))
+      .forEach((project) => anchors.set(project.path, project.anchors[0]));
+  } catch {
+    // no project accents: those cards stay quiet
+  }
+  const topics = ['work', 'agents', 'aem'];
+  let turn = 0;
+  return {
+    accentOf: (li) => {
+      const project = talkProject(li);
+      if (project) return projectAccent(li, anchors.get(project));
+      turn += 1;
+      return `var(--color-topic-${topics[(turn - 1) % topics.length]})`;
+    },
+    loadFor: (card, plate) => {
+      const project = talkProject(card);
+      if (project) loadScene(card, plate, project);
+      else stageScene(card, plate, [...card.parentElement.children].indexOf(card) + 1);
+    },
+  };
+}
+
+/**
+ * projects and talks: each decorated row (decorateTalks) becomes a card. The number is the row's
+ * position (01 is the first, the newest); accentOf(li) names the card's accent (a card without
+ * one draws in muted ink) and loadFor(card, plate) puts its scene in the plate. The media (the
+ * numeral and the scene's plate) is decoration, hidden from screen readers; the title link
+ * stretches over the card, so the card is one link (a talk's own links stay above it). Older
+ * anchor ids move to the card's top.
+ */
+function decorateGallery(block, { accentOf, loadFor }) {
   const list = block.querySelector('.row-list-items');
   if (!list) return;
   const cards = [...list.children];
@@ -261,11 +347,12 @@ function decorateGallery(block) {
     const body = li.querySelector(':scope > .row-list-body');
     const anchors = li.querySelector(':scope > .row-list-anchors');
     const aliases = [...li.querySelectorAll(':scope > div > span[id]')];
-    const word = li.id.match(/^ch-([a-z0-9-]+)$/)?.[1];
-    const quiet = !word || !getComputedStyle(li).getPropertyValue(`--c-${word}`).trim();
-    li.style.setProperty('--accent', quiet ? 'var(--color-text-muted)' : `var(--c-${word})`);
+    const accent = accentOf(li);
+    li.style.setProperty('--accent', accent || 'var(--color-text-muted)');
     li.classList.add('row-list-project');
-    li.classList.toggle('is-quiet', quiet);
+    li.classList.toggle('is-quiet', !accent);
+    const link = li.querySelector('.row-list-title a[href]');
+    if (link) li.dataset.goes = /youtu\.?be/.test(link.href) ? 'recording' : 'out';
 
     const num = document.createElement('span');
     num.className = 'row-list-num';
@@ -278,7 +365,7 @@ function decorateGallery(block) {
     const card = slot('row-list-card', [media, body, when].filter(Boolean));
     li.replaceChildren(...aliases, card, ...(anchors ? [anchors] : []));
   });
-  if (cards.length) playScenes(cards);
+  if (cards.length) playScenes(cards, loadFor);
 }
 
 /** The plain rows: kind | title | note, any cell may be left out. */
@@ -352,7 +439,7 @@ async function decorateDynamic(block, listing) {
   const { state, rendered, sourceRow } = await fillFromIndex(block, index[listing.load], render);
   if (listing.plain) decorateRows(block);
   else decorateTalks(block);
-  if (listing.gallery) decorateGallery(block);
+  if (listing.gallery) decorateGallery(block, PROJECTS);
   if (listing.plain && !block.querySelector('.row-list-items > li')) {
     const section = block.closest('.section');
     if (section) section.hidden = true;
@@ -392,8 +479,12 @@ export default async function decorate(block) {
   }
   if (kind === 'talks' || kind === 'projects') {
     decorateTalks(block);
-    if (kind === 'projects') decorateGallery(block);
-    else await syncTalksSchema(block);
+    if (kind === 'projects') {
+      decorateGallery(block, PROJECTS);
+    } else {
+      decorateGallery(block, await talkGallery());
+      syncTalksSchema(block); // the JSON-LD never holds up the list
+    }
     return;
   }
   decorateRows(block);

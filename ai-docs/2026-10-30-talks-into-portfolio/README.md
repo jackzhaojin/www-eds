@@ -24,7 +24,6 @@ Jack, setting the goal: "let's maybe never have talk pages and link out to other
 
 ## Left as it is (Jack's call)
 
-- **The talk documents in DA** (nine under `/talks/<id>/`, the validation draft `/drafts/talks-index/`, and `/docs/library/templates/talk`): unpublished or unlisted, not deleted. Deleting anything in DA is Jack's call.
 - **The talks query index definition** (`hlx-config/query.yaml`, `talks:` to `/talks-index.json`): unused now and empty once the pages are unpublished. Removing it is a site config change.
 
 ## Validation (branch preview `talks-into-portfolio--www-eds--jackzhaojin.aem.page`)
@@ -49,3 +48,12 @@ Jack, setting the goal: "let's maybe never have talk pages and link out to other
 - **`www-eds-edge` on www,** 13:28 ET, version `4db8a928` (replacing v1.1.6's `8fd69f11`), from tag `v1.3.0`: the Worker without its talk code. Same three vars, `ARCHIVE_ORIGIN` unset. Before: Worker tests 23/23, `check-host.mjs --local www` PASS. After: `check-host.mjs --base https://www.jackzhaojin.com` PASS; `/portfolio/` still filled at the edge, project pages with their graph, `/talks/` served as authored.
 - **`www-archive`,** 13:29 ET, version `a276bc2b` (replacing `af460fbd`), 97 changed assets. `tools/check.mjs` PASS on archive.jackzhaojin.com and on workers.dev: 1225 files, 48 pages, 134 redirects.
 - Recorded in `jack-dev-server-configs/server/cloudflare/history.md` (`9a91a5e`), with the rollback for each.
+
+## The talks gallery (v1.3.1, 2026-10-30)
+
+Jack, after v1.3.0: "I wanted talk page to be as beautiful as the portfolio page. It's more of a visual thing as well, right? It animates, it's beautiful ... don't do the timeline bar, but I do want each talk to have some kind of animation. It could even be the same animation, right, of the other thing."
+
+- **Every talk is a card,** the portfolio gallery's (`decorateGallery` in `blocks/row-list/row-list.js`, now shared): numbered, on its accent's tint, the scene revealed when the card is half on screen and played on hover (or, on touch, the card most in view). The newest talk spans the row, the rest run in threes. The card links where the title links (the play mark for a recording, the out arrow for an event page); the talk's own links and status stay clickable above it, with a thin underline in the card's accent.
+- **The animation:** a talk whose links include its project page plays that project's scene in the project's accent (the accent from the portfolio index's chapter anchor; the `--c-*` project accents moved from the portfolio template to `styles.css` so `/talks/` has them). The four talks without a project take the topic colors in turn (work, agents, aem) and a new engine, `stage`, built by the gallery (never authored): slides advance on a screen, the voice goes out in arcs and the listeners light as it reaches them; a "panel" or "fireside" kind draws four chairs passing the voice, a "lecture" or "class" kind a lecture whose raised hands get their answers.
+- **Checked** on the branch preview: 1440 and 360, light and dark, no errors, no overflow; `gallery-scroll.mjs` (now for `/talks/` too) 9 of 9 reveals at 120, 500 and 3000 px/s at both widths, the portfolio's still 11 of 11; the stage plates at 60 fps, no long tasks; editability 84/84 on `/talks/`, 99/99 on `/portfolio/`; the JSON-LD unchanged (nine Events).
+- **DA cleaned up** (Jack: "clean up the other files in experience workspace under talks and just have index"): the nine talk documents and the nine first records under `/talks/records/` are deleted, so `/talks/` holds only `index`; so are the library's Talk page template and the `/drafts/talks-index/` validation draft (both preview-only, now unpreviewed). Their published versions stay in the archive's history and the Wayback Machine.

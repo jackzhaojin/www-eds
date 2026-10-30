@@ -69,135 +69,19 @@
   }
 }
 
-/* talks: css/site.css .talk-list and .talk-row. Every paragraph keeps the row's rhythm
-   (.talk-row p), the cluster holds the links and the write-up status. */
-.row-list.talks .row-list-items > li {
-  display: grid;
-  grid-template-columns: 210px minmax(0, 1fr);
-  gap: 48px;
-  align-items: start;
-  padding: 40px 0;
-  border-top: 1px solid var(--color-line);
-  border-bottom: 0;
-  font-size: var(--text-body);
-  color: var(--color-text);
-}
-
-.row-list.talks .row-list-when p,
-.row-list.talks .row-list-event p,
-.row-list.talks .row-list-description p {
-  max-width: 70ch;
-  margin: 12px 0 20px;
-}
-
-.row-list.talks .row-list-date p {
-  font-family: var(--font-mono);
-  font-size: 13px;
-}
-
-/* The kind is a line of small text in the column's own line box (the source's span). */
-.row-list.talks .row-list-type p {
-  display: inline;
-  margin: 0;
-  font-size: var(--text-small);
-  color: var(--color-text-muted);
-}
-
-.row-list.talks .row-list-title :is(h1, h2, h3, h4, h5, h6) {
-  font-size: clamp(24px, 2.5vw, 32px);
-  max-width: 40ch;
-}
-
-/* A heading that links to its own page reads as the heading, the accent on hover. */
-.row-list.talks .row-list-title a:any-link {
-  color: inherit;
-  border-bottom: 0;
-}
-
-.row-list.talks .row-list-title a:hover {
-  color: var(--color-accent);
-}
-
-.row-list.talks .row-list-event p {
-  color: var(--color-accent);
-}
-
-.row-list.talks .row-list-cluster {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 30px;
-  margin-top: 24px;
-}
-
-.row-list.talks .row-list-links,
-.row-list.talks .row-list-status {
-  display: contents;
-}
-
-/* In the source the links are the flex items; a flex paragraph gives each the same box. */
-.row-list.talks .row-list-links p {
-  display: flex;
-}
-
-.row-list.talks .row-list-status p {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: var(--text-label);
-  letter-spacing: 0.04em;
-  line-height: 1.4;
-  border: var(--border-width) solid var(--color-line);
-  border-radius: var(--chip-radius);
-  padding: 3px 8px;
-  color: var(--color-text-muted);
-  white-space: nowrap;
-}
-
-.row-list.talks .row-list-status p::before {
-  content: "";
-  display: inline-block;
-  width: var(--chip-dot);
-  height: var(--chip-dot);
-  border-radius: 50%;
-  background: var(--color-topic-work);
-  flex-shrink: 0;
-}
-
-.row-list.talks .row-list-anchors {
-  display: none;
-}
-
-@media (width <= 760px) {
-  .row-list.talks .row-list-items > li {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 12px;
-    padding: 32px 0;
-  }
-
-  .row-list.talks .row-list-when p {
-    margin: 0;
-  }
-
-  .row-list.talks .row-list-type p {
-    display: inline-block;
-    margin-top: 4px;
-  }
-}
-
-/* ---------- projects: the portfolio hub's gallery (row-list.js decorateGallery) ----------
-   Each card is one link (the title's, stretched over it) on its project's tinted ground: the
+/* ---------- projects and talks: the galleries (row-list.js decorateGallery) ----------
+   Each card is one link (the title's, stretched over it) on its accent's tinted ground: the
    media (the outlined numeral and the scene's plate, decoration) over or beside the body (title,
-   tagline, summary) and the meta line (dates, build method). The first card (the newest
-   project) and the last (the prologue) span the row; a card's layout follows its own width. */
-.row-list.projects .row-list-items {
+   tagline or event, summary, a talk's links) and the meta line (dates, build method or kind).
+   The portfolio's first card (the newest project) and last (the prologue) span the row, as does
+   the newest talk; a card's layout follows its own width. */
+.row-list:is(.projects, .talks) .row-list-items {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: clamp(16px, 1.8vw, 24px);
 }
 
-.row-list.projects .row-list-items > li {
+.row-list:is(.projects, .talks) .row-list-items > li {
   /* the ground's tint (the body's, then the media's deeper plate), on paper and on night */
   --row-list-tint: 9%;
   --row-list-tint-dark: 11%;
@@ -217,12 +101,12 @@
   transition: background-color 0.45s var(--ease-standard), border-color 0.45s var(--ease-standard);
 }
 
-.row-list.projects .row-list-items > li:last-child {
+.row-list:is(.projects, .talks) .row-list-items > li:last-child {
   border-bottom: var(--border-width) solid color-mix(in srgb, var(--accent) 22%, transparent);
 }
 
 /* the prologue has no accent of its own: muted ink on the alternate paper, like its page */
-.row-list.projects .row-list-items > li.is-quiet {
+.row-list:is(.projects, .talks) .row-list-items > li.is-quiet {
   --color-bg: var(--color-bg-alt);
   --row-list-tint: 0%;
   --row-list-tint-dark: 0%;
@@ -231,18 +115,18 @@
   --row-list-stroke: 80%;
 }
 
-.row-list.projects .row-list-anchors {
+.row-list:is(.projects, .talks) .row-list-anchors {
   display: none;
 }
 
 /* older anchor ids land on the card's top edge */
-.row-list.projects .row-list-items > li > span[id] {
+.row-list:is(.projects, .talks) .row-list-items > li > span[id] {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.row-list.projects .row-list-card {
+.row-list:is(.projects, .talks) .row-list-card {
   --row-list-inset: clamp(18px, 7cqi, 26px);
 
   display: grid;
@@ -251,7 +135,7 @@
 }
 
 /* ---------- the media: numeral and plate on the ground ---------- */
-.row-list.projects .row-list-media {
+.row-list:is(.projects, .talks) .row-list-media {
   grid-area: media;
   position: relative;
   container-type: inline-size;
@@ -262,7 +146,7 @@
 
 /* the plate's tint, laid over the paper and the scene, so a scene's ground-colored fills
    match the plate */
-.row-list.projects .row-list-media::after {
+.row-list:is(.projects, .talks) .row-list-media::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -272,7 +156,7 @@
   transition: background-color 0.45s var(--ease-standard);
 }
 
-.row-list.projects .row-list-plate {
+.row-list:is(.projects, .talks) .row-list-plate {
   position: absolute;
   top: 50%;
   right: 0;
@@ -283,12 +167,12 @@
   transition: opacity 0.9s var(--ease-standard);
 }
 
-.row-list.projects .has-scene .row-list-plate {
+.row-list:is(.projects, .talks) .has-scene .row-list-plate {
   opacity: 1;
 }
 
-.row-list.projects .row-list-plate .scene-caption,
-.row-list.projects .row-list-plate .scene-labels {
+.row-list:is(.projects, .talks) .row-list-plate .scene-caption,
+.row-list:is(.projects, .talks) .row-list-plate .scene-labels {
   display: none;
 }
 
@@ -296,7 +180,7 @@
    set back to the plate's left when the scene arrives. The box's bottom sits 0.084em under the
    baseline (Playfair at line-height 1), so the numeral stands on the media's rule and scales
    about its baseline. */
-.row-list.projects .row-list-num {
+.row-list:is(.projects, .talks) .row-list-num {
   position: absolute;
   left: 5cqi;
   bottom: -0.084em;
@@ -313,17 +197,17 @@
   transition: transform 0.9s var(--ease-standard), color 0.45s var(--ease-standard), -webkit-text-stroke-color 0.45s var(--ease-standard);
 }
 
-.row-list.projects .has-scene .row-list-num {
+.row-list:is(.projects, .talks) .has-scene .row-list-num {
   transform: scale(0.56);
 }
 
 /* ---------- the body ---------- */
-.row-list.projects .row-list-body {
+.row-list:is(.projects, .talks) .row-list-body {
   grid-area: body;
   padding: 22px var(--row-list-inset) 0;
 }
 
-.row-list.projects .row-list-title :is(h1, h2, h3, h4, h5, h6) {
+.row-list:is(.projects, .talks) .row-list-title :is(h1, h2, h3, h4, h5, h6) {
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(22px, 7cqi, 28px);
@@ -332,7 +216,7 @@
   text-wrap: balance;
 }
 
-.row-list.projects .row-list-title a:any-link {
+.row-list:is(.projects, .talks) .row-list-title a:any-link {
   color: inherit;
   border-bottom: 0;
   text-decoration: underline;
@@ -343,18 +227,18 @@
 }
 
 /* the title's link covers the card */
-.row-list.projects .row-list-title a::after {
+.row-list:is(.projects, .talks) .row-list-title a::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 3;
 }
 
-.row-list.projects .row-list-title a:focus-visible {
+.row-list:is(.projects, .talks) .row-list-title a:focus-visible {
   outline: none;
 }
 
-.row-list.projects .row-list-event p {
+.row-list:is(.projects, .talks) .row-list-event p {
   margin-top: 6px;
   font-family: var(--font-display);
   font-size: clamp(16px, 5cqi, 19px);
@@ -365,7 +249,7 @@
   color: light-dark(color-mix(in srgb, var(--accent) 80%, var(--color-text)), var(--accent));
 }
 
-.row-list.projects .row-list-description p {
+.row-list:is(.projects, .talks) .row-list-description p {
   max-width: 62ch;
   margin-top: 14px;
   font-size: 15px;
@@ -374,7 +258,7 @@
 }
 
 /* ---------- the meta line: dates, build method, the arrow ---------- */
-.row-list.projects .row-list-when {
+.row-list:is(.projects, .talks) .row-list-when {
   grid-area: meta;
   position: relative;
   display: flex;
@@ -386,7 +270,7 @@
   border-top: var(--border-width) solid color-mix(in srgb, var(--accent) 16%, transparent);
 }
 
-.row-list.projects .row-list-date p {
+.row-list:is(.projects, .talks) .row-list-date p {
   white-space: nowrap;
   font-family: var(--font-mono);
   font-size: 12px;
@@ -394,7 +278,7 @@
   color: var(--color-text-muted);
 }
 
-.row-list.projects .row-list-type p {
+.row-list:is(.projects, .talks) .row-list-type p {
   font-family: var(--font-mono);
   font-size: var(--text-label);
   letter-spacing: 0.04em;
@@ -407,7 +291,7 @@
 }
 
 /* the arrow keeps to the first line's end, however the dates and method wrap */
-.row-list.projects .row-list-when::after {
+.row-list:is(.projects, .talks) .row-list-when::after {
   content: "";
   position: absolute;
   top: 15px;
@@ -421,7 +305,7 @@
 }
 
 /* ---------- hover and focus: the ground deepens, the numeral inks in, the arrow leans ---------- */
-.row-list.projects .row-list-items > li:is(:hover, :focus-within) {
+.row-list:is(.projects, .talks) .row-list-items > li:is(:hover, :focus-within) {
   --row-list-tint: 12%;
   --row-list-tint-dark: 15%;
   --row-list-plate: 21%;
@@ -430,7 +314,7 @@
   border-color: color-mix(in srgb, var(--accent) 70%, transparent);
 }
 
-.row-list.projects .row-list-items > li.is-quiet:is(:hover, :focus-within) {
+.row-list:is(.projects, .talks) .row-list-items > li.is-quiet:is(:hover, :focus-within) {
   --row-list-tint: 3%;
   --row-list-tint-dark: 4%;
   --row-list-plate: 9%;
@@ -438,33 +322,33 @@
 }
 
 /* the numeral inks in */
-.row-list.projects li:is(:hover, :focus-within) .row-list-num {
+.row-list:is(.projects, .talks) li:is(:hover, :focus-within) .row-list-num {
   color: var(--accent);
   -webkit-text-stroke-color: var(--accent);
 }
 
-.row-list.projects li:is(:hover, :focus-within) .row-list-title a {
+.row-list:is(.projects, .talks) li:is(:hover, :focus-within) .row-list-title a {
   text-decoration-color: color-mix(in srgb, var(--accent) 70%, transparent);
 }
 
-.row-list.projects li:is(:hover, :focus-within) .row-list-when::after {
+.row-list:is(.projects, .talks) li:is(:hover, :focus-within) .row-list-when::after {
   opacity: 1;
   transform: translateX(5px);
 }
 
-.row-list.projects .row-list-items > li:has(.row-list-title a:focus-visible) {
+.row-list:is(.projects, .talks) .row-list-items > li:has(.row-list-title a:focus-visible) {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
 /* a narrow card keeps its dates and method on one line */
 @container row-list-card (width < 310px) {
-  .row-list.projects .row-list-when {
+  .row-list:is(.projects, .talks) .row-list-when {
     column-gap: 8px;
     padding-right: 24px;
   }
 
-  .row-list.projects .row-list-type p {
+  .row-list:is(.projects, .talks) .row-list-type p {
     padding-inline: 5px;
     letter-spacing: 0.01em;
   }
@@ -472,7 +356,7 @@
 
 /* ---------- a wide card: the media beside the body ---------- */
 @container row-list-card (width >= 620px) {
-  .row-list.projects .row-list-card {
+  .row-list:is(.projects, .talks) .row-list-card {
     --row-list-inset: clamp(28px, 4.5cqi, 56px);
 
     grid-template:
@@ -482,40 +366,110 @@
   }
 
   /* both axes stretch, so a body taller than 16:10 lengthens the media, never widens it */
-  .row-list.projects .row-list-media {
+  .row-list:is(.projects, .talks) .row-list-media {
     place-self: stretch;
     border-bottom: 0;
     border-right: var(--border-width) solid color-mix(in srgb, var(--accent) 16%, transparent);
   }
 
   /* the media is the card's full height here: the numeral stands inside it */
-  .row-list.projects .row-list-num {
+  .row-list:is(.projects, .talks) .row-list-num {
     bottom: calc(7cqi - 0.084em);
   }
 
-  .row-list.projects .row-list-body {
+  .row-list:is(.projects, .talks) .row-list-body {
     align-self: center;
     padding: var(--row-list-inset) var(--row-list-inset) 0;
   }
 
-  .row-list.projects .row-list-title :is(h1, h2, h3, h4, h5, h6) {
+  .row-list:is(.projects, .talks) .row-list-title :is(h1, h2, h3, h4, h5, h6) {
     font-size: clamp(30px, 4.2cqi, 50px);
   }
 
-  .row-list.projects .row-list-event p {
+  .row-list:is(.projects, .talks) .row-list-event p {
     margin-top: 10px;
     font-size: clamp(19px, 2.2cqi, 26px);
   }
 
-  .row-list.projects .row-list-description p {
+  .row-list:is(.projects, .talks) .row-list-description p {
     margin-top: 20px;
     font-size: clamp(15px, 1.4cqi, 17px);
   }
 
-  .row-list.projects .row-list-when {
+  .row-list:is(.projects, .talks) .row-list-when {
     margin-top: 28px;
     padding-bottom: clamp(20px, 3cqi, 32px);
   }
+}
+
+/* ---------- talks: a talk's own links and status sit above the card's link ---------- */
+.row-list.talks .row-list-cluster {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+  margin-top: 18px;
+}
+
+.row-list.talks :is(.row-list-links, .row-list-status) {
+  display: contents;
+}
+
+.row-list.talks .row-list-cluster p {
+  margin: 0;
+}
+
+/* the links keep their tap height; a thin underline in the card's accent instead of the rule */
+.row-list.talks .row-list-links a:any-link {
+  border-bottom: 0;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.4em;
+  transition: color 0.2s var(--ease-standard), text-decoration-color 0.2s var(--ease-standard);
+}
+
+.row-list.talks .row-list-links a:any-link:hover {
+  color: var(--color-text);
+  text-decoration-color: var(--accent);
+}
+
+.row-list.talks .row-list-status p {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 7px;
+  border: var(--border-width) solid color-mix(in srgb, var(--accent) 24%, transparent);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.row-list.talks .row-list-status p::before {
+  content: "";
+  width: var(--chip-dot);
+  height: var(--chip-dot);
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* the meta line's mark says where the card goes: the recording (play) or the event (out) */
+.row-list.talks .row-list-items > li:not([data-goes]) .row-list-when::after {
+  display: none;
+}
+
+.row-list.talks .row-list-items > li[data-goes="recording"] .row-list-when::after {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5.5 3.8v10.4L14 9z' fill='none' stroke='black' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.row-list.talks .row-list-items > li[data-goes="out"] .row-list-when::after {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4.5 13.5l9-9M6.5 4.5h7v7' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 @media (width >= 768px) {
@@ -551,9 +505,44 @@
   }
 }
 
+
+@media (width >= 768px) {
+  .row-list.talks .row-list-items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .row-list.talks .row-list-items > li:first-child,
+  .row-list.talks .row-list-items > li:last-child:nth-child(2n) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (width >= 1024px) {
+  .row-list.talks .row-list-items {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .row-list.talks .row-list-items > li,
+  .row-list.talks .row-list-items > li:last-child:nth-child(2n) {
+    grid-column: span 2;
+  }
+
+  /* the newest talk spans the row; the rest run in threes, one left over spans the row, two
+     share it */
+  .row-list.talks .row-list-items > li:first-child,
+  .row-list.talks .row-list-items > li:last-child:nth-child(3n + 2) {
+    grid-column: 1 / -1;
+  }
+
+  .row-list.talks .row-list-items > li:nth-last-child(2):nth-child(3n + 2),
+  .row-list.talks .row-list-items > li:last-child:nth-child(3n) {
+    grid-column: span 3;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .row-list.projects .row-list-items > li,
-  .row-list.projects .row-list-items > li * {
+  .row-list:is(.projects, .talks) .row-list-items > li,
+  .row-list:is(.projects, .talks) .row-list-items > li * {
     transition-duration: 0.01ms;
   }
 }
