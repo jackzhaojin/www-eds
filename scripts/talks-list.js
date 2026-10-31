@@ -35,11 +35,17 @@ export function readTalkRow(li) {
   };
 }
 
-/** The ItemList entries: an Event per row, with the write-up and project the row links. */
+/**
+ * The ItemList entries: an Event per row, with the write-up and project the row links. Google
+ * checks every Event node for a startDate and a location, so a row without a date or a place is
+ * left out, and the event the talk was part of is not a nested superEvent: the row gives no date
+ * or place of the whole conference, and a name-only Event is what Search Console flagged (#9).
+ */
 export function talkSchemaItems(talks, canonical) {
-  return talks.filter((talk) => talk.id && talk.title).map((talk) => {
-    const { event, place } = eventParts(talk.event);
+  return talks.map((talk) => {
+    const { place } = eventParts(talk.event);
     const startDate = isoDate(talk.date);
+    if (!talk.id || !talk.title || !place || !startDate) return null;
     const site = talk.links.map((link) => new URL(link.href, `${SITE}/`))
       .filter((url) => url.origin === SITE);
     const writeup = site.find((url) => /^\/writing\/[^/]+\/$/.test(url.pathname));
@@ -50,13 +56,12 @@ export function talkSchemaItems(talks, canonical) {
       url: `${canonical}#${talk.id}`,
       name: talk.title,
       ...(talk.description ? { description: talk.description } : {}),
-      ...(startDate ? { startDate } : {}),
+      startDate,
       ...(talk.kind ? { additionalType: talk.kind } : {}),
       performer: { '@id': PERSON['@id'] },
-      ...(event ? { superEvent: { '@type': 'Event', name: event } } : {}),
-      ...(place ? { location: { '@type': 'Place', name: place } } : {}),
+      location: { '@type': 'Place', name: place },
       ...(writeup ? { subjectOf: { '@type': 'BlogPosting', url: `${SITE}${writeup.pathname}` } } : {}),
       ...(project ? { about: { '@id': `${SITE}${project.pathname}#project` } } : {}),
     };
-  });
+  }).filter(Boolean);
 }
