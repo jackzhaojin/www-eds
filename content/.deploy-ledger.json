@@ -38,7 +38,7 @@
   "/talks/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-30T17:10:08.206Z",
+    "ts": "2026-10-31T22:23:51.290Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -432,7 +432,7 @@
   "/portfolio/content-factory/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-30T17:10:02.288Z",
+    "ts": "2026-10-31T22:23:51.289Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -450,7 +450,7 @@
   "/portfolio/conversion-factory/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-30T17:10:07.945Z",
+    "ts": "2026-10-31T22:23:51.290Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -610,6 +610,15 @@
     "ts": "2026-10-30T17:02:25.841Z",
     "put": 200,
     "preview": 200,
+    "verify": "ok"
+  },
+  "/writing/2026-09-11-knowledge-work-as-a-product/index": {
+    "status": "live",
+    "attempts": 1,
+    "ts": "2026-10-31T22:21:05.985Z",
+    "put": 200,
+    "preview": 200,
+    "live": 200,
     "verify": "ok"
   }
 }
