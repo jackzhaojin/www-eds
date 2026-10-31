@@ -2,6 +2,11 @@
 
 The writing and portfolio hubs on www list every article and project (40 rows between them today), and nobody types those lists. Each hub is authored as one block with a single row that names an index. On the way out of Cloudflare, the Worker reads that index and writes the full list, and the structured data that describes it, into the HTML. Readers, search engines and AI crawlers all get the finished page in the first response.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/edge-hero-dark.png">
+  <img alt="Edge-side rendering on www.jackzhaojin.com: the author writes a Writing index block with one Source row naming /writing-index.json, Edge Delivery keeps that index current, and the Cloudflare Worker reads it and writes 29 rows of HTML and one JSON-LD graph into the page, so everyone gets the finished /writing/ page" src="images/edge-hero-light.png">
+</picture>
+
 This page explains the idea, shows it working on the live site, and walks through the code. The Worker as a whole is in [cloudflare-worker.md](cloudflare-worker.md).
 
 The talks hub was a generated list too, until v1.3.0 (2026-10-30). Talks have no pages since then, so there is no index to read: `/talks/` is authored, row by row, and the browser writes its JSON-LD from those rows ([content/README.md](../content/README.md#listing-pages-authored-once-generated-from-the-index), "Talks"). Its rows are in the HTML as it arrives, so crawlers see them without the Worker.
@@ -31,6 +36,13 @@ flowchart LR
 ## Why at the edge
 
 A list built by JavaScript in the browser is invisible to anything that doesn't run JavaScript. When the hubs were first rebuilt as generated lists (as drafts, on 2026-10-26), the served HTML of the writing draft had 0 article links, against 29 on www. Google runs JavaScript, but most AI crawlers and agents (GPTBot, ClaudeBot, PerplexityBot) read the HTML as it arrives. The switch would have emptied both hubs for them.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/edge-crawler-view-dark.png">
+  <img alt="Real captures of /writing/: from aem.live without the Worker and without JavaScript, the block is only its Source row and 0 articles; from www through the Worker without JavaScript, 29 article rows are already in the HTML; on www in a browser, the same 29 rows decorated" src="images/edge-crawler-view-light.png">
+</picture>
+
+The first two captures are the HTML exactly as each host serves it, with the page's scripts taken out: that's all a crawler that doesn't run JavaScript has to read.
 
 Jack's requirements for the fix: no manual data entry, JSON-LD "code-generated, not authored", and an authoring experience worth demoing. Asked where the code should render: "Edge Worker". The options looked like this:
 
@@ -71,6 +83,15 @@ document.querySelector('.writing-index').dataset.rendered
 It says `server` on www (the Worker filled it) and `browser` on aem.page (the browser did).
 
 ### Before and after
+
+The writing hub's real HTML, side by side. Every `+` line is written by the Worker on each request:
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/edge-html-dark.png">
+  <img alt="Excerpts of the real /writing/ HTML side by side: aem.live as authored has the block with only its Source row and no JSON-LD; www through the Worker has the same markup plus a JSON-LD script in the head and every article row in the block, marked as added lines" src="images/edge-html-light.png">
+</picture>
+
+The same thing in text, for the portfolio hub's block.
 
 What Edge Delivery serves for the portfolio hub's block, exactly as authored:
 
