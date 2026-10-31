@@ -10,6 +10,11 @@ A Cloudflare Worker is JavaScript that runs in Cloudflare's data centers, near t
 
 Edge Delivery is happy to sit behind any CDN ("bring your own CDN"). Adobe publishes a ready-made Cloudflare Worker for that. This site needed more than that one job, so the Worker does six:
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/worker-jobs-dark.png">
+  <img alt="The Cloudflare Worker in front of www: readers and crawlers reach the Worker at Cloudflare's edge, which does six jobs (put Edge Delivery on www, share the domain with GitHub Pages, finish pages at the edge, set the browser cache, keep other hosts out of search, stand by), with the Cloudflare cache behind it, then sends each request to Edge Delivery, GitHub Pages or, only if Adobe is down, the www-archive" src="images/worker-jobs-light.png">
+</picture>
+
 1. **Put Edge Delivery on www.** Adobe's worker, vendored into `src/aem.mjs`, forwards each request to `main--www-eds--jackzhaojin.aem.live` with the headers Edge Delivery expects.
 2. **Share the domain with GitHub Pages.** Seven older project sites (`/adapt-to-2026-demo/`, `/bruce-lava-dash/` and five more) still live on GitHub Pages under www's own origin. The Worker passes those paths through untouched.
 3. **Finish pages at the edge.** Listing pages get their rows and structured data before they leave Cloudflare. That's [edge-rendering.md](edge-rendering.md).
