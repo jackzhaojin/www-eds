@@ -670,5 +670,29 @@
     "httpStatus": 201,
     "attempts": 1,
     "ts": "2026-10-31T23:59:05.990Z"
+  },
+  "media/drafts/sites-ai-webinar/competitive-analysis-dashboard.png": {
+    "status": "uploaded",
+    "file": "/private/tmp/claude-501/-Users-jackjin-dev-jackzhaojin-www-eds/9884ea6e-ecac-4083-b03f-68c78ef64962/scratchpad/webinar/media/competitive-analysis-dashboard.png",
+    "size": 734932,
+    "sha256": "9f78dd93dc136fcb0f222a895b78447e9b606452718eee1ae245def953ecc56e",
+    "contentType": "image/png",
+    "source": null,
+    "contentUrl": "https://content.da.live/jackzhaojin/www-eds/media/drafts/sites-ai-webinar/competitive-analysis-dashboard.png",
+    "httpStatus": 200,
+    "attempts": 1,
+    "ts": "2026-11-01T02:55:46.107Z"
+  },
+  "media/drafts/sites-ai-webinar/page-check-dashboard.png": {
+    "status": "uploaded",
+    "file": "/private/tmp/claude-501/-Users-jackjin-dev-jackzhaojin-www-eds/9884ea6e-ecac-4083-b03f-68c78ef64962/scratchpad/webinar/media/page-check-dashboard.png",
+    "size": 437586,
+    "sha256": "42adda4fd33a5ee92c74b55396143e0ea11085c3073d92df81bc336fcf5ac8fa",
+    "contentType": "image/png",
+    "source": null,
+    "contentUrl": "https://content.da.live/jackzhaojin/www-eds/media/drafts/sites-ai-webinar/page-check-dashboard.png",
+    "httpStatus": 201,
+    "attempts": 1,
+    "ts": "2026-11-01T02:52:08.611Z"
   }
 }

@@ -56,6 +56,16 @@ All on the 76 example pages (34 site pages, the 36 block library pages, the four
 
 Jack, 2026-10-31 22:30 ET: "Let's get things merged into main and close out all local branches and worktrees." v1.4.0 is the `presentation-theme` branch, squash-merged to main, tagged `v1.4.0` with the branch `release/1-4-0`.
 
+## Live (2026-10-31)
+
+- [jackzhaojin/www-eds#21](https://github.com/jackzhaojin/www-eds/pull/21) squash-merged at 22:42 ET as `e0d347b`, tagged `v1.4.0`, branch `release/1-4-0`. Its PageSpeed check first failed on the draft (mobile 75) and passed after the hero art fix (100 on mobile and desktop, TBT 0 ms, home and draft). The branch preview passed 40 renders (both brands, light and dark, 1440 and 360).
+- www serves it: 28 renders of seven live pages (home, the three hubs, three articles) in Jack's brand, light and dark, 1440 and 360, with the contrast check: no problems, the two contrast fixes live.
+- Closed out the same evening (Jack: "close out all local branches and worktrees"): the baseline worktree, the Codex worktree (`codex/list-seo-research`, shipped as #2), the Claude worktree (`claude/google-issue-investigation-50d38e`, #17, superseded by v1.3.3 and v1.3.4; the PR itself is still open) and 21 local branches, every one identical to its copy on GitHub. Local: `main` only.
+
+## The webinar demos
+
+One per use case, all on one throughline page (`/writing/2025-07-13-three-eds-offerings/`), in `local-only/2026-10-31-sites-ai-presentation/demos/` (private, with its own README): the research brief instructions and a brief made with them; `01-competitive-analysis.mjs` and its dashboard (five pages; a sixth, rendered in the browser, had no HTML to read); the authoring click path and the API runbook; the checklist instructions and runs on two pages; `03-page-check.mjs` and its dashboard (Semrush when `SEMRUSH_API_KEY` is set, untested). The AI steps call the Claude API when `ANTHROPIC_API_KEY` is set; without it they write the prompt, and the write-ups on the draft were made from those prompts by Claude. Their real output is on the draft's slides (the brief, both dashboards, the checklist run). What the runs found on the throughline: its title is 61 characters, and against its brief it answers four questions and three in part, which is the change the authoring demos make.
+
 ## Left for Jack
 
 - The bulk metadata sheet can switch a folder or the site to the Adobe brand; that is a site config change.
