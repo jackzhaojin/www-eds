@@ -32,8 +32,10 @@ test('a talk row is an Event on the hub, its write-up and project linked', () =>
   assert.equal(item.url, `${HUB}#adaptto-2026`);
   assert.equal(item.startDate, '2026-04-06');
   assert.equal(item.additionalType, 'Community demo');
-  assert.deepEqual(item.superEvent, { '@type': 'Event', name: 'AI Tinkerers Columbus' });
-  assert.deepEqual(item.location, { '@type': 'Place', name: 'Columbus, Ohio' });
+  assert.deepEqual(item.superEvent, { name: 'AI Tinkerers Columbus' });
+  assert.deepEqual(item.location, { '@type': 'Place', name: 'Columbus, Ohio', address: 'Columbus, Ohio' });
+  assert.equal(item.eventAttendanceMode, 'https://schema.org/OfflineEventAttendanceMode');
+  assert.equal(item.eventStatus, 'https://schema.org/EventScheduled');
   assert.equal(item.subjectOf.url, 'https://www.jackzhaojin.com/writing/2026-04-05-continuous-executive-agent-v2-1/');
   assert.equal(item.about['@id'], 'https://www.jackzhaojin.com/portfolio/continuous-executive-agent/#project');
 });
