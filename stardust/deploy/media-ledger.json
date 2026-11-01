@@ -694,5 +694,17 @@
     "httpStatus": 201,
     "attempts": 1,
     "ts": "2026-11-01T02:52:08.611Z"
+  },
+  "media/drafts/sites-ai-webinar/experience-workspace-canvas.jpg": {
+    "status": "uploaded",
+    "file": "/private/tmp/claude-501/-Users-jackjin-dev-jackzhaojin-www-eds/9884ea6e-ecac-4083-b03f-68c78ef64962/scratchpad/webinar/media/experience-workspace-canvas.jpg",
+    "size": 93485,
+    "sha256": "4522ceabec3b60a748548b953c38bfa9265e597658e5802d42ca892f18c3cc38",
+    "contentType": "image/jpeg",
+    "source": null,
+    "contentUrl": "https://content.da.live/jackzhaojin/www-eds/media/drafts/sites-ai-webinar/experience-workspace-canvas.jpg",
+    "httpStatus": 201,
+    "attempts": 1,
+    "ts": "2026-11-01T03:01:09.579Z"
   }
 }
