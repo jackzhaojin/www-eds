@@ -67,7 +67,7 @@ The [www-archive](https://github.com/jackzhaojin/www-archive) repo holds a snaps
 npx wrangler deploy --env="" --var ARCHIVE_ORIGIN:https://www-archive.jackzhaojin.workers.dev
 ```
 
-Use the workers.dev URL, not archive.jackzhaojin.com: it's outside this zone, so the fetch reaches the archive Worker for certain. The project sites still pass through to GitHub Pages, and on www the noindex the archive sends is dropped as usual. Deploy again without the var to go back to Edge Delivery. Adobe's worker can't simply point at the archive: it only accepts `main--*--*.aem.live` origins.
+Use the workers.dev URL, not archive.jackzhaojin.com: it's outside this zone, so the fetch reaches the archive Worker for certain, and it's the one archive host whose robots.txt is www's own (archive.jackzhaojin.com's turns crawlers away, which on www would take the site out of search; since 2026-11-01). The project sites still pass through to GitHub Pages, and on www the noindex the archive sends is dropped as usual. Deploy again without the var to go back to Edge Delivery. Adobe's worker can't simply point at the archive: it only accepts `main--*--*.aem.live` origins.
 
 Checked on 2026-10-28 (v1.1.6) with the Worker in-process against the live archive: home, the three hubs, an article, a talk, a project, the nav and footer, an `index.md`, code, a sheet, robots.txt, the sitemap, a folder redirect and a 404 answer as the archive does, pages without noindex.
 
