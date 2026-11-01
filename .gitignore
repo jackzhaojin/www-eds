@@ -37,3 +37,6 @@ content/**
 
 # local previews of content/ pages (stardust/scripts/deploy/local-preview.mjs)
 .local-preview/
+
+# Private local work, including presentation planning and experiments
+/local-only/
