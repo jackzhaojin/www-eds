@@ -1,0 +1,196 @@
+/* Scene engine mcp-relay (mcp-relay.js): one change relayed from the AI client through MCP to the
+   document, the preview, your approval and the archive. Strokes are in viewBox units scaled by
+   --k (units per CSS pixel, set by the engine), so line weights hold from 320px to 500px and
+   dashes along pathLength still work. Ink draws; the accent is AI, the token, its trail and the
+   change it carries. */
+.scene.mcp-relay {
+  --mcp-relay-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.mcp-relay {
+  --mcp-relay-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.mcp-relay {
+    --mcp-relay-wash: 0.12;
+  }
+}
+
+.scene.mcp-relay .mcp-relay-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, #000 74%, transparent 97%);
+}
+
+.scene.mcp-relay .mcp-relay-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--mcp-relay-wash);
+}
+
+.scene.mcp-relay .mcp-relay-wash-stop + .mcp-relay-wash-stop {
+  stop-opacity: 0;
+}
+
+/* construction, structure, the dotted routes */
+.scene.mcp-relay .mcp-relay-c {
+  stroke: var(--color-text);
+  stroke-opacity: 0.3;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.mcp-relay .mcp-relay-old {
+  stroke: var(--color-text);
+  stroke-opacity: 0.18;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.mcp-relay .mcp-relay-s {
+  stroke: var(--color-text);
+  stroke-opacity: 0.62;
+  stroke-width: calc(1.25px * var(--k));
+  transition: stroke 0.5s cubic-bezier(0.16, 1, 0.3, 1), stroke-opacity 0.5s;
+}
+
+.scene.mcp-relay .mcp-relay-s.is-lit {
+  stroke: var(--scene-accent);
+  stroke-opacity: 1;
+}
+
+.scene.mcp-relay :is(.mcp-relay-c, .mcp-relay-old, .mcp-relay-s).is-lines {
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.mcp-relay .mcp-relay-route {
+  stroke: var(--color-text);
+  stroke-opacity: 0.4;
+  stroke-width: calc(1.25px * var(--k));
+  stroke-dasharray: 0.01 6;
+}
+
+.scene.mcp-relay :is(.mcp-relay-paper, .mcp-relay-bubble) {
+  fill: var(--color-bg);
+}
+
+.scene.mcp-relay .mcp-relay-caret {
+  stroke: var(--color-text);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+/* the actors: automation a faint square, AI an accent disc, you an ink ring */
+.scene.mcp-relay .mcp-relay-auto {
+  stroke: var(--color-text-faint);
+  stroke-width: calc(1.25px * var(--k));
+  fill: color-mix(in srgb, var(--color-text-faint) 22%, var(--color-bg));
+  transition: stroke 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.mcp-relay :is(.mcp-relay-auto, .mcp-relay-port).is-lit {
+  stroke: var(--scene-accent);
+}
+
+.scene.mcp-relay .mcp-relay-port {
+  fill: var(--color-bg);
+  stroke: var(--color-text-faint);
+  stroke-width: calc(1.25px * var(--k));
+  transition: stroke 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.mcp-relay .mcp-relay-ai,
+.scene.mcp-relay .mcp-relay-dot {
+  fill: var(--scene-accent);
+}
+
+.scene.mcp-relay .mcp-relay-ai-halo,
+.scene.mcp-relay .mcp-relay-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.15;
+}
+
+.scene.mcp-relay .mcp-relay-you {
+  stroke: var(--color-text);
+  stroke-width: calc(2px * var(--k));
+  fill: var(--color-bg);
+}
+
+.scene.mcp-relay .mcp-relay-you.is-small {
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.mcp-relay .mcp-relay-tick {
+  stroke: var(--color-text);
+  stroke-width: calc(2px * var(--k));
+}
+
+/* the work: ruled lines for text, never words; the change in the accent */
+.scene.mcp-relay .mcp-relay-ink {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(1.1px * var(--k));
+}
+
+.scene.mcp-relay :is(.mcp-relay-ink, .mcp-relay-accent).is-bold {
+  stroke-width: calc(2.25px * var(--k));
+}
+
+.scene.mcp-relay .mcp-relay-ink.is-bold {
+  stroke-opacity: 0.75;
+}
+
+.scene.mcp-relay .mcp-relay-ink.is-block {
+  fill: var(--color-text);
+  fill-opacity: 0.06;
+  stroke-opacity: 0.3;
+}
+
+.scene.mcp-relay .mcp-relay-accent {
+  stroke: var(--scene-accent);
+}
+
+.scene.mcp-relay .mcp-relay-strike {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.mcp-relay .mcp-relay-node {
+  fill: var(--color-bg);
+  stroke: var(--color-text);
+  stroke-opacity: 0.62;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+/* the token's trails: accent behind it, then a faint record */
+.scene.mcp-relay .mcp-relay-trail {
+  stroke: var(--scene-accent);
+  stroke-opacity: 0.7;
+  stroke-width: calc(1.5px * var(--k));
+}
+
+/* callouts */
+.scene.mcp-relay .mcp-relay-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.mcp-relay .mcp-relay-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}
+
+.scene.mcp-relay .scene-label p {
+  transition: color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.mcp-relay .scene-label.is-active p {
+  color: var(--scene-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.mcp-relay :is(.mcp-relay-s, .mcp-relay-auto, .mcp-relay-port, .scene-label p) {
+    transition: none;
+  }
+}

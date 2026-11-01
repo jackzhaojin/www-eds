@@ -16,8 +16,43 @@
   padding: clamp(18px, 3.2cqi, 36px);
 }
 
-.explainer.process-shift .ps-switch {
+/* the switch, and the replay control at the end of its row */
+.explainer.process-shift .ps-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
   margin-bottom: clamp(22px, 3.4cqi, 36px);
+}
+
+.explainer.process-shift .ps-replay {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--duration-base) var(--ease-standard), border-color var(--duration-base) var(--ease-standard);
+}
+
+.explainer.process-shift .ps-replay:is(:hover, :focus-visible) {
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
+}
+
+.explainer.process-shift .ps-replay svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .explainer.process-shift .ps-switch > * {
@@ -302,6 +337,10 @@
     animation: none;
   }
 
+  .explainer.process-shift .ps-replay {
+    display: none;
+  }
+
   .explainer.process-shift :is(.ps-track li, .ps-track li::before, .ps-seg),
   .explainer.process-shift .ps-track ol::after {
     transition: none;
@@ -314,7 +353,7 @@
     padding: 16px 20px;
   }
 
-  .explainer.process-shift :is(.ps-switch, .ps-split) {
+  .explainer.process-shift :is(.ps-head, .ps-split) {
     display: none;
   }
 

@@ -9,6 +9,8 @@
  * - `label | <text>`: the art's accessible name;
  * - `caption | <text>`: the caption under the art;
  * - `pause | <text>` and `play | <text>` (optional): the pause control's names;
+ * - `replay | <text>` (optional): adds a replay control, named by the text, that plays the scene
+ *   again from its start (the presentation's plates, which tell their story once);
  * - `<part> | <text>`: a label the engine places at that part of the scene. Each engine's JSDoc
  *   lists its parts; a label with a part the engine doesn't place joins the caption's list.
  * A label cell may hold more than one paragraph (a bold name, then a short line).
@@ -20,7 +22,8 @@
  *
  * Motion: an engine draws through kit.loop, which runs only while the scene is on screen, the tab
  * is visible and the reader hasn't paused it (the control in the stage's corner), and draws one
- * still frame under prefers-reduced-motion.
+ * still frame under prefers-reduced-motion. Replay sets the scene's clock back to 0 and plays it,
+ * so an engine draws as a function of t alone.
  *
  * Thumbnail mode (`data-mode="thumb"` on the block, set by a listing that copies a project
  * page's scene, such as the portfolio hub's gallery): no pause control, the clock starts at the
@@ -169,6 +172,12 @@ export function loop(stage, draw, { still = 0 } = {}) {
   }, { rootMargin: '80px' }).observe(stage);
   document.addEventListener('visibilitychange', sync);
   scene?.addEventListener('scene-pause', sync);
+  scene?.addEventListener('scene-replay', () => {
+    t = 0;
+    last = 0;
+    redraw();
+    sync();
+  });
   MOTION.addEventListener('change', () => {
     sync();
     redraw();
@@ -228,11 +237,29 @@ function pauseControl(block, names) {
   };
   toggle.addEventListener('click', () => {
     block.classList.toggle('is-paused');
-    sync();
     block.dispatchEvent(new CustomEvent('scene-pause'));
   });
+  block.addEventListener('scene-pause', sync);
   sync();
   return toggle;
+}
+
+/** The replay control: the scene's clock back to 0, playing (unpaused). */
+function replayControl(block, name) {
+  const replay = document.createElement('button');
+  replay.type = 'button';
+  replay.className = 'scene-replay';
+  replay.setAttribute('aria-label', name);
+  replay.title = name;
+  const icon = svg('svg', { viewBox: '0 0 16 16', 'aria-hidden': 'true' }, replay);
+  svg('path', { d: 'M13.2 9.2A5.3 5.3 0 1 1 11.6 4.3' }, icon);
+  svg('path', { d: 'M12.4 1.6v3.2H9.2' }, icon);
+  replay.addEventListener('click', () => {
+    block.classList.remove('is-paused');
+    block.dispatchEvent(new CustomEvent('scene-replay'));
+    block.dispatchEvent(new CustomEvent('scene-pause'));
+  });
+  return replay;
 }
 
 /**
@@ -264,7 +291,7 @@ export default async function decorate(block) {
   const caption = document.createElement('figcaption');
   caption.className = 'scene-caption';
   const parts = new Map();
-  const names = { pause: 'Pause the animation', play: 'Play the animation' };
+  const names = { pause: 'Pause the animation', play: 'Play the animation', replay: '' };
 
   [...block.querySelectorAll(':scope > div')].forEach((row) => {
     const [keyCell, valueCell] = [...row.children];
@@ -274,7 +301,7 @@ export default async function decorate(block) {
       return;
     }
     config.append(...keyCell.children);
-    if (key === 'label' || key === 'pause' || key === 'play') {
+    if (key === 'label' || key === 'pause' || key === 'play' || key === 'replay') {
       if (key === 'label') stage.setAttribute('aria-label', valueCell.textContent.trim());
       else names[key] = valueCell.textContent.trim();
       config.append(...valueCell.children);
@@ -290,7 +317,10 @@ export default async function decorate(block) {
   figure.append(stage, labels);
   const thumb = block.dataset.mode === 'thumb';
   if (thumb) block.classList.add('is-paused');
-  else if (engine) figure.append(pauseControl(block, names));
+  else if (engine) {
+    figure.append(pauseControl(block, names));
+    if (names.replay) figure.append(replayControl(block, names.replay));
+  }
   if (caption.children.length) figure.append(caption);
   block.replaceChildren(figure, config);
   joinChapterHead(block);

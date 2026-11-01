@@ -1,0 +1,149 @@
+/* Scene engine gap-scan (gap-scan.js): the webinar deck's gap analysis plate, your page beside
+   three competitors, row by row. Strokes are in viewBox units scaled by --k (units per CSS pixel,
+   set by the engine), so weights hold from 288px to 500px and the pathLength dashes still work. */
+.scene.gap-scan {
+  --gap-scan-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.gap-scan {
+  --gap-scan-wash: 0.13;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.gap-scan {
+    --gap-scan-wash: 0.13;
+  }
+}
+
+.scene.gap-scan .gap-scan-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(farthest-corner at 50% 50%, black 80%, transparent 100%);
+}
+
+.scene.gap-scan .gap-scan-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--gap-scan-wash);
+}
+
+.scene.gap-scan .gap-scan-stop + .gap-scan-stop {
+  stop-opacity: 0;
+}
+
+/* the pages: yours in ink, theirs a step back */
+.scene.gap-scan .gap-scan-frame {
+  fill: var(--color-surface);
+  stroke: var(--color-text);
+  stroke-opacity: 0.66;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.gap-scan .gap-scan-mast {
+  stroke: var(--color-text);
+  stroke-opacity: 0.7;
+  stroke-width: calc(1.75px * var(--k));
+}
+
+.scene.gap-scan .gap-scan-bar {
+  fill: color-mix(in srgb, var(--color-text) 9%, var(--color-surface));
+  stroke: var(--color-text);
+  stroke-opacity: 0.6;
+  stroke-width: calc(1px * var(--k));
+}
+
+.scene.gap-scan .gap-scan-text {
+  stroke: var(--color-text);
+  stroke-opacity: 0.62;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.gap-scan .is-theirs .gap-scan-frame {
+  stroke-opacity: 0.36;
+  stroke-width: calc(1px * var(--k));
+}
+
+.scene.gap-scan .is-theirs .gap-scan-mast {
+  stroke-opacity: 0.38;
+}
+
+.scene.gap-scan .is-theirs .gap-scan-bar {
+  fill: color-mix(in srgb, var(--color-text) 5%, var(--color-surface));
+  stroke-opacity: 0.34;
+}
+
+.scene.gap-scan .is-theirs .gap-scan-text {
+  stroke-opacity: 0.36;
+  stroke-width: calc(1px * var(--k));
+}
+
+/* what the scan finds: the accent */
+.scene.gap-scan .gap-scan-flash {
+  fill: color-mix(in srgb, var(--scene-accent) 12%, transparent);
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.gap-scan .gap-scan-link {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1px * var(--k));
+}
+
+.scene.gap-scan .gap-scan-hole {
+  fill: color-mix(in srgb, var(--scene-accent) 7%, transparent);
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.25px * var(--k));
+  stroke-dasharray: 5 4;
+}
+
+.scene.gap-scan .gap-scan-plus {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.75px * var(--k));
+}
+
+.scene.gap-scan .gap-scan-lead {
+  stroke: var(--scene-accent);
+  stroke-opacity: 0.7;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.gap-scan .gap-scan-mark {
+  fill: var(--scene-accent);
+}
+
+.scene.gap-scan .gap-scan-beam {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.gap-scan .gap-scan-disc {
+  fill: var(--scene-accent);
+}
+
+.scene.gap-scan .gap-scan-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.16;
+}
+
+/* callouts */
+.scene.gap-scan .gap-scan-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.gap-scan .gap-scan-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}
+
+/* the gap label is shown by the engine once the first gap is found */
+.scene.gap-scan .scene-label-gap {
+  transition: none;
+}
+
+.scene.gap-scan .scene-label-gap p {
+  color: var(--scene-accent);
+}
