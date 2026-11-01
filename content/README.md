@@ -66,6 +66,8 @@ Images: upload the file to DA first, under `/media/<section>/<slug>/` (`stardust
 - **Links to another Edge Delivery site lose their host.** Delivery rewrites every `https://` link to any `*.aem.page` or `*.aem.live` host into a relative path, whichever site it points at. Write such a link with `http://` (delivery leaves it alone, and browsers upgrade `.page` to https themselves), or use that site's own domain.
 - **Every URL in metadata must be one www serves:** `json-ld` values, `image`, anything in the head. Old-site paths such as `/writing/<slug>/images/cover.jpg` 404 here; `node stardust/scripts/fix-dead-image-urls.mjs` swaps them for the byte-identical media copy.
 
+**A new article** (the AEM Rockstar write-up, 2026-11-01): copy the section order of a recent article, such as `writing/2026-03-23-eds-hlx-admin-agentic-config/`. The head section (breadcrumb, `h1`, byline, summary), then a section holding only the `rail` block, then the intro paragraph in its own section, then the video figure and the fine print (section metadata `id | video`), then one section per part. The article template moves the rail's whole section into the side column, so anything else put in that section ends up there too. Code bars with a long file path need `code wrap stack` to fit a phone. The `json-ld` row needs the cover's www URL (`/writing/<slug>/media_<hash>.jpg`): preview once, read the hash from `index.plain.html`, fill it in and push again. A backdated piece (a talk written up later) keeps the talk date in `published-time` and the byline, adds `modified-time` and an "Updated" date, and says in its fine print when it was written.
+
 ## 2. Always check it in the browser
 
 Push the changed documents to DA and preview them, without publishing:

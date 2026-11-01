@@ -38,7 +38,7 @@
   "/talks/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-11-01T19:11:26.090Z",
+    "ts": "2026-11-01T19:32:11.414Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -378,7 +378,7 @@
   "/portfolio/aem-rockstar-2024/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-30T17:10:02.288Z",
+    "ts": "2026-11-01T19:32:11.414Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -644,6 +644,15 @@
     "ts": "2026-11-01T02:59:17.678Z",
     "put": 200,
     "preview": 200,
+    "verify": "ok"
+  },
+  "/writing/2024-03-28-aem-rockstar-generative-ai-in-aem/index": {
+    "status": "live",
+    "attempts": 1,
+    "ts": "2026-11-01T19:32:11.414Z",
+    "put": 200,
+    "preview": 200,
+    "live": 200,
     "verify": "ok"
   }
 }
