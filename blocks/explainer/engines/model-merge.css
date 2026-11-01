@@ -3,10 +3,10 @@
    styled as their descendants, so the look holds in quick edit. */
 /* stylelint-disable selector-class-pattern -- the source's BEM names are kept so the port stays faithful */
 .explainer.model-merge {
-  --m-1: var(--palette-amber-700);
-  --m-2: var(--palette-lavender-600);
-  --m-3: var(--palette-leaf-700);
-  --m-4: var(--palette-blue-600);
+  --m-1: var(--color-project-amber);
+  --m-2: var(--color-accent);
+  --m-3: var(--color-project-leaf);
+  --m-4: var(--color-topic-aem);
   --m-shared: color-mix(in srgb, var(--ink) 30%, transparent);
   --m-fresh: color-mix(in srgb, var(--ink) 10%, transparent);
 
@@ -14,22 +14,6 @@
   border: 1px solid var(--line);
   border-radius: 16px;
   overflow: hidden;
-}
-
-[data-theme="dark"] .explainer.model-merge {
-  --m-1: var(--palette-amber-300);
-  --m-2: var(--palette-lavender-300);
-  --m-3: var(--palette-leaf-300);
-  --m-4: var(--palette-blue-300);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.model-merge {
-    --m-1: var(--palette-amber-300);
-    --m-2: var(--palette-lavender-300);
-    --m-3: var(--palette-leaf-300);
-    --m-4: var(--palette-blue-300);
-  }
 }
 
 .explainer.model-merge .mg__body {

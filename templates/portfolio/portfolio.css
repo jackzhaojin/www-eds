@@ -126,7 +126,7 @@
 }
 
 .portfolio main .intro .intro-title h1 em {
-  font-style: italic;
+  font-style: var(--font-display-italic);
   color: var(--c-anima);
 }
 
@@ -277,7 +277,7 @@
 }
 
 .portfolio main .band-title em {
-  font-style: italic;
+  font-style: var(--font-display-italic);
   color: var(--accent);
 }
 

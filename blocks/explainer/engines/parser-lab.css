@@ -2,7 +2,7 @@
    with its October 2026 quality pass folded in. */
 /* stylelint-disable selector-class-pattern -- the source's BEM names are kept so the port stays faithful */
 .explainer.parser-lab .pl {
-  --pl-fail: #b0344f;
+  --pl-fail: var(--color-danger);
   --pl-err: var(--ink-2);
 
   background: var(--surface);
@@ -12,14 +12,12 @@
 }
 
 [data-theme="dark"] .explainer.parser-lab .pl {
-  --pl-fail: var(--rose);
-  --pl-err: var(--rose);
+  --pl-err: var(--color-danger);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .explainer.parser-lab .pl {
-    --pl-fail: var(--rose);
-    --pl-err: var(--rose);
+    --pl-err: var(--color-danger);
   }
 }
 
@@ -213,7 +211,7 @@
 }
 
 .explainer.parser-lab .psteps li[data-state="fail"] {
-  border-color: color-mix(in srgb, #b0344f 45%, var(--line));
+  border-color: color-mix(in srgb, var(--pl-fail) 45%, var(--line));
 }
 
 .explainer.parser-lab .psteps li[data-state="fail"] .ps__state {

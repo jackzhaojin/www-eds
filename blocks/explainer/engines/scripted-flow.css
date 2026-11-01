@@ -1,24 +1,10 @@
 /* Explainer engine "scripted-flow": the redrawn scripted-flow board (writing/2025-10-05 explainer.css). */
 .explainer.scripted-flow {
-  --dg-fn: var(--palette-blue-600);
-  --dg-api: var(--palette-rose-700);
-  --dg-llm: var(--palette-lavender-600);
+  --dg-fn: var(--color-topic-aem);
+  --dg-api: var(--color-project-rose);
+  --dg-llm: var(--color-accent);
   --dg-ink: var(--color-text);
   --dg-line: var(--color-text-muted);
-}
-
-[data-theme="dark"] .explainer.scripted-flow {
-  --dg-fn: var(--palette-blue-300);
-  --dg-api: var(--palette-rose-300);
-  --dg-llm: var(--palette-lavender-300);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.scripted-flow {
-    --dg-fn: var(--palette-blue-300);
-    --dg-api: var(--palette-rose-300);
-    --dg-llm: var(--palette-lavender-300);
-  }
 }
 
 .explainer.scripted-flow .dg {

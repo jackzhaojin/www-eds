@@ -1,7 +1,7 @@
 /* Explainer (retry-ladder): the failure ladder (writing/2026-04-05 explainer.css, .ladder, on
    the kit's .lab and .verdict). */
 .explainer.retry-ladder {
-  --ladder-fail: #c2433d;
+  --ladder-fail: var(--color-danger-strong);
 }
 
 .explainer.retry-ladder .ladder-picks {
@@ -90,7 +90,7 @@
 }
 
 .explainer.retry-ladder .ladder-pips i[data-k="diag"] {
-  background: var(--lav, #7a6bd1);
+  background: var(--lav);
 }
 
 .explainer.retry-ladder .ladder-pips i[data-k="fix"] {
@@ -130,7 +130,7 @@
 }
 
 .explainer.retry-ladder .ladder-legend li:nth-child(2)::before {
-  background: var(--lav, #7a6bd1);
+  background: var(--lav);
 }
 
 .explainer.retry-ladder .ladder-legend li:nth-child(3)::before {
@@ -190,7 +190,7 @@
 }
 
 .explainer.retry-ladder .ladder-log .n {
-  color: #8f8b86;
+  color: var(--color-code-comment);
 }
 
 .explainer.retry-ladder .ladder-static code {

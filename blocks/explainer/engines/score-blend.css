@@ -49,7 +49,7 @@
 }
 
 .explainer.score-blend .blend__row--agent output {
-  color: #b0344f;
+  color: var(--color-danger);
 }
 
 .explainer.score-blend .blend__row--det output {
@@ -81,7 +81,7 @@
 
 .explainer.score-blend .blend__fail input {
   margin-top: 3px;
-  accent-color: #c2433d;
+  accent-color: var(--color-danger-strong);
 }
 
 .explainer.score-blend .blend__bar {
@@ -219,19 +219,11 @@
   opacity: 0.4;
 }
 
-[data-theme="dark"] .explainer.score-blend .blend__row--agent output {
-  color: var(--rose);
-}
-
 [data-theme="dark"] .explainer.score-blend .blend__row--det output {
   color: #8fb8ea;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.score-blend .blend__row--agent output {
-    color: var(--rose);
-  }
-
   :root:not([data-theme="light"], [data-theme="dark"]) .explainer.score-blend .blend__row--det output {
     color: #8fb8ea;
   }

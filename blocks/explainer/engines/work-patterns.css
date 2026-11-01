@@ -3,25 +3,19 @@
    styled as their descendants, so the look holds in quick edit. */
 /* stylelint-disable selector-class-pattern -- the source's BEM names are kept so the port stays faithful */
 .explainer.work-patterns {
-  --pow-gold: var(--palette-gold-700);
-  --pow-gold-tint: rgb(125 95 14 / 7%);
-  --pow-gold-line: rgb(125 95 14 / 35%);
-  --pow-on-gold: var(--palette-warm-0);
+  --pow-gold: var(--color-topic-work);
+  --pow-gold-tint: color-mix(in srgb, var(--pow-gold) 7%, transparent);
+  --pow-gold-line: color-mix(in srgb, var(--pow-gold) 35%, transparent);
+  --pow-on-gold: var(--color-on-accent);
 }
 
 [data-theme="dark"] .explainer.work-patterns {
-  --pow-gold: var(--palette-gold-300);
-  --pow-gold-tint: rgb(240 207 142 / 8%);
-  --pow-gold-line: rgb(240 207 142 / 35%);
-  --pow-on-gold: var(--palette-night-900);
+  --pow-gold-tint: color-mix(in srgb, var(--pow-gold) 8%, transparent);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"], [data-theme="dark"]) .explainer.work-patterns {
-    --pow-gold: var(--palette-gold-300);
-    --pow-gold-tint: rgb(240 207 142 / 8%);
-    --pow-gold-line: rgb(240 207 142 / 35%);
-    --pow-on-gold: var(--palette-night-900);
+    --pow-gold-tint: color-mix(in srgb, var(--pow-gold) 8%, transparent);
   }
 }
 

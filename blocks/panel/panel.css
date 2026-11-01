@@ -103,7 +103,7 @@
 .panel.edge .panel-close p {
   margin-top: 22px;
   font-family: var(--font-display);
-  font-style: italic;
+  font-style: var(--font-display-italic);
   font-size: 17px;
   color: var(--ink);
 }

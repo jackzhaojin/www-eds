@@ -258,12 +258,12 @@
 }
 
 .explainer.beat-sim .bs__list li.is-fail {
-  border-color: rgb(194 67 61 / 55%);
-  background: rgb(194 67 61 / 5%);
+  border-color: color-mix(in srgb, var(--color-danger-strong) 55%, transparent);
+  background: color-mix(in srgb, var(--color-danger-strong) 5%, transparent);
 }
 
 .explainer.beat-sim .bs__list li.is-fail .bs__res {
-  color: #c2433d;
+  color: var(--color-danger-strong);
 }
 
 [data-theme="dark"] .explainer.beat-sim .bs__list li.is-fail .bs__res {

@@ -1,0 +1,220 @@
+/*
+ * Brand "adobe" (since v1.4.0): an Adobe-inspired brand for any page whose theme metadata names
+ * it (`theme | adobe`, per page or through the bulk metadata sheet; scripts.js applyBrand). The
+ * same design system, re-skinned on its semantic tier: the brand brings its own primitives
+ * (--adobe-*) and maps v3's semantic tokens onto them for each appearance, the way styles.css
+ * maps Jack's. Blocks read only semantic tokens, so every block follows, in light, dark and
+ * System, and in a section that forces its own theme (section metadata `theme`). Sizes, spacing
+ * and layout are v3's. Not Adobe's own design system: the faces stay the self-hosted ones, with
+ * Inter in the display role.
+ *
+ * Contrast (WCAG 2.2, by script): on the light page text 16.2, muted 8.4, faint 5.1, accent 5.2;
+ * on the dark page text 16.8, muted 10.9, faint 6.5, accent 6.1; in each inverse band text 16+,
+ * faint 6.6+, accent 5.4+; code text 15.3, comments 5.3, keywords 7.5; white on the red fill 4.6.
+ */
+
+/* ------------------------------------------------------------ primitives and brand-wide roles */
+:root[data-brand="adobe"] {
+  /* cool grays (light) */
+  --adobe-gray-0: #fff;
+  --adobe-gray-50: #fafafa;
+  --adobe-gray-75: #f4f4f4;
+  --adobe-gray-100: #f1f1f1;
+  --adobe-gray-600: #6b6b6b;
+  --adobe-gray-700: #4b4b4b;
+  --adobe-gray-900: #1d1d1d;
+
+  /* rich dark: near-black grounds, warm white type */
+  --adobe-night-1000: #0b0b0b;
+  --adobe-night-900: #111;
+  --adobe-night-850: #1b1b1b;
+  --adobe-night-800: #242424;
+  --adobe-white-100: #f4f1ec;
+  --adobe-white-300: #c9c4bd;
+  --adobe-white-400: #9c968f;
+
+  /* Adobe red: the fill that carries white type, a deeper step for text on light, lighter steps
+     for text on dark */
+  --adobe-red-fill: #eb1000;
+  --adobe-red-fill-hover: #c40d00;
+  --adobe-red-700: #b00e00;
+  --adobe-red-600: #d41100;
+  --adobe-red-300: #ff5a48;
+  --adobe-red-200: #ff8a7c;
+
+  /* type: the sans face in the display role; it has no italic, so display emphasis is upright
+     (the accent color carries it) */
+  --font-display: var(--font-body);
+  --font-display-italic: normal;
+  --button-radius: var(--radius-pill);
+
+  /* night, the code and terminal ground (status tones on night stay v3's) */
+  --color-night-line: rgb(255 255 255 / 9%);
+  --color-night-text: var(--adobe-white-100);
+  --color-night-text-muted: var(--adobe-white-300);
+  --color-night-text-faint: var(--adobe-white-400);
+  --color-night-accent: var(--adobe-red-200);
+  --color-code-comment: #8f8f8f;
+  --color-code-gutter: #5a5a5a;
+
+  /* the board under raster diagrams, neutral shadows */
+  --color-board: var(--adobe-gray-0);
+  --color-board-accent: var(--adobe-red-600);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 5%), 0 8px 24px -12px rgb(0 0 0 / 20%);
+}
+
+/* ------------------------------------------------------------ light */
+:root[data-brand="adobe"],
+[data-brand="adobe"] [data-theme="light"] {
+  --color-bg: var(--adobe-gray-50);
+  --color-bg-alt: var(--adobe-gray-100);
+  --color-surface: var(--adobe-gray-0);
+  --color-surface-raised: var(--adobe-gray-75);
+  --color-text: var(--adobe-gray-900);
+  --color-text-muted: var(--adobe-gray-700);
+  --color-text-faint: var(--adobe-gray-600);
+  --color-line: rgb(0 0 0 / 10%);
+  --color-line-strong: rgb(0 0 0 / 45%);
+  --color-accent: var(--adobe-red-600);
+  --color-accent-hover: var(--adobe-red-700);
+  --color-on-accent: var(--adobe-gray-0);
+  --color-accent-soft: rgb(212 17 0 / 7%);
+  --color-focus: var(--adobe-red-600);
+  --color-inverse-bg: var(--adobe-gray-900);
+  --color-inverse-text: var(--adobe-gray-50);
+  --color-topic-aem-ai: var(--adobe-red-600);
+  --color-diagram-ground: var(--adobe-gray-50);
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 5%);
+  --shadow-2: 0 8px 24px rgb(0 0 0 / 8%);
+  --color-night-bg: var(--adobe-night-850);
+  --color-night-bg-raised: var(--adobe-night-800);
+
+  /* the inverse band: near-black on a light page */
+  --inverse-bg: var(--adobe-gray-900);
+  --inverse-bg-alt: #242424;
+  --inverse-surface: #2a2a2a;
+  --inverse-surface-raised: #313131;
+  --inverse-text: var(--adobe-gray-50);
+  --inverse-text-muted: #d6d6d6;
+  --inverse-text-faint: #b3b3b3;
+  --inverse-line: rgb(255 255 255 / 14%);
+  --inverse-line-strong: rgb(255 255 255 / 42%);
+  --inverse-accent: var(--adobe-red-300);
+  --inverse-accent-hover: var(--adobe-red-200);
+  --inverse-on-accent: var(--adobe-gray-900);
+  --inverse-accent-soft: rgb(255 90 72 / 14%);
+  --inverse-focus: var(--adobe-red-300);
+  --inverse-inverse-bg: var(--adobe-gray-50);
+  --inverse-inverse-text: var(--adobe-gray-900);
+}
+
+/* ------------------------------------------------------------ dark (explicit, or a section forced dark) */
+:root[data-brand="adobe"][data-theme="dark"],
+[data-brand="adobe"] [data-theme="dark"] {
+  --color-bg: var(--adobe-night-900);
+  --color-bg-alt: var(--adobe-night-1000);
+  --color-surface: var(--adobe-night-850);
+  --color-surface-raised: var(--adobe-night-800);
+  --color-text: var(--adobe-white-100);
+  --color-text-muted: var(--adobe-white-300);
+  --color-text-faint: var(--adobe-white-400);
+  --color-line: rgb(255 255 255 / 9%);
+  --color-line-strong: rgb(255 255 255 / 36%);
+  --color-accent: var(--adobe-red-300);
+  --color-accent-hover: var(--adobe-red-200);
+  --color-on-accent: var(--adobe-night-900);
+  --color-accent-soft: rgb(255 90 72 / 12%);
+  --color-focus: var(--adobe-red-300);
+  --color-inverse-bg: var(--adobe-white-100);
+  --color-inverse-text: var(--adobe-night-900);
+  --color-topic-aem-ai: var(--adobe-red-300);
+  --color-diagram-ground: var(--adobe-gray-50);
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 30%);
+  --shadow-2: 0 8px 24px rgb(0 0 0 / 45%);
+  --color-night-bg: var(--adobe-night-1000);
+  --color-night-bg-raised: var(--adobe-night-850);
+
+  /* the inverse band: warm white on a dark page */
+  --inverse-bg: var(--adobe-white-100);
+  --inverse-bg-alt: #ebe8e3;
+  --inverse-surface: #e6e3de;
+  --inverse-surface-raised: #dedad4;
+  --inverse-text: var(--adobe-night-900);
+  --inverse-text-muted: #383838;
+  --inverse-text-faint: #555;
+  --inverse-line: rgb(17 17 17 / 14%);
+  --inverse-line-strong: rgb(17 17 17 / 42%);
+  --inverse-accent: var(--adobe-red-700);
+  --inverse-accent-hover: var(--adobe-red-600);
+  --inverse-on-accent: var(--adobe-gray-0);
+  --inverse-accent-soft: rgb(176 14 0 / 12%);
+  --inverse-focus: var(--adobe-red-700);
+  --inverse-inverse-bg: var(--adobe-night-900);
+  --inverse-inverse-text: var(--adobe-white-100);
+}
+
+/* ------------------------------------------------------------ dark (System, the OS prefers dark) */
+@media (prefers-color-scheme: dark) {
+  /* stylelint-disable-next-line selector-not-notation -- two :not()s outrank styles.css's System
+     rule by specificity (0,4,0 over 0,3,0), not by which stylesheet loaded last */
+  :root[data-brand="adobe"]:not([data-theme="light"]):not([data-theme="dark"]) {
+    --color-bg: var(--adobe-night-900);
+    --color-bg-alt: var(--adobe-night-1000);
+    --color-surface: var(--adobe-night-850);
+    --color-surface-raised: var(--adobe-night-800);
+    --color-text: var(--adobe-white-100);
+    --color-text-muted: var(--adobe-white-300);
+    --color-text-faint: var(--adobe-white-400);
+    --color-line: rgb(255 255 255 / 9%);
+    --color-line-strong: rgb(255 255 255 / 36%);
+    --color-accent: var(--adobe-red-300);
+    --color-accent-hover: var(--adobe-red-200);
+    --color-on-accent: var(--adobe-night-900);
+    --color-accent-soft: rgb(255 90 72 / 12%);
+    --color-focus: var(--adobe-red-300);
+    --color-inverse-bg: var(--adobe-white-100);
+    --color-inverse-text: var(--adobe-night-900);
+    --color-topic-aem-ai: var(--adobe-red-300);
+    --color-diagram-ground: var(--adobe-gray-50);
+    --shadow-1: 0 1px 2px rgb(0 0 0 / 30%);
+    --shadow-2: 0 8px 24px rgb(0 0 0 / 45%);
+    --color-night-bg: var(--adobe-night-1000);
+    --color-night-bg-raised: var(--adobe-night-850);
+    --inverse-bg: var(--adobe-white-100);
+    --inverse-bg-alt: #ebe8e3;
+    --inverse-surface: #e6e3de;
+    --inverse-surface-raised: #dedad4;
+    --inverse-text: var(--adobe-night-900);
+    --inverse-text-muted: #383838;
+    --inverse-text-faint: #555;
+    --inverse-line: rgb(17 17 17 / 14%);
+    --inverse-line-strong: rgb(17 17 17 / 42%);
+    --inverse-accent: var(--adobe-red-700);
+    --inverse-accent-hover: var(--adobe-red-600);
+    --inverse-on-accent: var(--adobe-gray-0);
+    --inverse-accent-soft: rgb(176 14 0 / 12%);
+    --inverse-focus: var(--adobe-red-700);
+    --inverse-inverse-bg: var(--adobe-night-900);
+    --inverse-inverse-text: var(--adobe-white-100);
+  }
+}
+
+/* ------------------------------------------------------------ components the brand restyles */
+
+/* the sans display face reads tighter */
+:root[data-brand="adobe"] :is(h1, h2, h3, h4) {
+  letter-spacing: -0.02em;
+}
+
+/* accent buttons are Adobe red with white type in every appearance */
+:root[data-brand="adobe"] a.button.accent:any-link {
+  background: var(--adobe-red-fill);
+  border-color: var(--adobe-red-fill);
+  color: #fff;
+}
+
+:root[data-brand="adobe"] a.button.accent:hover {
+  background: var(--adobe-red-fill-hover);
+  border-color: var(--adobe-red-fill-hover);
+  color: #fff;
+}

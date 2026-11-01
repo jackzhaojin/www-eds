@@ -38,7 +38,7 @@
 .chapter-head .chapter-head-heading :is(h1, h2) em {
   display: block;
   margin-top: 6px;
-  font-style: italic;
+  font-style: var(--font-display-italic);
   font-size: 0.72em;
   color: var(--accent);
 }

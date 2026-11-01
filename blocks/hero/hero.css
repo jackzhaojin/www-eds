@@ -35,6 +35,11 @@
   gap: 20px;
 }
 
+/* in quick edit the editor wraps the heading and becomes the flex item, so it keeps the width */
+.hero.home .hero-title .prosemirror-editor {
+  flex-shrink: 0;
+}
+
 .hero.home .hero-title :is(h1, h2, h3) {
   flex-shrink: 0;
   font-size: clamp(3.5rem, 7vw, 6rem);
@@ -61,6 +66,7 @@
 }
 
 .hero .hero-intro em {
+  font-style: var(--font-display-italic);
   color: var(--color-accent);
 }
 
@@ -141,6 +147,16 @@
 .hero .hero-note-list li a:hover {
   color: var(--color-accent);
   border-color: currentcolor;
+}
+
+/* An item without a link (a date, a time) takes its bold text as the title, in the same place. */
+.hero .hero-note-list li strong {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: inherit;
+  color: var(--color-text);
 }
 
 @media (width <= 760px) {

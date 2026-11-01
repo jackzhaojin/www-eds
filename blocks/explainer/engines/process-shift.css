@@ -1,0 +1,367 @@
+/* Explainer engine "process-shift": a process as a flow of steps, one version at a time, each
+   step marked by who does it: the person (an ink ring), AI (an accent disc), automation (a
+   faint square). Steps run down the column when it is narrow, across it from 760px. */
+.explainer.process-shift .ps {
+  --ps-you: var(--color-text);
+  --ps-ai: var(--color-accent);
+  --ps-auto: var(--color-text-faint);
+  --ps-node: 16px;
+  --ps-gap: 18px;
+  --ps-beat: 560ms;
+
+  margin: 0;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  padding: clamp(18px, 3.2cqi, 36px);
+}
+
+.explainer.process-shift .ps-switch {
+  margin-bottom: clamp(22px, 3.4cqi, 36px);
+}
+
+.explainer.process-shift .ps-switch > * {
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+.explainer.process-shift .ps-option strong {
+  font-weight: inherit;
+}
+
+.explainer.process-shift .ps-lane:not([hidden]) {
+  animation: ps-in 380ms var(--ease-standard);
+}
+
+@keyframes ps-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.explainer.process-shift .ps-track ol {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+/* a step: the authored item, its marker drawn before it (narrow: the marker on the left) */
+.explainer.process-shift .ps-track li {
+  position: relative;
+  min-width: 0;
+  min-height: calc(var(--ps-node) + 6px);
+  padding-left: calc(var(--ps-node) + 14px);
+  font-size: var(--text-body);
+  line-height: 1.45;
+  color: var(--color-text-muted);
+  overflow-wrap: break-word;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.explainer.process-shift .ps-track li::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 3px;
+  left: 0;
+  box-sizing: border-box;
+  width: var(--ps-node);
+  height: var(--ps-node);
+  border: 2px solid var(--ps-you);
+  border-radius: 50%;
+  background: var(--color-surface);
+  transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.explainer.process-shift .ps-track li[data-kind="ai"]::before {
+  border-color: var(--ps-ai);
+  background: var(--ps-ai);
+  box-shadow: 0 0 0 4px var(--color-accent-soft);
+}
+
+.explainer.process-shift .ps-track li[data-kind="auto"]::before {
+  border-color: var(--ps-auto);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ps-auto) 24%, var(--color-surface));
+}
+
+/* the connector down to the next step (narrow) */
+.explainer.process-shift .ps-track li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--ps-node) + 9px);
+  bottom: -17px;
+  left: calc(var(--ps-node) / 2 - 0.5px);
+  width: 1px;
+  background: var(--color-line-strong);
+}
+
+/* the actor's name opens each step: a mono label in its color */
+.explainer.process-shift .ps-track li strong:first-child {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--ps-you);
+}
+
+.explainer.process-shift .ps-track li[data-kind="ai"] strong:first-child {
+  color: var(--ps-ai);
+}
+
+.explainer.process-shift .ps-track li[data-kind="auto"] strong:first-child {
+  color: var(--ps-auto);
+}
+
+/* playing: steps ahead of the run wait in a lower tone, the current one swells */
+.explainer.process-shift .ps-track.is-playing li:not([data-on]) {
+  opacity: 0.3;
+}
+
+.explainer.process-shift .ps-track li[data-now]::before {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 6px var(--color-line);
+}
+
+.explainer.process-shift .ps-track li[data-kind="ai"][data-now]::before {
+  box-shadow: 0 0 0 7px var(--color-accent-soft);
+}
+
+/* wide: the steps run across, the marker above each one */
+@container (width >= 760px) {
+  .explainer.process-shift .ps-track ol {
+    grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+    gap: 0 var(--ps-gap);
+  }
+
+  .explainer.process-shift .ps-track li {
+    padding-top: calc(var(--ps-node) + 21px);
+    padding-left: 0;
+  }
+
+  .explainer.process-shift .ps-track li:not(:last-child)::after {
+    display: none;
+  }
+
+  /* one line from the first marker to the last; the run draws over it */
+  .explainer.process-shift .ps-track ol::before,
+  .explainer.process-shift .ps-track ol::after {
+    content: "";
+    position: absolute;
+    top: calc(3px + var(--ps-node) / 2 - 0.5px);
+    left: calc(var(--ps-node) / 2);
+    right: calc((100% - (var(--n) - 1) * var(--ps-gap)) / var(--n) - var(--ps-node) / 2);
+    height: 1px;
+    background: var(--color-line-strong);
+  }
+
+  .explainer.process-shift .ps-track ol::after {
+    height: 2px;
+    margin-top: -0.5px;
+    background: var(--color-text);
+    transform: scaleX(var(--p, 1));
+    transform-origin: left center;
+    transition: transform var(--ps-beat) linear;
+  }
+}
+
+.explainer.process-shift .ps-note {
+  margin-top: clamp(22px, 3cqi, 32px);
+  padding-left: 16px;
+  border-left: 2px solid var(--ps-ai);
+  max-width: 62ch;
+}
+
+.explainer.process-shift .ps-note p {
+  font-size: var(--text-body-lg);
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.explainer.process-shift .ps-note p + p {
+  margin-top: 8px;
+}
+
+/* the split: who does the work in the shown version */
+.explainer.process-shift .ps-split {
+  display: grid;
+  gap: 12px;
+  margin-top: clamp(22px, 3cqi, 32px);
+  padding-top: 18px;
+  border-top: var(--border-width) solid var(--color-line);
+}
+
+.explainer.process-shift .ps-key ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.explainer.process-shift .ps-key li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.explainer.process-shift .ps-key strong {
+  font-weight: var(--weight-medium);
+  color: var(--color-text);
+}
+
+.explainer.process-shift .ps-key li::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--ps-you);
+  border-radius: 50%;
+}
+
+.explainer.process-shift .ps-key li:nth-child(2)::before {
+  border-color: var(--ps-ai);
+  background: var(--ps-ai);
+}
+
+.explainer.process-shift .ps-key li:nth-child(3)::before {
+  border-color: var(--ps-auto);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--ps-auto) 24%, var(--color-surface));
+}
+
+/* each actor's step count in the shown version, from the engine's --c0 to --c2 */
+.explainer.process-shift .ps-key li::after {
+  counter-reset: ps-count var(--c0);
+  content: counter(ps-count);
+  min-width: 2ch;
+  color: var(--color-text);
+  font-weight: var(--weight-bold);
+}
+
+.explainer.process-shift .ps-key li:nth-child(2)::after {
+  counter-reset: ps-count var(--c1);
+}
+
+.explainer.process-shift .ps-key li:nth-child(3)::after {
+  counter-reset: ps-count var(--c2);
+}
+
+.explainer.process-shift .ps-key li:nth-child(n + 4) {
+  display: none;
+}
+
+.explainer.process-shift .ps-bar {
+  display: flex;
+  gap: 3px;
+  height: 8px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+}
+
+.explainer.process-shift .ps-seg {
+  flex: 0 1 0;
+  min-width: 0;
+  border-radius: var(--radius-pill);
+  background: var(--ps-you);
+  transition: flex-grow 640ms var(--ease-standard);
+}
+
+.explainer.process-shift .ps-seg.is-k1 {
+  background: var(--ps-ai);
+}
+
+.explainer.process-shift .ps-seg.is-k2 {
+  background: color-mix(in srgb, var(--ps-auto) 60%, var(--color-surface));
+}
+
+.explainer.process-shift .ps-caption {
+  margin-top: 16px;
+  font-size: var(--text-small);
+  color: var(--color-text-faint);
+}
+
+.explainer.process-shift .ps-name-row {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explainer.process-shift .ps-lane:not([hidden]) {
+    animation: none;
+  }
+
+  .explainer.process-shift :is(.ps-track li, .ps-track li::before, .ps-seg),
+  .explainer.process-shift .ps-track ol::after {
+    transition: none;
+  }
+}
+
+/* Printed: no switch to click, so every version shows under its label, at rest. */
+@media print {
+  .explainer.process-shift .ps {
+    padding: 16px 20px;
+  }
+
+  .explainer.process-shift :is(.ps-switch, .ps-split) {
+    display: none;
+  }
+
+  .explainer.process-shift .ps-lane[hidden] {
+    display: block !important;
+  }
+
+  .explainer.process-shift .ps-lane {
+    animation: none;
+    break-inside: avoid;
+  }
+
+  .explainer.process-shift .ps-lane + .ps-lane {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: var(--border-width) solid var(--color-line);
+  }
+
+  .explainer.process-shift .ps-lane::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 14px;
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .explainer.process-shift .ps-track li {
+    opacity: 1 !important;
+  }
+
+  .explainer.process-shift .ps-track li[data-now]::before {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .explainer.process-shift .ps-track li[data-kind="ai"][data-now]::before {
+    box-shadow: 0 0 0 4px var(--color-accent-soft);
+  }
+
+  .explainer.process-shift .ps-track ol::after {
+    transform: none;
+  }
+
+  .explainer.process-shift .ps-note {
+    margin-top: 14px;
+  }
+}

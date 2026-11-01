@@ -60,8 +60,8 @@
 .explainer.task-protocol .tl__rules[data-r4="fail"] li:nth-child(4),
 .explainer.task-protocol .tl__rules[data-r5="fail"] li:nth-child(5),
 .explainer.task-protocol .tl__rules[data-r6="fail"] li:nth-child(6) {
-  border-color: #c2433d;
-  background: rgb(194 67 61 / 6%);
+  border-color: var(--color-danger-strong);
+  background: var(--color-danger-soft);
 }
 
 .explainer.task-protocol .tl__rules[data-r1="skip"] li:nth-child(1),

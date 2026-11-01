@@ -64,7 +64,7 @@
 }
 
 .explainer.branch-push .br__lane[data-state="failed"] {
-  border-color: #c2433d;
+  border-color: var(--color-danger-strong);
 }
 
 .explainer.branch-push .br__lane[data-state="idle"] {
@@ -125,8 +125,8 @@
 .explainer.branch-push .br-run[data-fail="3"] li:nth-child(3)::before,
 .explainer.branch-push .br-run[data-fail="4"] li:nth-child(4)::before,
 .explainer.branch-push .br-run[data-fail="5"] li:nth-child(5)::before {
-  background: #c2433d;
-  border-color: #c2433d;
+  background: var(--color-danger-strong);
+  border-color: var(--color-danger-strong);
 }
 
 .explainer.branch-push .br-run[data-fail="1"] li:nth-child(n + 2),
@@ -162,18 +162,8 @@
 .explainer.branch-push .br-run li em {
   display: block;
   font: 500 12px/1.45 var(--font-mono);
-  color: #b0344f;
+  color: var(--color-danger);
   margin-top: 2px;
-}
-
-[data-theme="dark"] .explainer.branch-push .br-run li em {
-  color: var(--rose);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.branch-push .br-run li em {
-    color: var(--rose);
-  }
 }
 
 /* caption under the lab, inset to match the lab grid */

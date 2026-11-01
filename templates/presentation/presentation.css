@@ -1,0 +1,191 @@
+/* Presentation: one section is one slide. Sizes are the v3 type scale; only the rhythm and the
+   slide height are the template's. */
+.presentation main > .section {
+  padding-block: clamp(var(--space-8), 11vh, var(--space-10));
+}
+
+/* On a screen tall enough to present from, a slide fills it and centers its content. */
+@media (width >= 900px) and (height >= 640px) {
+  .presentation main > .section {
+    min-height: calc(100svh - var(--header-height));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.presentation main > .section > div + div {
+  margin-top: var(--space-6);
+}
+
+.presentation main > .section > .default-content-wrapper > * + * {
+  margin-top: var(--space-4);
+}
+
+.presentation main > .section > .default-content-wrapper p,
+.presentation main > .section > .default-content-wrapper li {
+  max-width: 62ch;
+  margin: 0;
+  font-size: var(--text-body-lg);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.presentation main > .section > .default-content-wrapper strong {
+  color: var(--color-text);
+}
+
+.presentation main > .section > .default-content-wrapper h2 {
+  max-width: 24ch;
+  font-size: var(--text-h1);
+  text-wrap: balance;
+}
+
+.presentation main > .section > .default-content-wrapper h3 {
+  max-width: 30ch;
+  font-size: var(--text-h2);
+  text-wrap: balance;
+}
+
+/* The kicker: the short line right above a slide's heading. Descendant selectors, so the look
+   holds in quick edit, where the editor sits between the wrapper and the text. */
+.presentation main > .section > .default-content-wrapper p:has(+ :is(h2, h3)) {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.presentation main > .section > .default-content-wrapper :is(h2, h3) + p {
+  margin-top: var(--space-4);
+  font-size: var(--text-h3);
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+/* Quick edit puts each text in its own editor (div.prosemirror-editor > div.ProseMirror > p), so
+   the kicker and the lead are found through the editors (the site's edit-mode foundation). */
+.presentation main .prosemirror-editor:has(+ .prosemirror-editor :is(h2, h3)) p {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.presentation main .prosemirror-editor:has(:is(h2, h3)) + .prosemirror-editor p {
+  font-size: var(--text-h3);
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+/* A list on a slide: numbered rows under hairlines (the agenda, the takeaways). */
+.presentation main > .section > .default-content-wrapper :is(ol, ul) {
+  max-width: 62rem;
+  margin-top: var(--space-6);
+  padding: 0;
+  list-style: none;
+  counter-reset: slide-list;
+  border-bottom: var(--border-width) solid var(--color-line);
+}
+
+.presentation main > .section > .default-content-wrapper :is(ol, ul) li {
+  position: relative;
+  counter-increment: slide-list;
+  max-width: none;
+  padding-block: var(--space-4);
+  padding-left: calc(3.5ch + var(--space-4));
+  border-top: var(--border-width) solid var(--color-line);
+}
+
+/* the marker sits in its own gutter; the item's text, inline marks included, stays one flow */
+.presentation main > .section > .default-content-wrapper :is(ol, ul) li::before {
+  content: counter(slide-list, decimal-leading-zero);
+  position: absolute;
+  top: var(--space-4);
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  line-height: 2.3;
+  color: var(--color-accent);
+}
+
+.presentation main > .section > .default-content-wrapper ul li::before {
+  content: "";
+  top: calc(var(--space-4) + 0.75em);
+  left: 0.4ch;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.presentation main > .section > .default-content-wrapper :is(ol, ul) + p {
+  margin-top: var(--space-6);
+}
+
+.presentation main > .section > .default-content-wrapper li a:any-link {
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: var(--border-width) solid var(--color-line-strong);
+}
+
+.presentation main > .section > .default-content-wrapper li a:hover {
+  color: var(--color-accent);
+  border-color: currentcolor;
+}
+
+/* A slide's facts (why it works, the demo, try it) read at slide size. */
+.presentation main .facts {
+  max-width: 62rem;
+}
+
+.presentation main .facts td {
+  font-size: var(--text-body-lg);
+  line-height: 1.55;
+}
+
+.presentation main .facts th {
+  width: 180px;
+  line-height: 2.4;
+}
+
+@media (width <= 767px) {
+  .presentation main .facts th {
+    width: 104px;
+  }
+
+  .presentation main .facts td {
+    font-size: var(--text-body);
+  }
+}
+
+/* Printed or saved as PDF: each slide starts a page, no site chrome, tighter margins. */
+@page {
+  margin: 0.45in;
+}
+
+@media print {
+  .presentation > header,
+  .presentation > footer {
+    display: none;
+  }
+
+  .presentation main > .section {
+    min-height: auto;
+    padding-block: var(--space-5);
+    border-top: 0;
+    break-before: page;
+  }
+
+  .presentation main > .section:first-child {
+    break-before: auto;
+  }
+
+  .presentation main > .section > div + div {
+    margin-top: var(--space-5);
+  }
+}

@@ -260,7 +260,7 @@
   margin: 26px auto 0;
   text-align: center;
   font-family: var(--font-display);
-  font-style: italic;
+  font-style: var(--font-display-italic);
   font-size: 17px;
   color: var(--ink-soft);
 }

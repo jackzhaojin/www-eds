@@ -99,6 +99,7 @@
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-bold: 600;
+  --font-display-italic: italic;                                 /* the display face's emphasis */
 
   /* spacing, 4px base */
   --space-1: 4px;
@@ -134,6 +135,36 @@
 
   /* stacking */
   --z-header: 100;
+
+  /* night: the dark ground that code, terminals and labs keep in both appearances (its ground
+     and raised step are per appearance, below) */
+  --color-night-line: var(--palette-line-night);
+  --color-night-text: var(--palette-bone-100);
+  --color-night-text-muted: var(--palette-bone-300);
+  --color-night-text-faint: var(--palette-bone-400);
+  --color-night-accent: var(--palette-lavender-300);
+  --color-night-success: var(--palette-mint-300);
+  --color-night-warning: var(--palette-gold-300);
+  --color-night-danger: var(--palette-rose-300);
+
+  /* code on night: syntax colors, comments and line numbers */
+  --color-code-keyword: var(--color-night-accent);
+  --color-code-string: var(--color-night-success);
+  --color-code-number: var(--color-night-warning);
+  --color-code-comment: #9a958f;
+  --color-code-gutter: #5c5955;
+
+  /* status fills and rules, the same in both appearances (the text tones are per appearance) */
+  --color-danger-strong: var(--palette-red-600);
+  --color-danger-soft: rgb(194 67 61 / 6%);
+  --color-success-strong: var(--palette-mint-700);
+
+  /* the white board under raster diagrams and screenshots, and the accent drawn on it */
+  --color-board: #fff;
+  --color-board-accent: var(--palette-lavender-600);
+
+  /* a raised card's shadow (the writing list) */
+  --shadow-card: 0 1px 2px rgb(20 18 15 / 4%), 0 8px 24px -12px rgb(20 18 15 / 18%);
 
   /* each portfolio project's accent, by its chapter word (ch-<word>): its page, its card in
      the portfolio gallery, and a talk about it in the talks gallery */
@@ -184,6 +215,31 @@
   --color-diagram-ground: var(--palette-warm-50);
   --shadow-1: 0 1px 2px rgba(20, 18, 15, 0.04);
   --shadow-2: 0 8px 24px rgba(20, 18, 15, 0.07);
+
+  /* night ground and its raised step, status text */
+  --color-night-bg: var(--palette-night-850);
+  --color-night-bg-raised: var(--palette-night-800);
+  --color-danger: #b0344f;
+  --color-success: var(--palette-mint-700);
+  --color-warning: var(--palette-gold-700);
+
+  /* the inverse band: a dark band on a light page */
+  --inverse-bg: var(--palette-ink-900);
+  --inverse-bg-alt: color-mix(in srgb, var(--palette-ink-900) 94%, var(--palette-warm-50));
+  --inverse-surface: color-mix(in srgb, var(--palette-ink-900) 92%, var(--palette-warm-50));
+  --inverse-surface-raised: color-mix(in srgb, var(--palette-ink-900) 88%, var(--palette-warm-50));
+  --inverse-text: var(--palette-warm-50);
+  --inverse-text-muted: color-mix(in srgb, var(--palette-warm-50) 84%, var(--palette-ink-900));
+  --inverse-text-faint: color-mix(in srgb, var(--palette-warm-50) 70%, var(--palette-ink-900));
+  --inverse-line: color-mix(in srgb, var(--palette-warm-50) 14%, transparent);
+  --inverse-line-strong: color-mix(in srgb, var(--palette-warm-50) 42%, transparent);
+  --inverse-accent: var(--palette-lavender-300);
+  --inverse-accent-hover: var(--palette-lavender-200);
+  --inverse-on-accent: var(--palette-ink-900);
+  --inverse-accent-soft: color-mix(in srgb, var(--palette-lavender-300) 14%, transparent);
+  --inverse-focus: var(--palette-lavender-300);
+  --inverse-inverse-bg: var(--palette-warm-50);
+  --inverse-inverse-text: var(--palette-ink-900);
 }
 
 /* ------------------------------------------------------------ dark (explicit) */
@@ -221,6 +277,31 @@
   --color-diagram-ground: var(--palette-warm-50);
   --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.30);
   --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.40);
+
+  /* night ground and its raised step, status text */
+  --color-night-bg: var(--palette-night-950);
+  --color-night-bg-raised: var(--palette-night-850);
+  --color-danger: var(--palette-rose-300);
+  --color-success: var(--palette-mint-300);
+  --color-warning: var(--palette-gold-300);
+
+  /* the inverse band: a light band on a dark page */
+  --inverse-bg: var(--palette-bone-100);
+  --inverse-bg-alt: color-mix(in srgb, var(--palette-bone-100) 94%, var(--palette-night-900));
+  --inverse-surface: color-mix(in srgb, var(--palette-bone-100) 92%, var(--palette-night-900));
+  --inverse-surface-raised: color-mix(in srgb, var(--palette-bone-100) 88%, var(--palette-night-900));
+  --inverse-text: var(--palette-night-900);
+  --inverse-text-muted: color-mix(in srgb, var(--palette-night-900) 82%, var(--palette-bone-100));
+  --inverse-text-faint: color-mix(in srgb, var(--palette-night-900) 72%, var(--palette-bone-100));
+  --inverse-line: color-mix(in srgb, var(--palette-night-900) 14%, transparent);
+  --inverse-line-strong: color-mix(in srgb, var(--palette-night-900) 42%, transparent);
+  --inverse-accent: var(--palette-lavender-700);
+  --inverse-accent-hover: var(--palette-lavender-600);
+  --inverse-on-accent: var(--palette-warm-0);
+  --inverse-accent-soft: color-mix(in srgb, var(--palette-lavender-700) 12%, transparent);
+  --inverse-focus: var(--palette-lavender-700);
+  --inverse-inverse-bg: var(--palette-night-900);
+  --inverse-inverse-text: var(--palette-bone-100);
 }
 
 /* ------------------------------------------------------------ dark (system choice, OS prefers dark) */
@@ -259,6 +340,31 @@
     --color-diagram-ground: var(--palette-warm-50);
     --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.30);
     --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.40);
+
+    /* night ground and its raised step, status text */
+    --color-night-bg: var(--palette-night-950);
+    --color-night-bg-raised: var(--palette-night-850);
+    --color-danger: var(--palette-rose-300);
+    --color-success: var(--palette-mint-300);
+    --color-warning: var(--palette-gold-300);
+
+    /* the inverse band: a light band on a dark page */
+    --inverse-bg: var(--palette-bone-100);
+    --inverse-bg-alt: color-mix(in srgb, var(--palette-bone-100) 94%, var(--palette-night-900));
+    --inverse-surface: color-mix(in srgb, var(--palette-bone-100) 92%, var(--palette-night-900));
+    --inverse-surface-raised: color-mix(in srgb, var(--palette-bone-100) 88%, var(--palette-night-900));
+    --inverse-text: var(--palette-night-900);
+    --inverse-text-muted: color-mix(in srgb, var(--palette-night-900) 82%, var(--palette-bone-100));
+    --inverse-text-faint: color-mix(in srgb, var(--palette-night-900) 72%, var(--palette-bone-100));
+    --inverse-line: color-mix(in srgb, var(--palette-night-900) 14%, transparent);
+    --inverse-line-strong: color-mix(in srgb, var(--palette-night-900) 42%, transparent);
+    --inverse-accent: var(--palette-lavender-700);
+    --inverse-accent-hover: var(--palette-lavender-600);
+    --inverse-on-accent: var(--palette-warm-0);
+    --inverse-accent-soft: color-mix(in srgb, var(--palette-lavender-700) 12%, transparent);
+    --inverse-focus: var(--palette-lavender-700);
+    --inverse-inverse-bg: var(--palette-night-900);
+    --inverse-inverse-text: var(--palette-bone-100);
   }
 }
 
@@ -465,7 +571,7 @@ h4 {
 
 h1 em,
 h2 em {
-  font-style: italic;
+  font-style: var(--font-display-italic);
   font-weight: inherit;
   color: var(--color-accent);
 }
@@ -727,6 +833,8 @@ main > .section.tint::before {
     linear-gradient(180deg, color-mix(in srgb, var(--band-accent) var(--band-tint-soft), transparent), transparent 30%, transparent 78%, color-mix(in srgb, var(--band-accent) var(--band-tint-edge), transparent));
 }
 
+/* The inverse band takes the --inverse-* tokens of its appearance: from the page, or from its own
+   section metadata (theme dark or light), which redeclares them on the section. */
 main > .section.inverse {
   background: var(--color-inverse-bg);
   color: var(--color-inverse-text);
@@ -734,65 +842,22 @@ main > .section.inverse {
 }
 
 main > .section.inverse > div {
-  --color-bg: var(--palette-ink-900);
-  --color-bg-alt: color-mix(in srgb, var(--palette-ink-900) 94%, var(--palette-warm-50));
-  --color-surface: color-mix(in srgb, var(--palette-ink-900) 92%, var(--palette-warm-50));
-  --color-surface-raised: color-mix(in srgb, var(--palette-ink-900) 88%, var(--palette-warm-50));
-  --color-text: var(--palette-warm-50);
-  --color-text-muted: color-mix(in srgb, var(--palette-warm-50) 84%, var(--palette-ink-900));
-  --color-text-faint: color-mix(in srgb, var(--palette-warm-50) 70%, var(--palette-ink-900));
-  --color-line: color-mix(in srgb, var(--palette-warm-50) 14%, transparent);
-  --color-line-strong: color-mix(in srgb, var(--palette-warm-50) 42%, transparent);
-  --color-accent: var(--palette-lavender-300);
-  --color-accent-hover: var(--palette-lavender-200);
-  --color-on-accent: var(--palette-ink-900);
-  --color-accent-soft: color-mix(in srgb, var(--palette-lavender-300) 14%, transparent);
-  --color-focus: var(--palette-lavender-300);
-  --color-inverse-bg: var(--palette-warm-50);
-  --color-inverse-text: var(--palette-ink-900);
-}
-
-/* An inverse band in the dark theme: the page is dark, or the band is forced dark by its own
-   section metadata (theme dark); a band forced light keeps the light inverse. */
-[data-theme="dark"] main > .section.inverse:not([data-theme="light"]) > div,
-main > .section.inverse[data-theme="dark"] > div {
-  --color-bg: var(--palette-bone-100);
-  --color-bg-alt: color-mix(in srgb, var(--palette-bone-100) 94%, var(--palette-night-900));
-  --color-surface: color-mix(in srgb, var(--palette-bone-100) 92%, var(--palette-night-900));
-  --color-surface-raised: color-mix(in srgb, var(--palette-bone-100) 88%, var(--palette-night-900));
-  --color-text: var(--palette-night-900);
-  --color-text-muted: color-mix(in srgb, var(--palette-night-900) 82%, var(--palette-bone-100));
-  --color-text-faint: color-mix(in srgb, var(--palette-night-900) 72%, var(--palette-bone-100));
-  --color-line: color-mix(in srgb, var(--palette-night-900) 14%, transparent);
-  --color-line-strong: color-mix(in srgb, var(--palette-night-900) 42%, transparent);
-  --color-accent: var(--palette-lavender-700);
-  --color-accent-hover: var(--palette-lavender-600);
-  --color-on-accent: var(--palette-warm-0);
-  --color-accent-soft: color-mix(in srgb, var(--palette-lavender-700) 12%, transparent);
-  --color-focus: var(--palette-lavender-700);
-  --color-inverse-bg: var(--palette-night-900);
-  --color-inverse-text: var(--palette-bone-100);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"], [data-theme="dark"]) main > .section.inverse:not([data-theme="light"]) > div {
-    --color-bg: var(--palette-bone-100);
-    --color-bg-alt: color-mix(in srgb, var(--palette-bone-100) 94%, var(--palette-night-900));
-    --color-surface: color-mix(in srgb, var(--palette-bone-100) 92%, var(--palette-night-900));
-    --color-surface-raised: color-mix(in srgb, var(--palette-bone-100) 88%, var(--palette-night-900));
-    --color-text: var(--palette-night-900);
-    --color-text-muted: color-mix(in srgb, var(--palette-night-900) 82%, var(--palette-bone-100));
-    --color-text-faint: color-mix(in srgb, var(--palette-night-900) 72%, var(--palette-bone-100));
-    --color-line: color-mix(in srgb, var(--palette-night-900) 14%, transparent);
-    --color-line-strong: color-mix(in srgb, var(--palette-night-900) 42%, transparent);
-    --color-accent: var(--palette-lavender-700);
-    --color-accent-hover: var(--palette-lavender-600);
-    --color-on-accent: var(--palette-warm-0);
-    --color-accent-soft: color-mix(in srgb, var(--palette-lavender-700) 12%, transparent);
-    --color-focus: var(--palette-lavender-700);
-    --color-inverse-bg: var(--palette-night-900);
-    --color-inverse-text: var(--palette-bone-100);
-  }
+  --color-bg: var(--inverse-bg);
+  --color-bg-alt: var(--inverse-bg-alt);
+  --color-surface: var(--inverse-surface);
+  --color-surface-raised: var(--inverse-surface-raised);
+  --color-text: var(--inverse-text);
+  --color-text-muted: var(--inverse-text-muted);
+  --color-text-faint: var(--inverse-text-faint);
+  --color-line: var(--inverse-line);
+  --color-line-strong: var(--inverse-line-strong);
+  --color-accent: var(--inverse-accent);
+  --color-accent-hover: var(--inverse-accent-hover);
+  --color-on-accent: var(--inverse-on-accent);
+  --color-accent-soft: var(--inverse-accent-soft);
+  --color-focus: var(--inverse-focus);
+  --color-inverse-bg: var(--inverse-inverse-bg);
+  --color-inverse-text: var(--inverse-inverse-text);
 }
 
 @media (width <= 479px) {
