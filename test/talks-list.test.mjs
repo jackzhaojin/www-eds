@@ -32,7 +32,8 @@ test('a talk row is an Event on the hub, its write-up and project linked', () =>
   assert.equal(item.url, `${HUB}#adaptto-2026`);
   assert.equal(item.startDate, '2026-04-06');
   assert.equal(item.additionalType, 'Community demo');
-  assert.deepEqual(item.superEvent, { name: 'AI Tinkerers Columbus' });
+  assert.deepEqual(item.organizer, { '@type': 'Organization', name: 'AI Tinkerers Columbus' });
+  assert.equal('superEvent' in item, false);
   assert.deepEqual(item.location, { '@type': 'Place', name: 'Columbus, Ohio', address: 'Columbus, Ohio' });
   assert.equal(item.eventAttendanceMode, 'https://schema.org/OfflineEventAttendanceMode');
   assert.equal(item.eventStatus, 'https://schema.org/EventScheduled');
@@ -44,7 +45,7 @@ test('partial dates stay partial, missing parts are left out, rows without an id
   const items = talkSchemaItems([talk({ date: 'September 2026' }), talk({ id: '' }), talk({ title: '' })], HUB);
   assert.equal(items.length, 1);
   assert.equal(items[0].startDate, '2026-09');
-  ['description', 'additionalType', 'superEvent', 'location', 'subjectOf', 'about'].forEach((key) => assert.equal(key in items[0], false));
+  ['description', 'additionalType', 'organizer', 'location', 'subjectOf', 'about'].forEach((key) => assert.equal(key in items[0], false));
 });
 
 test('in the hub graph an Event keeps its performer and gets no author', () => {
