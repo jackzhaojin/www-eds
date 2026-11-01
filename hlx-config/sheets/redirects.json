@@ -1,6 +1,6 @@
 {
-  "total": 134,
-  "limit": 134,
+  "total": 141,
+  "limit": 141,
   "offset": 0,
   "data": [
     {
@@ -240,6 +240,14 @@
       "Destination": "/writing/2025-09-01-aem-caching-production-architectures/"
     },
     {
+      "Source": "/writing/2025-09-10-ai-in-professional-services",
+      "Destination": "/writing/2025-09-10-ai-in-professional-services/"
+    },
+    {
+      "Source": "/writing/2025-09-10-ai-in-professional-services/index.html",
+      "Destination": "/writing/2025-09-10-ai-in-professional-services/"
+    },
+    {
       "Source": "/writing/2025-10-05-mcp-server-for-eds-da-live",
       "Destination": "/writing/2025-10-05-mcp-server-for-eds-da-live/"
     },
@@ -358,6 +366,14 @@
     {
       "Source": "/writing/2026-08-15-anima-mesh-company-of-zero/index.html",
       "Destination": "/writing/2026-08-15-anima-mesh-company-of-zero/"
+    },
+    {
+      "Source": "/writing/2026-09-11-knowledge-work-as-a-product",
+      "Destination": "/writing/2026-09-11-knowledge-work-as-a-product/"
+    },
+    {
+      "Source": "/writing/2026-09-11-knowledge-work-as-a-product/index.html",
+      "Destination": "/writing/2026-09-11-knowledge-work-as-a-product/"
     },
     {
       "Source": "/writing/2026-09-20-aem-edge-functions-google-sign-in",
@@ -538,6 +554,18 @@
     {
       "Source": "/talks/aem-rockstar-2024/index.html",
       "Destination": "/portfolio/aem-rockstar-2024/#aem-rockstar-2024"
+    },
+    {
+      "Source": "/writing/2024-03-28-aem-rockstar-generative-ai-in-aem/",
+      "Destination": "/portfolio/aem-rockstar-2024/"
+    },
+    {
+      "Source": "/writing/2024-03-28-aem-rockstar-generative-ai-in-aem",
+      "Destination": "/portfolio/aem-rockstar-2024/"
+    },
+    {
+      "Source": "/writing/2024-03-28-aem-rockstar-generative-ai-in-aem/index.html",
+      "Destination": "/portfolio/aem-rockstar-2024/"
     }
   ],
   ":type": "sheet"
