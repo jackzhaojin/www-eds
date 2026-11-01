@@ -1,0 +1,95 @@
+/* Scene engine rival-bars (rival-bars.js): your page's checks beside three competitors'.
+   Strokes are in viewBox units scaled by --k (units per CSS pixel, set by the engine), so line
+   weights hold from 288px to 500px and the drawn-on brackets keep their pathLength dashes. */
+.scene.rival-bars {
+  --rival-bars-wash: 0.07;
+}
+
+:root[data-theme="dark"] .scene.rival-bars {
+  --rival-bars-wash: 0.11;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.rival-bars {
+    --rival-bars-wash: 0.11;
+  }
+}
+
+.scene.rival-bars .rival-bars-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(farthest-corner at 50% 50%, #000 80%, transparent 100%);
+}
+
+.scene.rival-bars .rival-bars-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--rival-bars-wash);
+}
+
+.scene.rival-bars .rival-bars-wash-stop + .rival-bars-wash-stop {
+  stop-opacity: 0;
+}
+
+/* the ground: quarter rules, the baseline and its ticks */
+.scene.rival-bars .rival-bars-rule {
+  stroke: var(--color-text);
+  stroke-opacity: 0.16;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.rival-bars .rival-bars-base {
+  stroke: var(--color-text);
+  stroke-opacity: 0.62;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+/* the bars: yours in the accent, theirs in faint ink */
+.scene.rival-bars .rival-bars-yours {
+  fill: color-mix(in srgb, var(--scene-accent) 30%, transparent);
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.rival-bars .rival-bars-theirs {
+  fill: color-mix(in srgb, var(--color-text) 7%, transparent);
+  stroke: var(--color-text);
+  stroke-opacity: 0.42;
+  stroke-width: calc(1px * var(--k));
+}
+
+/* the gap: where the best competitor is ahead, a bracket measures it */
+.scene.rival-bars .rival-bars-dim {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.rival-bars .rival-bars-guide {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1px * var(--k));
+  stroke-dasharray: 1.5 4;
+}
+
+/* the part of your bar you're missing, a tint the bracket measures */
+.scene.rival-bars .rival-bars-gap {
+  fill: color-mix(in srgb, var(--scene-accent) 14%, transparent);
+  stroke: none;
+}
+
+/* the AI: an accent disc with a soft halo, its reading line down through a group */
+.scene.rival-bars .rival-bars-disc {
+  fill: var(--scene-accent);
+}
+
+.scene.rival-bars .rival-bars-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.16;
+}
+
+.scene.rival-bars .rival-bars-scan {
+  stroke: var(--scene-accent);
+  stroke-opacity: 0.35;
+  stroke-width: calc(1px * var(--k));
+}

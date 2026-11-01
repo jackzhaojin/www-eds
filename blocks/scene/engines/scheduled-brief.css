@@ -1,0 +1,207 @@
+/* Scene engine scheduled-brief (scheduled-brief.js): a weekly run from the clock to your tray.
+   Strokes are in viewBox units scaled by --k (units per CSS pixel, set by the engine), so line
+   weights hold from 320px to 500px and dashes along pathLength still work. Ink draws; the accent
+   is AI, the travellers and their trails. */
+.scene.scheduled-brief {
+  --scheduled-brief-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.scheduled-brief {
+  --scheduled-brief-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.scheduled-brief {
+    --scheduled-brief-wash: 0.12;
+  }
+}
+
+.scene.scheduled-brief .scheduled-brief-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, #000 74%, transparent 97%);
+}
+
+.scene.scheduled-brief .scheduled-brief-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--scheduled-brief-wash);
+}
+
+.scene.scheduled-brief .scheduled-brief-wash-stop + .scheduled-brief-wash-stop {
+  stop-opacity: 0;
+}
+
+/* construction, structure, the dotted routes */
+.scene.scheduled-brief .scheduled-brief-c {
+  stroke: var(--color-text);
+  stroke-opacity: 0.3;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.scheduled-brief .scheduled-brief-s {
+  stroke: var(--color-text);
+  stroke-opacity: 0.62;
+  stroke-width: calc(1.25px * var(--k));
+  transition: stroke 0.5s cubic-bezier(0.16, 1, 0.3, 1), stroke-opacity 0.5s;
+}
+
+.scene.scheduled-brief .scheduled-brief-route {
+  stroke: var(--color-text);
+  stroke-opacity: 0.4;
+  stroke-width: calc(1.25px * var(--k));
+  stroke-dasharray: 0.01 6;
+}
+
+.scene.scheduled-brief .scheduled-brief-s.is-lit {
+  stroke: var(--scene-accent);
+  stroke-opacity: 1;
+}
+
+/* the clock and the week */
+.scene.scheduled-brief .scheduled-brief-hand {
+  stroke: var(--color-text);
+  stroke-opacity: 0.8;
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.scheduled-brief .scheduled-brief-hand.is-hour {
+  stroke-width: calc(2.25px * var(--k));
+}
+
+.scene.scheduled-brief .scheduled-brief-pin-ink,
+.scene.scheduled-brief .scheduled-brief-day-ink {
+  fill: var(--color-text);
+}
+
+.scene.scheduled-brief .scheduled-brief-day-lit {
+  fill: var(--scene-accent);
+}
+
+/* the actors: automation a faint square, AI an accent disc, you an ink ring */
+.scene.scheduled-brief .scheduled-brief-auto {
+  stroke: var(--color-text-faint);
+  stroke-width: calc(1.25px * var(--k));
+  fill: color-mix(in srgb, var(--color-text-faint) 22%, var(--color-bg));
+  transition: stroke 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.scheduled-brief .scheduled-brief-auto.is-lit {
+  stroke: var(--scene-accent);
+}
+
+.scene.scheduled-brief .scheduled-brief-ai,
+.scene.scheduled-brief .scheduled-brief-dot {
+  fill: var(--scene-accent);
+}
+
+.scene.scheduled-brief .scheduled-brief-ai-halo,
+.scene.scheduled-brief .scheduled-brief-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.15;
+}
+
+.scene.scheduled-brief .scheduled-brief-badge {
+  fill: var(--scene-accent);
+  stroke: var(--color-bg);
+  stroke-width: calc(2px * var(--k));
+  paint-order: stroke;
+}
+
+.scene.scheduled-brief .scheduled-brief-you {
+  stroke: var(--color-text);
+  stroke-width: calc(2px * var(--k));
+  fill: var(--color-bg);
+}
+
+/* the work: ruled lines for text, never words */
+.scene.scheduled-brief .scheduled-brief-ink {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(1.1px * var(--k));
+}
+
+.scene.scheduled-brief .scheduled-brief-ink.is-bold {
+  stroke-opacity: 0.75;
+  stroke-width: calc(2px * var(--k));
+}
+
+.scene.scheduled-brief .scheduled-brief-swatch {
+  fill: var(--color-text);
+  fill-opacity: 0.55;
+}
+
+.scene.scheduled-brief .scheduled-brief-swatch.is-1 {
+  fill-opacity: 0.25;
+}
+
+.scene.scheduled-brief .scheduled-brief-swatch.is-2 {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-opacity: 0.5;
+  stroke-width: calc(1px * var(--k));
+}
+
+.scene.scheduled-brief .scheduled-brief-rule {
+  stroke: var(--color-text);
+  stroke-opacity: 0.6;
+  stroke-width: calc(2.25px * var(--k));
+}
+
+.scene.scheduled-brief .scheduled-brief-rule.is-lit {
+  stroke: var(--scene-accent);
+  stroke-opacity: 1;
+}
+
+.scene.scheduled-brief .scheduled-brief-scan {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.scheduled-brief .scheduled-brief-paper {
+  fill: var(--color-bg);
+  stroke: var(--color-text);
+  stroke-opacity: 0.62;
+  stroke-width: calc(1.25px * var(--k));
+  transition: stroke 0.5s cubic-bezier(0.16, 1, 0.3, 1), stroke-opacity 0.5s;
+}
+
+.scene.scheduled-brief .scheduled-brief-brief.is-moving .scheduled-brief-paper {
+  stroke: var(--scene-accent);
+  stroke-opacity: 1;
+}
+
+/* the run's trails: accent behind the travellers, then a faint record */
+.scene.scheduled-brief .scheduled-brief-trail {
+  stroke: var(--scene-accent);
+  stroke-opacity: 0.7;
+  stroke-width: calc(1.5px * var(--k));
+}
+
+/* callouts */
+.scene.scheduled-brief .scheduled-brief-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.scheduled-brief .scheduled-brief-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}
+
+.scene.scheduled-brief .scene-label p {
+  transition: color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.scheduled-brief .scene-label.is-active p {
+  color: var(--scene-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.scheduled-brief :is(.scheduled-brief-s, .scheduled-brief-auto, .scheduled-brief-paper, .scene-label p) {
+    transition: none;
+  }
+}

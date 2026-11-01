@@ -1,0 +1,216 @@
+/* Scene engine check-pipeline (check-pipeline.js): your page and two competitors through the same
+   checks, Semrush optional, AI's review, one dashboard, your decision. Strokes are in viewBox
+   units scaled by --k (units per CSS pixel, set by the engine), so line weights hold from 320px
+   to 500px and dashes along pathLength still work. Ink draws; the accent is AI, your page's run,
+   its trail and the gap AI flags. Optional things are dashed and fainter. */
+.scene.check-pipeline {
+  --check-pipeline-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.check-pipeline {
+  --check-pipeline-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.check-pipeline {
+    --check-pipeline-wash: 0.12;
+  }
+}
+
+.scene.check-pipeline .check-pipeline-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, #000 74%, transparent 97%);
+}
+
+.scene.check-pipeline .check-pipeline-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--check-pipeline-wash);
+}
+
+.scene.check-pipeline .check-pipeline-wash-stop + .check-pipeline-wash-stop {
+  stop-opacity: 0;
+}
+
+/* construction, structure, the dotted routes (dashed where optional) */
+.scene.check-pipeline .check-pipeline-c {
+  stroke: var(--color-text);
+  stroke-opacity: 0.3;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.check-pipeline .check-pipeline-c.is-page {
+  stroke-opacity: 0.4;
+  stroke-width: calc(1px * var(--k));
+}
+
+.scene.check-pipeline .check-pipeline-s {
+  stroke: var(--color-text);
+  stroke-opacity: 0.62;
+  stroke-width: calc(1.25px * var(--k));
+  transition: stroke 0.5s cubic-bezier(0.16, 1, 0.3, 1), stroke-opacity 0.5s;
+}
+
+.scene.check-pipeline .check-pipeline-s.is-lit {
+  stroke: var(--scene-accent);
+  stroke-opacity: 1;
+}
+
+.scene.check-pipeline .check-pipeline-route {
+  stroke: var(--color-text);
+  stroke-opacity: 0.4;
+  stroke-width: calc(1.25px * var(--k));
+  stroke-dasharray: 0.01 6;
+}
+
+.scene.check-pipeline .check-pipeline-route.is-optional {
+  stroke-opacity: 0.3;
+  stroke-width: calc(1px * var(--k));
+  stroke-dasharray: 5 5;
+}
+
+.scene.check-pipeline .check-pipeline-paper {
+  fill: var(--color-bg);
+}
+
+/* the actors: automation a faint square, AI an accent disc, you an ink ring */
+.scene.check-pipeline .check-pipeline-auto {
+  stroke: var(--color-text-faint);
+  stroke-width: calc(1.25px * var(--k));
+  fill: color-mix(in srgb, var(--color-text-faint) 22%, var(--color-bg));
+  transition: stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.check-pipeline .check-pipeline-auto.is-lit {
+  stroke: var(--scene-accent);
+}
+
+.scene.check-pipeline .check-pipeline-auto.is-optional {
+  stroke-dasharray: 3 3;
+  fill: color-mix(in srgb, var(--color-text-faint) 10%, var(--color-bg));
+}
+
+.scene.check-pipeline .check-pipeline-tick {
+  stroke: var(--color-text);
+  stroke-opacity: 0.85;
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.check-pipeline .check-pipeline-ai,
+.scene.check-pipeline .check-pipeline-dot {
+  fill: var(--scene-accent);
+}
+
+.scene.check-pipeline .check-pipeline-dot.is-optional {
+  fill-opacity: 0.55;
+}
+
+.scene.check-pipeline .check-pipeline-dot-ink {
+  fill: var(--color-text);
+}
+
+.scene.check-pipeline .check-pipeline-ai-halo,
+.scene.check-pipeline .check-pipeline-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.15;
+}
+
+.scene.check-pipeline .check-pipeline-you {
+  stroke: var(--color-text);
+  stroke-width: calc(2px * var(--k));
+  fill: var(--color-bg);
+}
+
+.scene.check-pipeline .check-pipeline-you.is-small {
+  fill: none;
+  stroke-width: calc(1.5px * var(--k));
+}
+
+/* the work: ruled lines for text, never words; bars and marks on the dashboard */
+.scene.check-pipeline .check-pipeline-ink {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(1.1px * var(--k));
+}
+
+.scene.check-pipeline .check-pipeline-ink.is-faint {
+  stroke-opacity: 0.25;
+}
+
+.scene.check-pipeline .check-pipeline-ink.is-bold {
+  stroke-opacity: 0.75;
+  stroke-width: calc(2.25px * var(--k));
+}
+
+.scene.check-pipeline .check-pipeline-ink.is-optional {
+  stroke-dasharray: 3 3;
+}
+
+.scene.check-pipeline .check-pipeline-track {
+  stroke: var(--color-text);
+  stroke-opacity: 0.1;
+  stroke-width: calc(3px * var(--k));
+}
+
+.scene.check-pipeline .check-pipeline-track.is-optional {
+  stroke-opacity: 0.2;
+  stroke-width: calc(1px * var(--k));
+  stroke-dasharray: 3 4;
+}
+
+.scene.check-pipeline .check-pipeline-bar {
+  stroke: var(--color-text);
+  stroke-opacity: 0.6;
+  stroke-width: calc(3px * var(--k));
+}
+
+.scene.check-pipeline .check-pipeline-bar.is-optional {
+  stroke-opacity: 0.4;
+}
+
+.scene.check-pipeline .check-pipeline-mark {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.check-pipeline .check-pipeline-gap {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+/* the runs' trails: accent behind the tokens, then a faint record */
+.scene.check-pipeline .check-pipeline-trail {
+  stroke: var(--scene-accent);
+  stroke-opacity: 0.7;
+  stroke-width: calc(1.5px * var(--k));
+}
+
+/* callouts */
+.scene.check-pipeline .check-pipeline-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.check-pipeline .check-pipeline-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}
+
+.scene.check-pipeline .scene-label p {
+  transition: color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.check-pipeline .scene-label.is-active p {
+  color: var(--scene-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.check-pipeline :is(.check-pipeline-s, .check-pipeline-auto, .scene-label p) {
+    transition: none;
+  }
+}

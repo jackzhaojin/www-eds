@@ -1,0 +1,135 @@
+/* Scene engine check-sweep (check-sweep.js): one checklist run on a stack of pages. Strokes
+   are in viewBox units scaled by --k (units per CSS pixel, set by the engine), so line weights
+   hold from 288px to 500px and the drawn-on strokes keep their pathLength dashes; the pages'
+   own lines keep their pixel weight as a page shrinks (non-scaling, times --pf). */
+.scene.check-sweep {
+  --check-sweep-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.check-sweep {
+  --check-sweep-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.check-sweep {
+    --check-sweep-wash: 0.12;
+  }
+}
+
+.scene.check-sweep .check-sweep-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(farthest-corner at 50% 50%, #000 80%, transparent 100%);
+}
+
+.scene.check-sweep .check-sweep-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--check-sweep-wash);
+}
+
+.scene.check-sweep .check-sweep-wash-stop + .check-sweep-wash-stop {
+  stop-opacity: 0;
+}
+
+/* construction and structure */
+.scene.check-sweep .check-sweep-c {
+  stroke: var(--color-text);
+  stroke-opacity: 0.28;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.check-sweep .check-sweep-s {
+  stroke: var(--color-text);
+  stroke-opacity: 0.5;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.check-sweep .check-sweep-card {
+  stroke-opacity: 0.42;
+}
+
+/* the list: a line per check, ticked in ink, the flagged one filled and lit in the accent */
+.scene.check-sweep .check-sweep-line {
+  stroke: var(--color-text);
+  stroke-opacity: 0.42;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.check-sweep .check-sweep-tick {
+  stroke: var(--color-text);
+  stroke-opacity: 0.88;
+  stroke-width: calc(1.6px * var(--k));
+}
+
+.scene.check-sweep .check-sweep-lit {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.75px * var(--k));
+}
+
+.scene.check-sweep .check-sweep-fill,
+.scene.check-sweep .check-sweep-flag,
+.scene.check-sweep .check-sweep-disc {
+  fill: var(--scene-accent);
+  stroke: none;
+}
+
+/* the pages: paper over the card, ruled lines for text, never words */
+.scene.check-sweep .check-sweep-page {
+  --pf: 1;
+}
+
+.scene.check-sweep .check-sweep-page :is(rect, path) {
+  stroke: var(--color-text);
+  stroke-width: calc(var(--w, 1) * 1px * var(--pf));
+  vector-effect: non-scaling-stroke;
+}
+
+.scene.check-sweep .check-sweep-page .check-sweep-paper {
+  fill: var(--color-surface);
+  stroke-opacity: 0.62;
+  stroke-width: calc(1.1px * var(--pf));
+}
+
+.scene.check-sweep .check-sweep-page .check-sweep-tint {
+  fill: color-mix(in srgb, var(--color-text) 6%, transparent);
+}
+
+.scene.check-sweep .check-sweep-page .check-sweep-dots {
+  stroke-dasharray: 1.5 3;
+}
+
+/* the AI: an accent disc with a soft halo, its reading line across the page */
+.scene.check-sweep .check-sweep-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.16;
+}
+
+.scene.check-sweep .check-sweep-scan {
+  stroke: var(--scene-accent);
+  stroke-opacity: 0.4;
+  stroke-width: calc(1px * var(--k));
+}
+
+/* callouts */
+.scene.check-sweep .check-sweep-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.check-sweep .check-sweep-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}
+
+/* the fix label is the accent's word; the engine fades it, so no transition of its own */
+.scene.check-sweep .scene-label-fix {
+  transition: none;
+}
+
+.scene.check-sweep .scene-label-fix p {
+  color: var(--scene-accent);
+}

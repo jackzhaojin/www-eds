@@ -1,0 +1,170 @@
+/* Scene engine intent-match (intent-match.js): the brief's questions joined to the page's
+   sections. Strokes are in viewBox units scaled by --k (units per CSS pixel, set by the
+   engine), so line weights hold from 288px to 500px and the drawn-on curves keep their
+   pathLength dashes. */
+.scene.intent-match {
+  --intent-match-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.intent-match {
+  --intent-match-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.intent-match {
+    --intent-match-wash: 0.12;
+  }
+}
+
+.scene.intent-match .intent-match-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(farthest-corner at 50% 50%, #000 80%, transparent 100%);
+}
+
+.scene.intent-match .intent-match-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--intent-match-wash);
+}
+
+.scene.intent-match .intent-match-wash-stop + .intent-match-wash-stop {
+  stop-opacity: 0;
+}
+
+/* the two cards and their ruled lines */
+.scene.intent-match .intent-match-s {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.intent-match .intent-match-ink {
+  stroke: var(--color-text);
+  stroke-opacity: 0.5;
+  stroke-width: calc(1.25px * var(--k));
+  transition: stroke-opacity 0.4s;
+}
+
+.scene.intent-match .intent-match-ink.is-title {
+  stroke-opacity: 0.82;
+  stroke-width: calc(2.2px * var(--k));
+}
+
+.scene.intent-match .intent-match-ink.is-thin {
+  stroke-opacity: 0.36;
+  stroke-width: calc(0.9px * var(--k));
+}
+
+.scene.intent-match .intent-match-ink.is-answered {
+  stroke-opacity: 0.78;
+}
+
+/* a question: a drawn question mark, ink until it turns out unanswered */
+.scene.intent-match .intent-match-q path {
+  stroke: var(--color-text);
+  stroke-opacity: 0.6;
+  stroke-width: calc(1.4px * var(--k));
+  transition: stroke 0.3s, stroke-opacity 0.3s;
+}
+
+.scene.intent-match .intent-match-q .is-dot {
+  stroke-width: calc(2.6px * var(--k));
+}
+
+.scene.intent-match .intent-match-q.is-answered path {
+  stroke-opacity: 0.9;
+}
+
+.scene.intent-match :is(.intent-match-q.is-missed path, .intent-match-ink.is-missed) {
+  stroke: var(--scene-accent);
+  stroke-opacity: 1;
+}
+
+.scene.intent-match .intent-match-ink.is-missed {
+  stroke-width: calc(1.6px * var(--k));
+}
+
+/* the page's sections: a faint frame that firms when a curve lands */
+.scene.intent-match .intent-match-frame {
+  stroke: var(--color-text);
+  stroke-opacity: 0.22;
+  stroke-width: calc(0.9px * var(--k));
+}
+
+.scene.intent-match [style*="--w"] {
+  stroke: var(--color-text);
+  stroke-width: calc(var(--w) * 1px * var(--k));
+}
+
+.scene.intent-match .is-tint {
+  fill: color-mix(in srgb, var(--color-text) 6%, transparent);
+}
+
+/* the matches: ink curves, an accent head while one draws */
+.scene.intent-match .intent-match-curve {
+  stroke: var(--color-text);
+  stroke-opacity: 0.62;
+  stroke-width: calc(1.4px * var(--k));
+}
+
+.scene.intent-match .intent-match-head {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2px * var(--k));
+}
+
+.scene.intent-match .intent-match-end {
+  fill: var(--color-text);
+  fill-opacity: 0.8;
+}
+
+/* the miss: a dashed accent stub and a caret where the answer should be */
+.scene.intent-match .intent-match-stub {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+  stroke-dasharray: 5 5;
+}
+
+.scene.intent-match .intent-match-caret {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.75px * var(--k));
+}
+
+/* the AI: an accent disc with a soft halo */
+.scene.intent-match .intent-match-disc {
+  fill: var(--scene-accent);
+}
+
+.scene.intent-match .intent-match-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.16;
+}
+
+/* callouts */
+.scene.intent-match .intent-match-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.intent-match .intent-match-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}
+
+/* the miss's label: the engine fades it in with the miss, so no transition of its own */
+.scene.intent-match .scene-label-missing {
+  transition: none;
+}
+
+.scene.intent-match .scene-label-missing.is-active p {
+  color: var(--scene-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.intent-match :is(.intent-match-ink, .intent-match-q path) {
+    transition: none;
+  }
+}

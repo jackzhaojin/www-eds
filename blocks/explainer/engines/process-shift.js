@@ -17,10 +17,12 @@
  * Behaviour: without JavaScript the versions read as their lists; printed, every version shows,
  * each under its label (the lane's data-label, the switch's text). Each authored list stays
  * whole (moved into the track, never rebuilt): its items get their actor as data-kind and are
- * drawn by CSS; the split bar and its counts are derived from the actors.
+ * drawn by CSS; the split bar and its counts are derived from the actors. A replay control at
+ * the end of the switch row plays the shown version again (hidden under reduced motion).
  *
  * @variants process-shift
- * @ew-exempt the switch name - the radio group's accessible name, not shown
+ * @ew-exempt the switch name - the radio group's accessible name, not shown; the replay
+ *   control's name ("Replay the steps"), an icon button's aria-label
  */
 
 const BEAT = 560;
@@ -173,7 +175,16 @@ export default async function engine(block, {
     });
   });
 
-  figure.append(switcher, stage, split);
+  // replay: the shown version's flow again, from its first step
+  const replay = document.createElement('button');
+  replay.type = 'button';
+  replay.className = 'ps-replay';
+  replay.setAttribute('aria-label', 'Replay the steps');
+  replay.title = 'Replay the steps';
+  replay.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.2 9.2A5.3 5.3 0 1 1 11.6 4.3"/><path d="M12.4 1.6v3.2H9.2"/></svg>';
+  replay.addEventListener('click', () => play(lanes[current]));
+
+  figure.append(slot('ps-head', [switcher, replay]), stage, split);
   if (caption) {
     const figcaption = document.createElement('figcaption');
     figcaption.className = 'ps-caption';

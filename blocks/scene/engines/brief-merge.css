@@ -1,0 +1,173 @@
+/* Scene engine brief-merge (brief-merge.js): three sources pasted into one chat, one brief back.
+   Strokes are in viewBox units scaled by --k (units per CSS pixel, set by the engine) and by
+   --s (a group's own scale: the copies and chips), so weights hold from 320px to 500px and
+   pathLength dashes still work. Ink is currentcolor; the accent marks the pastes, the assistant
+   and the brief's fresh work (--f, 0..1, mixes it in). */
+.scene.brief-merge {
+  --brief-merge-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.brief-merge {
+  --brief-merge-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.brief-merge {
+    --brief-merge-wash: 0.12;
+  }
+}
+
+.scene.brief-merge .brief-merge-svg {
+  --k: 1;
+  --s: 1;
+  --f: 0;
+
+  color: var(--color-text);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, var(--color-text) 76%, transparent 100%);
+}
+
+.scene.brief-merge .brief-merge-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--brief-merge-wash);
+}
+
+.scene.brief-merge .brief-merge-wash-stop.is-end {
+  stop-opacity: 0;
+}
+
+.scene.brief-merge :is(.brief-merge-c, .brief-merge-s, .brief-merge-i, .brief-merge-title, .brief-merge-bar) {
+  stroke: currentcolor;
+}
+
+/* construction: hairlines at a third, dashed for the routes */
+.scene.brief-merge .brief-merge-c {
+  stroke-opacity: 0.3;
+  stroke-width: calc(0.75px * var(--k) / var(--s));
+}
+
+.scene.brief-merge .brief-merge-dash {
+  stroke-dasharray: calc(2px * var(--k)) calc(4px * var(--k));
+}
+
+/* structure and text lines */
+.scene.brief-merge .brief-merge-s {
+  stroke-opacity: 0.62;
+  stroke-width: calc(1.25px * var(--k) / var(--s));
+}
+
+.scene.brief-merge .brief-merge-i {
+  stroke-opacity: 0.4;
+  stroke-width: calc(1.25px * var(--k) / var(--s));
+}
+
+.scene.brief-merge .brief-merge-title {
+  stroke-opacity: 0.75;
+  stroke-width: calc(3px * var(--k) / var(--s));
+}
+
+.scene.brief-merge .brief-merge-bar {
+  stroke-opacity: 0.4;
+  stroke-width: 5px;
+}
+
+/* fresh work: the accent mixed in by --f (0 on the root, set on a group), a little stronger
+   while it is new */
+.scene.brief-merge .brief-merge-fresh {
+  color: color-mix(in oklch, var(--scene-accent) calc(var(--f) * 100%), var(--color-text));
+}
+
+.scene.brief-merge .brief-merge-fresh .brief-merge-i {
+  stroke-opacity: calc(0.4 + 0.5 * var(--f));
+}
+
+.scene.brief-merge .brief-merge-fresh .brief-merge-s {
+  stroke-opacity: calc(0.62 + 0.38 * var(--f));
+}
+
+.scene.brief-merge .brief-merge-fresh .brief-merge-title {
+  stroke-opacity: calc(0.75 + 0.25 * var(--f));
+}
+
+/* a copy in flight: the source's key marks in the accent */
+.scene.brief-merge .brief-merge-copy {
+  color: var(--scene-accent);
+  opacity: 0;
+}
+
+.scene.brief-merge .brief-merge-copy :is(.brief-merge-s, .brief-merge-i, .brief-merge-bar) {
+  stroke-opacity: 1;
+}
+
+.scene.brief-merge .brief-merge-chip {
+  opacity: 0;
+}
+
+/* the actors: the assistant (an accent disc with a soft halo) and you (an ink ring) */
+.scene.brief-merge .brief-merge-disc {
+  fill: var(--scene-accent);
+}
+
+.scene.brief-merge .brief-merge-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.16;
+}
+
+.scene.brief-merge .brief-merge-ripple {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.25px * var(--k));
+  opacity: 0;
+}
+
+.scene.brief-merge .brief-merge-ring {
+  stroke: var(--color-text);
+  stroke-opacity: 0.85;
+  stroke-width: calc(1.75px * var(--k));
+  fill: var(--color-bg);
+}
+
+.scene.brief-merge .brief-merge-tick {
+  stroke: var(--color-text);
+  stroke-opacity: 0.85;
+  stroke-width: calc(2px * var(--k));
+  opacity: 0;
+}
+
+.scene.brief-merge .brief-merge-caret {
+  stroke: var(--color-text);
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.brief-merge .brief-merge-answer {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.75px * var(--k));
+  opacity: 0;
+}
+
+/* callouts */
+.scene.brief-merge .brief-merge-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.brief-merge .brief-merge-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}
+
+.scene.brief-merge .scene-label p {
+  transition: color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.brief-merge .scene-label.is-active p {
+  color: var(--scene-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.brief-merge .scene-label p {
+    transition: none;
+  }
+}

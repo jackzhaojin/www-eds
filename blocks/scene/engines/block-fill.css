@@ -1,0 +1,123 @@
+/* Scene engine block-fill (block-fill.js): a brief streamed into a page's blocks. Ink draws the
+   brief, the page and the outlines; the accent is AI (the disc), its stream and the words as they
+   arrive, plus a soft wash. Strokes are in viewBox units scaled by --k (units per CSS pixel, set
+   by the engine), so weights hold from 288px to 500px and pathLength dashes still work. */
+.scene.block-fill {
+  --block-fill-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.block-fill {
+  --block-fill-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.block-fill {
+    --block-fill-wash: 0.12;
+  }
+}
+
+.scene.block-fill .block-fill-svg {
+  --k: 1;
+  --block-fill-ink: color-mix(in srgb, var(--color-text) 60%, transparent);
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, #000 78%, transparent 100%);
+}
+
+.scene.block-fill .block-fill-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--block-fill-wash);
+}
+
+.scene.block-fill .block-fill-wash-stop.is-end {
+  stop-opacity: 0;
+}
+
+/* construction and structure */
+.scene.block-fill .block-fill-c {
+  stroke: var(--color-text);
+  stroke-opacity: 0.28;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.block-fill .block-fill-s {
+  stroke: var(--color-text);
+  stroke-opacity: 0.6;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+/* the brief's lines; the paragraph being read brightens (--bf-read, set by the engine) */
+.scene.block-fill .block-fill-rule {
+  stroke: var(--color-text);
+  stroke-opacity: 0.38;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.block-fill .block-fill-para .block-fill-rule {
+  stroke-opacity: calc(0.38 + 0.47 * var(--bf-read, 0));
+}
+
+.scene.block-fill .block-fill-rule.is-head {
+  stroke-opacity: 0.55;
+  stroke-width: calc(2.2px * var(--k));
+}
+
+/* a block's outline: dashed construction until its words arrive, then solid ink (--bf-solid) */
+.scene.block-fill .block-fill-outline path {
+  stroke: var(--color-text);
+  stroke-opacity: calc(0.3 + 0.3 * var(--bf-solid, 0));
+  stroke-width: calc((0.75px + 0.5px * var(--bf-solid, 0)) * var(--k));
+}
+
+.scene.block-fill .block-fill-outline .block-fill-media {
+  stroke: none;
+  fill: var(--color-text);
+  fill-opacity: calc(0.05 + 0.07 * var(--bf-solid, 0));
+}
+
+/* the words: the accent as they arrive, mixed back to ink as they settle (--bf-mix) */
+.scene.block-fill .block-fill-words path {
+  stroke: color-mix(in srgb, var(--scene-accent) var(--bf-mix, 0%), var(--block-fill-ink));
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.block-fill .block-fill-words .is-head {
+  stroke-width: calc(2.2px * var(--k));
+}
+
+/* the stream and AI */
+.scene.block-fill .block-fill-route {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.block-fill .block-fill-flow {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2px * var(--k));
+  stroke-dasharray: 0.035 0.065;
+  opacity: 0;
+}
+
+.scene.block-fill .block-fill-disc {
+  fill: var(--scene-accent);
+}
+
+.scene.block-fill .block-fill-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.14;
+}
+
+/* callouts */
+.scene.block-fill .block-fill-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.block-fill .block-fill-pin {
+  stroke: var(--color-text);
+  stroke-opacity: 0.7;
+  stroke-width: calc(3.2px * var(--k));
+}

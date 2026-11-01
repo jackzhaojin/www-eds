@@ -1,0 +1,152 @@
+/* Scene engine news-radar (news-radar.js): the webinar deck's weekly watch plate, a dial of the
+   week swept once by the AI, what changed stacking up in a tray. Strokes are in viewBox units
+   scaled by --k (units per CSS pixel, set by the engine), so weights hold from 288px to 500px and
+   the pathLength dashes still work. */
+.scene.news-radar {
+  --news-radar-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.news-radar {
+  --news-radar-wash: 0.13;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.news-radar {
+    --news-radar-wash: 0.13;
+  }
+}
+
+.scene.news-radar .news-radar-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(farthest-corner at 50% 50%, black 80%, transparent 100%);
+}
+
+.scene.news-radar .news-radar-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--news-radar-wash);
+}
+
+.scene.news-radar .news-radar-stop + .news-radar-stop {
+  stop-opacity: 0;
+}
+
+/* the dial: construction rings, the rim, the days */
+.scene.news-radar .news-radar-c {
+  stroke: var(--color-text);
+  stroke-opacity: 0.2;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.news-radar .news-radar-c.is-dotted {
+  stroke-opacity: 0.3;
+  stroke-dasharray: 1 5;
+}
+
+.scene.news-radar .news-radar-rim {
+  stroke: var(--color-text);
+  stroke-opacity: 0.6;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.news-radar .news-radar-day {
+  stroke: var(--color-text);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.news-radar .news-radar-day.is-monday {
+  stroke-opacity: 0.85;
+  stroke-width: calc(2px * var(--k));
+}
+
+/* the sources and the tray */
+.scene.news-radar .news-radar-page {
+  fill: var(--color-surface);
+  stroke: var(--color-text);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.news-radar .news-radar-lines {
+  stroke: var(--color-text);
+  stroke-opacity: 0.7;
+  stroke-width: calc(1px * var(--k));
+}
+
+.scene.news-radar .news-radar-tray {
+  stroke: var(--color-text);
+  stroke-opacity: 0.55;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.news-radar .news-radar-card {
+  fill: color-mix(in srgb, var(--color-text) 5%, var(--color-surface));
+  stroke: var(--color-text);
+  stroke-opacity: 0.66;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.news-radar .news-radar-rules {
+  stroke: var(--color-text);
+  stroke-opacity: 0.66;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+/* the AI, its sweep, and what it finds: the accent */
+.scene.news-radar .news-radar-arm {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.75px * var(--k));
+}
+
+.scene.news-radar .news-radar-wake {
+  fill: var(--scene-accent);
+}
+
+.scene.news-radar .news-radar-elapsed {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.news-radar .news-radar-monday {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2.5px * var(--k));
+}
+
+.scene.news-radar .news-radar-ping {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.news-radar .news-radar-lit {
+  fill: color-mix(in srgb, var(--scene-accent) 14%, transparent);
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.news-radar .news-radar-trail {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1px * var(--k));
+}
+
+.scene.news-radar :is(.news-radar-dot, .news-radar-disc) {
+  fill: var(--scene-accent);
+}
+
+.scene.news-radar .news-radar-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.16;
+}
+
+/* callouts */
+.scene.news-radar .news-radar-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.news-radar .news-radar-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}

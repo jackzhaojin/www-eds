@@ -92,8 +92,8 @@
   color: var(--scene-accent);
 }
 
-/* ---------- the pause control, in the stage's lower right corner ---------- */
-.scene .scene-toggle {
+/* ---------- the pause control, in the stage's lower right corner (replay beside it) ---------- */
+.scene :is(.scene-toggle, .scene-replay) {
   position: absolute;
   right: 8px;
   top: calc(100cqi - 40px);
@@ -111,8 +111,7 @@
   transition: opacity 0.25s, color 0.25s, border-color 0.25s;
 }
 
-.scene .scene-toggle:hover,
-.scene .scene-toggle:focus-visible {
+.scene :is(.scene-toggle, .scene-replay):is(:hover, :focus-visible) {
   opacity: 1;
   color: var(--color-text);
   border-color: var(--color-text-muted);
@@ -135,12 +134,27 @@
   border-left: 8px solid currentcolor;
 }
 
-.scene:not(.is-ready) .scene-toggle {
+.scene:not(.is-ready) :is(.scene-toggle, .scene-replay) {
   visibility: hidden;
 }
 
+/* replay: a circular arrow, left of pause */
+.scene .scene-replay {
+  right: 48px;
+}
+
+.scene .scene-replay svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .scene .scene-toggle {
+  .scene :is(.scene-toggle, .scene-replay) {
     display: none;
   }
 }

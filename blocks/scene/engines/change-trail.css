@@ -1,0 +1,147 @@
+/* Scene engine change-trail (change-trail.js): publishes landing as commits, and a roll back.
+   Ink draws the page, the timeline, the commits and the person (the ring); automation is the
+   faint square; the accent is the publish pulse, a commit as it lands, the added lines, the arc
+   back and the live commit, plus a soft wash. Strokes are in viewBox units scaled by --k (units
+   per CSS pixel, set by the engine), so weights hold from 288px to 500px and pathLength dashes
+   still work. */
+.scene.change-trail {
+  --change-trail-wash: 0.07;
+}
+
+:root[data-theme="dark"] .scene.change-trail {
+  --change-trail-wash: 0.11;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.change-trail {
+    --change-trail-wash: 0.11;
+  }
+}
+
+.scene.change-trail .change-trail-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, #000 74%, transparent 100%);
+}
+
+.scene.change-trail .change-trail-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--change-trail-wash);
+}
+
+.scene.change-trail .change-trail-wash-stop.is-end {
+  stop-opacity: 0;
+}
+
+/* construction and structure */
+.scene.change-trail .change-trail-c {
+  stroke: var(--color-text);
+  stroke-opacity: 0.28;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.change-trail .change-trail-s {
+  stroke: var(--color-text);
+  stroke-opacity: 0.6;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.change-trail .change-trail-guide {
+  stroke: var(--color-text);
+  stroke-opacity: 0.3;
+  stroke-width: calc(0.75px * var(--k));
+  stroke-dasharray: 1.5 4;
+}
+
+/* the page glyph's lines; the edited one flashes in the accent as it publishes */
+.scene.change-trail .change-trail-rule {
+  stroke: var(--color-text);
+  stroke-opacity: 0.38;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.change-trail .change-trail-rule.is-head {
+  stroke-opacity: 0.55;
+  stroke-width: calc(2.2px * var(--k));
+}
+
+.scene.change-trail .change-trail-flash {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.75px * var(--k));
+}
+
+/* automation: the faint square, a little stronger as it fires (--ct-fire) */
+.scene.change-trail .change-trail-auto {
+  stroke: var(--color-text-faint);
+  stroke-width: calc((1.25px + 0.5px * var(--ct-fire, 0)) * var(--k));
+  fill: color-mix(in srgb, var(--color-text-faint) 24%, var(--color-surface));
+}
+
+.scene.change-trail .change-trail-comet {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2px * var(--k));
+  opacity: 0;
+}
+
+/* the commits */
+.scene.change-trail .change-trail-node {
+  fill: var(--color-text);
+  fill-opacity: 0.78;
+}
+
+.scene.change-trail .change-trail-lit {
+  fill: var(--scene-accent);
+  opacity: 0;
+}
+
+.scene.change-trail .change-trail-live {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+}
+
+/* a diff: added lines in the accent, removed lines faint; older diffs quiet (--ct-age) */
+.scene.change-trail .change-trail-bar {
+  stroke-width: calc(2.6px * var(--k));
+}
+
+.scene.change-trail .change-trail-bar.is-added {
+  stroke: var(--scene-accent);
+  stroke-opacity: calc(0.9 - 0.55 * var(--ct-age, 0));
+}
+
+.scene.change-trail .change-trail-bar.is-removed {
+  stroke: var(--color-text);
+  stroke-opacity: 0.26;
+}
+
+/* the rollback: the person, and the arc back */
+.scene.change-trail .change-trail-you {
+  stroke: var(--color-text);
+  stroke-width: calc(1.75px * var(--k));
+  fill: var(--color-surface);
+}
+
+.scene.change-trail .change-trail-arc {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.75px * var(--k));
+}
+
+/* callouts */
+.scene.change-trail .change-trail-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.change-trail .change-trail-pin {
+  stroke: var(--color-text);
+  stroke-opacity: 0.7;
+  stroke-width: calc(3.2px * var(--k));
+}
+
+.scene.change-trail .scene-label.is-waiting {
+  opacity: 0.35;
+}

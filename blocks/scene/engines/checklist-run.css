@@ -1,0 +1,188 @@
+/* Scene engine checklist-run (checklist-run.js): a draft and its brief run through a seven-line
+   checklist, line by line, to a verdict. Strokes are in viewBox units scaled by --k (units per
+   CSS pixel, set by the engine) and by --s (a group's own scale: the copies and the docked
+   chips), so weights hold from 320px to 500px and pathLength dashes still work. Ink is
+   currentcolor; --f (0..1) mixes the accent into fresh work. The edge mask reads only alpha, so
+   any opaque token draws it. */
+.scene.checklist-run {
+  --checklist-run-wash: 0.07;
+}
+
+:root[data-theme="dark"] .scene.checklist-run {
+  --checklist-run-wash: 0.11;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.checklist-run {
+    --checklist-run-wash: 0.11;
+  }
+}
+
+.scene.checklist-run .checklist-run-svg {
+  --k: 1;
+  --s: 1;
+  --f: 0;
+
+  color: var(--color-text);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, var(--color-text) 76%, transparent 100%);
+}
+
+.scene.checklist-run .checklist-run-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--checklist-run-wash);
+}
+
+.scene.checklist-run .checklist-run-wash-stop.is-end {
+  stop-opacity: 0;
+}
+
+.scene.checklist-run :is(
+  .checklist-run-c, .checklist-run-s, .checklist-run-i, .checklist-run-title, .checklist-run-img
+) {
+  stroke: currentcolor;
+}
+
+/* construction: hairlines at a third */
+.scene.checklist-run .checklist-run-c {
+  stroke-opacity: 0.3;
+  stroke-width: calc(0.75px * var(--k) / var(--s));
+}
+
+.scene.checklist-run .checklist-run-dash {
+  stroke-dasharray: calc(2px * var(--k)) calc(3px * var(--k));
+}
+
+.scene.checklist-run .checklist-run-s {
+  stroke-opacity: 0.6;
+  stroke-width: calc(1.25px * var(--k) / var(--s));
+}
+
+.scene.checklist-run .checklist-run-i {
+  stroke-opacity: 0.4;
+  stroke-width: calc(1.25px * var(--k) / var(--s));
+}
+
+.scene.checklist-run .checklist-run-title {
+  stroke-opacity: 0.7;
+  stroke-width: calc(3px * var(--k) / var(--s));
+}
+
+.scene.checklist-run .checklist-run-img {
+  stroke-opacity: 0.35;
+  stroke-width: calc(1px * var(--k) / var(--s));
+  fill: currentcolor;
+  fill-opacity: 0.07;
+}
+
+/* a docked copy: the accent mixed in by --f as it lands, ink after */
+.scene.checklist-run .checklist-run-dock {
+  color: color-mix(in oklch, var(--scene-accent) calc(var(--f) * 100%), var(--color-text));
+  opacity: 0;
+}
+
+/* a copy in flight: the source's key marks in the accent */
+.scene.checklist-run .checklist-run-copy {
+  color: var(--scene-accent);
+  opacity: 0;
+}
+
+.scene.checklist-run .checklist-run-copy :is(.checklist-run-s, .checklist-run-i, .checklist-run-title) {
+  stroke-opacity: 1;
+}
+
+/* the answers: an ink tick for a pass, an accent flag for a fix */
+.scene.checklist-run :is(.checklist-run-pass, .checklist-run-flag) {
+  opacity: 0;
+  stroke-width: calc(1.75px * var(--k));
+}
+
+.scene.checklist-run .checklist-run-pass {
+  stroke: var(--color-text);
+  stroke-opacity: 0.8;
+}
+
+.scene.checklist-run .checklist-run-flag {
+  stroke: var(--scene-accent);
+}
+
+.scene.checklist-run .checklist-run-pennant {
+  fill: color-mix(in srgb, var(--scene-accent) 30%, transparent);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.checklist-run .checklist-run-scan {
+  fill: var(--scene-accent);
+  fill-opacity: 0.08;
+  opacity: 0;
+}
+
+/* the verdict: a dashed bar at rest, lit in the accent by --f */
+.scene.checklist-run .checklist-run-vbox {
+  stroke: color-mix(in oklch, var(--scene-accent) calc(var(--f) * 100%), var(--color-text));
+  stroke-opacity: calc(0.35 + 0.65 * var(--f));
+  stroke-width: calc((1px + 0.5px * var(--f)) * var(--k));
+  fill: color-mix(in srgb, var(--scene-accent) calc(var(--f) * 12%), transparent);
+}
+
+.scene.checklist-run .checklist-run-vline {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2.5px * var(--k));
+}
+
+.scene.checklist-run .checklist-run-caret {
+  stroke: var(--color-text);
+  stroke-width: calc(1.5px * var(--k));
+  opacity: 0;
+}
+
+/* the actors: the assistant (an accent disc with a soft halo) and you (an ink ring) */
+.scene.checklist-run .checklist-run-disc {
+  fill: var(--scene-accent);
+}
+
+.scene.checklist-run .checklist-run-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.16;
+}
+
+.scene.checklist-run .checklist-run-ripple {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.25px * var(--k));
+  opacity: 0;
+}
+
+.scene.checklist-run .checklist-run-ring {
+  stroke: var(--color-text);
+  stroke-opacity: 0.85;
+  stroke-width: calc(1.75px * var(--k));
+  fill: var(--color-bg);
+}
+
+/* callouts */
+.scene.checklist-run .checklist-run-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.checklist-run .checklist-run-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}
+
+.scene.checklist-run .scene-label p {
+  transition: color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.checklist-run .scene-label.is-active p {
+  color: var(--scene-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.checklist-run .scene-label p {
+    transition: none;
+  }
+}

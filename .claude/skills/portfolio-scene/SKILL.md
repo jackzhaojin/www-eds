@@ -31,7 +31,7 @@ Insert the block in `content/portfolio/<slug>/index.html`, immediately after the
 
 - `label`: one sentence that says what the picture shows, for screen readers.
 - `caption` (optional): one short mono line under the art. Most scenes are better without; never repeat the head's text.
-- Reserved keys (never a part): `label`, `caption`, `pause`, `play`.
+- Reserved keys (never a part): `label`, `caption`, `pause`, `play`, `replay` (adds a replay control named by its text, which sets the clock back to 0 and plays: the presentation's plates use it, so an engine draws from `t` alone).
 - Part rows: 2 to 4 labels, a word or three each (a bold name, optionally a second short line). Use the project's own vocabulary from its page; never invent facts or numbers. At 360 the scene is about 320px wide, so labels must still fit: a long label is the wrong label.
 - Document the parts in the engine's JSDoc: word, what the scene shows, the parts and where each sits.
 

@@ -1,0 +1,176 @@
+/* Scene engine workspace-prompt (workspace-prompt.js): a request in the assistant panel changes
+   the page beside it. Strokes are in viewBox units scaled by --k (units per CSS pixel, set by
+   the engine), so weights hold from 320px to 500px and pathLength dashes still work. Ink is
+   currentcolor; --f (0..1) mixes the accent into fresh work: the title's change, the table,
+   the lit preview pill. */
+.scene.workspace-prompt {
+  --workspace-prompt-wash: 0.07;
+}
+
+:root[data-theme="dark"] .scene.workspace-prompt {
+  --workspace-prompt-wash: 0.11;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.workspace-prompt {
+    --workspace-prompt-wash: 0.11;
+  }
+}
+
+.scene.workspace-prompt .workspace-prompt-svg {
+  --k: 1;
+  --f: 0;
+
+  color: var(--color-text);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, var(--color-text) 76%, transparent 100%);
+}
+
+.scene.workspace-prompt .workspace-prompt-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--workspace-prompt-wash);
+}
+
+.scene.workspace-prompt .workspace-prompt-wash-stop.is-end {
+  stop-opacity: 0;
+}
+
+.scene.workspace-prompt :is(
+  .workspace-prompt-c, .workspace-prompt-s, .workspace-prompt-i, .workspace-prompt-title,
+  .workspace-prompt-sub, .workspace-prompt-grid, .workspace-prompt-cell
+) {
+  stroke: currentcolor;
+}
+
+/* fresh work: the accent mixed in by --f (0 on the root, set on a group or a frame) */
+.scene.workspace-prompt .workspace-prompt-fresh,
+.scene.workspace-prompt .workspace-prompt-s {
+  color: color-mix(in oklch, var(--scene-accent) calc(var(--f) * 100%), var(--color-text));
+}
+
+/* construction: hairlines at a third */
+.scene.workspace-prompt .workspace-prompt-c {
+  stroke-opacity: 0.3;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.workspace-prompt .workspace-prompt-s {
+  stroke-opacity: calc(0.6 + 0.4 * var(--f));
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.workspace-prompt .workspace-prompt-i {
+  stroke-opacity: 0.42;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.workspace-prompt .workspace-prompt-sub {
+  stroke-opacity: 0.55;
+  stroke-width: calc(2px * var(--k));
+}
+
+.scene.workspace-prompt .workspace-prompt-title {
+  stroke-opacity: calc(0.72 + 0.28 * var(--f));
+  stroke-width: calc(3.5px * var(--k));
+}
+
+/* the table: its frame, a tinted header row, the grid and the cells' text */
+.scene.workspace-prompt .workspace-prompt-head {
+  fill: currentcolor;
+  fill-opacity: calc(0.07 + 0.11 * var(--f));
+}
+
+.scene.workspace-prompt .workspace-prompt-grid {
+  stroke-opacity: calc(0.3 + 0.3 * var(--f));
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.workspace-prompt .workspace-prompt-cell {
+  stroke-opacity: calc(0.32 + 0.3 * var(--f));
+  stroke-width: calc(1.25px * var(--k));
+}
+
+/* the preview pill: ink at rest, the accent when lit */
+.scene.workspace-prompt .workspace-prompt-pill-box {
+  fill: var(--color-bg);
+  stroke: color-mix(in srgb, currentcolor calc(55% + var(--f) * 45%), transparent);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.workspace-prompt .workspace-prompt-pill .workspace-prompt-pill-box {
+  fill: color-mix(in srgb, var(--scene-accent) calc(var(--f) * 16%), var(--color-bg));
+}
+
+.scene.workspace-prompt .workspace-prompt-pill-dot {
+  stroke: currentcolor;
+  stroke-width: calc(4.5px * var(--k));
+}
+
+.scene.workspace-prompt .workspace-prompt-pill-line {
+  stroke: currentcolor;
+  stroke-opacity: calc(0.45 + 0.4 * var(--f));
+  stroke-width: calc(1.25px * var(--k));
+}
+
+/* the actors: the assistant (an accent disc with a soft halo) and you (an ink ring) */
+.scene.workspace-prompt .workspace-prompt-disc {
+  fill: var(--scene-accent);
+}
+
+.scene.workspace-prompt .workspace-prompt-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.16;
+}
+
+.scene.workspace-prompt .workspace-prompt-ripple {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.25px * var(--k));
+  opacity: 0;
+}
+
+.scene.workspace-prompt .workspace-prompt-ring {
+  stroke: var(--color-text);
+  stroke-opacity: 0.85;
+  stroke-width: calc(1.75px * var(--k));
+  fill: var(--color-bg);
+}
+
+.scene.workspace-prompt .workspace-prompt-caret {
+  stroke: var(--color-text);
+  stroke-width: calc(1.5px * var(--k));
+  opacity: 0;
+}
+
+.scene.workspace-prompt .workspace-prompt-reach {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+  opacity: 0;
+}
+
+/* callouts */
+.scene.workspace-prompt .workspace-prompt-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.workspace-prompt .workspace-prompt-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}
+
+.scene.workspace-prompt .scene-label p {
+  transition: color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.workspace-prompt .scene-label.is-active p {
+  color: var(--scene-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.workspace-prompt .scene-label p {
+    transition: none;
+  }
+}

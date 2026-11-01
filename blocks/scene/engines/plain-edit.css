@@ -1,0 +1,116 @@
+/* Scene engine plain-edit (plain-edit.js): a plain ask becomes one changed line. Ink draws you
+   (the ring), the bubble and the document; the accent is AI (the disc), its path, the gutter
+   mark, the strike and the new heading as it writes in, plus a soft wash. Strokes are in viewBox
+   units scaled by --k (units per CSS pixel, set by the engine), so weights hold from 288px to
+   500px and pathLength dashes still work. */
+.scene.plain-edit {
+  --plain-edit-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.plain-edit {
+  --plain-edit-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.plain-edit {
+    --plain-edit-wash: 0.12;
+  }
+}
+
+.scene.plain-edit .plain-edit-svg {
+  --k: 1;
+  --plain-edit-ink: color-mix(in srgb, var(--color-text) 62%, transparent);
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, #000 78%, transparent 100%);
+}
+
+.scene.plain-edit .plain-edit-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--plain-edit-wash);
+}
+
+.scene.plain-edit .plain-edit-wash-stop.is-end {
+  stop-opacity: 0;
+}
+
+/* structure: the bubble and the document */
+.scene.plain-edit .plain-edit-s {
+  stroke: var(--color-text);
+  stroke-opacity: 0.6;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.plain-edit .plain-edit-rule {
+  stroke: var(--color-text);
+  stroke-opacity: 0.32;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+/* the heading: words as thick bars, so a strike through them reads */
+.scene.plain-edit .plain-edit-head {
+  stroke: var(--color-text);
+  stroke-opacity: 0.42;
+  stroke-width: calc(4.5px * var(--k));
+}
+
+/* the new heading: the accent as it writes in, mixed to ink as it settles (--pe-mix) */
+.scene.plain-edit .plain-edit-new .plain-edit-head {
+  stroke: color-mix(in srgb, var(--scene-accent) var(--pe-mix, 0%), var(--plain-edit-ink));
+  stroke-opacity: 1;
+}
+
+/* you: the ink ring, and the words you type */
+.scene.plain-edit .plain-edit-you {
+  stroke: var(--color-text);
+  stroke-width: calc(1.75px * var(--k));
+  fill: var(--color-surface);
+}
+
+.scene.plain-edit .plain-edit-ask {
+  stroke: var(--color-text);
+  stroke-opacity: 0.75;
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.plain-edit .plain-edit-caret {
+  stroke: var(--color-text);
+  stroke-opacity: 0.85;
+  stroke-width: calc(1.5px * var(--k));
+  opacity: 0;
+}
+
+/* AI and what it does */
+.scene.plain-edit :is(.plain-edit-trail, .plain-edit-strike) {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.plain-edit .plain-edit-mark {
+  stroke: var(--scene-accent);
+  stroke-width: calc(3px * var(--k));
+}
+
+.scene.plain-edit .plain-edit-disc {
+  fill: var(--scene-accent);
+}
+
+.scene.plain-edit .plain-edit-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.14;
+}
+
+/* callouts */
+.scene.plain-edit .plain-edit-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.plain-edit .plain-edit-pin {
+  stroke: var(--color-text);
+  stroke-opacity: 0.7;
+  stroke-width: calc(3.2px * var(--k));
+}

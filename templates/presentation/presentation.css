@@ -31,6 +31,10 @@
   color: var(--color-text-muted);
 }
 
+.presentation main > .section > .default-content-wrapper p + p {
+  margin-top: var(--space-3);
+}
+
 .presentation main > .section > .default-content-wrapper strong {
   color: var(--color-text);
 }
@@ -66,8 +70,9 @@
 }
 
 /* Quick edit puts each text in its own editor (div.prosemirror-editor > div.ProseMirror > p), so
-   the kicker and the lead are found through the editors (the site's edit-mode foundation). */
-.presentation main .prosemirror-editor:has(+ .prosemirror-editor :is(h2, h3)) p {
+   the kicker and the lead are found through the editors (the site's edit-mode foundation), in
+   default content only (a plate card's heading and line are not a kicker and a lead). */
+.presentation main .default-content-wrapper .prosemirror-editor:has(+ .prosemirror-editor :is(h2, h3)) p {
   font-family: var(--font-mono);
   font-size: var(--text-label);
   font-weight: var(--weight-medium);
@@ -76,7 +81,7 @@
   color: var(--color-accent);
 }
 
-.presentation main .prosemirror-editor:has(:is(h2, h3)) + .prosemirror-editor p {
+.presentation main .default-content-wrapper .prosemirror-editor:has(:is(h2, h3)) + .prosemirror-editor p {
   font-size: var(--text-h3);
   line-height: 1.5;
   color: var(--color-text);
@@ -161,6 +166,100 @@
   .presentation main .facts td {
     font-size: var(--text-body);
   }
+}
+
+/* Two slide layouts, section styles on a slide that holds scenes (animated plates):
+   - plates: the heading, then a row of cards, one scene each, its caption the card's text;
+   - split: the heading, then a scene on the left and the rest of the slide (the prompt, the
+     facts) on the right.
+   The slide is the grid, so its wrappers drop their own container width. */
+.presentation main > .section:is(.plates, .split) {
+  display: grid;
+  align-content: center;
+  column-gap: var(--space-6);
+  padding-block: clamp(var(--space-7), 7vh, var(--space-8));
+  padding-inline: max(var(--gutter), (100% - var(--container-max)) / 2 + var(--gutter));
+}
+
+.presentation main > .section:is(.plates, .split) > div {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+  min-width: 0;
+}
+
+.presentation main > .section:is(.plates, .split) > .default-content-wrapper {
+  grid-column: 1 / -1;
+}
+
+.presentation main > .section.plates {
+  grid-template-columns: minmax(0, 30rem);
+  counter-reset: plate;
+}
+
+.presentation main .plates .scene {
+  counter-increment: plate;
+  height: 100%;
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.presentation main .plates .scene .scene-caption {
+  margin-top: var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.presentation main .plates .scene .scene-caption::before {
+  content: counter(plate, decimal-leading-zero);
+  display: block;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  color: var(--color-accent);
+}
+
+.presentation main .plates .scene .scene-caption :is(h3, h4) {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-h3);
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+.presentation main .plates .scene .scene-caption p + p {
+  margin-top: var(--space-2);
+}
+
+@media (width >= 900px) {
+  .presentation main > .section.plates {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .presentation main > .section.split {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+
+  .presentation main > .section.split > :not(.default-content-wrapper, .scene-wrapper) {
+    grid-column: 2;
+  }
+
+  .presentation main > .section.split > .scene-wrapper {
+    grid-column: 1;
+    grid-row: span 3;
+  }
+
+  .presentation main .split .facts th {
+    width: 112px;
+  }
+}
+
+.presentation main .split .scene .scene-caption {
+  font-size: var(--text-small);
 }
 
 /* Printed or saved as PDF: each slide starts a page, no site chrome, tighter margins. */
