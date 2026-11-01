@@ -38,7 +38,7 @@
   "/talks/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-31T22:23:51.290Z",
+    "ts": "2026-11-01T00:00:16.128Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -616,6 +616,15 @@
     "status": "live",
     "attempts": 1,
     "ts": "2026-10-31T22:21:05.985Z",
+    "put": 200,
+    "preview": 200,
+    "live": 200,
+    "verify": "ok"
+  },
+  "/writing/2025-09-10-ai-in-professional-services/index": {
+    "status": "live",
+    "attempts": 1,
+    "ts": "2026-11-01T00:00:16.128Z",
     "put": 200,
     "preview": 200,
     "live": 200,
