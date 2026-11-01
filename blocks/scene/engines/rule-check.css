@@ -1,0 +1,150 @@
+/* Scene engine rule-check (rule-check.js): one page through the same five rules twice, two
+   strips with the same result. Strokes are in viewBox units scaled by --k (units per CSS pixel,
+   set by the engine), so line weights hold from 288px to 500px and the drawn-on strokes keep
+   their pathLength dashes. A rule square's --f (0..1) is its press: ink comes into the faint
+   square while it runs. The edge mask reads only alpha, so any opaque token draws it. */
+.scene.rule-check {
+  --rule-check-wash: 0.07;
+}
+
+:root[data-theme="dark"] .scene.rule-check {
+  --rule-check-wash: 0.11;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.rule-check {
+    --rule-check-wash: 0.11;
+  }
+}
+
+.scene.rule-check .rule-check-svg {
+  --k: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(farthest-corner at 50% 50%, var(--color-text) 80%, transparent 100%);
+}
+
+.scene.rule-check .rule-check-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--rule-check-wash);
+}
+
+.scene.rule-check .rule-check-wash-stop.is-end {
+  stop-opacity: 0;
+}
+
+/* construction: the rail, the wires at rest, the second strip's slot */
+.scene.rule-check .rule-check-c {
+  stroke: var(--color-text);
+  stroke-opacity: 0.28;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.rule-check .rule-check-slot {
+  stroke-dasharray: calc(2px * var(--k)) calc(3px * var(--k));
+}
+
+/* the page: paper, ruled lines for text (never words), a band lit while a rule reads its row */
+.scene.rule-check .rule-check-paper {
+  fill: var(--color-surface);
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.rule-check .rule-check-lines path {
+  stroke: var(--color-text);
+  stroke-width: calc(var(--w, 1) * 1px * var(--k));
+}
+
+.scene.rule-check .rule-check-lines .rule-check-tint {
+  fill: color-mix(in srgb, var(--color-text) 6%, transparent);
+}
+
+.scene.rule-check .rule-check-lines .rule-check-dots {
+  stroke-dasharray: calc(1.5px * var(--k)) calc(3px * var(--k));
+}
+
+.scene.rule-check .rule-check-band {
+  fill: var(--color-text);
+  fill-opacity: 0.06;
+  opacity: 0;
+}
+
+/* the rules: automation's faint rounded square, inked by --f while it runs */
+.scene.rule-check .rule-check-auto {
+  --f: 0;
+
+  stroke: color-mix(in srgb, var(--color-text) calc(var(--f) * 85%), var(--color-text-faint));
+  stroke-width: calc(1.25px * var(--k));
+  fill: color-mix(in srgb, var(--color-text-faint) calc(24% + var(--f) * 30%), var(--color-surface));
+}
+
+.scene.rule-check .rule-check-wire {
+  stroke: var(--color-text);
+  stroke-opacity: 0.8;
+  stroke-width: calc(1.25px * var(--k));
+  opacity: 0;
+}
+
+/* the strips: a frame, pending dots, and the marks they print (a tick passes, a cross fails) */
+.scene.rule-check .rule-check-frame {
+  fill: var(--color-surface);
+  stroke: var(--color-text);
+  stroke-opacity: 0.5;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.rule-check .rule-check-dot {
+  fill: var(--color-text);
+  fill-opacity: 0.3;
+  opacity: 0;
+}
+
+.scene.rule-check .rule-check-mark {
+  stroke: var(--color-text);
+  stroke-opacity: 0.78;
+  stroke-width: calc(1.6px * var(--k));
+  opacity: 0;
+}
+
+.scene.rule-check .rule-check-mark.is-fail {
+  stroke-opacity: 0.92;
+  stroke-width: calc(1.8px * var(--k));
+}
+
+.scene.rule-check .rule-check-printed {
+  stroke: var(--color-text);
+  stroke-opacity: 0.4;
+  stroke-width: calc(1.25px * var(--k));
+  opacity: 0;
+}
+
+/* the result: a hairline per row compared, then the accent "=" */
+.scene.rule-check .rule-check-compare {
+  stroke: var(--color-text);
+  stroke-opacity: 0.55;
+  stroke-width: calc(0.75px * var(--k));
+  opacity: 0;
+}
+
+/* the accent "=" */
+.scene.rule-check .rule-check-equals {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2px * var(--k));
+  opacity: 0;
+}
+
+/* callouts */
+.scene.rule-check .rule-check-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.rule-check .rule-check-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}

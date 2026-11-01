@@ -1,0 +1,143 @@
+/* Scene engine agent-check (agent-check.js): AI reviewing a page with judgment. Strokes are in
+   viewBox units scaled by --k (units per CSS pixel, set by the engine) and divided by --s (a
+   page group's own scale), so line weights hold from 288px to 500px, on the page and on the
+   small competing pages, and the drawn-on strokes keep their pathLength dashes. */
+.scene.agent-check {
+  --agent-check-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.agent-check {
+  --agent-check-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.agent-check {
+    --agent-check-wash: 0.12;
+  }
+}
+
+.scene.agent-check .agent-check-svg {
+  --k: 1;
+  --s: 1;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(farthest-corner at 50% 50%, #000 80%, transparent 100%);
+}
+
+.scene.agent-check .agent-check-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--agent-check-wash);
+}
+
+.scene.agent-check .agent-check-wash-stop + .agent-check-wash-stop {
+  stop-opacity: 0;
+}
+
+/* the pages: a card, ruled lines for text (never words); the competing pages fainter */
+.scene.agent-check .agent-check-paper {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(1.25px * var(--k) / var(--s));
+}
+
+.scene.agent-check .agent-check-sec path {
+  stroke: var(--color-text);
+  stroke-width: calc(var(--w) * 1px * var(--k) / var(--s));
+}
+
+.scene.agent-check .agent-check-sec .is-tint {
+  fill: color-mix(in srgb, var(--color-text) 6%, transparent);
+}
+
+.scene.agent-check .agent-check-rival .agent-check-paper {
+  stroke-opacity: 0.26;
+  stroke-width: calc(1px * var(--k) / var(--s));
+}
+
+.scene.agent-check .agent-check-rival .agent-check-sec path {
+  stroke-width: calc(var(--w) * 0.8px * var(--k) / var(--s));
+}
+
+/* the questions: a drawn question mark in ink */
+.scene.agent-check .agent-check-q {
+  opacity: 0;
+}
+
+.scene.agent-check .agent-check-q path {
+  stroke: var(--color-text);
+  stroke-opacity: 0.85;
+  stroke-width: calc(1.6px * var(--k));
+}
+
+.scene.agent-check .agent-check-q .is-dot {
+  stroke-width: calc(2.8px * var(--k));
+}
+
+/* the notes: a pending ring, filled in the accent as its note is written */
+.scene.agent-check .agent-check-pending {
+  stroke: var(--color-text);
+  stroke-opacity: 0.35;
+  stroke-width: calc(0.9px * var(--k));
+}
+
+.scene.agent-check .agent-check-bullet {
+  fill: var(--scene-accent);
+  opacity: 0;
+}
+
+.scene.agent-check .agent-check-note {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.6px * var(--k));
+  opacity: 0;
+}
+
+.scene.agent-check .agent-check-note2 {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(1.1px * var(--k));
+  opacity: 0;
+}
+
+/* the AI: an accent disc with a soft halo, its trail as it jumps */
+.scene.agent-check .agent-check-disc {
+  fill: var(--scene-accent);
+}
+
+.scene.agent-check .agent-check-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.16;
+}
+
+.scene.agent-check .agent-check-trail {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.1px * var(--k));
+  opacity: 0;
+}
+
+/* what stays of the glance across: a dotted line at the accent's lightest */
+.scene.agent-check .agent-check-glance {
+  stroke: var(--scene-accent);
+  stroke-opacity: 0.4;
+  stroke-width: calc(1.3px * var(--k));
+  stroke-dasharray: 0 calc(4px * var(--k));
+  opacity: 0;
+}
+
+/* callouts */
+.scene.agent-check .agent-check-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.agent-check .agent-check-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}
+
+/* the questions' label arrives with the second question; the engine fades it */
+.scene.agent-check .scene-label-questions {
+  transition: none;
+}
