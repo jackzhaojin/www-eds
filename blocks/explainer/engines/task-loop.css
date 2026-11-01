@@ -123,8 +123,8 @@
 
 .explainer.task-loop .loop__queue li.sub {
   border-style: dashed;
-  border-color: #c2433d;
-  color: #b0344f;
+  border-color: var(--color-danger-strong);
+  color: var(--color-danger);
 }
 
 .explainer.task-loop .loop__queue li.done {
@@ -192,16 +192,6 @@
 @container (min-width: 720px) {
   .explainer.task-loop .lab > figcaption {
     padding: 0 28px 22px;
-  }
-}
-
-[data-theme="dark"] .explainer.task-loop .loop__queue li.sub {
-  color: var(--rose);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"], [data-theme="dark"]) .explainer.task-loop .loop__queue li.sub {
-    color: var(--rose);
   }
 }
 

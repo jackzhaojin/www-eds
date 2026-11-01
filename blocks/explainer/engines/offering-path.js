@@ -39,6 +39,12 @@ export default async function engine(block, { slot, rows }) {
   const boxes = {};
   let stepsList = null;
   singles.forEach((cell) => {
+    // the editor saves the picture without its <p>, and decoration then wraps the picture and
+    // the picker's name in one <p>: take the name out first, wherever it sits
+    [...cell.querySelectorAll('p')].filter(isName).forEach((el) => {
+      chips.setAttribute('aria-label', el.textContent.trim());
+      meta.append(el);
+    });
     [...cell.children].forEach((el) => {
       if (isName(el)) {
         chips.setAttribute('aria-label', el.textContent.trim());

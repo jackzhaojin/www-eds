@@ -207,3 +207,7 @@ Observed rules (descriptive, from the capture):
 - Do keep content complete without JavaScript; the canvas and widgets only animate or switch.
 - Don't introduce photo heroes, icon fonts or image logos; the wordmark is text.
 - Don't add new breakpoints beyond 480, 768, 1024, 1280 without a register entry (the live site already carries several off-ladder ones).
+
+## Brands (since v1.4.0)
+
+This system is Jack's brand. A page can take the Adobe-inspired brand instead with its metadata (`theme | adobe`): the same components, sizes and layout, with the semantic tokens mapped onto Adobe's palette (cool grays, rich dark, one Adobe red accent) and Inter in the display role. Blocks read semantic tokens only, never the `--palette-*` primitives, so every block follows either brand in light and dark. How it works and how it is checked: [docs/theming.md](docs/theming.md).

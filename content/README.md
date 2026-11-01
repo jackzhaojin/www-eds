@@ -104,6 +104,7 @@ Pixel-perfect gating against the GitHub Pages original ended on 2026-10-26 (Jack
 - **Code checks:** `npm run lint` and `node --test test/*.test.mjs`; for the Worker, `cd edge && npm test`.
 - **Editability:** `node stardust/scripts/deploy/ew-editability-probe.mjs <aem.page url> --simulate-editor` should report 0 dead and 0 duplicated.
 - **SEO:** `node stardust/scripts/seo-check.mjs --base https://main--www-eds--jackzhaojin.aem.page` before publishing, and on www after.
+- **Both brands** (since v1.4.0), for any change to tokens, `styles/`, a template or a block's colors: `node --test test/theme-contract.test.mjs` fails if a block reads a `--palette-*` primitive or a brand leaves a token unmapped. Then render the pages: build local previews of the examples (`local-preview.mjs`, every page in `git ls-files content`), start `aem-up-local`, and run `node stardust/scripts/deploy/theme-matrix.mjs --base http://localhost:3001 --paths-file <pages> --brands adobe --contrast` (each page in the Adobe brand, light, dark and System, 1440 and 360: console errors, overflow, contrast, and any of Jack's colors or Playfair left on the page). To prove a change leaves Jack's brand as it was, serve the old code on the same pages (`git worktree add --detach ../www-eds-baseline main`, link `.local-preview` into it, `aem up --port 3002 --html-folder .local-preview --html-mount /` there) and add `--brands jack --against http://localhost:3002`: every render is pixel-diffed. [docs/theming.md](../docs/theming.md) explains the system.
 - **zsh:** a URL list in a variable doesn't split into arguments. Write `${=URLS}`, or the probe silently checks one long "URL" and reports 0 authored texts.
 
 The replica gates (`stardust/scripts/replica/`) still run if a pixel comparison is ever wanted, but nothing requires them.
@@ -144,6 +145,16 @@ Writing and the portfolio each have one page per item and a hub that lists them 
 **A project page's JSON-LD** is generated too, from its own metadata and links (`scripts/page-schema.js`): the WebPage, its BreadcrumbList and a SoftwareSourceCode or CreativeWork. Don't add a `json-ld` row: a page with its own JSON-LD keeps it and gets nothing generated.
 
 The records, the Admin API trail and the validation are in [the v1.1.1 record](../ai-docs/2026-10-26-pages-indexes-library/README.md), [the talks index record](../ai-docs/2026-10-26-talks-json/README.md) and [the writing index record](../ai-docs/2026-10-26-writing-index/README.md).
+
+## Brands and presentations (since v1.4.0)
+
+**A page's brand is a page property.** Add `theme | adobe` to the metadata block and the page takes the Adobe-inspired brand, in whichever appearance the visitor chose; without it the page is Jack's. It can share the row with other theme words (`code-nowrap, adobe`). A folder or the whole site can take a brand through the bulk metadata sheet's `theme` column (`hlx-config/metadata.tsv`), but that is a site config change: ask Jack. Every block follows either brand, because blocks read only semantic tokens ([docs/theming.md](../docs/theming.md)).
+
+**A presentation is a page with `template | presentation`:** one section is one slide, as tall as the screen on a laptop or a shared screen. A short paragraph right before a section's heading is its kicker (a stage number and name, set in the accent), the first paragraph after the heading its lead, a list becomes numbered (`ol`) or dotted (`ul`) rows, and a Facts block gives labeled rows (Why it works, The demo, Try it). Printed or saved as PDF, each slide starts a page, without the header and footer, and a process diagram shows every version under its label. Anchor each slide with section metadata `id`; there are no custom keys, so the browser's own scrolling and links move between slides.
+
+**A process diagram is `Explainer (process-shift)`:** a process as steps, in two or more versions behind a switch (Today, then the ways AI changes it), each step marked by who does it. Rows: a one-cell row with the key list (`You`, `AI`, `Automation`, each bold, in that order); an optional one-cell row with one italic paragraph naming the switch; one row per version, `label | an ordered list, each item opening with its actor's bold name | a note on what changes`; a last one-cell row, the caption. Picking a version plays its steps once (not under reduced motion). The engine's JSDoc (`blocks/explainer/engines/process-shift.js`) is the contract.
+
+The first presentation is `/drafts/sites-ai-webinar/` (the Sites and AI webinar, November 11, 2026): preview only, `noindex`, never published. Drafts stay out of every index and sitemap.
 
 ## The block library (Experience Workspace)
 

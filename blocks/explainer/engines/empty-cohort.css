@@ -53,7 +53,7 @@
 }
 
 .explainer.empty-cohort .eb-code .c {
-  color: #8f8a85;
+  color: var(--color-code-comment);
 }
 
 .explainer.empty-cohort .eb-code .hl {
@@ -97,8 +97,8 @@
 }
 
 .explainer.empty-cohort .eb-trace li[data-s="bad"] {
-  border-color: #c2433d;
-  background: rgb(194 67 61 / 6%);
+  border-color: var(--color-danger-strong);
+  background: var(--color-danger-soft);
 }
 
 .explainer.empty-cohort .eb-trace li[data-s="good"] {

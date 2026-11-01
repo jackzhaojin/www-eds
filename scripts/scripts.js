@@ -65,6 +65,31 @@ function applyStoredTheme() {
   root.dataset.themeChoice = choice;
 }
 
+const BRANDS = ['adobe'];
+
+/**
+ * Applies the page's brand (since v1.4.0): a brand name among the page's theme metadata
+ * (`theme | adobe`, beside any body-class words such as code-nowrap) sets html[data-brand] and
+ * loads styles/themes/<brand>.css, token overrides scoped to that attribute, so no other page
+ * changes. The brand is a page property, separate from the appearance: the visitor's Light,
+ * Dark or System choice still picks light or dark within it, and nothing is stored. If the
+ * stylesheet fails, the page keeps Jack's theme.
+ */
+async function applyBrand() {
+  const words = getMetadata('theme').split(',').map((word) => toClassName(word.trim()));
+  const brand = BRANDS.find((name) => words.includes(name));
+  if (!brand) return;
+  const root = document.documentElement;
+  root.dataset.brand = brand;
+  try {
+    await loadCSS(`${window.hlx.codeBasePath}/styles/themes/${brand}.css`);
+  } catch (error) {
+    delete root.dataset.brand;
+    // eslint-disable-next-line no-console
+    console.error(`theme ${brand} failed to load`, error);
+  }
+}
+
 /**
  * load fonts.css and set a session storage flag
  */
@@ -289,11 +314,12 @@ async function loadEager(doc) {
   applyStoredTheme();
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  const brand = applyBrand();
   const main = doc.querySelector('main');
   if (main) {
     main.id = 'main';
     decorateMain(main);
-    await decorateTemplate(main);
+    await Promise.all([decorateTemplate(main), brand]);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }

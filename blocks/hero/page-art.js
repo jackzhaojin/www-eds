@@ -15,6 +15,13 @@ export default function paintArt(hero, kind) {
 
   var copyMask = document.createElement('canvas');
   var mask = copyMask.getContext('2d');
+  // The soft halo around the text is blurred on a canvas a quarter the size, then scaled up: the
+  // same edge (within 8 of 255 alpha levels) for a sixteenth of the work. At full size one resize
+  // of a phone hero blocked the main thread for about half a second on a slow phone (2026-10-31).
+  var SOFT = 4;
+  var softMask = document.createElement('canvas');
+  var soft = softMask.getContext('2d');
+  var sizing = 0;
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   var visible = true, raf = 0, previous = 0, elapsed = 0;
   var width = 0, height = 0, cx = 0, cy = 0, radius = 0, boxes = [], colors = [];
@@ -177,13 +184,21 @@ export default function paintArt(hero, kind) {
     if (note) addBox(note.getBoundingClientRect());
     // Cache the soft exclusion mask; animation frames never measure layout or blur.
     copyMask.width = canvas.width; copyMask.height = canvas.height;
+    softMask.width = Math.ceil(canvas.width / SOFT); softMask.height = Math.ceil(canvas.height / SOFT);
+    soft.setTransform(dpr / SOFT, 0, 0, dpr / SOFT, 0, 0);
+    soft.fillStyle = '#000';
+    soft.filter = 'blur(' + 14 / SOFT + 'px)'; // a filter's length is in bitmap pixels
+    boxes.forEach(function (b) { soft.fillRect(b.x - 12, b.y - 10, b.w + 24, b.h + 20); });
+    soft.filter = 'none';
+    mask.drawImage(softMask, 0, 0, copyMask.width, copyMask.height);
     mask.setTransform(dpr, 0, 0, dpr, 0, 0);
     mask.fillStyle = '#000';
-    mask.filter = 'blur(14px)';
-    boxes.forEach(function (b) { mask.fillRect(b.x - 12, b.y - 10, b.w + 24, b.h + 20); });
-    mask.filter = 'none';
     boxes.forEach(function (b) { mask.fillRect(b.x - 3, b.y - 3, b.w + 6, b.h + 6); });
     paint(elapsed);
+  }
+  // One resize per frame at most, and only when the hero's size changed or the fonts moved its text.
+  function scheduleResize() {
+    if (!sizing) sizing = requestAnimationFrame(function () { sizing = 0; resize(); });
   }
   function frame(now) {
     raf = 0;
@@ -202,8 +217,11 @@ export default function paintArt(hero, kind) {
   reduced.addEventListener('change', syncMotion);
   document.addEventListener('visibilitychange', syncMotion);
   new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; syncMotion(); }).observe(hero);
-  new ResizeObserver(resize).observe(hero);
+  new ResizeObserver(function () {
+    var rect = hero.getBoundingClientRect();
+    if (rect.width !== width || rect.height !== height) scheduleResize();
+  }).observe(hero);
   new MutationObserver(readColors).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-theme-effective'] });
-  if (document.fonts) document.fonts.ready.then(resize);
+  if (document.fonts) document.fonts.ready.then(scheduleResize);
   readColors(); resize(); syncMotion();
 }

@@ -2,7 +2,7 @@
    kit's .lab, .chips, .gates and .verdict). Check numbers and states are the list item's
    pseudo-elements, so the checks keep their look while they are edited. */
 .explainer.hook-guard {
-  --gate-fail: #b0344f;
+  --gate-fail: var(--color-danger);
 }
 
 /* chips: each preset label in a radio host */

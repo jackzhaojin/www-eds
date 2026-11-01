@@ -23,7 +23,7 @@
   display: block;
   border-radius: 12px;
   border: 1px solid var(--color-line);
-  background: #fff;
+  background: var(--color-board);
 }
 
 .figure.page img {

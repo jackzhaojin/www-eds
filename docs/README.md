@@ -21,6 +21,7 @@ The other docs in this repo have different jobs:
 | [architecture.md](architecture.md) | the whole system on one page: where content and code come from, which host serves what, who renders which part of a page, and how a change gets to readers |
 | [cloudflare-worker.md](cloudflare-worker.md) | the Cloudflare Worker in front of www: what it does to every request, its three environments, the caches, search engines, the safety nets |
 | [edge-rendering.md](edge-rendering.md) | edge-side rendering: listing pages and structured data built inside the Worker, so every reader and every crawler gets the finished page. The part worth demoing |
+| [theming.md](theming.md) | brands and appearances: the three tiers of tokens, how a page takes the Adobe brand through its metadata, why every block follows, and how that is checked |
 
 If you read one, read [edge-rendering.md](edge-rendering.md). If you read them all, go in the order above.
 

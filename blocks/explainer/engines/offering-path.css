@@ -34,7 +34,7 @@
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--color-board);
 }
 
 .explainer.offering-path .eds-map__img picture {
@@ -54,8 +54,8 @@
   width: var(--w);
   height: var(--h);
   border-radius: 8px;
-  border: 3px solid var(--palette-lavender-600);
-  background: rgb(91 75 196 / 12%);
+  border: 3px solid var(--color-board-accent);
+  background: color-mix(in srgb, var(--color-board-accent) 12%, transparent);
   opacity: 0;
   transform: scale(1.06);
   transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);

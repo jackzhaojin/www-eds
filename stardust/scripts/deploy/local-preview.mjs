@@ -9,6 +9,10 @@
  *
  *   node stardust/scripts/deploy/local-preview.mjs /portfolio/anima-mesh/ [more pages]
  *
+ * A path without the trailing slash names a document that isn't a folder's index, when
+ * content/<path>.html exists (the block library's /docs/library/blocks/<block>): it becomes
+ * .local-preview/<path>.plain.html.
+ *
  * Images: DA's image URLs are private, so each <picture> is swapped for the one www serves for the
  * same page (matched in order); a page www doesn't have yet keeps DA's and shows broken images.
  * Run from the www-eds root after pulling the page (da-pull.mjs) and after every edit to it.
@@ -97,8 +101,12 @@ function sectionAttributes(main) {
 
 let failed = 0;
 for (const page of pages) {
-  const web = page.endsWith('/') ? page : `${page}/`;
-  const src = path.join('content', web, 'index.html');
+  // a document that isn't a folder's index, such as the block library's /docs/library/blocks/code
+  const single = !page.endsWith('/') && fs.existsSync(path.join('content', `${page}.html`));
+  const web = single || page.endsWith('/') ? page : `${page}/`;
+  const src = single ? path.join('content', `${page}.html`) : path.join('content', web, 'index.html');
+  const plain = single ? `${web}.plain.html` : `${web}index.plain.html`;
+  const folder = single ? web.slice(0, web.lastIndexOf('/') + 1) : web;
   if (!fs.existsSync(src)) {
     console.log(`  FAIL ${web}: no ${src} (pull it first: da-pull.mjs ${web})`);
     failed += 1;
@@ -116,20 +124,20 @@ for (const page of pages) {
   let images = 'no images';
   const local = pictures(main);
   if (local.length) {
-    const res = await fetch(`${WWW}${web}index.plain.html`);
+    const res = await fetch(`${WWW}${plain}`);
     const served = res.ok ? pictures(await res.text()) : [];
     if (served.length === local.length) {
       let i = 0;
       main = main.replace(/<picture>[\s\S]*?<\/picture>/g, () => {
         const pic = served[i];
         i += 1;
-        return pic.replace(/(src|srcset)="\.\/(media_[^"]+)"/g, `$1="${WWW}${web}$2"`);
+        return pic.replace(/(src|srcset)="\.\/(media_[^"]+)"/g, `$1="${WWW}${folder}$2"`);
       });
       images = `${local.length} images from www`;
     } else images = `${local.length} images left as DA's (www has ${served.length})`;
   }
 
-  const out = path.join(OUT, web, 'index.plain.html');
+  const out = path.join(OUT, plain);
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, `${sectionAttributes(main.trim())}${metadata ? `<div>${cliMetadata(metadata)}</div>\n` : ''}`);
   console.log(`  ok   ${web} -> ${out} (${images})`);

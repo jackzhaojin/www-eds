@@ -5,19 +5,9 @@
 
 .code .code-frame {
   margin: 0;
-  background: var(--color-code-ground, var(--palette-night-850));
+  background: var(--color-night-bg);
   border-radius: 14px;
   overflow: hidden;
-}
-
-[data-theme="dark"] .code .code-frame {
-  --color-code-ground: var(--palette-night-950);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"], [data-theme="dark"]) .code .code-frame {
-    --color-code-ground: var(--palette-night-950);
-  }
 }
 
 .code .code-bar {
@@ -26,9 +16,9 @@
   justify-content: space-between;
   gap: 12px;
   padding: 10px 14px;
-  border-bottom: 1px solid var(--palette-line-night);
+  border-bottom: 1px solid var(--color-night-line);
   font: 500 12px/1 var(--font-mono);
-  color: var(--palette-bone-400);
+  color: var(--color-night-text-faint);
   letter-spacing: 0.02em;
 }
 
@@ -53,15 +43,15 @@
 }
 
 .code .code-bar a:any-link {
-  color: var(--palette-lavender-300);
+  color: var(--color-night-accent);
   text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-thickness: 1px;
-  border-bottom: 1px solid var(--palette-line-night);
+  border-bottom: 1px solid var(--color-night-line);
 }
 
 .code .code-bar a:hover {
-  color: var(--palette-bone-100);
+  color: var(--color-night-text);
 }
 
 .code pre {
@@ -73,7 +63,7 @@
   overflow: auto;
   padding: 12px 0;
   font: 400 13px/1.7 var(--font-mono);
-  color: var(--palette-bone-100);
+  color: var(--color-night-text);
   font-variant-ligatures: none;
   white-space: pre;
 }
@@ -106,25 +96,25 @@
   width: 3.2em;
   padding-right: 1.2em;
   text-align: right;
-  color: #5c5955;
+  color: var(--color-code-gutter);
   user-select: none;
 }
 
 .code .tk-c {
-  color: #9a958f;
+  color: var(--color-code-comment);
   font-style: italic;
 }
 
 .code .tk-s {
-  color: var(--palette-mint-300);
+  color: var(--color-code-string);
 }
 
 .code .tk-k {
-  color: var(--palette-lavender-300);
+  color: var(--color-code-keyword);
 }
 
 .code .tk-n {
-  color: var(--palette-gold-300);
+  color: var(--color-code-number);
 }
 
 @media (width <= 640px) {

@@ -135,8 +135,8 @@
 }
 
 .explainer.spec-filter .sf__spec[data-state="fail"] {
-  border-color: #c2433d;
-  background: rgb(194 67 61 / 6%);
+  border-color: var(--color-danger-strong);
+  background: var(--color-danger-soft);
 }
 
 .explainer.spec-filter .sf__spec[data-state="skip"] {
@@ -167,12 +167,12 @@
 }
 
 .explainer.spec-filter .sf__status.ok {
-  background: rgb(31 110 82 / 18%);
+  background: color-mix(in srgb, var(--color-success-strong) 18%, transparent);
   color: var(--mint);
 }
 
 .explainer.spec-filter .sf__status.no {
-  background: rgb(194 67 61 / 22%);
+  background: color-mix(in srgb, var(--color-danger-strong) 22%, transparent);
   color: var(--rose);
 }
 

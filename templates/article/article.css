@@ -236,10 +236,10 @@
   border-radius: var(--radius-sm);
 }
 
-/* Plain code in the column sits on the night palette in both themes. */
+/* Plain code in the column sits on night in both appearances, as the code block does. */
 .article .article-body .default-content-wrapper pre {
-  background: var(--palette-night-850);
-  color: var(--palette-bone-100);
+  background: var(--color-night-bg);
+  color: var(--color-night-text);
   border-radius: var(--radius-lg);
   padding: 16px 18px;
   font: 400 13.5px/1.7 var(--font-mono);
@@ -273,7 +273,7 @@
 .article .article-body .section.prompt .default-content-wrapper pre .prompt-by {
   display: block;
   margin-bottom: 8px;
-  color: var(--palette-bone-400);
+  color: var(--color-night-text-faint);
   font-size: 12px;
   letter-spacing: 0.04em;
 }

@@ -73,24 +73,14 @@
 }
 
 .switch .switch-code pre {
-  background: var(--color-code-ground, var(--palette-night-850));
-  color: var(--palette-bone-400);
+  background: var(--color-night-bg);
+  color: var(--color-night-text-faint);
   border-radius: 12px;
   padding: 14px 16px;
   margin: 0;
   font: 400 12.5px/1.8 var(--font-mono);
   white-space: pre;
   overflow-x: auto;
-}
-
-[data-theme="dark"] .switch .switch-code pre {
-  --color-code-ground: var(--palette-night-950);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"], [data-theme="dark"]) .switch .switch-code pre {
-    --color-code-ground: var(--palette-night-950);
-  }
 }
 
 .switch .switch-code pre code {
@@ -106,17 +96,17 @@
 }
 
 .switch .code-mark {
-  color: var(--palette-gold-300);
+  color: var(--color-night-warning);
 }
 
 .switch .code-add {
-  color: var(--palette-rose-300);
-  background: rgb(232 169 184 / 12%);
+  color: var(--color-night-danger);
+  background: color-mix(in srgb, var(--color-night-danger) 12%, transparent);
   border-radius: 3px;
 }
 
 .switch .code-note {
-  color: #7d7975;
+  color: var(--color-code-comment);
   font-style: italic;
 }
 
@@ -126,12 +116,12 @@
 
 @keyframes stamp {
   from {
-    background: rgb(232 169 184 / 55%);
+    background: color-mix(in srgb, var(--color-night-danger) 55%, transparent);
     color: #fff;
   }
 
   to {
-    background: rgb(232 169 184 / 12%);
+    background: color-mix(in srgb, var(--color-night-danger) 12%, transparent);
   }
 }
 
@@ -157,26 +147,16 @@
 .switch .switch-ok p {
   margin: 10px 0 0;
   font: 500 12.5px var(--font-mono);
-  color: var(--color-pass-ink, var(--palette-mint-700));
-}
-
-[data-theme="dark"] .switch .switch-ok p {
-  --color-pass-ink: var(--palette-mint-300);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"], [data-theme="dark"]) .switch .switch-ok p {
-    --color-pass-ink: var(--palette-mint-300);
-  }
+  color: var(--color-success);
 }
 
 .switch .switch-console p {
   margin: 10px 0 0;
-  background: var(--color-code-ground, var(--palette-night-850));
+  background: var(--color-night-bg);
   border-radius: 12px;
   padding: 10px 14px;
   font: 400 11.5px/1.7 var(--font-mono);
-  color: var(--palette-rose-300);
+  color: var(--color-night-danger);
   overflow-wrap: anywhere;
 }
 

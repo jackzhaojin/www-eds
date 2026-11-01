@@ -2,24 +2,18 @@
    explainer.css, .ru). Colors follow the diagram (red, green, blue, orange) through v3. */
 .explainer.reuse-stacks {
   --c-adhoc: #a8322d;
-  --c-spec: var(--palette-leaf-700);
-  --c-harness: var(--palette-blue-600);
-  --c-agent: var(--palette-amber-700);
+  --c-spec: var(--color-project-leaf);
+  --c-harness: var(--color-topic-aem);
+  --c-agent: var(--color-project-amber);
 }
 
 [data-theme="dark"] .explainer.reuse-stacks {
-  --c-adhoc: var(--palette-red-300);
-  --c-spec: var(--palette-leaf-300);
-  --c-harness: var(--palette-blue-300);
-  --c-agent: var(--palette-amber-300);
+  --c-adhoc: var(--color-topic-agents);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"], [data-theme="dark"]) .explainer.reuse-stacks {
-    --c-adhoc: var(--palette-red-300);
-    --c-spec: var(--palette-leaf-300);
-    --c-harness: var(--palette-blue-300);
-    --c-agent: var(--palette-amber-300);
+    --c-adhoc: var(--color-topic-agents);
   }
 }
 
