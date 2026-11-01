@@ -37,9 +37,9 @@ export function readTalkRow(li) {
 
 /**
  * The ItemList entries: an Event per row, with the write-up and project the row links. Google
- * checks every typed Event for a start date and a location with an address, so the place line is
- * the Place's address too, and the conference (whose own dates the row doesn't hold) is named
- * without a type, the way schema.org's superEvent still reads it as an Event.
+ * checks every Event, a superEvent too, typed or not, for a start date and a location with an
+ * address. So the place line is the Place's address as well, and the conference, whose own dates
+ * the row doesn't hold, is the talk's organizer rather than a superEvent.
  */
 export function talkSchemaItems(talks, canonical) {
   return talks.filter((talk) => talk.id && talk.title).map((talk) => {
@@ -60,7 +60,7 @@ export function talkSchemaItems(talks, canonical) {
       eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
       eventStatus: 'https://schema.org/EventScheduled',
       performer: { '@id': PERSON['@id'] },
-      ...(event ? { superEvent: { name: event } } : {}),
+      ...(event ? { organizer: { '@type': 'Organization', name: event } } : {}),
       ...(place ? { location: { '@type': 'Place', name: place, address: place } } : {}),
       ...(writeup ? { subjectOf: { '@type': 'BlogPosting', url: `${SITE}${writeup.pathname}` } } : {}),
       ...(project ? { about: { '@id': `${SITE}${project.pathname}#project` } } : {}),
