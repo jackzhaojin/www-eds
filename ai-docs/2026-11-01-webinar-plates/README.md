@@ -23,6 +23,16 @@ Built by five parallel subagents from one brief (the `portfolio-scene` skill's m
 - The scene kit change: a portfolio scene keeps only its pause control and pauses and plays as before; `gallery-scroll.mjs` on `/portfolio/` (11/11) and `/talks/` (9/9) at every speed and width.
 - `npm run lint` clean, `node --test test/*.test.mjs` 22/22.
 
+## v1.5.1: the three kinds of checks
+
+Jack, reviewing stage 03 in Experience Workspace: "eval should be classified as three different buckets" (human, deterministic and agentic checks, with Experience Workspace's Preflight panel as a deterministic example), then: "the human deterministic agentic thing could use more animations as well ... I like the graphics you did." The slide `03 · Three kinds of checks` became a row of three plates (`style | plates`), each card the plate and its bucket's text:
+
+- `human-check`: the ink ring reads the page against the brief at a person's pace, circles a weak phrase, notes it in the margin, and makes the call with a tick. No accent at all: the person is ink.
+- `rule-check`: one page through the same five rules twice, on a fixed beat; the two result strips match, and an accent "=" lands between them.
+- `agent-check`: the AI disc reads out of order like a reviewer, raises questions where the page is thin, glances at two competing pages, and writes accent review notes.
+
+Built by three parallel subagents from the same brief, who agreed one page card and actor column so the three read as a set. Validation (local code): every plate in both brands, light and dark, 1440 and 360 (0 errors, 0 overflow, frame p95 17 ms, replay restarts it); the deck in both brands, Light, Dark and System, with `--contrast`: 12 renders, 0 problems; editability 444/444; lint clean, 22/22 tests.
+
 ## What's next
 
 - Jack's section-by-section review of the deck.

@@ -1,0 +1,142 @@
+/* Scene engine human-check (human-check.js): a person reads the page against the brief and makes
+   the call. Ink only, no accent: the person's marks are hand strokes in the text color, and the
+   wash behind is ink too. Strokes are in viewBox units scaled by --k (units per CSS pixel, set by
+   the engine), so line weights hold from 288px to 500px and the drawn-on strokes keep their
+   pathLength dashes. The edge mask reads only alpha, so any opaque token draws it. */
+.scene.human-check {
+  --human-check-wash: 0.04;
+}
+
+:root[data-theme="dark"] .scene.human-check {
+  --human-check-wash: 0.06;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.human-check {
+    --human-check-wash: 0.06;
+  }
+}
+
+.scene.human-check .human-check-svg {
+  --k: 1;
+
+  color: var(--color-text);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, var(--color-text) 78%, transparent 100%);
+}
+
+.scene.human-check .human-check-wash-stop {
+  stop-color: var(--color-text);
+  stop-opacity: var(--human-check-wash);
+}
+
+.scene.human-check .human-check-wash-stop + .human-check-wash-stop {
+  stop-opacity: 0;
+}
+
+/* the two sheets, the page's margin rule, their ruled lines */
+.scene.human-check .human-check-s {
+  stroke: currentcolor;
+  stroke-opacity: 0.45;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.human-check .human-check-c {
+  stroke: currentcolor;
+  stroke-opacity: 0.26;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.human-check [style*="--w"] {
+  stroke: currentcolor;
+  stroke-width: calc(var(--w) * 1px * var(--k));
+}
+
+.scene.human-check .human-check-tint {
+  fill: color-mix(in srgb, currentcolor 6%, transparent);
+}
+
+/* the person's marks: pencil ticks on the brief, the loop, the margin note */
+.scene.human-check .human-check-mark {
+  stroke: currentcolor;
+  stroke-opacity: 0.8;
+  stroke-width: calc(1.4px * var(--k));
+}
+
+.scene.human-check .human-check-mark.is-loop {
+  stroke-opacity: 0.85;
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene.human-check .human-check-mark.is-thin {
+  stroke-opacity: 0.6;
+  stroke-width: calc(1px * var(--k));
+}
+
+.scene.human-check .human-check-mark.is-hand {
+  stroke-opacity: 0.72;
+  stroke-width: calc(1.1px * var(--k));
+}
+
+/* the glance: a dotted sight line, round caps on zero-length dashes */
+.scene.human-check .human-check-sight {
+  stroke: currentcolor;
+  stroke-opacity: 0.5;
+  stroke-width: calc(1.5px * var(--k));
+  stroke-dasharray: 0 5.5;
+}
+
+/* the call: a box that firms, and the tick drawn through it */
+.scene.human-check .human-check-box {
+  --bw: 1.25;
+
+  stroke: currentcolor;
+  stroke-opacity: 0.45;
+  stroke-width: calc(var(--bw) * 1px * var(--k));
+}
+
+.scene.human-check .human-check-tick {
+  --tw: 2;
+
+  stroke: currentcolor;
+  stroke-opacity: 0.92;
+  stroke-width: calc(var(--tw) * 1px * var(--k));
+}
+
+/* the person: an ink ring on the card's surface */
+.scene.human-check .human-check-ring {
+  --rw: 1.75;
+
+  fill: var(--color-surface);
+  stroke: currentcolor;
+  stroke-width: calc(var(--rw) * 1px * var(--k));
+}
+
+/* callouts */
+.scene.human-check .human-check-leader {
+  stroke: currentcolor;
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.human-check .human-check-pin {
+  fill: currentcolor;
+  fill-opacity: 0.7;
+}
+
+/* the call's label turns ink when the tick lands */
+.scene.human-check .scene-label-call p {
+  transition: color 0.4s;
+}
+
+.scene.human-check .scene-label-call.is-active p {
+  color: var(--color-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.human-check .scene-label-call p {
+    transition: none;
+  }
+}
