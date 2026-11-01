@@ -60,6 +60,7 @@ Jack, 2026-10-31 22:30 ET: "Let's get things merged into main and close out all 
 
 - [jackzhaojin/www-eds#21](https://github.com/jackzhaojin/www-eds/pull/21) squash-merged at 22:42 ET as `e0d347b`, tagged `v1.4.0`, branch `release/1-4-0`. Its PageSpeed check first failed on the draft (mobile 75) and passed after the hero art fix (100 on mobile and desktop, TBT 0 ms, home and draft). The branch preview passed 40 renders (both brands, light and dark, 1440 and 360).
 - www serves it: 28 renders of seven live pages (home, the three hubs, three articles) in Jack's brand, light and dark, 1440 and 360, with the contrast check: no problems, the two contrast fixes live.
+- Archived at 23:06 ET (Jack: "Yes, archive it"): www-archive snapshot `adfe45b` (1311 files, 50 pages, 134 redirects, byte for byte on wrangler dev, archive.jackzhaojin.com and workers.dev), Worker version `2a9d5e20` replacing `4ee44d67`, Wayback captures of home and the two fixed articles (`62392c8`), recorded in the Cloudflare history (jack-dev-server-configs `e096f9a`).
 - Closed out the same evening (Jack: "close out all local branches and worktrees"): the baseline worktree, the Codex worktree (`codex/list-seo-research`, shipped as #2), the Claude worktree (`claude/google-issue-investigation-50d38e`, #17, superseded by v1.3.3 and v1.3.4; the PR itself is still open) and 21 local branches, every one identical to its copy on GitHub. Local: `main` only.
 
 ## The webinar demos
