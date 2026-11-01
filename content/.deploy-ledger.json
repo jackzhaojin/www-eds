@@ -38,7 +38,7 @@
   "/talks/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-11-01T00:00:16.128Z",
+    "ts": "2026-11-01T19:11:26.090Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -74,7 +74,7 @@
   "/writing/2026-04-05-continuous-executive-agent-v2-1/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-30T17:10:13.165Z",
+    "ts": "2026-11-01T19:11:26.090Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -227,7 +227,7 @@
   "/portfolio/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-27T01:37:14.099Z",
+    "ts": "2026-11-01T19:11:26.090Z",
     "put": 200,
     "preview": 200,
     "live": 200,
@@ -441,7 +441,7 @@
   "/portfolio/continuous-executive-agent/index": {
     "status": "live",
     "attempts": 1,
-    "ts": "2026-10-30T17:10:07.765Z",
+    "ts": "2026-11-01T19:11:26.089Z",
     "put": 200,
     "preview": 200,
     "live": 200,
