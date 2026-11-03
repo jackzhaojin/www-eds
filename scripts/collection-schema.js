@@ -23,7 +23,7 @@ export const PERSON = {
   sameAs: [
     'https://www.linkedin.com/in/jackjin',
     'https://github.com/jackzhaojin',
-    'https://www.youtube.com/@jackjin8467',
+    'https://www.youtube.com/channel/UC0oOZvUGcmBrJvcIhUIwatA',
     'https://www.credly.com/users/jack-jin',
   ],
   knowsAbout: [
