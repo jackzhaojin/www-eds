@@ -2,7 +2,7 @@
 /* Continuous, theme-aware geometric fields. No dependencies or content rendering.
    Ported from js/page-art.js on the source site: the hero section is passed in instead of
    looked up, and the canvas carries the hero-art class. Decorative only (aria-hidden), started
-   by hero.js after load, and it paints nothing under reduced motion. */
+   by hero.js as soon as the hero has painted, and it paints nothing under reduced motion. */
 export default function paintArt(hero, kind) {
   'use strict';
   if (!hero || hero.querySelector(':scope > .hero-art')) return;

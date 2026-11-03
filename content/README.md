@@ -160,6 +160,8 @@ The records, the Admin API trail and the validation are in [the v1.1.1 record](.
 
 The first presentation is `/drafts/sites-ai-webinar/` (the Sites and AI webinar, November 11, 2026): preview only, `noindex`, never published. Drafts stay out of every index and sitemap.
 
+**A deck keeps a graveyard** (Jack, 2026-11-02: "when I say I don't like something, we can move it to the archive or the graveyard portion ... so that we don't actually delete stuff"). The last slides of a presentation are a divider (section metadata `id | graveyard`, kicker "Graveyard", heading "Cut slides, kept for reference") and, after it, every slide cut from the talk, moved unchanged. A cut slide moves there instead of being deleted; changing a slide in place is still fine. Bringing one back is moving its section out again.
+
 ## The block library (Experience Workspace)
 
 The editor's Library (Blocks and Templates) reads `/docs/library/`: one document per block at `docs/library/blocks/<block>.html`, each variant a section with an `h2` naming it, the block table copied from a real page, and a `library-metadata` block (`description`, `searchtags`); the `blocks` sheet (`docs/library/blocks.json`); the page templates at `docs/library/templates/<name>.html` (placeholder text, no `json-ld`); and the `templates` sheet. The site's DA config points at the two sheets ([hlx-config/2026-10-26-block-library/](../hlx-config/2026-10-26-block-library/EXECUTION.md)).

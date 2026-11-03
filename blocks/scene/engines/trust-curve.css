@@ -1,0 +1,87 @@
+/* Scene engine trust-curve (trust-curve.js): trust against how much you hand to AI. Strokes
+   are in viewBox units scaled by --k (units per CSS pixel, set by the engine). Ink draws the
+   axes; the accent is the curve, its head and AI's discs. */
+.scene.trust-curve {
+  --trust-curve-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.trust-curve {
+  --trust-curve-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.trust-curve {
+    --trust-curve-wash: 0.12;
+  }
+}
+
+.scene.trust-curve .trust-curve-svg {
+  --k: 1;
+
+  color: var(--color-text);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, var(--color-text) 82%, transparent 100%);
+}
+
+.scene.trust-curve .trust-curve-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--trust-curve-wash);
+}
+
+.scene.trust-curve .trust-curve-wash-stop.is-end {
+  stop-opacity: 0;
+}
+
+.scene.trust-curve .trust-curve-s {
+  stroke: currentcolor;
+  stroke-opacity: 0.7;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene.trust-curve .trust-curve-guide {
+  stroke: currentcolor;
+  stroke-opacity: 0.4;
+  stroke-width: calc(1px * var(--k));
+  stroke-dasharray: calc(1.5px * var(--k)) calc(4px * var(--k));
+  opacity: 0;
+}
+
+.scene.trust-curve .trust-curve-curve {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2.25px * var(--k));
+}
+
+.scene.trust-curve .trust-curve-head,
+.scene.trust-curve .trust-curve-disc {
+  fill: var(--scene-accent);
+  opacity: 0;
+}
+
+.scene.trust-curve .trust-curve-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.16;
+  opacity: 0;
+}
+
+.scene.trust-curve .trust-curve-point {
+  fill: var(--color-bg);
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.5px * var(--k));
+  opacity: 0;
+}
+
+.scene.trust-curve .scene-label p {
+  transition: color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.trust-curve .scene-label.is-active p {
+  color: var(--scene-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.trust-curve .scene-label p {
+    transition: none;
+  }
+}

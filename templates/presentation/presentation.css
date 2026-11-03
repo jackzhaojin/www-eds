@@ -40,13 +40,13 @@
 }
 
 .presentation main > .section > .default-content-wrapper h2 {
-  max-width: 24ch;
+  max-width: 44ch;
   font-size: var(--text-h1);
   text-wrap: balance;
 }
 
 .presentation main > .section > .default-content-wrapper h3 {
-  max-width: 30ch;
+  max-width: 44ch;
   font-size: var(--text-h2);
   text-wrap: balance;
 }
@@ -171,9 +171,10 @@
 /* Two slide layouts, section styles on a slide that holds scenes (animated plates):
    - plates: the heading, then a row of cards, one scene each, its caption the card's text;
    - split: the heading, then a scene on the left and the rest of the slide (the prompt, the
-     facts) on the right.
+     facts) on the right;
+   - moment: one large scene beside the slide's heading (the opener), stacked under it on a phone.
    The slide is the grid, so its wrappers drop their own container width. */
-.presentation main > .section:is(.plates, .split) {
+.presentation main > .section:is(.plates, .split, .moment) {
   display: grid;
   align-content: center;
   column-gap: var(--space-6);
@@ -181,14 +182,14 @@
   padding-inline: max(var(--gutter), (100% - var(--container-max)) / 2 + var(--gutter));
 }
 
-.presentation main > .section:is(.plates, .split) > div {
+.presentation main > .section:is(.plates, .split, .moment) > div {
   max-width: none;
   margin-inline: 0;
   padding-inline: 0;
   min-width: 0;
 }
 
-.presentation main > .section:is(.plates, .split) > .default-content-wrapper {
+.presentation main > .section:is(.plates, .split, .moment) > .default-content-wrapper {
   grid-column: 1 / -1;
 }
 
@@ -256,6 +257,30 @@
   .presentation main .split .facts th {
     width: 112px;
   }
+
+  .presentation main > .section.moment {
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(36rem, 70svh));
+    align-items: center;
+  }
+
+  .presentation main > .section.moment > .default-content-wrapper {
+    grid-column: 1;
+  }
+
+  .presentation main > .section.moment > .scene-wrapper {
+    grid-column: 2;
+    margin-top: 0;
+  }
+}
+
+.presentation main > .section.moment > .scene-wrapper {
+  justify-self: center;
+  width: min(100%, 36rem);
+}
+
+.presentation main > .section.moment > .default-content-wrapper h2 {
+  max-width: none;
+  font-size: clamp(2.25rem, 1rem + 3vw, 4rem);
 }
 
 .presentation main .split .scene .scene-caption {
