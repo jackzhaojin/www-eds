@@ -7,6 +7,7 @@ import {
   decorateTemplateAndTheme,
   waitForFirstImage,
   loadSection,
+  loadBlock,
   loadSections,
   loadCSS,
   buildBlock,
@@ -306,6 +307,44 @@ async function decorateTemplate(main) {
   }
 }
 
+// the blocks that open a page: the first section shows once these have loaded
+const HEAD_BLOCKS = ['hero', 'chapter-head', 'scene'];
+
+/**
+ * Loads the first section, showing it as soon as its opening blocks (a hero, or a project
+ * chapter's head and scene) have loaded instead of after every block in it, since a project
+ * chapter is one long section. What follows the head stays hidden until it has loaded too.
+ * @param {Element} section The first section
+ */
+async function loadFirstSection(section) {
+  if (!section) return;
+  const wrappers = [...section.children];
+  const blockIn = (wrapper) => wrapper.querySelector(':scope > .block');
+  const isHead = (wrapper) => HEAD_BLOCKS.includes(blockIn(wrapper)?.dataset.blockName);
+  const split = wrappers.findIndex((wrapper) => !isHead(wrapper));
+  if (split <= 0) {
+    await loadSection(section, waitForFirstImage);
+    return;
+  }
+  const head = wrappers.slice(0, split);
+  const rest = wrappers.slice(split);
+  section.dataset.sectionStatus = 'loading';
+  for (let i = 0; i < head.length; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    await loadBlock(blockIn(head[i]));
+  }
+  await waitForFirstImage(head.find((wrapper) => wrapper.querySelector('img')) || head[0]);
+  rest.forEach((wrapper) => { wrapper.style.display = 'none'; });
+  section.style.display = null;
+  const blocks = rest.map(blockIn).filter(Boolean);
+  for (let i = 0; i < blocks.length; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    await loadBlock(blocks[i]);
+  }
+  rest.forEach((wrapper) => { wrapper.style.display = null; });
+  section.dataset.sectionStatus = 'loaded';
+}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -321,7 +360,7 @@ async function loadEager(doc) {
     decorateMain(main);
     await Promise.all([decorateTemplate(main), brand]);
     document.body.classList.add('appear');
-    await loadSection(main.querySelector('.section'), waitForFirstImage);
+    await loadFirstSection(main.querySelector('.section'));
   }
 
   try {
