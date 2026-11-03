@@ -1,0 +1,166 @@
+/* Scene engine quality-bar (quality-bar.js): pages pile up under a rising bar; three checked
+   pages clear it. Strokes are in viewBox units scaled by --k (units per CSS pixel, set by the
+   engine) and by --s (a page's own scale), so weights hold from 320px to 560px. Ink is
+   currentcolor; the accent marks AI, the bar and fresh pages (--f, 0..1, mixes it in), and the
+   titles of the pages on the shelf (--t). */
+.scene.quality-bar {
+  --quality-bar-wash: 0.08;
+}
+
+:root[data-theme="dark"] .scene.quality-bar {
+  --quality-bar-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene.quality-bar {
+    --quality-bar-wash: 0.12;
+  }
+}
+
+.scene.quality-bar .quality-bar-svg {
+  --k: 1;
+  --s: 1;
+  --f: 0;
+  --t: 0;
+
+  color: var(--color-text);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  mask-image: radial-gradient(circle at 50% 50%, var(--color-text) 78%, transparent 100%);
+}
+
+.scene.quality-bar .quality-bar-wash-stop {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--quality-bar-wash);
+}
+
+.scene.quality-bar .quality-bar-wash-stop.is-end {
+  stop-opacity: 0;
+}
+
+/* construction: the ground and the shelf, and the bar's final height as a faint dashed guide */
+.scene.quality-bar :is(.quality-bar-c, .quality-bar-s) {
+  stroke: currentcolor;
+}
+
+.scene.quality-bar .quality-bar-c {
+  stroke-opacity: 0.25;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.quality-bar .quality-bar-dash {
+  stroke-dasharray: calc(2px * var(--k)) calc(5px * var(--k));
+}
+
+.scene.quality-bar .quality-bar-s {
+  stroke-opacity: 0.55;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+/* a page: fresh in the accent (--f), settling to faint ink in the heap */
+.scene.quality-bar .quality-bar-page {
+  color: color-mix(in oklch, var(--scene-accent) calc(var(--f) * 100%), var(--color-text));
+}
+
+.scene.quality-bar .quality-bar-sheet {
+  stroke: currentcolor;
+  stroke-opacity: calc(0.38 + 0.5 * var(--f));
+  stroke-width: calc(1.1px * var(--k) / var(--s));
+  fill: var(--color-bg);
+}
+
+.scene.quality-bar :is(.quality-bar-title, .quality-bar-lines) {
+  stroke: currentcolor;
+  stroke-opacity: calc(0.28 + 0.5 * var(--f));
+  stroke-width: calc(1px * var(--k) / var(--s));
+}
+
+.scene.quality-bar .quality-bar-title {
+  stroke-width: calc(2.2px * var(--k) / var(--s));
+}
+
+/* a checked page: ink at full strength, its title in the accent once it is on the shelf */
+.scene.quality-bar .quality-bar-pick .quality-bar-sheet {
+  stroke-opacity: 0.85;
+  stroke-width: calc(1.5px * var(--k) / var(--s));
+}
+
+.scene.quality-bar .quality-bar-pick .quality-bar-lines {
+  stroke-opacity: 0.55;
+}
+
+.scene.quality-bar .quality-bar-pick .quality-bar-title {
+  stroke: color-mix(in oklch, var(--scene-accent) calc(max(var(--f), var(--t)) * 100%), var(--color-text));
+  stroke-opacity: 0.9;
+}
+
+/* the bar: the accent line every page is measured against */
+.scene.quality-bar .quality-bar-bar {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2px * var(--k));
+}
+
+.scene.quality-bar .quality-bar-bar-ends {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+/* the actors: AI (an accent disc with a soft halo), automation (a faint square), you (an ink
+   ring and its tick) */
+.scene.quality-bar .quality-bar-disc {
+  fill: var(--scene-accent);
+}
+
+.scene.quality-bar .quality-bar-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.16;
+}
+
+.scene.quality-bar .quality-bar-square {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(1px * var(--k));
+  fill: var(--color-text);
+  fill-opacity: 0.04;
+}
+
+.scene.quality-bar .quality-bar-ring {
+  stroke: var(--color-text);
+  stroke-opacity: 0.85;
+  stroke-width: calc(1.75px * var(--k));
+  fill: var(--color-bg);
+}
+
+.scene.quality-bar .quality-bar-tick {
+  stroke: var(--color-text);
+  stroke-opacity: 0.9;
+  stroke-width: calc(1.75px * var(--k));
+  opacity: 0;
+}
+
+/* callouts */
+.scene.quality-bar .quality-bar-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene.quality-bar .quality-bar-pin {
+  fill: var(--color-text);
+  fill-opacity: 0.7;
+}
+
+.scene.quality-bar .scene-label p {
+  transition: color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene.quality-bar .scene-label.is-active p {
+  color: var(--scene-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene.quality-bar .scene-label p {
+    transition: none;
+  }
+}

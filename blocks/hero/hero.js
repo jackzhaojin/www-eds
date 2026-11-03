@@ -17,7 +17,7 @@
  * space for the art beside the title (css/site.css .graphic-hero); page has none.
  *
  * The section gets a decorative canvas (blocks/hero/page-art.js) of the variant's kind,
- * started after the page loads and never painted under reduced motion (not for page).
+ * started as soon as the hero has painted and never painted under reduced motion (not for page).
  *
  * @variants home | writing | talks | certifications | page (default home)
  */
@@ -78,13 +78,16 @@ function decorateNote(cell, label) {
 function startArt(block, kind) {
   const section = block.closest('.section');
   if (!section) return;
-  const begin = () => {
-    setTimeout(() => {
+  // as soon as the hero is on screen with a size (its section shows once its blocks load), with
+  // a frame for the title to paint first
+  const sized = new ResizeObserver(([entry]) => {
+    if (!entry.contentRect.width || !entry.contentRect.height) return;
+    sized.disconnect();
+    requestAnimationFrame(() => {
       import('./page-art.js').then(({ default: paintArt }) => paintArt(section, kind));
-    }, 3000);
-  };
-  if (document.readyState === 'complete') begin();
-  else window.addEventListener('load', begin, { once: true });
+    });
+  });
+  sized.observe(section);
 }
 
 /** Hub and page variants: breadcrumb, then the head (title, summary, notes) beside the art. */

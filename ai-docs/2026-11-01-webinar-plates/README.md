@@ -33,6 +33,21 @@ Jack, reviewing stage 03 in Experience Workspace: "eval should be classified as 
 
 Built by three parallel subagents from the same brief, who agreed one page card and actor column so the three read as a set. Validation (local code): every plate in both brands, light and dark, 1440 and 360 (0 errors, 0 overflow, frame p95 17 ms, replay restarts it); the deck in both brands, Light, Dark and System, with `--contrast`: 12 renders, 0 problems; editability 444/444; lint clean, 22/22 tests.
 
+## v1.6.0: a small intro, and the hero art without the wait (2026-11-02)
+
+Jack's review of the deck's opening, the night of Nov 2 (the talk track is in his brain, `bundle/professional/2026/20261111-adobe-sites-ai-webinar/20261102-talk-prep-draft-v1.md`): the opener should "capture the moment", the content should be "more illustrative ... Illustration almost always wins in giving talks", and the intro small: easier and harder, trust, start small, then the three sections.
+
+- **`quality-bar`** (the opener, `#moment`): AI makes pages faster and faster that pile up under a rising accent line, the bar; three pages, checked by automation and approved by you, pass through it to a shelf ("Easy to make", "The bar", "Worth reading").
+- **`trust-curve`** (`#trust`): trust against what you hand to AI, steep then flattening, with one AI disc at Start here, three at Build trust, nine at Go further. The idea is Lauren Tan's (@poteto), from a frame of her talk Jack shared; the plate is drawn for the deck and credits her in its caption.
+- **`agenda`** (`#agenda`): one engine for the three section cards of a `plates` slide, research, authoring and evaluation; a card's stage comes from its place among the section's agenda scenes, and a three-dot strip marks where it sits.
+- **`style | moment`** (`templates/presentation/presentation.css`): one plate beside the slide's heading, stacked on a phone; the heading sizes with the screen.
+- **Headings:** slide `h2` and `h3` may run to 44ch (were 24ch and 30ch), so none wraps early on desktop.
+- **Hero art** (`blocks/hero/hero.js`): the page art starts as soon as the hero has a size, one frame after the title paints, instead of 3 seconds after the load event. First pixels, measured: home 3.2 s to 0.2 s, writing and certifications 3.2 s to under 0.1 s; the portfolio hub's own art already started at once.
+
+Content (DA, preview only): the title slide lost its summary and buttons; the intro is five slides; the three checks run deterministic, agentic, then human; and the deck ends with a graveyard (`content/README.md`), holding "Where does AI fit in your content work?" and "Same loop, every stage".
+
+Validation (local code): every new slide at 1440 and 360, light and dark: 0 errors, 0 overflow, frame p95 17 ms; every slide heading checked at 1440, 1280 and 1024; the hero art on home, writing, certifications, portfolio and the deck with 0 errors; `npm run lint` clean, `node --test test/*.test.mjs` 22/22.
+
 ## What's next
 
 - Jack's section-by-section review of the deck.
