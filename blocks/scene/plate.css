@@ -1,0 +1,133 @@
+/* Plate (plate.js): the marks the deck's logic plates share. Strokes are in viewBox units scaled
+   by --k (units per CSS pixel, set by plate.js), so line weights hold at any stage size and the
+   drawn-on strokes keep their pathLength dashes. A person is an ink ring, AI an accent disc,
+   automation a faint square. */
+.scene .plate {
+  --k: 1;
+  --plate-wash: 0.08;
+
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+:root[data-theme="dark"] .scene .plate {
+  --plate-wash: 0.12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"], [data-theme="dark"]) .scene .plate {
+    --plate-wash: 0.12;
+  }
+}
+
+.scene .plate-wash {
+  stop-color: var(--scene-accent);
+  stop-opacity: var(--plate-wash);
+}
+
+.scene .plate-wash.is-end {
+  stop-opacity: 0;
+}
+
+/* construction, at rest */
+.scene .plate-c {
+  stroke: var(--color-text);
+  stroke-opacity: 0.28;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+.scene .plate-waiting {
+  stroke: var(--color-text);
+  stroke-opacity: 0.35;
+  stroke-width: calc(1px * var(--k));
+  stroke-dasharray: calc(3px * var(--k)) calc(4px * var(--k));
+}
+
+.scene .plate-leader {
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(0.75px * var(--k));
+}
+
+/* pages, cards and ruled lines for text (never words) */
+.scene .plate-paper {
+  fill: var(--color-surface);
+  stroke: var(--color-text);
+  stroke-opacity: 0.45;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene .plate-firm {
+  stroke: var(--color-text);
+  stroke-opacity: 0.8;
+  stroke-width: calc(1.5px * var(--k));
+}
+
+.scene .plate-line {
+  stroke: var(--color-text);
+  stroke-opacity: 0.42;
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene .plate-head {
+  stroke: var(--color-text);
+  stroke-opacity: 0.8;
+  stroke-width: calc(2.4px * var(--k));
+}
+
+.scene .plate-fill {
+  fill: color-mix(in srgb, var(--color-text) 7%, transparent);
+  stroke: var(--color-text);
+  stroke-opacity: 0.5;
+  stroke-width: calc(1px * var(--k));
+}
+
+/* the accent: what AI is doing right now */
+.scene .plate-hot {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.75px * var(--k));
+}
+
+.scene .plate-hot-head {
+  stroke: var(--scene-accent);
+  stroke-width: calc(2.4px * var(--k));
+}
+
+.scene .plate-hot-dashed {
+  stroke: var(--scene-accent);
+  stroke-width: calc(1.25px * var(--k));
+  stroke-dasharray: calc(3px * var(--k)) calc(4px * var(--k));
+}
+
+.scene .plate-dot {
+  fill: var(--scene-accent);
+}
+
+/* the three marks */
+.scene .plate-ring {
+  fill: var(--color-bg);
+  stroke: var(--color-text);
+  stroke-width: calc(2px * var(--k));
+}
+
+.scene .plate-disc {
+  fill: var(--scene-accent);
+}
+
+.scene .plate-halo {
+  fill: var(--scene-accent);
+  fill-opacity: 0.18;
+}
+
+.scene .plate-auto {
+  fill: color-mix(in srgb, var(--color-text-faint) 30%, var(--color-surface));
+  stroke: var(--color-text-faint);
+  stroke-width: calc(1.25px * var(--k));
+}
+
+.scene .plate-tick {
+  stroke: var(--color-text);
+  stroke-opacity: 0.9;
+  stroke-width: calc(2px * var(--k));
+}
