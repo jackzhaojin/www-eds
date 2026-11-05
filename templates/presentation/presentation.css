@@ -4,6 +4,11 @@
   padding-block: clamp(var(--space-8), 11vh, var(--space-10));
 }
 
+/* A diagram or a code block needs the height more than the slide needs the air. */
+.presentation main > .section:has(.explainer, .code):not(.plates, .split, .moment) {
+  padding-block: var(--space-6);
+}
+
 /* On a screen tall enough to present from, a slide fills it and centers its content. */
 @media (width >= 900px) and (height >= 640px) {
   .presentation main > .section {
@@ -278,6 +283,11 @@
   width: min(100%, 36rem);
 }
 
+/* a plate's labels, read from across a call */
+.presentation main > .section.moment .scene .scene-label p {
+  font-size: clamp(10px, 2.2cqi, 14px);
+}
+
 .presentation main > .section.moment > .default-content-wrapper h2 {
   max-width: none;
   font-size: clamp(2.25rem, 1rem + 3vw, 4rem);
@@ -285,6 +295,32 @@
 
 .presentation main .split .scene .scene-caption {
   font-size: var(--text-small);
+}
+
+/* A video slide (section style video): the kicker and heading, then a Figure with an MP4, as
+   large as the slide allows. Its height is the slide's less the header, the padding, the heading
+   and the caption, so the player and its controls never need a scroll. */
+.presentation main > .section.video {
+  padding-block: var(--space-5);
+}
+
+.presentation main > .section.video > div + div {
+  margin-top: var(--space-4);
+}
+
+.presentation main > .section.video .figure {
+  margin-block: 0;
+}
+
+.presentation main > .section.video .default-content-wrapper > * + * {
+  margin-top: var(--space-2);
+}
+
+@media (width >= 900px) and (height >= 640px) {
+  .presentation main > .section.video .figure {
+    max-width: calc((100svh - var(--header-height) - 13rem) * 16 / 9);
+    margin-inline: auto;
+  }
 }
 
 /* Printed or saved as PDF: each slide starts a page, no site chrome, tighter margins. */

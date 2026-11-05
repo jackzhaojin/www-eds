@@ -1,6 +1,7 @@
 /**
  * Figure: one piece of media and its caption (the explainer family's figure). One row, one
- * cell: an image paragraph or a YouTube link paragraph, then caption paragraphs.
+ * cell: an image paragraph, a YouTube link paragraph, or an MP4 link paragraph (with an image
+ * paragraph as its poster), then caption paragraphs.
  *
  * A YouTube link plays in place: the link paragraph stays as the authored source (hidden),
  * the player frame shows the video, titled from the link text. A lone YouTube link in default
@@ -9,6 +10,9 @@
  * button) holds its place, and the player replaces it on a click, or by itself in the page's
  * delayed phase once the figure is near the screen. Search engines should not need a click to
  * see the video (Google: "Don't rely on user actions ... to load the video").
+ *
+ * An MP4 link plays in the browser's own player, with the authored image as its poster. It loads
+ * nothing until it nears the screen, then loads ahead, so a click plays at once.
  *
  * Screenshots, pages and boards marked open show full size on click (the delivered image, at its
  * own width), as on the source. An authored link around the image keeps its title; its href
@@ -117,6 +121,36 @@ function videoPoster(link) {
   return poster;
 }
 
+const MP4 = /\.mp4(?:[?#]|$)/i;
+
+/** The link in a paragraph, or the paragraph itself when it is the link. */
+const linkIn = (el) => (el.matches('a') ? el : el.querySelector('a[href]'));
+
+/** The browser's own player for an MP4, with the authored image as its poster. */
+function videoPlayer(link, image) {
+  const text = link.textContent.trim();
+  const player = document.createElement('video');
+  player.setAttribute('aria-label', MP4.test(text) ? 'Video' : text);
+  player.controls = true;
+  player.playsInline = true;
+  player.preload = 'none';
+  player.width = 1920;
+  player.height = 1080;
+  if (image) {
+    const poster = new URL(image.getAttribute('src'), window.location);
+    poster.searchParams.set('width', '1920');
+    player.poster = poster.href;
+  }
+  player.src = link.getAttribute('href');
+  const near = new IntersectionObserver((entries) => {
+    if (!entries.some((e) => e.isIntersecting)) return;
+    near.disconnect();
+    player.preload = 'auto';
+  }, { rootMargin: '400px 0px' });
+  near.observe(player);
+  return player;
+}
+
 export default function decorate(block) {
   const nodes = [...block.querySelectorAll(':scope > div > div > *')];
   const figure = document.createElement('figure');
@@ -125,8 +159,19 @@ export default function decorate(block) {
   media.className = 'figure-media';
   const caption = document.createElement('figcaption');
   let video = false;
-  nodes.forEach((el) => {
-    const link = el.matches('a') ? el : el.querySelector('a[href]');
+  const mp4 = nodes.find((el) => MP4.test(linkIn(el)?.href || ''));
+  if (mp4) {
+    video = true;
+    const image = block.querySelector('img');
+    const player = videoPlayer(linkIn(mp4), image);
+    const source = document.createElement('div');
+    source.className = 'figure-source';
+    source.append(mp4);
+    media.append(source, player);
+    (image?.closest('p') || image?.closest('picture') || image)?.remove();
+  }
+  nodes.filter((el) => el !== mp4 && el.isConnected).forEach((el) => {
+    const link = linkIn(el);
     if (!media.children.length && link && YOUTUBE.test(link.href) && !el.querySelector('picture, img')) {
       video = true;
       const source = document.createElement('div');
