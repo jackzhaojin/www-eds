@@ -78,7 +78,9 @@ DA_TOKEN=… node stardust/scripts/deploy/deploy-batch.mjs --org jackzhaojin --r
   --content content --paths <scratch>/paths.txt --force --no-publish
 ```
 
-**Locally first, when the page needs code that isn't on main yet** (a new block or engine): `node stardust/scripts/deploy/local-preview.mjs /<path>/` turns the local file into `.local-preview/<path>/index.plain.html` (section metadata as delivery serves it, images swapped for www's copies), and the `aem-up-local` launch config (`aem up --html-folder .local-preview --html-mount /`, port 3001) serves it at the page's own path with the local code. Nothing reaches DA; the preview check below still follows once the code is on a branch.
+**A folder URL can stay stale after a re-push** (2026-11-04): `deploy-batch.mjs` previews `/<path>/index`, and on a second push `/<path>/` kept serving the previous version for minutes while `index.md` and `index.plain.html` had the new text. Before checking a re-pushed page, confirm the URL you'll check has the new text; if it doesn't, `POST https://admin.hlx.page/preview/jackzhaojin/www-eds/main/<path>/` updates it at once.
+
+**Locally first, when the page needs code that isn't on main yet** (a new block or engine): `node stardust/scripts/deploy/local-preview.mjs /<path>/` turns the local file into `.local-preview/<path>/index.plain.html` (section metadata as delivery serves it, images swapped for www's copies), and the `aem-up-local` launch config (`aem up --html-folder .local-preview --html-mount /`, port 3001) serves it at the page's own path with the local code. Nothing reaches DA; the preview check below still follows once the code is on main.
 
 Then look at it in a browser (for Claude, the desktop app's built-in browser, not Playwright or Chrome):
 - the page on `https://main--www-eds--jackzhaojin.aem.page/<path>`, at 1440 and 360;
@@ -102,7 +104,7 @@ Do this for a new block or explainer engine, an importer change, a page with unu
 
 Pixel-perfect gating against the GitHub Pages original ended on 2026-10-26 (Jack: "we don't need pixel perfect as much anymore"). The design is v3's and can evolve; a page has to work, read well and stay editable:
 
-- **Look at it** in the built-in browser at 1440 and 360: nothing cut off, no horizontal scroll, the blocks decorated, links working. For a change to shared code (a block, `styles/`, a template, `scripts/scripts.js`), also look at home and an article, on a preview branch first (`<branch>--www-eds--jackzhaojin.aem.page`), then main.
+- **Look at it** in the built-in browser at 1440 and 360: nothing cut off, no horizontal scroll, the blocks decorated, links working. For a change to shared code (a block, `styles/`, a template, `scripts/scripts.js`), also look at home and an article, locally before pushing (`aem-up-local`) and on `main--www-eds--jackzhaojin.aem.page` after. Code goes straight to main, with no preview branch (Jack, 2026-11-05).
 - **Code checks:** `npm run lint` and `node --test test/*.test.mjs`; for the Worker, `cd edge && npm test`.
 - **Editability:** `node stardust/scripts/deploy/ew-editability-probe.mjs <aem.page url> --simulate-editor` should report 0 dead and 0 duplicated.
 - **SEO:** `node stardust/scripts/seo-check.mjs --base https://main--www-eds--jackzhaojin.aem.page` before publishing, and on www after.
