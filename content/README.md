@@ -168,7 +168,7 @@ The records, the Admin API trail and the validation are in [the v1.1.1 record](.
 
 The first presentation is `/drafts/sites-ai-webinar/` (the Sites and AI webinar, November 11, 2026): preview only, `noindex`, never published. Drafts stay out of every index and sitemap.
 
-**A deck keeps a graveyard** (Jack, 2026-11-02: "when I say I don't like something, we can move it to the archive or the graveyard portion ... so that we don't actually delete stuff"). The last slides of a presentation are a divider (section metadata `id | graveyard`, kicker "Graveyard", heading "Cut slides, kept for reference") and, after it, every slide cut from the talk, moved unchanged. A cut slide moves there instead of being deleted; changing a slide in place is still fine. Bringing one back is moving its section out again.
+**A deck's cut slides move to their own draft page** (Jack, 2026-11-02: "when I say I don't like something, we can move it to the archive or the graveyard portion ... so that we don't actually delete stuff"; 2026-11-06: "Let's move all the archive things to a different one, like we can leave it in draft"). A slide cut from the talk moves, unchanged, to `/drafts/<deck>-archive/`: same template and theme, preview only, opening on a divider (section metadata `id | graveyard`, kicker "Graveyard", heading "Cut slides, kept for reference"). A cut slide moves there instead of being deleted; changing a slide in place is still fine. Bringing one back is moving its section out again. The Sites and AI deck's is `/drafts/sites-ai-webinar-archive/`.
 
 ## The block library (Experience Workspace)
 
