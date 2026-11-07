@@ -9,7 +9,7 @@ The writing and portfolio hubs on www list every article and project (40 rows be
 
 This page explains the idea, shows it working on the live site, and walks through the code. The Worker as a whole is in [cloudflare-worker.md](cloudflare-worker.md).
 
-The talks hub was a generated list too, until v1.3.0 (2026-10-30). Talks have no pages since then, so there is no index to read: `/talks/` is authored, row by row, and the browser writes its JSON-LD from those rows ([content/README.md](../content/README.md#listing-pages-authored-once-generated-from-the-index), "Talks"). Its rows are in the HTML as it arrives, so crawlers see them without the Worker.
+The talks hub was a generated list too, until v1.3.0 (2026-10-30). Talks have no pages since then, so there is no index to read: `/talks/` is authored, row by row, and the browser writes its JSON-LD from those rows ([content/README.md](https://github.com/jackzhaojin/www-eds/blob/0cbc78978cc2ca038103598ed1c6432c6177fa94/content/README.md#listing-pages-authored-once-generated-from-the-index), "Talks"). Its rows are in the HTML as it arrives, so crawlers see them without the Worker.
 
 ## The idea
 
@@ -166,7 +166,7 @@ The code is `renderListings` in [`edge/src/listings.mjs`](../edge/src/listings.m
 | Row list (projects, dynamic) | `row-list projects dynamic` | `/portfolio-index.json` | one gallery card per project | CollectionPage and ItemList | `/portfolio/` |
 | Row list (related, dynamic) | `row-list related dynamic` | `/writing-index.json` | the articles that link to this page, newest first | none: the page's own graph describes it | project pages |
 
-How to author them, and what each index reads from a page, is in [content/README.md](../content/README.md#listing-pages-authored-once-generated-from-the-index).
+How to author them, and what each index reads from a page, is in [content/README.md](https://github.com/jackzhaojin/www-eds/blob/0cbc78978cc2ca038103598ed1c6432c6177fa94/content/README.md#listing-pages-authored-once-generated-from-the-index).
 
 ## One generator, two places
 
@@ -216,7 +216,7 @@ flowchart LR
   n --> l["the hub lists the article"]
 ```
 
-The hub is never republished for this. If the purge doesn't reach the cached index, it expires on its own within 5 minutes. Unpublishing a page takes it out of its index, and so out of the list (while the index's definition still covers that path: [content/README.md](../content/README.md#listing-pages-authored-once-generated-from-the-index)).
+The hub is never republished for this. If the purge doesn't reach the cached index, it expires on its own within 5 minutes. Unpublishing a page takes it out of its index, and so out of the list (while the index's definition still covers that path: [content/README.md](https://github.com/jackzhaojin/www-eds/blob/0cbc78978cc2ca038103598ed1c6432c6177fa94/content/README.md#listing-pages-authored-once-generated-from-the-index)).
 
 ## When things go wrong
 
@@ -261,7 +261,7 @@ To add a new dynamic listing:
 ## Further reading
 
 - [edge/README.md](../edge/README.md#a-request-in-order-srcindexmjs), step 6: the operating notes
-- [content/README.md](../content/README.md#listing-pages-authored-once-generated-from-the-index): how to author listing pages and Related lists
+- [content/README.md](https://github.com/jackzhaojin/www-eds/blob/0cbc78978cc2ca038103598ed1c6432c6177fa94/content/README.md#listing-pages-authored-once-generated-from-the-index): how to author listing pages and Related lists
 - [ai-docs/2026-10-26-writing-index/](../ai-docs/2026-10-26-writing-index/README.md): why it renders at the edge
 - [ai-docs/2026-10-26-pages-indexes-library/](../ai-docs/2026-10-26-pages-indexes-library/README.md): v1.1.1, one page per talk and project and the hubs switched over
 - [ai-docs/2026-10-30-talks-into-portfolio/](../ai-docs/2026-10-30-talks-into-portfolio/README.md): v1.3.0, the talk pages retired and the talks hub authored

@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 /**
- * Pulls documents from DA into content/, at their DA paths. Since 2026-10-28 DA is the source of
- * truth for the content and content/ keeps example pages only (content/README.md): pull a page
- * before editing it, or the source pages build-block-library.mjs reads before rebuilding the
- * library. Pulled pages that aren't examples stay out of git (.gitignore).
+ * Pulls documents from DA into content/, at their DA paths. DA is the source of truth for the
+ * content and content/ is a local working copy, out of git since 2026-11-06: pull a page before
+ * editing it, or the source pages build-block-library.mjs reads before rebuilding the library.
  *
  *   node stardust/scripts/deploy/da-pull.mjs /writing/<slug>/ [more pages]   page paths, as on www
  *   node stardust/scripts/deploy/da-pull.mjs writing/<slug>/index.html         or DA document paths

@@ -11,7 +11,7 @@ The highlight: a Cloudflare Worker builds the listing pages at the edge. See [ed
 
 The other docs in this repo have different jobs:
 - [`ai-docs/`](../ai-docs/) is the build record: what happened each day, the prompts, the decisions, written as it went (mostly for agents and for history).
-- [`edge/README.md`](../edge/README.md), [`content/README.md`](../content/README.md) and [`hlx-config/README.md`](../hlx-config/README.md) are the operating manuals: the exact commands and rules for the Worker, for content and for the site config.
+- [`edge/README.md`](../edge/README.md), [`content/README.md`](https://github.com/jackzhaojin/www-eds/blob/0cbc78978cc2ca038103598ed1c6432c6177fa94/content/README.md) and [`hlx-config/README.md`](../hlx-config/README.md) are the operating manuals: the exact commands and rules for the Worker, for content and for the site config.
 - These docs explain the design, with diagrams, and link to the manuals for the details.
 
 ## What's here

@@ -35,6 +35,8 @@ Adobe's vendored worker refuses any origin that isn't `main--*--*.aem.live`, so 
 
 ## Local content: examples, not the source
 
+**Superseded on 2026-11-06:** all of `content/`, the examples and the README included, left git, so a content change no longer touches the repo (Jack: "super dumb every time i have a content change i update my eds code base"). The files stay local. The last tracked version is `0cbc789`.
+
 **Before removing anything,** every tracked file in `content/` was compared with DA: 130 of 132 identical in content, the other two (the library's `blocks.json` and `templates.json`) the same rows in different JSON formatting. Nothing existed only here.
 
 **The rule for what stays:** the smallest set of real pages that between them use every block, block variant, section style and template on the site, with two exceptions counted as one each: explainer engines (41, each written for its article, one reused 4 times) and the portfolio's per-project chapter accents. That's a greedy set cover over the 61 documents, starting from home, the nav and footer, the three hubs, and two short articles kept on purpose (`2025-07-13-three-eds-offerings`, `2025-06-08-edge-cms-shift-adobe-eds`).

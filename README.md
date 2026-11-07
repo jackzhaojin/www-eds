@@ -114,7 +114,7 @@ On 0.1, pages built in prompt 2 show their blocks undecorated, because their blo
 | `styles/`, `fonts/`, `icons/` | v3 tokens and base styles, self-hosted fonts, the v3 icon set |
 | `scripts/` | `aem.js` (vendored, never edited), `scripts.js`, the theme control, consent |
 | `widgets/` | the writing listing's filter |
-| `content/` | example pages in the editor's own form (DA is the content's source of truth since 2026-10-28), plus [its rules](content/README.md) (not served from git) |
+| `content/` | not in git: a local working copy of pages pulled from DA, the content's source of truth since 2026-10-28 |
 | `edge/` | the Cloudflare Worker for eds, gh and, at the cutover, www |
 | `docs/` | how the site works, for people: the architecture, the Worker, edge-side rendering, with diagrams |
 | `hlx-config/` | the site config as files, with the log of how it was applied |
@@ -144,7 +144,7 @@ node scripts/check-host.mjs --local staging              # the Worker in-process
 node scripts/check-host.mjs --base https://www.jackzhaojin.com   # a deployed host
 ```
 
-**Content** lives in Experience Workspace (DA), the source of truth since 2026-10-28. `content/` keeps example pages that between them use every block, variant, section style and template on the site, for whoever writes the next page. Every change follows [content/README.md](content/README.md), a must-read before editing: pull the page from DA, write it in the form the DA editor keeps, preview it, check it in the browser, publish, then snapshot www into the [www-archive](https://github.com/jackzhaojin/www-archive) repo, the record of what was published (served at archive.jackzhaojin.com, noindex). Pushing goes through the DA Source API with stardust's deploy driver, which keeps a local ledger and checks the delivered page before marking it live. The token is the da-auth cache, never printed:
+**Content** lives in Experience Workspace (DA), the source of truth since 2026-10-28. A content change never touches this repo: `content/` is a local working copy, out of git. Every change follows [the content manual](https://github.com/jackzhaojin/www-eds/blob/0cbc78978cc2ca038103598ed1c6432c6177fa94/content/README.md), a must-read before editing: pull the page from DA, write it in the form the DA editor keeps, preview it, check it in the browser, publish, then snapshot www into the [www-archive](https://github.com/jackzhaojin/www-archive) repo, the record of what was published (served at archive.jackzhaojin.com, noindex). Pushing goes through the DA Source API with stardust's deploy driver, which keeps a local ledger and checks the delivered page before marking it live. The token is the da-auth cache, never printed:
 
 ```bash
 DA_TOKEN=$(node -e "const t=require(process.env.HOME+'/.aem/da-token.json');if(t.expires_at>Date.now()+60000)process.stdout.write(t.access_token)") \
@@ -158,7 +158,7 @@ stardust/scripts/replica/gate.sh home https://www.jackzhaojin.com/ \
   https://main--www-eds--jackzhaojin.aem.live/ 1440 check --full --main main --marker "Jack Jin"
 ```
 
-**A new page** is published here, to EDS; since the cutover, a page added to GitHub Pages no longer shows on www. Write it, or import an HTML draft with the recipe in [whats-left.md, section 5](ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md), then follow [content/README.md](content/README.md) and sync its SEO ([hlx-config/README.md](hlx-config/README.md)).
+**A new page** is published here, to EDS; since the cutover, a page added to GitHub Pages no longer shows on www. Write it, or import an HTML draft with the recipe in [whats-left.md, section 5](ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md), then follow [the content manual](https://github.com/jackzhaojin/www-eds/blob/0cbc78978cc2ca038103598ed1c6432c6177fa94/content/README.md) and sync its SEO ([hlx-config/README.md](hlx-config/README.md)).
 
 ## Built with
 
@@ -188,7 +188,7 @@ Used on the day but not checked in:
 - [docs/](docs/README.md): **start here.** How the site works, written for people, with diagrams: [the architecture](docs/architecture.md), [the Cloudflare Worker](docs/cloudflare-worker.md) and [edge-side rendering](docs/edge-rendering.md)
 - [ai-docs/2026-10-25-initial-buildout-2-goals/](ai-docs/2026-10-25-initial-buildout-2-goals/): the build record and [what's left](ai-docs/2026-10-25-initial-buildout-2-goals/whats-left.md)
 - [ai-docs/2026-10-26-seo-geo-audit/](ai-docs/2026-10-26-seo-geo-audit/README.md): the first SEO and GEO audit of www after the cutover, the SEO skills it used, Search Console and Bing
-- [content/README.md](content/README.md): how content changes are made, and what the DA editor does to HTML (a must-read before editing); [ai-docs/2026-10-26-content-in-git/](ai-docs/2026-10-26-content-in-git/README.md): the decision to keep content in git, and the first full run
+- [The content manual](https://github.com/jackzhaojin/www-eds/blob/0cbc78978cc2ca038103598ed1c6432c6177fa94/content/README.md): how content changes are made, and what the DA editor does to HTML (a must-read before editing; frozen on 2026-11-06, when `content/` left git); [ai-docs/2026-10-26-content-in-git/](ai-docs/2026-10-26-content-in-git/README.md): the decision to keep content in git, and the first full run
 - [The plan](https://github.com/jackzhaojin/jackzhaojin.github.io/blob/main/ai-docs/2026-10-24-eds-migration/start-here.md) (in jackzhaojin.github.io): analysis, the 20 planning decisions, best practices, routing
 - [stardust/README.md](stardust/README.md): the migration records and instruments
 - [edge/README.md](edge/README.md): the Worker and its hosts

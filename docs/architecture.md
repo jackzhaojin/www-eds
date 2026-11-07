@@ -25,7 +25,7 @@ flowchart LR
 
 | Piece | What it does | Where it's configured |
 |---|---|---|
-| Experience Workspace (DA) | the editor and the store for every page, sheet and image | [da.live/#/jackzhaojin/www-eds](https://da.live/#/jackzhaojin/www-eds); rules in [content/README.md](../content/README.md) |
+| Experience Workspace (DA) | the editor and the store for every page, sheet and image | [da.live/#/jackzhaojin/www-eds](https://da.live/#/jackzhaojin/www-eds); rules in [content/README.md](https://github.com/jackzhaojin/www-eds/blob/0cbc78978cc2ca038103598ed1c6432c6177fa94/content/README.md) |
 | GitHub repo | the site's code: `blocks/`, `templates/`, `scripts/`, `styles/`, the Worker in `edge/` | this repo |
 | Edge Delivery | renders documents into HTML, keeps the query indexes, serves code and media | the Admin API config service, kept as files in [hlx-config/](../hlx-config/README.md) |
 | Cloudflare zone and Worker | DNS, the edge cache, and the Worker on `www.jackzhaojin.com/*` | [edge/](../edge/README.md) for the Worker; the route and rules live in the Cloudflare dashboard |
@@ -105,7 +105,7 @@ flowchart TB
 ```
 
 - **Code:** a branch is live on its own preview host as soon as it's pushed, with the real content. Merging `main` ships it. A change to code the site runs gets a release (a `vX.Y.Z` tag and a `release/X-Y-Z` branch); see the Releases table in the [README](../README.md#releases).
-- **Content:** publishing makes a page live on aem.live and updates the indexes it belongs to. Edge Delivery then purges the Cloudflare zone (push invalidation; on the free plan that's the whole zone), so www shows the change right away. A new article shows up on the writing hub without anyone touching the hub ([edge-rendering.md](edge-rendering.md#freshness)). The steps and the rules are in [content/README.md](../content/README.md).
+- **Content:** publishing makes a page live on aem.live and updates the indexes it belongs to. Edge Delivery then purges the Cloudflare zone (push invalidation; on the free plan that's the whole zone), so www shows the change right away. A new article shows up on the writing hub without anyone touching the hub ([edge-rendering.md](edge-rendering.md#freshness)). The steps and the rules are in [content/README.md](https://github.com/jackzhaojin/www-eds/blob/0cbc78978cc2ca038103598ed1c6432c6177fa94/content/README.md).
 - **The Worker** is the exception: merging `main` doesn't deploy it. A change in `edge/src/` reaches www only through `wrangler deploy`, and every Cloudflare change is Jack's call.
 
 ## When something breaks

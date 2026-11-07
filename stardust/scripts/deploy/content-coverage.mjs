@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 /**
  * Which block variations the example pages in content/ show, and which ones the site uses that
- * no example shows. content/ keeps example pages only since 2026-10-28 (DA is the source of
- * truth, content/README.md), chosen so that every block, variant, section style and template the
- * site uses is in at least one of them: an agent writing a page sees each one in real use.
+ * no example shows. DA is the source of truth and content/ is a local working copy, out of git
+ * since 2026-11-06 (da-pull.mjs fills it). The examples were chosen so that every block, variant,
+ * section style and template the site uses is in at least one of them: an agent writing a page
+ * sees each one in real use.
  *
  *   node stardust/scripts/deploy/content-coverage.mjs                    what the examples show
  *   node stardust/scripts/deploy/content-coverage.mjs --site ../www-archive/site
