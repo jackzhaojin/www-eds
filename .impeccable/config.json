@@ -38,6 +38,12 @@
         ],
         "createdAt": "2026-10-27T04:21:51.547Z",
         "reason": "Agent: .figure-play::after draws the play triangle with borders (transparent top and bottom), the same play button as blocks/showcase/showcase.css, which has this exception; no card, no side tab"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-11T15:25:51.328Z",
+        "reason": "project design system: www-eds DESIGN.md and styles.css set Inter as the site's sans face, and this preview mirrors the live title slide"
       }
     ]
   }
