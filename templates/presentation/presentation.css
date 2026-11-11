@@ -13,6 +13,9 @@
 
 .presentation main > .section {
   padding-block: clamp(var(--space-7), 9vh, var(--space-10));
+
+  /* a link to a slide (the agenda's cards, #anchors) lands with the slide flush under the header */
+  scroll-margin-top: calc(var(--header-height) + 1px);
 }
 
 /* A diagram or a code block needs the height more than the slide needs the air. */
@@ -369,6 +372,28 @@
     max-width: calc((100svh - var(--header-height) - 14.5rem) * 16 / 9);
     margin-inline: auto;
   }
+}
+
+/* ---------- scroll progress (under the header, since v1.7.3) ---------- */
+.presentation .scroll-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  pointer-events: none;
+}
+
+/* A plate whose title is a link: the whole card follows it. Its own buttons stay on top. */
+.presentation .plates .scene-caption h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.presentation .plates .scene-figure :is(.scene-toggle, .scene-replay) {
+  z-index: 1;
 }
 
 /* Printed or saved as PDF: each slide starts a page, no site chrome, tighter margins. */
