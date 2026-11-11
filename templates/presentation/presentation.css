@@ -76,7 +76,7 @@
 
 /* The kicker: the short line right above a slide's heading. Descendant selectors, so the look
    holds in quick edit, where the editor sits between the wrapper and the text. */
-.presentation main > .section > .default-content-wrapper p:has(+ :is(h2, h3)) {
+.presentation main > .section > .default-content-wrapper p:has(+ :is(h1, h2, h3)) {
   font-family: var(--font-mono);
   font-size: var(--slide-kicker);
   font-weight: var(--weight-medium);
@@ -86,7 +86,7 @@
   color: var(--color-accent);
 }
 
-.presentation main > .section > .default-content-wrapper :is(h2, h3) + p {
+.presentation main > .section > .default-content-wrapper :is(h1, h2, h3) + p {
   margin-top: var(--space-4);
   font-size: var(--text-h3);
   line-height: 1.5;
@@ -96,7 +96,7 @@
 /* Quick edit puts each text in its own editor (div.prosemirror-editor > div.ProseMirror > p), so
    the kicker and the lead are found through the editors (the site's edit-mode foundation), in
    default content only (a plate card's heading and line are not a kicker and a lead). */
-.presentation main .default-content-wrapper .prosemirror-editor:has(+ .prosemirror-editor :is(h2, h3)) p {
+.presentation main .default-content-wrapper .prosemirror-editor:has(+ .prosemirror-editor :is(h1, h2, h3)) p {
   font-family: var(--font-mono);
   font-size: var(--slide-kicker);
   font-weight: var(--weight-medium);
@@ -106,7 +106,7 @@
   color: var(--color-accent);
 }
 
-.presentation main .default-content-wrapper .prosemirror-editor:has(:is(h2, h3)) + .prosemirror-editor p {
+.presentation main .default-content-wrapper .prosemirror-editor:has(:is(h1, h2, h3)) + .prosemirror-editor p {
   font-size: var(--text-h3);
   line-height: 1.5;
   color: var(--color-text);
@@ -335,9 +335,14 @@
   font-size: clamp(10.5px, 3.5cqi, 12.5px);
 }
 
-.presentation main > .section.moment > .default-content-wrapper h2 {
+.presentation main > .section.moment > .default-content-wrapper :is(h1, h2) {
   max-width: none;
   font-size: clamp(2.25rem, 1rem + 3vw, 4rem);
+}
+
+/* the title slide: a moment whose heading is the page's h1 */
+.presentation main > .section.moment > .default-content-wrapper h1 {
+  font-size: clamp(3rem, 1rem + 5.4vw, 6rem);
 }
 
 .presentation main .split .scene .scene-caption {
