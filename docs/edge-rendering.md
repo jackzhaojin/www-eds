@@ -2,6 +2,8 @@
 
 The writing and portfolio hubs on www list every article and project (40 rows between them today), and nobody types those lists. Each hub is authored as one block with a single row that names an index. On the way out of Cloudflare, the Worker reads that index and writes the full list, and the structured data that describes it, into the HTML. Readers, search engines and AI crawlers all get the finished page in the first response.
 
+The writing list holds every published page under `/writing/` whose template is `article` (or none) or `presentation`, a deck published as writing (since v1.7.2), unless the page is `noindex`. The rule is `LISTED_TEMPLATES` in `scripts/writing-index.js`, and the Worker carries its own copy of that script, so a change to it reaches www only with a Worker deploy.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/edge-hero-dark.png">
   <img alt="Edge-side rendering on www.jackzhaojin.com: the author writes a Writing index block with one Source row naming /writing-index.json, Edge Delivery keeps that index current, and the Cloudflare Worker reads it and writes 29 rows of HTML and one JSON-LD graph into the page, so everyone gets the finished /writing/ page" src="images/edge-hero-light.png">

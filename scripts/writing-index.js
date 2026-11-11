@@ -77,10 +77,16 @@ export function relatedRows(articles) {
   ].filter(Boolean));
 }
 
+/**
+ * The templates a page under /writing/ may have and still be listed: an article (or no template),
+ * and a presentation, a deck published as writing (v1.7.2).
+ */
+const LISTED_TEMPLATES = ['', 'article', 'presentation'];
+
 export async function loadWritingIndex(source, fetchData = fetch) {
   const records = await loadQueryIndex(source, fetchData);
   const articles = records.filter((record) => text(record.path).startsWith('/writing/')
-    && record.path !== '/writing/' && (!record.template || record.template === 'article')
+    && record.path !== '/writing/' && LISTED_TEMPLATES.includes(text(record.template))
     && !/(?:^|[,\s])noindex\b/i.test(text(record.robots))).map(readWriting);
   const ids = new Set();
   articles.forEach((article) => {

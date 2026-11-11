@@ -22,6 +22,16 @@ test('loads every page, excludes talks/hubs/noindex, and orders by publication d
   assert.equal(records[0].dateLabel, 'October 2, 2026');
 });
 
+test('lists a presentation under /writing/ and no other template', async () => {
+  const rows = [article('2026-09-20-article'),
+    { ...article('2026-11-11-deck', '2026-11-11'), template: 'presentation' },
+    { ...article('2026-10-01-no-template'), template: '' },
+    { ...article('2026-10-05-hub'), template: 'listing' },
+    { ...article('2026-10-06-project'), template: 'project' }];
+  const records = await loadWritingIndex('https://example.com/writing-index.json', async () => response({ total: rows.length, offset: 0, data: rows }));
+  assert.deepEqual(records.map((row) => row.title), ['2026-11-11-deck', '2026-09-20-article', '2026-10-01-no-template']);
+});
+
 test('uses authored card fields and preserves safe optional fallbacks', () => {
   const full = readWriting({
     ...article('example'),
