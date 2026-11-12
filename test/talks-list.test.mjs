@@ -41,6 +41,26 @@ test('a talk row is an Event on the hub, its write-up and project linked', () =>
   assert.equal(item.about['@id'], 'https://www.jackzhaojin.com/portfolio/continuous-executive-agent/#project');
 });
 
+test('a talk held online is an online Event, at the page of its event', () => {
+  const webinar = {
+    date: 'November 11, 2026',
+    kind: 'Webinar',
+    event: 'Adobe Experience Manager Sites webinar, Learn From Your Peers · Online',
+    links: [
+      { label: 'See the deck and demos', href: '/writing/2026-11-11-sites-and-ai/' },
+      { label: 'View event source', href: 'https://engage.adobe.com/sites-leveraging-ai-to-maintain-content.html' },
+    ],
+  };
+  const [item, bare] = talkSchemaItems([talk(webinar), talk({ ...webinar, event: 'A webinar · online', links: [] })], HUB);
+  assert.equal(item.eventAttendanceMode, 'https://schema.org/OnlineEventAttendanceMode');
+  assert.deepEqual(item.location, { '@type': 'VirtualLocation', url: 'https://engage.adobe.com/sites-leveraging-ai-to-maintain-content.html' });
+  assert.deepEqual(item.organizer, { '@type': 'Organization', name: 'Adobe Experience Manager Sites webinar, Learn From Your Peers' });
+  assert.equal(item.subjectOf.url, 'https://www.jackzhaojin.com/writing/2026-11-11-sites-and-ai/');
+  // with no event page to point at, the row itself is where the talk is found
+  assert.equal(bare.eventAttendanceMode, 'https://schema.org/OnlineEventAttendanceMode');
+  assert.deepEqual(bare.location, { '@type': 'VirtualLocation', url: `${HUB}#adaptto-2026` });
+});
+
 test('partial dates stay partial, missing parts are left out, rows without an id or title are skipped', () => {
   const items = talkSchemaItems([talk({ date: 'September 2026' }), talk({ id: '' }), talk({ title: '' })], HUB);
   assert.equal(items.length, 1);

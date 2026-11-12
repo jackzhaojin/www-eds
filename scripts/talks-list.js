@@ -35,18 +35,34 @@ export function readTalkRow(li) {
   };
 }
 
+/** A place line that says the talk was held on the web (a webinar), not in a room. */
+const ONLINE = /^(online|virtual)$/i;
+
+/**
+ * An Event's location. In a room: a Place, the place line as its name and its address. Online
+ * (since v1.7.6): a VirtualLocation at the event's own page, the row's "View event source" link,
+ * or at the row itself when it links no event page.
+ */
+function eventLocation(place, online, url) {
+  if (online) return { location: { '@type': 'VirtualLocation', url } };
+  return place ? { location: { '@type': 'Place', name: place, address: place } } : {};
+}
+
 /**
  * The ItemList entries: an Event per row, with the write-up and project the row links. Google
- * checks every Event, a superEvent too, typed or not, for a start date and a location with an
- * address. So the place line is the Place's address as well, and the conference, whose own dates
+ * checks every Event, a superEvent too, typed or not, for a start date and a location: an address
+ * for one held in a room, a URL for one held online. So the place line is the Place's address as
+ * well, an "Online" place line makes the Event an online one, and the conference, whose own dates
  * the row doesn't hold, is the talk's organizer rather than a superEvent.
  */
 export function talkSchemaItems(talks, canonical) {
   return talks.filter((talk) => talk.id && talk.title).map((talk) => {
     const { event, place } = eventParts(talk.event);
     const startDate = isoDate(talk.date);
-    const site = talk.links.map((link) => new URL(link.href, `${SITE}/`))
-      .filter((url) => url.origin === SITE);
+    const links = talk.links.map((link) => ({ label: link.label, url: new URL(link.href, `${SITE}/`) }));
+    const site = links.map((link) => link.url).filter((url) => url.origin === SITE);
+    const online = ONLINE.test(place);
+    const eventPage = links.find((link) => link.url.origin !== SITE && /event/i.test(link.label));
     const writeup = site.find((url) => /^\/writing\/[^/]+\/$/.test(url.pathname));
     const project = site.find((url) => /^\/portfolio\/[^/]+\/$/.test(url.pathname));
     return {
@@ -57,11 +73,11 @@ export function talkSchemaItems(talks, canonical) {
       ...(talk.description ? { description: talk.description } : {}),
       ...(startDate ? { startDate } : {}),
       ...(talk.kind ? { additionalType: talk.kind } : {}),
-      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      eventAttendanceMode: `https://schema.org/${online ? 'Online' : 'Offline'}EventAttendanceMode`,
       eventStatus: 'https://schema.org/EventScheduled',
       performer: { '@id': PERSON['@id'] },
       ...(event ? { organizer: { '@type': 'Organization', name: event } } : {}),
-      ...(place ? { location: { '@type': 'Place', name: place, address: place } } : {}),
+      ...eventLocation(place, online, eventPage ? eventPage.url.href : `${canonical}#${talk.id}`),
       ...(writeup ? { subjectOf: { '@type': 'BlogPosting', url: `${SITE}${writeup.pathname}` } } : {}),
       ...(project ? { about: { '@id': `${SITE}${project.pathname}#project` } } : {}),
     };
