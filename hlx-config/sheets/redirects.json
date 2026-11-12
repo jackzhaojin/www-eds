@@ -1,6 +1,6 @@
 {
-  "total": 141,
-  "limit": 141,
+  "total": 172,
+  "limit": 172,
   "offset": 0,
   "data": [
     {
@@ -566,6 +566,130 @@
     {
       "Source": "/writing/2024-03-28-aem-rockstar-generative-ai-in-aem/index.html",
       "Destination": "/portfolio/aem-rockstar-2024/"
+    },
+    {
+      "Source": "/design-systems/v3/templates/home.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/v3/templates/blog.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/v3/templates/post.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/index.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/astra/",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/astra",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/astra/index.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/claude-fable-5-1/",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/claude-fable-5-1",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/claude-fable-5-1/index.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/google-stitch/",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/google-stitch",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/google-stitch/index.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/kimi-k3/",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/kimi-k3",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/kimi-k3/index.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/astra/templates/blog.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/astra/templates/home.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/astra/templates/post.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/claude-fable-5-1/templates/blog.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/claude-fable-5-1/templates/home.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/claude-fable-5-1/templates/post.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/google-stitch/templates/blog.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/google-stitch/templates/home.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/google-stitch/templates/post.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/kimi-k3/templates/blog.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/kimi-k3/templates/home.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/design-systems/2026-09-13/kimi-k3/templates/post.html",
+      "Destination": "/design-systems/v3/"
+    },
+    {
+      "Source": "/ai-docs/2026-09-13-seo-geo-redesign/seo-page-blueprint.md",
+      "Destination": "https://github.com/jackzhaojin/jackzhaojin.github.io/blob/main/ai-docs/2026-09-13-seo-geo-redesign/seo-page-blueprint.md"
     }
   ],
   ":type": "sheet"
