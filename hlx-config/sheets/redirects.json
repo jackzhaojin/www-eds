@@ -1,6 +1,6 @@
 {
-  "total": 172,
-  "limit": 172,
+  "total": 174,
+  "limit": 174,
   "offset": 0,
   "data": [
     {
@@ -398,6 +398,14 @@
     {
       "Source": "/writing/2026-10-25-eds-migration-two-goal-prompts/index.html",
       "Destination": "/writing/2026-10-25-eds-migration-two-goal-prompts/"
+    },
+    {
+      "Source": "/writing/2026-11-11-sites-and-ai",
+      "Destination": "/writing/2026-11-11-sites-and-ai/"
+    },
+    {
+      "Source": "/writing/2026-11-11-sites-and-ai/index.html",
+      "Destination": "/writing/2026-11-11-sites-and-ai/"
     },
     {
       "Source": "/blogs.html",
