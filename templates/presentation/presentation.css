@@ -215,7 +215,8 @@
    - split: the heading, then a scene on the left and the rest of the slide (the prompt, the
      facts) on the right;
    - moment: one large scene beside the slide's heading (the opener), stacked under it on a phone.
-   The slide is the grid, so its wrappers drop their own container width. */
+   The slide is the grid, so its wrappers drop their own container width.
+   A fourth style, notes, is not a slide: the words said over the slide before it (further down). */
 .presentation main > .section:is(.plates, .split, .moment) {
   display: grid;
   align-content: center;
@@ -379,6 +380,44 @@
   }
 }
 
+/* ---------- notes (section style notes, since v1.7.7) ----------
+   What was said over a slide, for someone reading the deck afterwards: a section right after the
+   slide, as tall as its text, at reading size and width. Authored as plain paragraphs. A paragraph
+   that is only an italic phrase is the block's label ("Talk track, as planned"), and a bold run is
+   a time in the slide's video ("0:26"). Descendant selectors, so the look holds in quick edit. */
+.presentation main > .section.notes {
+  display: block;
+  min-height: 0;
+  padding-block: var(--space-7);
+  background: var(--color-surface);
+}
+
+.presentation main > .section.notes p {
+  max-width: var(--measure);
+  margin-top: var(--space-4);
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+  color: var(--color-text);
+}
+
+.presentation main > .section.notes p > em:only-child {
+  font-family: var(--font-mono);
+  font-size: var(--slide-label);
+  font-style: normal;
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.presentation main > .section.notes p strong {
+  margin-right: 0.35em;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  font-weight: var(--weight-medium);
+  color: var(--color-accent);
+}
+
 /* ---------- scroll progress (under the header, since v1.7.3) ---------- */
 .presentation .scroll-progress {
   position: absolute;
@@ -419,7 +458,8 @@
     break-before: page;
   }
 
-  .presentation main > .section:first-child {
+  .presentation main > .section:first-child,
+  .presentation main > .section.notes {
     break-before: auto;
   }
 
