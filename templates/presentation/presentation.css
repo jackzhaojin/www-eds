@@ -418,6 +418,76 @@
   color: var(--color-accent);
 }
 
+/* ---------- the deck's outline (a Rail block, placed by presentation.js since v1.7.8) ----------
+   Under the header at the right: shut, it is a small "On this page" control; open, a panel with
+   the outline. From 1800px the window has a margin beside the slides and the outline stays open
+   there, plain, as in an article. */
+.presentation .presentation-rail {
+  position: fixed;
+  z-index: calc(var(--z-header) - 1);
+  top: calc(var(--header-height) + var(--space-3));
+  right: var(--space-4);
+  width: min(20rem, calc(100vw - 2 * var(--space-4)));
+  pointer-events: none;
+}
+
+.presentation .presentation-rail .section {
+  padding: 0;
+}
+
+.presentation .presentation-rail .section > div {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.presentation .presentation-rail .rail-outline {
+  margin-left: auto;
+  width: fit-content;
+  max-height: calc(100svh - var(--header-height) - var(--space-6));
+  overflow-y: auto;
+  scrollbar-width: thin;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-1);
+  pointer-events: auto;
+}
+
+.presentation .presentation-rail .rail-outline > summary {
+  padding: var(--space-2) var(--space-4);
+  color: var(--color-text-muted);
+}
+
+.presentation .presentation-rail .rail-outline[open] {
+  width: 100%;
+  padding: var(--space-2) var(--space-4) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-2);
+}
+
+.presentation .presentation-rail .rail-outline[open] > summary {
+  padding-inline: 0;
+}
+
+@media (width >= 1800px) {
+  .presentation .presentation-rail {
+    top: calc(var(--header-height) + var(--space-6));
+    left: calc(50% + var(--container-max) / 2 + var(--space-4));
+    right: var(--space-4);
+    width: auto;
+    max-width: 18rem;
+  }
+
+  .presentation .presentation-rail .rail-outline[open] {
+    padding: 0 var(--space-2) var(--space-4);
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+}
+
 /* ---------- scroll progress (under the header, since v1.7.3) ---------- */
 .presentation .scroll-progress {
   position: absolute;
@@ -447,7 +517,8 @@
 
 @media print {
   .presentation > header,
-  .presentation > footer {
+  .presentation > footer,
+  .presentation .presentation-rail {
     display: none;
   }
 
