@@ -1,0 +1,109 @@
+/* Explainer engine "value-bars": one bar per value on a shared scale, the label and the value
+   over the bar. The value to call out is in the danger tone, the others in ink (never the
+   accent: a brand's accent can be red, and would read as a second warning). */
+.explainer.value-bars .vb {
+  margin: 0;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  padding: clamp(18px, 3.2cqi, 36px);
+}
+
+.explainer.value-bars .vb-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: clamp(18px, 3cqi, 28px);
+}
+
+.explainer.value-bars .vb-title p {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.explainer.value-bars .vb-list {
+  display: grid;
+  gap: clamp(16px, 2.6cqi, 22px);
+}
+
+.explainer.value-bars .vb-item {
+  --vb-tone: var(--color-text);
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 6px 16px;
+}
+
+.explainer.value-bars .vb-item[data-tone="warn"] {
+  --vb-tone: var(--color-danger);
+}
+
+.explainer.value-bars .vb-label p {
+  font-size: var(--text-body);
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.explainer.value-bars .vb-label p + p {
+  font-size: var(--text-small);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-muted);
+}
+
+.explainer.value-bars .vb-value p {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+  color: var(--vb-tone);
+}
+
+.explainer.value-bars .vb-value em {
+  font-style: normal;
+}
+
+/* the track, and the bar on it */
+.explainer.value-bars .vb-bar {
+  grid-column: 1 / -1;
+  position: relative;
+  display: block;
+  height: 12px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--color-text) 7%, transparent);
+  overflow: hidden;
+}
+
+.explainer.value-bars .vb-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: max(calc(var(--v) * 100%), 6px);
+  border-radius: 6px;
+  background: var(--vb-tone);
+  transform-origin: left center;
+}
+
+.explainer.value-bars .vb.is-playing .vb-bar::after {
+  animation: vb-grow 900ms var(--ease-standard) both;
+}
+
+@keyframes vb-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.explainer.value-bars .vb-caption {
+  margin-top: clamp(16px, 2.6cqi, 22px);
+}
+
+.explainer.value-bars .vb-caption p {
+  font-size: var(--text-small);
+  color: var(--color-text-faint);
+}

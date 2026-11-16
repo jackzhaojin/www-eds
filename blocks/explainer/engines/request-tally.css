@@ -1,0 +1,241 @@
+/* Explainer engine "request-tally": one step's requests as bars on a shared time scale, then
+   the run's total as a field of dots, one per request. A request that passed is in the success
+   tone, one that failed in the danger tone. */
+.explainer.request-tally .rt {
+  --rt-ok: var(--color-success);
+  --rt-no: var(--color-danger);
+  --rt-scale: 2.2s;
+
+  margin: 0;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  padding: clamp(18px, 3.2cqi, 36px);
+}
+
+.explainer.request-tally .rt-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: clamp(20px, 3.2cqi, 30px);
+}
+
+.explainer.request-tally .rt-switch > * {
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+.explainer.request-tally .rt-option strong {
+  font-weight: inherit;
+}
+
+.explainer.request-tally .rt-name-row {
+  display: none;
+}
+
+.explainer.request-tally .rt-run {
+  display: grid;
+  gap: clamp(22px, 3.4cqi, 32px);
+}
+
+.explainer.request-tally .rt-run > * {
+  min-width: 0;
+}
+
+.explainer.request-tally .rt-run:not([hidden]) {
+  animation: rise 320ms var(--ease-standard);
+}
+
+.explainer.request-tally .rt-step-label p {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.explainer.request-tally .rt-step-label:empty {
+  display: none;
+}
+
+/* a request: the authored item over its bar, the bar as long as the request took */
+.explainer.request-tally .rt-lanes ul,
+.explainer.request-tally .rt-lanes ol {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.explainer.request-tally .rt-lanes li {
+  position: relative;
+  padding-bottom: 16px;
+  font-size: var(--text-small);
+  line-height: 1.45;
+  color: var(--color-text-muted);
+  overflow-wrap: break-word;
+}
+
+.explainer.request-tally .rt-lanes li strong:first-child {
+  margin-right: 6px;
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+}
+
+.explainer.request-tally .rt-lanes li code {
+  font-size: 12.5px;
+  overflow-wrap: anywhere;
+}
+
+/* the track, then the bar on it */
+.explainer.request-tally .rt-lanes li::before,
+.explainer.request-tally .rt-lanes li::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.explainer.request-tally .rt-lanes li::before {
+  width: 100%;
+  background: color-mix(in srgb, var(--color-text) 7%, transparent);
+}
+
+.explainer.request-tally .rt-lanes li::after {
+  width: calc(var(--w) * 100%);
+  min-width: 8px;
+  background: var(--rt-ok);
+  transform-origin: left center;
+}
+
+.explainer.request-tally .rt-lanes li[data-status="fail"]::after {
+  background: var(--rt-no);
+}
+
+.explainer.request-tally .rt-lanes li[data-status="fail"] em {
+  font-style: normal;
+  font-weight: var(--weight-medium);
+  color: var(--rt-no);
+}
+
+.explainer.request-tally .rt-lanes li[data-status="ok"] em {
+  font-style: normal;
+  font-weight: var(--weight-medium);
+  color: var(--rt-ok);
+}
+
+/* a request with no recorded time: a status mark, no bar */
+.explainer.request-tally .rt-lanes li[data-timed="no"]::before {
+  display: none;
+}
+
+.explainer.request-tally .rt-lanes li[data-timed="no"]::after {
+  width: 8px;
+}
+
+/* playing: every bar grows at the same speed, so a short request ends early */
+.explainer.request-tally .rt-run.is-playing .rt-lanes li:not([data-timed="no"])::after {
+  animation: rt-grow calc(var(--w) * var(--rt-scale)) linear both;
+}
+
+@keyframes rt-grow {
+  0% {
+    transform: scaleX(0);
+    background: var(--color-text-faint);
+  }
+
+  90% {
+    background: var(--color-text-faint);
+  }
+}
+
+/* the total: the count over its dots */
+.explainer.request-tally .rt-tally {
+  border-top: var(--border-width) solid var(--color-line);
+  padding-top: clamp(16px, 2.6cqi, 24px);
+}
+
+.explainer.request-tally .rt-count p {
+  font-size: var(--text-body);
+  line-height: 1.4;
+  color: var(--color-text-muted);
+}
+
+.explainer.request-tally .rt-count strong {
+  display: block;
+  margin-bottom: 2px;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 6cqi, 2.75rem);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  color: var(--rt-ok);
+}
+
+.explainer.request-tally .rt-tally[data-result="fail"] .rt-count strong {
+  color: var(--rt-no);
+}
+
+.explainer.request-tally .rt-dots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 7px);
+  gap: 3px;
+  margin-top: 14px;
+}
+
+.explainer.request-tally .rt-dots i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rt-ok);
+}
+
+.explainer.request-tally .rt-dots i.is-fail {
+  background: var(--rt-no);
+}
+
+.explainer.request-tally .rt-run.is-playing .rt-dots i {
+  animation: rt-dot 240ms var(--ease-standard) both;
+  animation-delay: calc(var(--rt-scale) + var(--i) / var(--total) * 1400ms);
+}
+
+@keyframes rt-dot {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+}
+
+.explainer.request-tally .rt-note p {
+  max-width: 68ch;
+  font-size: var(--text-small);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.explainer.request-tally .rt-note p + p {
+  margin-top: 8px;
+}
+
+.explainer.request-tally .rt-note code {
+  font-size: 12.5px;
+  overflow-wrap: anywhere;
+}
+
+.explainer.request-tally .rt-caption {
+  margin-top: clamp(16px, 2.6cqi, 22px);
+}
+
+.explainer.request-tally .rt-caption p {
+  font-size: var(--text-small);
+  color: var(--color-text-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explainer.request-tally .rt-run:not([hidden]) {
+    animation: none;
+  }
+}

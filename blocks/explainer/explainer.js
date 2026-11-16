@@ -50,12 +50,68 @@ export function plainLinks(root) {
   root.querySelectorAll('a.text-link, a.button').forEach((a) => a.classList.remove('text-link', 'button', 'primary', 'secondary', 'accent'));
 }
 
+/**
+ * A replay control: an icon button named by its label (the kit's replay, as on process-shift).
+ * Hidden under reduced motion by the kit's CSS, since nothing plays there.
+ */
+export function replayControl(label, onClick) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'x-replay';
+  button.setAttribute('aria-label', label);
+  button.title = label;
+  button.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.2 9.2A5.3 5.3 0 1 1 11.6 4.3"/><path d="M12.4 1.6v3.2H9.2"/></svg>';
+  button.addEventListener('click', onClick);
+  return button;
+}
+
+/**
+ * Makes hosts one radio group: roles, roving focus, click and arrow keys. A host is a focusable
+ * element holding an authored label, never a <button> (EW7). Returns pick(index) to set the
+ * checked host; onPick(index, fromUser) runs on every pick.
+ */
+export function radios(group, hosts, onPick, name) {
+  group.setAttribute('role', 'radiogroup');
+  if (name) group.setAttribute('aria-label', name);
+  const pick = (to, fromUser = false) => {
+    hosts.forEach((host, i) => {
+      host.setAttribute('aria-checked', String(i === to));
+      host.tabIndex = i === to ? 0 : -1;
+    });
+    onPick(to, fromUser);
+  };
+  hosts.forEach((host, i) => {
+    host.setAttribute('role', 'radio');
+    host.addEventListener('click', () => pick(i, true));
+    host.addEventListener('keydown', (e) => {
+      const last = hosts.length - 1;
+      const to = {
+        ArrowRight: i === last ? 0 : i + 1,
+        ArrowDown: i === last ? 0 : i + 1,
+        ArrowLeft: i === 0 ? last : i - 1,
+        ArrowUp: i === 0 ? last : i - 1,
+        Home: 0,
+        End: last,
+      }[e.key];
+      if (to !== undefined) {
+        e.preventDefault();
+        hosts[to].focus();
+        pick(to, true);
+      } else if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        pick(i, true);
+      }
+    });
+  });
+  return pick;
+}
+
 export default async function decorate(block) {
   const engine = block.classList[1];
   if (!engine || !ENGINE.test(engine) || engine === 'block') return;
   const base = `${window.hlx.codeBasePath}/blocks/explainer/engines/${engine}`;
   const [mod] = await Promise.all([import(`${base}.js`), loadCSS(`${base}.css`)]);
   await mod.default(block, {
-    slot, rows, onceVisible, wait, reduceMotion, plainLinks,
+    slot, rows, onceVisible, wait, reduceMotion, plainLinks, replayControl, radios,
   });
 }

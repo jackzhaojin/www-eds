@@ -1,0 +1,291 @@
+/* Explainer engine "bridge-path": one request, hop by hop, along the picked route. A hop the
+   request reached is filled in ink (never the accent: a brand's accent can be red, and would
+   read as a failure), the hop where it stopped is in the danger tone, the
+   hops it never reached are faint and dashed. Hops run down the column when it is narrow,
+   across it from 700px. */
+.explainer.bridge-path .bp {
+  --bp-node: 18px;
+  --bp-gap: 18px;
+  --bp-go: var(--color-text);
+  --bp-ok: var(--color-success);
+  --bp-no: var(--color-danger);
+
+  margin: 0;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  padding: clamp(18px, 3.2cqi, 36px);
+}
+
+.explainer.bridge-path .bp-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: clamp(22px, 3.4cqi, 34px);
+}
+
+.explainer.bridge-path .bp-switch > * {
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+.explainer.bridge-path .bp-option strong {
+  font-weight: inherit;
+}
+
+.explainer.bridge-path .bp-name-row {
+  display: none;
+}
+
+.explainer.bridge-path .bp-lane:not([hidden]) {
+  animation: rise 320ms var(--ease-standard);
+}
+
+.explainer.bridge-path .bp-track ol {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px;
+}
+
+/* a hop: the authored item, its node drawn before it (narrow: the node on the left) */
+.explainer.bridge-path .bp-track li {
+  position: relative;
+  min-width: 0;
+  min-height: calc(var(--bp-node) + 6px);
+  padding-left: calc(var(--bp-node) + 14px);
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  overflow-wrap: break-word;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.explainer.bridge-path .bp-track li::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 2px;
+  left: 0;
+  box-sizing: border-box;
+  width: var(--bp-node);
+  height: var(--bp-node);
+  border: 2px solid var(--color-line-strong);
+  border-radius: 50%;
+  background: var(--color-surface);
+  transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1), border-color var(--duration-base) var(--ease-standard),
+    background-color var(--duration-base) var(--ease-standard), box-shadow var(--duration-base) var(--ease-standard);
+}
+
+/* the wire down to the next hop (narrow) */
+.explainer.bridge-path .bp-track li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--bp-node) + 6px);
+  bottom: -20px;
+  left: calc(var(--bp-node) / 2 - 1px);
+  width: 2px;
+  background: var(--color-line-strong);
+  transition: background-color var(--duration-base) var(--ease-standard);
+}
+
+.explainer.bridge-path .bp-track li strong:first-child {
+  display: block;
+  margin-bottom: 3px;
+  font-size: var(--text-body);
+  font-weight: var(--weight-bold);
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+.explainer.bridge-path .bp-track li code {
+  font-size: 12.5px;
+  overflow-wrap: anywhere;
+}
+
+/* reached */
+.explainer.bridge-path .bp-track li[data-on]::before {
+  border-color: var(--bp-go);
+  background: var(--bp-go);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--bp-go) 12%, transparent);
+}
+
+.explainer.bridge-path .bp-track li[data-on]:not([data-stop], :last-child)::after {
+  background: var(--bp-go);
+}
+
+.explainer.bridge-path .bp-track li[data-now]::before {
+  transform: scale(1.28);
+}
+
+/* a route that came back: the whole wire turns to the success tone */
+.explainer.bridge-path .bp-lane[data-kind="ok"][data-done] .bp-track li::before {
+  border-color: var(--bp-ok);
+  background: var(--bp-ok);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--bp-ok) 16%, transparent);
+}
+
+.explainer.bridge-path .bp-lane[data-kind="ok"][data-done] .bp-track li:not(:last-child)::after {
+  background: var(--bp-ok);
+}
+
+/* where it stopped */
+.explainer.bridge-path .bp-track li[data-stop]::before {
+  border-color: var(--bp-no);
+  background: var(--bp-no);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--bp-no) 16%, transparent);
+}
+
+.explainer.bridge-path .bp-track li[data-stop] strong:first-child {
+  color: var(--bp-no);
+}
+
+.explainer.bridge-path .bp-track li[data-stop]:not(:last-child)::after,
+.explainer.bridge-path .bp-track li[data-skip]:not(:last-child)::after {
+  background: repeating-linear-gradient(to bottom, var(--color-line-strong) 0 4px, transparent 4px 8px);
+}
+
+/* never reached */
+.explainer.bridge-path .bp-track li[data-skip] {
+  opacity: 0.5;
+}
+
+.explainer.bridge-path .bp-track li[data-skip]::before {
+  border-style: dashed;
+}
+
+/* playing: hops ahead of the request wait in a lower tone */
+.explainer.bridge-path .bp-lane.is-playing .bp-track li:not([data-on]) {
+  opacity: 0.35;
+}
+
+/* the result: the verdict line, then what came back. It keeps its place while a route plays,
+   so nothing moves when it shows. */
+.explainer.bridge-path .bp-result {
+  margin-top: clamp(20px, 3cqi, 30px);
+  border-top: var(--border-width) solid var(--color-line);
+  padding-top: clamp(14px, 2.2cqi, 20px);
+  transition: opacity 320ms var(--ease-standard);
+}
+
+.explainer.bridge-path .bp-lane.is-playing .bp-result {
+  opacity: 0;
+}
+
+.explainer.bridge-path .bp-verdict p {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--bp-ok);
+}
+
+.explainer.bridge-path .bp-verdict p::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentcolor;
+}
+
+.explainer.bridge-path .bp-result[data-kind="fail"] .bp-verdict p {
+  color: var(--bp-no);
+}
+
+.explainer.bridge-path .bp-outcome {
+  margin-top: 10px;
+}
+
+.explainer.bridge-path .bp-outcome p {
+  max-width: 68ch;
+  font-size: var(--text-small);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.explainer.bridge-path .bp-outcome p + p {
+  margin-top: 8px;
+}
+
+.explainer.bridge-path .bp-outcome pre {
+  margin: 0 0 10px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-night-bg);
+  padding: 12px 14px;
+  font: 400 13px/1.6 var(--font-mono);
+  color: var(--color-night-text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.explainer.bridge-path .bp-result[data-kind="fail"] .bp-outcome pre {
+  box-shadow: inset 3px 0 0 var(--color-night-danger);
+}
+
+.explainer.bridge-path .bp-result[data-kind="ok"] .bp-outcome pre {
+  box-shadow: inset 3px 0 0 var(--color-night-success);
+}
+
+.explainer.bridge-path .bp-outcome pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+
+.explainer.bridge-path .bp-caption {
+  margin-top: clamp(16px, 2.6cqi, 22px);
+}
+
+.explainer.bridge-path .bp-caption p {
+  font-size: var(--text-small);
+  color: var(--color-text-faint);
+}
+
+/* wide: the hops run across, the node above each one, one wire under them */
+@container (width >= 700px) {
+  .explainer.bridge-path .bp-track ol {
+    grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+    gap: 0 var(--bp-gap);
+  }
+
+  .explainer.bridge-path .bp-track li {
+    padding-top: calc(var(--bp-node) + 18px);
+    padding-left: 0;
+  }
+
+  .explainer.bridge-path .bp-track li:not(:last-child)::after {
+    top: calc(2px + var(--bp-node) / 2 - 1px);
+    bottom: auto;
+    left: var(--bp-node);
+    width: calc(100% + var(--bp-gap) - var(--bp-node));
+    height: 2px;
+  }
+
+  .explainer.bridge-path .bp-track li[data-stop]:not(:last-child)::after,
+  .explainer.bridge-path .bp-track li[data-skip]:not(:last-child)::after {
+    background: repeating-linear-gradient(to right, var(--color-line-strong) 0 4px, transparent 4px 8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explainer.bridge-path .bp-lane:not([hidden]) {
+    animation: none;
+  }
+
+  .explainer.bridge-path :is(.bp-track li, .bp-result),
+  .explainer.bridge-path .bp-track li::before,
+  .explainer.bridge-path .bp-track li::after {
+    transition: none;
+  }
+}

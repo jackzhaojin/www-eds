@@ -111,6 +111,49 @@
   outline-offset: 2px;
 }
 
+/* replay: an icon button that plays an explainer's motion again (nothing plays under reduced
+   motion, so it hides there) */
+.explainer .x-replay {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: var(--border-width) solid var(--color-line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--duration-base) var(--ease-standard), border-color var(--duration-base) var(--ease-standard);
+}
+
+.explainer .x-replay:is(:hover, :focus-visible) {
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
+}
+
+.explainer .x-replay:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.explainer .x-replay svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explainer .x-replay {
+    display: none;
+  }
+}
+
 /* lab frame */
 .explainer .lab {
   background: var(--surface);
