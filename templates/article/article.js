@@ -7,7 +7,7 @@ import { getMetadata } from '../../scripts/aem.js';
  * - the first section is the article head: an ordered list (the breadcrumb, its last item is
  *   this page), the h1, the byline paragraph (starts with "By "), the summary paragraph;
  * - every other section is part of the reading column. A section with metadata "id" is a
- *   link target (#part-1, #video), the way the source anchors its parts;
+ *   link target (#part-1, #video), the way the source anchors its parts, and owns that id;
  * - a section styled "related" closes the column (related reading, author box);
  * - the rail block anywhere in the page becomes the right rail (the outline).
  *
@@ -138,6 +138,18 @@ function decorateWatch(body) {
   });
 }
 
+/**
+ * A section owns its id: a heading that got the same id from its text (a card titled
+ * "Authoring" and the section #authoring) gives it up, so a link, the rail and a page opened at
+ * that anchor all reach the section. The deck template does the same for its slides.
+ */
+function sectionIds(body) {
+  const ids = new Set([...body.querySelectorAll(':scope > .section[id]')].map((s) => s.id));
+  body.querySelectorAll(':is(h1, h2, h3, h4, h5, h6)[id]').forEach((h) => {
+    if (ids.has(h.id)) h.removeAttribute('id');
+  });
+}
+
 /** Every column h2 links to itself; a click also copies the full link where allowed. */
 function decorateHeadingLinks(body) {
   body.querySelectorAll('.default-content-wrapper h2').forEach((h) => {
@@ -209,5 +221,6 @@ export default function decorate(main) {
   body.querySelectorAll('h2').forEach((h2) => keepTogether(h2, 'heading-keep-together'));
   decorateQuestions(body);
   decoratePrompts(body);
+  sectionIds(body);
   decorateHeadingLinks(body);
 }
