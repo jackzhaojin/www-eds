@@ -44,6 +44,15 @@
         "value": "inter",
         "createdAt": "2026-11-11T15:25:51.328Z",
         "reason": "project design system: www-eds DESIGN.md and styles.css set Inter as the site's sans face, and this preview mirrors the live title slide"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          ".playwright-cli/slicc/linkedin/card.html"
+        ],
+        "createdAt": "2026-11-17T16:48:08.281Z",
+        "reason": "Jack asked for his personal brand in light mode on this card (2026-11-17); the ground #f6f4f0 is the site's own design-system token --palette-warm-50, not a default"
       }
     ]
   }
