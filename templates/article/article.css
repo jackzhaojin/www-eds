@@ -307,6 +307,130 @@
   font-variant-ligatures: none;
 }
 
+/* ---------- plates in the column (section styles moment and plates, since v1.7.10) ----------
+   A deck's two plate layouts (templates/presentation), as section styles in an article, so a
+   section moves between a deck and an article unchanged:
+   - moment: one scene beside the section's opening text;
+   - plates: one card per scene, the plate on the left and its caption beside it.
+   Both stack on a narrow column. The column (.article-body) is the size container. */
+.article .article-body .section.moment {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--space-6);
+  align-items: start;
+}
+
+.article .article-body .section.moment > * {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+.article .article-body .section.moment > .scene-wrapper {
+  justify-self: center;
+  width: min(100%, 22rem);
+}
+
+.article .article-body .section.plates {
+  counter-reset: plate;
+}
+
+.article .article-body .section.plates .scene {
+  --plate: 100%;
+
+  counter-increment: plate;
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.article .article-body .section.plates > .scene-wrapper + .scene-wrapper {
+  margin-top: var(--space-3);
+}
+
+.article .article-body .section.plates .scene .scene-caption {
+  margin-top: var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.article .article-body .section.plates .scene .scene-caption::before {
+  content: counter(plate, decimal-leading-zero);
+  display: block;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.article .article-body .section.plates .scene .scene-caption :is(h3, h4) {
+  margin: 0 0 var(--space-2);
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+.article .article-body .section.plates .scene .scene-caption p + p {
+  margin-top: var(--space-2);
+}
+
+@container (width >= 620px) {
+  .article .article-body .section.moment {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 19rem);
+  }
+
+  .article .article-body .section.moment > .default-content-wrapper:first-child {
+    grid-column: 1;
+  }
+
+  .article .article-body .section.moment > .scene-wrapper {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    margin-top: var(--space-2);
+  }
+
+  /* the plate keeps its square on the left; its labels and controls follow that square, not the
+     card, and the caption takes the rest */
+  .article .article-body .section.plates .scene {
+    --plate: 15.5rem;
+  }
+
+  .article .article-body .section.plates .scene .scene-figure {
+    display: grid;
+    grid-template-columns: var(--plate) minmax(0, 1fr);
+    column-gap: var(--space-5);
+    align-items: center;
+  }
+
+  .article .article-body .section.plates .scene .scene-labels {
+    inset: 0 auto auto 0;
+    width: var(--plate);
+  }
+
+  .article .article-body .section.plates .scene .scene-label p {
+    font-size: 10px;
+  }
+
+  .article .article-body .section.plates .scene :is(.scene-toggle, .scene-replay) {
+    top: calc(var(--plate) - 40px);
+    right: auto;
+    left: calc(var(--plate) - 40px);
+  }
+
+  .article .article-body .section.plates .scene .scene-replay {
+    left: calc(var(--plate) - 80px);
+  }
+
+  .article .article-body .section.plates .scene .scene-caption {
+    margin-top: 0;
+  }
+}
+
 /* ---------- watch rows ---------- */
 .article .article-body .default-content-wrapper > .watch {
   margin-top: var(--space-5);
