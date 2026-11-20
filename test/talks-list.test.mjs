@@ -33,6 +33,11 @@ test('a talk row is an Event on the hub, its write-up and project linked', () =>
   assert.equal(item.startDate, '2026-04-06');
   assert.equal(item.additionalType, 'Community demo');
   assert.deepEqual(item.organizer, { '@type': 'Organization', name: 'AI Tinkerers Columbus' });
+  // a link on the event line is the organizer's site
+  const [linked] = talkSchemaItems([talk({
+    event: 'AI Tinkerers Columbus · Columbus, Ohio', eventHref: 'https://columbus.aitinkerers.org/',
+  })], HUB);
+  assert.deepEqual(linked.organizer, { '@type': 'Organization', name: 'AI Tinkerers Columbus', url: 'https://columbus.aitinkerers.org/' });
   assert.equal('superEvent' in item, false);
   assert.deepEqual(item.location, { '@type': 'Place', name: 'Columbus, Ohio', address: 'Columbus, Ohio' });
   assert.equal(item.eventAttendanceMode, 'https://schema.org/OfflineEventAttendanceMode');
@@ -54,7 +59,12 @@ test('a talk held online is an online Event, at the page of its event', () => {
   const [item, bare] = talkSchemaItems([talk(webinar), talk({ ...webinar, event: 'A webinar · online', links: [] })], HUB);
   assert.equal(item.eventAttendanceMode, 'https://schema.org/OnlineEventAttendanceMode');
   assert.deepEqual(item.location, { '@type': 'VirtualLocation', url: 'https://engage.adobe.com/sites-leveraging-ai-to-maintain-content.html' });
-  assert.deepEqual(item.organizer, { '@type': 'Organization', name: 'Adobe Experience Manager Sites webinar, Learn From Your Peers' });
+  // with no link on the event line, the organizer is found at the event's page
+  assert.deepEqual(item.organizer, {
+    '@type': 'Organization',
+    name: 'Adobe Experience Manager Sites webinar, Learn From Your Peers',
+    url: 'https://engage.adobe.com/sites-leveraging-ai-to-maintain-content.html',
+  });
   assert.equal(item.subjectOf.url, 'https://www.jackzhaojin.com/writing/2026-11-11-sites-and-ai/');
   // with no event page to point at, the row itself is where the talk is found
   assert.equal(bare.eventAttendanceMode, 'https://schema.org/OnlineEventAttendanceMode');

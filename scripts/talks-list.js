@@ -18,7 +18,8 @@ export function eventParts(text) {
 
 /**
  * A decorated talk row (an li of .row-list-items) as data: its id, title, date, kind, event
- * line, description and links ({ label, href } with href as authored).
+ * line, the link on the event line (the organizer's site), description and links ({ label, href }
+ * with href as authored).
  */
 export function readTalkRow(li) {
   const text = (selector) => li.querySelector(selector)?.textContent.trim() || '';
@@ -28,6 +29,7 @@ export function readTalkRow(li) {
     date: text('.row-list-date'),
     kind: text('.row-list-type'),
     event: text('.row-list-event'),
+    eventHref: li.querySelector('.row-list-event a')?.getAttribute('href') || '',
     description: [...li.querySelectorAll('.row-list-description p')]
       .map((p) => p.textContent.trim()).filter(Boolean).join(' '),
     links: [...li.querySelectorAll('.row-list-links a')]
@@ -49,6 +51,16 @@ function eventLocation(place, online, url) {
 }
 
 /**
+ * The organizer (since v1.8.2): the event, named by the event line, at the link on the event line
+ * (the organizer's own site), else at the row's event page. Google asks every Event organizer for
+ * a url.
+ */
+function eventOrganizer(event, url) {
+  if (!event) return {};
+  return { organizer: { '@type': 'Organization', name: event, ...(url ? { url } : {}) } };
+}
+
+/**
  * The ItemList entries: an Event per row, with the write-up and project the row links. Google
  * checks every Event, a superEvent too, typed or not, for a start date and a location: an address
  * for one held in a room, a URL for one held online. So the place line is the Place's address as
@@ -63,6 +75,7 @@ export function talkSchemaItems(talks, canonical) {
     const site = links.map((link) => link.url).filter((url) => url.origin === SITE);
     const online = ONLINE.test(place);
     const eventPage = links.find((link) => link.url.origin !== SITE && /event/i.test(link.label));
+    const organizerUrl = talk.eventHref ? new URL(talk.eventHref, `${SITE}/`).href : eventPage?.url.href;
     const writeup = site.find((url) => /^\/writing\/[^/]+\/$/.test(url.pathname));
     const project = site.find((url) => /^\/portfolio\/[^/]+\/$/.test(url.pathname));
     return {
@@ -76,7 +89,7 @@ export function talkSchemaItems(talks, canonical) {
       eventAttendanceMode: `https://schema.org/${online ? 'Online' : 'Offline'}EventAttendanceMode`,
       eventStatus: 'https://schema.org/EventScheduled',
       performer: { '@id': PERSON['@id'] },
-      ...(event ? { organizer: { '@type': 'Organization', name: event } } : {}),
+      ...eventOrganizer(event, organizerUrl),
       ...eventLocation(place, online, eventPage ? eventPage.url.href : `${canonical}#${talk.id}`),
       ...(writeup ? { subjectOf: { '@type': 'BlogPosting', url: `${SITE}${writeup.pathname}` } } : {}),
       ...(project ? { about: { '@id': `${SITE}${project.pathname}#project` } } : {}),
