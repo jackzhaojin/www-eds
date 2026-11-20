@@ -1,0 +1,28 @@
+/* App template (since v1.8.0): the page is one app that fills the screen, such as Same Page's
+   phone app and big screen, each a remote widget (widgets/remote/) under /apps/. The site's header
+   and footer stay out of its way, its section loses the band's border and padding, and the page
+   itself never bounces or pulls to refresh: the app scrolls inside. Metadata `template | app`. */
+
+html:has(> body.app) {
+  overscroll-behavior: none;
+}
+
+body.app {
+  min-height: 100dvh;
+  overscroll-behavior: none;
+}
+
+body.app > header,
+body.app > footer {
+  display: none;
+}
+
+body.app main > .section {
+  padding-block: 0;
+  border-top: 0;
+}
+
+body.app main > .section > div {
+  max-width: none;
+  padding-inline: 0;
+}

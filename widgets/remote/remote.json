@@ -1,0 +1,20 @@
+{
+  "apps": {
+    "same-page-play": {
+      "description": "Same Page, the phone app: join the room, talk to a coach, send ideas to the page the room writes together. From jackzhaojin/eds-multiplayer-authoring, apps/client.",
+      "entry": "https://play.jackzhaojin.com/app/same-page-play.js",
+      "local": "http://localhost:8787/app/same-page-play.js",
+      "fallback": "https://play.jackzhaojin.com/app/",
+      "params": ["theme"],
+      "layout": "screen"
+    },
+    "same-page-show": {
+      "description": "Same Page, the big screen: the room's ideas, the scoreboard and the page being written, for the stage. From jackzhaojin/eds-multiplayer-authoring, apps/dashboard.",
+      "entry": "https://show.jackzhaojin.com/app/same-page-show.js",
+      "local": "http://localhost:8788/app/same-page-show.js",
+      "fallback": "https://show.jackzhaojin.com/app/",
+      "params": ["theme", "window"],
+      "layout": "screen"
+    }
+  }
+}

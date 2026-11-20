@@ -22,6 +22,7 @@ The other docs in this repo have different jobs:
 | [cloudflare-worker.md](cloudflare-worker.md) | the Cloudflare Worker in front of www: what it does to every request, its three environments, the caches, search engines, the safety nets |
 | [edge-rendering.md](edge-rendering.md) | edge-side rendering: listing pages and structured data built inside the Worker, so every reader and every crawler gets the finished page. The part worth demoing |
 | [theming.md](theming.md) | brands and appearances: the three tiers of tokens, how a page takes the Adobe brand through its metadata, why every block follows, and how that is checked |
+| [remote-widget.md](remote-widget.md) | the remote widget: an app from another repo running in a page with one authored link, its registry, the app pages under `/apps/`, and Same Page's phone app and big screen |
 
 If you read one, read [edge-rendering.md](edge-rendering.md). If you read them all, go in the order above.
 

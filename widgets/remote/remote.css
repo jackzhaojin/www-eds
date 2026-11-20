@@ -1,0 +1,82 @@
+/* Remote widget (since v1.8.0). The app draws itself inside its own shadow root (.remote-app),
+   so its styles and the site's never meet. This file draws only what is around it: the
+   placeholder that holds the space while the app loads, says so when it is slow, and says so when
+   it fails. Semantic tokens only; the spinner is ink, never the accent (red reads as a failure). */
+
+.remote {
+  position: relative;
+}
+
+.remote .remote-status {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: var(--space-3);
+  min-height: 240px;
+  padding: var(--space-6) var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  text-align: center;
+}
+
+.remote[data-remote-layout="screen"] .remote-status {
+  min-height: 100dvh;
+}
+
+.remote[data-remote-state="ready"] .remote-status {
+  display: none;
+}
+
+.remote .remote-note {
+  display: none;
+  margin: 0;
+  max-width: 36ch;
+}
+
+.remote:not([data-remote-state]) .remote-note-loading,
+.remote[data-remote-state="loading"] .remote-note-loading,
+.remote[data-remote-state="slow"] .remote-note-slow,
+.remote[data-remote-state="failed"] .remote-note-failed {
+  display: block;
+}
+
+.remote .remote-fallback {
+  color: var(--color-text);
+  font-weight: var(--weight-medium);
+}
+
+.remote .remote-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--color-line);
+  border-top-color: var(--color-text-muted);
+  border-radius: 50%;
+  animation: remote-spin 0.9s linear infinite;
+}
+
+.remote[data-remote-state="failed"] .remote-spinner {
+  display: none;
+}
+
+/* The app is laid out while it loads, so it can measure itself, but it shows only when ready. */
+.remote:not([data-remote-state="ready"]) .remote-app {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+
+.remote[data-remote-layout="screen"] .remote-app {
+  height: 100dvh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .remote .remote-spinner {
+    animation-duration: 3s;
+  }
+}
+
+@keyframes remote-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
