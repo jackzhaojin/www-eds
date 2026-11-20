@@ -31,7 +31,7 @@ sequenceDiagram
 
 1. Adobe's widget block (`blocks/widget/`, unchanged from the boilerplate) turns the link into a widget, loads `widgets/remote/remote.html` (the placeholder), `remote.css` and `remote.js`, and turns the query string into `data-` attributes.
 2. `remote.js` looks the name up in `widgets/remote/remote.json`, the registry. An unknown name stops here, with a note on the page: no script runs.
-3. It imports the app's entry module from the address in the registry, and calls its `mount(element, host)`. The page does not wait: the placeholder shows at once, says "Still loading" after 8 seconds, and if the app fails it says so and links to the app on its own host. The rest of the page keeps working.
+3. It imports the app's entry module from the address in the registry, and calls its `mount(element, host)` once Edge Delivery shows the widget's section (a section stays hidden until its blocks have loaded, and an app in a hidden section could neither take focus nor measure itself; since v1.8.1). The page does not wait: the placeholder shows at once, says "Still loading" after 8 seconds, and if the app fails it says so and links to the app on its own host. The rest of the page keeps working.
 4. The app draws inside a shadow root of its own, so its styles and the site's never meet, and calls its API on its own host.
 
 ## The registry
