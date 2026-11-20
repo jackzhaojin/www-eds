@@ -60,13 +60,6 @@
   display: none;
 }
 
-/* The app is laid out while it loads, so it can measure itself, but it shows only when ready. */
-.remote:not([data-remote-state="ready"]) .remote-app {
-  position: absolute;
-  inset: 0;
-  visibility: hidden;
-}
-
 .remote[data-remote-layout="screen"] .remote-app {
   height: 100dvh;
 }

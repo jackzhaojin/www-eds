@@ -66,6 +66,26 @@ function preconnect(origin) {
   document.head.append(link);
 }
 
+/**
+ * Resolves once the widget's section is shown. Edge Delivery keeps a section hidden until its
+ * blocks have loaded, and an app mounted in a hidden section can neither take focus nor measure
+ * itself. Its code still downloads meanwhile: only the mount waits.
+ * @param {Element} widget The widget block element
+ */
+function whenShown(widget) {
+  const section = widget.closest('.section');
+  const shown = () => !section || section.dataset.sectionStatus === 'loaded';
+  if (shown()) return Promise.resolve();
+  return new Promise((resolve) => {
+    const watch = new MutationObserver(() => {
+      if (!shown()) return;
+      watch.disconnect();
+      resolve();
+    });
+    watch.observe(section, { attributes: true, attributeFilter: ['data-section-status'] });
+  });
+}
+
 function report(checkpoint, name, target) {
   try {
     sampleRUM(checkpoint, { source: `remote:${name}`, target });
@@ -129,12 +149,14 @@ export default async function decorate(widget) {
       if (typeof key === 'string' && key in widget.dataset) params[key] = widget.dataset[key];
     });
 
+    // The app's own element, added only when it mounts: until then the placeholder is all there is.
     const mountPoint = document.createElement('div');
     mountPoint.className = 'remote-app';
-    widget.append(mountPoint);
     try {
       const mod = await import(url.href);
       if (typeof mod.mount !== 'function') throw new Error('its entry has no mount function');
+      await whenShown(widget);
+      widget.append(mountPoint);
       await mod.mount(mountPoint, Object.freeze({
         version: 1,
         name,
