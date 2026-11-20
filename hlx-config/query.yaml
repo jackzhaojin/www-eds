@@ -1,7 +1,8 @@
 version: 1
 # The query index (Admin API: /config/jackzhaojin/sites/www-eds/content/query.yaml). Every
-# published page except the nav and footer fragments. The sitemap reads it, and skips pages
-# whose robots metadata says noindex (the design system page).
+# published page except the nav and footer fragments, drafts, the block library and the app pages
+# (/apps/**, since 2026-11-19: each is one full-screen app, never indexed). The sitemap reads it,
+# and skips pages whose robots metadata says noindex (the design system page).
 indices:
   default:
     include:
@@ -14,6 +15,7 @@ indices:
       - '/drafts/**'
       - '/docs/**'
       - '/talks/records/**'
+      - '/apps/**'
     target: /query-index.json
     properties:
       title:
